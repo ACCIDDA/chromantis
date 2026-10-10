@@ -50,7 +50,7 @@ CODES = {
     'loss_weights': {'objective', 'admissions_only', 'ed_only'},
     'signal_features': {'none', 'multiscale', 'smooth_multiscale'},
     'covariate_encoder': {'raw', 'smooth', 'summary', 'shared', 'growth'},
-    'encoder': {'mlp', 'conv', 'multiscale_conv', 'series_mlp', 'series_mixer'},
+    'encoder': {'mlp', 'conv', 'multiscale_conv', 'gru', 'attention', 'series_mlp', 'series_mixer'},
     'history_source': {'finalized', 'reported', 'artificial'},
     'forecast_view': {'raw', 'corrected', 'half'},
     'error_scope': {'all', 'early_actual'},

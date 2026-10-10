@@ -118,6 +118,34 @@ class MultiscaleEncoder(nn.Module):
         return self.project(torch.cat([v for h in features for v in (h.mean(-1), h[..., -1])], -1))
 
 
+class RecurrentEncoder(nn.Module):
+    """GRU over weeks (oldest to newest); last hidden state and mean of hidden states (2026-10-10)."""
+    def __init__(self, inputs, width):
+        super().__init__()
+        self.gru = nn.GRU(inputs, width, batch_first=True)
+        self.project = nn.Linear(2 * width, width)
+
+    def forward(self, x):
+        h, _ = self.gru(x.transpose(1, 2))
+        return self.project(torch.cat((h.mean(1), h[:, -1]), -1))
+
+
+class AttentionEncoder(nn.Module):
+    """Two pre-norm self-attention layers over weeks with learned week positions (2026-10-10)."""
+    def __init__(self, inputs, width, weeks=64):
+        super().__init__()
+        self.embed = nn.Linear(inputs, width)
+        self.position = nn.Parameter(torch.zeros(weeks, width))
+        layer = nn.TransformerEncoderLayer(width, 4, 2 * width, dropout=0.0, batch_first=True, norm_first=True)
+        self.layers = nn.TransformerEncoder(layer, 2, enable_nested_tensor=False)
+        self.project = nn.Linear(2 * width, width)
+
+    def forward(self, x):
+        h = self.embed(x.transpose(1, 2))
+        h = self.layers(h + self.position[-h.shape[1]:])
+        return self.project(torch.cat((h.mean(1), h[:, -1]), -1))
+
+
 def pooled_context(context, observed, locations):
     """Equal-weight observed state/DC mean plus a separate native-US token."""
     states = context.new_tensor([loc != 'US' for loc in locations], dtype=torch.bool)
@@ -303,7 +331,7 @@ class Model(nn.Module):
                            target_names=target_names, target_units=target_units, target_groups=target_groups,
                            target_input_indices=target_input_indices,
                            growth_anchor=growth_anchor, decoder_blocks=decoder_blocks)
-        if (encoder not in ('mlp', 'conv', 'multiscale_conv') or heads not in ('shared', 'state_us') or decoder not in ('legacy', 'residual2', 'quantile', 'quantile_small')
+        if (encoder not in ('mlp', 'conv', 'multiscale_conv', 'gru', 'attention') or heads not in ('shared', 'state_us') or decoder not in ('legacy', 'residual2', 'quantile', 'quantile_small')
                 or spatial not in ('neighbors', 'distance', 'gravity', 'none', 'pooled', 'national_broadcast', 'gated_pool', 'attention', 'pathogen_spatial', 'target_spatial', 'joint_location_target') or noise not in ('global', 'local')
                 or us_error not in ('none', 'shared_factor') or head_sharing not in ('shared', 'pathogen', 'target')):
             raise ValueError('Unknown model architecture option')
@@ -355,7 +383,7 @@ class Model(nn.Module):
         self.config['covariate_offset'] = self.covariate_offset.tolist()
         self.config['covariate_scale'] = self.covariate_scale.tolist()
         self.config['covariate_trained'] = self.covariate_trained.tolist()
-        temporal = MultiscaleEncoder if encoder == 'multiscale_conv' else TemporalEncoder
+        temporal = {'multiscale_conv': MultiscaleEncoder, 'gru': RecurrentEncoder, 'attention': AttentionEncoder}.get(encoder, TemporalEncoder)
         fields_per_cell = 2  # value and availability
         extra_width = 3 * annual_calendar + 2 * geography + 5 * inputs * dynamics + location_embedding
         if signal_features != 'none':

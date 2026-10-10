@@ -109,6 +109,7 @@ class Problem:
     evaluation_kind: str
     evaluation_inputs: str
     evaluation_draws: int
+    evaluation_covariate_errors: bool
     headline_target: str
     headline_scale: str
     headline_geography: str
@@ -150,6 +151,9 @@ class Problem:
             evaluation_kind=str(evaluation["kind"]),
             evaluation_inputs=str(evaluation.get("inputs", "reported")),
             evaluation_draws=int(evaluation.get("draws", 1)),
+            # Prescribed evaluation inputs give covariates artificial errors too (2026-10-10);
+            # before, and by default, only admission/ED histories were made preliminary.
+            evaluation_covariate_errors=bool(evaluation.get("covariate_errors", False)),
             headline_target=str(headline["target"]),
             headline_scale=str(headline["scale"]),
             headline_geography=str(headline["geography"]),
@@ -199,6 +203,8 @@ class Problem:
         if problem.reporting_errors and problem.fold_kind != "leave_one_season_out":
             # Donor reporting errors, error_reference and correction pairs are defined per CDC season.
             raise ValueError("The reporting-error stage is defined for leave_one_season_out folds only")
+        if problem.evaluation_covariate_errors and problem.evaluation_inputs != "prescribed":
+            raise ValueError("covariate_errors applies to prescribed evaluation inputs")
         if problem.evaluation_draws not in {1, 3, 5}:
             raise ValueError("Evaluation draws must be 1, 3 or 5")
         if problem.headline_target not in targets:

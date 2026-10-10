@@ -62,7 +62,7 @@ class Queue:
             s = Scenario.from_string(job['scenario'])
             components = (1 if s.fit_partition == 'all' else len(set(problem.target_groups))
                           if s.fit_partition == 'pathogen' else len(problem.targets))
-            encoder = {'mlp': 1., 'conv': 1.5, 'multiscale_conv': 2., 'series_mlp': .5, 'series_mixer': .6}[s.encoder]
+            encoder = {'mlp': 1., 'conv': 1.5, 'multiscale_conv': 2., 'gru': 2.5, 'attention': 3., 'series_mlp': .5, 'series_mixer': .6}[s.encoder]
             decoder = {'legacy': 1., 'residual2': 2., 'quantile': .5, 'quantile_small': .5}[s.decoder]
             exchange = 1.4 if s.spatial == 'joint_location_target' else 1.
             self.cost[task] = components * s.epochs * (s.width / 64)**2 * (s.lookback / 12)**.5 * encoder * decoder * exchange

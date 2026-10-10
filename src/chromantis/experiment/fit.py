@@ -160,7 +160,7 @@ def evaluation_bank(panel,problem,scenario,held_out,keep):
     if problem.evaluation_inputs!='prescribed':return None
     evaluation_scenario=replace(scenario,lookback=max(12,scenario.lookback),reporting_method='synchronous_phase_log',reporting_strength=1.,
         reporting_probability=1.,reporting_random_strength=False,reporting_recent=0,reporting_missingness=False,
-        actual_share=0.,error_signals='targets')
+        actual_share=0.,error_signals='all' if problem.evaluation_covariate_errors else 'targets')
     return ReportingErrors(panel,problem,evaluation_scenario,held_out,keep)
 
 
