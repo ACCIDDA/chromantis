@@ -1,0 +1,55 @@
+{
+  "name": "bes-20261010",
+  "model_abbr": "Chromantis",
+  "hub": "flusight",
+  "problem": "problems/us-flu-production.json",
+  "rule": "mixture",
+  "view": "corrected",
+  "description": "Bes: one recipe, B_width256 (width-256 MLP, neighbouring-state exchange, 23 direct quantiles), trained on 2022-23 through 2025-26 (no held-out season), seeds 42-51. Training admission and ED histories made preliminary with artificial errors from the prescribed 2025-26 reporting process at 1.5x strength, plus reconstruction labels for the last 4 history weeks. No covariates. Labels: latest finalized future flu admissions and ED (September 2026 panel). Loss: native quantile loss plus 0.5 x log-admission loss. Operational inputs: reported Wednesday data with the newest two admission/ED weeks corrected by each fit's saved trees. Equal weight per seed; predictive distributions mixed. Selected by tree search tree-20261010 (experiments/tree-20261010/protocol.json).",
+  "training_design": "experiments/bes-production-20261010.json",
+  "checkpoints_from": "longleaf:/proj/jlessler/projects/tapestry-all/tapestry/data/experiments/bes-production-20261010",
+  "recipes": {
+    "Bes": [
+      {
+        "checkpoint": "data/production-fits/bes-production-20261010/mlp-pathogen-scheduled_final-b76d286a54c3/s42/attempt-001/eval_2026-2027",
+        "sha256": "a4f1ef486949b729ceeb671c7853fe176d6000fe7c78a3e15081e7d37c82dbc9"
+      },
+      {
+        "checkpoint": "data/production-fits/bes-production-20261010/mlp-pathogen-scheduled_final-b76d286a54c3/s43/attempt-001/eval_2026-2027",
+        "sha256": "e562af3105404cd18b6bc62d5daf784465155ce42ff7cf832869cc38403458de"
+      },
+      {
+        "checkpoint": "data/production-fits/bes-production-20261010/mlp-pathogen-scheduled_final-b76d286a54c3/s44/attempt-001/eval_2026-2027",
+        "sha256": "0976f39a8b34dbfc3c2e0cdbc7cc5978e2a3c6a197673a8557f7de28e320c985"
+      },
+      {
+        "checkpoint": "data/production-fits/bes-production-20261010/mlp-pathogen-scheduled_final-b76d286a54c3/s45/attempt-001/eval_2026-2027",
+        "sha256": "bff670e32c922bb719cbdd5de320abab396add22257bf246fddc6c1fdd10317b"
+      },
+      {
+        "checkpoint": "data/production-fits/bes-production-20261010/mlp-pathogen-scheduled_final-b76d286a54c3/s46/attempt-001/eval_2026-2027",
+        "sha256": "aaaf8ba4b9aa03cde32832b1ca09149d936bf5da42cd0f13fd6dc91bd79b1f30"
+      },
+      {
+        "checkpoint": "data/production-fits/bes-production-20261010/mlp-pathogen-scheduled_final-b76d286a54c3/s47/attempt-001/eval_2026-2027",
+        "sha256": "9bbdf810ea4c340eacff483e591675f15073ae46a24d866eba8b9d31ba01758b"
+      },
+      {
+        "checkpoint": "data/production-fits/bes-production-20261010/mlp-pathogen-scheduled_final-b76d286a54c3/s48/attempt-001/eval_2026-2027",
+        "sha256": "c218cfb5222948f308fe3372e5f15f22d539bcd9ff459caef36efbc0177bd7c7"
+      },
+      {
+        "checkpoint": "data/production-fits/bes-production-20261010/mlp-pathogen-scheduled_final-b76d286a54c3/s49/attempt-001/eval_2026-2027",
+        "sha256": "de7d7cd0183a168665ca1fcca4dc37f3eedea989d5fbbd1e61208c409654e3a9"
+      },
+      {
+        "checkpoint": "data/production-fits/bes-production-20261010/mlp-pathogen-scheduled_final-b76d286a54c3/s50/attempt-001/eval_2026-2027",
+        "sha256": "f8bb5254f7eb8d77da6bfabe2439c48fe2adad29a14db8659fe2a24b28c3c736"
+      },
+      {
+        "checkpoint": "data/production-fits/bes-production-20261010/mlp-pathogen-scheduled_final-b76d286a54c3/s51/attempt-001/eval_2026-2027",
+        "sha256": "46b7622ebc953a0a0355d0d3664d1d4cff19697946e36511888d54ff6bc4726f"
+      }
+    ]
+  }
+}
