@@ -1,0 +1,18 @@
+{
+  "description": "Bes production fits (2026-10-10): B_width256 with artificial reporting errors at 1.5x the prescribed 2025-26 process, selected by the tree search tree-20261010 (experiments/tree-20261010/protocol.json). Retrained on all four completed seasons 2022-23..2025-26 (no held-out season), seeds 42-51. Labels: latest finalized future flu admissions and ED. No covariates.",
+  "candidates": {
+    "Bes": "history_source=artificial,reconstruction_labels=1,error_signals=targets,input_set=target,correction_weeks=2,correction_ed=1,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reporting_strength=1.5,reconstruction_weeks=4,ed_transform=logit,spatial=neighbors,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=0.5,error_reference=2025-2026"
+  },
+  "seeds": [
+    42,
+    43,
+    44,
+    45,
+    46,
+    47,
+    48,
+    49,
+    50,
+    51
+  ]
+}
