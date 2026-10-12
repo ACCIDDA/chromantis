@@ -117,6 +117,7 @@ class Problem:
     production: bool
     panel: str
     locations: str
+    season_window: tuple[int, int] | None = None
 
     @classmethod
     def load(cls, path: str | Path) -> "Problem":
@@ -132,7 +133,8 @@ class Problem:
         if len(targets) != len(set(targets)):
             raise ValueError("Problem targets must be unique")
         forecast = value["forecast"]
-        horizons = tuple(int(h) for h in forecast["horizons"])
+        # season_peak problems forecast to the end of a season window instead of fixed horizons.
+        horizons = tuple(int(h) for h in forecast.get("horizons", (1,)))
         if not horizons or min(horizons) < 1 or tuple(sorted(horizons)) != horizons or len(set(horizons)) != len(horizons):
             raise ValueError("Forecast horizons must be sorted unique positive integers")
         folds = value["folds"]
@@ -163,6 +165,7 @@ class Problem:
             # may share one panel; each experiment pins the hashes of both at plan time.
             panel=str(value["panel"]),
             locations=str(value["locations"]),
+            season_window=tuple(map(int, forecast["season_window_epiweeks"])) if "season_window_epiweeks" in forecast else None,
         )
         if problem.fold_kind not in FOLD_KINDS:
             raise ValueError(f"Unsupported fold kind: {problem.fold_kind}")
@@ -186,13 +189,23 @@ class Problem:
         if not problem.production and problem.fold_kind != "rolling_origin" \
                 and not set(problem.folds).issubset(problem.training_folds):
             raise ValueError("Held-out folds must be among the training folds for a retrospective problem")
-        if problem.evaluation_kind != "weekly_quantile_wis":
+        if problem.evaluation_kind not in {"weekly_quantile_wis", "season_peak"}:
             raise ValueError(f"Unsupported evaluation kind: {problem.evaluation_kind}")
+        if problem.evaluation_kind == "season_peak":
+            # FluSight-style seasonal targets (2026-10-11): peak week (probabilities over the window's weeks)
+            # and peak incidence (quantiles) of one count target, per held-out CDC season (chromantis.seasonal).
+            if problem.season_window is None or len(targets) != 1 or dataset.by_name[targets[0]].unit != "count":
+                raise ValueError("season_peak needs forecast.season_window_epiweeks and one count target")
+            if problem.fold_kind != "leave_one_season_out" or problem.evaluation_inputs != "finalized":
+                raise ValueError("season_peak uses leave_one_season_out folds and finalized inputs")
+        elif problem.season_window is not None:
+            raise ValueError("season_window_epiweeks belongs to season_peak problems")
         # The current evaluator exports array position 0 as Hub horizon 0, position 1
         # as horizon 1, and so on.  Requiring consecutive problem weeks prevents a
         # sparse horizon list from being scored under the wrong labels.  Its standard
         # headline and distribution diagnostics use the first four future weeks.
-        if problem.horizons != tuple(range(1, max(problem.horizons) + 1)) or len(problem.horizons) < 4:
+        if problem.evaluation_kind == "weekly_quantile_wis" and \
+                (problem.horizons != tuple(range(1, max(problem.horizons) + 1)) or len(problem.horizons) < 4):
             raise ValueError("weekly_quantile_wis requires consecutive horizons starting at 1, including weeks 1-4")
         if problem.evaluation_inputs not in EVALUATION_INPUTS:
             raise ValueError(f"Unknown evaluation inputs: {problem.evaluation_inputs}")

@@ -96,6 +96,10 @@ MEANING = {
     'correction_noise': 'Scale of sampled out-of-fold correction residuals added to corrected admissions; 0 = point correction. Evaluation uses 16 sampled histories per issuance.',
     'correction_noise_train': 'Also add sampled correction residuals to corrected training histories each minibatch.',
     'reconstruction_weeks': 'joint only: recent context weeks whose final values are reconstruction labels.',
+    'path_loss_weight': 'Sampled models: weight of the energy score of each location\'s whole future path of log(1 + admissions) '
+                        '(observed weeks only, divided by the square root of their number), so draws learn realistic joint paths (2026-10-11).',
+    'peak_loss_weight': 'Sampled models: weight of the fair CRPS of each path\'s peak size (maximum log(1 + admissions) over the '
+                        'observed future weeks) plus the fair CRPS of its soft peak week (softmax-weighted week position / horizons).',
     'log_loss_weight': 'Weight of an extra weekly admission loss (the trained admission targets) on the log(1 + count) scale, added to the native-scale loss.',
     'covariate_dropout': 'Probability a training episode has all covariates (e.g. Kinsa) hidden.',
     'training_window': 'all = every non-held-out season; recent2 = two preceding seasons; last2 = latest two permitted non-held-out seasons (nested removal of oldest training season).',
@@ -272,6 +276,8 @@ class Scenario:
     correction_noise: float = 0.
     correction_noise_train: bool = False
     log_loss_weight: float = 0.
+    path_loss_weight: float = 0.
+    peak_loss_weight: float = 0.
     covariate_dropout: float = 0.
     training_window: str = 'all'
     stress_views: bool = False
@@ -291,6 +297,11 @@ class Scenario:
             raise ValueError('decoder_blocks must be 0 (original head), 2, 3 or 4')
         if self.decoder_blocks and (self.encoder != 'mlp' or self.decoder not in ('legacy', 'residual2', 'quantile')):
             raise ValueError('Residual decoder depth requires an MLP sampled or ordered-quantile head')
+        if (self.path_loss_weight or self.peak_loss_weight) and (self.decoder not in ('legacy', 'residual2')
+                                                                 or self.encoder in ('series_mlp', 'series_mixer')):
+            raise ValueError('Path and peak losses need a sampled MLP-family model (joint draws)')
+        if self.path_loss_weight < 0 or self.peak_loss_weight < 0:
+            raise ValueError('Path and peak loss weights must be nonnegative')
         if not 0 <= self.sum_wis_weight <= 1:
             raise ValueError('Sum WIS weight must be between zero and one')
         if self.sum_wis_weight and (self.decoder not in ('legacy', 'residual2') or self.encoder in ('series_mlp', 'series_mixer')):

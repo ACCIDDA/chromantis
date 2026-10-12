@@ -1,0 +1,26 @@
+{
+  "description": "Season-peak tree round 3 (2026-10-12). Root Rn = round-2 Rs.noise_local (36-week sampled MLP, neighbour exchange, path loss 1, peak loss 1, square-root counts, location-specific noise). Children: log-loss 0.5, Kinsa input, pooled national exchange, 8-week history, patience 40, path loss 2.",
+  "round": 3,
+  "parents": {
+    "Rn.log_loss_0.5": "Rs.noise_local",
+    "Rn.kinsa": "Rs.noise_local",
+    "Rn.spatial_pooled": "Rs.noise_local",
+    "Rn.lookback8": "Rs.noise_local",
+    "Rn.patience40": "Rs.noise_local",
+    "Rn.path2": "Rs.noise_local"
+  },
+  "candidates": {
+    "Rn.log_loss_0.5": "input_set=target,count_transform=sqrt,ed_transform=logit,spatial=neighbors,noise=local,width=192,epochs=160,patience=25,fit_partition=pathogen,input_normalization=b0,log_loss_weight=0.5,path_loss_weight=1.0,peak_loss_weight=1.0,forecast_view=raw",
+    "Rn.kinsa": "input_set=target,count_transform=sqrt,ed_transform=logit,spatial=neighbors,noise=local,width=192,epochs=160,patience=25,fit_partition=pathogen,covariate_set=kinsa,input_normalization=b0,log_loss_weight=1.0,path_loss_weight=1.0,peak_loss_weight=1.0,forecast_view=raw",
+    "Rn.spatial_pooled": "input_set=target,count_transform=sqrt,ed_transform=logit,spatial=pooled,noise=local,width=192,epochs=160,patience=25,fit_partition=pathogen,input_normalization=b0,log_loss_weight=1.0,path_loss_weight=1.0,peak_loss_weight=1.0,forecast_view=raw",
+    "Rn.lookback8": "input_set=target,lookback=8,count_transform=sqrt,ed_transform=logit,spatial=neighbors,noise=local,width=192,epochs=160,patience=25,fit_partition=pathogen,input_normalization=b0,log_loss_weight=1.0,path_loss_weight=1.0,peak_loss_weight=1.0,forecast_view=raw",
+    "Rn.patience40": "input_set=target,count_transform=sqrt,ed_transform=logit,spatial=neighbors,noise=local,width=192,epochs=160,patience=40,fit_partition=pathogen,input_normalization=b0,log_loss_weight=1.0,path_loss_weight=1.0,peak_loss_weight=1.0,forecast_view=raw",
+    "Rn.path2": "input_set=target,count_transform=sqrt,ed_transform=logit,spatial=neighbors,noise=local,width=192,epochs=160,patience=25,fit_partition=pathogen,input_normalization=b0,log_loss_weight=1.0,path_loss_weight=2.0,peak_loss_weight=1.0,forecast_view=raw"
+  },
+  "seeds": [
+    44,
+    45,
+    46,
+    47
+  ]
+}

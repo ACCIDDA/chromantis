@@ -1,0 +1,15 @@
+{
+  "description": "Season-peak stage 2 (2026-10-11): sampled A-family MLPs forecasting weeks 1-36 (to the end of the season) from finalized flu admission and ED histories, with and without historical ILI pretraining (pre-August-2022 state ILI rescaled to flu units) and neighbouring-state exchange. Problem us-flu-long-horizon: leave-one-season-out 2023-24/2024-25/2025-26, finalized inputs and labels. Fold models are turned into FluSight peak forecasts by `chromantis.seasonal` (model=trajectory) and scored on problems/us-flu-season-peak.json.",
+  "candidates": {
+    "A_long": "input_set=target,forecast_view=raw,count_transform=fourth_root,ed_transform=logit,width=192,epochs=160,patience=25,fit_partition=pathogen,input_normalization=b0,log_loss_weight=1.0",
+    "A_long.ili": "input_set=target,forecast_view=raw,count_transform=fourth_root,ed_transform=logit,width=192,epochs=160,patience=25,fit_partition=pathogen,input_normalization=b0,log_loss_weight=1.0,ili_training=pretrain,ili_units=flu_scaled,ili_steps=1200",
+    "A_long.neighbors": "input_set=target,forecast_view=raw,count_transform=fourth_root,ed_transform=logit,width=192,epochs=160,patience=25,fit_partition=pathogen,input_normalization=b0,log_loss_weight=1.0,spatial=neighbors",
+    "A_long.ili+neighbors": "input_set=target,forecast_view=raw,count_transform=fourth_root,ed_transform=logit,width=192,epochs=160,patience=25,fit_partition=pathogen,input_normalization=b0,log_loss_weight=1.0,ili_training=pretrain,ili_units=flu_scaled,ili_steps=1200,spatial=neighbors"
+  },
+  "seeds": [
+    44,
+    45,
+    46,
+    47
+  ]
+}

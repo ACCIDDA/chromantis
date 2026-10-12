@@ -1,0 +1,26 @@
+{
+  "description": "Season-peak tree round 2 (2026-10-12). Root Rs = round-1 R.count_sqrt (36-week sampled MLP, neighbour exchange, path loss 1, peak loss 1, square-root admission transform). Children: peak loss 2, local noise, both, raw counts, rate per 100,000, log-loss weight 0.5.",
+  "round": 2,
+  "parents": {
+    "Rs.peak2": "R.count_sqrt",
+    "Rs.noise_local": "R.count_sqrt",
+    "Rs.peak2+noise_local": "R.count_sqrt",
+    "Rs.count_raw": "R.count_sqrt",
+    "Rs.count_rate": "R.count_sqrt",
+    "Rs.log_loss_0.5": "R.count_sqrt"
+  },
+  "candidates": {
+    "Rs.peak2": "input_set=target,count_transform=sqrt,ed_transform=logit,spatial=neighbors,width=192,epochs=160,patience=25,fit_partition=pathogen,input_normalization=b0,log_loss_weight=1.0,path_loss_weight=1.0,peak_loss_weight=2.0,forecast_view=raw",
+    "Rs.noise_local": "input_set=target,count_transform=sqrt,ed_transform=logit,spatial=neighbors,noise=local,width=192,epochs=160,patience=25,fit_partition=pathogen,input_normalization=b0,log_loss_weight=1.0,path_loss_weight=1.0,peak_loss_weight=1.0,forecast_view=raw",
+    "Rs.peak2+noise_local": "input_set=target,count_transform=sqrt,ed_transform=logit,spatial=neighbors,noise=local,width=192,epochs=160,patience=25,fit_partition=pathogen,input_normalization=b0,log_loss_weight=1.0,path_loss_weight=1.0,peak_loss_weight=2.0,forecast_view=raw",
+    "Rs.count_raw": "input_set=target,count_transform=raw,ed_transform=logit,spatial=neighbors,width=192,epochs=160,patience=25,fit_partition=pathogen,input_normalization=b0,log_loss_weight=1.0,path_loss_weight=1.0,peak_loss_weight=1.0,forecast_view=raw",
+    "Rs.count_rate": "input_set=target,count_transform=rate,ed_transform=logit,spatial=neighbors,width=192,epochs=160,patience=25,fit_partition=pathogen,input_normalization=b0,log_loss_weight=1.0,path_loss_weight=1.0,peak_loss_weight=1.0,forecast_view=raw",
+    "Rs.log_loss_0.5": "input_set=target,count_transform=sqrt,ed_transform=logit,spatial=neighbors,width=192,epochs=160,patience=25,fit_partition=pathogen,input_normalization=b0,log_loss_weight=0.5,path_loss_weight=1.0,peak_loss_weight=1.0,forecast_view=raw"
+  },
+  "seeds": [
+    44,
+    45,
+    46,
+    47
+  ]
+}

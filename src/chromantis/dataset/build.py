@@ -314,6 +314,8 @@ def decode(stored):
     """On-disk arrays -> dense panel (inverse of `encode`)."""
     arrays = {k: v for k, v in stored.items() if not k.endswith(('_revised', '_values'))}
     for name, truth_name in ASOF_ARRAYS.items():
+        if f'{name}_revised' not in stored:  # a panel without report vintages (e.g. the ILI-converted panel)
+            continue
         revised = stored[f'{name}_revised']
         visible = np.broadcast_to(_visible_like(arrays | {name: revised}, name), revised.shape)
         dense = np.where(visible, arrays[truth_name][None], np.nan).astype(np.float32)

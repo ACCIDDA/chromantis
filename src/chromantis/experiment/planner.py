@@ -25,6 +25,7 @@ from pathlib import Path
 import subprocess
 import sys
 import threading
+import tempfile
 
 from chromantis.model.scenario import Scenario
 from chromantis.problem import Problem
@@ -73,8 +74,9 @@ def read_jobs(folder):
 
 
 def write_csv(path, rows, fieldnames):
-    temporary = path.with_suffix('.tmp')
-    with temporary.open('w', newline='') as stream:
+    with tempfile.NamedTemporaryFile(mode='w', newline='', dir=path.parent,
+                                     prefix=path.name + '.', suffix='.tmp', delete=False) as stream:
+        temporary = Path(stream.name)
         writer = csv.DictWriter(stream, fieldnames=fieldnames)
         writer.writeheader()
         writer.writerows(rows)

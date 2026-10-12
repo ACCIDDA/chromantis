@@ -1,0 +1,26 @@
+{
+  "description": "Season-peak tree round 1 (2026-10-12). Root R = season-peak-stage2b A_long.neighbors.path1+peak1 (36-week sampled MLP, neighbour exchange, path loss 1, peak loss 1). One-setting children aimed at early peak size (too small, log WIS 1.04 vs climatology 0.47) and timing.",
+  "round": 1,
+  "parents": {
+    "R.noise_local": "R",
+    "R.latent32": "R",
+    "R.count_sqrt": "R",
+    "R.lookback20": "R",
+    "R.width384": "R",
+    "R.peak2": "R"
+  },
+  "candidates": {
+    "R.noise_local": "input_set=target,ed_transform=logit,spatial=neighbors,noise=local,width=192,epochs=160,patience=25,fit_partition=pathogen,input_normalization=b0,log_loss_weight=1.0,path_loss_weight=1.0,peak_loss_weight=1.0,forecast_view=raw",
+    "R.latent32": "input_set=target,ed_transform=logit,spatial=neighbors,latent=32,width=192,epochs=160,patience=25,fit_partition=pathogen,input_normalization=b0,log_loss_weight=1.0,path_loss_weight=1.0,peak_loss_weight=1.0,forecast_view=raw",
+    "R.count_sqrt": "input_set=target,count_transform=sqrt,ed_transform=logit,spatial=neighbors,width=192,epochs=160,patience=25,fit_partition=pathogen,input_normalization=b0,log_loss_weight=1.0,path_loss_weight=1.0,peak_loss_weight=1.0,forecast_view=raw",
+    "R.lookback20": "input_set=target,lookback=20,ed_transform=logit,spatial=neighbors,width=192,epochs=160,patience=25,fit_partition=pathogen,input_normalization=b0,log_loss_weight=1.0,path_loss_weight=1.0,peak_loss_weight=1.0,forecast_view=raw",
+    "R.width384": "input_set=target,ed_transform=logit,spatial=neighbors,width=384,epochs=160,patience=25,fit_partition=pathogen,input_normalization=b0,log_loss_weight=1.0,path_loss_weight=1.0,peak_loss_weight=1.0,forecast_view=raw",
+    "R.peak2": "input_set=target,ed_transform=logit,spatial=neighbors,width=192,epochs=160,patience=25,fit_partition=pathogen,input_normalization=b0,log_loss_weight=1.0,path_loss_weight=1.0,peak_loss_weight=2.0,forecast_view=raw"
+  },
+  "seeds": [
+    44,
+    45,
+    46,
+    47
+  ]
+}

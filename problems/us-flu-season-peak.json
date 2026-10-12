@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "id": "us-flu-season-peak",
+  "dataset": "../datasets/respiratory-us-weekly.json",
+  "panel": "data/processed/panel.npz",
+  "locations": "data/metadata/locations.csv",
+  "targets": [
+    "nhsn_flu_admissions"
+  ],
+  "forecast": {
+    "season_window_epiweeks": [
+      40,
+      21
+    ]
+  },
+  "folds": {
+    "kind": "leave_one_season_out",
+    "ids": [
+      "2023-2024",
+      "2024-2025",
+      "2025-2026"
+    ],
+    "training_ids": [
+      "2022-2023",
+      "2023-2024",
+      "2024-2025",
+      "2025-2026"
+    ]
+  },
+  "evaluation": {
+    "kind": "season_peak",
+    "inputs": "finalized",
+    "draws": 1,
+    "primary": {
+      "target": "nhsn_flu_admissions",
+      "scale": "log",
+      "geography": "states_dc"
+    }
+  },
+  "comparison": {
+    "kind": "none"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "schema_version": 1,
+  "id": "ili-converted-us-weekly",
+  "report_vintages": false,
+  "signals": [
+    {"name": "flu_admissions_from_ili", "unit": "count", "group": "flu", "hub": null, "hub_target": "peak inc flu hosp", "weight": 1.0}
+  ],
+  "input_sets": {"all": ["flu_admissions_from_ili"], "target": []}
+}

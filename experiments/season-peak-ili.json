@@ -1,0 +1,13 @@
+{
+  "description": "Season-peak models on the ILI-converted seasons (2026-10-12): admissions-only 36-week sampled MLPs (the NHSN tree's best single recipe with square-root counts and local noise, and its fourth-root root R), trained and evaluated leave-one-season-out over the 10 ILI-converted seasons 2011-12..2021-22 (2020-21 excluded) on problem us-flu-long-horizon-ili; peaks scored with chromantis.seasonal on us-flu-season-peak-ili against climatology and analogue baselines.",
+  "candidates": {
+    "I.sqrt_noise": "input_set=target,count_transform=sqrt,ed_transform=logit,spatial=neighbors,noise=local,width=192,epochs=160,patience=25,fit_partition=pathogen,input_normalization=b0,log_loss_weight=1.0,path_loss_weight=1.0,peak_loss_weight=1.0,forecast_view=raw",
+    "I.fourth_root": "input_set=target,forecast_view=raw,count_transform=fourth_root,ed_transform=logit,width=192,epochs=160,patience=25,fit_partition=pathogen,input_normalization=b0,log_loss_weight=1.0,spatial=neighbors,path_loss_weight=1.0,peak_loss_weight=1.0"
+  },
+  "seeds": [
+    44,
+    45,
+    46,
+    47
+  ]
+}

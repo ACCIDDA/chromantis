@@ -79,6 +79,50 @@ def prediction_loss(model, predictions, y, mask):
     return fair_crps_cells(predictions, y, mask)
 
 
+def fair_crps_draws(draws, truth):
+    """Fair CRPS of draws [M, ...] against truth [...] (same estimator as `fair_crps_cells`)."""
+    m = draws.shape[0]
+    ordered = draws.sort(0).values
+    weights = (2 * torch.arange(m, device=draws.device) - m + 1).to(draws.dtype).reshape(m, *([1] * (draws.dim() - 1)))
+    return (draws - truth).abs().mean(0) - (ordered * weights).sum(0) / (m * (m - 1))
+
+
+PEAK_SHARPNESS = 10.  # soft peak week: softmax(10 x log(1 + admissions)) over the observed future weeks
+
+
+def path_scores(samples, truth, mask):
+    """Per [episode, location]: energy score of log(1 + count) paths over the observed future weeks
+    (divided by the square root of their number), and fair CRPS of the path peak size and of the soft
+    peak week (position / number of weeks). samples [M, N, H, L], truth and mask [N, H, L]."""
+    m, _, h, _ = samples.shape
+    mask = mask.bool()
+    x = torch.where(mask[None], torch.log1p(samples.clamp_min(0)), 0)
+    y = torch.where(mask, torch.log1p(truth.clamp_min(0)), 0)
+    count = mask.sum(1)
+    distance = (x - y[None]).pow(2).sum(2).add(1e-12).sqrt().mean(0)
+    flat = x.permute(1, 3, 0, 2).reshape(-1, m, h)
+    spread = torch.cdist(flat, flat).sum((1, 2)).reshape(distance.shape) / (m * (m - 1))
+    energy = (distance - spread / 2) / count.clamp_min(1).sqrt()
+    peak = fair_crps_draws(x.amax(2), y.amax(1))
+    position = torch.arange(h, device=x.device, dtype=x.dtype) / h
+    soft = lambda v, keep: (torch.softmax(torch.where(keep, PEAK_SHARPNESS * v, -1e4), -2) * position[:, None]).sum(-2)
+    week = fair_crps_draws(soft(x, mask[None]), soft(y, mask))
+    present = count > 0
+    return torch.where(present, energy, 0), torch.where(present, peak + week, 0)
+
+
+def path_peak_loss(samples, truth, mask, weights, channels, problem, scenario, horizons):
+    """Recipe-weighted path and peak losses on the admission target; locations and episodes keep the
+    weekly objective's weights (summed over the future weeks)."""
+    if not (scenario.path_loss_weight or scenario.peak_loss_weight):
+        return 0.
+    k = next(i for i, c in enumerate(channels) if problem.target_units[c] == 'count')
+    future = torch.as_tensor(np.asarray(horizons) > 0, device=samples.device)
+    energy, peak = path_scores(samples[:, :, future, channels[k]], truth[:, future, channels[k]], mask[:, future, channels[k]])
+    w = weights[:, future, k].sum(1)
+    return (w * (scenario.path_loss_weight * energy + scenario.peak_loss_weight * peak)).sum()
+
+
 def sum_wis_weights(episodes, horizons):
     """One complete four-week admission total per issuance; equal seasons/geographies."""
     from chromantis.dataset.cv import season
@@ -190,6 +234,7 @@ def fit_component(train, validation, channels, component, options, problem, scen
                     log_score = prediction_loss(model, torch.log1p(samples[:, :, :, chosen].clamp_min(0)),
                                                 torch.log1p(y[ids][:, :, chosen].clamp_min(0)), y_mask[ids][:, :, chosen])
                     loss = loss + scenario.log_loss_weight * (weights[ids][:, :, admissions] * log_score).sum() * scale
+                loss = loss + path_peak_loss(samples, y[ids], y_mask[ids], weights[ids], channels, problem, scenario, horizons) * scale
                 if total_weights is not None:
                     sum_score = four_week_sum_wis(samples, y[ids], y_mask[ids], horizons)
                     loss = loss + scenario.sum_wis_weight * (total_weights[ids] * sum_score / (4 * model.scale[:1])).sum() * scale
@@ -220,6 +265,7 @@ def fit_component(train, validation, channels, component, options, problem, scen
                         log_score=prediction_loss(model,torch.log1p(samples[:,:,:,chosen].clamp_min(0)),
                             torch.log1p(vy[ids][:,:,chosen].clamp_min(0)),vy_mask[ids][:,:,chosen])
                         val += scenario.log_loss_weight * float((vweights[ids][:,:,admissions] * log_score).sum())
+                    val += float(path_peak_loss(samples, vy[ids], vy_mask[ids], vweights[ids], channels, problem, scenario, horizons))
             if not np.isfinite(val):
                 raise ValueError(f'Nonfinite validation loss at epoch {epoch + 1}, component {component}')
             if val < best:

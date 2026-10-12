@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "id": "us-flu-season-peak-ili",
+  "dataset": "../datasets/ili-converted-us-weekly.json",
+  "panel": "data/processed/ili-converted-panel.npz",
+  "locations": "data/metadata/locations.csv",
+  "targets": [
+    "flu_admissions_from_ili"
+  ],
+  "forecast": {
+    "season_window_epiweeks": [
+      40,
+      21
+    ]
+  },
+  "folds": {
+    "kind": "leave_one_season_out",
+    "ids": [
+      "2011-2012",
+      "2012-2013",
+      "2013-2014",
+      "2014-2015",
+      "2015-2016",
+      "2016-2017",
+      "2017-2018",
+      "2018-2019",
+      "2019-2020",
+      "2021-2022"
+    ],
+    "training_ids": [
+      "2011-2012",
+      "2012-2013",
+      "2013-2014",
+      "2014-2015",
+      "2015-2016",
+      "2016-2017",
+      "2017-2018",
+      "2018-2019",
+      "2019-2020",
+      "2021-2022"
+    ]
+  },
+  "evaluation": {
+    "kind": "season_peak",
+    "inputs": "finalized",
+    "draws": 1,
+    "primary": {
+      "target": "flu_admissions_from_ili",
+      "scale": "log",
+      "geography": "states_dc"
+    }
+  },
+  "comparison": {
+    "kind": "none"
+  }
+}
