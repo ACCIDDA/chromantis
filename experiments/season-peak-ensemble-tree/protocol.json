@@ -1370,13 +1370,140 @@
       "study": "experiments/season-peak-history-confirm.json",
       "parent": "shape_lookback6",
       "change": "Confirm timing gains in both seasons with two additional seeds46/47. No new settings; preserve size tradeoff and compare four-seed results.",
-      "status": "submitted",
+      "status": "scored",
       "seeds": [
         46,
         47
       ],
       "training_job": 4728981,
-      "scoring_job": 4729056
+      "scoring_job": 4729056,
+      "summary": [
+        {
+          "model": "FluSight-ensemble",
+          "peak_week_log_score": "2.578072230772365",
+          "peak_wis_log": "0.5230301143229252",
+          "tasks": "862"
+        },
+        {
+          "model": "Previous model, four seeds",
+          "peak_week_log_score": "3.3363253762572307",
+          "peak_wis_log": "0.30511943796152713",
+          "tasks": "862"
+        },
+        {
+          "model": "shape_lookback20",
+          "peak_week_log_score": "3.29136721443392",
+          "peak_wis_log": "0.4624194268784626",
+          "tasks": "862"
+        },
+        {
+          "model": "shape_lookback6",
+          "peak_week_log_score": "2.9205735894434435",
+          "peak_wis_log": "0.2991873821362699",
+          "tasks": "862"
+        }
+      ],
+      "by_season": [
+        {
+          "model": "FluSight-ensemble",
+          "season": "2024-2025",
+          "peak_week_log_score": "2.7122346451586923",
+          "peak_wis_log": "0.6370922876643003"
+        },
+        {
+          "model": "FluSight-ensemble",
+          "season": "2025-2026",
+          "peak_week_log_score": "2.4005149653715914",
+          "peak_wis_log": "0.37207451564202193"
+        },
+        {
+          "model": "Previous model, four seeds",
+          "season": "2024-2025",
+          "peak_week_log_score": "3.572214481864227",
+          "peak_wis_log": "0.37442066807111735"
+        },
+        {
+          "model": "Previous model, four seeds",
+          "season": "2025-2026",
+          "peak_week_log_score": "3.0241379076506676",
+          "peak_wis_log": "0.21340271563320146"
+        },
+        {
+          "model": "shape_lookback20",
+          "season": "2024-2025",
+          "peak_week_log_score": "3.5011627409601815",
+          "peak_wis_log": "0.6417624710994585"
+        },
+        {
+          "model": "shape_lookback20",
+          "season": "2025-2026",
+          "peak_week_log_score": "3.01371329657841",
+          "peak_wis_log": "0.225067850833964"
+        },
+        {
+          "model": "shape_lookback6",
+          "season": "2024-2025",
+          "peak_week_log_score": "3.0766043985631364",
+          "peak_wis_log": "0.3739990620534294"
+        },
+        {
+          "model": "shape_lookback6",
+          "season": "2025-2026",
+          "peak_week_log_score": "2.7140745940855746",
+          "peak_wis_log": "0.20017785426746854"
+        }
+      ],
+      "by_lead": [
+        {
+          "model": "FluSight-ensemble",
+          "lead": "0\u20137",
+          "peak_week_log_score": "2.507377234609047",
+          "peak_wis_log": "0.4329900009643153"
+        },
+        {
+          "model": "FluSight-ensemble",
+          "lead": "8+",
+          "peak_week_log_score": "2.8478190597083777",
+          "peak_wis_log": "0.8665909937862247"
+        },
+        {
+          "model": "Previous model, four seeds",
+          "lead": "0\u20137",
+          "peak_week_log_score": "3.2317387739361925",
+          "peak_wis_log": "0.293983987958078"
+        },
+        {
+          "model": "Previous model, four seeds",
+          "lead": "8+",
+          "peak_week_log_score": "3.735390456621864",
+          "peak_wis_log": "0.3476083337847434"
+        },
+        {
+          "model": "shape_lookback20",
+          "lead": "0\u20137",
+          "peak_week_log_score": "3.5113529630554092",
+          "peak_wis_log": "0.37060174660422684"
+        },
+        {
+          "model": "shape_lookback20",
+          "lead": "8+",
+          "peak_week_log_score": "2.451980251816728",
+          "peak_wis_log": "0.8127628661371386"
+        },
+        {
+          "model": "shape_lookback6",
+          "lead": "0\u20137",
+          "peak_week_log_score": "3.011291030797209",
+          "peak_wis_log": "0.28433339247999045"
+        },
+        {
+          "model": "shape_lookback6",
+          "lead": "8+",
+          "peak_week_log_score": "2.574428268523767",
+          "peak_wis_log": "0.3558648957409563"
+        }
+      ],
+      "decision": "Four-seed six-week multiscale model confirms timing gain both seasons: aggregate2.920574/0.299187 vs original3.336325/0.305119. Size improves both seasons, barely24-25; early8+ size0.355865 slightly worse original0.347608. Early timing2.574428 beats ensemble2.847819, but near3.011291 loses ensemble2.507377; no overall ensemble timing win. Retain as strongest confirmed timing parent; await eight-week artificial confirmation and capacity screen, avoid unnecessary late expansion."
     },
     {
       "experiment": "season-peak-short-capacity",
@@ -1431,7 +1558,7 @@
       "size_log_wis": 0.298508
     }
   },
-  "next_round_consideration": "Wait for reporting-history and calendar-removal comparisons before allocating the next GPU round. If neither improves timing, test alignment of the peak objective to the evaluated season window: current peak losses score all observed future horizons, whereas evaluation uses epiweeks 40-21 and includes already reported within-season history. This is a hypothesis, not a diagnosed cause. Preserve weekly labels and ensure objective masks depend only on calendar dates, never on held-out peak timing.",
+  "next_round_consideration": "Collect eight-week artificial-input confirmation and six-week capacity/recency screen; prioritize complete scoring before11:30UTC synthesis. Four-seed six-week multiscale has repeatable timing gains both seasons, but no overall timing win over FluSight. No added timing loss, smoothing,20week history, or auxiliary-loss removal expansion.",
   "objective_alignment_audit": {
     "training": "dataset/cv.py masks out non-permitted seasons and creates origins throughout permitted epiweek31-30 seasons. Training path/peak losses use every available positive horizon, up to36, rather than evaluation epiweek40-21. Neighboring permitted seasons may supply future labels across a season boundary.",
     "evaluation": "seasonal.py constructs epiweek40-21 paths and includes already observed reported history before extracting the peak.",
