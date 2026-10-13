@@ -1250,6 +1250,17 @@
       ],
       "training_job": 4728981,
       "scoring_job": 4729056
+    },
+    {
+      "experiment": "season-peak-short-capacity",
+      "study": "experiments/season-peak-short-capacity.json",
+      "parent": "shape_lookback6",
+      "change": "Separate narrower-width96 child and distinct latest-two-permitted-training-seasons child; finalized admissions+ED histories,36 weekly labels, unchanged losses, seeds44/45. Motivated by six-week timing improvement in both seasons with size tradeoff.",
+      "status": "planned",
+      "seeds": [
+        44,
+        45
+      ]
     }
   ],
   "search_rules": [

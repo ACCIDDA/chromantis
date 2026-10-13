@@ -1,0 +1,11 @@
+{
+  "description": "Six-week multiscale square-root/local-noise MLP screen. narrow96 reduces hidden width192 to96 while retaining all three permitted training seasons; latest2 retains width192 but trains only the latest two non-held-out seasons among2022-23 through2025-26. Both use finalized admissions and flu-ED training histories,36 finalized weekly prediction labels and unchanged weekly/path/peak losses. Seeds44/45. Strict archived Wednesday input evaluation without finalized fallback on2024-25 and2025-26; retrospective development, not forward-only validation. Tests capacity and training-season recency separately; no claimed gain.",
+  "candidates": {
+    "narrow96": "input_set=target,count_transform=sqrt,ed_transform=logit,spatial=neighbors,noise=local,width=96,epochs=160,patience=25,fit_partition=pathogen,input_normalization=b0,log_loss_weight=1.0,path_loss_weight=1.0,peak_loss_weight=1.0,forecast_view=raw,signal_features=multiscale,lookback=6",
+    "latest2": "input_set=target,count_transform=sqrt,ed_transform=logit,spatial=neighbors,noise=local,width=192,epochs=160,patience=25,fit_partition=pathogen,input_normalization=b0,log_loss_weight=1.0,path_loss_weight=1.0,peak_loss_weight=1.0,forecast_view=raw,signal_features=multiscale,lookback=6,training_window=last2"
+  },
+  "seeds": [
+    44,
+    45
+  ]
+}
