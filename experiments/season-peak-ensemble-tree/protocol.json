@@ -1396,11 +1396,13 @@
       "study": "experiments/season-peak-short-reporting-confirm.json",
       "parent": "artificial_lookback8",
       "change": "Confirm eight-week artificial-input shape timing improvement in both seasons with seeds46/47; reuse completed44/45. Preserve size25-26 tradeoff.",
-      "status": "planned",
+      "status": "submitted",
       "seeds": [
         46,
         47
-      ]
+      ],
+      "training_job": 4732741,
+      "scoring_job": 4732743
     }
   ],
   "search_rules": [
