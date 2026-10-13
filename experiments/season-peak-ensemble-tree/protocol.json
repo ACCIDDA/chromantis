@@ -833,11 +833,13 @@
       "study": "experiments/season-peak-shape-artificial-confirm.json",
       "parent": "shape_artificial",
       "change": "Confirm artificial-reporting plus shape candidate by adding only seeds46/47; keep completed44/45.",
-      "status": "planned",
+      "status": "submitted",
       "seeds": [
         46,
         47
-      ]
+      ],
+      "training_job": 4723263,
+      "scoring_job": 4723266
     }
   ],
   "search_rules": [
