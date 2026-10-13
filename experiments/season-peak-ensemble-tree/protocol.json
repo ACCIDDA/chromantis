@@ -47,7 +47,9 @@
         44,
         45
       ],
-      "status": "planned"
+      "status": "running",
+      "training_job": 4712540,
+      "scoring_job": 4712564
     }
   ],
   "search_rules": [
