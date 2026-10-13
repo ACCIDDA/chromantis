@@ -680,11 +680,13 @@
       "study": "experiments/season-peak-shape-confirm.json",
       "parent": "multiscale",
       "change": "Add seeds46/47 only to completed unsmoothed shape candidate; retain completed seeds44/45 and smoothing screen; no duplicate fits.",
-      "status": "planned",
+      "status": "submitted",
       "seeds": [
         46,
         47
-      ]
+      ],
+      "training_job": 4722401,
+      "scoring_job": 4722406
     }
   ],
   "search_rules": [
