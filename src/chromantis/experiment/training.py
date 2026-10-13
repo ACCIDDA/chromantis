@@ -114,13 +114,34 @@ def path_scores(samples, truth, mask):
 def path_peak_loss(samples, truth, mask, weights, channels, problem, scenario, horizons):
     """Recipe-weighted path and peak losses on the admission target; locations and episodes keep the
     weekly objective's weights (summed over the future weeks)."""
-    if not (scenario.path_loss_weight or scenario.peak_loss_weight):
+    if not (scenario.path_loss_weight or scenario.peak_loss_weight or scenario.peak_log_loss_weight):
         return 0.
     k = next(i for i, c in enumerate(channels) if problem.target_units[c] == 'count')
     future = torch.as_tensor(np.asarray(horizons) > 0, device=samples.device)
     energy, peak = path_scores(samples[:, :, future, channels[k]], truth[:, future, channels[k]], mask[:, future, channels[k]])
     w = weights[:, future, k].sum(1)
-    return (w * (scenario.path_loss_weight * energy + scenario.peak_loss_weight * peak)).sum()
+    loss = scenario.path_loss_weight * energy + scenario.peak_loss_weight * peak
+    if scenario.peak_log_loss_weight:
+        loss = loss + scenario.peak_log_loss_weight * peak_log_scores(
+            samples[:, :, future, channels[k]], truth[:, future, channels[k]], mask[:, future, channels[k]])
+    return (w * loss).sum()
+
+
+def peak_log_scores(samples, truth, mask):
+    """Differentiable log score of the true future peak week, per episode/location.
+
+    Average each draw's soft peak probabilities, not its week position. The latter
+    cannot distinguish a diffuse timing forecast from a concentrated one with the same mean.
+    Only observed horizons participate; tied or entirely missing truth peaks do not score.
+    """
+    mask = mask.bool()
+    logits = torch.where(mask[None], PEAK_SHARPNESS * torch.log1p(samples.clamp_min(0)), -1e4)
+    log_probability = torch.logsumexp(torch.log_softmax(logits, dim=2), dim=0) - np.log(samples.shape[0])
+    observed = torch.where(mask, truth, -torch.inf)
+    maximum, week = observed.max(dim=1)
+    unique = ((observed == maximum[:, None]) & mask).sum(1) == 1
+    score = -log_probability.gather(1, week[:, None]).squeeze(1)
+    return torch.where(unique, score, 0)
 
 
 def sum_wis_weights(episodes, horizons):

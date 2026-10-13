@@ -1,0 +1,8 @@
+{
+  "description": "Development screen: 36-week sampled MLPs trained leave-one-season-out on NHSN seasons 2022-23 through 2025-26, evaluated on 2023-24, 2024-25 and 2025-26. Finalized training inputs and weekly labels; square-root counts, local noise, neighboring-state exchange, path and peak loss weights 1. Add a differentiable log-probability loss for the true future peak week at weight 0.3 or 1. Seasonal comparison replays archived Wednesday reports without final-value fallback on matched FluSight-ensemble tasks. This is retrospective development evaluation, not an untouched or forward-only test.",
+  "candidates": {
+    "sqrt_local_peaklog0.3": "input_set=target,count_transform=sqrt,ed_transform=logit,spatial=neighbors,noise=local,width=192,epochs=160,patience=25,fit_partition=pathogen,input_normalization=b0,log_loss_weight=1.0,path_loss_weight=1.0,peak_loss_weight=1.0,peak_log_loss_weight=0.3,forecast_view=raw",
+    "sqrt_local_peaklog1": "input_set=target,count_transform=sqrt,ed_transform=logit,spatial=neighbors,noise=local,width=192,epochs=160,patience=25,fit_partition=pathogen,input_normalization=b0,log_loss_weight=1.0,path_loss_weight=1.0,peak_loss_weight=1.0,peak_log_loss_weight=1.0,forecast_view=raw"
+  },
+  "seeds": [44, 45]
+}

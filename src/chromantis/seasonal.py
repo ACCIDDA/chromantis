@@ -16,6 +16,9 @@ and each trajectory's maximum and argmax give one peak draw. Scores (lower is be
 - peak incidence: WIS of the quantiles on log(1 + count) and on counts.
 
 Truth is the problem panel's finalized values (FluSight scores reported values).
+`inputs=reported` replays Wednesday deadline histories with no finalized-value fallback,
+including the observed part of each season path. A location/date is excluded if any
+past week of its peak window lacks a report. Training is unchanged by this replay.
 
 Models are recipes (a short `key=value` string, like scenarios):
 
@@ -69,6 +72,7 @@ def read_panel(path):
 @dataclass(frozen=True)
 class Recipe:
     model: str = 'analogue'
+    inputs: str = 'finalized'
     library: str = 'own'
     samples: int = 1000
     noise: float = 0.15
@@ -89,6 +93,8 @@ class Recipe:
         recipe = cls(**out)
         if recipe.model not in ('climatology', 'analogue', 'recursive', 'trajectory') or recipe.library not in ('own', 'all'):
             raise ValueError(f'Invalid recipe {value!r}')
+        if recipe.inputs not in ('finalized', 'reported'):
+            raise ValueError('inputs must be finalized or reported')
         if recipe.model in ('recursive', 'trajectory') and not recipe.checkpoints:
             raise ValueError(f'model={recipe.model} needs checkpoints=<folder with one subfolder per held-out season>')
         return recipe
@@ -114,8 +120,13 @@ def window_weeks(year, window):
 
 class SeasonPanel:
     """Weekly values of the problem's target per location (US = panel US, else the sum of states)."""
-    def __init__(self, problem):
+    def __init__(self, problem, inputs='finalized'):
         panel = read_panel(problem.panel)
+        self.panel = panel if inputs == 'reported' else None
+        self.target_index = list(map(str, panel['target_names'])).index(problem.targets[0])
+        self.issuances = {str(d): i for i, d in enumerate(panel.get('issuance_dates', []))}
+        if inputs == 'reported' and 'asof_targets' not in panel:
+            raise ValueError('Reported peak evaluation requires archived report vintages')
         names = list(map(str, panel['target_names']))
         self.dates = [str(d) for d in panel['dates']]
         self.index = {d: i for i, d in enumerate(self.dates)}
@@ -134,6 +145,38 @@ class SeasonPanel:
                     if c is not None:
                         out[i, j] = self.values[self.index[d], c]
         return out
+
+    def reported_curve(self, weeks, locations, reference):
+        """The Wednesday information set for a Saturday reference; never fill with final truth."""
+        issuance = (date.fromisoformat(reference) - timedelta(days=3)).isoformat()
+        if issuance not in self.issuances:
+            return np.full((len(weeks), len(locations)), np.nan)
+        source = self.panel['asof_targets'][self.issuances[issuance], ..., self.target_index]
+        source_locations = list(map(str, self.panel['locations']))
+        values = np.full((len(weeks), len(locations)), np.nan)
+        for w, day in enumerate(weeks):
+            if day not in self.index:
+                continue
+            row = source[self.index[day]]
+            for l, loc in enumerate(locations):
+                if loc in source_locations:
+                    values[w, l] = row[source_locations.index(loc)]
+                elif loc == 'US' and np.isfinite(row).all():
+                    values[w, l] = row.sum()
+        return values
+
+
+def without_truth_fallback(episode):
+    """Remove the generic reported loader's final-value fills before peak inference."""
+    episode['available'] &= ~episode['filled']
+    episode['known_final'] &= ~episode['filled']
+    episode['values'] = np.where(episode['available'], episode['values'], 0)
+    if 'covariates_filled' in episode:
+        cov = episode['covariates'].copy()
+        cov[..., 1, :] *= ~episode['covariates_filled']
+        cov[..., 0, :] *= cov[..., 1, :]
+        episode['covariates'] = cov
+    return episode
 
 
 def library(problem, recipe, held_out, locations):
@@ -187,7 +230,7 @@ def library_trajectories(recipe, curves, observed, now, rng):
 class FoldModels:
     """The fitted seeds of one held-out season: run recursively (four-week quantile models; one quantile level per
     4-week block, shared by targets and locations) or sampled directly (season-long sampled models)."""
-    def __init__(self, folder, fallback):
+    def __init__(self, folder, fallback, panel=None):
         import torch
         from chromantis.experiment.fit import ForecastSlice
         from chromantis.model.network import load_model
@@ -207,6 +250,7 @@ class FoldModels:
         if not self.models:
             raise ValueError(f'No */model.pt under {folder}')
         self.episodes = {}
+        self.panel = panel
 
     def trajectories(self, recipe, weeks, now, locations, rng):
         import torch
@@ -214,11 +258,14 @@ class FoldModels:
         model, scenario, fold_problem = self.models[0]
         key = id(fold_problem)
         if key not in self.episodes:
-            panel = load(fold_problem.panel)
+            panel = self.panel if self.panel is not None else load(fold_problem.panel)
+            mode = 'reported' if recipe.inputs == 'reported' else 'scheduled_final'
             self.episodes[key] = {e['context_dates'][-1]: e for e in episodes(
-                panel, fold_problem, fold_problem.input_names(scenario.input_set), scenario.lookback, 'scheduled_final',
+                panel, fold_problem, fold_problem.input_names(scenario.input_set), scenario.lookback, mode,
                 fold_problem.covariate_names(scenario.covariate_set),
                 horizons=fold_problem.horizons, require_labels=False)}
+            if recipe.inputs == 'reported':
+                self.episodes[key] = {day: without_truth_fallback(e) for day, e in self.episodes[key].items()}
         start = self.episodes[key][weeks[now]]
         k = fold_problem.target_units.index('count')  # the admission target (one count target per seasonal problem)
         per = -(-recipe.samples // len(self.models))
@@ -285,7 +332,7 @@ def run(problem_path, recipe_string, out=None):
         torch.manual_seed(20261011)
     folder = Path(out or OUT / problem.id / recipe.string.replace('/', '|'))
     folder.mkdir(parents=True, exist_ok=True)
-    data = SeasonPanel(problem)
+    data = SeasonPanel(problem, recipe.inputs)
     locations = [l for l in data.locations]
     rng = np.random.default_rng(20261011)
     scored = []
@@ -297,27 +344,39 @@ def run(problem_path, recipe_string, out=None):
         weeks = window_weeks(int(held_out[:4]), problem.season_window)
         truth = data.curve(weeks, locations)  # [W, L]
         curves = library(problem, recipe, held_out, locations)
-        recursive = FoldModels(Path(recipe.checkpoints) / held_out, recipe.fold_problem) \
+        recursive = FoldModels(Path(recipe.checkpoints) / held_out, recipe.fold_problem, data.panel) \
             if recipe.model in ('recursive', 'trajectory') else None
         origins = weeks[HISTORY_WEEKS:]
         pmf = np.zeros((len(origins), len(locations), len(weeks) - HISTORY_WEEKS))
         quantiles = np.zeros((len(origins), len(locations), len(LEVELS)))
         for o, reference in enumerate(origins):
             now = HISTORY_WEEKS + o - 1  # last observed week: the week ending r - 7 days
+            observed = data.reported_curve(weeks, locations, reference) if recipe.inputs == 'reported' else truth
+            # An unknown past maximum cannot be replaced with final truth or treated as zero.
+            covered = np.isfinite(observed[HISTORY_WEEKS:now + 1]).all(0)
+            if recipe.inputs == 'reported':
+                issuance = (date.fromisoformat(reference) - timedelta(days=3)).isoformat()
+                if issuance not in data.issuances:
+                    pmf[o], quantiles[o] = np.nan, np.nan
+                    continue
             if recursive is not None:
                 paths = recursive.trajectories(recipe, weeks, now, locations, rng)
             else:
-                paths = library_trajectories(recipe, curves, truth, now, rng)
-            paths[:, :now + 1] = np.nan_to_num(truth[:now + 1])[None]
+                paths = library_trajectories(recipe, curves, observed, now, rng)
+            paths[:, :now + 1] = np.nan_to_num(observed[:now + 1])[None]
             for l in range(len(locations)):
                 pmf[o, l], quantiles[o, l] = peaks(paths[:, :, l], HISTORY_WEEKS)
+            if recipe.inputs == 'reported':
+                pmf[o, ~covered], quantiles[o, ~covered] = np.nan, np.nan
         np.savez_compressed(folder / f'peaks_{held_out}.npz', pmf=pmf, quantiles=quantiles, truth=truth,
                             weeks=np.array(weeks), origins=np.array(origins), locations=np.array(locations),
                             quantile_levels=LEVELS)
         print(f'{problem.id} {recipe.string}: {held_out} done ({len(curves)} library seasons)', flush=True)
     (folder / 'manifest.json').write_text(json.dumps(dict(
         problem=problem.reference, problem_id=problem.id, problem_sha256=problem.hash, recipe=recipe.string,
-        folds=scored, samples=recipe.samples, definition=__doc__.split('\n\n')[0]), indent=2) + '\n')
+        folds=scored, samples=recipe.samples, evaluation_inputs=recipe.inputs,
+        observed_peak_policy='require complete reported window history' if recipe.inputs == 'reported' else 'finalized history',
+        definition=__doc__.split('\n\n')[0]), indent=2) + '\n')
     return folder
 
 

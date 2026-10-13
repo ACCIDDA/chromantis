@@ -56,3 +56,42 @@ def test_fair_crps_draws_matches_the_cell_estimator():
     draws = torch.randn(16, 2, 3, 1, 4)
     truth = torch.randn(2, 3, 1, 4)
     assert torch.allclose(fair_crps_draws(draws, truth), fair_crps_cells(draws, truth, torch.ones_like(truth)), atol=1e-6)
+
+
+def test_peak_log_score_averages_draw_probabilities_and_ignores_missing_or_tied_truth():
+    import torch
+    from chromantis.experiment.training import peak_log_scores
+    samples = torch.tensor([[[[9.], [0.], [999.]]], [[[0.], [9.], [999.]]]], requires_grad=True)
+    truth = torch.tensor([[[9.], [0.], [999.]]])
+    mask = torch.tensor([[[True], [True], [False]]])
+    loss = peak_log_scores(samples, truth, mask)
+    assert torch.allclose(loss, torch.tensor([[np.log(2.)]], dtype=loss.dtype), atol=1e-6)
+    loss.sum().backward()
+    assert torch.isfinite(samples.grad).all()
+    assert (samples.grad[:, :, 2] == 0).all()
+    assert peak_log_scores(samples, torch.zeros_like(truth), mask).item() == 0
+    assert peak_log_scores(samples, truth, torch.zeros_like(mask)).item() == 0
+
+
+def test_reported_peak_inputs_remove_final_truth_fills():
+    from chromantis.seasonal import without_truth_fallback
+    episode = dict(values=np.array([[[999., 7.]]]), available=np.ones((1, 1, 2), bool),
+                   known_final=np.ones((1, 1, 2), bool), filled=np.array([[[True, False]]]),
+                   covariates=np.array([[[[999., 8.], [1., 1.]]]]),
+                   covariates_filled=np.array([[[True, False]]]))
+    result = without_truth_fallback(episode)
+    assert result['values'].tolist() == [[[0., 7.]]]
+    assert result['available'].tolist() == [[[False, True]]]
+    assert result['covariates'].tolist() == [[[[0., 8.], [0., 1.]]]]
+
+
+def test_reported_peak_history_uses_wednesday_vintage_without_truth():
+    from chromantis.seasonal import SeasonPanel
+    p = object.__new__(SeasonPanel)
+    p.target_index = 0
+    p.index = {'2025-01-04': 0, '2025-01-11': 1}
+    p.issuances = {'2025-01-08': 0}
+    p.panel = dict(locations=np.array(['AA']), asof_targets=np.array([[[[7.]], [[np.nan]]]]))
+    values = p.reported_curve(['2025-01-04', '2025-01-11'], ['AA'], '2025-01-11')
+    assert values[0, 0] == 7 and np.isnan(values[1, 0])
+    assert np.isnan(p.reported_curve(['2025-01-04'], ['AA'], '2025-01-18')).all()
