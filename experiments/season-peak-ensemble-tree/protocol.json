@@ -1790,13 +1790,140 @@
       "study": "experiments/season-peak-eight-inputs.json",
       "parent": "artificial_lookback8",
       "change": "Eight-week finalized-history vs half-strength artificial-error training; separate history length and augmentation contributions. Unchanged36 future labels, losses, three permitted training seasons; two seeds44/45. Final focused screen before synthesis.",
-      "status": "submitted",
+      "status": "scored",
       "seeds": [
         44,
         45
       ],
       "training_job": 4735925,
-      "scoring_job": 4735926
+      "scoring_job": 4735926,
+      "summary": [
+        {
+          "model": "FluSight-ensemble",
+          "peak_week_log_score": "2.578072230772365",
+          "peak_wis_log": "0.5230301143229252",
+          "tasks": "862"
+        },
+        {
+          "model": "Previous model, four seeds",
+          "peak_week_log_score": "3.3363253762572307",
+          "peak_wis_log": "0.30511943796152713",
+          "tasks": "862"
+        },
+        {
+          "model": "eight_final",
+          "peak_week_log_score": "3.0347986648240766",
+          "peak_wis_log": "0.3632618494136256",
+          "tasks": "862"
+        },
+        {
+          "model": "eight_half_error",
+          "peak_week_log_score": "3.0034113759499492",
+          "peak_wis_log": "0.2902506395463908",
+          "tasks": "862"
+        }
+      ],
+      "by_season": [
+        {
+          "model": "FluSight-ensemble",
+          "season": "2024-2025",
+          "peak_week_log_score": "2.7122346451586923",
+          "peak_wis_log": "0.6370922876643003"
+        },
+        {
+          "model": "FluSight-ensemble",
+          "season": "2025-2026",
+          "peak_week_log_score": "2.4005149653715914",
+          "peak_wis_log": "0.37207451564202193"
+        },
+        {
+          "model": "Previous model, four seeds",
+          "season": "2024-2025",
+          "peak_week_log_score": "3.572214481864227",
+          "peak_wis_log": "0.37442066807111735"
+        },
+        {
+          "model": "Previous model, four seeds",
+          "season": "2025-2026",
+          "peak_week_log_score": "3.0241379076506676",
+          "peak_wis_log": "0.21340271563320146"
+        },
+        {
+          "model": "eight_final",
+          "season": "2024-2025",
+          "peak_week_log_score": "3.07950114933852",
+          "peak_wis_log": "0.4564794002712608"
+        },
+        {
+          "model": "eight_final",
+          "season": "2025-2026",
+          "peak_week_log_score": "2.9756371556688435",
+          "peak_wis_log": "0.23989306916807604"
+        },
+        {
+          "model": "eight_half_error",
+          "season": "2024-2025",
+          "peak_week_log_score": "3.2013833696091583",
+          "peak_wis_log": "0.35086150877313604"
+        },
+        {
+          "model": "eight_half_error",
+          "season": "2025-2026",
+          "peak_week_log_score": "2.741405314260807",
+          "peak_wis_log": "0.21003517649967407"
+        }
+      ],
+      "by_lead": [
+        {
+          "model": "FluSight-ensemble",
+          "lead": "0\u20137",
+          "peak_week_log_score": "2.507377234609047",
+          "peak_wis_log": "0.4329900009643153"
+        },
+        {
+          "model": "FluSight-ensemble",
+          "lead": "8+",
+          "peak_week_log_score": "2.8478190597083777",
+          "peak_wis_log": "0.8665909937862247"
+        },
+        {
+          "model": "Previous model, four seeds",
+          "lead": "0\u20137",
+          "peak_week_log_score": "3.2317387739361925",
+          "peak_wis_log": "0.293983987958078"
+        },
+        {
+          "model": "Previous model, four seeds",
+          "lead": "8+",
+          "peak_week_log_score": "3.735390456621864",
+          "peak_wis_log": "0.3476083337847434"
+        },
+        {
+          "model": "eight_final",
+          "lead": "0\u20137",
+          "peak_week_log_score": "3.1335592862606836",
+          "peak_wis_log": "0.32057456366801806"
+        },
+        {
+          "model": "eight_final",
+          "lead": "8+",
+          "peak_week_log_score": "2.6579634444821654",
+          "peak_wis_log": "0.5261412693256367"
+        },
+        {
+          "model": "eight_half_error",
+          "lead": "0\u20137",
+          "peak_week_log_score": "3.000966844272012",
+          "peak_wis_log": "0.28110792618352654"
+        },
+        {
+          "model": "eight_half_error",
+          "lead": "8+",
+          "peak_week_log_score": "3.0127388348104587",
+          "peak_wis_log": "0.3251359648359792"
+        }
+      ],
+      "decision": "Final screen complete: eight_final3.034799/0.363262; half-strength errors3.003411/0.290251. Half-strength improves both metrics both seasons vs original but slower timing than full-strength4seed2.807564; only2seeds, no confirmation before deadline. No ensemble timing win. All planned fits/scorers complete at11:40UTC; no further launches."
     }
   ],
   "search_rules": [
@@ -1832,5 +1959,68 @@
     "early_stopping": "Inner validation scores only hidden validation weeks; peak_log_scores currently selects the maximum among those observed labels, which need not be the complete seasonal peak.",
     "possible_experiment": "Separate the peak-objective calendar mask from unchanged weekly labels and restrict auxiliary peak loss to an origin-specific epiweek40-21 window. Do not use any held-out timing information. Include scientific alignment checks if implemented.",
     "status": "audited; not implemented; wait for calendar results before committing to next experiment"
+  },
+  "synthesis": {
+    "context": "MLPs learn 36 finalized weekly admission and flu-ED labels. Each held-out season trains on the other three among 2022\u201323 through 2025\u201326. Training histories are finalized; full/half errors add synthetic reporting errors to both signals. Evaluation: strict archived Wednesday reports without finalized fills, final NHSN peak truth, 862 identical state/DC tasks in 2024\u201325 and 2025\u201326. Retrospective development, not forward-only validation. FluSight uses archived submissions.",
+    "identical_task_keys_verified": true,
+    "models": [
+      {
+        "experiment": "season-peak-shape",
+        "model": "Previous model, four seeds",
+        "label": "Original MLP \u00b7 12 weeks \u00b7 4 seeds",
+        "timing": 3.3363253762572307,
+        "size": 0.30511943796152713,
+        "tasks": 862
+      },
+      {
+        "experiment": "season-peak-shape",
+        "model": "multiscale",
+        "label": "Multiscale \u00b7 12 weeks \u00b7 4 seeds",
+        "timing": 3.1328517011515804,
+        "size": 0.2794920777651802,
+        "tasks": 862
+      },
+      {
+        "experiment": "season-peak-history",
+        "model": "shape_lookback6",
+        "label": "Multiscale \u00b7 6 weeks \u00b7 4 seeds",
+        "timing": 2.9205735894434435,
+        "size": 0.2991873821362699,
+        "tasks": 862
+      },
+      {
+        "experiment": "season-peak-short-reporting",
+        "model": "artificial_lookback8",
+        "label": "Multiscale \u00b7 8 weeks \u00b7 full errors \u00b7 4 seeds",
+        "timing": 2.807563582833058,
+        "size": 0.30639814087849004,
+        "tasks": 862
+      },
+      {
+        "experiment": "season-peak-eight-inputs",
+        "model": "eight_half_error",
+        "label": "Multiscale \u00b7 8 weeks \u00b7 half errors \u00b7 2 seeds",
+        "timing": 3.0034113759499492,
+        "size": 0.2902506395463908,
+        "tasks": 862
+      },
+      {
+        "experiment": "season-peak-eight-inputs",
+        "model": "eight_final",
+        "label": "Multiscale \u00b7 8 weeks \u00b7 no errors \u00b7 2 seeds",
+        "timing": 3.0347986648240766,
+        "size": 0.3632618494136256,
+        "tasks": 862
+      },
+      {
+        "experiment": "season-peak-shape",
+        "model": "FluSight-ensemble",
+        "label": "FluSight ensemble",
+        "timing": 2.578072230772365,
+        "size": 0.5230301143229252,
+        "tasks": 862
+      }
+    ],
+    "status": "All planned training/scoring complete at11:40UTC. No ensemble overall timing win. Final summary due12UTC; no additional launches."
   }
 }
