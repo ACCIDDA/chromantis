@@ -540,11 +540,13 @@
       "study": "experiments/season-peak-shape-children.json",
       "parent": "multiscale",
       "change": "Combine unsmoothed features with calendar removal or artificial reporting errors; distinct training-input interventions; original labels/losses unchanged.",
-      "status": "planned",
+      "status": "submitted",
       "seeds": [
         44,
         45
-      ]
+      ],
+      "training_job": 4721208,
+      "scoring_job": 4721227
     }
   ],
   "search_rules": [
