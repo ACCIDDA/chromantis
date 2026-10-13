@@ -1,0 +1,11 @@
+{
+  "description": "Sampled MLPs retrained with two training-input treatments: train_reported uses archived admissions and flu-ED reports (the generic training loader fills unavailable archives from finalized values); train_artificial perturbs finalized admissions and flu-ED histories with reporting errors drawn only from permitted training seasons. Each fold excludes the evaluated season from the permitted 2022-23 through 2025-26 seasons; reported-origin training uses the available Wednesday archive dates within those seasons. Labels remain finalized 36-week admissions and flu-ED values. Both retain square-root counts, local noise, neighboring-state exchange and weekly/path/peak losses; no added timing log loss. Two seeds (44,45). Seasonal evaluation uses strict archived Wednesday inputs without finalized fallback and final NHSN peak labels in 2024-25/2025-26 on matched FluSight-ensemble tasks. Retrospective development comparison.",
+  "candidates": {
+    "train_reported": "input_set=target,count_transform=sqrt,ed_transform=logit,spatial=neighbors,noise=local,width=192,epochs=160,patience=25,fit_partition=pathogen,input_normalization=b0,log_loss_weight=1.0,path_loss_weight=1.0,peak_loss_weight=1.0,forecast_view=raw,history_source=reported",
+    "train_artificial": "input_set=target,count_transform=sqrt,ed_transform=logit,spatial=neighbors,noise=local,width=192,epochs=160,patience=25,fit_partition=pathogen,input_normalization=b0,log_loss_weight=1.0,path_loss_weight=1.0,peak_loss_weight=1.0,forecast_view=raw,history_source=artificial,error_signals=targets,reporting_method=synchronous_phase_log,reporting_missingness=0"
+  },
+  "seeds": [
+    44,
+    45
+  ]
+}

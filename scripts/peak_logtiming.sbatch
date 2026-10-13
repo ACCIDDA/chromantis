@@ -10,6 +10,7 @@
 set -euo pipefail
 export PYTHONPATH="$PWD/src${PYTHONPATH:+:$PYTHONPATH}"
 export OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 CHROMANTIS_TORCH_THREADS=1
-.venv/bin/python -m chromantis.experiment.planner status -e season-peak-logtiming
-.venv/bin/python -m chromantis.experiment.planner rank -e season-peak-logtiming --no-report
-.venv/bin/python scripts/score_peak_logtiming.py
+experiment=${1:-season-peak-logtiming}
+.venv/bin/python -m chromantis.experiment.planner status -e "$experiment"
+.venv/bin/python -m chromantis.experiment.planner rank -e "$experiment" --no-report
+.venv/bin/python scripts/score_peak_logtiming.py --experiment "$experiment"

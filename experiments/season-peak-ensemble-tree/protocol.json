@@ -37,6 +37,17 @@
       "training_job": 4697311,
       "scoring_job": 4697316,
       "status": "running"
+    },
+    {
+      "experiment": "season-peak-reporting",
+      "study": "experiments/season-peak-reporting.json",
+      "parent": "Rs.noise_local",
+      "change": "Retrain on archived reports or synthetic report errors instead of finalized histories; keep weekly prediction labels finalized and original path/peak losses. Separate branch from added peak-week log loss.",
+      "seeds": [
+        44,
+        45
+      ],
+      "status": "planned"
     }
   ],
   "search_rules": [
@@ -47,5 +58,22 @@
     "Never blend in the reference ensemble just to manufacture a benchmark win.",
     "Use one planner and seasonal scorer, pinned code snapshots, available patron GPUs, and exact manager plan/launch/status/rank commands. Keep completed caches out of docs.",
     "Continue automatically when results arrive. Do not duplicate active jobs or repin their code. Stop new rounds early enough to summarize at 8 a.m. Eastern."
-  ]
+  ],
+  "ili_complete": {
+    "runs": 8,
+    "fold_models": 80,
+    "inputs_and_labels": "ILI-converted admissions, leave one of ten 2011-12 through 2021-22 seasons out, excluding 2020-21; train on other nine; four seeds. Conversion calibrated on paired ILI/NHSN 2022-23 through 2025-26.",
+    "sqrt_local": {
+      "timing": 3.158421,
+      "size_log_wis": 0.266817
+    },
+    "fourth_shared": {
+      "timing": 3.130201,
+      "size_log_wis": 0.268995
+    },
+    "climatology_ili_plus_nhsn": {
+      "timing": 3.977569,
+      "size_log_wis": 0.298508
+    }
+  }
 }

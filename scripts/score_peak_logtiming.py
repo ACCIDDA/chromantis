@@ -1,5 +1,7 @@
 """Compare complete timing-loss experiments on identical archived-report peak tasks."""
+import argparse
 import json
+import textwrap
 from pathlib import Path
 
 import matplotlib
@@ -14,8 +16,13 @@ from chromantis.seasonal import run, score
 
 
 def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--experiment', default='season-peak-logtiming')
+    args = parser.parse_args()
     torch.set_num_threads(1)
-    experiment = Path('data/experiments/season-peak-logtiming')
+    experiment = Path('data/experiments') / args.experiment
+    study = json.loads((experiment / 'study.json').read_text())
+    settings = json.loads((experiment / 'experiment.json').read_text())
     out = experiment / 'seasonal'
     rows, complete = completed_runs(experiment)
     assert complete
@@ -39,7 +46,7 @@ def main():
                 target.symlink_to(source.resolve())
         folders[name] = run('problems/us-flu-season-peak.json',
                             f'model=trajectory,inputs=reported,samples=512,checkpoints={checkpoints},'
-                            'fold_problem=problems/us-flu-long-horizon.json', out / name)
+                            f'fold_problem={settings["problem"]}', out / name)
     tables = {name: score(folder) for name, folder in folders.items()}
     keys = ['season', 'origin', 'location']
     metrics = ['peak_week_log_score', 'peak_wis_log']
@@ -60,21 +67,20 @@ def main():
     all_scores['lead'] = all_scores.weeks_to_true_peak.ge(8).map({True: '8+', False: '0–7'})
     all_scores.groupby(['model', 'lead'])[metrics].mean().to_csv(out / 'by-lead.csv')
     context = {
-        'training': 'For each held-out season, sampled MLPs train on the other three seasons among 2022–23 through 2025–26. Inputs are finalized NHSN admissions and flu-ED proportions; labels are 36 future weeks of both series. Square-root counts, local noise, neighboring-state exchange, weekly plus path and peak losses. Candidates add future peak-week log loss at weight 0.3 or 1; two seeds (44,45), compared with the previous model’s four seeds (44–47).',
+        'training': study['description'],
         'evaluation': '2024–25 and 2025–26: archived FluSight Wednesday-deadline reports, no finalized-value fallback; final NHSN peak labels over epiweeks 40–21. Exclude missing past-window reports. Matched state/DC tasks at or before the true peak, excluding timing ties. FluSight-ensemble uses its archived submissions. Lower is better: peak-week negative log probability (floor 0.001), peak-size WIS of log(1+admissions). Retrospective development comparison, not an untouched or forward-only test.',
-        'tasks': len(shared), 'runs': rows,
+        'tasks': len(shared), 'runs': rows, 'study': study,
     }
     (out / 'context.json').write_text(json.dumps(context, indent=2) + '\n')
-    fig, axes = plt.subplots(1, 2, figsize=(13, 6))
+    fig, axes = plt.subplots(1, 2, figsize=(13, 8))
     for metric, ax in zip(metrics, axes):
         summary[metric].plot.barh(ax=ax)
         ax.set_xlabel(metric + ' (lower is better)')
         ax.set_ylabel('')
     fig.suptitle(f'Archived-report peak forecasts · {len(shared)} identical state/DC tasks')
-    fig.text(.02, .015, 'MLPs: train on other three NHSN/flu-ED seasons from 2022–23 to 2025–26; labels are 36 future weekly values.\n'
-             'Evaluate on held-out 2024–25 / 2025–26 Wednesday reports and final NHSN peak labels; no truth filling.\n'
-             'Candidates add timing log loss (0.3 or 1), two seeds; previous model has four seeds. Retrospective development comparison.', fontsize=8)
-    fig.tight_layout(rect=(0, .13, 1, .94))
+    caption = study['description'] + ' Reference MLP: finalized training histories, no peak-week log loss, four seeds (44–47).'
+    fig.text(.02, .015, textwrap.fill(caption, 155), fontsize=8)
+    fig.tight_layout(rect=(0, .25, 1, .94))
     fig.savefig(out / 'comparison.png', dpi=150)
     plt.close(fig)
     print(summary.to_string(), flush=True)
