@@ -1663,11 +1663,13 @@
       "study": "experiments/season-peak-eight-inputs.json",
       "parent": "artificial_lookback8",
       "change": "Eight-week finalized-history vs half-strength artificial-error training; separate history length and augmentation contributions. Unchanged36 future labels, losses, three permitted training seasons; two seeds44/45. Final focused screen before synthesis.",
-      "status": "planned",
+      "status": "submitted",
       "seeds": [
         44,
         45
-      ]
+      ],
+      "training_job": 4735925,
+      "scoring_job": 4735926
     }
   ],
   "search_rules": [
