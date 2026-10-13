@@ -1,0 +1,51 @@
+{
+  "objective": "Improve peak timing and peak size against FluSight-ensemble on matched archived-report forecast tasks.",
+  "deadline": {
+    "local": "2026-10-13T08:00:00-04:00",
+    "utc": "2026-10-13T12:00:00Z",
+    "policy": "Stop launching experiments before the deadline; reserve the last 30 minutes for scoring and final synthesis. Preserve already-running fits and disclose unfinished work."
+  },
+  "branch": "codex/season-peak-ensemble",
+  "remote": "/proj/jlessler/projects/tapestry-all/tapestry-season-peak-ensemble",
+  "comparison": {
+    "training": "For each held-out season, retrain the sampled MLP on the other three seasons among 2022-23 through 2025-26. Current training inputs are finalized admissions and flu-ED histories; prediction labels are 36 future weekly values of both series.",
+    "evaluation": "Replay archived Wednesday reports with no finalized fallback, including observed weeks of the peak window. Final NHSN admissions supply peak labels over epiweeks 40-21. Match location/reference-date cells to FluSight-ensemble in 2024-25 and 2025-26; require observed past-window reports.",
+    "scope": "Retrospective development comparison, not an untouched or forward-only validation. States/DC, reference dates at or before the true peak. Actual weeks to peak may define diagnostics, never forecast-time decisions.",
+    "metrics": "Peak-week negative log probability with floor 0.001; peak-size WIS on log(1+admissions). Lower is better. Report both metrics, by season and early/near-peak; disclose any coverage change."
+  },
+  "root": {
+    "recipe": "experiments/season-peak-tree/round-02.json: Rs.noise_local",
+    "seeds": [
+      44,
+      45,
+      46,
+      47
+    ],
+    "inputs": "reported",
+    "matched_tasks": 862,
+    "timing": 3.3363,
+    "size_log_wis": 0.3051,
+    "ensemble_timing": 2.5781,
+    "ensemble_size_log_wis": 0.523
+  },
+  "rounds": [
+    {
+      "experiment": "season-peak-logtiming",
+      "study": "experiments/season-peak-logtiming.json",
+      "parent": "Rs.noise_local",
+      "change": "Add differentiable negative log probability of the true future peak week; weights 0.3 and 1, retaining existing weekly, path and peak losses. Retrain both candidates; seeds 44 and 45.",
+      "training_job": 4697311,
+      "scoring_job": 4697316,
+      "status": "running"
+    }
+  ],
+  "search_rules": [
+    "Expand up to two promising parents per round, with a few small changes and one distinct idea; keep the parent as a matched-task reference.",
+    "Screen with two seeds where practical; confirm promising improvements with more seeds. Do not compare differing training budgets without identifying them.",
+    "Prefer repeatable timing gains across both seasons while retaining the size advantage. Drop consistently harmful children; record both scores and seed coverage for each decision.",
+    "Candidate branches include timing loss, reporting-revision robustness, season-aligned peak objectives, and simple out-of-fold calibration or mixtures. Select calibration using training folds only; never use the evaluated season or its true lead-to-peak.",
+    "Never blend in the reference ensemble just to manufacture a benchmark win.",
+    "Use one planner and seasonal scorer, pinned code snapshots, available patron GPUs, and exact manager plan/launch/status/rank commands. Keep completed caches out of docs.",
+    "Continue automatically when results arrive. Do not duplicate active jobs or repin their code. Stop new rounds early enough to summarize at 8 a.m. Eastern."
+  ]
+}
