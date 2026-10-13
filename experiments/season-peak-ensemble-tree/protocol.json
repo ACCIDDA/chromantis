@@ -251,7 +251,7 @@
         "sqrt_local_peaklog0.3"
       ],
       "change": "Remove annual-calendar feature; retain all other training inputs, labels and respective losses. Retrain with seeds 44 and 45.",
-      "status": "running",
+      "status": "scoring",
       "training_job": 4713940,
       "scoring_job": 4713941
     },
@@ -273,11 +273,13 @@
       "study": "experiments/season-peak-loss-ablation.json",
       "parent": "Rs.noise_local",
       "change": "Remove peak loss; alternatively remove both peak and path losses. Test whether auxiliary objectives help before adding seasonal alignment complexity. All training inputs and weekly labels unchanged.",
-      "status": "planned",
+      "status": "submitted",
       "seeds": [
         44,
         45
-      ]
+      ],
+      "training_job": 4717001,
+      "scoring_job": 4717003
     }
   ],
   "search_rules": [
