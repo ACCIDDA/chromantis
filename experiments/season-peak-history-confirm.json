@@ -1,0 +1,10 @@
+{
+  "description": "History-length branch of unsmoothed multiscale-feature square-root/local-noise MLP: lookback6 versus lookback20 instead of12. Tests recent trajectory emphasis versus longer seasonal context; multiscale features use available context. Same finalized admissions and flu-ED training histories, original weekly/path/peak losses, and36 finalized future weekly labels. Each held-out fold trains on other three seasons among2022-23 through2025-26. Seeds44/45. Strict archived Wednesday evaluation without finalized fallback in2024-25/2025-26, identical state/DC tasks and final NHSN peak labels. Retrospective development, not untouched validation. Confirmation adds seeds46/47 only to six-week model, pooling four seeds44-47; completed twenty-week screen stays at seeds44/45. Original two-seed scores archived separately.",
+  "candidates": {
+    "shape_lookback6": "input_set=target,count_transform=sqrt,ed_transform=logit,spatial=neighbors,noise=local,width=192,epochs=160,patience=25,fit_partition=pathogen,input_normalization=b0,log_loss_weight=1.0,path_loss_weight=1.0,peak_loss_weight=1.0,forecast_view=raw,signal_features=multiscale,lookback=6"
+  },
+  "seeds": [
+    46,
+    47
+  ]
+}
