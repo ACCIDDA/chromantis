@@ -51,7 +51,57 @@
           "timing_2025_26": 2.729047
         }
       },
-      "decision": "No aggregate gain over original four-seed model; weight 1 is dominated by weight 0.3 overall. Keep original parent; retain weight 0.3 only as an uncertain parent because it improves 2025-26 timing. Test annual-calendar removal on both; do not declare a win based on one season."
+      "decision": "No aggregate gain over original four-seed model; weight 1 is dominated by weight 0.3 overall. Keep original parent; retain weight 0.3 only as an uncertain parent because it improves 2025-26 timing. Test annual-calendar removal on both; do not declare a win based on one season.",
+      "lead_diagnostics": [
+        {
+          "model": "FluSight-ensemble",
+          "lead": "0\u20137",
+          "peak_week_log_score": "2.507377234609047",
+          "peak_wis_log": "0.4329900009643153"
+        },
+        {
+          "model": "FluSight-ensemble",
+          "lead": "8+",
+          "peak_week_log_score": "2.8478190597083777",
+          "peak_wis_log": "0.8665909937862247"
+        },
+        {
+          "model": "Previous model, four seeds",
+          "lead": "0\u20137",
+          "peak_week_log_score": "3.2317387739361925",
+          "peak_wis_log": "0.293983987958078"
+        },
+        {
+          "model": "Previous model, four seeds",
+          "lead": "8+",
+          "peak_week_log_score": "3.735390456621864",
+          "peak_wis_log": "0.3476083337847434"
+        },
+        {
+          "model": "sqrt_local_peaklog0.3",
+          "lead": "0\u20137",
+          "peak_week_log_score": "3.4042248138174944",
+          "peak_wis_log": "0.3117235087451315"
+        },
+        {
+          "model": "sqrt_local_peaklog0.3",
+          "lead": "8+",
+          "peak_week_log_score": "3.799898917401746",
+          "peak_wis_log": "0.378799107201468"
+        },
+        {
+          "model": "sqrt_local_peaklog1",
+          "lead": "0\u20137",
+          "peak_week_log_score": "3.6546783090468504",
+          "peak_wis_log": "0.3543001695612751"
+        },
+        {
+          "model": "sqrt_local_peaklog1",
+          "lead": "8+",
+          "peak_week_log_score": "3.1780951244707025",
+          "peak_wis_log": "0.5424280526259417"
+        }
+      ]
     },
     {
       "experiment": "season-peak-reporting",
@@ -74,7 +124,7 @@
         "sqrt_local_peaklog0.3"
       ],
       "change": "Remove annual-calendar feature; retain all other training inputs, labels and respective losses. Retrain with seeds 44 and 45.",
-      "status": "submitted",
+      "status": "running",
       "training_job": 4713940,
       "scoring_job": 4713941
     }
@@ -104,5 +154,6 @@
       "timing": 3.977569,
       "size_log_wis": 0.298508
     }
-  }
+  },
+  "next_round_consideration": "Wait for reporting-history and calendar-removal comparisons before allocating the next GPU round. If neither improves timing, test alignment of the peak objective to the evaluated season window: current peak losses score all observed future horizons, whereas evaluation uses epiweeks 40-21 and includes already reported within-season history. This is a hypothesis, not a diagnosed cause. Preserve weekly labels and ensure objective masks depend only on calendar dates, never on held-out peak timing."
 }
