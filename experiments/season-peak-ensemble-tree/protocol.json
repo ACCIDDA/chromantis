@@ -295,5 +295,12 @@
       "size_log_wis": 0.298508
     }
   },
-  "next_round_consideration": "Wait for reporting-history and calendar-removal comparisons before allocating the next GPU round. If neither improves timing, test alignment of the peak objective to the evaluated season window: current peak losses score all observed future horizons, whereas evaluation uses epiweeks 40-21 and includes already reported within-season history. This is a hypothesis, not a diagnosed cause. Preserve weekly labels and ensure objective masks depend only on calendar dates, never on held-out peak timing."
+  "next_round_consideration": "Wait for reporting-history and calendar-removal comparisons before allocating the next GPU round. If neither improves timing, test alignment of the peak objective to the evaluated season window: current peak losses score all observed future horizons, whereas evaluation uses epiweeks 40-21 and includes already reported within-season history. This is a hypothesis, not a diagnosed cause. Preserve weekly labels and ensure objective masks depend only on calendar dates, never on held-out peak timing.",
+  "objective_alignment_audit": {
+    "training": "dataset/cv.py masks out non-permitted seasons and creates origins throughout permitted epiweek31-30 seasons. Training path/peak losses use every available positive horizon, up to36, rather than evaluation epiweek40-21. Neighboring permitted seasons may supply future labels across a season boundary.",
+    "evaluation": "seasonal.py constructs epiweek40-21 paths and includes already observed reported history before extracting the peak.",
+    "early_stopping": "Inner validation scores only hidden validation weeks; peak_log_scores currently selects the maximum among those observed labels, which need not be the complete seasonal peak.",
+    "possible_experiment": "Separate the peak-objective calendar mask from unchanged weekly labels and restrict auxiliary peak loss to an origin-specific epiweek40-21 window. Do not use any held-out timing information. Include scientific alignment checks if implemented.",
+    "status": "audited; not implemented; wait for calendar results before committing to next experiment"
+  }
 }
