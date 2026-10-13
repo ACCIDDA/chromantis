@@ -667,13 +667,140 @@
       "study": "experiments/season-peak-shape-children.json",
       "parent": "multiscale",
       "change": "Combine unsmoothed features with calendar removal or artificial reporting errors; distinct training-input interventions; original labels/losses unchanged.",
-      "status": "submitted",
+      "status": "complete",
       "seeds": [
         44,
         45
       ],
       "training_job": 4721208,
-      "scoring_job": 4721227
+      "scoring_job": 4721227,
+      "results": [
+        {
+          "model": "FluSight-ensemble",
+          "peak_week_log_score": "2.578072230772365",
+          "peak_wis_log": "0.5230301143229252",
+          "tasks": "862"
+        },
+        {
+          "model": "Previous model, four seeds",
+          "peak_week_log_score": "3.3363253762572307",
+          "peak_wis_log": "0.30511943796152713",
+          "tasks": "862"
+        },
+        {
+          "model": "shape_artificial",
+          "peak_week_log_score": "3.0338723726180463",
+          "peak_wis_log": "0.2884686961255859",
+          "tasks": "862"
+        },
+        {
+          "model": "shape_no_calendar",
+          "peak_week_log_score": "3.3438349515003365",
+          "peak_wis_log": "0.35259978965336913",
+          "tasks": "862"
+        }
+      ],
+      "by_season": [
+        {
+          "model": "FluSight-ensemble",
+          "season": "2024-2025",
+          "peak_week_log_score": "2.7122346451586923",
+          "peak_wis_log": "0.6370922876643003"
+        },
+        {
+          "model": "FluSight-ensemble",
+          "season": "2025-2026",
+          "peak_week_log_score": "2.4005149653715914",
+          "peak_wis_log": "0.37207451564202193"
+        },
+        {
+          "model": "Previous model, four seeds",
+          "season": "2024-2025",
+          "peak_week_log_score": "3.572214481864227",
+          "peak_wis_log": "0.37442066807111735"
+        },
+        {
+          "model": "Previous model, four seeds",
+          "season": "2025-2026",
+          "peak_week_log_score": "3.0241379076506676",
+          "peak_wis_log": "0.21340271563320146"
+        },
+        {
+          "model": "shape_artificial",
+          "season": "2024-2025",
+          "peak_week_log_score": "3.3713936150051786",
+          "peak_wis_log": "0.3435374964992403"
+        },
+        {
+          "model": "shape_artificial",
+          "season": "2025-2026",
+          "peak_week_log_score": "2.587179838892757",
+          "peak_wis_log": "0.2155878848494017"
+        },
+        {
+          "model": "shape_no_calendar",
+          "season": "2024-2025",
+          "peak_week_log_score": "3.334253963087106",
+          "peak_wis_log": "0.44147483805154747"
+        },
+        {
+          "model": "shape_no_calendar",
+          "season": "2025-2026",
+          "peak_week_log_score": "3.3565149119070656",
+          "peak_wis_log": "0.23497809487303067"
+        }
+      ],
+      "lead_diagnostics": [
+        {
+          "model": "FluSight-ensemble",
+          "lead": "0\u20137",
+          "peak_week_log_score": "2.507377234609047",
+          "peak_wis_log": "0.4329900009643153"
+        },
+        {
+          "model": "FluSight-ensemble",
+          "lead": "8+",
+          "peak_week_log_score": "2.8478190597083777",
+          "peak_wis_log": "0.8665909937862247"
+        },
+        {
+          "model": "Previous model, four seeds",
+          "lead": "0\u20137",
+          "peak_week_log_score": "3.2317387739361925",
+          "peak_wis_log": "0.293983987958078"
+        },
+        {
+          "model": "Previous model, four seeds",
+          "lead": "8+",
+          "peak_week_log_score": "3.735390456621864",
+          "peak_wis_log": "0.3476083337847434"
+        },
+        {
+          "model": "shape_artificial",
+          "lead": "0\u20137",
+          "peak_week_log_score": "2.9533924847816726",
+          "peak_wis_log": "0.28487273425871384"
+        },
+        {
+          "model": "shape_artificial",
+          "lead": "8+",
+          "peak_week_log_score": "3.3409548496696835",
+          "peak_wis_log": "0.3021896009025335"
+        },
+        {
+          "model": "shape_no_calendar",
+          "lead": "0\u20137",
+          "peak_week_log_score": "3.5846263682570507",
+          "peak_wis_log": "0.3076121064170235"
+        },
+        {
+          "model": "shape_no_calendar",
+          "lead": "8+",
+          "peak_week_log_score": "2.425060998177232",
+          "peak_wis_log": "0.5242567039015481"
+        }
+      ],
+      "decision": "Shape with artificial errors improves timing in both seasons and both lead groups versus original, and aggregate size, though2025-26 size marginally worse. Confirm with seeds46/47. Versus shape alone, timing/size tradeoffs remain. Calendar removal with shape hurts overall; drop it. No ensemble timing win."
     },
     {
       "experiment": "season-peak-shape",
@@ -700,6 +827,17 @@
       ],
       "training_job": 4723056,
       "scoring_job": 4723060
+    },
+    {
+      "experiment": "season-peak-shape-children",
+      "study": "experiments/season-peak-shape-artificial-confirm.json",
+      "parent": "shape_artificial",
+      "change": "Confirm artificial-reporting plus shape candidate by adding only seeds46/47; keep completed44/45.",
+      "status": "planned",
+      "seeds": [
+        46,
+        47
+      ]
     }
   ],
   "search_rules": [

@@ -1,0 +1,10 @@
+{
+  "description": "Combination screen from the unsmoothed multiscale-feature square-root/local-noise sampled MLP: shape_no_calendar removes annual calendar while using finalized admissions/flu-ED training histories; shape_artificial keeps calendar but perturbs those histories with synchronous_phase_log reporting errors from permitted training seasons, no added missingness. Both learn 36 future finalized weekly admissions and flu-ED labels with unchanged weekly/path/peak losses, no added timing log loss. Each held-out fold uses the other three seasons among 2022-23 through 2025-26, two seeds44/45. Strict archived Wednesday evaluation without finalized fills, final NHSN peak labels, common state/DC tasks in 2024-25/2025-26. Retrospective development, not untouched validation. Confirmation extends shape_artificial to four seeds44-47; completed shape_no_calendar stays at two seeds44/45.",
+  "candidates": {
+    "shape_artificial": "input_set=target,count_transform=sqrt,ed_transform=logit,spatial=neighbors,noise=local,width=192,epochs=160,patience=25,fit_partition=pathogen,input_normalization=b0,log_loss_weight=1.0,path_loss_weight=1.0,peak_loss_weight=1.0,forecast_view=raw,signal_features=multiscale,history_source=artificial,error_signals=targets,reporting_method=synchronous_phase_log,reporting_missingness=0"
+  },
+  "seeds": [
+    46,
+    47
+  ]
+}
