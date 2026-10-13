@@ -1234,9 +1234,136 @@
         44,
         45
       ],
-      "status": "submitted",
+      "status": "scored",
       "training_job": 4725798,
-      "scoring_job": 4725816
+      "scoring_job": 4725816,
+      "summary": [
+        {
+          "model": "FluSight-ensemble",
+          "peak_week_log_score": "2.578072230772365",
+          "peak_wis_log": "0.5230301143229252",
+          "tasks": "862"
+        },
+        {
+          "model": "Previous model, four seeds",
+          "peak_week_log_score": "3.3363253762572307",
+          "peak_wis_log": "0.30511943796152713",
+          "tasks": "862"
+        },
+        {
+          "model": "artificial_lookback6",
+          "peak_week_log_score": "3.125494094661874",
+          "peak_wis_log": "0.30168861003837677",
+          "tasks": "862"
+        },
+        {
+          "model": "artificial_lookback8",
+          "peak_week_log_score": "2.877615990429424",
+          "peak_wis_log": "0.29581922124684673",
+          "tasks": "862"
+        }
+      ],
+      "by_season": [
+        {
+          "model": "FluSight-ensemble",
+          "season": "2024-2025",
+          "peak_week_log_score": "2.7122346451586923",
+          "peak_wis_log": "0.6370922876643003"
+        },
+        {
+          "model": "FluSight-ensemble",
+          "season": "2025-2026",
+          "peak_week_log_score": "2.4005149653715914",
+          "peak_wis_log": "0.37207451564202193"
+        },
+        {
+          "model": "Previous model, four seeds",
+          "season": "2024-2025",
+          "peak_week_log_score": "3.572214481864227",
+          "peak_wis_log": "0.37442066807111735"
+        },
+        {
+          "model": "Previous model, four seeds",
+          "season": "2025-2026",
+          "peak_week_log_score": "3.0241379076506676",
+          "peak_wis_log": "0.21340271563320146"
+        },
+        {
+          "model": "artificial_lookback6",
+          "season": "2024-2025",
+          "peak_week_log_score": "3.2228803028209523",
+          "peak_wis_log": "0.37266359395045695"
+        },
+        {
+          "model": "artificial_lookback6",
+          "season": "2025-2026",
+          "peak_week_log_score": "2.9966083043489156",
+          "peak_wis_log": "0.20775675801457244"
+        },
+        {
+          "model": "artificial_lookback8",
+          "season": "2024-2025",
+          "peak_week_log_score": "3.0863444020442485",
+          "peak_wis_log": "0.3503904654825945"
+        },
+        {
+          "model": "artificial_lookback8",
+          "season": "2025-2026",
+          "peak_week_log_score": "2.60137434594727",
+          "peak_wis_log": "0.2235969007084312"
+        }
+      ],
+      "by_lead": [
+        {
+          "model": "FluSight-ensemble",
+          "lead": "0\u20137",
+          "peak_week_log_score": "2.507377234609047",
+          "peak_wis_log": "0.4329900009643153"
+        },
+        {
+          "model": "FluSight-ensemble",
+          "lead": "8+",
+          "peak_week_log_score": "2.8478190597083777",
+          "peak_wis_log": "0.8665909937862247"
+        },
+        {
+          "model": "Previous model, four seeds",
+          "lead": "0\u20137",
+          "peak_week_log_score": "3.2317387739361925",
+          "peak_wis_log": "0.293983987958078"
+        },
+        {
+          "model": "Previous model, four seeds",
+          "lead": "8+",
+          "peak_week_log_score": "3.735390456621864",
+          "peak_wis_log": "0.3476083337847434"
+        },
+        {
+          "model": "artificial_lookback6",
+          "lead": "0\u20137",
+          "peak_week_log_score": "3.2727906910956492",
+          "peak_wis_log": "0.2922209653371262"
+        },
+        {
+          "model": "artificial_lookback6",
+          "lead": "8+",
+          "peak_week_log_score": "2.5634629473754575",
+          "peak_wis_log": "0.337813757138679"
+        },
+        {
+          "model": "artificial_lookback8",
+          "lead": "0\u20137",
+          "peak_week_log_score": "2.935696942828727",
+          "peak_wis_log": "0.2876794793597888"
+        },
+        {
+          "model": "artificial_lookback8",
+          "lead": "8+",
+          "peak_week_log_score": "2.6559998424477245",
+          "peak_wis_log": "0.32687756598908435"
+        }
+      ],
+      "decision": "Eight-week artificial shape improves timing both seasons and both lead groups vs original; aggregate2.877616/0.295819 best timing so far, still worse ensemble2.578072. Size slightly worse25-26 vs original. Confirm with seeds46/47; prior artificial-shape optimism shrank with extra seeds. Six-week artificial is weaker, do not expand."
     },
     {
       "experiment": "season-peak-history",
@@ -1263,6 +1390,17 @@
       ],
       "training_job": 4731420,
       "scoring_job": 4731459
+    },
+    {
+      "experiment": "season-peak-short-reporting",
+      "study": "experiments/season-peak-short-reporting-confirm.json",
+      "parent": "artificial_lookback8",
+      "change": "Confirm eight-week artificial-input shape timing improvement in both seasons with seeds46/47; reuse completed44/45. Preserve size25-26 tradeoff.",
+      "status": "planned",
+      "seeds": [
+        46,
+        47
+      ]
     }
   ],
   "search_rules": [

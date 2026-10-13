@@ -1,0 +1,10 @@
+{
+  "description": "Short-history reporting-error screen: square-root/local-noise sampled MLP with unsmoothed causal shape features and lookback6 or8 (rather than12). Finalized admissions and flu-ED training histories are perturbed by synchronous_phase_log errors from permitted training seasons with reporting_missingness0. Labels remain36 future finalized weekly values of both signals; original weekly/path/peak losses retained. Each heldout season excluded from training among2022-23 through2025-26, seeds44/45. Strict archived Wednesday evaluation, no finalized fallback, final NHSN peak labels, matched state/DC tasks2024-25 and2025-26. Retrospective development, not untouched validation. Tests short-history timing gain combined with reporting robustness; size tradeoff must be reported. Confirmation adds seeds46/47 only to eight-week candidate; it pools44-47, while six-week comparison retains44/45. No changes to model settings or inputs/labels.",
+  "candidates": {
+    "artificial_lookback8": "input_set=target,count_transform=sqrt,ed_transform=logit,spatial=neighbors,noise=local,width=192,epochs=160,patience=25,fit_partition=pathogen,input_normalization=b0,log_loss_weight=1.0,path_loss_weight=1.0,peak_loss_weight=1.0,forecast_view=raw,signal_features=multiscale,history_source=artificial,error_signals=targets,reporting_method=synchronous_phase_log,reporting_missingness=0,lookback=8"
+  },
+  "seeds": [
+    46,
+    47
+  ]
+}
