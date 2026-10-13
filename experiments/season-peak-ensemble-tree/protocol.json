@@ -1256,11 +1256,13 @@
       "study": "experiments/season-peak-short-capacity.json",
       "parent": "shape_lookback6",
       "change": "Separate narrower-width96 child and distinct latest-two-permitted-training-seasons child; finalized admissions+ED histories,36 weekly labels, unchanged losses, seeds44/45. Motivated by six-week timing improvement in both seasons with size tradeoff.",
-      "status": "planned",
+      "status": "submitted",
       "seeds": [
         44,
         45
-      ]
+      ],
+      "training_job": 4731420,
+      "scoring_job": 4731459
     }
   ],
   "search_rules": [
