@@ -687,6 +687,17 @@
       ],
       "training_job": 4722401,
       "scoring_job": 4722406
+    },
+    {
+      "experiment": "season-peak-history",
+      "study": "experiments/season-peak-history.json",
+      "parent": "multiscale",
+      "change": "Compare6week and20week input context to12week parent, motivated by persistent near-peak timing deficit. No claim about which is better before results.",
+      "status": "planned",
+      "seeds": [
+        44,
+        45
+      ]
     }
   ],
   "search_rules": [
