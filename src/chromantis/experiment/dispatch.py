@@ -90,7 +90,10 @@ class Queue:
             for task, entry in state['tasks'].items():
                 todo = [seed for seed, status in entry['seeds'].items() if status == 'pending'
                         and (self.seeds is None or seed in self.seeds)]
-                active = [seed for seed in entry['active'] if self.seeds is None or seed in self.seeds]
+                # Keep lanes available for this allocation, but release an idle GPU
+                # once only other allocations have work left.
+                active = [seed for seed, claim in entry['active'].items()
+                          if claim['owner'] == self.owner and (self.seeds is None or seed in self.seeds)]
                 pending |= bool(todo) or bool(active)
                 if not todo:
                     continue
