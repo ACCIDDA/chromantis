@@ -74,7 +74,9 @@
         "sqrt_local_peaklog0.3"
       ],
       "change": "Remove annual-calendar feature; retain all other training inputs, labels and respective losses. Retrain with seeds 44 and 45.",
-      "status": "planned"
+      "status": "submitted",
+      "training_job": 4713940,
+      "scoring_job": 4713941
     }
   ],
   "search_rules": [
