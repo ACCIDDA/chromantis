@@ -112,9 +112,136 @@
         44,
         45
       ],
-      "status": "scoring",
+      "status": "complete",
       "training_job": 4712540,
-      "scoring_job": 4712564
+      "scoring_job": 4712564,
+      "results": [
+        {
+          "model": "FluSight-ensemble",
+          "peak_week_log_score": "2.578072230772365",
+          "peak_wis_log": "0.5230301143229252",
+          "tasks": "862"
+        },
+        {
+          "model": "Previous model, four seeds",
+          "peak_week_log_score": "3.3363253762572307",
+          "peak_wis_log": "0.30511943796152713",
+          "tasks": "862"
+        },
+        {
+          "model": "train_artificial",
+          "peak_week_log_score": "3.3164478164545943",
+          "peak_wis_log": "0.3523202581107302",
+          "tasks": "862"
+        },
+        {
+          "model": "train_reported",
+          "peak_week_log_score": "3.735212248069974",
+          "peak_wis_log": "0.3161352809481366",
+          "tasks": "862"
+        }
+      ],
+      "by_season": [
+        {
+          "model": "FluSight-ensemble",
+          "season": "2024-2025",
+          "peak_week_log_score": "2.7122346451586923",
+          "peak_wis_log": "0.6370922876643003"
+        },
+        {
+          "model": "FluSight-ensemble",
+          "season": "2025-2026",
+          "peak_week_log_score": "2.4005149653715914",
+          "peak_wis_log": "0.37207451564202193"
+        },
+        {
+          "model": "Previous model, four seeds",
+          "season": "2024-2025",
+          "peak_week_log_score": "3.572214481864227",
+          "peak_wis_log": "0.37442066807111735"
+        },
+        {
+          "model": "Previous model, four seeds",
+          "season": "2025-2026",
+          "peak_week_log_score": "3.0241379076506676",
+          "peak_wis_log": "0.21340271563320146"
+        },
+        {
+          "model": "train_artificial",
+          "season": "2024-2025",
+          "peak_week_log_score": "3.5595150146236425",
+          "peak_wis_log": "0.4506149151007181"
+        },
+        {
+          "model": "train_artificial",
+          "season": "2025-2026",
+          "peak_week_log_score": "2.9947605002793845",
+          "peak_wis_log": "0.22223218107007237"
+        },
+        {
+          "model": "train_reported",
+          "season": "2024-2025",
+          "peak_week_log_score": "4.19602304528881",
+          "peak_wis_log": "0.38116780144722795"
+        },
+        {
+          "model": "train_reported",
+          "season": "2025-2026",
+          "peak_week_log_score": "3.1253521363868253",
+          "peak_wis_log": "0.23006798292912353"
+        }
+      ],
+      "lead_diagnostics": [
+        {
+          "model": "FluSight-ensemble",
+          "lead": "0\u20137",
+          "peak_week_log_score": "2.507377234609047",
+          "peak_wis_log": "0.4329900009643153"
+        },
+        {
+          "model": "FluSight-ensemble",
+          "lead": "8+",
+          "peak_week_log_score": "2.8478190597083777",
+          "peak_wis_log": "0.8665909937862247"
+        },
+        {
+          "model": "Previous model, four seeds",
+          "lead": "0\u20137",
+          "peak_week_log_score": "3.2317387739361925",
+          "peak_wis_log": "0.293983987958078"
+        },
+        {
+          "model": "Previous model, four seeds",
+          "lead": "8+",
+          "peak_week_log_score": "3.735390456621864",
+          "peak_wis_log": "0.3476083337847434"
+        },
+        {
+          "model": "train_artificial",
+          "lead": "0\u20137",
+          "peak_week_log_score": "3.344175203371346",
+          "peak_wis_log": "0.3284138868514316"
+        },
+        {
+          "model": "train_artificial",
+          "lead": "8+",
+          "peak_week_log_score": "3.2106500216828544",
+          "peak_wis_log": "0.443538423306825"
+        },
+        {
+          "model": "train_reported",
+          "lead": "0\u20137",
+          "peak_week_log_score": "3.502701237504032",
+          "peak_wis_log": "0.3087352981506529"
+        },
+        {
+          "model": "train_reported",
+          "lead": "8+",
+          "peak_week_log_score": "4.62239113196125",
+          "peak_wis_log": "0.344370969499429"
+        }
+      ],
+      "decision": "Archived-report training is worse on timing and size than the original four-seed model in both evaluated seasons; do not expand it. Synthetic reporting errors yield only a small aggregate timing improvement (3.316448 vs 3.336325), with worse size (0.352320 vs 0.305119), and near-peak timing worsens even though early timing improves. This two-seed screen does not establish a better recipe or an ensemble win. Retain original as parent pending calendar and shape branches; artificial errors remain a secondary option for a later combination only if independent improvements justify it."
     },
     {
       "experiment": "season-peak-calendar",
