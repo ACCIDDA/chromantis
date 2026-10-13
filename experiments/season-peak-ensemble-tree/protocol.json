@@ -1107,7 +1107,9 @@
         44,
         45
       ],
-      "status": "planned"
+      "status": "submitted",
+      "training_job": 4725798,
+      "scoring_job": 4725816
     }
   ],
   "search_rules": [
