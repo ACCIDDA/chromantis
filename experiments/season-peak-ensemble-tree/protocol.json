@@ -1510,13 +1510,140 @@
       "study": "experiments/season-peak-short-capacity.json",
       "parent": "shape_lookback6",
       "change": "Separate narrower-width96 child and distinct latest-two-permitted-training-seasons child; finalized admissions+ED histories,36 weekly labels, unchanged losses, seeds44/45. Motivated by six-week timing improvement in both seasons with size tradeoff.",
-      "status": "submitted",
+      "status": "scored",
       "seeds": [
         44,
         45
       ],
       "training_job": 4731420,
-      "scoring_job": 4731459
+      "scoring_job": 4731459,
+      "summary": [
+        {
+          "model": "FluSight-ensemble",
+          "peak_week_log_score": "2.578072230772365",
+          "peak_wis_log": "0.5230301143229252",
+          "tasks": "862"
+        },
+        {
+          "model": "Previous model, four seeds",
+          "peak_week_log_score": "3.3363253762572307",
+          "peak_wis_log": "0.30511943796152713",
+          "tasks": "862"
+        },
+        {
+          "model": "latest2",
+          "peak_week_log_score": "3.461389670624491",
+          "peak_wis_log": "0.3571214139859599",
+          "tasks": "862"
+        },
+        {
+          "model": "narrow96",
+          "peak_week_log_score": "2.9005883571615936",
+          "peak_wis_log": "0.3467910831932579",
+          "tasks": "862"
+        }
+      ],
+      "by_season": [
+        {
+          "model": "FluSight-ensemble",
+          "season": "2024-2025",
+          "peak_week_log_score": "2.7122346451586923",
+          "peak_wis_log": "0.6370922876643003"
+        },
+        {
+          "model": "FluSight-ensemble",
+          "season": "2025-2026",
+          "peak_week_log_score": "2.4005149653715914",
+          "peak_wis_log": "0.37207451564202193"
+        },
+        {
+          "model": "Previous model, four seeds",
+          "season": "2024-2025",
+          "peak_week_log_score": "3.572214481864227",
+          "peak_wis_log": "0.37442066807111735"
+        },
+        {
+          "model": "Previous model, four seeds",
+          "season": "2025-2026",
+          "peak_week_log_score": "3.0241379076506676",
+          "peak_wis_log": "0.21340271563320146"
+        },
+        {
+          "model": "latest2",
+          "season": "2024-2025",
+          "peak_week_log_score": "3.847219437789225",
+          "peak_wis_log": "0.466303789827908"
+        },
+        {
+          "model": "latest2",
+          "season": "2025-2026",
+          "peak_week_log_score": "2.9507632132717023",
+          "peak_wis_log": "0.21262398396332782"
+        },
+        {
+          "model": "narrow96",
+          "season": "2024-2025",
+          "peak_week_log_score": "3.0403271153140583",
+          "peak_wis_log": "0.44121039593554456"
+        },
+        {
+          "model": "narrow96",
+          "season": "2025-2026",
+          "peak_week_log_score": "2.715651078851997",
+          "peak_wis_log": "0.22183183101950385"
+        }
+      ],
+      "by_lead": [
+        {
+          "model": "FluSight-ensemble",
+          "lead": "0\u20137",
+          "peak_week_log_score": "2.507377234609047",
+          "peak_wis_log": "0.4329900009643153"
+        },
+        {
+          "model": "FluSight-ensemble",
+          "lead": "8+",
+          "peak_week_log_score": "2.8478190597083777",
+          "peak_wis_log": "0.8665909937862247"
+        },
+        {
+          "model": "Previous model, four seeds",
+          "lead": "0\u20137",
+          "peak_week_log_score": "3.2317387739361925",
+          "peak_wis_log": "0.293983987958078"
+        },
+        {
+          "model": "Previous model, four seeds",
+          "lead": "8+",
+          "peak_week_log_score": "3.735390456621864",
+          "peak_wis_log": "0.3476083337847434"
+        },
+        {
+          "model": "latest2",
+          "lead": "0\u20137",
+          "peak_week_log_score": "3.4770878961468306",
+          "peak_wis_log": "0.30880727958175314"
+        },
+        {
+          "model": "latest2",
+          "lead": "8+",
+          "peak_week_log_score": "3.4014908548046145",
+          "peak_wis_log": "0.5414708765450282"
+        },
+        {
+          "model": "narrow96",
+          "lead": "0\u20137",
+          "peak_week_log_score": "3.0597905727256585",
+          "peak_wis_log": "0.3312270948012972"
+        },
+        {
+          "model": "narrow96",
+          "lead": "8+",
+          "peak_week_log_score": "2.2931296240316668",
+          "peak_wis_log": "0.40617769811900756"
+        }
+      ],
+      "decision": "Do not expand either. narrow96 timing2.900588 has negligible aggregate advantage over4seed six-week parent2.920574 but size0.346791 worsens both seasons vs parent; latest2 is worse overall3.461390/0.357121. No ensemble timing win."
     },
     {
       "experiment": "season-peak-short-reporting",
@@ -1530,6 +1657,17 @@
       ],
       "training_job": 4732741,
       "scoring_job": 4732743
+    },
+    {
+      "experiment": "season-peak-eight-inputs",
+      "study": "experiments/season-peak-eight-inputs.json",
+      "parent": "artificial_lookback8",
+      "change": "Eight-week finalized-history vs half-strength artificial-error training; separate history length and augmentation contributions. Unchanged36 future labels, losses, three permitted training seasons; two seeds44/45. Final focused screen before synthesis.",
+      "status": "planned",
+      "seeds": [
+        44,
+        45
+      ]
     }
   ],
   "search_rules": [

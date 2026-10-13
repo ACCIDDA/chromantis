@@ -1,0 +1,11 @@
+{
+  "description": "Final eight-week multiscale square-root/local-noise MLP screen: eight_final uses unchanged finalized admissions and flu-ED training histories; eight_half_error applies half-strength synthetic reporting errors to those histories. Both learn36 finalized weekly labels using original weekly/path/peak losses; each heldout fold trains other three seasons among2022-23 through2025-26, seeds44/45. Evaluated on strict archived Wednesday reports without finalized fallback in2024-25/2025-26 and final NHSN seasonal peak truth. Retrospective development, not forward-only validation. Separates eight-week history benefit from input-error augmentation; no claimed gain.",
+  "candidates": {
+    "eight_final": "input_set=target,count_transform=sqrt,ed_transform=logit,spatial=neighbors,noise=local,width=192,epochs=160,patience=25,fit_partition=pathogen,input_normalization=b0,log_loss_weight=1.0,path_loss_weight=1.0,peak_loss_weight=1.0,forecast_view=raw,signal_features=multiscale,lookback=8",
+    "eight_half_error": "input_set=target,count_transform=sqrt,ed_transform=logit,spatial=neighbors,noise=local,width=192,epochs=160,patience=25,fit_partition=pathogen,input_normalization=b0,log_loss_weight=1.0,path_loss_weight=1.0,peak_loss_weight=1.0,forecast_view=raw,signal_features=multiscale,history_source=artificial,error_signals=targets,reporting_method=synchronous_phase_log,reporting_missingness=0,lookback=8,reporting_strength=0.5"
+  },
+  "seeds": [
+    44,
+    45
+  ]
+}
