@@ -1243,11 +1243,13 @@
       "study": "experiments/season-peak-history-confirm.json",
       "parent": "shape_lookback6",
       "change": "Confirm timing gains in both seasons with two additional seeds46/47. No new settings; preserve size tradeoff and compare four-seed results.",
-      "status": "planned",
+      "status": "submitted",
       "seeds": [
         46,
         47
-      ]
+      ],
+      "training_job": 4728981,
+      "scoring_job": 4729056
     }
   ],
   "search_rules": [
