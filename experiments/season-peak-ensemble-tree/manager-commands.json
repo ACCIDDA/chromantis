@@ -1,0 +1,35 @@
+{
+  "remote_directory": "/proj/jlessler/projects/tapestry-all/tapestry-season-peak-ensemble",
+  "environment": "export PYTHONPATH=src OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 MKL_NUM_THREADS=1",
+  "note": "All runs complete. Commands are for inspection and reproducibility, not additional automatic launches. Plan on these existing caches reuses completed runs. Rank is weekly WIS; peak results are in seasonal. Scoring command regenerates the existing peak comparison.",
+  "experiments": {
+    "season-peak-short-reporting": {
+      "plan": ".venv/bin/python -m chromantis.experiment.planner plan -e season-peak-short-reporting --problem problems/us-flu-long-horizon-reported.json --study experiments/season-peak-short-reporting-confirm.json --seeds 44 45 46 47 --device cuda",
+      "launch": "LANES=1 sbatch --job-name=season-peak-short-reporting --array=0-1 scripts/jlessler.sbatch season-peak-short-reporting",
+      "status": ".venv/bin/python -m chromantis.experiment.planner status -e season-peak-short-reporting",
+      "rank": ".venv/bin/python -m chromantis.experiment.planner rank -e season-peak-short-reporting --no-report",
+      "peak_score": ".venv/bin/python scripts/score_peak_logtiming.py --experiment season-peak-short-reporting"
+    },
+    "season-peak-history": {
+      "plan": ".venv/bin/python -m chromantis.experiment.planner plan -e season-peak-history --problem problems/us-flu-long-horizon.json --study experiments/season-peak-history-confirm.json --seeds 44 45 46 47 --device cuda",
+      "launch": "LANES=1 sbatch --job-name=season-peak-history --array=0-1 scripts/jlessler.sbatch season-peak-history",
+      "status": ".venv/bin/python -m chromantis.experiment.planner status -e season-peak-history",
+      "rank": ".venv/bin/python -m chromantis.experiment.planner rank -e season-peak-history --no-report",
+      "peak_score": ".venv/bin/python scripts/score_peak_logtiming.py --experiment season-peak-history"
+    },
+    "season-peak-shape": {
+      "plan": ".venv/bin/python -m chromantis.experiment.planner plan -e season-peak-shape --problem problems/us-flu-long-horizon.json --study experiments/season-peak-shape-confirm.json --seeds 44 45 46 47 --device cuda",
+      "launch": "LANES=1 sbatch --job-name=season-peak-shape --array=0-1 scripts/jlessler.sbatch season-peak-shape",
+      "status": ".venv/bin/python -m chromantis.experiment.planner status -e season-peak-shape",
+      "rank": ".venv/bin/python -m chromantis.experiment.planner rank -e season-peak-shape --no-report",
+      "peak_score": ".venv/bin/python scripts/score_peak_logtiming.py --experiment season-peak-shape"
+    },
+    "season-peak-eight-inputs": {
+      "plan": ".venv/bin/python -m chromantis.experiment.planner plan -e season-peak-eight-inputs --problem problems/us-flu-long-horizon-reported.json --study experiments/season-peak-eight-inputs.json --seeds 44 45 --device cuda",
+      "launch": "LANES=1 sbatch --job-name=season-peak-eight-inputs --array=0-1 scripts/jlessler.sbatch season-peak-eight-inputs",
+      "status": ".venv/bin/python -m chromantis.experiment.planner status -e season-peak-eight-inputs",
+      "rank": ".venv/bin/python -m chromantis.experiment.planner rank -e season-peak-eight-inputs --no-report",
+      "peak_score": ".venv/bin/python scripts/score_peak_logtiming.py --experiment season-peak-eight-inputs"
+    }
+  }
+}
