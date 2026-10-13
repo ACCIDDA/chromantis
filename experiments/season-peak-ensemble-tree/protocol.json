@@ -112,7 +112,7 @@
         44,
         45
       ],
-      "status": "running",
+      "status": "scoring",
       "training_job": 4712540,
       "scoring_job": 4712564
     },
@@ -137,7 +137,9 @@
         44,
         45
       ],
-      "status": "planned"
+      "status": "submitted",
+      "training_job": 4715093,
+      "scoring_job": 4715096
     }
   ],
   "search_rules": [
