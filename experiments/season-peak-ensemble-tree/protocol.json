@@ -36,7 +36,22 @@
       "change": "Add differentiable negative log probability of the true future peak week; weights 0.3 and 1, retaining existing weekly, path and peak losses. Retrain both candidates; seeds 44 and 45.",
       "training_job": 4697311,
       "scoring_job": 4697316,
-      "status": "running"
+      "status": "complete",
+      "results": {
+        "peaklog0.3": {
+          "timing": 3.486389,
+          "size_log_wis": 0.325652,
+          "timing_2024_25": 4.217327,
+          "timing_2025_26": 2.51903
+        },
+        "peaklog1": {
+          "timing": 3.555713,
+          "size_log_wis": 0.393366,
+          "timing_2024_25": 4.180342,
+          "timing_2025_26": 2.729047
+        }
+      },
+      "decision": "No aggregate gain over original four-seed model; weight 1 is dominated by weight 0.3 overall. Keep original parent; retain weight 0.3 only as an uncertain parent because it improves 2025-26 timing. Test annual-calendar removal on both; do not declare a win based on one season."
     },
     {
       "experiment": "season-peak-reporting",
@@ -50,6 +65,16 @@
       "status": "running",
       "training_job": 4712540,
       "scoring_job": 4712564
+    },
+    {
+      "experiment": "season-peak-calendar",
+      "study": "experiments/season-peak-calendar.json",
+      "parents": [
+        "Rs.noise_local",
+        "sqrt_local_peaklog0.3"
+      ],
+      "change": "Remove annual-calendar feature; retain all other training inputs, labels and respective losses. Retrain with seeds 44 and 45.",
+      "status": "planned"
     }
   ],
   "search_rules": [

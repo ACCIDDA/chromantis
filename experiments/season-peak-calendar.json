@@ -1,0 +1,11 @@
+{
+  "description": "Calendar branch of the peak experiment tree: retrain sampled MLPs with annual_calendar=0, starting from the original square-root/local-noise recipe and its peak-log-loss-weight-0.3 child. Each held-out fold trains on the other three seasons among 2022-23 through 2025-26. Training histories are finalized admissions and flu-ED; labels are 36 finalized future weeks of both series. Both retain weekly, path and peak losses; the log0.3 child adds peak-week log loss. Two seeds (44,45). Evaluate held-out 2024-25 and 2025-26 on strict archived Wednesday reports with final NHSN peak labels and matched FluSight-ensemble tasks. Retrospective development comparison, not untouched validation.",
+  "candidates": {
+    "no_calendar": "input_set=target,count_transform=sqrt,ed_transform=logit,spatial=neighbors,noise=local,width=192,epochs=160,patience=25,fit_partition=pathogen,input_normalization=b0,log_loss_weight=1.0,path_loss_weight=1.0,peak_loss_weight=1.0,forecast_view=raw,annual_calendar=0",
+    "log0.3_no_calendar": "input_set=target,count_transform=sqrt,ed_transform=logit,spatial=neighbors,noise=local,width=192,epochs=160,patience=25,fit_partition=pathogen,input_normalization=b0,log_loss_weight=1.0,path_loss_weight=1.0,peak_loss_weight=1.0,peak_log_loss_weight=0.3,forecast_view=raw,annual_calendar=0"
+  },
+  "seeds": [
+    44,
+    45
+  ]
+}
