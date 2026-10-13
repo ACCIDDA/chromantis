@@ -391,9 +391,136 @@
         44,
         45
       ],
-      "status": "submitted",
+      "status": "complete",
       "training_job": 4715093,
-      "scoring_job": 4715096
+      "scoring_job": 4715096,
+      "results": [
+        {
+          "model": "FluSight-ensemble",
+          "peak_week_log_score": "2.578072230772365",
+          "peak_wis_log": "0.5230301143229252",
+          "tasks": "862"
+        },
+        {
+          "model": "Previous model, four seeds",
+          "peak_week_log_score": "3.3363253762572307",
+          "peak_wis_log": "0.30511943796152713",
+          "tasks": "862"
+        },
+        {
+          "model": "multiscale",
+          "peak_week_log_score": "3.1097290751964004",
+          "peak_wis_log": "0.2760356798432446",
+          "tasks": "862"
+        },
+        {
+          "model": "smooth_multiscale",
+          "peak_week_log_score": "3.222338430708294",
+          "peak_wis_log": "0.3218164600041363",
+          "tasks": "862"
+        }
+      ],
+      "by_season": [
+        {
+          "model": "FluSight-ensemble",
+          "season": "2024-2025",
+          "peak_week_log_score": "2.7122346451586923",
+          "peak_wis_log": "0.6370922876643003"
+        },
+        {
+          "model": "FluSight-ensemble",
+          "season": "2025-2026",
+          "peak_week_log_score": "2.4005149653715914",
+          "peak_wis_log": "0.37207451564202193"
+        },
+        {
+          "model": "Previous model, four seeds",
+          "season": "2024-2025",
+          "peak_week_log_score": "3.572214481864227",
+          "peak_wis_log": "0.37442066807111735"
+        },
+        {
+          "model": "Previous model, four seeds",
+          "season": "2025-2026",
+          "peak_week_log_score": "3.0241379076506676",
+          "peak_wis_log": "0.21340271563320146"
+        },
+        {
+          "model": "multiscale",
+          "season": "2024-2025",
+          "peak_week_log_score": "3.1387680300852434",
+          "peak_wis_log": "0.3299593811807469"
+        },
+        {
+          "model": "multiscale",
+          "season": "2025-2026",
+          "peak_week_log_score": "3.071297466435156",
+          "peak_wis_log": "0.20467035004078196"
+        },
+        {
+          "model": "smooth_multiscale",
+          "season": "2024-2025",
+          "peak_week_log_score": "3.2228458984717747",
+          "peak_wis_log": "0.3967467299940456"
+        },
+        {
+          "model": "smooth_multiscale",
+          "season": "2025-2026",
+          "peak_week_log_score": "3.2216668224283236",
+          "peak_wis_log": "0.22264998408757164"
+        }
+      ],
+      "lead_diagnostics": [
+        {
+          "model": "FluSight-ensemble",
+          "lead": "0\u20137",
+          "peak_week_log_score": "2.507377234609047",
+          "peak_wis_log": "0.4329900009643153"
+        },
+        {
+          "model": "FluSight-ensemble",
+          "lead": "8+",
+          "peak_week_log_score": "2.8478190597083777",
+          "peak_wis_log": "0.8665909937862247"
+        },
+        {
+          "model": "Previous model, four seeds",
+          "lead": "0\u20137",
+          "peak_week_log_score": "3.2317387739361925",
+          "peak_wis_log": "0.293983987958078"
+        },
+        {
+          "model": "Previous model, four seeds",
+          "lead": "8+",
+          "peak_week_log_score": "3.735390456621864",
+          "peak_wis_log": "0.3476083337847434"
+        },
+        {
+          "model": "multiscale",
+          "lead": "0\u20137",
+          "peak_week_log_score": "3.2190743038789034",
+          "peak_wis_log": "0.2568100330597845"
+        },
+        {
+          "model": "multiscale",
+          "lead": "8+",
+          "peak_week_log_score": "2.692506778044728",
+          "peak_wis_log": "0.3493938739946592"
+        },
+        {
+          "model": "smooth_multiscale",
+          "lead": "0\u20137",
+          "peak_week_log_score": "3.2943390160443013",
+          "peak_wis_log": "0.30067332127530905"
+        },
+        {
+          "model": "smooth_multiscale",
+          "lead": "8+",
+          "peak_week_log_score": "2.947609940292131",
+          "peak_wis_log": "0.4024911178353596"
+        }
+      ],
+      "decision": "Unsmoothed features improve size both seasons, timing aggregate and both lead groups, but timing slightly worse in2025-26. Best new aggregate candidate; test two combinations, not a confirmed ensemble win. Smoothed features lose to unsmoothed in both metrics/seasons; drop smoothing."
     },
     {
       "experiment": "season-peak-loss-ablation",
@@ -407,6 +534,17 @@
       ],
       "training_job": 4717001,
       "scoring_job": 4717003
+    },
+    {
+      "experiment": "season-peak-shape-children",
+      "study": "experiments/season-peak-shape-children.json",
+      "parent": "multiscale",
+      "change": "Combine unsmoothed features with calendar removal or artificial reporting errors; distinct training-input interventions; original labels/losses unchanged.",
+      "status": "planned",
+      "seeds": [
+        44,
+        45
+      ]
     }
   ],
   "search_rules": [
