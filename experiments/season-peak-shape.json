@@ -1,0 +1,11 @@
+{
+  "description": "Shape-feature branch: retrain the original square-root/local-noise sampled MLP with additional causal 3/6/12-week level, slope and curvature summaries, either unsmoothed or three-week smoothed. These summaries use only the available input history. Other model settings and weekly/path/peak losses are unchanged; no peak log loss. Each held-out fold trains on the other three seasons among 2022-23 through 2025-26, using finalized admissions and flu-ED histories and 36 future finalized weekly labels of both series. Two seeds 44/45. Evaluate on strict archived Wednesday reports in held-out 2024-25 and 2025-26, final NHSN peak labels, identical tasks to FluSight-ensemble. Retrospective development comparison, not untouched validation.",
+  "candidates": {
+    "multiscale": "input_set=target,count_transform=sqrt,ed_transform=logit,spatial=neighbors,noise=local,width=192,epochs=160,patience=25,fit_partition=pathogen,input_normalization=b0,log_loss_weight=1.0,path_loss_weight=1.0,peak_loss_weight=1.0,forecast_view=raw,signal_features=multiscale",
+    "smooth_multiscale": "input_set=target,count_transform=sqrt,ed_transform=logit,spatial=neighbors,noise=local,width=192,epochs=160,patience=25,fit_partition=pathogen,input_normalization=b0,log_loss_weight=1.0,path_loss_weight=1.0,peak_loss_weight=1.0,forecast_view=raw,signal_features=smooth_multiscale"
+  },
+  "seeds": [
+    44,
+    45
+  ]
+}

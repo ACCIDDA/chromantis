@@ -127,6 +127,17 @@
       "status": "running",
       "training_job": 4713940,
       "scoring_job": 4713941
+    },
+    {
+      "experiment": "season-peak-shape",
+      "study": "experiments/season-peak-shape.json",
+      "parent": "Rs.noise_local",
+      "change": "Add causal multiscale shape features; compare unsmoothed and smoothed summaries. Training inputs, labels, and losses remain original. Distinct hypothesis while reporting and calendar branches finish.",
+      "seeds": [
+        44,
+        45
+      ],
+      "status": "planned"
     }
   ],
   "search_rules": [
