@@ -1,0 +1,11 @@
+{
+  "description": "Loss-ablation branch: retrain the original square-root/local-noise sampled MLP either without auxiliary peak loss (retain path loss) or without both auxiliary peak and path losses (weekly native and log losses only). Motivated by the mismatch between available-future training peak labels and the October-May evaluation peak, including sparse inner-validation labels; causality is not established. Each held-out fold trains on the other three permitted seasons among 2022-23 through 2025-26 with finalized admissions and flu-ED histories and 36 finalized future weekly labels of both series. Two seeds44/45. Evaluate strict archived Wednesday inputs without finalized fills on matched 2024-25 and2025-26 state/DC tasks with final NHSN seasonal peak labels. Retrospective development, not untouched validation.",
+  "candidates": {
+    "path_only": "input_set=target,count_transform=sqrt,ed_transform=logit,spatial=neighbors,noise=local,width=192,epochs=160,patience=25,fit_partition=pathogen,input_normalization=b0,log_loss_weight=1.0,path_loss_weight=1.0,peak_loss_weight=0.0,forecast_view=raw",
+    "weekly_only": "input_set=target,count_transform=sqrt,ed_transform=logit,spatial=neighbors,noise=local,width=192,epochs=160,patience=25,fit_partition=pathogen,input_normalization=b0,log_loss_weight=1.0,path_loss_weight=0.0,peak_loss_weight=0.0,forecast_view=raw"
+  },
+  "seeds": [
+    44,
+    45
+  ]
+}

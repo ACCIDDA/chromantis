@@ -267,6 +267,17 @@
       "status": "submitted",
       "training_job": 4715093,
       "scoring_job": 4715096
+    },
+    {
+      "experiment": "season-peak-loss-ablation",
+      "study": "experiments/season-peak-loss-ablation.json",
+      "parent": "Rs.noise_local",
+      "change": "Remove peak loss; alternatively remove both peak and path losses. Test whether auxiliary objectives help before adding seasonal alignment complexity. All training inputs and weekly labels unchanged.",
+      "status": "planned",
+      "seeds": [
+        44,
+        45
+      ]
     }
   ],
   "search_rules": [
