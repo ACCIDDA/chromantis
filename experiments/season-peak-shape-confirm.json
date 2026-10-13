@@ -1,0 +1,10 @@
+{
+  "description": "Confirmation extends unsmoothed multiscale-feature MLP to four seeds44-47; completed smooth_multiscale screen remains two seeds44/45. Both use finalized admissions and flu-ED histories, 36 finalized future weekly labels and original weekly/path/peak losses. Each held-out fold trains on other three seasons among2022-23 through2025-26. Unsmoothed features add causal3/6/12week level/slope/curvature summaries. Strict Wednesday archived-report evaluation without finalized fills in2024-25/2025-26 on matched tasks with final NHSN peak labels. Retrospective development, not untouched validation. Confirmation motivated by size improvement in both seasons and aggregate timing improvement, with small timing worsening in2025-26 explicitly unresolved.",
+  "candidates": {
+    "multiscale": "input_set=target,count_transform=sqrt,ed_transform=logit,spatial=neighbors,noise=local,width=192,epochs=160,patience=25,fit_partition=pathogen,input_normalization=b0,log_loss_weight=1.0,path_loss_weight=1.0,peak_loss_weight=1.0,forecast_view=raw,signal_features=multiscale"
+  },
+  "seeds": [
+    46,
+    47
+  ]
+}

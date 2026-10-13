@@ -527,13 +527,140 @@
       "study": "experiments/season-peak-loss-ablation.json",
       "parent": "Rs.noise_local",
       "change": "Remove peak loss; alternatively remove both peak and path losses. Test whether auxiliary objectives help before adding seasonal alignment complexity. All training inputs and weekly labels unchanged.",
-      "status": "submitted",
+      "status": "complete",
       "seeds": [
         44,
         45
       ],
       "training_job": 4717001,
-      "scoring_job": 4717003
+      "scoring_job": 4717003,
+      "results": [
+        {
+          "model": "FluSight-ensemble",
+          "peak_week_log_score": "2.578072230772365",
+          "peak_wis_log": "0.5230301143229252",
+          "tasks": "862"
+        },
+        {
+          "model": "Previous model, four seeds",
+          "peak_week_log_score": "3.3363253762572307",
+          "peak_wis_log": "0.30511943796152713",
+          "tasks": "862"
+        },
+        {
+          "model": "path_only",
+          "peak_week_log_score": "3.5700746941027592",
+          "peak_wis_log": "0.400314711928953",
+          "tasks": "862"
+        },
+        {
+          "model": "weekly_only",
+          "peak_week_log_score": "4.706254453100505",
+          "peak_wis_log": "0.49571422077710936",
+          "tasks": "862"
+        }
+      ],
+      "by_season": [
+        {
+          "model": "FluSight-ensemble",
+          "season": "2024-2025",
+          "peak_week_log_score": "2.7122346451586923",
+          "peak_wis_log": "0.6370922876643003"
+        },
+        {
+          "model": "FluSight-ensemble",
+          "season": "2025-2026",
+          "peak_week_log_score": "2.4005149653715914",
+          "peak_wis_log": "0.37207451564202193"
+        },
+        {
+          "model": "Previous model, four seeds",
+          "season": "2024-2025",
+          "peak_week_log_score": "3.572214481864227",
+          "peak_wis_log": "0.37442066807111735"
+        },
+        {
+          "model": "Previous model, four seeds",
+          "season": "2025-2026",
+          "peak_week_log_score": "3.0241379076506676",
+          "peak_wis_log": "0.21340271563320146"
+        },
+        {
+          "model": "path_only",
+          "season": "2024-2025",
+          "peak_week_log_score": "3.6097152337286995",
+          "peak_wis_log": "0.5084437097450006"
+        },
+        {
+          "model": "path_only",
+          "season": "2025-2026",
+          "peak_week_log_score": "3.5176124165924176",
+          "peak_wis_log": "0.2572113751966635"
+        },
+        {
+          "model": "weekly_only",
+          "season": "2024-2025",
+          "peak_week_log_score": "4.810692251837458",
+          "peak_wis_log": "0.6345119189056766"
+        },
+        {
+          "model": "weekly_only",
+          "season": "2025-2026",
+          "peak_week_log_score": "4.568036234286909",
+          "peak_wis_log": "0.3120223884829677"
+        }
+      ],
+      "lead_diagnostics": [
+        {
+          "model": "FluSight-ensemble",
+          "lead": "0\u20137",
+          "peak_week_log_score": "2.507377234609047",
+          "peak_wis_log": "0.4329900009643153"
+        },
+        {
+          "model": "FluSight-ensemble",
+          "lead": "8+",
+          "peak_week_log_score": "2.8478190597083777",
+          "peak_wis_log": "0.8665909937862247"
+        },
+        {
+          "model": "Previous model, four seeds",
+          "lead": "0\u20137",
+          "peak_week_log_score": "3.2317387739361925",
+          "peak_wis_log": "0.293983987958078"
+        },
+        {
+          "model": "Previous model, four seeds",
+          "lead": "8+",
+          "peak_week_log_score": "3.735390456621864",
+          "peak_wis_log": "0.3476083337847434"
+        },
+        {
+          "model": "path_only",
+          "lead": "0\u20137",
+          "peak_week_log_score": "3.5804901131282527",
+          "peak_wis_log": "0.3373818225915086"
+        },
+        {
+          "model": "path_only",
+          "lead": "8+",
+          "peak_week_log_score": "3.5303331790501784",
+          "peak_wis_log": "0.6404441164958495"
+        },
+        {
+          "model": "weekly_only",
+          "lead": "0\u20137",
+          "peak_week_log_score": "4.496803974346877",
+          "peak_wis_log": "0.40119541626156285"
+        },
+        {
+          "model": "weekly_only",
+          "lead": "8+",
+          "peak_week_log_score": "5.505442592702336",
+          "peak_wis_log": "0.8563641843755355"
+        }
+      ],
+      "decision": "Removing peak or both peak/path losses worsens both aggregate metrics. Retain auxiliary losses; do not expand ablations. Window-alignment hypothesis not disproved, but simple removal is harmful."
     },
     {
       "experiment": "season-peak-shape-children",
@@ -547,6 +674,17 @@
       ],
       "training_job": 4721208,
       "scoring_job": 4721227
+    },
+    {
+      "experiment": "season-peak-shape",
+      "study": "experiments/season-peak-shape-confirm.json",
+      "parent": "multiscale",
+      "change": "Add seeds46/47 only to completed unsmoothed shape candidate; retain completed seeds44/45 and smoothing screen; no duplicate fits.",
+      "status": "planned",
+      "seeds": [
+        46,
+        47
+      ]
     }
   ],
   "search_rules": [
