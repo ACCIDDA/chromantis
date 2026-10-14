@@ -85,8 +85,10 @@ def record(argv):
     intervals.main([str(target), '--hub', str(args.hub)])
     with tempfile.TemporaryDirectory() as scratch:
         peers.main([str(target), '--hub', str(args.hub), '--hub-ref', args.hub_ref, '--out', scratch, '--pending'])
-        shutil.copy2(Path(scratch) / 'comparison.pdf', folder / f'{target.stem}-peers.pdf')
-        shutil.copy2(Path(scratch) / 'manifest.json', folder / f'{target.stem}-peers.json')
+        from .hubs import comparison_name
+        name = comparison_name(target.stem, targets)
+        shutil.copy2(Path(scratch) / f'{name}.pdf', folder / f'{name}.pdf')
+        shutil.copy2(Path(scratch) / 'manifest.json', folder / f'{name}.json')
     print('\n'.join(sorted(str(f) for f in folder.glob(f'{target.stem}*'))))
 
 

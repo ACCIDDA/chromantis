@@ -23,7 +23,7 @@ import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
 from matplotlib.backends.backend_pdf import PdfPages
 
-from .hubs import HUBS, TARGETS, hub_of, clone, truth
+from .hubs import HUBS, TARGETS, hub_of, clone, comparison_name, truth
 
 DEFAULT_LOCATIONS = ['US', 'CA', 'TX', 'NY', 'NC', 'IA']
 KEYS = ['reference_date', 'target', 'horizon', 'target_end_date', 'location']
@@ -225,7 +225,8 @@ def main(argv=None):
     model_styles = {label: (COLORS[i % len(COLORS)], '--' if i else '-', 2.8) for i, label in enumerate(labels)}
     palette = plt.get_cmap('tab20')
     model_styles.update({m: (palette(i % 20), ('-', '-.', ':')[i // 20 % 3], 1.3) for i, m in enumerate(featured)})
-    with PdfPages(out/'comparison.pdf') as pdf:
+    pdf_path = out/f'{comparison_name(args.csv[0].stem, primary)}.pdf'
+    with PdfPages(pdf_path) as pdf:
         for location in selected:
             fig, axes = plt.subplots(len(targets), 2, figsize=(16, 6+4*len(targets)), squeeze=False,
                                      gridspec_kw={'width_ratios':[1, 1.2]})
@@ -297,7 +298,7 @@ def main(argv=None):
     (out/'manifest.json').write_text(json.dumps(manifest,indent=2)+'\n')
     lines = ['# Submission comparison', '', f'Reference date: {reference.date()}. Hub commit: `{commit}`.', '',
              'Full-season and zoom panels use independent linear scales. Peer percentiles describe forecast magnitude, not accuracy.', '',
-             'Files: comparison.pdf, comparison-<FIPS>.png, forecast-medians.csv, history.csv, positions.csv, manifest.json.', '',
+             f'Files: {pdf_path.name}, comparison-<FIPS>.png, forecast-medians.csv, history.csv, positions.csv, manifest.json.', '',
              '## Model descriptions', '']
     for source in sources:
         if source['role'] == 'local':
@@ -308,7 +309,7 @@ def main(argv=None):
     (out/'README.md').write_text('\n'.join(lines)+'\n')
     for warning in warnings:
         print('Note:',warning)
-    print(out/'comparison.pdf')
+    print(pdf_path)
 
 
 if __name__ == '__main__':

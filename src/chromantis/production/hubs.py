@@ -11,17 +11,29 @@ import pandas as pd
 
 HUBS = {
     'flusight': dict(
+        pathogen='flu',
         clone='production/hubs/FluSight-forecast-hub',
         targets={'wk inc flu hosp': ('target-data/target-hospital-admissions.csv', 'Weekly flu admissions'),
                  'wk inc flu prop ed visits': ('target-data/target-ed-visits-prop.csv', 'Flu share of ED visits')},
         maximums={'wk inc flu prop ed visits': .25}),  # FluSight validations.yml max_prop_ed_visits
     'rsv': dict(
+        pathogen='RSV',
         clone='production/hubs/rsv-forecast-hub',
         targets={'wk inc rsv hosp': ('target-data/time-series.parquet', 'Weekly RSV admissions'),
                  'wk inc rsv prop ed visits': ('target-data/time-series.parquet', 'RSV share of ED visits')},
         maximums={}),
 }
 TARGETS = {target: hub for hub, spec in HUBS.items() for target in spec['targets']}
+
+
+def tag(target):
+    """File-name words for a target, e.g. 'RSV-hospital-admissions', 'flu-ED-visit-share'."""
+    return f"{HUBS[TARGETS[target]]['pathogen']}-{'ED-visit-share' if 'ed visits' in target else 'hospital-admissions'}"
+
+
+def comparison_name(stem, targets):
+    """Peer-comparison file stem, e.g. '<CSV stem>-RSV-forecast-medians-vs-hub-models'."""
+    return f"{stem}-{HUBS[hub_of(targets)]['pathogen']}-forecast-medians-vs-hub-models"
 
 
 def hub_of(targets):

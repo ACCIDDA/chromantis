@@ -106,6 +106,7 @@ def main(argv=None):
     p.add_argument('--problem', default='problems/us-flu-long-horizon-production.json')
     p.add_argument('--samples', type=int, default=4000)
     p.add_argument('--out', required=True)
+    p.add_argument('--model', default='ACCIDDA-Chromantis', help='Hub model name, for the plot file name')
     args = p.parse_args(argv)
     out = Path(args.out)
     out.mkdir(parents=True, exist_ok=True)
@@ -119,7 +120,7 @@ def main(argv=None):
     hub['date'] = pd.to_datetime(hub['date'])
     last = hub[(hub.date >= pd.Timestamp(weeks[0]) - pd.Timedelta(weeks=52)) & (hub.date <= pd.Timestamp(weeks[-1]) - pd.Timedelta(weeks=52))]
     history = {('US' if c == 'US' else fips.get(c)): pd.Series(g.value.values, g.date + pd.Timedelta(weeks=52)) for c, g in last.groupby('location')}
-    plot(out / f'{reference}-peaks.pdf', reference, weeks, now, locations, paths, history)
+    plot(out / f'{reference}-{args.model}-flu-season-peak-size-and-week.pdf', reference, weeks, now, locations, paths, history)
     (out / 'manifest.json').write_text(json.dumps(dict(
         checkpoints=str(Path(args.checkpoints).resolve()), models=n_models, dataset=str(Path(args.dataset).resolve()),
         issuance=args.issuance, reference_date=reference, samples=args.samples, last_reported_week=weeks[now],

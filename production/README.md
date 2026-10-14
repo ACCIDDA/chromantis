@@ -81,7 +81,7 @@ peer comparison; `--no-plots` skips the figures.
 
 `peers.py` writes `<CSV-stem>-comparison/` beside the exported file, with:
 
-- `comparison.pdf`: one page per location, admissions/ED rows and full-season/zoom
+- `<CSV stem>-<pathogen>-forecast-medians-vs-hub-models.pdf` (e.g. `2026-10-17-ACCIDDA-Chromantis-RSV-forecast-medians-vs-hub-models.pdf`): one page per location, admissions/ED rows and full-season/zoom
   columns. Defaults are US, California, Texas, New York, North Carolina and Iowa.
 - `comparison-<FIPS>.png`: the same pages as images, including `comparison-US.png`.
 - `forecast-medians.csv`, `history.csv`, and `positions.csv`: plotted data and each
@@ -152,6 +152,14 @@ new code reproduced the submitted B7 CSV byte for byte.
   `peak week inc flu hosp`.
 - Model metadata goes in `model-metadata/<team>-<model>.yml`; our previous model
   there is `UNC_IDD-InfluPaint`.
+
+## Shared PDF names (from 14 October 2026)
+
+PDFs are shared outside the team, so each name gives the reference date, the Hub model, the
+pathogen and what is plotted: `<reference>-ACCIDDA-Chromantis-<flu|RSV>-<hospital-admissions|ED-visit-share>-forecast-intervals-50-80-95.pdf`,
+`<reference>-ACCIDDA-Chromantis-<flu|RSV>-forecast-medians-vs-hub-models.pdf` (with its `.json`
+manifest), and `<reference>-ACCIDDA-Chromantis-flu-season-peak-size-and-week.pdf`. The earlier
+names (`-hosp-plot50-80-95`, `-ed-plot50-80-95`, `-peers`, `-peaks`) were renamed in place.
 
 ## RSV Hub (from 14 October 2026)
 

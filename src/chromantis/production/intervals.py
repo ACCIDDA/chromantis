@@ -10,7 +10,8 @@ not the reports the model saw), so it also checks the file against what the Hub 
 
 Several CSVs for the same reference date are overlaid for comparison (50% and 95% bands and
 medians, one color per file, labels from --labels) and written next to the first file as
-<first>-vs-<others>-<target>-plot50-95.pdf:
+<first>-vs-<others>-<pathogen>-<target>-forecast-intervals-50-95.pdf (single file:
+<CSV stem>-<pathogen>-<target>-forecast-intervals-50-80-95.pdf, e.g. ...-RSV-hospital-admissions-...):
 
     .venv/bin/python -m chromantis.production intervals A.csv B.csv --labels System2 B7
 """
@@ -23,7 +24,7 @@ import matplotlib.dates as mdates
 import matplotlib.pyplot as plt
 import pandas as pd
 
-from .hubs import HUBS, TARGETS, clone, truth as hub_truth
+from .hubs import HUBS, TARGETS, clone, tag, truth as hub_truth
 
 BANDS = [(0.025, 0.975, .15), (0.1, 0.9, .25), (0.25, 0.75, .4)]
 COMPARE_BANDS = [(0.025, 0.975, .12), (0.25, 0.75, .3)]
@@ -49,7 +50,7 @@ def main(argv=None):
     hub = clone(args.hub, sub.target.unique())
     names = pd.read_csv(hub / 'auxiliary-data/locations.csv', dtype={'location': str}).set_index('location').location_name
     for target in sorted(set(sub.target) & set(TARGETS)):  # weekly targets; season-peak targets have their own plot
-        short, label = 'ed' if 'ed visits' in target else 'hosp', HUBS[TARGETS[target]]['targets'][target][1]
+        label = HUBS[TARGETS[target]]['targets'][target][1]
         forecast = sub[sub.target == target]
         if forecast.empty:
             continue
@@ -99,7 +100,7 @@ def main(argv=None):
         fig.suptitle(f'{title}: {target}, reference date {reference.date()}', y=1.0)
         fig.tight_layout()
         stem = args.csv[0].stem + ''.join(f'-vs-{l}' for l in labels[1:]) if compare else args.csv[0].stem
-        path = args.csv[0].with_name(f'{stem}-{short}-plot50-{"95" if compare else "80-95"}.pdf')
+        path = args.csv[0].with_name(f'{stem}-{tag(target)}-forecast-intervals-50-{"95" if compare else "80-95"}.pdf')
         fig.savefig(path)
         plt.close(fig)
         print(path)

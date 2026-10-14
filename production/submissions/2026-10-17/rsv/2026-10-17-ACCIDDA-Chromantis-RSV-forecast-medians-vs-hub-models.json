@@ -1,7 +1,7 @@
 {
-  "created_at": "2026-10-14T23:11:51.623980+00:00",
+  "created_at": "2026-10-14T23:34:33.062362+00:00",
   "reference_date": "2026-10-17",
-  "hub_commit": "e7d0dde66b8fd54b5892eb2776aa374fbae23131",
+  "hub_commit": "8dd45ebb07ef20fbbd09219dc62876253aaa0838",
   "hub": "/Users/chadi/Research/Tapestry/production/hubs/rsv-forecast-hub",
   "local_labels": [
     "ACCIDDA-Chromantis"
@@ -16,10 +16,10 @@
   ],
   "featured_peers": [
     "CEPH-Rtrend_rsv",
-    "CFA-NowcastAutoGP (PR #638)",
-    "CFA-PyRenew_E (PR #638)",
-    "CFA-PyRenew_H (PR #638)",
-    "CFA-PyRenew_HE (PR #638)",
+    "CFA-NowcastAutoGP",
+    "CFA-PyRenew_E",
+    "CFA-PyRenew_H",
+    "CFA-PyRenew_HE",
     "CMU-TimeSeries",
     "NAU-Copycat",
     "NAU-epymorph",
@@ -31,10 +31,10 @@
   "missing_featured_peers": [],
   "peer_models": [
     "CEPH-Rtrend_rsv",
-    "CFA-NowcastAutoGP (PR #638)",
-    "CFA-PyRenew_E (PR #638)",
-    "CFA-PyRenew_H (PR #638)",
-    "CFA-PyRenew_HE (PR #638)",
+    "CFA-NowcastAutoGP",
+    "CFA-PyRenew_E",
+    "CFA-PyRenew_H",
+    "CFA-PyRenew_HE",
     "CMU-TimeSeries",
     "NAU-Copycat",
     "NAU-epymorph",
@@ -60,6 +60,30 @@
       "sha256": "be8feb46e72a257eb0ce12fc76bcc9d961794b92891e5e284868d61def8bdc4a",
       "role": "peer",
       "model": "CEPH-Rtrend_rsv"
+    },
+    {
+      "path": "model-output/CFA-NowcastAutoGP/2026-10-17-CFA-NowcastAutoGP.csv",
+      "sha256": "7d46d078fa5c61fdedd7b0799088de3cffd3db2e07d89a3d0761166977793bee",
+      "role": "peer",
+      "model": "CFA-NowcastAutoGP"
+    },
+    {
+      "path": "model-output/CFA-PyRenew_E/2026-10-17-CFA-PyRenew_E.csv",
+      "sha256": "95d0986f4df22af9b7e8fa679408d6d9a58b3f6a720dab9a448ad99bbf5920ae",
+      "role": "peer",
+      "model": "CFA-PyRenew_E"
+    },
+    {
+      "path": "model-output/CFA-PyRenew_H/2026-10-17-CFA-PyRenew_H.csv",
+      "sha256": "cae805fc6b156732ca3cb3da273b5824693ffb954a434dd3e07fecb8239b8610",
+      "role": "peer",
+      "model": "CFA-PyRenew_H"
+    },
+    {
+      "path": "model-output/CFA-PyRenew_HE/2026-10-17-CFA-PyRenew_HE.csv",
+      "sha256": "44062ffc78c22a410b10effd7899ca7c4674bac5b8ecbd4e2f7b01a734952877",
+      "role": "peer",
+      "model": "CFA-PyRenew_HE"
     },
     {
       "path": "model-output/CMU-TimeSeries/2026-10-17-CMU-TimeSeries.csv",
@@ -102,30 +126,6 @@
       "sha256": "03ef625b33e0755fc5159e4444b46d6d3980c55a408ef2d967c44786d94ceb8b",
       "role": "peer",
       "model": "fonz-wardweather"
-    },
-    {
-      "path": "https://raw.githubusercontent.com/antoniobgondim/rsv-forecast-hub/9aa76f1ad140ef1c08dfaea833ef9948176aa176/model-output/CFA-NowcastAutoGP/2026-10-17-CFA-NowcastAutoGP.csv",
-      "sha256": "7d46d078fa5c61fdedd7b0799088de3cffd3db2e07d89a3d0761166977793bee",
-      "role": "peer",
-      "model": "CFA-NowcastAutoGP (PR #638)"
-    },
-    {
-      "path": "https://raw.githubusercontent.com/antoniobgondim/rsv-forecast-hub/9aa76f1ad140ef1c08dfaea833ef9948176aa176/model-output/CFA-PyRenew_E/2026-10-17-CFA-PyRenew_E.csv",
-      "sha256": "95d0986f4df22af9b7e8fa679408d6d9a58b3f6a720dab9a448ad99bbf5920ae",
-      "role": "peer",
-      "model": "CFA-PyRenew_E (PR #638)"
-    },
-    {
-      "path": "https://raw.githubusercontent.com/antoniobgondim/rsv-forecast-hub/9aa76f1ad140ef1c08dfaea833ef9948176aa176/model-output/CFA-PyRenew_H/2026-10-17-CFA-PyRenew_H.csv",
-      "sha256": "cae805fc6b156732ca3cb3da273b5824693ffb954a434dd3e07fecb8239b8610",
-      "role": "peer",
-      "model": "CFA-PyRenew_H (PR #638)"
-    },
-    {
-      "path": "https://raw.githubusercontent.com/antoniobgondim/rsv-forecast-hub/9aa76f1ad140ef1c08dfaea833ef9948176aa176/model-output/CFA-PyRenew_HE/2026-10-17-CFA-PyRenew_HE.csv",
-      "sha256": "44062ffc78c22a410b10effd7899ca7c4674bac5b8ecbd4e2f7b01a734952877",
-      "role": "peer",
-      "model": "CFA-PyRenew_HE (PR #638)"
     },
     {
       "path": "auxiliary-data/locations.csv",
