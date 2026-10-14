@@ -40,6 +40,7 @@ def run(argv):
     p.add_argument('--jobs', type=int, default=4)
     p.add_argument('--compare-csv', nargs='*', type=Path, default=[], help='Additional same-week local candidates in the peer comparison')
     p.add_argument('--no-plots', action='store_true')
+    p.add_argument('--no-pending', action='store_true', help="Peer comparison without the Hub's open pull requests")
     args = p.parse_args(argv)
     release = read_release(args.release)
     args.hub = args.hub or Path(HUBS[release['hub']]['clone'])
@@ -49,7 +50,7 @@ def run(argv):
     if not args.no_plots:
         from . import intervals, peers
         intervals.main([str(csv), '--hub', str(args.hub)])
-        peers.main([str(csv), *map(str, args.compare_csv), '--hub', str(args.hub)])
+        peers.main([str(csv), *map(str, args.compare_csv), '--hub', str(args.hub), *([] if args.no_pending else ['--pending'])])
     print(csv)
 
 

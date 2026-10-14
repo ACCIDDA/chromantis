@@ -178,6 +178,11 @@ git -C production/hubs/rsv-forecast-hub pull --ff-only
     --dataset data/operational-<date>/processed/panel-rsv.npz --issuance <wednesday> --samples
 ```
 
+`export` also writes a typed `.parquet` copy when the Hub accepts Parquet (both Hubs do); submit
+the Parquet (0.6 MB against 6.9 MB of CSV for RSV with samples). The CSV stays the working copy read by
+the plots and `record`. The peer comparison draws every same-week peer model and, in `run`,
+also the same-week files of the Hub's open pull requests, labelled `(PR #n)` (`--no-pending` skips them).
+
 `--samples` adds the trajectories (`export.trajectories`): 200 per location, equal shares per
 recipe and per seed. Sampling recipes give whole network draws (one draw = one trajectory over
 horizons and both targets), taken at evenly spaced ranks of each location's draws.

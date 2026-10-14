@@ -1,6 +1,8 @@
 """Plot a submission against same-week Hub forecasts and the preceding season.
 
 One PDF page and PNG per location: admissions/ED rows, full season/zoom columns.
+Every same-week peer is drawn (`--peer-models` narrows it); `--pending` also downloads the
+same-week files of the Hub's open pull requests (read-only GitHub requests).
 Only saved forecasts are read; no fitting, forecasting, scoring or publication.
 Example: python -m chromantis.production peers forecast.csv candidate.csv
 """
@@ -11,6 +13,7 @@ import hashlib
 import json
 from pathlib import Path
 import subprocess
+import urllib.request
 
 import numpy as np
 import pandas as pd
@@ -76,7 +79,8 @@ def main(argv=None):
     p.add_argument('--hub-ref', default='HEAD', help='Local Hub commit/ref; no network fetch is performed')
     p.add_argument('--out', type=Path, help='Default: <primary CSV stem>-comparison/')
     p.add_argument('--locations', nargs='+', default=DEFAULT_LOCATIONS, help='Abbreviations/FIPS, or all')
-    p.add_argument('--peer-models', nargs='*', help="Named Hub models drawn individually (default: the Hub's list in hubs.py)")
+    p.add_argument('--peer-models', nargs='*', help='Hub models drawn individually (default: every available peer)')
+    p.add_argument('--pending', action='store_true', help="Also compare the same-week files of the Hub's open pull requests")
     p.add_argument('--peer-csv', action='append', type=Path, default=[], help='Additional peer CSV/Parquet, e.g. a downloaded pending submission')
     p.add_argument('--zoom-weeks', type=int, default=8, help='Weeks before reference date shown in zoom')
     args = p.parse_args(argv)
@@ -89,8 +93,6 @@ def main(argv=None):
     out.mkdir(parents=True, exist_ok=True)
     primary = pd.read_csv(args.csv[0], usecols=['target']).target.unique() if args.csv[0].suffix == '.csv' else pd.read_parquet(args.csv[0], columns=['target']).target.unique()
     args.hub = clone(args.hub, primary)
-    if args.peer_models is None:
-        args.peer_models = HUBS[hub_of(primary)]['peers']
     git = lambda *cmd: subprocess.check_output(['git', '-C', str(args.hub), *cmd])
     commit = git('rev-parse', f'{args.hub_ref}^{{commit}}').decode().strip()
     sources, frames, warnings = [], [], []
@@ -139,14 +141,34 @@ def main(argv=None):
         f = Path(path)
         if f.suffix in ('.csv', '.parquet') and f.name.startswith(f'{reference.date()}-'):
             add_peer(path, git('show', f'{commit}:{path}'), f.parent.name)
+    if args.pending:
+        url = git('remote', 'get-url', 'origin').decode().strip()
+        repo = url.removesuffix('.git').split('github.com')[-1].strip('/:')
+        pulls = json.loads(subprocess.check_output(['gh', 'pr', 'list', '--repo', repo, '--state', 'open', '--limit', '200',
+                                                    '--json', 'number,files,headRefOid,headRepository,headRepositoryOwner']))
+        for pr in pulls:
+            for f in pr['files']:
+                path = Path(f['path'])
+                if path.parts[0] == 'model-output' and path.suffix in ('.csv', '.parquet') and path.name.startswith(f'{reference.date()}-'):
+                    raw_url = (f"https://raw.githubusercontent.com/{pr['headRepositoryOwner']['login']}/"
+                               f"{pr['headRepository']['name']}/{pr['headRefOid']}/{f['path']}")
+                    model = path.parent.name
+                    if model in peer_frames:
+                        warnings.append(f'{model}: merged file kept; open PR #{pr["number"]} ignored.')
+                        continue
+                    add_peer(raw_url, urllib.request.urlopen(raw_url).read(), model)
+                    if model in peer_frames:
+                        peer_frames[model]['model'] = model = f'{model} (PR #{pr["number"]})'
+                        peer_frames[model] = peer_frames.pop(path.parent.name)
+                        sources[-1]['model'] = model
     for path in args.peer_csv:
         if not path.name.startswith(f'{reference.date()}-'):
             raise ValueError(f'Additional peer filename must be {reference.date()}-TEAM-MODEL.csv or .parquet: {path}')
         add_peer(path.resolve(), path.read_bytes(), path.stem[11:])
     frames.extend(peer_frames.values())
     forecasts = pd.concat(frames, ignore_index=True)
-    featured = [m for m in args.peer_models if m in peer_frames]
-    missing_peers = [m for m in args.peer_models if m not in peer_frames]
+    featured = sorted(peer_frames) if args.peer_models is None else [m for m in args.peer_models if m in peer_frames]
+    missing_peers = [] if args.peer_models is None else [m for m in args.peer_models if m not in peer_frames]
     if not peer_frames:
         warnings.append('No same-week peer forecasts are available; peer bands are omitted. Refresh the Hub clone and rerun later.')
     if missing_peers:
@@ -201,8 +223,8 @@ def main(argv=None):
     pd.DataFrame(positions).to_csv(out/'positions.csv', index=False)
 
     model_styles = {label: (COLORS[i % len(COLORS)], '--' if i else '-', 2.8) for i, label in enumerate(labels)}
-    palette = plt.get_cmap('tab10')
-    model_styles.update({m: (palette(i), '-', 1.5) for i, m in enumerate(featured)})
+    palette = plt.get_cmap('tab20')
+    model_styles.update({m: (palette(i % 20), ('-', '-.', ':')[i // 20 % 3], 1.3) for i, m in enumerate(featured)})
     with PdfPages(out/'comparison.pdf') as pdf:
         for location in selected:
             fig, axes = plt.subplots(len(targets), 2, figsize=(16, 6+4*len(targets)), squeeze=False,
@@ -252,7 +274,7 @@ def main(argv=None):
                     handles, texts = ax.get_legend_handles_labels()
                     legend.update(zip(texts, handles))
             fig.suptitle(f'{names[location]} · peer comparison · reference {reference.date()}', fontsize=18, y=.985)
-            fig.legend(legend.values(), legend.keys(), loc='upper center', bbox_to_anchor=(.5,.95), ncol=3, fontsize=9, frameon=False)
+            fig.legend(legend.values(), legend.keys(), loc='upper center', bbox_to_anchor=(.5,.95), ncol=max(3, (len(legend) + 5) // 6), fontsize=8, frameon=False)
             fig.text(.5,.018,'Medians only; gray band is peer disagreement, not a prediction interval. Each panel has its own linear scale.\n'
                      f'History through {cutoff.date()}; prior season is aligned by CDC week, without rescaling (unmatched week 53 omitted).\n'
                      f'Hub snapshot {commit[:8]}; training/input descriptions and file hashes: manifest.json. Forecasts are unscored.',ha='center',fontsize=9)

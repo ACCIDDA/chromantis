@@ -1,4 +1,4 @@
-"""What differs between the Hubs we submit to: local clone, target files, peers, limits.
+"""What differs between the Hubs we submit to: local clone, target files, limits.
 
 Each Hub's target data is read as (location, date, value), the latest reported values:
 FluSight keeps one CSV per target; the RSV Hub one `time-series.parquet` with every
@@ -14,13 +14,11 @@ HUBS = {
         clone='production/hubs/FluSight-forecast-hub',
         targets={'wk inc flu hosp': ('target-data/target-hospital-admissions.csv', 'Weekly flu admissions'),
                  'wk inc flu prop ed visits': ('target-data/target-ed-visits-prop.csv', 'Flu share of ED visits')},
-        peers=['Google_SAI-FluEns', 'OHT_JHU-nbxd', 'CMU-TimeSeries', 'UGA_flucast-INFLAenza', 'UMass-flusion', 'NAU-vulPES'],
         maximums={'wk inc flu prop ed visits': .25}),  # FluSight validations.yml max_prop_ed_visits
     'rsv': dict(
         clone='production/hubs/rsv-forecast-hub',
         targets={'wk inc rsv hosp': ('target-data/time-series.parquet', 'Weekly RSV admissions'),
                  'wk inc rsv prop ed visits': ('target-data/time-series.parquet', 'RSV share of ED visits')},
-        peers=['Google_SAI-RSVEns', 'RSVHub-ensemble', 'CFA-PyRenew_HE', 'UGA_flucast-INFLAenza', 'UM-DeepOutbreak', 'CEPH-Rtrend_rsv'],
         maximums={}),
 }
 TARGETS = {target: hub for hub, spec in HUBS.items() for target in spec['targets']}

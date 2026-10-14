@@ -8,6 +8,11 @@ above the Hub's `max_prop_ed_visits` (0.25) are capped and each cap is recorded.
 Writes `<reference>-ACCIDDA-<model_abbr>.csv` and a JSON record of the sources, hashes and
 release; nothing is published.
 
+When the Hub accepts Parquet (`hub-config/admin.json`), the same table is also written as
+`<reference>-ACCIDDA-<model_abbr>.parquet` with the hubverse column types (dates, int32
+horizon, string output_type_id, double value): the file to submit; the CSV stays the
+working copy read by the plots and records.
+
 `samples=True` adds `SAMPLES` sampled trajectories per location (`trajectories`), one
 sample id per location shared by every horizon and target, as the RSV Hub accepts.
 
@@ -185,5 +190,16 @@ def export(release, members, hub, out, samples=False):
                   operational_panel_sha256=next(iter(panel_hashes)), hub_tasks_sha256=sha256(hub / 'hub-config/tasks.json'),
                   output_sha256=sha256(path), problem=problem.reference, problem_sha256=problem.hash,
                   definition=dict(note=release['description']), trajectories=design)
+    if 'parquet' in json.loads((hub / 'hub-config/admin.json').read_text()).get('file_format', []):
+        import pyarrow as pa, pyarrow.parquet as pq
+        typed = table.assign(reference_date=pd.to_datetime(table.reference_date).dt.date,
+                             target_end_date=pd.to_datetime(table.target_end_date).dt.date,
+                             horizon=table.horizon.astype('int32'), output_type_id=table.output_type_id.astype(str),
+                             value=table.value.astype('float64'))
+        schema = pa.schema([('reference_date', pa.date32()), ('target', pa.string()), ('horizon', pa.int32()),
+                            ('target_end_date', pa.date32()), ('location', pa.string()), ('output_type', pa.string()),
+                            ('output_type_id', pa.string()), ('value', pa.float64())])
+        pq.write_table(pa.Table.from_pandas(typed[schema.names], schema=schema, preserve_index=False), path.with_suffix('.parquet'))
+        record['parquet_sha256'] = sha256(path.with_suffix('.parquet'))
     path.with_suffix('.json').write_text(json.dumps(record, indent=2) + '\n')
     return path
