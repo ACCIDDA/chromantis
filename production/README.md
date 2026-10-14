@@ -114,7 +114,7 @@ or more local forecast files and can be rerun as peers arrive:
 
 ```bash
 .venv/bin/python -m chromantis.production peers \
-    production/submissions/2026-10-10/superseded/2026-10-10-ACCIDDA-EpiLoom.csv \
+    production/submissions/2026-10-10/superseded/2026-10-10-ACCIDDA-Chromantis.csv \
     output/b7/submission-20261007/2026-10-10-ACCIDDA-EpiLoomB7.csv \
     --labels 'EpiLoom on-time (8 recipes)' 'B7 (3 recipes)' \
     --locations US CA TX NY NC IA \

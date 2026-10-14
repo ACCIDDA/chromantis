@@ -1,10 +1,10 @@
 {
-  "created_at": "2026-10-09T20:43:41.944612+00:00",
+  "created_at": "2026-10-14T23:38:05.619215+00:00",
   "reference_date": "2026-10-10",
-  "hub_commit": "f66ce884a3c718e90bb15b147a7db36bac92a3e6",
+  "hub_commit": "5089847880d610c159e2c6cc7d08efa5e814025d",
   "hub": "/Users/chadi/Research/Tapestry/production/hubs/FluSight-forecast-hub",
   "local_labels": [
-    "ACCIDDA-EpiLoom"
+    "ACCIDDA-Chromantis"
   ],
   "locations": [
     "US",
@@ -15,16 +15,6 @@
     "19"
   ],
   "featured_peers": [
-    "CMU-TimeSeries",
-    "UGA_flucast-INFLAenza",
-    "NAU-vulPES"
-  ],
-  "missing_featured_peers": [
-    "Google_SAI-FluEns",
-    "OHT_JHU-nbxd",
-    "UMass-flusion"
-  ],
-  "peer_models": [
     "BYFlu-STMGGP",
     "CADPH-FluCAT_Ensemble",
     "CEPH-Rtrend_fluH",
@@ -33,14 +23,21 @@
     "CFA-PyRenew_HE",
     "CMU-TimeSeries",
     "CMU-TimeSeries_Cal",
+    "CU-STS_Residual",
+    "CU-STS_base",
     "CU-ensemble",
-    "CUSTS-Ens_base",
-    "CUSTS-STS_Residual",
     "Cornell_JHU-SCARCHhierarSIR",
     "Cornell_JHU-hierarchSIR",
     "DMAPRIME-HYB",
+    "DMAPRIME-QR",
     "DMAPRIME-RF",
+    "Epistorm-Ensemble_Flu",
+    "FluSight-HJudge_ensemble",
     "FluSight-baseline",
+    "FluSight-ensemble",
+    "FluSight-lop_norm",
+    "FluSight-trained_mean",
+    "FluSight-trained_med",
     "GT_Influencers-ensemble",
     "Gatech-ensemble_prob",
     "Gatech-ensemble_stat",
@@ -56,6 +53,7 @@
     "NAU_PyBNF-OracleSIHRS",
     "NEU_ISI-FluBcast",
     "NU-EMBERS",
+    "OHT_JHU-nbxd",
     "PSI-PROF",
     "PSI-PROF_MOA",
     "Sentinel-Ens",
@@ -63,124 +61,124 @@
     "UGA_CEID-auto_AVG_LB",
     "UGA_flucast-Copycat",
     "UGA_flucast-INFLAenza",
+    "UM-DeepOutbreak",
     "UMass-AR2",
+    "UMass-flusion",
     "UMass-trends_ensemble",
     "UVAFluX-Ensemble",
     "VTSanghani-PRIME",
+    "Xi_lab-GLEAM_AI",
+    "Xi_lab-GLEAM_AI_hybrid",
     "docxology-panelqr"
   ],
-  "warnings": [
-    "Requested peer curves unavailable: Google_SAI-FluEns, OHT_JHU-nbxd, UMass-flusion"
+  "missing_featured_peers": [],
+  "peer_models": [
+    "BYFlu-STMGGP",
+    "CADPH-FluCAT_Ensemble",
+    "CEPH-Rtrend_fluH",
+    "CFA-NowcastAutoGP",
+    "CFA-PyRenew_E",
+    "CFA-PyRenew_HE",
+    "CMU-TimeSeries",
+    "CMU-TimeSeries_Cal",
+    "CU-STS_Residual",
+    "CU-STS_base",
+    "CU-ensemble",
+    "Cornell_JHU-SCARCHhierarSIR",
+    "Cornell_JHU-hierarchSIR",
+    "DMAPRIME-HYB",
+    "DMAPRIME-QR",
+    "DMAPRIME-RF",
+    "Epistorm-Ensemble_Flu",
+    "FluSight-HJudge_ensemble",
+    "FluSight-baseline",
+    "FluSight-ensemble",
+    "FluSight-lop_norm",
+    "FluSight-trained_mean",
+    "FluSight-trained_med",
+    "GT_Influencers-ensemble",
+    "Gatech-ensemble_prob",
+    "Gatech-ensemble_stat",
+    "LUcompUncertLab-puca",
+    "MIGHTE-Base",
+    "MIGHTE-Linear",
+    "MIGHTE-Nsemble",
+    "MOBS-EpyStrain_Flu",
+    "NAU-FourCAT",
+    "NAU-epymorph",
+    "NAU-vulPES",
+    "NAU_PyBNF-GroundHogCGR",
+    "NAU_PyBNF-OracleSIHRS",
+    "NEU_ISI-FluBcast",
+    "NU-EMBERS",
+    "OHT_JHU-nbxd",
+    "PSI-PROF",
+    "PSI-PROF_MOA",
+    "Sentinel-Ens",
+    "UGA_CEID-Walk",
+    "UGA_CEID-auto_AVG_LB",
+    "UGA_flucast-Copycat",
+    "UGA_flucast-INFLAenza",
+    "UM-DeepOutbreak",
+    "UMass-AR2",
+    "UMass-flusion",
+    "UMass-trends_ensemble",
+    "UVAFluX-Ensemble",
+    "VTSanghani-PRIME",
+    "Xi_lab-GLEAM_AI",
+    "Xi_lab-GLEAM_AI_hybrid",
+    "docxology-panelqr"
   ],
+  "warnings": [],
   "sources": [
     {
-      "path": "/Users/chadi/Research/Tapestry/production/submissions/2026-10-10/superseded/2026-10-10-ACCIDDA-EpiLoom.csv",
-      "sha256": "b68b34228bbd4feee5d03fe7ac1e3703f379d4c0dd9cc636f8584b3c7e5f7a70",
+      "path": "/Users/chadi/Research/Tapestry/production/submissions/2026-10-10/2026-10-10-ACCIDDA-Chromantis.csv",
+      "sha256": "cdee271c326437b81049daed50c453d8b5210ebffa9690d8d593b39e06cf607a",
       "role": "local",
-      "model": "ACCIDDA-EpiLoom",
+      "model": "ACCIDDA-Chromantis",
       "definition": {
-        "model_abbr": "System2",
+        "model_abbr": "EpiLoomB7",
         "rule": "mixture",
         "recipes": {
           "A_blocks3": [
-            "data/experiments/b6-operational-20261007/system2/A_blocks3/s42",
-            "data/experiments/b6-operational-20261007/system2/A_blocks3/s43",
-            "data/experiments/b6-operational-20261007/system2/A_blocks3/s44",
-            "data/experiments/b6-operational-20261007/system2/A_blocks3/s45",
-            "data/experiments/b6-operational-20261007/system2/A_blocks3/s46",
-            "data/experiments/b6-operational-20261007/system2/A_blocks3/s47",
-            "data/experiments/b6-operational-20261007/system2/A_blocks3/s48",
-            "data/experiments/b6-operational-20261007/system2/A_blocks3/s49",
-            "data/experiments/b6-operational-20261007/system2/A_blocks3/s50",
-            "data/experiments/b6-operational-20261007/system2/A_blocks3/s51"
-          ],
-          "A_width192_half_lr": [
-            "data/experiments/b6-operational-20261007/system2/A_width192_half_lr/s42",
-            "data/experiments/b6-operational-20261007/system2/A_width192_half_lr/s43",
-            "data/experiments/b6-operational-20261007/system2/A_width192_half_lr/s44",
-            "data/experiments/b6-operational-20261007/system2/A_width192_half_lr/s45",
-            "data/experiments/b6-operational-20261007/system2/A_width192_half_lr/s46",
-            "data/experiments/b6-operational-20261007/system2/A_width192_half_lr/s47",
-            "data/experiments/b6-operational-20261007/system2/A_width192_half_lr/s48",
-            "data/experiments/b6-operational-20261007/system2/A_width192_half_lr/s49",
-            "data/experiments/b6-operational-20261007/system2/A_width192_half_lr/s50",
-            "data/experiments/b6-operational-20261007/system2/A_width192_half_lr/s51"
-          ],
-          "A_width256_half_lr": [
-            "data/experiments/b6-operational-20261007/system2/A_width256_half_lr/s42",
-            "data/experiments/b6-operational-20261007/system2/A_width256_half_lr/s43",
-            "data/experiments/b6-operational-20261007/system2/A_width256_half_lr/s44",
-            "data/experiments/b6-operational-20261007/system2/A_width256_half_lr/s45",
-            "data/experiments/b6-operational-20261007/system2/A_width256_half_lr/s46",
-            "data/experiments/b6-operational-20261007/system2/A_width256_half_lr/s47",
-            "data/experiments/b6-operational-20261007/system2/A_width256_half_lr/s48",
-            "data/experiments/b6-operational-20261007/system2/A_width256_half_lr/s49",
-            "data/experiments/b6-operational-20261007/system2/A_width256_half_lr/s50",
-            "data/experiments/b6-operational-20261007/system2/A_width256_half_lr/s51"
+            "data/experiments/b7-operational-20261007/A_blocks3/s42",
+            "data/experiments/b7-operational-20261007/A_blocks3/s43",
+            "data/experiments/b7-operational-20261007/A_blocks3/s44",
+            "data/experiments/b7-operational-20261007/A_blocks3/s45",
+            "data/experiments/b7-operational-20261007/A_blocks3/s46",
+            "data/experiments/b7-operational-20261007/A_blocks3/s47",
+            "data/experiments/b7-operational-20261007/A_blocks3/s48",
+            "data/experiments/b7-operational-20261007/A_blocks3/s49",
+            "data/experiments/b7-operational-20261007/A_blocks3/s50",
+            "data/experiments/b7-operational-20261007/A_blocks3/s51"
           ],
           "B5_confirmed_candidate_1": [
-            "data/experiments/b6-operational-20261007/system2/B5_confirmed_candidate_1/s42",
-            "data/experiments/b6-operational-20261007/system2/B5_confirmed_candidate_1/s43",
-            "data/experiments/b6-operational-20261007/system2/B5_confirmed_candidate_1/s44",
-            "data/experiments/b6-operational-20261007/system2/B5_confirmed_candidate_1/s45",
-            "data/experiments/b6-operational-20261007/system2/B5_confirmed_candidate_1/s46",
-            "data/experiments/b6-operational-20261007/system2/B5_confirmed_candidate_1/s47",
-            "data/experiments/b6-operational-20261007/system2/B5_confirmed_candidate_1/s48",
-            "data/experiments/b6-operational-20261007/system2/B5_confirmed_candidate_1/s49",
-            "data/experiments/b6-operational-20261007/system2/B5_confirmed_candidate_1/s50",
-            "data/experiments/b6-operational-20261007/system2/B5_confirmed_candidate_1/s51"
+            "data/experiments/b7-operational-20261007/B5_confirmed_candidate_1/s42",
+            "data/experiments/b7-operational-20261007/B5_confirmed_candidate_1/s43",
+            "data/experiments/b7-operational-20261007/B5_confirmed_candidate_1/s44",
+            "data/experiments/b7-operational-20261007/B5_confirmed_candidate_1/s45",
+            "data/experiments/b7-operational-20261007/B5_confirmed_candidate_1/s46",
+            "data/experiments/b7-operational-20261007/B5_confirmed_candidate_1/s47",
+            "data/experiments/b7-operational-20261007/B5_confirmed_candidate_1/s48",
+            "data/experiments/b7-operational-20261007/B5_confirmed_candidate_1/s49",
+            "data/experiments/b7-operational-20261007/B5_confirmed_candidate_1/s50",
+            "data/experiments/b7-operational-20261007/B5_confirmed_candidate_1/s51"
           ],
-          "B5_confirmed_candidate_2": [
-            "data/experiments/b6-operational-20261007/system2/B5_confirmed_candidate_2/s42",
-            "data/experiments/b6-operational-20261007/system2/B5_confirmed_candidate_2/s43",
-            "data/experiments/b6-operational-20261007/system2/B5_confirmed_candidate_2/s44",
-            "data/experiments/b6-operational-20261007/system2/B5_confirmed_candidate_2/s45",
-            "data/experiments/b6-operational-20261007/system2/B5_confirmed_candidate_2/s46",
-            "data/experiments/b6-operational-20261007/system2/B5_confirmed_candidate_2/s47",
-            "data/experiments/b6-operational-20261007/system2/B5_confirmed_candidate_2/s48",
-            "data/experiments/b6-operational-20261007/system2/B5_confirmed_candidate_2/s49",
-            "data/experiments/b6-operational-20261007/system2/B5_confirmed_candidate_2/s50",
-            "data/experiments/b6-operational-20261007/system2/B5_confirmed_candidate_2/s51"
-          ],
-          "B_blocks3": [
-            "data/experiments/b6-operational-20261007/system2/B_blocks3/s42",
-            "data/experiments/b6-operational-20261007/system2/B_blocks3/s43",
-            "data/experiments/b6-operational-20261007/system2/B_blocks3/s44",
-            "data/experiments/b6-operational-20261007/system2/B_blocks3/s45",
-            "data/experiments/b6-operational-20261007/system2/B_blocks3/s46",
-            "data/experiments/b6-operational-20261007/system2/B_blocks3/s47",
-            "data/experiments/b6-operational-20261007/system2/B_blocks3/s48",
-            "data/experiments/b6-operational-20261007/system2/B_blocks3/s49",
-            "data/experiments/b6-operational-20261007/system2/B_blocks3/s50",
-            "data/experiments/b6-operational-20261007/system2/B_blocks3/s51"
-          ],
-          "X_A_ED_errors_only": [
-            "data/experiments/b6-operational-20261007/system2/X_A_ED_errors_only/s42",
-            "data/experiments/b6-operational-20261007/system2/X_A_ED_errors_only/s43",
-            "data/experiments/b6-operational-20261007/system2/X_A_ED_errors_only/s44",
-            "data/experiments/b6-operational-20261007/system2/X_A_ED_errors_only/s45",
-            "data/experiments/b6-operational-20261007/system2/X_A_ED_errors_only/s46",
-            "data/experiments/b6-operational-20261007/system2/X_A_ED_errors_only/s47",
-            "data/experiments/b6-operational-20261007/system2/X_A_ED_errors_only/s48",
-            "data/experiments/b6-operational-20261007/system2/X_A_ED_errors_only/s49",
-            "data/experiments/b6-operational-20261007/system2/X_A_ED_errors_only/s50",
-            "data/experiments/b6-operational-20261007/system2/X_A_ED_errors_only/s51"
-          ],
-          "X_B_ED_corrected": [
-            "data/experiments/b6-operational-20261007/system2/X_B_ED_corrected/s42",
-            "data/experiments/b6-operational-20261007/system2/X_B_ED_corrected/s43",
-            "data/experiments/b6-operational-20261007/system2/X_B_ED_corrected/s44",
-            "data/experiments/b6-operational-20261007/system2/X_B_ED_corrected/s45",
-            "data/experiments/b6-operational-20261007/system2/X_B_ED_corrected/s46",
-            "data/experiments/b6-operational-20261007/system2/X_B_ED_corrected/s47",
-            "data/experiments/b6-operational-20261007/system2/X_B_ED_corrected/s48",
-            "data/experiments/b6-operational-20261007/system2/X_B_ED_corrected/s49",
-            "data/experiments/b6-operational-20261007/system2/X_B_ED_corrected/s50",
-            "data/experiments/b6-operational-20261007/system2/X_B_ED_corrected/s51"
+          "B_width256": [
+            "data/experiments/b7-operational-20261007/B_width256/s42",
+            "data/experiments/b7-operational-20261007/B_width256/s43",
+            "data/experiments/b7-operational-20261007/B_width256/s44",
+            "data/experiments/b7-operational-20261007/B_width256/s45",
+            "data/experiments/b7-operational-20261007/B_width256/s46",
+            "data/experiments/b7-operational-20261007/B_width256/s47",
+            "data/experiments/b7-operational-20261007/B_width256/s48",
+            "data/experiments/b7-operational-20261007/B_width256/s49",
+            "data/experiments/b7-operational-20261007/B_width256/s50",
+            "data/experiments/b7-operational-20261007/B_width256/s51"
           ]
         },
-        "name_status": "provisional pending user choice",
-        "selection_note": "FluSurv-dependent recipe removed at user request on 2026-10-07; eight equal-weight recipes, ten seeds each; existing four-season production fits reused."
+        "name_status": "provisional",
+        "note": "B7 three-recipe mixture: A_blocks3 (sampled MLP, Kinsa, three-block decoder), B5_confirmed_candidate_1 (sampled MLP, Kinsa, state ILI pretraining), B_width256 (neighbor-sharing direct-quantile MLP). Each trained on 2022-23 through 2025-26 with admission and ED histories artificially revised using 2025-26 reporting errors, latest future labels, ten seeds 42-51. Equal recipe weight, equal seed weight, predictive distributions mixed. Replayed on the same pinned 7 October 2026 panel as the submitted System2."
       },
       "operational_panel_sha256": "68962ec56c8246469bb71c416f9e2abc593d7b68469dd5f4817caf71743029cc"
     },
@@ -233,22 +231,22 @@
       "model": "CMU-TimeSeries_Cal"
     },
     {
+      "path": "model-output/CU-STS_Residual/2026-10-10-CU-STS_Residual.csv",
+      "sha256": "2383ed36565cd791833c61d5b305d14c78e15d8e0153ee3eefcd73141948f3a1",
+      "role": "peer",
+      "model": "CU-STS_Residual"
+    },
+    {
+      "path": "model-output/CU-STS_base/2026-10-10-CU-STS_base.csv",
+      "sha256": "da8df2a39fcbe6b29a9069266d752a0bd27bee9f8cddf521f86ba808b3e6e5d0",
+      "role": "peer",
+      "model": "CU-STS_base"
+    },
+    {
       "path": "model-output/CU-ensemble/2026-10-10-CU-ensemble.csv",
       "sha256": "7a1e29aa41cd66eb12a2225bd4b37ebbd78194df07d053fe6c1335cbd974bfcb",
       "role": "peer",
       "model": "CU-ensemble"
-    },
-    {
-      "path": "model-output/CUSTS-Ens_base/2026-10-10-CUSTS-Ens_base.csv",
-      "sha256": "da8df2a39fcbe6b29a9069266d752a0bd27bee9f8cddf521f86ba808b3e6e5d0",
-      "role": "peer",
-      "model": "CUSTS-Ens_base"
-    },
-    {
-      "path": "model-output/CUSTS-STS_Residual/2026-10-10-CUSTS-STS_Residual.csv",
-      "sha256": "2383ed36565cd791833c61d5b305d14c78e15d8e0153ee3eefcd73141948f3a1",
-      "role": "peer",
-      "model": "CUSTS-STS_Residual"
     },
     {
       "path": "model-output/Cornell_JHU-SCARCHhierarSIR/2026-10-10-Cornell_JHU-SCARCHhierarSIR.csv",
@@ -269,16 +267,58 @@
       "model": "DMAPRIME-HYB"
     },
     {
+      "path": "model-output/DMAPRIME-QR/2026-10-10-DMAPRIME-QR.csv",
+      "sha256": "3c377b9268d610406b02c707bb4cccd26b5c5867db13535a6e86438f54f5748f",
+      "role": "peer",
+      "model": "DMAPRIME-QR"
+    },
+    {
       "path": "model-output/DMAPRIME-RF/2026-10-10-DMAPRIME-RF.csv",
       "sha256": "6636534e104196e977230e12563862f6a036a060a42a3e63ebc7a0e0f8b61ec4",
       "role": "peer",
       "model": "DMAPRIME-RF"
     },
     {
+      "path": "model-output/Epistorm-Ensemble_Flu/2026-10-10-Epistorm-Ensemble_Flu.csv",
+      "sha256": "817f7cc1d28a56657ed636b2673b88afece4cc017227cc2199f5477dd730c81b",
+      "role": "peer",
+      "model": "Epistorm-Ensemble_Flu"
+    },
+    {
+      "path": "model-output/FluSight-HJudge_ensemble/2026-10-10-FluSight-HJudge_ensemble.csv",
+      "sha256": "cfd350bdee669c3e4ee8e3e6f2e61aedeb3ed51bdfe50e861a02ee5590c03ad2",
+      "role": "peer",
+      "model": "FluSight-HJudge_ensemble"
+    },
+    {
       "path": "model-output/FluSight-baseline/2026-10-10-FluSight-baseline.csv",
       "sha256": "512d4d222e17ee78807db41304b13959befcb885d1d73c860f3fb6493350771e",
       "role": "peer",
       "model": "FluSight-baseline"
+    },
+    {
+      "path": "model-output/FluSight-ensemble/2026-10-10-FluSight-ensemble.csv",
+      "sha256": "c0969ca9e20e898f3d428058b161cdf5e90fbf7f58cc0ae57e4f7a59bfa17ed2",
+      "role": "peer",
+      "model": "FluSight-ensemble"
+    },
+    {
+      "path": "model-output/FluSight-lop_norm/2026-10-10-FluSight-lop_norm.csv",
+      "sha256": "29592cfef22dac58e6868723f941ffef0f84760e448b15f4f67cb2e5389ff77a",
+      "role": "peer",
+      "model": "FluSight-lop_norm"
+    },
+    {
+      "path": "model-output/FluSight-trained_mean/2026-10-10-FluSight-trained_mean.csv",
+      "sha256": "ca70907ee0b9c4ee438f782ba2a9d2e78ccd9d6d4cae4611db4ccc7b6f2bab08",
+      "role": "peer",
+      "model": "FluSight-trained_mean"
+    },
+    {
+      "path": "model-output/FluSight-trained_med/2026-10-10-FluSight-trained_med.csv",
+      "sha256": "5bb1247f2ac3b5060a59764d92f1d471524e48d07b6130325b0014c92c79f997",
+      "role": "peer",
+      "model": "FluSight-trained_med"
     },
     {
       "path": "model-output/GT_Influencers-ensemble/2026-10-10-GT_Influencers-ensemble.csv",
@@ -371,6 +411,12 @@
       "model": "NU-EMBERS"
     },
     {
+      "path": "model-output/OHT_JHU-nbxd/2026-10-10-OHT_JHU-nbxd.csv",
+      "sha256": "ec6aa3b02dcfe030b87af939e487938ddce0138d41e7da42be9c5b591961158c",
+      "role": "peer",
+      "model": "OHT_JHU-nbxd"
+    },
+    {
       "path": "model-output/PSI-PROF/2026-10-10-PSI-PROF.csv",
       "sha256": "44e2f11083c5896660e86b258f5222f6db4cf30576aed8df1b63de0e9ab132da",
       "role": "peer",
@@ -413,10 +459,22 @@
       "model": "UGA_flucast-INFLAenza"
     },
     {
+      "path": "model-output/UM-DeepOutbreak/2026-10-10-UM-DeepOutbreak.csv",
+      "sha256": "03a8cfa5dabc03933338a76515f3b6a0b90a9d8b92a613156de14871f055b7f1",
+      "role": "peer",
+      "model": "UM-DeepOutbreak"
+    },
+    {
       "path": "model-output/UMass-AR2/2026-10-10-UMass-AR2.csv",
       "sha256": "f4bc6d954922ec09d189a0887ebdfa18dde97ef4af6dc1cfbcf156d7c89e05bd",
       "role": "peer",
       "model": "UMass-AR2"
+    },
+    {
+      "path": "model-output/UMass-flusion/2026-10-10-UMass-flusion.csv",
+      "sha256": "7d9b7136cc0eaa2d2e252749e3e25a7a35158d8d01c3895b5348b5224b0db749",
+      "role": "peer",
+      "model": "UMass-flusion"
     },
     {
       "path": "model-output/UMass-trends_ensemble/2026-10-10-UMass-trends_ensemble.parquet",
@@ -437,6 +495,18 @@
       "model": "VTSanghani-PRIME"
     },
     {
+      "path": "model-output/Xi_lab-GLEAM_AI/2026-10-10-Xi_lab-GLEAM_AI.csv",
+      "sha256": "98df60dc18793b9a0e7475551bd03e9bf87feba5eb4f19a18a17f14218cce582",
+      "role": "peer",
+      "model": "Xi_lab-GLEAM_AI"
+    },
+    {
+      "path": "model-output/Xi_lab-GLEAM_AI_hybrid/2026-10-10-Xi_lab-GLEAM_AI_hybrid.csv",
+      "sha256": "cd769b27efef9e9eb359298e6c7cfc1ce04bf774dac25d83107cd9bc714e1290",
+      "role": "peer",
+      "model": "Xi_lab-GLEAM_AI_hybrid"
+    },
+    {
       "path": "model-output/docxology-panelqr/2026-10-10-docxology-panelqr.csv",
       "sha256": "c607d62459183589d2898d23a40e2a1935efdc100032b969e6b5d8a652972cc5",
       "role": "peer",
@@ -450,13 +520,13 @@
     },
     {
       "path": "target-data/target-hospital-admissions.csv",
-      "sha256": "2f7fe9ce365500ce377eba78fb1914f894d9382141c21ba79df4a2d54dfe31ea",
+      "sha256": "6eb326465dedc266b5790e026f987728397408fc66e68bcbc59ad00f9695c1cc",
       "role": "history",
       "model": null
     },
     {
       "path": "target-data/target-ed-visits-prop.csv",
-      "sha256": "60c72a6537c5c48299d880c5368922ad0a1d5b1fcdf382a3fa06a83b168137b7",
+      "sha256": "d75d15450e52f022d1265a2a8a8287e016658a94a4915c51f7f8a31fce983ec8",
       "role": "history",
       "model": null
     }
