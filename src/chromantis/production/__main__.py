@@ -11,7 +11,8 @@
 (`export.py`), then draws the interval PDFs (`intervals.py`) and the peer comparison
 (`peers.py`). Output: production/output/<issuance>/<release name>/.
 
-`record` keeps what was submitted, after the Hub PR is pushed: the CSV (renamed with
+`record` keeps what was submitted, after the Hub PR is pushed, in production/submissions/<reference date>/
+(FluSight) or <reference date>/<hub>/ (other Hubs): the CSV and its Parquet copy (renamed with
 `--as` when the Hub file name differs), its export record, the interval PDFs and the peer
 comparison PDF, in production/submissions/<reference date>/ (`--superseded`: its
 superseded/ subfolder, for a file that was replaced). The PDFs are drawn from the local
@@ -63,12 +64,15 @@ def record(argv):
     p.add_argument('--hub-ref', default='HEAD', help='Hub commit for history and peers (default: the local clone)')
     args = p.parse_args(argv)
     from . import intervals, peers
-    from .hubs import clone
+    from .hubs import clone, hub_of
     import pandas as pd
-    args.hub = clone(args.hub, pd.read_csv(args.csv, usecols=['target']).target.unique())
+    targets = pd.read_csv(args.csv, usecols=['target']).target.unique()
+    args.hub = clone(args.hub, targets)
     name = args.name or args.csv.name
     reference = name[:10]
-    folder = Path('production/submissions') / reference / ('superseded' if args.superseded else '')
+    # FluSight files sit directly in <reference>/ (the original layout); other Hubs in <reference>/<hub>/.
+    hub = hub_of(targets)
+    folder = Path('production/submissions') / reference / ('' if hub == 'flusight' else hub) / ('superseded' if args.superseded else '')
     folder.mkdir(parents=True, exist_ok=True)
     target = folder / name
     if target.exists() and target.read_bytes() != args.csv.read_bytes():
@@ -76,9 +80,11 @@ def record(argv):
     shutil.copy2(args.csv, target)
     if args.csv.with_suffix('.json').exists():
         shutil.copy2(args.csv.with_suffix('.json'), target.with_suffix('.json'))
+    if args.csv.with_suffix('.parquet').exists():
+        shutil.copy2(args.csv.with_suffix('.parquet'), target.with_suffix('.parquet'))
     intervals.main([str(target), '--hub', str(args.hub)])
     with tempfile.TemporaryDirectory() as scratch:
-        peers.main([str(target), '--hub', str(args.hub), '--hub-ref', args.hub_ref, '--out', scratch])
+        peers.main([str(target), '--hub', str(args.hub), '--hub-ref', args.hub_ref, '--out', scratch, '--pending'])
         shutil.copy2(Path(scratch) / 'comparison.pdf', folder / f'{target.stem}-peers.pdf')
         shutil.copy2(Path(scratch) / 'manifest.json', folder / f'{target.stem}-peers.json')
     print('\n'.join(sorted(str(f) for f in folder.glob(f'{target.stem}*'))))

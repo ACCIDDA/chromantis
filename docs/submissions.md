@@ -4,18 +4,37 @@ See [Description and hub rules](reference/hub-scoring-2026-2027.md) for the thre
 
 Chromantis records submissions across all pathogens and model recipes. Each dated entry identifies the pathogen, Hub, public model name, exact fitted recipe, training and operational inputs, submitted file, and publication status. Future recipes receive new entries; a change of model does not rename or overwrite the submission history.
 
-The Hub model is **ACCIDDA-Chromantis**. It was submitted as ACCIDDA-EpiLoom for the 10 October 2026 round and renamed on the Hub on 8 October 2026 (PR 3774); the file contents did not change. COVID-19, RSV and other pathogens belong in the same log when submissions are recorded; none has been submitted yet.
+The Hub model is **ACCIDDA-Chromantis**. It was submitted as ACCIDDA-EpiLoom for the 10 October 2026 round and renamed on the Hub on 8 October 2026 (PR 3774); the file contents did not change. RSV has been submitted to the RSV Hub since 17 October 2026, under the same public name. COVID-19 has not been submitted yet.
 
-Each entry must state: the recipe and its exact fitted checkpoints, the training seasons and training-input treatments, the prediction labels, the operational input panel (with hash), the submitted file hash, and the Hub PR, validation and merge record. The local record of each issuance is `production/submissions/<reference date>/`: the submitted CSV under its Hub name, its export record (`.json`: release, sources, hashes), the interval PDFs and the peer-comparison PDF drawn at submission time (`python -m chromantis.production record`); replaced versions are in its `superseded/` subfolder.
+Each entry must state: the recipe and its exact fitted checkpoints, the training seasons and training-input treatments, the prediction labels, the operational input panel (with hash), the submitted file hash, and the Hub PR, validation and merge record. The local record of each issuance is `production/submissions/<reference date>/` (FluSight) or `<reference date>/<hub>/` (other Hubs): the submitted CSV under its Hub name, its export record (`.json`: release, sources, hashes), the interval PDFs and the peer-comparison PDF drawn at submission time (`python -m chromantis.production record`); replaced versions are in its `superseded/` subfolder.
 
 | Pathogen | Reference date | Public model | Recipe | Recorded status |
 | --- | --- | --- | --- | --- |
 | Influenza | 17 October 2026 | ACCIDDA-Chromantis | Bes weekly targets (10 fits) + Peak8 season-peak targets (6 fits) | Weekly file merged (PR 3804); peak targets added in PR 3815 |
 | Influenza | 10 October 2026 | ACCIDDA-Chromantis (submitted as ACCIDDA-EpiLoom) | Three-recipe B7 mixture, 30 fits | Merged after the deadline; replaced the on-time eight-recipe forecast |
 | COVID-19 | — | — | — | No submission entered in this log yet |
-| RSV | — | — | — | No submission entered in this log yet |
+| RSV | 17 October 2026 | ACCIDDA-Chromantis | Four-recipe mixture rsv-four-20261014, 40 fits | First RSV submission; metadata and forecast in PR 641, not yet merged |
 
 Hub metadata changes are deferred until the recipe is settled, as decided on 8 October 2026.
+
+## RSV reference date 17 October 2026
+
+**First RSV submission.** [PR 641](https://github.com/CDCgov/rsv-forecast-hub/pull/641) was opened on 14 October 2026 at 19:10 EDT from the fork's `main` (commit `0e8c4c2b`, "ACCIDDA-Chromantis 2026-10-17"). It adds the model metadata `model-metadata/ACCIDDA-Chromantis.yml` and the forecast. The RSV Hub asks for new-model metadata by 4 PM ET on the first Wednesday, so this PR missed that time. Validation and merge status are not yet recorded.
+
+- **Model:** release `production/releases/rsv-four-20261014.json`, a mixture of four recipes with seeds 42-51 each. Equal weight per recipe and per seed; predictive distributions are mixed.
+  - Ball_c0w512: width-512 direct-quantile MLP with neighbouring-state exchange, trained on the actual archived reports.
+  - Bw: width-256 direct-quantile MLP.
+  - A4c0: width-192 sampled MLP with corrected histories and Kinsa.
+  - A4i: A4 with all six admission and ED histories.
+- **Training and labels:** every fit was trained on 2022-23 through 2025-26, with no held-out season, on `panel-rsv.npz`. In that panel, NHSN RSV admissions before 2024-11-02 are treated as unobserved because reporting was voluntary. Training admission and ED histories were made preliminary with artificial errors from the prescribed 2025-26 RSV reporting process. Labels: latest finalized future RSV admissions and ED share (September 2026 panel). The recipes were selected by tree search `rsv-tree-20261013`. Held-out states/DC log-admission WIS was 0.3105 on artificial preliminary inputs and 0.3114 replayed on archived 2024-25 and 2025-26 reports (lower is better). These are retrospective comparisons, not prospective estimates.
+- **Operational inputs:** issuance 14 October 2026. Panel `data/operational-20261014/processed/panel-rsv.npz`, SHA256 `cdf70c024b395ed73504428e5aa43a316d312b3bce74f7cb4cefe25e93dc5b6a`. It is the 14 October operational panel (the same pulls as the influenza entry below) with the same pre-2024-11-02 RSV admission mask as in training. Inputs are the reports visible at the RSV Hub deadline; the RSV Hub's target data `as_of` 2026-10-14 covers weeks through 10 October. View: `corrected`.
+- **File:** `production/submissions/2026-10-17/rsv/2026-10-17-ACCIDDA-Chromantis.parquet`, SHA256 `ac28391d2608b9b99600b5020cb5fc9e3f34946198add643ef21c96e8a98ddd3`. It is the Hub's first Parquet from us; the CSV beside it has the same rows.
+  - 9,568 quantile rows and 83,200 sample rows: horizons 0-3, 52 locations (no Puerto Rico), `wk inc rsv hosp` and `wk inc rsv prop ed visits`.
+  - Samples are 200 trajectories per location, with id `<state>_<k>` shared by both targets and all horizons.
+  - The two sampled recipes give whole network draws, picked at evenly spaced ranks at each location. The two direct-quantile recipes give values at evenly spaced levels (0.01-0.99) of their seed-mixture quantiles. These values are ordered by the sampled recipes' trajectories (Schaake shuffle).
+  - Sample medians and 10%/90% matched the exported quantiles. Sample 2.5%/97.5% were about 10% narrower.
+  - `hubValidations` was not run locally; the PR's Hub CI validates.
+- **Record:** the interval PDFs and the peer comparison are in `production/submissions/2026-10-17/rsv/`. The comparison uses Hub clone `e7d0dde6` plus open PRs: 8 merged same-week models and the four CFA models from PR 638.
 
 ## Influenza reference date 17 October 2026
 
