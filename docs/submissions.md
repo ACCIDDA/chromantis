@@ -10,11 +10,24 @@ Each entry must state: the recipe and its exact fitted checkpoints, the training
 
 | Pathogen | Reference date | Public model | Recipe | Recorded status |
 | --- | --- | --- | --- | --- |
+| Influenza | 17 October 2026 | ACCIDDA-Chromantis | Bes, one recipe, 10 fits | PR open (3804), not yet merged |
 | Influenza | 10 October 2026 | ACCIDDA-Chromantis (submitted as ACCIDDA-EpiLoom) | Three-recipe B7 mixture, 30 fits | Merged after the deadline; replaced the on-time eight-recipe forecast |
 | COVID-19 | — | — | — | No submission entered in this log yet |
 | RSV | — | — | — | No submission entered in this log yet |
 
 Hub metadata changes are deferred until the recipe is settled, as decided on 8 October 2026.
+
+## Influenza reference date 17 October 2026
+
+**Bes was submitted** in [PR 3804](https://github.com/cdcepi/FluSight-forecast-hub/pull/3804), opened 14 October 2026 at 17:09 EDT from the fork's `main` (commit `62a30211`). Merge status is not yet recorded.
+
+- **Model:** release `production/releases/bes-20261010.json`. One recipe, B_width256: a width-256 MLP with neighbouring-state exchange and 23 direct quantiles, seeds 42-51. Each fit was trained on 2022-23 through 2025-26, with no held-out season. Training admission and ED histories were made preliminary with artificial errors from the prescribed 2025-26 reporting process at 1.5x strength, plus reconstruction labels for the last 4 history weeks. No covariates. Labels: latest finalized future flu admissions and ED share (September 2026 panel). Equal weight per seed; predictive distributions mixed.
+- **Why Bes replaced B7:** in the 10 October tree search (`experiments/tree-20261010/protocol.json`), on states/DC log-admission WIS, Bes scored 0.2895 against 0.2976 for the submitted B7 mixture on the same held-out seasons. It was worse than B7 in 2023-24. In the forward-only check (2024-25 forecast by models trained on 2022-23 and 2023-24 only) it scored 0.336 against 0.368. Lower is better. These are retrospective comparisons, not prospective estimates.
+- **Operational inputs:** issuance 14 October 2026. Panel `data/operational-20261014/processed/panel.npz`, SHA256 `b8de0b1fd792eeab48f681d661f9feaae944de87aedaf3c28e5cec9f71d4dab9`. It was built from snapshots pulled on 14 October 2026 around 20:34 UTC (Hub target history including the 14 October release, Delphi NHSN and NSSP, PopHIVE Kinsa). Admissions and ED through the week ending 10 October matched the Hub target data exactly for every location over the last 8 weeks. The newest two admission and ED weeks were corrected by each fit's saved trees (`corrected` view).
+- **Data note:** Iowa flu ED share was missing in the Hub's 30 September and 7 October releases (weeks ending 4 July to 3 October) and was filled in on 14 October. The 10 October submission therefore had no Iowa ED history for its last 14 weeks; this one does.
+- **File:** `production/submissions/2026-10-17/2026-10-17-ACCIDDA-Chromantis.csv`, SHA256 `a4764eb9ad29a816330136c79902f63e2138605a0d5a52e95ca10640ed20880a`. It contains 9,568 quantile rows: horizons 0-3, 52 locations (no Puerto Rico), admissions and ED share, and no peak targets. Local checks passed: ED at most 0.25, admissions below 30% of population, no quantile crossing, integer counts, and correct target dates. The Hub's `hubValidations` was not run locally; the PR's Hub CI validates.
+- **Record:** the interval PDFs and the peer comparison drawn at submission time are in `production/submissions/2026-10-17/`. Peers came from the local Hub clone at `8e6ffa74`, with 13 same-week forecasts merged; Google, CMU, UGA, UMass-flusion and NAU-vulPES had not yet submitted.
+- **Not used:** B7 run on the same panel (release `b7-20261009`, the 9 October retrain on the current code) forecast lower values: US admissions median 5,049 against Bes's 5,762 at horizon 0, and 9,249 against 11,694 at horizon 3. The exact submitted B7 checkpoints (`b7-20261007`) no longer load in the current code: their saved settings include a field, `forecast_targets`, that it no longer accepts.
 
 ## Influenza reference date 10 October 2026
 

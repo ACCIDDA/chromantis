@@ -1,4 +1,4 @@
-"""Check plots for one FluSight submission CSV (same layout as the InfluPaint plot50-95 PDFs).
+"""Check plots for one Hub submission CSV (FluSight or RSV) (same layout as the InfluPaint plot50-95 PDFs).
 
 One PDF per target, one row per location: left, the whole season with previous seasons
 dashed grey (shifted by whole 52-week years onto the current season's dates); right, the last
@@ -23,8 +23,8 @@ import matplotlib.dates as mdates
 import matplotlib.pyplot as plt
 import pandas as pd
 
-TARGETS = {'wk inc flu hosp': ('target-hospital-admissions.csv', 'hosp', 'Weekly flu admissions'),
-           'wk inc flu prop ed visits': ('target-ed-visits-prop.csv', 'ed', 'Flu share of ED visits')}
+from .hubs import HUBS, TARGETS, clone, truth as hub_truth
+
 BANDS = [(0.025, 0.975, .15), (0.1, 0.9, .25), (0.25, 0.75, .4)]
 COMPARE_BANDS = [(0.025, 0.975, .12), (0.25, 0.75, .3)]
 COLORS = ['#2a78d6', '#eb6834', '#1baf7a', '#eda100']  # validated categorical slots, fixed order
@@ -35,9 +35,10 @@ def main(argv=None):
     p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     p.add_argument('csv', type=Path, nargs='+')
     p.add_argument('--labels', nargs='+', help='One label per CSV (default: file stems)')
-    p.add_argument('--hub', type=Path, default=Path('production/hubs/FluSight-forecast-hub'))
+    p.add_argument('--hub', type=Path, help="Local Hub clone (default: the clone of the CSV's Hub)")
     args = p.parse_args(argv)
-    subs = [pd.read_csv(f, dtype={'location': str}, parse_dates=['target_end_date', 'reference_date']) for f in args.csv]
+    subs = [pd.read_csv(f, dtype={'location': str, 'output_type_id': str}, parse_dates=['target_end_date', 'reference_date'])
+            .query("output_type == 'quantile'") for f in args.csv]
     labels = args.labels or [f.stem for f in args.csv]
     if len(labels) != len(subs) or len({s.reference_date.iloc[0] for s in subs}) != 1:
         raise ValueError('Give one label per CSV; all CSVs must share one reference date')
@@ -45,12 +46,14 @@ def main(argv=None):
     sub = subs[0]
     reference = sub.reference_date.iloc[0]
     season_start = pd.Timestamp(reference.year if reference.month >= 8 else reference.year - 1, 8, 1)
-    names = pd.read_csv(args.hub / 'auxiliary-data/locations.csv', dtype={'location': str}).set_index('location').location_name
-    for target, (file, short, label) in TARGETS.items():
+    hub = clone(args.hub, sub.target.unique())
+    names = pd.read_csv(hub / 'auxiliary-data/locations.csv', dtype={'location': str}).set_index('location').location_name
+    for target in sorted(set(sub.target)):
+        short, label = 'ed' if 'ed visits' in target else 'hosp', HUBS[TARGETS[target]]['targets'][target][1]
         forecast = sub[sub.target == target]
         if forecast.empty:
             continue
-        truth = pd.read_csv(args.hub / 'target-data' / file, dtype={'location': str}, parse_dates=['date'])
+        truth = hub_truth(lambda path: (hub / path).read_bytes(), target)
         locations = sorted(forecast.location.unique(), key=lambda l: (l != 'US', l))
         fig, axes = plt.subplots(len(locations), 2, figsize=(10, 2.6 * len(locations)), squeeze=False)
         for row, location in zip(axes, locations):
@@ -85,7 +88,7 @@ def main(argv=None):
                 ax.set_xlim(start, end)
                 visible = [s[(s.index >= start) & (s.index <= end)].max() for s in (shown, *(q[0.975] for q in qs))] + past_max
                 ax.set_ylim(0, 1.05 * max(v for v in visible if pd.notna(v)) or 1)
-                ax.set_title(f'{names.get(location, location)}' + (' (zoom)' if zoom else ''), fontsize=9)
+                ax.set_title(f'{names.get(location, location)}', fontsize=9)
                 ax.xaxis.set_major_formatter(mdates.DateFormatter('%d %b %y'))
                 ax.tick_params(labelsize=7, axis='both')
                 ax.tick_params(axis='x', rotation=45)

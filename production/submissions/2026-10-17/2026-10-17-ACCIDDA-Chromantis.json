@@ -1,0 +1,130 @@
+{
+  "release": {
+    "name": "bes-20261010",
+    "model_abbr": "Chromantis",
+    "hub": "flusight",
+    "problem": "problems/us-flu-production.json",
+    "rule": "mixture",
+    "view": "corrected",
+    "description": "Bes: one recipe, B_width256 (width-256 MLP, neighbouring-state exchange, 23 direct quantiles), trained on 2022-23 through 2025-26 (no held-out season), seeds 42-51. Training admission and ED histories made preliminary with artificial errors from the prescribed 2025-26 reporting process at 1.5x strength, plus reconstruction labels for the last 4 history weeks. No covariates. Labels: latest finalized future flu admissions and ED (September 2026 panel). Loss: native quantile loss plus 0.5 x log-admission loss. Operational inputs: reported Wednesday data with the newest two admission/ED weeks corrected by each fit's saved trees. Equal weight per seed; predictive distributions mixed. Selected by tree search tree-20261010 (experiments/tree-20261010/protocol.json).",
+    "training_design": "experiments/bes-production-20261010.json",
+    "checkpoints_from": "longleaf:/proj/jlessler/projects/tapestry-all/tapestry/data/experiments/bes-production-20261010",
+    "recipes": {
+      "Bes": [
+        {
+          "checkpoint": "data/production-fits/bes-production-20261010/mlp-pathogen-scheduled_final-b76d286a54c3/s42/attempt-001/eval_2026-2027",
+          "sha256": "a4f1ef486949b729ceeb671c7853fe176d6000fe7c78a3e15081e7d37c82dbc9"
+        },
+        {
+          "checkpoint": "data/production-fits/bes-production-20261010/mlp-pathogen-scheduled_final-b76d286a54c3/s43/attempt-001/eval_2026-2027",
+          "sha256": "e562af3105404cd18b6bc62d5daf784465155ce42ff7cf832869cc38403458de"
+        },
+        {
+          "checkpoint": "data/production-fits/bes-production-20261010/mlp-pathogen-scheduled_final-b76d286a54c3/s44/attempt-001/eval_2026-2027",
+          "sha256": "0976f39a8b34dbfc3c2e0cdbc7cc5978e2a3c6a197673a8557f7de28e320c985"
+        },
+        {
+          "checkpoint": "data/production-fits/bes-production-20261010/mlp-pathogen-scheduled_final-b76d286a54c3/s45/attempt-001/eval_2026-2027",
+          "sha256": "bff670e32c922bb719cbdd5de320abab396add22257bf246fddc6c1fdd10317b"
+        },
+        {
+          "checkpoint": "data/production-fits/bes-production-20261010/mlp-pathogen-scheduled_final-b76d286a54c3/s46/attempt-001/eval_2026-2027",
+          "sha256": "aaaf8ba4b9aa03cde32832b1ca09149d936bf5da42cd0f13fd6dc91bd79b1f30"
+        },
+        {
+          "checkpoint": "data/production-fits/bes-production-20261010/mlp-pathogen-scheduled_final-b76d286a54c3/s47/attempt-001/eval_2026-2027",
+          "sha256": "9bbdf810ea4c340eacff483e591675f15073ae46a24d866eba8b9d31ba01758b"
+        },
+        {
+          "checkpoint": "data/production-fits/bes-production-20261010/mlp-pathogen-scheduled_final-b76d286a54c3/s48/attempt-001/eval_2026-2027",
+          "sha256": "c218cfb5222948f308fe3372e5f15f22d539bcd9ff459caef36efbc0177bd7c7"
+        },
+        {
+          "checkpoint": "data/production-fits/bes-production-20261010/mlp-pathogen-scheduled_final-b76d286a54c3/s49/attempt-001/eval_2026-2027",
+          "sha256": "de7d7cd0183a168665ca1fcca4dc37f3eedea989d5fbbd1e61208c409654e3a9"
+        },
+        {
+          "checkpoint": "data/production-fits/bes-production-20261010/mlp-pathogen-scheduled_final-b76d286a54c3/s50/attempt-001/eval_2026-2027",
+          "sha256": "f8bb5254f7eb8d77da6bfabe2439c48fe2adad29a14db8659fe2a24b28c3c736"
+        },
+        {
+          "checkpoint": "data/production-fits/bes-production-20261010/mlp-pathogen-scheduled_final-b76d286a54c3/s51/attempt-001/eval_2026-2027",
+          "sha256": "46b7622ebc953a0a0355d0d3664d1d4cff19697946e36511888d54ff6bc4726f"
+        }
+      ]
+    }
+  },
+  "sources": [
+    {
+      "recipe": "Bes",
+      "directory": "production/output/2026-10-14/bes-20261010/forecasts/Bes/s42",
+      "checkpoint_sha256": "a4f1ef486949b729ceeb671c7853fe176d6000fe7c78a3e15081e7d37c82dbc9",
+      "forecast_sha256": "0bad4f022107627109387f490c0c42262fc6a37d4f1099e1e46e44d3d1eedf96"
+    },
+    {
+      "recipe": "Bes",
+      "directory": "production/output/2026-10-14/bes-20261010/forecasts/Bes/s43",
+      "checkpoint_sha256": "e562af3105404cd18b6bc62d5daf784465155ce42ff7cf832869cc38403458de",
+      "forecast_sha256": "1aace05d210f072ee6aa45370a084baaf56caf9457882eb6876f84f2944af284"
+    },
+    {
+      "recipe": "Bes",
+      "directory": "production/output/2026-10-14/bes-20261010/forecasts/Bes/s44",
+      "checkpoint_sha256": "0976f39a8b34dbfc3c2e0cdbc7cc5978e2a3c6a197673a8557f7de28e320c985",
+      "forecast_sha256": "63f7e2f6649578aba4888e5920897d2c0be20a71a4df8b57df1f621f5107de27"
+    },
+    {
+      "recipe": "Bes",
+      "directory": "production/output/2026-10-14/bes-20261010/forecasts/Bes/s45",
+      "checkpoint_sha256": "bff670e32c922bb719cbdd5de320abab396add22257bf246fddc6c1fdd10317b",
+      "forecast_sha256": "e20f66ba9ab8f2ec8fe0d7a89320ee75bd2974b99810876c2ba4ee37b4a4647a"
+    },
+    {
+      "recipe": "Bes",
+      "directory": "production/output/2026-10-14/bes-20261010/forecasts/Bes/s46",
+      "checkpoint_sha256": "aaaf8ba4b9aa03cde32832b1ca09149d936bf5da42cd0f13fd6dc91bd79b1f30",
+      "forecast_sha256": "d925d5eb461753458dc0bc7f5ac1ee7d5b465f2eb55f78cd1d63a59a0a7f4ac3"
+    },
+    {
+      "recipe": "Bes",
+      "directory": "production/output/2026-10-14/bes-20261010/forecasts/Bes/s47",
+      "checkpoint_sha256": "9bbdf810ea4c340eacff483e591675f15073ae46a24d866eba8b9d31ba01758b",
+      "forecast_sha256": "f5624d41d4da0700ee9d81dcc2c1f52b244f4bad143e696b4a62e693c405dac1"
+    },
+    {
+      "recipe": "Bes",
+      "directory": "production/output/2026-10-14/bes-20261010/forecasts/Bes/s48",
+      "checkpoint_sha256": "c218cfb5222948f308fe3372e5f15f22d539bcd9ff459caef36efbc0177bd7c7",
+      "forecast_sha256": "e4c993fbecf61cf0f9f14478749aabebbfaed7bc849fcf6d7fce167cfa5deb73"
+    },
+    {
+      "recipe": "Bes",
+      "directory": "production/output/2026-10-14/bes-20261010/forecasts/Bes/s49",
+      "checkpoint_sha256": "de7d7cd0183a168665ca1fcca4dc37f3eedea989d5fbbd1e61208c409654e3a9",
+      "forecast_sha256": "f378a76f50084f0ba5cb35f6cd785c4fec1dcf34abf9617feeb0dad07d924228"
+    },
+    {
+      "recipe": "Bes",
+      "directory": "production/output/2026-10-14/bes-20261010/forecasts/Bes/s50",
+      "checkpoint_sha256": "f8bb5254f7eb8d77da6bfabe2439c48fe2adad29a14db8659fe2a24b28c3c736",
+      "forecast_sha256": "586c6b8b73c6e01671e07b619f44babda099f2288a350cd6d83f5e1c63979f04"
+    },
+    {
+      "recipe": "Bes",
+      "directory": "production/output/2026-10-14/bes-20261010/forecasts/Bes/s51",
+      "checkpoint_sha256": "46b7622ebc953a0a0355d0d3664d1d4cff19697946e36511888d54ff6bc4726f",
+      "forecast_sha256": "7cb7d9321f4fc91454d80974155b6f5ad7f6abf33bd8e4d1649e08e305ec5242"
+    }
+  ],
+  "adjustments": [],
+  "rows": 9568,
+  "issuance": "2026-10-14",
+  "operational_panel_sha256": "b8de0b1fd792eeab48f681d661f9feaae944de87aedaf3c28e5cec9f71d4dab9",
+  "hub_tasks_sha256": "1d24e40548e1b4ab09743f9e205dd665060abd011f6ad6544acc757cf5321fa3",
+  "output_sha256": "a4764eb9ad29a816330136c79902f63e2138605a0d5a52e95ca10640ed20880a",
+  "problem": "problems/us-flu-production.json",
+  "problem_sha256": "312e54c3855b1c5078ea0060dd03fb053f076033d91606a57e6ac5dc9af432ee",
+  "definition": {
+    "note": "Bes: one recipe, B_width256 (width-256 MLP, neighbouring-state exchange, 23 direct quantiles), trained on 2022-23 through 2025-26 (no held-out season), seeds 42-51. Training admission and ED histories made preliminary with artificial errors from the prescribed 2025-26 reporting process at 1.5x strength, plus reconstruction labels for the last 4 history weeks. No covariates. Labels: latest finalized future flu admissions and ED (September 2026 panel). Loss: native quantile loss plus 0.5 x log-admission loss. Operational inputs: reported Wednesday data with the newest two admission/ED weeks corrected by each fit's saved trees. Equal weight per seed; predictive distributions mixed. Selected by tree search tree-20261010 (experiments/tree-20261010/protocol.json)."
+  }
+}

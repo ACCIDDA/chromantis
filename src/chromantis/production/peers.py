@@ -20,11 +20,9 @@ import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
 from matplotlib.backends.backend_pdf import PdfPages
 
+from .hubs import HUBS, TARGETS, hub_of, clone, truth
+
 DEFAULT_LOCATIONS = ['US', 'CA', 'TX', 'NY', 'NC', 'IA']
-DEFAULT_PEERS = ['Google_SAI-FluEns', 'OHT_JHU-nbxd', 'CMU-TimeSeries',
-                 'UGA_flucast-INFLAenza', 'UMass-flusion', 'NAU-vulPES']
-TARGETS = {'wk inc flu hosp': ('target-hospital-admissions.csv', 'Weekly flu admissions', 1),
-           'wk inc flu prop ed visits': ('target-ed-visits-prop.csv', 'Flu ED visits (%)', 100)}
 KEYS = ['reference_date', 'target', 'horizon', 'target_end_date', 'location']
 COLORS = ['#c33f30', '#009999', '#7854a5', '#ed8c20']
 
@@ -65,7 +63,7 @@ def read_medians(raw, suffix, reference=None):
         raise ValueError('Duplicate forecast tasks')
     if not (d.target_end_date == d.reference_date + pd.to_timedelta(d.horizon*7, unit='D')).all():
         raise ValueError('Forecast horizon/date mismatch')
-    if not np.isfinite(d.value).all() or (d.value < 0).any() or (d.loc[d.target == 'wk inc flu prop ed visits', 'value'] > 1).any():
+    if not np.isfinite(d.value).all() or (d.value < 0).any() or (d.loc[d.target.str.contains('prop ed visits'), 'value'] > 1).any():
         raise ValueError('Invalid forecast values: require nonnegative counts and ED proportions in [0, 1]')
     return d[KEYS+['value']]
 
@@ -74,11 +72,11 @@ def main(argv=None):
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument('csv', nargs='+', type=Path, help='Primary forecast, then optional local candidates')
     p.add_argument('--labels', nargs='+', help='One plot label per local forecast')
-    p.add_argument('--hub', type=Path, default=Path('production/hubs/FluSight-forecast-hub'))
+    p.add_argument('--hub', type=Path, help="Local Hub clone (default: the clone of the primary CSV's Hub)")
     p.add_argument('--hub-ref', default='HEAD', help='Local Hub commit/ref; no network fetch is performed')
     p.add_argument('--out', type=Path, help='Default: <primary CSV stem>-comparison/')
     p.add_argument('--locations', nargs='+', default=DEFAULT_LOCATIONS, help='Abbreviations/FIPS, or all')
-    p.add_argument('--peer-models', nargs='*', default=DEFAULT_PEERS, help='Named Hub models drawn individually')
+    p.add_argument('--peer-models', nargs='*', help="Named Hub models drawn individually (default: the Hub's list in hubs.py)")
     p.add_argument('--peer-csv', action='append', type=Path, default=[], help='Additional peer CSV/Parquet, e.g. a downloaded pending submission')
     p.add_argument('--zoom-weeks', type=int, default=8, help='Weeks before reference date shown in zoom')
     args = p.parse_args(argv)
@@ -89,6 +87,10 @@ def main(argv=None):
         p.error('Local forecast labels must be unique; use --labels')
     out = args.out or args.csv[0].with_name(args.csv[0].stem+'-comparison')
     out.mkdir(parents=True, exist_ok=True)
+    primary = pd.read_csv(args.csv[0], usecols=['target']).target.unique() if args.csv[0].suffix == '.csv' else pd.read_parquet(args.csv[0], columns=['target']).target.unique()
+    args.hub = clone(args.hub, primary)
+    if args.peer_models is None:
+        args.peer_models = HUBS[hub_of(primary)]['peers']
     git = lambda *cmd: subprocess.check_output(['git', '-C', str(args.hub), *cmd])
     commit = git('rev-parse', f'{args.hub_ref}^{{commit}}').decode().strip()
     sources, frames, warnings = [], [], []
@@ -115,7 +117,7 @@ def main(argv=None):
                 sources[-1]['definition'] = meta.get('definition')
                 sources[-1]['operational_panel_sha256'] = meta.get('operational_panel_sha256')
     if reference.dayofweek != 5:
-        raise ValueError('FluSight reference date must be Saturday')
+        raise ValueError('Hub reference date must be Saturday')
     local_models = {path.stem[11:] for path in args.csv}
     local_hashes = {s['sha256'] for s in sources}
     peer_frames = {}
@@ -174,8 +176,12 @@ def main(argv=None):
     histories = []
     targets = [t for t in TARGETS if t in forecasts[forecasts.role == 'local'].target.unique()]
     for target in targets:
-        d = hub_table('target-data/'+TARGETS[target][0])
-        d['date'] = pd.to_datetime(d.date)
+        def read(path):
+            raw = git('show', f'{commit}:{path}')
+            if path not in {s['path'] for s in sources}:
+                record(path, raw, 'history', None)
+            return raw
+        d = truth(read, target)
         d = d[d.location.isin(selected)].copy()
         d['target'] = target
         for kind, start, end in [('previous', previous_start, season_start-pd.Timedelta(days=1)), ('current', season_start, cutoff)]:
@@ -203,7 +209,8 @@ def main(argv=None):
                                      gridspec_kw={'width_ratios':[1, 1.2]})
             legend = {}
             for row, target in enumerate(targets):
-                _, ylabel, factor = TARGETS[target]
+                ylabel = HUBS[TARGETS[target]]['targets'][target][1]
+                ylabel, factor = (ylabel + ' (%)', 100) if 'ed visits' in target else (ylabel, 1)
                 h = history[(history.location == location) & (history.target == target)]
                 z = forecasts[(forecasts.location == location) & (forecasts.target == target)]
                 peers = z[z.role == 'peer']
@@ -237,7 +244,7 @@ def main(argv=None):
                         ax.text(.02,.95,'Current reported history unavailable', transform=ax.transAxes, va='top', fontsize=10)
                     if peers.empty:
                         ax.text(.02,.85,'No same-week peers for this target/location', transform=ax.transAxes, va='top', fontsize=9)
-                    ax.set_title('Full season' if col == 0 else f'Zoom · {start:%b %d}–{end:%b %d}', loc='left', fontsize=13)
+                    ax.set_title('Full season' if col == 0 else f'{start:%b %d}–{end:%b %d}', loc='left', fontsize=13)
                     ax.set_ylabel(ylabel, fontsize=12)
                     ax.xaxis.set_major_locator(mdates.MonthLocator(interval=2) if col == 0 else mdates.WeekdayLocator(byweekday=mdates.SA,interval=max(1,args.zoom_weeks//4)))
                     ax.xaxis.set_major_formatter(mdates.DateFormatter('%b' if col == 0 else '%b %d'))
