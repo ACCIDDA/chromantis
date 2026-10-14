@@ -1,0 +1,77 @@
+{
+  "schema_version": 1,
+  "id": "us-flu-long-horizon-production",
+  "dataset": "../datasets/respiratory-us-weekly.json",
+  "panel": "data/processed/panel.npz",
+  "locations": "data/metadata/locations.csv",
+  "targets": [
+    "nhsn_flu_admissions",
+    "nssp_flu_proportion"
+  ],
+  "forecast": {
+    "horizons": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36
+    ]
+  },
+  "folds": {
+    "kind": "leave_one_season_out",
+    "ids": [
+      "2026-2027"
+    ],
+    "training_ids": [
+      "2022-2023",
+      "2023-2024",
+      "2024-2025",
+      "2025-2026"
+    ]
+  },
+  "evaluation": {
+    "kind": "weekly_quantile_wis",
+    "inputs": "reported",
+    "draws": 1,
+    "primary": {
+      "target": "nhsn_flu_admissions",
+      "scale": "log",
+      "geography": "states_dc"
+    }
+  },
+  "comparison": {
+    "kind": "none"
+  },
+  "production": true
+}

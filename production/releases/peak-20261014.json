@@ -1,0 +1,40 @@
+{
+  "name": "peak-20261014",
+  "model_abbr": "Chromantis",
+  "hub": "flusight",
+  "problem": "problems/us-flu-long-horizon-production.json",
+  "rule": "pooled trajectories",
+  "view": "raw",
+  "description": "Season-peak model for FluSight's peak inc flu hosp and peak week inc flu hosp. Recipe artificial_lookback8 (season-peak-short-reporting), the best peak-week recipe of the season-peak search (experiments/season-peak-ensemble-tree/protocol.json): sampled MLP, square-root admission counts, logit ED, local noise, neighbouring-state exchange, multiscale shape features, 8-week history, weekly + path + peak losses; training admission and ED histories perturbed with synchronous_phase_log reporting errors. Labels: 36 future finalized weekly flu admissions and ED share (September 2026 panel). Trained on 2022-23 through 2025-26 (no held-out season), seeds 42-47 (seeds 48-49 failed with GPU out-of-memory on 14 October and were not used). Operational inputs: raw Wednesday reports with no finalized fallback; reported in-window weeks kept as reported; 6000 joint paths pooled equally over seeds (1000 per seed); each path's maximum and its week give one peak draw. Development scores (each season held out, archived Wednesday reports, 862 matched state/DC tasks 2024-25 and 2025-26, lower is better): peak-week log score 2.81 vs FluSight-ensemble 2.58; peak-size WIS on log admissions 0.306 vs 0.523.",
+  "training_design": "experiments/peak-production-20261014.json",
+  "checkpoints_from": "longleaf:/proj/jlessler/projects/tapestry-all/tapestry-season-peak-ensemble/data/experiments/peak-production-20261014",
+  "code": "chromantis.production.season_peak",
+  "recipes": {
+    "Peak8": [
+      {
+        "checkpoint": "data/production-fits/peak-production-20261014/s42",
+        "sha256": "fd648954f52e2536dfc6a443e6474a3ab0672d21d5b8391da3836249a13298b7"
+      },
+      {
+        "checkpoint": "data/production-fits/peak-production-20261014/s43",
+        "sha256": "4fead6b8434db3277a0de81825736963bb380fcc637a72c473ded0232d1714a6"
+      },
+      {
+        "checkpoint": "data/production-fits/peak-production-20261014/s44",
+        "sha256": "ab177522dbf65fa7a13b24acd16fe1fb8f114321b5ce8c551ae9d0bb82bc0cb1"
+      },
+      {
+        "checkpoint": "data/production-fits/peak-production-20261014/s45",
+        "sha256": "d4fa04ed5363ecf54d3b67ae5b1ce0634166a55985c75ea040a44681c9db6e50"
+      },
+      {
+        "checkpoint": "data/production-fits/peak-production-20261014/s46",
+        "sha256": "c1e0a26d97fe8bced3a6a6924d9e360f5acb866711f38919c80e7647da0fef8d"
+      },
+      {
+        "checkpoint": "data/production-fits/peak-production-20261014/s47",
+        "sha256": "3ff330ae90d0209fb4f181e53f69b8a30b3182712fc3d79a1e3ce6c3fc1a2cfb"
+      }
+    ]
+  }
+}

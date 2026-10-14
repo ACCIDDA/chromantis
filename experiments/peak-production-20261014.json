@@ -1,0 +1,16 @@
+{
+  "description": "Season-peak production fits (2026-10-14): artificial_lookback8 from season-peak-short-reporting, the best peak-week recipe of the season-peak search (experiments/season-peak-ensemble-tree/protocol.json: peak-week log score 2.81, peak-size log WIS 0.306 on 862 matched state/DC tasks in 2024-25 and 2025-26, FluSight-ensemble 2.58 and 0.52). Sampled MLP, square-root counts, local noise, neighbouring-state exchange, multiscale shape features, 8-week history; training admission and ED histories perturbed by synchronous_phase_log reporting errors. Labels: 36 future finalized weekly flu admissions and ED share. Retrained on all four completed seasons 2022-23..2025-26 (no held-out season), seeds 42-49. Operational inputs: raw reported Wednesday data (forecast_view=raw).",
+  "candidates": {
+    "Peak8": "input_set=target,count_transform=sqrt,ed_transform=logit,spatial=neighbors,noise=local,width=192,epochs=160,patience=25,fit_partition=pathogen,input_normalization=b0,log_loss_weight=1.0,path_loss_weight=1.0,peak_loss_weight=1.0,forecast_view=raw,signal_features=multiscale,history_source=artificial,error_signals=targets,reporting_method=synchronous_phase_log,reporting_missingness=0,lookback=8"
+  },
+  "seeds": [
+    42,
+    43,
+    44,
+    45,
+    46,
+    47,
+    48,
+    49
+  ]
+}

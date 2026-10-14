@@ -48,7 +48,7 @@ def main(argv=None):
     season_start = pd.Timestamp(reference.year if reference.month >= 8 else reference.year - 1, 8, 1)
     hub = clone(args.hub, sub.target.unique())
     names = pd.read_csv(hub / 'auxiliary-data/locations.csv', dtype={'location': str}).set_index('location').location_name
-    for target in sorted(set(sub.target)):
+    for target in sorted(set(sub.target) & set(TARGETS)):  # weekly targets; season-peak targets have their own plot
         short, label = 'ed' if 'ed visits' in target else 'hosp', HUBS[TARGETS[target]]['targets'][target][1]
         forecast = sub[sub.target == target]
         if forecast.empty:

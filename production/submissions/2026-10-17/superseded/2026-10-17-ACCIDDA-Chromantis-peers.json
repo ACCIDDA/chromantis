@@ -1,0 +1,184 @@
+{
+  "created_at": "2026-10-14T22:16:06.606251+00:00",
+  "reference_date": "2026-10-17",
+  "hub_commit": "8e6ffa74f4722b7af4fef65289ee030f5ca7531b",
+  "hub": "/Users/chadi/Research/Tapestry/production/hubs/FluSight-forecast-hub",
+  "local_labels": [
+    "ACCIDDA-Chromantis"
+  ],
+  "locations": [
+    "US",
+    "06",
+    "48",
+    "36",
+    "37",
+    "19"
+  ],
+  "featured_peers": [
+    "CU-ensemble",
+    "Cornell_JHU-SCARCHhierarSIR",
+    "Cornell_JHU-hierarchSIR",
+    "DMAPRIME-HYB",
+    "FluSight-baseline",
+    "HallAI-FluTrend",
+    "MOBS-GLEAM_NCB_FLUH",
+    "NAU-epymorph",
+    "NEU_ISI-FluBcast",
+    "OHT_JHU-nbxd",
+    "Schnitzels-stack5",
+    "UMass-AR2",
+    "UMass-trends_ensemble",
+    "bayvaxbio-CountCast",
+    "docxology-panelqr"
+  ],
+  "missing_featured_peers": [],
+  "peer_models": [
+    "CU-ensemble",
+    "Cornell_JHU-SCARCHhierarSIR",
+    "Cornell_JHU-hierarchSIR",
+    "DMAPRIME-HYB",
+    "FluSight-baseline",
+    "HallAI-FluTrend",
+    "MOBS-GLEAM_NCB_FLUH",
+    "NAU-epymorph",
+    "NEU_ISI-FluBcast",
+    "OHT_JHU-nbxd",
+    "Schnitzels-stack5",
+    "UMass-AR2",
+    "UMass-trends_ensemble",
+    "bayvaxbio-CountCast",
+    "docxology-panelqr"
+  ],
+  "warnings": [],
+  "sources": [
+    {
+      "path": "/Users/chadi/Research/Tapestry/production/submissions/2026-10-17/superseded/2026-10-17-ACCIDDA-Chromantis.csv",
+      "sha256": "a4764eb9ad29a816330136c79902f63e2138605a0d5a52e95ca10640ed20880a",
+      "role": "local",
+      "model": "ACCIDDA-Chromantis",
+      "definition": {
+        "note": "Bes: one recipe, B_width256 (width-256 MLP, neighbouring-state exchange, 23 direct quantiles), trained on 2022-23 through 2025-26 (no held-out season), seeds 42-51. Training admission and ED histories made preliminary with artificial errors from the prescribed 2025-26 reporting process at 1.5x strength, plus reconstruction labels for the last 4 history weeks. No covariates. Labels: latest finalized future flu admissions and ED (September 2026 panel). Loss: native quantile loss plus 0.5 x log-admission loss. Operational inputs: reported Wednesday data with the newest two admission/ED weeks corrected by each fit's saved trees. Equal weight per seed; predictive distributions mixed. Selected by tree search tree-20261010 (experiments/tree-20261010/protocol.json)."
+      },
+      "operational_panel_sha256": "b8de0b1fd792eeab48f681d661f9feaae944de87aedaf3c28e5cec9f71d4dab9"
+    },
+    {
+      "path": "model-output/CU-ensemble/2026-10-17-CU-ensemble.csv",
+      "sha256": "d9bcab40506dafa53f0a3e2591784c5806e6b2327c0fc0bbbd22464de439cad2",
+      "role": "peer",
+      "model": "CU-ensemble"
+    },
+    {
+      "path": "model-output/Cornell_JHU-SCARCHhierarSIR/2026-10-17-Cornell_JHU-SCARCHhierarSIR.csv",
+      "sha256": "7c8f9470f15f0bdfa8d7272969321e0018957fda48cdebffec19333d6853911a",
+      "role": "peer",
+      "model": "Cornell_JHU-SCARCHhierarSIR"
+    },
+    {
+      "path": "model-output/Cornell_JHU-hierarchSIR/2026-10-17-Cornell_JHU-hierarchSIR.csv",
+      "sha256": "1c52d6e047e3ce1dcf95387a6d5cb90cdc3096029f590436e903d168ed64fbb5",
+      "role": "peer",
+      "model": "Cornell_JHU-hierarchSIR"
+    },
+    {
+      "path": "model-output/DMAPRIME-HYB/2026-10-17-DMAPRIME-HYB.csv",
+      "sha256": "fdf31376fc6ef8a534daf1f7a7e4b3e4eb5d4f5b92f1e7aff22e4eacf50e1709",
+      "role": "peer",
+      "model": "DMAPRIME-HYB"
+    },
+    {
+      "path": "model-output/FluSight-baseline/2026-10-17-FluSight-baseline.csv",
+      "sha256": "68d3363841c97de127b23fe6098a55ac6274070160caaec17c15bb17b4e60986",
+      "role": "peer",
+      "model": "FluSight-baseline"
+    },
+    {
+      "path": "model-output/HallAI-FluTrend/2026-10-17-HallAI-FluTrend.csv",
+      "sha256": "17693c034dfdd3a1b4e88d652c1ccac9af7c9336101900409d4f8f16365dc633",
+      "role": "peer",
+      "model": "HallAI-FluTrend"
+    },
+    {
+      "path": "model-output/MOBS-GLEAM_NCB_FLUH/2026-10-17-MOBS-GLEAM_NCB_FLUH.csv",
+      "sha256": "3df2fa05609c7977b226f6dbd86236ae637889672b6bb25176ba9d02c18f0573",
+      "role": "peer",
+      "model": "MOBS-GLEAM_NCB_FLUH"
+    },
+    {
+      "path": "model-output/NAU-epymorph/2026-10-17-NAU-epymorph.csv",
+      "sha256": "4becb6af1c44c4669e7f6eff3261cbd6ae5d401ac9a96ddd616a46821291ccb9",
+      "role": "peer",
+      "model": "NAU-epymorph"
+    },
+    {
+      "path": "model-output/NEU_ISI-FluBcast/2026-10-17-NEU_ISI-FluBcast.csv",
+      "sha256": "359a7c59ec5a45da94217a172820b2785a66dfce63a7c012e4df8e31ee009a33",
+      "role": "peer",
+      "model": "NEU_ISI-FluBcast"
+    },
+    {
+      "path": "model-output/OHT_JHU-nbxd/2026-10-17-OHT_JHU-nbxd.csv",
+      "sha256": "b0ac7a80e5712c015750cc97e4fc7b6799e3c380ffc0a71b2cc83b3869212427",
+      "role": "peer",
+      "model": "OHT_JHU-nbxd"
+    },
+    {
+      "path": "model-output/Schnitzels-stack5/2026-10-17-Schnitzels-stack5.csv",
+      "sha256": "b9ddd0486482004a30e8adb984e62749636491694f4cf5cd232ed050eb88d09a",
+      "role": "peer",
+      "model": "Schnitzels-stack5"
+    },
+    {
+      "path": "model-output/UMass-AR2/2026-10-17-UMass-AR2.csv",
+      "sha256": "c6a159000f4a41e9a1b4d9f429fd5e114276de386abe5af4eba91debe18b1f37",
+      "role": "peer",
+      "model": "UMass-AR2"
+    },
+    {
+      "path": "model-output/UMass-trends_ensemble/2026-10-17-UMass-trends_ensemble.parquet",
+      "sha256": "fed24dbaf169bf50283c3dc11f466e65194dee446db5cb825ed899d24630f192",
+      "role": "peer",
+      "model": "UMass-trends_ensemble"
+    },
+    {
+      "path": "model-output/bayvaxbio-CountCast/2026-10-17-bayvaxbio-CountCast.csv",
+      "sha256": "cb53fd4f9b5925d7afbb9e8fc50846e257c44fd9cce2041f37976e4df425a87d",
+      "role": "peer",
+      "model": "bayvaxbio-CountCast"
+    },
+    {
+      "path": "model-output/docxology-panelqr/2026-10-17-docxology-panelqr.csv",
+      "sha256": "7080085ba43267d9606ae1624faac0a29319d167fcc17ca417c8b7b866c70434",
+      "role": "peer",
+      "model": "docxology-panelqr"
+    },
+    {
+      "path": "auxiliary-data/locations.csv",
+      "sha256": "80aaa24750044a837e063812a1d0a22339c8b3a92513f71a23dac613eaaa29e0",
+      "role": "locations",
+      "model": null
+    },
+    {
+      "path": "target-data/target-hospital-admissions.csv",
+      "sha256": "6eb326465dedc266b5790e026f987728397408fc66e68bcbc59ad00f9695c1cc",
+      "role": "history",
+      "model": null
+    },
+    {
+      "path": "target-data/target-ed-visits-prop.csv",
+      "sha256": "d75d15450e52f022d1265a2a8a8287e016658a94a4915c51f7f8a31fce983ec8",
+      "role": "history",
+      "model": null
+    }
+  ],
+  "history_cutoff": "2026-10-10",
+  "zoom_weeks": 8,
+  "assumptions": [
+    "Descriptive forecast comparison, not accuracy scoring.",
+    "Latest target values at the pinned Hub commit, not reconstructed issuance-time truth.",
+    "No history dated after reference minus seven days is shown as current observations.",
+    "Prior season aligned by CDC week; unmatched week 53 omitted, no value rescaling.",
+    "Peer bands weight each available model median equally; local candidates are excluded.",
+    "Partial peer coverage is retained; no missing forecasts or history are imputed.",
+    "Training details are copied only from matching local export metadata; peer training is not inferred."
+  ]
+}

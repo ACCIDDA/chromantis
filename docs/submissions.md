@@ -10,7 +10,7 @@ Each entry must state: the recipe and its exact fitted checkpoints, the training
 
 | Pathogen | Reference date | Public model | Recipe | Recorded status |
 | --- | --- | --- | --- | --- |
-| Influenza | 17 October 2026 | ACCIDDA-Chromantis | Bes, one recipe, 10 fits | PR open (3804), not yet merged |
+| Influenza | 17 October 2026 | ACCIDDA-Chromantis | Bes weekly targets (10 fits) + Peak8 season-peak targets (6 fits) | Weekly file merged (PR 3804); peak targets added in PR 3815 |
 | Influenza | 10 October 2026 | ACCIDDA-Chromantis (submitted as ACCIDDA-EpiLoom) | Three-recipe B7 mixture, 30 fits | Merged after the deadline; replaced the on-time eight-recipe forecast |
 | COVID-19 | — | — | — | No submission entered in this log yet |
 | RSV | — | — | — | No submission entered in this log yet |
@@ -19,7 +19,15 @@ Hub metadata changes are deferred until the recipe is settled, as decided on 8 O
 
 ## Influenza reference date 17 October 2026
 
-**Bes was submitted** in [PR 3804](https://github.com/cdcepi/FluSight-forecast-hub/pull/3804), opened 14 October 2026 at 17:09 EDT from the fork's `main` (commit `62a30211`). Merge status is not yet recorded.
+**Bes was submitted** in [PR 3804](https://github.com/cdcepi/FluSight-forecast-hub/pull/3804), opened 14 October 2026 at 17:09 EDT from the fork's `main` (commit `62a30211`). Hub validation passed and it was merged on 14 October, with weekly targets only. That file is kept in `production/submissions/2026-10-17/superseded/`.
+
+**Season-peak targets were added** in [PR 3815](https://github.com/cdcepi/FluSight-forecast-hub/pull/3815), opened 14 October 2026 at about 18:20 EDT from the fork's `main` (commit `a1885800`). It replaces the same file with the weekly rows unchanged plus `peak inc flu hosp` and `peak week inc flu hosp`. The new file has 12,532 rows, SHA256 `c32fcaf51cc74ce873ed3ce2e7f50679b7dc74fe4c93f8f159393c2ede59f791`; merge status is not yet recorded.
+
+- **Peak model:** release `production/releases/peak-20261014.json`, recipe `artificial_lookback8` from the season-peak search (`experiments/season-peak-ensemble-tree/protocol.json`). It is a season-long sampled MLP with square-root admission counts, logit ED share, local noise, neighbouring-state exchange, multiscale shape features and an 8-week history, trained with weekly, path and peak losses. Training admission and ED histories were perturbed with synchronous_phase_log reporting errors.
+- **Training and labels:** 36 future finalized weekly flu admissions and ED share (September 2026 panel), trained on 2022-23 through 2025-26 with no held-out season, seeds 42-47 (training design `experiments/peak-production-20261014.json`, Slurm jobs 4914512 and 4915589). Seeds 48-49 ran out of GPU memory and are not in the submission.
+- **Operational inputs:** the same 14 October panel as the weekly forecast, raw Wednesday reports with no finalized fallback. Reported in-window weeks were kept as reported, and 6,000 joint season paths were pooled equally over the six seeds. Each path's maximum and its week give one peak draw (`chromantis.production.season_peak`). It covers 52 locations; Puerto Rico is not included.
+- **Development evidence:** these are retrospective, not prospective. Each season was held out in turn and replayed on archived Wednesday reports, on 862 matched state/DC tasks in 2024-25 and 2025-26 (lower is better). Peak-week negative log score was 2.81 against 2.58 for FluSight-ensemble, so the ensemble is better on timing, mainly in the last 7 weeks before the peak. Peak-size WIS on log admissions was 0.306 against 0.523, so this model is better on size.
+- **This forecast (US):** peak size median 34,177 admissions (5-95%: 20,905-54,007); peak week median 19 December 2026 (10-90%: 28 November 2026 to 2 January 2027). Plot: `production/submissions/2026-10-17/2026-10-17-peaks.pdf`.
 
 - **Model:** release `production/releases/bes-20261010.json`. One recipe, B_width256: a width-256 MLP with neighbouring-state exchange and 23 direct quantiles, seeds 42-51. Each fit was trained on 2022-23 through 2025-26, with no held-out season. Training admission and ED histories were made preliminary with artificial errors from the prescribed 2025-26 reporting process at 1.5x strength, plus reconstruction labels for the last 4 history weeks. No covariates. Labels: latest finalized future flu admissions and ED share (September 2026 panel). Equal weight per seed; predictive distributions mixed.
 - **Why Bes replaced B7:** in the 10 October tree search (`experiments/tree-20261010/protocol.json`), on states/DC log-admission WIS, Bes scored 0.2895 against 0.2976 for the submitted B7 mixture on the same held-out seasons. It was worse than B7 in 2023-24. In the forward-only check (2024-25 forecast by models trained on 2022-23 and 2023-24 only) it scored 0.336 against 0.368. Lower is better. These are retrospective comparisons, not prospective estimates.
