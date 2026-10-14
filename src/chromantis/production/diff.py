@@ -17,12 +17,14 @@ def main(argv=None):
     p.add_argument('new', type=Path)
     p.add_argument('out', type=Path)
     p.add_argument('--labels', nargs=2, default=['Submitted', 'New'])
-    p.add_argument('--hub', type=Path, default=Path('production/hubs/FluSight-forecast-hub'))
+    p.add_argument('--hub', type=Path, help="Local Hub clone (default: the clone of the files' Hub)")
     args = p.parse_args(argv)
     args.out.mkdir(parents=True, exist_ok=True)
-    TARGETS = {'wk inc flu hosp': ('Flu admissions', 'target-hospital-admissions.csv', 1),
-               'wk inc flu prop ed visits': ('Flu ED share (%)', 'target-ed-visits-prop.csv', 100)}
-    names = pd.read_csv(args.hub / 'auxiliary-data/locations.csv', dtype={'location': str}).set_index('location').location_name
+    from .hubs import HUBS, hub_of, clone
+    present = pd.read_csv(args.submitted, usecols=['target']).target.unique()
+    TARGETS = {t: (label + (' (%)' if 'ed visits' in t else ''), path, 100 if 'ed visits' in t else 1)
+               for t, (path, label) in HUBS[hub_of(present)]['targets'].items()}
+    names = pd.read_csv(clone(args.hub, present) / 'auxiliary-data/locations.csv', dtype={'location': str}).set_index('location').location_name
 
 
     def wide(path):

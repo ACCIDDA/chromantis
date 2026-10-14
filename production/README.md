@@ -153,6 +153,41 @@ new code reproduced the submitted B7 CSV byte for byte.
 - Model metadata goes in `model-metadata/<team>-<model>.yml`; our previous model
   there is `UNC_IDD-InfluPaint`.
 
+## RSV Hub (from 14 October 2026)
+
+`CDCgov/rsv-forecast-hub` takes the same Wednesday 11 PM ET deadline, horizons -1..3,
+`wk inc rsv hosp` and `wk inc rsv prop ed visits`, quantiles and, optionally, exactly 200
+sample trajectories per location and target (`tasks.json`). Hub-specific clones, target
+files, default peers and caps are in `src/chromantis/production/hubs.py`; `run`, `record`,
+`intervals`, `peers` and `diff` pick the Hub from the release or the CSV's targets.
+
+- `hubs/rsv-forecast-hub/` — `CDCgov/rsv-forecast-hub`, read-only.
+- `hubs/rsv-forecast-hub-fork/` — our fork `jcblemai/rsv-forecast-hub` (`origin`),
+  `upstream` = `CDCgov`.
+- `model-metadata/rsv/ACCIDDA-Chromantis.yml` — RSV metadata (four-recipe mixture).
+
+The released RSV models were trained on `panel-rsv.npz`: the panel with NHSN RSV admissions
+before 2024-11-02 blanked (voluntary reporting). The operational panel gets the same mask:
+
+```bash
+.venv/bin/python -m chromantis.dataset.build mask --dataset data/operational-<date>/processed/panel.npz \
+    --output data/operational-<date>/processed/panel-rsv.npz --signal nhsn_rsv_admissions \
+    --before 2024-11-02 --reason "NHSN RSV admissions voluntary before mandatory reporting"
+git -C production/hubs/rsv-forecast-hub pull --ff-only
+.venv/bin/python -m chromantis.production run --release production/releases/rsv-four-20261014.json \
+    --dataset data/operational-<date>/processed/panel-rsv.npz --issuance <wednesday> --samples
+```
+
+`--samples` adds the trajectories (`export.trajectories`): 200 per location, equal shares per
+recipe and per seed. Sampling recipes give whole network draws (one draw = one trajectory over
+horizons and both targets), taken at evenly spaced ranks of each location's draws.
+Direct-quantile recipes give values at evenly spaced levels of their seed-mixture quantiles,
+ordered at each location by the sampling recipes' trajectories (Schaake shuffle). The sample id
+`<state>_<k>` is shared by both targets of a location, as in CFA-PyRenew_HE. On 2026-10-14 the
+sample medians and 10%/90% quantiles matched the exported quantiles. The 2.5%/97.5% sample
+quantiles were about 10% narrower, because there are only 200 draws and the quantile mixture
+extrapolates its tails.
+
 ## Weekly refresh
 
 ```bash

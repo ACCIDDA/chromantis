@@ -504,13 +504,16 @@ def fit_models(train, validation, full_train, problem, scenario, seed, device, p
     return model, records
 
 
-def evaluate(model, eps, eval_members, device, output):
+def evaluate(model, eps, eval_members, device, output, keep_samples=False):
     """Held-out quantiles from `eval_members` draws (in chunks of EVAL_CHUNK) per episode.
+
+    `keep_samples` also saves the draws [episodes, members, horizons, channels, locations]
+    (sampling models only; each draw is one trajectory over horizons, locations and channels).
 
     Count-target quantiles are rounded to integers; proportion targets are not."""
     model.eval()
     quantiles, truths, masks = [], [], []
-    sum_quantiles = []
+    sum_quantiles, kept = [], []
     for e in eps:
         values = torch.as_tensor(e['values'][None], device=device)
         available = torch.as_tensor(e['available'][None], device=device)
@@ -566,6 +569,8 @@ def evaluate(model, eps, eval_members, device, output):
                         for j in range(0,eval_members,EVAL_CHUNK)]).numpy()[:,0]
                     samples=np.concatenate((samples[:eval_members//2],draws[eval_members//2:]))
                     q=np.quantile(samples,LEVELS,axis=0)
+        if keep_samples and samples is not None:
+            kept.append(samples.astype(np.float32))
         if samples is not None and len(e['target_dates']) == 4:
             sum_quantiles.append(np.quantile(samples[:, :, 0].sum(axis=1), LEVELS, axis=0))
         count_channels = [i for i, unit in enumerate(e['target_units']) if unit == 'count']
@@ -583,6 +588,8 @@ def evaluate(model, eps, eval_members, device, output):
         inputs['covariates_available'] = np.stack([e['covariates'][..., 1, :] for e in eps]).astype(bool)
     if 'forecast_cutoff_utc' in eps[0]:
         inputs['forecast_cutoff_utc'] = np.array([e['forecast_cutoff_utc'] for e in eps])
+    if kept:
+        inputs['samples'] = np.stack(kept)
     if sum_quantiles:
         inputs['target_0_sum_quantiles'] = np.stack(sum_quantiles, axis=1)
     np.savez_compressed(output / 'forecasts.npz', quantiles=q, quantile_levels=LEVELS,

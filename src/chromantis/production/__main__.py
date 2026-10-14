@@ -25,6 +25,7 @@ from pathlib import Path
 
 from .forecast import read_release, forecast_release
 from .export import export
+from .hubs import HUBS
 
 
 def run(argv):
@@ -33,16 +34,18 @@ def run(argv):
     p.add_argument('--dataset', required=True, help='Operational panel.npz')
     p.add_argument('--issuance', required=True, help='Wednesday issuance, e.g. 2026-10-14')
     p.add_argument('--out', type=Path, help='Default: production/output/<issuance>/<release name>')
-    p.add_argument('--hub', type=Path, default=Path('production/hubs/FluSight-forecast-hub'))
+    p.add_argument('--hub', type=Path, help="Local Hub clone (default: the release Hub's clone in hubs.py)")
+    p.add_argument('--samples', action='store_true', help='Also export sampled trajectories (Hubs accepting them: RSV)')
     p.add_argument('--device', default='cpu')
     p.add_argument('--jobs', type=int, default=4)
     p.add_argument('--compare-csv', nargs='*', type=Path, default=[], help='Additional same-week local candidates in the peer comparison')
     p.add_argument('--no-plots', action='store_true')
     args = p.parse_args(argv)
     release = read_release(args.release)
+    args.hub = args.hub or Path(HUBS[release['hub']]['clone'])
     out = args.out or Path('production/output') / args.issuance / release['name']
     members = forecast_release(release, args.dataset, args.issuance, out / 'forecasts', args.device, args.jobs)
-    csv = export(release, members, args.hub, out)
+    csv = export(release, members, args.hub, out, samples=args.samples)
     if not args.no_plots:
         from . import intervals, peers
         intervals.main([str(csv), '--hub', str(args.hub)])
@@ -55,10 +58,13 @@ def record(argv):
     p.add_argument('csv', type=Path, help='The submitted file')
     p.add_argument('--as', dest='name', help='File name used on the Hub, when it differs')
     p.add_argument('--superseded', action='store_true', help='A file that was replaced by a later one')
-    p.add_argument('--hub', type=Path, default=Path('production/hubs/FluSight-forecast-hub'))
+    p.add_argument('--hub', type=Path, help="Local Hub clone (default: the clone of the CSV's Hub)")
     p.add_argument('--hub-ref', default='HEAD', help='Hub commit for history and peers (default: the local clone)')
     args = p.parse_args(argv)
     from . import intervals, peers
+    from .hubs import clone
+    import pandas as pd
+    args.hub = clone(args.hub, pd.read_csv(args.csv, usecols=['target']).target.unique())
     name = args.name or args.csv.name
     reference = name[:10]
     folder = Path('production/submissions') / reference / ('superseded' if args.superseded else '')

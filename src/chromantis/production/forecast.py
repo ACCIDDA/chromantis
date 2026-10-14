@@ -11,7 +11,8 @@ recipe, with the SHA256 of each `model.pt`:
 `forecast_checkpoint` replays one checkpoint: the saved network, input scales and
 correction trees on the issuance's reported inputs (`corrected` view: newest weeks
 corrected by the saved trees; `raw`: as reported), 512 sampled members, seed + 1000.
-Writes `forecasts.npz` (marginal quantiles) and `operational-manifest.json`.
+Writes `forecasts.npz` (marginal quantiles, and the sampled trajectories of sampling recipes)
+and `operational-manifest.json`.
 
 History: scripts/forecast_b6.py and the B6/B7 replay scripts (2026-10-07), unchanged in
 what they compute.
@@ -91,7 +92,7 @@ def forecast_checkpoint(checkpoint, problem, dataset, issuance, output, view='co
         model = ForecastSlice(model, problem.future_indices(scenario))
     output.mkdir(parents=True, exist_ok=True)
     torch.manual_seed(metadata['seed'] + 1000)
-    evaluate(model, eps, members, device, output)
+    evaluate(model, eps, members, device, output, keep_samples=True)
     record = dict(checkpoint=str(checkpoint.resolve()), checkpoint_sha256=sha256(checkpoint / 'model.pt'),
                   operational_dataset=str(Path(dataset).resolve()), operational_dataset_sha256=sha256(dataset),
                   issuance=issuance, input_view=view, seed=metadata['seed'], scenario=metadata['scenario'],
