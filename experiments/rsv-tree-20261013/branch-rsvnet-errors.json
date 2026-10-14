@@ -1,0 +1,33 @@
+{
+  "description": "RSV-NET branch with covariate reporting errors (2026-10-14), problem us-rsv-short-term-prescribed-covariate-errors-rsvcov: the prescribed 2025-26 process also perturbs covariates at evaluation (RSV-NET has 2025-26 archives; NREVSS archives start 2026-07, so its donor errors are nearly empty) and recipes train with errors on every signal. Two production candidate recipes x {none, RSV-NET, NREVSS, both}, seeds 44-51.",
+  "parents": {
+    "Bw.cov_none": "Bw",
+    "Bw.cov_rsvnet": "Bw",
+    "Bw.cov_nrevss": "Bw",
+    "Bw.cov_rsvnet+nrevss": "Bw",
+    "Ball_c0w512.cov_none": "Ball_c0w512",
+    "Ball_c0w512.cov_rsvnet": "Ball_c0w512",
+    "Ball_c0w512.cov_nrevss": "Ball_c0w512",
+    "Ball_c0w512.cov_rsvnet+nrevss": "Ball_c0w512"
+  },
+  "candidates": {
+    "Bw.cov_none": "history_source=artificial,reconstruction_labels=1,error_signals=all,input_set=all,correction_weeks=2,correction_ed=1,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,spatial=neighbors,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=0.5,error_reference=2025-2026",
+    "Bw.cov_rsvnet": "history_source=artificial,reconstruction_labels=1,error_signals=all,input_set=all,correction_weeks=2,correction_ed=1,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,spatial=neighbors,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=0.5,error_reference=2025-2026,covariate_set=rsvnet",
+    "Bw.cov_nrevss": "history_source=artificial,reconstruction_labels=1,error_signals=all,input_set=all,correction_weeks=2,correction_ed=1,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,spatial=neighbors,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=0.5,error_reference=2025-2026,covariate_set=nrevss_rsv",
+    "Bw.cov_rsvnet+nrevss": "history_source=artificial,reconstruction_labels=1,error_signals=all,input_set=all,correction_weeks=2,correction_ed=1,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,spatial=neighbors,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=0.5,error_reference=2025-2026,covariate_set=rsvnet+nrevss_rsv",
+    "Ball_c0w512.cov_none": "history_source=artificial,reconstruction_labels=1,error_signals=all,input_set=all,correction_weeks=2,correction_ed=1,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,spatial=neighbors,decoder=quantile,width=512,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,actual_share=1.0,log_loss_weight=0.75,error_reference=2025-2026,annual_calendar=0",
+    "Ball_c0w512.cov_rsvnet": "history_source=artificial,reconstruction_labels=1,error_signals=all,input_set=all,correction_weeks=2,correction_ed=1,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,spatial=neighbors,decoder=quantile,width=512,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,actual_share=1.0,log_loss_weight=0.75,error_reference=2025-2026,annual_calendar=0,covariate_set=rsvnet",
+    "Ball_c0w512.cov_nrevss": "history_source=artificial,reconstruction_labels=1,error_signals=all,input_set=all,correction_weeks=2,correction_ed=1,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,spatial=neighbors,decoder=quantile,width=512,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,actual_share=1.0,log_loss_weight=0.75,error_reference=2025-2026,annual_calendar=0,covariate_set=nrevss_rsv",
+    "Ball_c0w512.cov_rsvnet+nrevss": "history_source=artificial,reconstruction_labels=1,error_signals=all,input_set=all,correction_weeks=2,correction_ed=1,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,spatial=neighbors,decoder=quantile,width=512,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,actual_share=1.0,log_loss_weight=0.75,error_reference=2025-2026,annual_calendar=0,covariate_set=rsvnet+nrevss_rsv"
+  },
+  "seeds": [
+    44,
+    45,
+    46,
+    47,
+    48,
+    49,
+    50,
+    51
+  ]
+}

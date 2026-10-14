@@ -1,0 +1,88 @@
+{
+  "description": "RSV fixed four-recipe mixture (decided 2026-10-14 before seeing its score: Ball_c0w512, A4c0, A4i, Bw; equal recipe and seed weights), 8 seeds each, three-fold problem; evaluation inputs: prescribed artificial 2025-26 preliminary histories.",
+  "recipes": {
+    "Ball_c0w512": {
+      "experiment": "rsv-tree-20261013-r03-leaders",
+      "scenario": "history_source=artificial,reconstruction_labels=1,error_signals=targets,input_set=all,correction_weeks=2,correction_ed=1,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,spatial=neighbors,decoder=quantile,width=512,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,actual_share=1.0,log_loss_weight=0.75,error_reference=2025-2026,annual_calendar=0",
+      "seeds": [
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51
+      ]
+    },
+    "A4c0": {
+      "experiment": "rsv-tree-20261013-r03-leaders",
+      "scenario": "history_source=artificial,history_correction=1,error_signals=targets,input_set=target,correction_weeks=2,correction_ed=1,joint_weight=0.05,correction_penalty=30.0,reporting_missingness=0,reporting_method=synchronous_phase_log,ed_transform=logit,width=192,epochs=160,patience=25,fit_partition=pathogen,covariate_encoder=summary,covariate_set=kinsa,input_normalization=b0,log_loss_weight=1.0,error_reference=2025-2026,annual_calendar=0",
+      "seeds": [
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51
+      ]
+    },
+    "A4i": {
+      "experiment": "rsv-tree-20261013-r03-leaders",
+      "scenario": "history_source=artificial,history_correction=1,error_signals=targets,input_set=all,correction_weeks=2,correction_ed=1,joint_weight=0.05,correction_penalty=30.0,reporting_missingness=0,reporting_method=synchronous_phase_log,ed_transform=logit,width=192,epochs=160,patience=25,fit_partition=pathogen,covariate_encoder=summary,covariate_set=kinsa,input_normalization=b0,log_loss_weight=1.0,error_reference=2025-2026",
+      "seeds": [
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51
+      ]
+    },
+    "Bw": {
+      "experiment": "rsv-tree-20261013-r03-leaders",
+      "scenario": "history_source=artificial,reconstruction_labels=1,error_signals=targets,input_set=all,correction_weeks=2,correction_ed=1,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,spatial=neighbors,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=0.5,error_reference=2025-2026",
+      "seeds": [
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51
+      ]
+    }
+  },
+  "groups": {
+    "Ball_c0w512": [
+      "Ball_c0w512"
+    ],
+    "A4c0": [
+      "A4c0"
+    ],
+    "A4i": [
+      "A4i"
+    ],
+    "Bw": [
+      "Bw"
+    ],
+    "four": [
+      "Ball_c0w512",
+      "A4c0",
+      "A4i",
+      "Bw"
+    ]
+  },
+  "rules": [
+    "mixture"
+  ],
+  "views": [
+    "corrected"
+  ],
+  "forecast_view": "corrected"
+}

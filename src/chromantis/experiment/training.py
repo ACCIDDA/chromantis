@@ -193,7 +193,12 @@ def fit_component(train, validation, channels, component, options, problem, scen
     model = factory(horizons=horizons, scale=loss_scales(unique_truth(train), problem.target_units), **options).to(device)
     ili = None
     if scenario.ili_training != 'none' and scenario.encoder == 'mlp':
-        pretrain_historical_panel(model, train, problem, scenario, channels, seed, device)
+        pretrain_panel(model, historical_panel(scenario.ili_path, train, problem, scenario), problem, scenario,
+                       channels, seed, device, scenario.ili_steps, 'historical_panel_pretrain')
+        torch.manual_seed(seed)  # Match modern minibatch ordering after transfer initialization.
+    elif scenario.ed_pretrain_steps:
+        pretrain_panel(model, ed_pseudo_panel(train, problem, scenario), problem, scenario, channels, seed, device,
+                       scenario.ed_pretrain_steps, 'ed_pseudo_pretrain')
         torch.manual_seed(seed)  # Match modern minibatch ordering after transfer initialization.
     elif scenario.ili_training != 'none':
         from chromantis.model.series import HistoricalILI
@@ -355,16 +360,66 @@ def historical_panel(path, train, problem, scenario):
     return result
 
 
-def pretrain_historical_panel(model, train, problem, scenario, channels, seed, device):
-    """`ili_steps` Adam updates of the modern loss, each on `batch_size` historical pseudo-panel episodes.
+def ed_pseudo_panel(train, problem, scenario):
+    """Pseudo admission episodes from the fit-only truth (RSV, user request 2026-10-13: "think outside the box").
+
+    Where a location's admission target is unobserved but its ED share is (RSV admissions before
+    mandatory reporting, 2022-10 to 2024-10), the admission label is ED x (Q95 of the location's
+    observed admissions / Q95 of its ED share on the same weeks). Observed values stay as they are;
+    other input histories (flu, COVID) come from the panel truth on the same weeks. Only dates in
+    the fit episodes' truth are used, so held-out and early-stopping weeks never enter. This
+    transfers the shape of earlier RSV seasons through ED; it is not observed admissions."""
+    from chromantis.dataset.episodes import episodes
+    dates, truth = unique_truth(train, with_dates=True)
+    units = problem.target_units
+    count, share = units.index('count'), units.index('proportion')
+    adm, adm_seen = truth[:, count, 0], truth[:, count, 1].astype(bool)
+    ed, ed_seen = truth[:, share, 0], truth[:, share, 1].astype(bool)
+    both = adm_seen & ed_seen
+    pseudo = np.full(adm.shape, np.nan, np.float32)
+    for li in range(adm.shape[1]):
+        if both[:, li].sum() < 10 or not np.quantile(ed[both[:, li], li], .95) > 0:
+            continue
+        ratio = np.quantile(adm[both[:, li], li], .95) / np.quantile(ed[both[:, li], li], .95)
+        pseudo[:, li] = np.where(adm_seen[:, li], adm[:, li], np.where(ed_seen[:, li], ed[:, li] * ratio, np.nan))
+    with np.load(problem.panel) as p:
+        panel_dates = p['dates'].astype(str)
+        panel = dict(locations=p['locations'], target_names=p['target_names'], covariate_names=p['covariate_names'],
+                     covariate_national_names=p['covariate_national_names'])
+        full = p['targets'].copy()
+        n_cov, n_nat = p['covariates'].shape[-1], p['covariates_national'].shape[-1]
+    keep = np.isin(panel_dates, dates)
+    names = list(map(str, panel['target_names']))
+    full[~keep] = np.nan
+    position = {d: i for i, d in enumerate(panel_dates)}
+    rows = [position[d] for d in dates]
+    full[rows, :, names.index(problem.targets[count])] = pseudo
+    full[rows, :, names.index(problem.targets[share])] = np.where(ed_seen, ed, np.nan)
+    panel.update(dates=panel_dates, targets=full,
+                 covariates=np.full((len(panel_dates), full.shape[1], n_cov), np.nan, np.float32),
+                 covariates_national=np.full((len(panel_dates), n_nat), np.nan, np.float32))
+    horizons = problem.model_horizons(scenario)
+    future = np.asarray(horizons) > 0
+    result = []
+    for e in episodes(panel, problem, problem.input_names(scenario.input_set), scenario.lookback, 'scheduled_final',
+                      problem.covariate_names(scenario.covariate_set), horizons=horizons):
+        e['target_available'] = e['target_available'] & future[:, None, None]
+        e['target_values'] = np.where(e['target_available'], e['target_values'], 0).astype(np.float32)
+        e['Y'] = np.stack((e['target_values'], e['target_available']), axis=2)
+        if e['target_available'].any():
+            result.append(e)
+    return result
+
+
+def pretrain_panel(model, hist, problem, scenario, channels, seed, device, steps, phase):
+    """`steps` Adam updates of the modern loss, each on `batch_size` pseudo-panel episodes `hist`.
 
     Batch size matches modern training (a 64-episode batch exceeded GPU memory at 256 members, 2026-10-06)."""
-    hist = historical_panel(scenario.ili_path, train, problem, scenario)
     weights = torch.as_tensor(loss_cell_weights(hist, problem.target_weights(scenario.loss_weights))[:, :, channels], device=device)
     optimizer = torch.optim.Adam(model.parameters(), lr=scenario.lr, weight_decay=scenario.weight_decay)
     rng = np.random.default_rng(seed + 31000)
     model.train()
-    for step in range(scenario.ili_steps):
+    for step in range(steps):
         batch_ids = torch.as_tensor(rng.choice(len(hist), min(scenario.batch_size, len(hist)), replace=False), device=device)
         optimizer.zero_grad()
         for ids in batch_ids.split(max(1, 1024 // scenario.members)):  # same accumulation as modern training
@@ -378,11 +433,11 @@ def pretrain_historical_panel(model, train, problem, scenario, channels, seed, d
             loss.backward()
         torch.nn.utils.clip_grad_norm_(model.parameters(), 5)
         optimizer.step()
-    print(json.dumps(dict(phase='historical_panel_pretrain', steps=scenario.ili_steps, episodes=len(hist),
+    print(json.dumps(dict(phase=phase, steps=steps, episodes=len(hist),
                           last_loss=float(loss.detach()))), flush=True)
 
 
-def unique_truth(episodes_):
+def unique_truth(episodes_, with_dates=False):
     """[dates, C, value/available, L]: the truth of every calendar date, pooled across episodes.
 
     Only truth enters (loss scales, 2026-09-22): target cells, and context cells flagged
@@ -404,11 +459,11 @@ def unique_truth(episodes_):
         for values, available, final, day in zip(e['values'], e['available'], e['known_final'], e['context_dates']):
             add(values[list(indices)], (available & final)[list(indices)], day)
     targets = len(episodes_[0]['target_names'])
+    dates = sorted(by_date)
     panel = np.zeros((len(by_date), targets, 2, len(episodes_[0]['locations'])), np.float32)
-    for i, (values, seen) in enumerate(by_date.values()):
-        panel[i, :, 0] = values
-        panel[i, :, 1] = seen
-    return panel
+    for i, day in enumerate(dates):
+        panel[i, :, 0], panel[i, :, 1] = by_date[day]
+    return ([str(d) for d in dates], panel) if with_dates else panel
 
 
 def fit_models(train, validation, full_train, problem, scenario, seed, device, pop, augmenter=None, selection_augmenter=None,

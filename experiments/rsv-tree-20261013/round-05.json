@@ -1,0 +1,40 @@
+{
+  "description": "RSV tree round 5 (2026-10-14), three-fold problem: the five best new single-recipe nodes of rounds 3-4 (multiscale-conv encoders, lookback 10, linear ED, A4 GRU) re-seeded on 48-51, and six combinations, including with the components of the best mixture (Ba_ll.inputs_all.calendar_off+width_512, A4.calendar_off).",
+  "round": 5,
+  "parents": {
+    "B_width256.inputs_all.multiscale_conv": "reseed",
+    "A4.inputs_all.multiscale_conv": "reseed",
+    "B_width256.inputs_all.lookback_10": "reseed",
+    "B_width256.inputs_all.ed_linear": "reseed",
+    "A4.inputs_all.gru": "reseed",
+    "B_width256.inputs_all.multiscale_conv+lookback_10": "B_width256.inputs_all",
+    "B_width256.inputs_all.lookback_10+ed_linear": "B_width256.inputs_all",
+    "A4.inputs_all.multiscale_conv+calendar_off": "A4.inputs_all",
+    "A4.calendar_off.inputs_all+gru": "A4.calendar_off",
+    "Ba_ll.inputs_all.calendar_off+width_512.multiscale_conv": "Ba_ll.inputs_all.calendar_off+width_512",
+    "Ba_ll.inputs_all.calendar_off+width_512.lookback_10": "Ba_ll.inputs_all.calendar_off+width_512"
+  },
+  "candidates": {
+    "B_width256.inputs_all.multiscale_conv": "history_source=artificial,reconstruction_labels=1,error_signals=targets,input_set=all,correction_weeks=2,correction_ed=1,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,spatial=neighbors,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=0.5,error_reference=2025-2026,encoder=multiscale_conv",
+    "A4.inputs_all.multiscale_conv": "history_source=artificial,history_correction=1,error_signals=targets,input_set=all,correction_weeks=2,correction_ed=1,joint_weight=0.05,correction_penalty=30.0,reporting_missingness=0,reporting_method=synchronous_phase_log,ed_transform=logit,width=192,epochs=160,patience=25,fit_partition=pathogen,covariate_encoder=summary,covariate_set=kinsa,input_normalization=b0,log_loss_weight=1.0,error_reference=2025-2026,encoder=multiscale_conv",
+    "B_width256.inputs_all.lookback_10": "history_source=artificial,reconstruction_labels=1,error_signals=targets,input_set=all,correction_weeks=2,correction_ed=1,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,spatial=neighbors,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=0.5,error_reference=2025-2026,lookback=10",
+    "B_width256.inputs_all.ed_linear": "history_source=artificial,reconstruction_labels=1,error_signals=targets,input_set=all,correction_weeks=2,correction_ed=1,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=linear,spatial=neighbors,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=0.5,error_reference=2025-2026",
+    "A4.inputs_all.gru": "history_source=artificial,history_correction=1,error_signals=targets,input_set=all,correction_weeks=2,correction_ed=1,joint_weight=0.05,correction_penalty=30.0,reporting_missingness=0,reporting_method=synchronous_phase_log,ed_transform=logit,width=192,epochs=160,patience=25,fit_partition=pathogen,covariate_encoder=summary,covariate_set=kinsa,input_normalization=b0,log_loss_weight=1.0,error_reference=2025-2026,encoder=gru",
+    "B_width256.inputs_all.multiscale_conv+lookback_10": "history_source=artificial,reconstruction_labels=1,error_signals=targets,input_set=all,correction_weeks=2,correction_ed=1,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,spatial=neighbors,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=0.5,error_reference=2025-2026,encoder=multiscale_conv,lookback=10",
+    "B_width256.inputs_all.lookback_10+ed_linear": "history_source=artificial,reconstruction_labels=1,error_signals=targets,input_set=all,correction_weeks=2,correction_ed=1,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=linear,spatial=neighbors,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=0.5,error_reference=2025-2026,lookback=10",
+    "A4.inputs_all.multiscale_conv+calendar_off": "history_source=artificial,history_correction=1,error_signals=targets,input_set=all,correction_weeks=2,correction_ed=1,joint_weight=0.05,correction_penalty=30.0,reporting_missingness=0,reporting_method=synchronous_phase_log,ed_transform=logit,width=192,epochs=160,patience=25,fit_partition=pathogen,covariate_encoder=summary,covariate_set=kinsa,input_normalization=b0,log_loss_weight=1.0,error_reference=2025-2026,encoder=multiscale_conv,annual_calendar=0",
+    "A4.calendar_off.inputs_all+gru": "history_source=artificial,history_correction=1,error_signals=targets,input_set=all,correction_weeks=2,correction_ed=1,joint_weight=0.05,correction_penalty=30.0,reporting_missingness=0,reporting_method=synchronous_phase_log,ed_transform=logit,width=192,epochs=160,patience=25,fit_partition=pathogen,covariate_encoder=summary,covariate_set=kinsa,input_normalization=b0,log_loss_weight=1.0,error_reference=2025-2026,annual_calendar=0,encoder=gru",
+    "Ba_ll.inputs_all.calendar_off+width_512.multiscale_conv": "history_source=artificial,reconstruction_labels=1,error_signals=targets,input_set=all,correction_weeks=2,correction_ed=1,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,spatial=neighbors,decoder=quantile,width=512,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,actual_share=1.0,log_loss_weight=0.75,error_reference=2025-2026,annual_calendar=0,encoder=multiscale_conv",
+    "Ba_ll.inputs_all.calendar_off+width_512.lookback_10": "history_source=artificial,reconstruction_labels=1,error_signals=targets,input_set=all,correction_weeks=2,correction_ed=1,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,spatial=neighbors,decoder=quantile,width=512,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,actual_share=1.0,log_loss_weight=0.75,error_reference=2025-2026,annual_calendar=0,lookback=10"
+  },
+  "seeds": [
+    44,
+    45,
+    46,
+    47,
+    48,
+    49,
+    50,
+    51
+  ]
+}

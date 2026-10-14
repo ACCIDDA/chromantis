@@ -325,6 +325,10 @@ def raw_wis(run, frozen, horizon=None):
             frame = frame[frame.horizon.eq(horizon)]
         else:  # the headline stays on Hub horizons 0-3 for models forecasting further ahead
             frame = frame[frame.horizon.lt(4)]
+        if not frame.model_original_mask.astype(bool).any():
+            # A target never observed in this season (RSV admissions before mandatory reporting,
+            # user decision 2026-10-13): its other targets are still scored.
+            continue
         frame = frame[frame.model_original_mask.astype(bool)]
         frame = frame[window(frame.reference_date)]
         if frame.empty:

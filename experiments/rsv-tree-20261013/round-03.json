@@ -1,0 +1,40 @@
+{
+  "description": "RSV tree round 3 children (2026-10-13), three-fold problem: settings never varied on the cross-pathogen-input leaders. For B_width256.inputs_all: learning rate x2 (helped Ba_ll), with width 512, log-loss 0.25, 3 corrected weeks, no input normalization, linear ED, location embedding, lookback 10. For A4.inputs_all (the sampled family; all recipes under-cover): local noise, 256 members, latent 32, learning rate x2, the A_blocks3 shape (width 96, 3 decoder blocks).",
+  "round": 3,
+  "parents": {
+    "B_width256.inputs_all.lr_double": "B_width256.inputs_all",
+    "B_width256.inputs_all.lr_double+width_512": "B_width256.inputs_all",
+    "B_width256.inputs_all.log_loss_0.25": "B_width256.inputs_all",
+    "B_width256.inputs_all.correct_3_weeks": "B_width256.inputs_all",
+    "B_width256.inputs_all.no_input_normalization": "B_width256.inputs_all",
+    "B_width256.inputs_all.ed_linear": "B_width256.inputs_all",
+    "B_width256.inputs_all.location_embedding_4": "B_width256.inputs_all",
+    "B_width256.inputs_all.lookback_10": "B_width256.inputs_all",
+    "A4.inputs_all.noise_local": "A4.inputs_all",
+    "A4.inputs_all.members_256": "A4.inputs_all",
+    "A4.inputs_all.latent_32": "A4.inputs_all",
+    "A4.inputs_all.lr_double": "A4.inputs_all",
+    "A4.inputs_all.width_96_blocks3": "A4.inputs_all"
+  },
+  "candidates": {
+    "B_width256.inputs_all.lr_double": "history_source=artificial,reconstruction_labels=1,error_signals=targets,input_set=all,correction_weeks=2,correction_ed=1,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,spatial=neighbors,decoder=quantile,width=256,epochs=240,patience=25,lr=0.001,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=0.5,error_reference=2025-2026",
+    "B_width256.inputs_all.lr_double+width_512": "history_source=artificial,reconstruction_labels=1,error_signals=targets,input_set=all,correction_weeks=2,correction_ed=1,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,spatial=neighbors,decoder=quantile,width=512,epochs=240,patience=25,lr=0.001,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=0.5,error_reference=2025-2026",
+    "B_width256.inputs_all.log_loss_0.25": "history_source=artificial,reconstruction_labels=1,error_signals=targets,input_set=all,correction_weeks=2,correction_ed=1,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,spatial=neighbors,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=0.25,error_reference=2025-2026",
+    "B_width256.inputs_all.correct_3_weeks": "history_source=artificial,reconstruction_labels=1,error_signals=targets,input_set=all,correction_weeks=3,correction_ed=1,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,spatial=neighbors,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=0.5,error_reference=2025-2026",
+    "B_width256.inputs_all.no_input_normalization": "history_source=artificial,reconstruction_labels=1,error_signals=targets,input_set=all,correction_weeks=2,correction_ed=1,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,spatial=neighbors,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=none,log_loss_weight=0.5,error_reference=2025-2026",
+    "B_width256.inputs_all.ed_linear": "history_source=artificial,reconstruction_labels=1,error_signals=targets,input_set=all,correction_weeks=2,correction_ed=1,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=linear,spatial=neighbors,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=0.5,error_reference=2025-2026",
+    "B_width256.inputs_all.location_embedding_4": "history_source=artificial,reconstruction_labels=1,error_signals=targets,input_set=all,correction_weeks=2,correction_ed=1,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,spatial=neighbors,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=0.5,error_reference=2025-2026,location_embedding=4",
+    "B_width256.inputs_all.lookback_10": "history_source=artificial,reconstruction_labels=1,error_signals=targets,input_set=all,correction_weeks=2,correction_ed=1,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,spatial=neighbors,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=0.5,error_reference=2025-2026,lookback=10",
+    "A4.inputs_all.noise_local": "history_source=artificial,history_correction=1,error_signals=targets,input_set=all,correction_weeks=2,correction_ed=1,joint_weight=0.05,correction_penalty=30.0,reporting_missingness=0,reporting_method=synchronous_phase_log,ed_transform=logit,width=192,epochs=160,patience=25,fit_partition=pathogen,covariate_encoder=summary,covariate_set=kinsa,input_normalization=b0,log_loss_weight=1.0,error_reference=2025-2026,noise=local",
+    "A4.inputs_all.members_256": "history_source=artificial,history_correction=1,error_signals=targets,input_set=all,correction_weeks=2,correction_ed=1,joint_weight=0.05,correction_penalty=30.0,reporting_missingness=0,reporting_method=synchronous_phase_log,ed_transform=logit,width=192,epochs=160,patience=25,fit_partition=pathogen,covariate_encoder=summary,covariate_set=kinsa,input_normalization=b0,log_loss_weight=1.0,error_reference=2025-2026,members=256",
+    "A4.inputs_all.latent_32": "history_source=artificial,history_correction=1,error_signals=targets,input_set=all,correction_weeks=2,correction_ed=1,joint_weight=0.05,correction_penalty=30.0,reporting_missingness=0,reporting_method=synchronous_phase_log,ed_transform=logit,width=192,epochs=160,patience=25,fit_partition=pathogen,covariate_encoder=summary,covariate_set=kinsa,input_normalization=b0,log_loss_weight=1.0,error_reference=2025-2026,latent=32",
+    "A4.inputs_all.lr_double": "history_source=artificial,history_correction=1,error_signals=targets,input_set=all,correction_weeks=2,correction_ed=1,joint_weight=0.05,correction_penalty=30.0,reporting_missingness=0,reporting_method=synchronous_phase_log,ed_transform=logit,width=192,epochs=160,patience=25,fit_partition=pathogen,covariate_encoder=summary,covariate_set=kinsa,input_normalization=b0,log_loss_weight=1.0,error_reference=2025-2026,lr=0.004",
+    "A4.inputs_all.width_96_blocks3": "history_source=artificial,history_correction=1,error_signals=targets,input_set=all,correction_weeks=2,correction_ed=1,joint_weight=0.05,correction_penalty=30.0,reporting_missingness=0,reporting_method=synchronous_phase_log,ed_transform=logit,width=96,epochs=160,patience=25,fit_partition=pathogen,covariate_encoder=summary,covariate_set=kinsa,input_normalization=b0,log_loss_weight=1.0,error_reference=2025-2026,decoder_blocks=3"
+  },
+  "seeds": [
+    44,
+    45,
+    46,
+    47
+  ]
+}

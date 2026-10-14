@@ -116,6 +116,8 @@ MEANING = {
     'error_signals': 'Choice C: admissions perturbs counts only; targets also perturbs ED but keeps covariates unchanged; all perturbs both targets and covariates.',
     'error_reference': 'Choice B: prescribed reporting-error season for training errors and prescribed evaluation '
                        'inputs, independent of the held-out epidemic season; empty = the fold\'s own seasons.',
+    'ed_pretrain_steps': 'MLP pretraining updates on the ED-derived pseudo admissions panel (weeks where the admission target is '
+                         'unobserved but its ED share is, scaled per location by fit-only Q95 ratio; 0 = off; 2026-10-14).',
     'ili_training': 'No historical transfer, forecasting pretraining, or joint forecasting on the pinned pre-2022 ILI archive.',
     'ili_path': 'Historical ILI auxiliary dataset; its hash is pinned by the experiment manager.',
     'ili_weight': 'Historical ILI loss weight for joint training after within-history normalization.',
@@ -211,6 +213,7 @@ class Scenario:
     input_set: str = 'all'
     ili_units: str = 'own'
     ili_steps: int = 200
+    ed_pretrain_steps: int = 0
     correction_weeks: int = 8
     correction_ed: bool = False
     ili_training: str = 'none'
@@ -311,6 +314,8 @@ class Scenario:
             raise ValueError('Sum WIS requires a sampled model')
         if self.ili_units != 'own' and self.ili_training == 'none':
             raise ValueError('Scaled ILI requires ILI training')
+        if self.ed_pretrain_steps < 0 or (self.ed_pretrain_steps and (self.encoder != 'mlp' or self.ili_training != 'none')):
+            raise ValueError('ED pretraining needs an MLP encoder and no ILI transfer')
         if self.ili_steps < 1 or self.correction_weeks < 1:
             raise ValueError('Invalid ILI or correction budget')
         if self.growth_anchor and self.encoder not in ('series_mlp', 'series_mixer', 'mlp'):

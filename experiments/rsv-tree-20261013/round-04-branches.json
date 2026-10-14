@@ -1,0 +1,36 @@
+{
+  "description": "RSV tree round 4 (2026-10-14), out-of-the-box branches on the three-fold problem us-rsv-short-term-prescribed, seeds 44-47. (1) ED-derived pretraining (new field ed_pretrain_steps): before training, the MLP is pretrained on a pseudo panel where RSV admissions unobserved before mandatory reporting (2022-10 to 2024-10) are replaced by RSV ED share x per-location Q95(admissions)/Q95(ED) from the fold's own training truth; held-out and early-stopping weeks never enter. Same mechanism as the flu ILI pretraining (historical_panel), source changed. 300 and 1200 steps on the three leaders, plus B_width256 with RSV-only input histories and 1200 steps. (2) Architecture: GRU and multiscale-convolution temporal encoders on B_width256.inputs_all and A4.inputs_all.",
+  "round": 4,
+  "parents": {
+    "B_width256.inputs_all.ed_pretrain_300": "B_width256.inputs_all",
+    "B_width256.inputs_all.ed_pretrain_1200": "B_width256.inputs_all",
+    "Ba_ll.inputs_all.ed_pretrain_300": "Ba_ll.inputs_all",
+    "Ba_ll.inputs_all.ed_pretrain_1200": "Ba_ll.inputs_all",
+    "A4.inputs_all.ed_pretrain_300": "A4.inputs_all",
+    "A4.inputs_all.ed_pretrain_1200": "A4.inputs_all",
+    "B_width256.ed_pretrain_1200": "B_width256",
+    "B_width256.inputs_all.gru": "B_width256.inputs_all",
+    "B_width256.inputs_all.multiscale_conv": "B_width256.inputs_all",
+    "A4.inputs_all.gru": "A4.inputs_all",
+    "A4.inputs_all.multiscale_conv": "A4.inputs_all"
+  },
+  "candidates": {
+    "B_width256.inputs_all.ed_pretrain_300": "history_source=artificial,reconstruction_labels=1,error_signals=targets,input_set=all,correction_weeks=2,correction_ed=1,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,spatial=neighbors,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=0.5,error_reference=2025-2026,ed_pretrain_steps=300",
+    "B_width256.inputs_all.ed_pretrain_1200": "history_source=artificial,reconstruction_labels=1,error_signals=targets,input_set=all,correction_weeks=2,correction_ed=1,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,spatial=neighbors,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=0.5,error_reference=2025-2026,ed_pretrain_steps=1200",
+    "Ba_ll.inputs_all.ed_pretrain_300": "history_source=artificial,reconstruction_labels=1,error_signals=targets,input_set=all,correction_weeks=2,correction_ed=1,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,spatial=neighbors,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,actual_share=1.0,log_loss_weight=0.75,error_reference=2025-2026,ed_pretrain_steps=300",
+    "Ba_ll.inputs_all.ed_pretrain_1200": "history_source=artificial,reconstruction_labels=1,error_signals=targets,input_set=all,correction_weeks=2,correction_ed=1,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,spatial=neighbors,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,actual_share=1.0,log_loss_weight=0.75,error_reference=2025-2026,ed_pretrain_steps=1200",
+    "A4.inputs_all.ed_pretrain_300": "history_source=artificial,history_correction=1,error_signals=targets,input_set=all,correction_weeks=2,correction_ed=1,joint_weight=0.05,correction_penalty=30.0,reporting_missingness=0,reporting_method=synchronous_phase_log,ed_transform=logit,width=192,epochs=160,patience=25,fit_partition=pathogen,covariate_encoder=summary,covariate_set=kinsa,input_normalization=b0,log_loss_weight=1.0,error_reference=2025-2026,ed_pretrain_steps=300",
+    "A4.inputs_all.ed_pretrain_1200": "history_source=artificial,history_correction=1,error_signals=targets,input_set=all,correction_weeks=2,correction_ed=1,joint_weight=0.05,correction_penalty=30.0,reporting_missingness=0,reporting_method=synchronous_phase_log,ed_transform=logit,width=192,epochs=160,patience=25,fit_partition=pathogen,covariate_encoder=summary,covariate_set=kinsa,input_normalization=b0,log_loss_weight=1.0,error_reference=2025-2026,ed_pretrain_steps=1200",
+    "B_width256.ed_pretrain_1200": "history_source=artificial,reconstruction_labels=1,error_signals=targets,input_set=target,correction_weeks=2,correction_ed=1,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,spatial=neighbors,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=0.5,error_reference=2025-2026,ed_pretrain_steps=1200",
+    "B_width256.inputs_all.gru": "history_source=artificial,reconstruction_labels=1,error_signals=targets,input_set=all,correction_weeks=2,correction_ed=1,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,spatial=neighbors,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=0.5,error_reference=2025-2026,encoder=gru",
+    "B_width256.inputs_all.multiscale_conv": "history_source=artificial,reconstruction_labels=1,error_signals=targets,input_set=all,correction_weeks=2,correction_ed=1,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,spatial=neighbors,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=0.5,error_reference=2025-2026,encoder=multiscale_conv",
+    "A4.inputs_all.gru": "history_source=artificial,history_correction=1,error_signals=targets,input_set=all,correction_weeks=2,correction_ed=1,joint_weight=0.05,correction_penalty=30.0,reporting_missingness=0,reporting_method=synchronous_phase_log,ed_transform=logit,width=192,epochs=160,patience=25,fit_partition=pathogen,covariate_encoder=summary,covariate_set=kinsa,input_normalization=b0,log_loss_weight=1.0,error_reference=2025-2026,encoder=gru",
+    "A4.inputs_all.multiscale_conv": "history_source=artificial,history_correction=1,error_signals=targets,input_set=all,correction_weeks=2,correction_ed=1,joint_weight=0.05,correction_penalty=30.0,reporting_missingness=0,reporting_method=synchronous_phase_log,ed_transform=logit,width=192,epochs=160,patience=25,fit_partition=pathogen,covariate_encoder=summary,covariate_set=kinsa,input_normalization=b0,log_loss_weight=1.0,error_reference=2025-2026,encoder=multiscale_conv"
+  },
+  "seeds": [
+    44,
+    45,
+    46,
+    47
+  ]
+}

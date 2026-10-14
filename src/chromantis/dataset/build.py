@@ -53,8 +53,8 @@ import time
 
 import numpy as np
 
-from .extract import (TARGET_SOURCES, DELPHI_COVARIATES, NWSS_INDICES, NATIONAL_ONLY, LOCATIONS,
-                      revisions, resolve, resolve_reports, nwss_frame, kinsa_frame, extract, _latest_snapshot)
+from .extract import (TARGET_SOURCES, DELPHI_COVARIATES, NWSS_INDICES, NATIONAL_ONLY, LOCATIONS, RSV_SOURCES,
+                      revisions, resolve, resolve_reports, nwss_frame, kinsa_frame, rsv_frame, extract, _latest_snapshot)
 from chromantis.problem import Dataset, file_sha256
 
 CALENDAR_START = '2022-05-14'  # Twelve context weeks before the 2022–23 season.
@@ -70,11 +70,14 @@ COVARIATE_GROUPS = {
     'ilinet': ('ilinet_ili',),
     'clinical_lab': ('clinical_lab_flu_pct_positive',),
     'flusurv': ('flusurv_flu_rate',),
+    'rsvnet': ('rsvnet_rsv_rate',),
+    'nrevss_rsv': ('nrevss_rsv_pct_positive',),
 }
 COVARIATE_NAMES = tuple(name for group in COVARIATE_GROUPS.values() for name in group)
 STATE_COVARIATE_NAMES = tuple(n for n in COVARIATE_NAMES if n not in NATIONAL_ONLY)
 NATIONAL_COVARIATE_NAMES = tuple(n for n in COVARIATE_NAMES if n in NATIONAL_ONLY)
-LAG_ONE_COVARIATES = frozenset({'ilinet_ili', 'clinical_lab_flu_pct_positive', 'flusurv_flu_rate'})
+LAG_ONE_COVARIATES = frozenset({'ilinet_ili', 'clinical_lab_flu_pct_positive', 'flusurv_flu_rate',
+                                'rsvnet_rsv_rate', 'nrevss_rsv_pct_positive'})
 PANEL_DATASET = 'data/processed/panel.npz'
 HUBS = ('flusight', 'covid', 'rsv')
 # Deadline day per Hub forecast reference date (the Saturday after the Wednesday).
@@ -105,7 +108,7 @@ def utc(moment):
     return moment.astimezone(ZoneInfo('UTC')).strftime('%Y-%m-%dT%H:%M:%SZ')
 SNAPSHOT_DATASETS = sorted({d for spec in TARGET_SOURCES.values() for d in spec[:2] if d} |
                            {spec[0] for spec in DELPHI_COVARIATES.values()} |
-                           {'derived_nwss_state_indices', 'pophive_kinsa_ili'})
+                           {'derived_nwss_state_indices', 'pophive_kinsa_ili', 'hub_rsvnet', 'cdc_nrevss_rsv_vintages'})
 
 
 def covariate_names_for(covariate_set, spec=DEFAULT_DATASET_SPEC):
@@ -173,6 +176,9 @@ def _source(task):
     elif name == 'kinsa_ili':
         frame, names = kinsa_frame(data_root), ['kinsa_ili']
         at = lambda day, days: resolve_reports(frame, day, days, LOCATIONS, names)
+    elif name == 'rsv':
+        frame, names = rsv_frame(data_root), list(RSV_SOURCES)
+        at = lambda day, days: resolve_reports(frame, day, days, LOCATIONS, names)
     else:
         archive = revisions(name, data_root)
         at = lambda day, days: resolve(archive, day, days, LOCATIONS)[:, :, None]
@@ -210,7 +216,7 @@ def build(data_root='data', *, spec=DEFAULT_DATASET_SPEC, start=CALENDAR_START, 
     truth_day = truth_day or date.today().isoformat()
     dates = weekly_calendar(start, truth_day)
     issuances = wednesdays(start, truth_day)
-    names = (*channels, *DELPHI_COVARIATES, 'nwss', 'kinsa_ili')
+    names = (*channels, *DELPHI_COVARIATES, 'nwss', 'kinsa_ili', 'rsv')
     selected = set(names if sources is None else sources)
     if not selected or selected - set(names):
         raise ValueError('Unknown or empty build source selection')
@@ -218,7 +224,8 @@ def build(data_root='data', *, spec=DEFAULT_DATASET_SPEC, start=CALENDAR_START, 
     with ProcessPoolExecutor(max_workers=workers or min(len(tasks), os.cpu_count() or 1)) as pool:
         results = {name: (truth, asof, others, seconds) for name, truth, asof, others, seconds in pool.map(_source, tasks)}
     for name in set(names) - selected:
-        truth = np.full((len(dates), len(LOCATIONS), len(NWSS_INDICES) if name == 'nwss' else 1), np.nan, dtype=np.float32)
+        truth = np.full((len(dates), len(LOCATIONS), {'nwss': len(NWSS_INDICES), 'rsv': len(RSV_SOURCES)}.get(name, 1)),
+                        np.nan, dtype=np.float32)
         asof = np.full((len(issuances), *truth.shape), np.nan, dtype=np.float32)
         others = {}
         for hub in HUBS[1:]:
@@ -231,6 +238,7 @@ def build(data_root='data', *, spec=DEFAULT_DATASET_SPEC, start=CALENDAR_START, 
     columns = {n: (results[n][0], results[n][1]) for n in DELPHI_COVARIATES}
     columns |= {n: (results['nwss'][0][..., k:k + 1], results['nwss'][1][..., k:k + 1])
                 for k, n in enumerate(NWSS_INDICES)}
+    columns |= {n: (results['rsv'][0][..., k:k + 1], results['rsv'][1][..., k:k + 1]) for k, n in enumerate(RSV_SOURCES)}
     covariates = np.concatenate([columns[n][0] for n in STATE_COVARIATE_NAMES], axis=2)
     asof_covariates = np.concatenate([columns[n][1] for n in STATE_COVARIATE_NAMES], axis=3)
     national = results['kinsa_ili'][0][:, LOCATIONS.index('US'), :]
@@ -242,6 +250,7 @@ def build(data_root='data', *, spec=DEFAULT_DATASET_SPEC, start=CALENDAR_START, 
         hub_arrays[f'hub_{hub}_asof_targets'] = np.concatenate([results[n][2][hub][1] for n in channels], axis=3)
         columns_ = {n: results[n][2][hub][1] for n in DELPHI_COVARIATES}
         columns_ |= {n: results['nwss'][2][hub][1][..., k:k + 1] for k, n in enumerate(NWSS_INDICES)}
+        columns_ |= {n: results['rsv'][2][hub][1][..., k:k + 1] for k, n in enumerate(RSV_SOURCES)}
         hub_arrays[f'hub_{hub}_asof_covariates'] = np.concatenate([columns_[n] for n in STATE_COVARIATE_NAMES], axis=3)
         hub_arrays[f'hub_{hub}_asof_covariates_national'] = results['kinsa_ili'][2][hub][1][:, :, LOCATIONS.index('US'), :]
     cutoffs = np.array([[utc(deadline(i, hub)) for i in issuances] for hub in HUBS])
@@ -338,6 +347,73 @@ def load(path):
         return decode({k: data[k] for k in data.files})
 
 
+def mask(arrays, signal, first_week, reason):
+    """Copy of a dense panel with `signal` treated as never observed before `first_week`.
+
+    Blanks the truth panel and every as-of array (FluSight-deadline and each Hub's own),
+    and records the rule in the metadata. Used for NHSN RSV admissions, which were
+    voluntary and incomplete before mandatory reporting (first full week 2024-11-02;
+    user decision 2026-10-13)."""
+    out = dict(arrays)
+    names = {name: list(map(str, arrays[names_key])) for name, names_key in
+             (('targets', 'target_names'), ('covariates', 'covariate_names'))}
+    kind = next(k for k, v in names.items() if signal in v)
+    channel, weeks = names[kind].index(signal), arrays['dates'] < np.datetime64(first_week)
+    asof = next(name for name, truth in ASOF_ARRAYS.items() if truth == kind)
+    out[kind] = arrays[kind].copy()
+    out[kind][weeks, :, channel] = np.nan
+    for name in [asof] + [f'hub_{hub}_{asof}' for hub in HUBS[1:] if f'hub_{hub}_{asof}' in arrays]:
+        out[name] = arrays[name].copy()
+        out[name][:, weeks, :, channel] = np.nan
+    metadata = json.loads(str(arrays['metadata']))
+    metadata.setdefault('masked', []).append(dict(signal=signal, before=first_week, reason=reason))
+    out['metadata'] = np.array(json.dumps(metadata))
+    return out
+
+
+def extend_rsv(arrays, data_root='data'):
+    """Copy of a dense panel with the RSV covariates (RSV_SOURCES) appended as state covariates.
+
+    Computed exactly as `build` would (same calendar, issuances, truth day and Hub deadlines),
+    so every existing array is unchanged; a full rebuild gives the same channel order
+    (2026-10-14: added without rebuilding the pinned 5 October panel)."""
+    metadata = json.loads(str(arrays['metadata']))
+    if set(RSV_SOURCES) & set(map(str, arrays['covariate_names'])):
+        raise ValueError('Panel already holds the RSV covariates')
+    dates = [str(d) for d in arrays['dates']]
+    issuances = [str(d) for d in arrays['issuance_dates']]
+    _, truth, asof, others, seconds = _source(('rsv', data_root, dates, issuances, metadata['truth_day']))
+    out = dict(arrays, covariate_names=np.array([*map(str, arrays['covariate_names']), *RSV_SOURCES]),
+               covariates=np.concatenate([arrays['covariates'], truth], axis=2),
+               asof_covariates=np.concatenate([arrays['asof_covariates'], asof], axis=3))
+    for hub in HUBS[1:]:
+        rows, values = others[hub]
+        if not np.array_equal(rows, arrays[f'hub_{hub}_issuances']):
+            raise ValueError(f'{hub} deadline rows differ from the panel')
+        out[f'hub_{hub}_asof_covariates'] = np.concatenate([arrays[f'hub_{hub}_asof_covariates'], values], axis=3)
+    metadata['covariate_groups'] = {k: list(v) for k, v in COVARIATE_GROUPS.items()}
+    metadata['snapshots'] |= {key: _latest_snapshot(data_root, key).name for key in ('hub_rsvnet', 'cdc_nrevss_rsv_vintages')}
+    metadata['source_seconds']['rsv'] = round(seconds, 1)
+    metadata.setdefault('extended', []).append(dict(sources=list(RSV_SOURCES), on=date.today().isoformat()))
+    out['metadata'] = np.array(json.dumps(metadata))
+    return out
+
+
+def historical_rsvnet(data_root, output, end='2022-08-01'):
+    """Pre-panel RSV-NET catchment rates (finalized, latest release) in the historical ILI file layout
+    (`values [dates, locations]`, `dates`, `locations`), for MLP panel pretraining of RSV recipes
+    (`ili_training=pretrain`, `ili_path=` this file; 2026-10-14). 14 catchment states and US."""
+    frame = rsv_frame(data_root)
+    frame = frame[frame.name.eq('rsvnet_rsv_rate') & frame.reference_time.lt(end)]
+    frame = frame.sort_values('report_time').drop_duplicates(['location', 'reference_time'], keep='last')
+    table = frame.pivot(index='reference_time', columns='location', values='value')
+    days = weekly_calendar(table.index.min(), table.index.max())
+    table = table.reindex(days)
+    np.savez_compressed(output, values=table.to_numpy(np.float32), dates=np.array(days),
+                        locations=np.array([str(c).lower() for c in table.columns]))
+    return table
+
+
 def _check_source(task):
     """Direct `extract` resolution of one source at each sampled day -> max mismatch count."""
     name, data_root, days, dates = task
@@ -407,6 +483,19 @@ def main(argv=None):
     checked.add_argument('--data-root', default='data')
     checked.add_argument('--samples', type=int, default=4, help='Random issuances checked (plus the truth day)')
     checked.add_argument('--seed', type=int, default=0)
+    extended = sub.add_parser('extend-rsv', help='Write a copy of a panel with the RSV covariates appended')
+    extended.add_argument('--dataset', default=PANEL_DATASET)
+    extended.add_argument('--output', required=True)
+    extended.add_argument('--data-root', default='data')
+    history = sub.add_parser('historical-rsvnet', help='Write pre-2022 RSV-NET rates for MLP pretraining')
+    history.add_argument('--data-root', default='data')
+    history.add_argument('--output', default='data/processed/historical_rsvnet.npz')
+    masked = sub.add_parser('mask', help='Write a copy of a panel with one signal unobserved before a week')
+    masked.add_argument('--dataset', default=PANEL_DATASET)
+    masked.add_argument('--output', required=True)
+    masked.add_argument('--signal', required=True)
+    masked.add_argument('--before', required=True, help='First kept week (Saturday, YYYY-MM-DD)')
+    masked.add_argument('--reason', required=True)
     indices = sub.add_parser('nwss-indices', help='Rebuild the derived_nwss_state_indices snapshot from '
                              'delphi_nwss + delphi_nwss_aux (run before build; see dataset/nwss.py)')
     indices.add_argument('--data-root', default='data')
@@ -427,6 +516,16 @@ def main(argv=None):
                               issuances=len(arrays['issuance_dates']), seconds=round(time.perf_counter() - started, 1),
                               megabytes=round(Path(args.output).stat().st_size / 1e6, 2),
                               source_seconds=json.loads(str(arrays['metadata']))['source_seconds'])))
+    elif args.command == 'extend-rsv':
+        save(extend_rsv(load(args.dataset), args.data_root), args.output)
+        print(json.dumps(dict(output=args.output, added=list(RSV_SOURCES))))
+    elif args.command == 'historical-rsvnet':
+        table = historical_rsvnet(args.data_root, args.output)
+        print(json.dumps(dict(output=args.output, weeks=len(table), first=table.index[0], last=table.index[-1],
+                              locations=list(table.columns))))
+    elif args.command == 'mask':
+        save(mask(load(args.dataset), args.signal, args.before, args.reason), args.output)
+        print(json.dumps(dict(output=args.output, signal=args.signal, before=args.before)))
     elif args.command == 'check':
         result = check(args.dataset, args.data_root, args.samples, args.seed)
         print(json.dumps(result, indent=2))

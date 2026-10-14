@@ -1,0 +1,33 @@
+{
+  "description": "RSV-NET history pretraining (2026-10-14), problem us-rsv-short-term-prescribed (references: the same recipes in rsv-tree-20261013-r03-leaders, same seeds). Before training, each network is pretrained for 300 or 1200 steps on pseudo RSV admission/ED panels built from pre-August-2022 RSV-NET catchment rates (2014-2022, 12 states + US; data/processed/historical_rsvnet.npz), each location's series scaled to its fit-only modern admission or ED Q95 \u2014 the flu ILI pretraining mechanism (historical_panel) with RSV-NET as the source. Seeds 44-51.",
+  "parents": {
+    "Bw.rsvnet_pretrain_300": "B_width256.inputs_all",
+    "Bw.rsvnet_pretrain_1200": "B_width256.inputs_all",
+    "A4i.rsvnet_pretrain_300": "A4.inputs_all",
+    "A4i.rsvnet_pretrain_1200": "A4.inputs_all",
+    "A4c0.rsvnet_pretrain_300": "A4.calendar_off",
+    "A4c0.rsvnet_pretrain_1200": "A4.calendar_off",
+    "Ball_c0w512.rsvnet_pretrain_300": "Ba_ll.inputs_all.calendar_off+width_512",
+    "Ball_c0w512.rsvnet_pretrain_1200": "Ba_ll.inputs_all.calendar_off+width_512"
+  },
+  "candidates": {
+    "Bw.rsvnet_pretrain_300": "history_source=artificial,reconstruction_labels=1,error_signals=targets,input_set=all,correction_weeks=2,correction_ed=1,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,spatial=neighbors,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=0.5,error_reference=2025-2026,ili_training=pretrain,ili_units=flu_scaled,ili_steps=300,ili_path=data/processed/historical_rsvnet.npz",
+    "Bw.rsvnet_pretrain_1200": "history_source=artificial,reconstruction_labels=1,error_signals=targets,input_set=all,correction_weeks=2,correction_ed=1,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,spatial=neighbors,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=0.5,error_reference=2025-2026,ili_training=pretrain,ili_units=flu_scaled,ili_steps=1200,ili_path=data/processed/historical_rsvnet.npz",
+    "A4i.rsvnet_pretrain_300": "history_source=artificial,history_correction=1,error_signals=targets,input_set=all,correction_weeks=2,correction_ed=1,joint_weight=0.05,correction_penalty=30.0,reporting_missingness=0,reporting_method=synchronous_phase_log,ed_transform=logit,width=192,epochs=160,patience=25,fit_partition=pathogen,covariate_encoder=summary,covariate_set=kinsa,input_normalization=b0,log_loss_weight=1.0,error_reference=2025-2026,ili_training=pretrain,ili_units=flu_scaled,ili_steps=300,ili_path=data/processed/historical_rsvnet.npz",
+    "A4i.rsvnet_pretrain_1200": "history_source=artificial,history_correction=1,error_signals=targets,input_set=all,correction_weeks=2,correction_ed=1,joint_weight=0.05,correction_penalty=30.0,reporting_missingness=0,reporting_method=synchronous_phase_log,ed_transform=logit,width=192,epochs=160,patience=25,fit_partition=pathogen,covariate_encoder=summary,covariate_set=kinsa,input_normalization=b0,log_loss_weight=1.0,error_reference=2025-2026,ili_training=pretrain,ili_units=flu_scaled,ili_steps=1200,ili_path=data/processed/historical_rsvnet.npz",
+    "A4c0.rsvnet_pretrain_300": "history_source=artificial,history_correction=1,error_signals=targets,input_set=target,correction_weeks=2,correction_ed=1,joint_weight=0.05,correction_penalty=30.0,reporting_missingness=0,reporting_method=synchronous_phase_log,ed_transform=logit,width=192,epochs=160,patience=25,fit_partition=pathogen,covariate_encoder=summary,covariate_set=kinsa,input_normalization=b0,log_loss_weight=1.0,error_reference=2025-2026,annual_calendar=0,ili_training=pretrain,ili_units=flu_scaled,ili_steps=300,ili_path=data/processed/historical_rsvnet.npz",
+    "A4c0.rsvnet_pretrain_1200": "history_source=artificial,history_correction=1,error_signals=targets,input_set=target,correction_weeks=2,correction_ed=1,joint_weight=0.05,correction_penalty=30.0,reporting_missingness=0,reporting_method=synchronous_phase_log,ed_transform=logit,width=192,epochs=160,patience=25,fit_partition=pathogen,covariate_encoder=summary,covariate_set=kinsa,input_normalization=b0,log_loss_weight=1.0,error_reference=2025-2026,annual_calendar=0,ili_training=pretrain,ili_units=flu_scaled,ili_steps=1200,ili_path=data/processed/historical_rsvnet.npz",
+    "Ball_c0w512.rsvnet_pretrain_300": "history_source=artificial,reconstruction_labels=1,error_signals=targets,input_set=all,correction_weeks=2,correction_ed=1,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,spatial=neighbors,decoder=quantile,width=512,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,actual_share=1.0,log_loss_weight=0.75,error_reference=2025-2026,annual_calendar=0,ili_training=pretrain,ili_units=flu_scaled,ili_steps=300,ili_path=data/processed/historical_rsvnet.npz",
+    "Ball_c0w512.rsvnet_pretrain_1200": "history_source=artificial,reconstruction_labels=1,error_signals=targets,input_set=all,correction_weeks=2,correction_ed=1,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,spatial=neighbors,decoder=quantile,width=512,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,actual_share=1.0,log_loss_weight=0.75,error_reference=2025-2026,annual_calendar=0,ili_training=pretrain,ili_units=flu_scaled,ili_steps=1200,ili_path=data/processed/historical_rsvnet.npz"
+  },
+  "seeds": [
+    44,
+    45,
+    46,
+    47,
+    48,
+    49,
+    50,
+    51
+  ]
+}

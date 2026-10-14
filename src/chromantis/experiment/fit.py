@@ -425,7 +425,13 @@ def replay(fold, output, inputs, dataset, device='cpu'):
     scenario = Scenario.from_string(meta['scenario'])
     problem = Problem.load(meta['problem'])
     if inputs == 'reported':
-        if problem.evaluation_inputs != 'reported':
+        if problem.evaluation_inputs == 'prescribed':
+            # A fit scored on artificial histories, replayed on the archived reports (2026-10-14):
+            # only the evaluation inputs change; the model, corrector and labels are the fit's own.
+            import dataclasses
+            problem = dataclasses.replace(problem, evaluation_inputs='reported', evaluation_draws=1,
+                                          evaluation_covariate_errors=False)
+        elif problem.evaluation_inputs != 'reported':
             raise ValueError('This problem does not define reported evaluation inputs')
     elif inputs != 'synthetic' or problem.evaluation_inputs != 'prescribed':
         raise ValueError('Replay inputs are reported, or synthetic for a prescribed-revision fit')

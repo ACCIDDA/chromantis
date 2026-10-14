@@ -32,6 +32,8 @@ When running on longleaf, we have two choices:
   - g1803jles01.ll.unc.edu:  512GB ram 56 physical CPU cores Quantity 4 of Nvidia L40, 48GB
   - g1803jles02.ll.unc.edu: 64 physical CPU cores 2Tb RAM 2x Nvidia H100, 96 GB
 
+When told to work until a given time, keep every GPU busy until then: chain the next round in Slurm before the current one ends (never rely on a local watcher to resume you), and when the search stalls, launch new outside-the-box experiments yourself instead of waiting.
+
 ## Launching training and scoring jobs
 
 Whenever you launch a job that trains or scores, **always give the user the

@@ -171,11 +171,17 @@ def rank(runs, frozen, destination):
                          f'{support[support > 1].index.tolist()}')
     keys = ['config_id', 'name', 'seed', 'history', 'deployed', 'target', 'scale', 'geography']
     means = raw.groupby(keys).agg(score=('mean_wis', 'mean'), seasons=('season', 'nunique')).reset_index()
+    # Every run scores the same (target, season) pairs. A target may be absent from a season only when
+    # it was never observed there (raw_wis skips it, e.g. RSV admissions before November 2024).
+    pairs = raw.groupby(['config_id', 'seed'])[['target', 'season']] \
+        .apply(lambda f: frozenset(map(tuple, f.drop_duplicates().to_numpy())))
+    if pairs.nunique() != 1:
+        raise ValueError('Runs are scored on different target-season pairs: '
+                         f'{sorted(set().union(*pairs) - set.intersection(*map(set, pairs)))}')
     for run in runs:
         expected = len(json.loads((Path(run['path']) / 'manifest.json').read_text())['folds'])
-        mine = means[(means.config_id == run['config_id']) & (means.seed == run['seed'])]
-        if not mine.seasons.eq(expected).all():
-            raise ValueError(f'{run["name"]} seed {run["seed"]}: every target must be scored in every evaluated season')
+        if len({season for _, season in pairs.iloc[0]}) != expected:
+            raise ValueError(f'{run["name"]} seed {run["seed"]}: some evaluated season has no scored target')
     # The full scenario string (config_id) appears only in headline-rankings.csv; the other
     # tables identify configurations by name, which keeps them small.
     means.drop(columns='config_id').to_csv(destination / 'headline-seed-scores.csv', index=False, float_format='%.6g')

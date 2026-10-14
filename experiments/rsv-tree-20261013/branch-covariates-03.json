@@ -1,0 +1,33 @@
+{
+  "description": "RSV covariate branch round 3 (2026-10-13), three-fold problem us-rsv-short-term-prescribed-covariate-errors, seeds 44-51. Round 2 gave Ba_ll.inputs_all ILINet + RSV wastewater 0.335 vs no covariate 0.346 but ILINet alone 0.351: within noise. Eight seeds on the two leaders decide whether ILINet and/or RSV wastewater help.",
+  "parents": {
+    "B_width256.inputs_all.cov_none": "B_width256.inputs_all",
+    "B_width256.inputs_all.cov_ilinet": "B_width256.inputs_all",
+    "B_width256.inputs_all.cov_ilinet+ww_rsv": "B_width256.inputs_all",
+    "B_width256.inputs_all.cov_ww_rsv": "B_width256.inputs_all",
+    "Ba_ll.inputs_all.cov_none": "Ba_ll.inputs_all",
+    "Ba_ll.inputs_all.cov_ilinet": "Ba_ll.inputs_all",
+    "Ba_ll.inputs_all.cov_ilinet+ww_rsv": "Ba_ll.inputs_all",
+    "Ba_ll.inputs_all.cov_ww_rsv": "Ba_ll.inputs_all"
+  },
+  "candidates": {
+    "B_width256.inputs_all.cov_none": "history_source=artificial,reconstruction_labels=1,error_signals=all,input_set=all,correction_weeks=2,correction_ed=1,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,spatial=neighbors,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=0.5,error_reference=2025-2026",
+    "B_width256.inputs_all.cov_ilinet": "history_source=artificial,reconstruction_labels=1,error_signals=all,input_set=all,correction_weeks=2,correction_ed=1,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,spatial=neighbors,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=0.5,error_reference=2025-2026,covariate_set=ilinet",
+    "B_width256.inputs_all.cov_ilinet+ww_rsv": "history_source=artificial,reconstruction_labels=1,error_signals=all,input_set=all,correction_weeks=2,correction_ed=1,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,spatial=neighbors,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=0.5,error_reference=2025-2026,covariate_set=ilinet+ww_rsv",
+    "B_width256.inputs_all.cov_ww_rsv": "history_source=artificial,reconstruction_labels=1,error_signals=all,input_set=all,correction_weeks=2,correction_ed=1,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,spatial=neighbors,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=0.5,error_reference=2025-2026,covariate_set=ww_rsv",
+    "Ba_ll.inputs_all.cov_none": "history_source=artificial,reconstruction_labels=1,error_signals=all,input_set=all,correction_weeks=2,correction_ed=1,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,spatial=neighbors,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,actual_share=1.0,log_loss_weight=0.75,error_reference=2025-2026",
+    "Ba_ll.inputs_all.cov_ilinet": "history_source=artificial,reconstruction_labels=1,error_signals=all,input_set=all,correction_weeks=2,correction_ed=1,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,spatial=neighbors,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,actual_share=1.0,log_loss_weight=0.75,error_reference=2025-2026,covariate_set=ilinet",
+    "Ba_ll.inputs_all.cov_ilinet+ww_rsv": "history_source=artificial,reconstruction_labels=1,error_signals=all,input_set=all,correction_weeks=2,correction_ed=1,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,spatial=neighbors,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,actual_share=1.0,log_loss_weight=0.75,error_reference=2025-2026,covariate_set=ilinet+ww_rsv",
+    "Ba_ll.inputs_all.cov_ww_rsv": "history_source=artificial,reconstruction_labels=1,error_signals=all,input_set=all,correction_weeks=2,correction_ed=1,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,spatial=neighbors,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,actual_share=1.0,log_loss_weight=0.75,error_reference=2025-2026,covariate_set=ww_rsv"
+  },
+  "seeds": [
+    44,
+    45,
+    46,
+    47,
+    48,
+    49,
+    50,
+    51
+  ]
+}

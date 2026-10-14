@@ -414,8 +414,10 @@ class Problem:
                                  f"the recipe uses it: {', '.join(used)}")
         if self.production and scenario.training_window != "all":
             raise ValueError("Production problems train on every declared training fold")
-        if scenario.ili_training != "none" and self.target_groups[0] != "flu":
-            raise ValueError("Historical ILI transfer is only defined for a flu target")
+        if scenario.ili_training != "none" and self.target_groups[0] != "flu" and scenario.encoder != "mlp":
+            # MLP pretraining scales any historical series into each target's units (historical_panel);
+            # RSV uses pre-2022 RSV-NET rates (2026-10-14). Series models' auxiliary task stays flu-only.
+            raise ValueError("Historical series transfer for a non-flu target needs the MLP panel pretraining")
         if scenario.encoder in ("series_mlp", "series_mixer") and scenario.covariate_set != "none":
             raise ValueError("Series models do not use covariates")
         if not inputs:

@@ -109,6 +109,15 @@ NWSS_DERIVED_DATASET = 'derived_nwss_state_indices'
 KINSA_DATASET = 'pophive_kinsa_ili'
 KINSA_SIGNAL = 'kinsa_cough_cold_flu'
 NATIONAL_ONLY = ('kinsa_ili',)
+# RSV covariates (2026-10-14): RSV-NET catchment hospitalization rate (Hopkins RSV hub's dated
+# target files, report time = file date) and NREVSS RSV PCR percent positive (HHS region values
+# broadcast to their states, national to US; report time = `posted`, archived only from 2026-07).
+RSV_SOURCES = ('rsvnet_rsv_rate', 'nrevss_rsv_pct_positive')
+RSVNET_DATASET = 'hub_rsvnet'
+NREVSS_RSV_DATASET = 'cdc_nrevss_rsv_vintages'
+HHS_REGIONS = {1: 'CT ME MA NH RI VT', 2: 'NJ NY', 3: 'DE DC MD PA VA WV', 4: 'AL FL GA KY MS NC SC TN',
+               5: 'IL IN MI MN OH WI', 6: 'AR LA NM OK TX', 7: 'IA KS MO NE', 8: 'CO MT ND SD UT WY',
+               9: 'AZ CA HI NV', 10: 'AK ID OR WA'}
 ARCHIVE_SOURCES = tuple(TARGET_SOURCES) + tuple(DELPHI_COVARIATES)
 TIERS = ('hub', 'git', 'delphi')
 LOCATIONS = (*sorted(STATE_NAMES), 'US')
@@ -489,6 +498,34 @@ def kinsa_frame(data_root='data'):
     return weekly.dropna(subset=['value'])
 
 
+def rsv_frame(data_root='data'):
+    """Long RSV covariate table: report_time, reference_time, location, name, value (see RSV_SOURCES)."""
+    import tarfile
+    from chromantis.data.geography import STATE_FIPS
+    parts = []
+    with tarfile.open(_latest_snapshot(data_root, RSVNET_DATASET) / 'hub-data.tar.gz') as archive:
+        for member in archive.getmembers():
+            found = re.fullmatch(r'(?:.*/)?target-data/(?:archive/)?(\d{4}-\d{2}-\d{2})_rsvnet_hospitalization\.csv', member.name)
+            if not found:
+                continue
+            table = pd.read_csv(archive.extractfile(member), dtype={'location': str})
+            table = table[table.age_group.eq('0-130') & table.target.eq('rate hosp')]
+            location = table.location.map(lambda x: 'US' if x == 'US' else STATE_FIPS.get(x.zfill(2)))
+            parts.append(pd.DataFrame(dict(report_time=found.group(1), reference_time=table.date.astype(str).str[:10],
+                                           location=location, name='rsvnet_rsv_rate',
+                                           value=pd.to_numeric(table.value, errors='coerce'))))
+    frame = pd.read_json(_latest_snapshot(data_root, NREVSS_RSV_DATASET) / 'data.ndjson.gz', lines=True)
+    region = {f'Region {k}': v.split() for k, v in HHS_REGIONS.items()} | {'National': ['US']}
+    frame['location'] = frame.level.map(region)
+    frame = frame.explode('location')
+    parts.append(pd.DataFrame(dict(report_time=frame.posted.astype(str).str[:10],
+                                   reference_time=frame.mmwrweek_end.astype(str).str[:10], location=frame.location,
+                                   name='nrevss_rsv_pct_positive',
+                                   value=pd.to_numeric(frame.pcr_percent_positive, errors='coerce'))))
+    result = pd.concat(parts, ignore_index=True).dropna(subset=['location', 'value'])
+    return result[result.value.ge(0)]
+
+
 def resolve_reports(frame, day, dates, locations=LOCATIONS, names=None):
     """[len(dates), len(locations), len(names)] latest value reported by cutoff `day` (see `cutoff_time`)."""
     names = list(names if names is not None else frame.name.unique())
@@ -519,6 +556,8 @@ def extract(name, as_of=None, *, data_root='data', dates=(), locations=LOCATIONS
         values = resolve_reports(nwss_frame(data_root), day, dates, locations, [name])
     elif name == 'kinsa_ili':
         values = resolve_reports(kinsa_frame(data_root), day, dates, locations, [name])
+    elif name in RSV_SOURCES:
+        values = resolve_reports(rsv_frame(data_root), day, dates, locations, [name])
     else:
         raise ValueError(f'Unknown source: {name}')
     t, l = np.nonzero(~np.isnan(values[:, :, 0]))
