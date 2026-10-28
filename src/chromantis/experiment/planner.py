@@ -411,7 +411,7 @@ def main(argv=None):
             problem.validate_scenario(scenario)
         settings = dict(device=args.device, eval_members=EVAL_MEMBERS, dataset=args.dataset or problem.panel,
                         frozen=args.frozen, problem=problem.reference, source_problem_sha256=source_problem.hash)
-        ili_paths = {s.ili_path for s in scenarios.values() if s.ili_training != 'none'}
+        ili_paths = {s.ili_path for s in scenarios.values() if s.ili_training != 'none' or (s.autoencoder_pretrain_steps and s.autoencoder_corpus != 'pathogens')}
         if len(ili_paths) > 1:
             raise ValueError('One historical ILI dataset per experiment')
         if ili_paths:

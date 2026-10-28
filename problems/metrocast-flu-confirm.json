@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "id": "metrocast-flu-confirm",
+  "dataset": "../datasets/metrocast-flu.json",
+  "panel": "data/metrocast/panel.npz",
+  "locations": "data/metrocast/locations.csv",
+  "targets": ["metrocast_flu_proportion"],
+  "forecast": {"horizons": [1, 2, 3, 4]},
+  "folds": {
+    "kind": "leave_one_season_out",
+    "ids": ["2025-2026"],
+    "training_ids": ["2022-2023", "2023-2024", "2024-2025", "2025-2026"]
+  },
+  "evaluation": {
+    "kind": "weekly_quantile_wis", "inputs": "finalized", "draws": 1,
+    "primary": {"target": "metrocast_flu_proportion", "scale": "natural", "geography": "locations"}
+  },
+  "comparison": {"kind": "none"}
+}

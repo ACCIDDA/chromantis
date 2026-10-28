@@ -1,0 +1,32 @@
+{
+  "study": "autoenc-20261024",
+  "started": "2026-10-24",
+  "goal": "About 1.5 days of exploration (until about 26 October 2026, morning): do autoencoder-style training (input reconstruction, bottleneck, masking), pretraining on extra series, or a conditional-VAE latent improve the flu weekly recipes? Extended on 25 October 2026 (user request) by 24 hours, to about 26 October 2026 01:00.",
+  "problem": "problems/us-flu-short-term-prescribed.json",
+  "problem_in_words": "Same testbed as the 10 October tree search (tree-20261010). Flu admissions and flu ED share, weeks 1-4 ahead. Leave-one-season-out: each of 2023-24, 2024-25, 2025-26 held out in turn; each fold trains on the other three of the four completed seasons 2022-23..2025-26. Training labels are the latest finalized future values. Evaluation inputs are three artificial preliminary histories drawn from the prescribed 2025-26 reporting process, shared by every recipe and seed.",
+  "references": {
+    "Bes": "B_width256.error_strength_1.5 of tree-20261010: width-256 direct-quantile MLP, neighbour exchange, artificial errors at 1.5x, last-4-week reconstruction labels, no Kinsa (submitted for 17 October).",
+    "A4": "A_width192_half_lr.log_loss_1+count_fourth_root of tree-20261010: width-192 sampled MLP, corrected histories, Kinsa, log-loss weight 1.",
+    "Ablk": "A_blocks3: width-96 sampled MLP, three-block decoder, Kinsa (in the submitted B7 mixture)."
+  },
+  "arms": {
+    "1_same_data": "Added to a reference recipe, nothing else changed: autoencoder_weight (a head rebuilds all 12 weeks of every input history from the location's representation; mean squared error in normalized model space), autoencoder_mask (each training input cell hidden with this probability; the rebuild target keeps it), bottleneck (the representation passes through a linear code of this size).",
+    "2_extra_data": "Before normal training, autoencoder_pretrain_steps updates on extra series: pre-August-2022 state ILI and the panel's COVID and RSV admissions and ED share on the fitting weeks only, each rescaled per location to the fit-only flu Q95 and placed in the flu channels. Task: masked reconstruction (cells hidden with probability 0.3), forecasting the corpus's future weeks (control: the same idea as ILI pretraining), or both.",
+    "3_cvae": "Sampled recipes only. The episode latent (16 numbers, shared by all locations) is drawn from a prior whose mean and spread are learned from the pooled history representation. In training a posterior network also sees the true future; draws from it must reproduce the future (fair CRPS, weight cvae_weight) and KL(posterior || prior) is penalized (kl_weight per nat). Forecasts draw from the prior. The usual prior-draw CRPS loss is kept."
+  },
+  "not_covered": "MetroCast county series and Kinsa as pretraining series were not used: the network's inputs are per-location flu admission and ED histories of the 52 Hub locations, and county series have no matching locations or population features. NSSP is already the ED input; no pre-2022 NSSP exists in the panel.",
+  "selection_score": "As tree-20261010: states/DC mean log(1 + admissions) WIS over every October-May reference date, horizons 0-3, seasons weighted equally, corrected view. Lower is better. Recipes compared on the equal-weight mixture of their seeds' predictive distributions (as in production) and on the per-seed mean. The references are rerun on the current code in the same round.",
+  "seeds": [
+    44,
+    45,
+    46,
+    47
+  ],
+  "policy": "Claude expands what helps between rounds (combinations, finer values, other families) and keeps the GPUs busy until the end of the budget.",
+  "decisions": [
+    "2026-10-24: round 1 = 3 references, 6 arm-1 and 6 arm-2 variants on Bes and A4, 4 conditional-VAE variants on A4 and A_blocks3; 35 recipes x 4 seeds = 140 runs.",
+    "2026-10-24, after round 1 (140/140; 4-seed mixtures, states/DC log WIS, lower is better): references Bes 0.2858, A4 0.2926, Ablk 0.3148 (Bes equals its tree-20261010 score, so the code change does not alter it). Arms 1 and 2 never beat Bes (every variant +0.002 to +0.024; pretraining worst, +0.02). A4: bottleneck 16 0.2891, pretraining+rebuild 0.2895 (edge of noise); rebuild alone 0.3057. Conditional VAE: Ablk KL 0.03 0.2947 (-0.020), A4 worse at every KL tried (0.2994-0.3059). Peak branch: 8 lanes per GPU ran out of memory; long-horizon minibatches and validation passes are now split into smaller chunks (identical gradient; 4-week problems unchanged).",
+    "2026-10-24, after round 2 (88/88) and seeds 48-51 of the leaders: Ablk prior-only control (posterior loss off) 0.3000, so most of the Ablk gain is a history-dependent noise distribution; KL 0.1/0.3/1 worse than 0.03. 8-seed mixtures: Ablk 0.3117 vs Ablk.cvae_kl0.03 0.3020 (-3%, mostly 2024-25); A4 0.2897 vs A4.b16 0.2944 and A4.pre_rec_all+ae1 0.2932 (round-1 gains were seed luck); Bes 0.2885 vs Bes.ae1_b16 0.2919; Bes+A4 0.2817 (best); Bes+Ablk 0.2898 vs Bes+Ablk.cvae 0.2876.",
+    "2026-10-24, forward-only check (trained on 2022-23 and 2023-24, scored on 2024-25, seeds 44-47 mixtures): Bes 0.3361, A4 0.3633, A4.cvae_kl1 0.3459, B5 0.3814, Ablk 0.3926, Ablk.cvae_prior_only 0.4303, Ablk.cvae_kl0.03 0.4553, B5.cvae_kl0.03 0.5508. Weak-KL VAE latents collapse coverage (90% interval 0.72 -> 0.62) with two training seasons. Round 3 (LOSO): B5 0.3104 vs B5.cvae_kl0.03 0.3063; B7-like Ablk+B5+Bes 0.2921 vs its VAE version 0.2863 (Bes alone 0.2858). Next: strong KL (0.3, 1, 3) forward and LOSO, 8 seeds for A4.cvae_kl1; RSV transfer test (rsv-01.json)."
+  ]
+}

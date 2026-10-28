@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "id": "metrocast-county-context",
+  "report_vintages": false,
+  "signals": [
+    {"name": "metrocast_flu_proportion", "unit": "proportion", "group": "flu", "hub": null, "hub_target": "Flu ED visits pct", "weight": 1.0}
+  ],
+  "input_sets": {"all": ["metrocast_flu_proportion"], "target": ["metrocast_flu_proportion"]},
+  "covariate_sets": {
+    "none": [],
+    "state": ["state_flu_context"],
+    "regional": ["region_other_state_flu_mean"],
+    "state_regional": ["state_flu_context", "region_other_state_flu_mean"]
+  }
+}

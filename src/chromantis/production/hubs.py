@@ -10,6 +10,12 @@ from pathlib import Path
 import pandas as pd
 
 HUBS = {
+    'covid': dict(
+        pathogen='COVID-19',
+        clone='production/hubs/covid19-forecast-hub',
+        targets={'wk inc covid hosp': ('target-data/time-series.parquet', 'Weekly COVID-19 admissions'),
+                 'wk inc covid prop ed visits': ('target-data/time-series.parquet', 'COVID-19 share of ED visits')},
+        maximums={}),
     'flusight': dict(
         pathogen='flu',
         clone='production/hubs/FluSight-forecast-hub',

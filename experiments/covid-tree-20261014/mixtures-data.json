@@ -1,0 +1,165 @@
+{
+  "description": "Equal mixtures over seeds54-57 and recipes. Retrain on other seasons from2022-23..2025-26 while holding out2023-24,2024-25,2025-26 in turn; finalized future labels; evaluate three prescribed preliminary-history draws with2025-26 error donors. Half-perturbation treatments change training inputs only; width256 retains reconstruction labels. Prospective and summer evidence remain separate.",
+  "recipes": {
+    "B_width256": {
+      "experiment": "covid-data",
+      "scenario": "history_source=artificial,reconstruction_labels=1,error_signals=all,input_set=target,correction_weeks=2,correction_ed=1,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,spatial=neighbors,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=0.5,error_reference=2025-2026",
+      "seeds": [
+        54,
+        55,
+        56,
+        57
+      ]
+    },
+    "B_width256.reported": {
+      "experiment": "covid-data",
+      "scenario": "history_source=reported,error_signals=all,input_set=target,correction_weeks=2,correction_ed=1,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,spatial=neighbors,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=0.5,error_reference=2025-2026",
+      "seeds": [
+        54,
+        55,
+        56,
+        57
+      ]
+    },
+    "Ba_ll.width512": {
+      "experiment": "covid-data",
+      "scenario": "history_source=artificial,reconstruction_labels=1,error_signals=all,input_set=target,correction_weeks=2,correction_ed=1,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,spatial=neighbors,decoder=quantile,width=512,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,actual_share=1.0,log_loss_weight=0.75,error_reference=2025-2026",
+      "seeds": [
+        54,
+        55,
+        56,
+        57
+      ]
+    },
+    "A4": {
+      "experiment": "covid-data",
+      "scenario": "history_source=artificial,history_correction=1,error_signals=all,input_set=target,correction_weeks=2,correction_ed=1,joint_weight=0.05,correction_penalty=30.0,reporting_missingness=0,reporting_method=synchronous_phase_log,ed_transform=logit,width=192,epochs=160,patience=25,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=1.0,error_reference=2025-2026",
+      "seeds": [
+        54,
+        55,
+        56,
+        57
+      ]
+    },
+    "B_width256.errors_half_time": {
+      "experiment": "covid-data",
+      "seeds": [
+        54,
+        55,
+        56,
+        57
+      ],
+      "scenario": "history_source=artificial,reconstruction_labels=1,error_signals=all,input_set=target,correction_weeks=2,correction_ed=1,reporting_probability=0.5,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,spatial=neighbors,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=0.5,error_reference=2025-2026"
+    },
+    "B_width256.finalized": {
+      "experiment": "covid-data",
+      "seeds": [
+        54,
+        55,
+        56,
+        57
+      ],
+      "scenario": "error_signals=all,input_set=target,correction_weeks=2,correction_ed=1,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,spatial=neighbors,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=0.5,error_reference=2025-2026"
+    },
+    "A4.errors_half_time": {
+      "experiment": "covid-data",
+      "seeds": [
+        54,
+        55,
+        56,
+        57
+      ],
+      "scenario": "history_source=artificial,history_correction=1,error_signals=all,input_set=target,correction_weeks=2,correction_ed=1,reporting_probability=0.5,joint_weight=0.05,correction_penalty=30.0,reporting_missingness=0,reporting_method=synchronous_phase_log,ed_transform=logit,width=192,epochs=160,patience=25,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=1.0,error_reference=2025-2026"
+    }
+  },
+  "groups": {
+    "B_width256": [
+      "B_width256"
+    ],
+    "B_width256.reported": [
+      "B_width256.reported"
+    ],
+    "Ba_ll.width512": [
+      "Ba_ll.width512"
+    ],
+    "A4": [
+      "A4"
+    ],
+    "B_width256+B_width256.reported": [
+      "B_width256",
+      "B_width256.reported"
+    ],
+    "B_width256+Ba_ll.width512": [
+      "B_width256",
+      "Ba_ll.width512"
+    ],
+    "B_width256+A4": [
+      "B_width256",
+      "A4"
+    ],
+    "B_width256.reported+Ba_ll.width512": [
+      "B_width256.reported",
+      "Ba_ll.width512"
+    ],
+    "B_width256.reported+A4": [
+      "B_width256.reported",
+      "A4"
+    ],
+    "Ba_ll.width512+A4": [
+      "Ba_ll.width512",
+      "A4"
+    ],
+    "B_width256+B_width256.reported+Ba_ll.width512": [
+      "B_width256",
+      "B_width256.reported",
+      "Ba_ll.width512"
+    ],
+    "B_width256+B_width256.reported+A4": [
+      "B_width256",
+      "B_width256.reported",
+      "A4"
+    ],
+    "B_width256+Ba_ll.width512+A4": [
+      "B_width256",
+      "Ba_ll.width512",
+      "A4"
+    ],
+    "B_width256.reported+Ba_ll.width512+A4": [
+      "B_width256.reported",
+      "Ba_ll.width512",
+      "A4"
+    ],
+    "B_width256+B_width256.reported+Ba_ll.width512+A4": [
+      "B_width256",
+      "B_width256.reported",
+      "Ba_ll.width512",
+      "A4"
+    ],
+    "B_width256.errors_half_time": [
+      "B_width256.errors_half_time"
+    ],
+    "B_width256.finalized": [
+      "B_width256.finalized"
+    ],
+    "A4.errors_half_time": [
+      "A4.errors_half_time"
+    ],
+    "half-errors-pair": [
+      "B_width256.errors_half_time",
+      "A4.errors_half_time"
+    ],
+    "half-errors-wide": [
+      "B_width256.errors_half_time",
+      "Ba_ll.width512"
+    ]
+  },
+  "rules": [
+    "mixture"
+  ],
+  "views": [
+    "corrected",
+    "draw1_corrected",
+    "draw2_corrected"
+  ],
+  "forecast_view": "corrected"
+}

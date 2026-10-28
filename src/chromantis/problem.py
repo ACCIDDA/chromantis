@@ -226,8 +226,8 @@ class Problem:
             raise ValueError("The headline scale must be natural or log")
         if problem.headline_scale == "log" and dataset.by_name[problem.headline_target].unit != "count":
             raise ValueError("Log headline scoring is defined only for count targets")
-        if problem.headline_geography not in {"states_dc", "US"}:
-            raise ValueError("The headline geography must be states_dc or US")
+        if problem.headline_geography not in {"states_dc", "US", "locations"}:
+            raise ValueError("The headline geography must be states_dc, US or locations")
         comparison_kind = problem.comparison.get("kind", "none")
         if comparison_kind not in {"none", "hub"}:
             raise ValueError(f"Unsupported comparison kind: {comparison_kind}")
@@ -395,6 +395,11 @@ class Problem:
         return {loc: values[loc] for loc in locations}
 
     def validate_scenario(self, scenario) -> None:
+        if scenario.state_pretrain_steps:
+            if (scenario.state_pretrain_steps < 0 or scenario.ili_training != "none"
+                    or scenario.ed_pretrain_steps or self.targets != ("metrocast_flu_proportion",)
+                    or scenario.encoder != "mlp"):
+                raise ValueError("State ED transfer needs the MetroCast MLP and no other pretraining")
         inputs = self.input_names(scenario.input_set)
         self.covariate_names(scenario.covariate_set)
         self.target_weights(scenario.loss_weights)

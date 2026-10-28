@@ -1,0 +1,13 @@
+{
+  "description": "Ablation of the strong-KL conditional-VAE latent on A4: KL 3 with the posterior loss off (only a history-dependent prior, pulled to the standard normal by KL; the posterior gets no reconstruction signal) and with posterior loss weight 0.3. Seeds 44-47. Problem: forward 2023-24 (one training season).",
+  "candidates": {
+    "A4.cvae_kl3_prior_only": "history_source=artificial,history_correction=1,error_signals=targets,input_set=target,correction_weeks=2,correction_ed=1,joint_weight=0.05,correction_penalty=30.0,reporting_missingness=0,reporting_method=synchronous_phase_log,ed_transform=logit,width=192,epochs=160,patience=25,fit_partition=pathogen,covariate_encoder=summary,covariate_set=kinsa,input_normalization=b0,log_loss_weight=1.0,error_reference=2025-2026,latent_model=cvae,kl_weight=3.0,cvae_weight=0.0",
+    "A4.cvae_kl3_w0.3": "history_source=artificial,history_correction=1,error_signals=targets,input_set=target,correction_weeks=2,correction_ed=1,joint_weight=0.05,correction_penalty=30.0,reporting_missingness=0,reporting_method=synchronous_phase_log,ed_transform=logit,width=192,epochs=160,patience=25,fit_partition=pathogen,covariate_encoder=summary,covariate_set=kinsa,input_normalization=b0,log_loss_weight=1.0,error_reference=2025-2026,latent_model=cvae,kl_weight=3.0,cvae_weight=0.3"
+  },
+  "seeds": [
+    44,
+    45,
+    46,
+    47
+  ]
+}

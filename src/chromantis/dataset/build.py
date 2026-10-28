@@ -77,7 +77,8 @@ COVARIATE_NAMES = tuple(name for group in COVARIATE_GROUPS.values() for name in 
 STATE_COVARIATE_NAMES = tuple(n for n in COVARIATE_NAMES if n not in NATIONAL_ONLY)
 NATIONAL_COVARIATE_NAMES = tuple(n for n in COVARIATE_NAMES if n in NATIONAL_ONLY)
 LAG_ONE_COVARIATES = frozenset({'ilinet_ili', 'clinical_lab_flu_pct_positive', 'flusurv_flu_rate',
-                                'rsvnet_rsv_rate', 'nrevss_rsv_pct_positive'})
+                                'rsvnet_rsv_rate', 'nrevss_rsv_pct_positive',
+                                'state_flu_context', 'region_other_state_flu_mean'})
 PANEL_DATASET = 'data/processed/panel.npz'
 HUBS = ('flusight', 'covid', 'rsv')
 # Deadline day per Hub forecast reference date (the Saturday after the Wednesday).

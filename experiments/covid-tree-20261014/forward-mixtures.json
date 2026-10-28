@@ -1,0 +1,351 @@
+{
+  "description": "Forward-only COVID check: each recipe retrained on 2022-23, 2023-24 and 2024-25, finalized future admissions and ED labels. Artificial-history recipes and correction trees use the 2024-25 COVID reporting process, not 2025-26. Reported-history variants use archived fitting-season reports. Evaluate 2025-26 archived Wednesday inputs without retraining, retaining the template availability and archive-gap fills. This is a separate comparison from the three-fold prescribed-input screen. Fixed representatives cover existing roots, reported histories, wastewater and a wider quantile MLP; no winner selected from incomplete screening. Equal-weight seed/recipe mixtures of the saved forward forecasts; no refit.",
+  "recipes": {
+    "Bes": {
+      "experiment": "covid-forward",
+      "scenario": "history_source=artificial,reconstruction_labels=1,error_signals=all,input_set=target,correction_weeks=2,correction_ed=1,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reporting_strength=1.5,reconstruction_weeks=4,ed_transform=logit,spatial=neighbors,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=0.5,error_reference=2024-2025",
+      "seeds": [
+        46,
+        47,
+        48,
+        49,
+        50
+      ]
+    },
+    "B_width256": {
+      "experiment": "covid-forward",
+      "scenario": "history_source=artificial,reconstruction_labels=1,error_signals=all,input_set=target,correction_weeks=2,correction_ed=1,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,spatial=neighbors,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=0.5,error_reference=2024-2025",
+      "seeds": [
+        46,
+        47,
+        48,
+        49,
+        50
+      ]
+    },
+    "A4": {
+      "experiment": "covid-forward",
+      "scenario": "history_source=artificial,history_correction=1,error_signals=all,input_set=target,correction_weeks=2,correction_ed=1,joint_weight=0.05,correction_penalty=30.0,reporting_missingness=0,reporting_method=synchronous_phase_log,ed_transform=logit,width=192,epochs=160,patience=25,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=1.0,error_reference=2024-2025",
+      "seeds": [
+        46,
+        47,
+        48,
+        49,
+        50
+      ]
+    },
+    "A_blocks3": {
+      "experiment": "covid-forward",
+      "scenario": "history_source=artificial,history_correction=1,error_signals=all,input_set=target,correction_weeks=2,correction_ed=1,joint_weight=0.05,correction_penalty=30.0,reporting_missingness=0,reporting_method=synchronous_phase_log,count_transform=sqrt,ed_transform=logit,decoder_blocks=3,width=96,epochs=160,patience=25,lr=0.002,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=0.5,error_reference=2024-2025",
+      "seeds": [
+        46,
+        47,
+        48,
+        49,
+        50
+      ]
+    },
+    "B_width256.reported": {
+      "experiment": "covid-forward",
+      "scenario": "history_source=reported,error_signals=all,input_set=target,correction_weeks=2,correction_ed=1,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,spatial=neighbors,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=0.5,error_reference=2024-2025",
+      "seeds": [
+        46,
+        47,
+        48,
+        49,
+        50
+      ]
+    },
+    "A4.reported": {
+      "experiment": "covid-forward",
+      "scenario": "history_source=reported,error_signals=all,input_set=target,correction_weeks=2,correction_ed=1,joint_weight=0.05,correction_penalty=30.0,reporting_missingness=0,reporting_method=synchronous_phase_log,ed_transform=logit,width=192,epochs=160,patience=25,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=1.0,error_reference=2024-2025",
+      "seeds": [
+        46,
+        47,
+        48,
+        49,
+        50
+      ]
+    },
+    "A4.ww_covid": {
+      "experiment": "covid-forward",
+      "scenario": "history_source=artificial,history_correction=1,error_signals=all,input_set=target,correction_weeks=2,correction_ed=1,joint_weight=0.05,correction_penalty=30.0,reporting_missingness=0,reporting_method=synchronous_phase_log,ed_transform=logit,width=192,epochs=160,patience=25,fit_partition=pathogen,covariate_encoder=summary,covariate_set=ww_covid,input_normalization=b0,log_loss_weight=1.0,error_reference=2024-2025",
+      "seeds": [
+        46,
+        47,
+        48,
+        49,
+        50
+      ]
+    },
+    "Ba_ll.width512": {
+      "experiment": "covid-forward",
+      "scenario": "history_source=artificial,reconstruction_labels=1,error_signals=all,input_set=target,correction_weeks=2,correction_ed=1,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,spatial=neighbors,decoder=quantile,width=512,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,actual_share=1.0,log_loss_weight=0.75,error_reference=2024-2025",
+      "seeds": [
+        46,
+        47,
+        48,
+        49,
+        50
+      ]
+    },
+    "Bes.reported": {
+      "experiment": "covid-forward",
+      "scenario": "history_source=reported,error_signals=all,input_set=target,correction_weeks=2,correction_ed=1,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reporting_strength=1.5,reconstruction_weeks=4,ed_transform=logit,spatial=neighbors,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=0.5,error_reference=2024-2025",
+      "seeds": [
+        46,
+        47,
+        48,
+        49,
+        50
+      ]
+    },
+    "Ba_ll.reported": {
+      "experiment": "covid-forward",
+      "scenario": "history_source=reported,error_signals=all,input_set=target,correction_weeks=2,correction_ed=1,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,spatial=neighbors,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=0.75,error_reference=2024-2025",
+      "seeds": [
+        46,
+        47,
+        48,
+        49,
+        50
+      ]
+    }
+  },
+  "groups": {
+    "Bes": [
+      "Bes"
+    ],
+    "B_width256": [
+      "B_width256"
+    ],
+    "A4": [
+      "A4"
+    ],
+    "A_blocks3": [
+      "A_blocks3"
+    ],
+    "B_width256.reported": [
+      "B_width256.reported"
+    ],
+    "A4.reported": [
+      "A4.reported"
+    ],
+    "A4.ww_covid": [
+      "A4.ww_covid"
+    ],
+    "Ba_ll.width512": [
+      "Ba_ll.width512"
+    ],
+    "Bes.reported": [
+      "Bes.reported"
+    ],
+    "Ba_ll.reported": [
+      "Ba_ll.reported"
+    ],
+    "Bes+B_width256": [
+      "Bes",
+      "B_width256"
+    ],
+    "Bes+A4": [
+      "Bes",
+      "A4"
+    ],
+    "Bes+A_blocks3": [
+      "Bes",
+      "A_blocks3"
+    ],
+    "Bes+B_width256.reported": [
+      "Bes",
+      "B_width256.reported"
+    ],
+    "Bes+A4.reported": [
+      "Bes",
+      "A4.reported"
+    ],
+    "Bes+A4.ww_covid": [
+      "Bes",
+      "A4.ww_covid"
+    ],
+    "Bes+Ba_ll.width512": [
+      "Bes",
+      "Ba_ll.width512"
+    ],
+    "Bes+Bes.reported": [
+      "Bes",
+      "Bes.reported"
+    ],
+    "Bes+Ba_ll.reported": [
+      "Bes",
+      "Ba_ll.reported"
+    ],
+    "B_width256+A4": [
+      "B_width256",
+      "A4"
+    ],
+    "B_width256+A_blocks3": [
+      "B_width256",
+      "A_blocks3"
+    ],
+    "B_width256+B_width256.reported": [
+      "B_width256",
+      "B_width256.reported"
+    ],
+    "B_width256+A4.reported": [
+      "B_width256",
+      "A4.reported"
+    ],
+    "B_width256+A4.ww_covid": [
+      "B_width256",
+      "A4.ww_covid"
+    ],
+    "B_width256+Ba_ll.width512": [
+      "B_width256",
+      "Ba_ll.width512"
+    ],
+    "B_width256+Bes.reported": [
+      "B_width256",
+      "Bes.reported"
+    ],
+    "B_width256+Ba_ll.reported": [
+      "B_width256",
+      "Ba_ll.reported"
+    ],
+    "A4+A_blocks3": [
+      "A4",
+      "A_blocks3"
+    ],
+    "A4+B_width256.reported": [
+      "A4",
+      "B_width256.reported"
+    ],
+    "A4+A4.reported": [
+      "A4",
+      "A4.reported"
+    ],
+    "A4+A4.ww_covid": [
+      "A4",
+      "A4.ww_covid"
+    ],
+    "A4+Ba_ll.width512": [
+      "A4",
+      "Ba_ll.width512"
+    ],
+    "A4+Bes.reported": [
+      "A4",
+      "Bes.reported"
+    ],
+    "A4+Ba_ll.reported": [
+      "A4",
+      "Ba_ll.reported"
+    ],
+    "A_blocks3+B_width256.reported": [
+      "A_blocks3",
+      "B_width256.reported"
+    ],
+    "A_blocks3+A4.reported": [
+      "A_blocks3",
+      "A4.reported"
+    ],
+    "A_blocks3+A4.ww_covid": [
+      "A_blocks3",
+      "A4.ww_covid"
+    ],
+    "A_blocks3+Ba_ll.width512": [
+      "A_blocks3",
+      "Ba_ll.width512"
+    ],
+    "A_blocks3+Bes.reported": [
+      "A_blocks3",
+      "Bes.reported"
+    ],
+    "A_blocks3+Ba_ll.reported": [
+      "A_blocks3",
+      "Ba_ll.reported"
+    ],
+    "B_width256.reported+A4.reported": [
+      "B_width256.reported",
+      "A4.reported"
+    ],
+    "B_width256.reported+A4.ww_covid": [
+      "B_width256.reported",
+      "A4.ww_covid"
+    ],
+    "B_width256.reported+Ba_ll.width512": [
+      "B_width256.reported",
+      "Ba_ll.width512"
+    ],
+    "B_width256.reported+Bes.reported": [
+      "B_width256.reported",
+      "Bes.reported"
+    ],
+    "B_width256.reported+Ba_ll.reported": [
+      "B_width256.reported",
+      "Ba_ll.reported"
+    ],
+    "A4.reported+A4.ww_covid": [
+      "A4.reported",
+      "A4.ww_covid"
+    ],
+    "A4.reported+Ba_ll.width512": [
+      "A4.reported",
+      "Ba_ll.width512"
+    ],
+    "A4.reported+Bes.reported": [
+      "A4.reported",
+      "Bes.reported"
+    ],
+    "A4.reported+Ba_ll.reported": [
+      "A4.reported",
+      "Ba_ll.reported"
+    ],
+    "A4.ww_covid+Ba_ll.width512": [
+      "A4.ww_covid",
+      "Ba_ll.width512"
+    ],
+    "A4.ww_covid+Bes.reported": [
+      "A4.ww_covid",
+      "Bes.reported"
+    ],
+    "A4.ww_covid+Ba_ll.reported": [
+      "A4.ww_covid",
+      "Ba_ll.reported"
+    ],
+    "Ba_ll.width512+Bes.reported": [
+      "Ba_ll.width512",
+      "Bes.reported"
+    ],
+    "Ba_ll.width512+Ba_ll.reported": [
+      "Ba_ll.width512",
+      "Ba_ll.reported"
+    ],
+    "Bes.reported+Ba_ll.reported": [
+      "Bes.reported",
+      "Ba_ll.reported"
+    ],
+    "all_ten": [
+      "Bes",
+      "B_width256",
+      "A4",
+      "A_blocks3",
+      "B_width256.reported",
+      "A4.reported",
+      "A4.ww_covid",
+      "Ba_ll.width512",
+      "Bes.reported",
+      "Ba_ll.reported"
+    ],
+    "reported_plus_artificial": [
+      "B_width256.reported",
+      "A4.reported",
+      "Ba_ll.width512"
+    ]
+  },
+  "rules": [
+    "mixture"
+  ],
+  "views": [
+    "corrected"
+  ],
+  "forecast_view": "corrected"
+}

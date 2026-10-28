@@ -14,4 +14,8 @@ shift
 export OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 MKL_NUM_THREADS=1
 export PYTHONPATH="$PWD/data/experiments/$experiment/code/src${PYTHONPATH:+:$PYTHONPATH}"
 .venv/bin/python -m chromantis.experiment.planner status -e "$experiment"
-.venv/bin/python -m chromantis.experiment.planner rank -e "$experiment" "$@"
+if [[ "$experiment" == covid-ed-* ]]; then
+    .venv/bin/python scripts/rank_covid_ed.py -e "$experiment" "$@"
+else
+    .venv/bin/python -m chromantis.experiment.planner rank -e "$experiment" "$@"
+fi

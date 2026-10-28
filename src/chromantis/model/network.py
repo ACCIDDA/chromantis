@@ -183,6 +183,16 @@ class SpatialBlock(nn.Module):
         return h if observed is None else torch.where(any_observed[:, None, None], h, original)
 
 
+def grouped_attention(block, context, observed, locations, groups):
+    """Share attention parameters while forbidding messages across named groups."""
+    labels = [groups[loc] for loc in locations]
+    result = context.clone()
+    for group in sorted(set(labels)):
+        indices = [i for i, label in enumerate(labels) if label == group]
+        result[:, indices] = block(context[:, indices], observed[:, indices])
+    return result
+
+
 class PooledMessage(nn.Module):
     """Native-US broadcast or recipient-gated state-mean plus native-US message."""
     def __init__(self, width, kind):
@@ -312,7 +322,8 @@ class Model(nn.Module):
                  covariate_names=(), covariate_offset=None, covariate_scale=None, covariate_trained=None,
                  covariate_encoder='raw', coordinates=False, signal_features='none', direct_quantiles=False,
                  input_names=(), input_units=(), input_groups=(), target_names=(), target_units=(),
-                 target_groups=(), target_input_indices=(), growth_anchor=False, decoder_blocks=0):
+                 target_groups=(), target_input_indices=(), growth_anchor=False, decoder_blocks=0,
+                 location_groups=None, bottleneck=0, reconstruct_inputs=False, latent_model='fixed'):
         super().__init__()
         input_names, input_units, input_groups = map(list, (input_names, input_units, input_groups))
         target_names, target_units, target_groups = map(list, (target_names, target_units, target_groups))
@@ -330,9 +341,14 @@ class Model(nn.Module):
                            input_names=input_names, input_units=input_units, input_groups=input_groups,
                            target_names=target_names, target_units=target_units, target_groups=target_groups,
                            target_input_indices=target_input_indices,
-                           growth_anchor=growth_anchor, decoder_blocks=decoder_blocks)
+                           growth_anchor=growth_anchor, decoder_blocks=decoder_blocks,
+                           bottleneck=bottleneck, reconstruct_inputs=reconstruct_inputs, latent_model=latent_model)
+        if latent_model not in ('fixed', 'cvae') or bottleneck < 0:
+            raise ValueError('Unknown latent model or negative bottleneck')
+        if latent_model == 'cvae' and decoder not in ('legacy', 'residual2'):
+            raise ValueError('A conditional-VAE latent needs a sampled decoder')
         if (encoder not in ('mlp', 'conv', 'multiscale_conv', 'gru', 'attention') or heads not in ('shared', 'state_us') or decoder not in ('legacy', 'residual2', 'quantile', 'quantile_small')
-                or spatial not in ('neighbors', 'distance', 'gravity', 'none', 'pooled', 'national_broadcast', 'gated_pool', 'attention', 'pathogen_spatial', 'target_spatial', 'joint_location_target') or noise not in ('global', 'local')
+                or spatial not in ('neighbors', 'distance', 'gravity', 'none', 'pooled', 'national_broadcast', 'gated_pool', 'attention', 'state_attention', 'region_attention', 'pathogen_spatial', 'target_spatial', 'joint_location_target') or noise not in ('global', 'local')
                 or us_error not in ('none', 'shared_factor') or head_sharing not in ('shared', 'pathogen', 'target')):
             raise ValueError('Unknown model architecture option')
         if decoder in ('quantile', 'quantile_small'):
@@ -353,6 +369,10 @@ class Model(nn.Module):
                            ed_transform=ed_transform, spatial=spatial, noise=noise, us_error=us_error,
                            head_sharing=head_sharing, annual_calendar=annual_calendar,
                            location_embedding=location_embedding, location_ids=location_ids or list(populations or {}))
+        if spatial in ('state_attention', 'region_attention'):
+            if not location_groups or any(loc not in location_groups for loc in self.config['location_ids']):
+                raise ValueError('Grouped attention requires an explicit group for every location')
+            self.config['location_groups'] = dict(location_groups)
         covariate_names = list(covariate_names)
         if len(set(covariate_names)) != len(covariate_names):
             raise ValueError('Covariate names must be unique')
@@ -451,6 +471,26 @@ class Model(nn.Module):
                 self.remote_geo = nn.Linear(2 * geography + location_embedding, width)
         if us_error == 'shared_factor':
             self.national_scale = nn.Parameter(softplus_inverse(.1).expand(targets).clone())
+        # Autoencoder options (2026-10-24). `bottleneck`: the per-location, per-target
+        # representation passes through a linear code of this size before the horizon
+        # decoder. `reconstruct_inputs`: a head rebuilds every input history (all lookback
+        # weeks, model space) from the location's code; training adds its loss.
+        code = bottleneck or width
+        if bottleneck:
+            self.bottleneck_down = nn.Linear(width, bottleneck)
+            self.bottleneck_up = nn.Linear(bottleneck, width)
+        if reconstruct_inputs:
+            self.reconstruct = nn.Sequential(nn.Linear(code, width), nn.SiLU(), nn.Linear(width, lookback * inputs))
+        # Conditional VAE latent (2026-10-24): the episode latent is drawn from a prior
+        # learned from the pooled history representation; in training a posterior that
+        # also sees the future labels gives codes for reconstruction, tied to the prior by KL.
+        if latent_model == 'cvae':
+            self.prior_net = nn.Sequential(nn.Linear(width, width), nn.SiLU(), nn.Linear(width, 2 * latent))
+            self.future_encoder = nn.Sequential(nn.Linear(2 * len(horizons) * targets, width), nn.SiLU(), nn.Linear(width, width))
+            self.posterior_net = nn.Sequential(nn.Linear(2 * width, width), nn.SiLU(), nn.Linear(width, 2 * latent))
+            for net in (self.prior_net, self.posterior_net):
+                nn.init.zeros_(net[-1].weight)
+                nn.init.zeros_(net[-1].bias)
 
     @staticmethod
     def _per_location(value, count, default):
@@ -478,21 +518,38 @@ class Model(nn.Module):
         return {name: float(F.softplus(value.detach())) for name, value in self.named_parameters() if name.endswith('local_scale')}
 
     def forward(self, x=None, calendar=None, members=8, z=None, locations=None, local_z=None, national_z=None,
-                covariates=None, *, values=None, available=None):
+                covariates=None, *, values=None, available=None, hide=None, future=None):
         """Native samples [member, episode, output week, component target, location].
 
         Either pass a pre-packed `x` [N,P,C,2,L] (value, availability), or pass
-        `values`/`available` and let this wrapper pack them.
+        `values`/`available` and let this wrapper pack them. Training only: `hide` [N,P,C,L]
+        removes input cells (masked autoencoding; the reconstruction target keeps them), and
+        `future` = (labels [N,H,T,L], mask) draws a conditional-VAE latent from the posterior.
         """
         if x is None:
             if values is None or available is None:
                 raise ValueError('Provide either a packed x tensor, or values and available')
             x = torch.stack((values, available.bool().to(values.dtype)), dim=3)
         return self._forward(x, calendar, members=members, z=z, locations=locations,
-                              local_z=local_z, national_z=national_z, covariates=covariates)
+                              local_z=local_z, national_z=national_z, covariates=covariates, hide=hide, future=future)
+
+    def _model_space(self, y, population, channels):
+        """Target labels [N,H,T,L] in the normalized model space of their input histories."""
+        config = self.config
+        indices = [config['target_input_indices'][c] for c in channels]
+        out = torch.zeros_like(y)
+        for k, (c, i) in enumerate(zip(channels, indices)):
+            if config['target_units'][c] == 'count':
+                v = transform_counts(y[:, :, k], population, config['count_transform'])
+            else:
+                v = transform_proportions(y[:, :, k], config['ed_transform'])
+                if hasattr(self, 'input_offset'):
+                    v = v - self.input_offset[i]
+            out[:, :, k] = v / self.input_scale[i]
+        return out
 
     def _forward(self, x, calendar, members=8, z=None, locations=None, local_z=None, national_z=None,
-                 covariates=None):
+                 covariates=None, hide=None, future=None):
         n, p, c, _, l = x.shape
         config = self.config
         targets = len(config['target_names'])
@@ -522,6 +579,11 @@ class Model(nn.Module):
         if offset is not None:
             transformed = transformed - offset[None, None, :, :]
         values = torch.where(valid, transformed / input_scale[None, None, :, :], 0)
+        clean = (values, valid)
+        if hide is not None:
+            valid = valid & ~hide.bool()
+            mask = valid.to(mask.dtype)
+            values = torch.where(valid, values, 0)
         fields = torch.stack([values, mask], dim=-1)
         fpc = fields.shape[-1]
         cov_fields = cov_summary = None
@@ -594,7 +656,7 @@ class Model(nn.Module):
             coordinates = context.new_tensor([[*COORDINATES.get(loc, [0., 0.]), float(loc != 'US')] for loc in locations])
             coordinates[:, :2] /= 180
             context = context + self.coordinate_project(coordinates)[None]
-        if config['spatial'] in ('neighbors', 'distance', 'gravity', 'pooled', 'national_broadcast', 'gated_pool', 'attention'):
+        if config['spatial'] in ('neighbors', 'distance', 'gravity', 'pooled', 'national_broadcast', 'gated_pool', 'attention', 'state_attention', 'region_attention'):
             observed = valid.any(dim=(1, 2))
             if k:
                 observed = observed | cov_available.any(dim=(1, 2))
@@ -607,6 +669,8 @@ class Model(nn.Module):
             context = self.pooled_message(context, observed, locations)
         if config['spatial'] == 'attention':
             context = self.spatial(context, observed)
+        if config['spatial'] in ('state_attention', 'region_attention'):
+            context = grouped_attention(self.spatial, context, observed, locations, config['location_groups'])
         h = context[:, :, None, :] + focal + self.source.weight[None, None, :, :]
         if config['spatial'] in ('pathogen_spatial', 'target_spatial', 'joint_location_target'):
             scope = config['spatial']
@@ -639,10 +703,34 @@ class Model(nn.Module):
                 remote = self.spatial(remote.permute(0, 2, 1, 3).reshape(n * len(groups), l, -1),
                                       observed.permute(0, 2, 1).reshape(n * len(groups), l)).reshape(n, len(groups), l, -1).permute(0, 2, 1, 3)
             h = h + remote[:, :, config['target_remote']]
+        if config.get('bottleneck') or config.get('reconstruct_inputs'):
+            code = self.bottleneck_down(h) if config.get('bottleneck') else h
+            if config.get('bottleneck'):
+                h = self.bottleneck_up(code)
+            if config.get('reconstruct_inputs'):
+                rebuilt = self.reconstruct(code.mean(2)).reshape(n, l, p, c).permute(0, 2, 3, 1)
+                self.last_reconstruction = (rebuilt, *clean)
+        pooled = h.mean((1, 2))
         offsets = x.new_tensor(config['horizons']).reshape(-1, 1) / 4
         h = self.norm(h[:, None, :, :, :] + self.horizon(offsets)[None, :, None, None, :])
         if z is None:
             z = torch.randn(members, n, config['latent'], device=x.device)
+        if config.get('latent_model') == 'cvae':
+            # The given or drawn z are standard-normal draws, shifted and scaled by the
+            # learned prior, or by the posterior when future labels are given.
+            prior_mean, prior_log_sd = self.prior_net(pooled).clamp(-5, 3).chunk(2, -1)
+            mean, log_sd = prior_mean, prior_log_sd
+            if future is not None:
+                y, y_mask = future
+                channels = list(range(y.shape[2]))
+                y_mask = y_mask.bool()
+                encoded = torch.where(y_mask, self._model_space(y, population, channels), 0)
+                cells = torch.stack((encoded, y_mask.to(encoded.dtype)), -1).permute(0, 3, 1, 2, 4).reshape(n, l, -1)
+                summary = self.future_encoder(cells).mean(1)
+                mean, log_sd = self.posterior_net(torch.cat((pooled, summary), -1)).clamp(-5, 3).chunk(2, -1)
+                self.last_kl = (prior_log_sd - log_sd + ((2 * log_sd).exp() + (mean - prior_mean) ** 2)
+                                / (2 * (2 * prior_log_sd).exp()) - .5).sum(-1)
+            z = mean[None] + log_sd.exp()[None] * z
         if config['noise'] == 'local':
             if local_z is None:
                 local_z = torch.randn(z.shape[0], n, l, LOCAL_LATENT, device=x.device)

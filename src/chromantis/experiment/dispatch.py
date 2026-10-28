@@ -131,7 +131,9 @@ class Queue:
         if result.returncode:
             return
         live = set(result.stdout.split())
-        with queue_lock(self.folder):
+        # Recovery runs in another thread. Serialize it with claim/finish too:
+        # NFS file locking alone must not permit stale queue writes in this process.
+        with self.local, queue_lock(self.folder):
             state = json.loads((self.folder / 'dispatch.json').read_text())
             changed = False
             for owner in list(state.get('owners', {})):

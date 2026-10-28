@@ -72,6 +72,8 @@ def trajectories(recipes, n, rng):
 
 def export(release, members, hub, out, samples=False):
     """`members` {recipe: [operational forecast folders]} from `forecast.forecast_release`."""
+    if samples and release.get('recipe_targets'):
+        raise ValueError('Target-routed releases support marginal quantiles, not joint sample trajectories')
     if not re.fullmatch(r'[A-Za-z0-9_+]{1,16}', release['model_abbr']):
         raise ValueError('Invalid model abbreviation')
     if release['rule'] not in ('vincent', 'mixture'):
@@ -105,7 +107,17 @@ def export(release, members, hub, out, samples=False):
             raise ValueError(f'{name}: inconsistent recipe or duplicate seed')
         if len({d is None for d in draws}) != 1:
             raise ValueError(f'{name}: some seeds have samples and some do not')
-        recipes.append(dict(name=name, channels=trained_channels(scenarios.pop(), problem), values=np.stack(values),
+        channels = trained_channels(scenarios.pop(), problem)
+        routing = release.get('recipe_targets', {})
+        if set(routing) - set(members):
+            raise ValueError('Target routing names an unknown recipe')
+        if name in routing:
+            requested = routing[name]
+            available = {problem.target_signals[c].hub_target: c for c in channels}
+            if not requested or len(set(requested)) != len(requested) or set(requested) - set(available):
+                raise ValueError(f'{name}: target routing must select distinct targets learned by this recipe')
+            channels = [available[target] for target in requested]
+        recipes.append(dict(name=name, channels=channels, values=np.stack(values),
                             samples=None if draws[0] is None else np.stack(draws)))
     if len(panel_hashes) != 1 or len(issues) != 1 or not np.array_equal(first['quantile_levels'], LEVELS):
         raise ValueError('Inconsistent operational snapshot, issuance or quantile grid')

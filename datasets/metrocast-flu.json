@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "id": "metrocast-flu",
+  "report_vintages": false,
+  "signals": [
+    {"name": "metrocast_flu_proportion", "unit": "proportion", "group": "flu", "hub": null, "hub_target": "Flu ED visits pct", "weight": 1.0}
+  ],
+  "input_sets": {"all": ["metrocast_flu_proportion"], "target": ["metrocast_flu_proportion"]},
+  "covariate_sets": {"none": [], "state": ["state_flu_proportion"]}
+}

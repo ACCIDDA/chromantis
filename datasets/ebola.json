@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "id": "ebola",
+  "report_vintages": false,
+  "signals": [
+    {"name": "ebola_cases", "unit": "count", "group": "ebola", "hub": null, "hub_target": "wk inc confirmed cases", "weight": 1.0}
+  ],
+  "input_sets": {"all": ["ebola_cases"], "target": ["ebola_cases"]},
+  "covariate_sets": {"none": [], "parent": ["parent_cases"], "outbreak": ["outbreak_cases"]}
+}

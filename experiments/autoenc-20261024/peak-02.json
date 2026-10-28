@@ -1,0 +1,13 @@
+{
+  "description": "Season-peak branch round 2: Peak8 with strong-KL conditional-VAE latents (KL 1 and 3), the setting that helped A4 forward in time; and Peak8 pretrained on extra series (reconstruction + forecasting) on new seeds 48-51 would follow if it holds. Same problem and seeds 44-47 as peak-01.",
+  "candidates": {
+    "Peak8.cvae_kl1": "input_set=target,count_transform=sqrt,ed_transform=logit,spatial=neighbors,noise=local,width=192,epochs=160,patience=25,fit_partition=pathogen,input_normalization=b0,log_loss_weight=1.0,path_loss_weight=1.0,peak_loss_weight=1.0,forecast_view=raw,signal_features=multiscale,history_source=artificial,error_signals=targets,reporting_method=synchronous_phase_log,reporting_missingness=0,lookback=8,latent_model=cvae,kl_weight=1.0",
+    "Peak8.cvae_kl3": "input_set=target,count_transform=sqrt,ed_transform=logit,spatial=neighbors,noise=local,width=192,epochs=160,patience=25,fit_partition=pathogen,input_normalization=b0,log_loss_weight=1.0,path_loss_weight=1.0,peak_loss_weight=1.0,forecast_view=raw,signal_features=multiscale,history_source=artificial,error_signals=targets,reporting_method=synchronous_phase_log,reporting_missingness=0,lookback=8,latent_model=cvae,kl_weight=3.0"
+  },
+  "seeds": [
+    44,
+    45,
+    46,
+    47
+  ]
+}

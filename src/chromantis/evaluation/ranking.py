@@ -109,7 +109,8 @@ def cache_scores(run, frozen):
     tables = {name: [] for name in CACHE}
     own = deployed_view(run)
     from chromantis.problem import Problem
-    compared = Problem.load(json.loads((run / 'manifest.json').read_text())['problem']).comparison.get('kind') == 'hub'
+    problem = Problem.load(json.loads((run / 'manifest.json').read_text())['problem'])
+    compared = problem.comparison.get('kind') == 'hub'
     for label, path in views(run).items():
         draw = int(label.split('_')[0][4:]) if label.startswith('draw') else 0
         history = label.split('_', 1)[1] if label.startswith('draw') else label
@@ -127,7 +128,11 @@ def cache_scores(run, frozen):
         tables['scores-details.csv'].append(raw_score_details(path).assign(**tag))
     tables['scores-distribution.csv'] = [distribution_scores(run)]
     for name, frames in tables.items():
-        pd.concat(frames, ignore_index=True).to_csv(run / name, index=False)
+        table = pd.concat(frames, ignore_index=True)
+        if problem.headline_geography == 'locations' and 'geography' in table:
+            table = table[table.geography != 'US'].copy()
+            table['geography'] = table.geography.replace({'states_dc': 'locations'})
+        table.to_csv(run / name, index=False)
     version.write_text(CACHE_VERSION + '\n')
 
 
@@ -219,7 +224,10 @@ def rank(runs, frozen, destination):
         hub_tables(relative, read('scores-pairwise.csv'), config, destination)
     distribution = read('scores-distribution.csv')
     distribution = distribution[distribution.deployed]
-    distribution['geography'] = distribution.location.astype(str).eq('US').map({True: 'US', False: 'states_dc'})
+    from chromantis.problem import Problem
+    problem = Problem.load(json.loads((Path(runs[0]['path']) / 'manifest.json').read_text())['problem'])
+    distribution['geography'] = ('locations' if problem.headline_geography == 'locations' else
+        distribution.location.astype(str).eq('US').map({True: 'US', False: 'states_dc'}))
     numeric = [c for c in distribution if c.startswith(('weekly_', 'all_four_', 'four_week_'))]
     distribution.groupby([*config, 'season', 'target', 'geography'])[numeric].mean().reset_index() \
         .to_csv(destination / 'distribution-scores.csv', index=False, float_format='%.6g')
@@ -240,7 +248,8 @@ def rank(runs, frozen, destination):
         selection_metric=f'{problem.headline_geography} {problem.headline_scale} {headline_name} WIS in each recipe\'s forecast_view (headline-rankings.csv, '
                          'deployed rows); lower is better'), indent=2) + '\n')
     window = 'October-May, seasons equal' if problem.fold_kind == 'leave_one_season_out' else f'whole {problem.fold_kind} folds, folds equal'
-    print(f'Headline: {window}; states/DC and US separate; lower WIS is better.', flush=True)
+    geography = 'all observed locations' if problem.headline_geography == 'locations' else 'states/DC and US separate'
+    print(f'Headline: {window}; {geography}; lower WIS is better.', flush=True)
     print(summary[summary.deployed & (summary.target == headline_name) & (summary.scale == problem.headline_scale) & (summary.geography == problem.headline_geography)]
           .sort_values('rank')[['name', 'history', 'mean', 'std', 'october', 'count', 'rank']].head(20).to_string(index=False), flush=True)
     return summary

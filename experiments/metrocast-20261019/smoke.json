@@ -1,0 +1,10 @@
+{
+  "seeds": [
+    42
+  ],
+  "candidates": {
+    "direct": "ili_steps=2,decoder=residual2,noise=local,width=32,epochs=1,members=32,forecast_view=raw",
+    "ili": "ili_units=flu_scaled,ili_steps=2,ili_training=pretrain,ili_path=data/metrocast/historical_ili.npz,decoder=residual2,noise=local,width=32,epochs=1,members=32,forecast_view=raw",
+    "state": "ili_steps=2,state_pretrain_steps=2,decoder=residual2,noise=local,width=32,epochs=1,members=32,forecast_view=raw"
+  }
+}

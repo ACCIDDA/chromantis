@@ -136,7 +136,7 @@ def pathogen(target):
 
 
 def admissions(target):
-    return 'prop ed' not in target
+    return 'prop ed' not in target and not target.endswith('visits pct')
 
 
 def scales_for(target):
@@ -340,6 +340,8 @@ def raw_wis(run, frozen, horizon=None):
             wis = scored(frame[QCOLS].to_numpy(), frame.model_original_truth.to_numpy(), scale)
             us = frame.location.eq('US').to_numpy()
             for geography, part in (('states_dc', ~us), ('US', us)):
+                if not part.any():
+                    continue
                 # WIS = dispersion + underprediction + overprediction (per-task means, same tasks).
                 parts = {f'mean_{c}': float(wis[c][part].mean()) for c in ('dispersion', 'underprediction', 'overprediction')}
                 parts.update({f'covered_{c}': float(wis[f'covered_{c}'][part].mean()) for c in COVERAGE})

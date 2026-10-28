@@ -1,0 +1,120 @@
+{
+  "description": "Fixed balance comparison of artificial-history width256, archived-report width256, artificial/actual-history width512 and (where fitted) sampled A4 with corrected artificial histories. Equal mixture over recipes and seeds. See source study for exact training seasons, labels and evaluation inputs. No refitting; all subsets of this fixed candidate set.",
+  "recipes": {
+    "B_width256": {
+      "experiment": "covid-r01",
+      "scenario": "history_source=artificial,reconstruction_labels=1,error_signals=all,input_set=target,correction_weeks=2,correction_ed=1,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,spatial=neighbors,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=0.5,error_reference=2025-2026",
+      "seeds": [
+        42,
+        43,
+        44,
+        45
+      ],
+      "inputs": "reported"
+    },
+    "B_width256.reported": {
+      "experiment": "covid-r01",
+      "scenario": "history_source=reported,error_signals=all,input_set=target,correction_weeks=2,correction_ed=1,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,spatial=neighbors,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=0.5,error_reference=2025-2026",
+      "seeds": [
+        42,
+        43,
+        44,
+        45
+      ],
+      "inputs": "reported"
+    },
+    "Ba_ll.width512": {
+      "experiment": "covid-r01",
+      "scenario": "history_source=artificial,reconstruction_labels=1,error_signals=all,input_set=target,correction_weeks=2,correction_ed=1,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,spatial=neighbors,decoder=quantile,width=512,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,actual_share=1.0,log_loss_weight=0.75,error_reference=2025-2026",
+      "seeds": [
+        42,
+        43,
+        44,
+        45
+      ],
+      "inputs": "reported"
+    },
+    "A4": {
+      "experiment": "covid-r01",
+      "scenario": "history_source=artificial,history_correction=1,error_signals=all,input_set=target,correction_weeks=2,correction_ed=1,joint_weight=0.05,correction_penalty=30.0,reporting_missingness=0,reporting_method=synchronous_phase_log,ed_transform=logit,width=192,epochs=160,patience=25,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=1.0,error_reference=2025-2026",
+      "seeds": [
+        42,
+        43,
+        44,
+        45
+      ],
+      "inputs": "reported"
+    }
+  },
+  "groups": {
+    "B_width256": [
+      "B_width256"
+    ],
+    "B_width256.reported": [
+      "B_width256.reported"
+    ],
+    "Ba_ll.width512": [
+      "Ba_ll.width512"
+    ],
+    "A4": [
+      "A4"
+    ],
+    "B_width256+B_width256.reported": [
+      "B_width256",
+      "B_width256.reported"
+    ],
+    "B_width256+Ba_ll.width512": [
+      "B_width256",
+      "Ba_ll.width512"
+    ],
+    "B_width256+A4": [
+      "B_width256",
+      "A4"
+    ],
+    "B_width256.reported+Ba_ll.width512": [
+      "B_width256.reported",
+      "Ba_ll.width512"
+    ],
+    "B_width256.reported+A4": [
+      "B_width256.reported",
+      "A4"
+    ],
+    "Ba_ll.width512+A4": [
+      "Ba_ll.width512",
+      "A4"
+    ],
+    "B_width256+B_width256.reported+Ba_ll.width512": [
+      "B_width256",
+      "B_width256.reported",
+      "Ba_ll.width512"
+    ],
+    "B_width256+B_width256.reported+A4": [
+      "B_width256",
+      "B_width256.reported",
+      "A4"
+    ],
+    "B_width256+Ba_ll.width512+A4": [
+      "B_width256",
+      "Ba_ll.width512",
+      "A4"
+    ],
+    "B_width256.reported+Ba_ll.width512+A4": [
+      "B_width256.reported",
+      "Ba_ll.width512",
+      "A4"
+    ],
+    "B_width256+B_width256.reported+Ba_ll.width512+A4": [
+      "B_width256",
+      "B_width256.reported",
+      "Ba_ll.width512",
+      "A4"
+    ]
+  },
+  "rules": [
+    "mixture"
+  ],
+  "views": [
+    "corrected"
+  ],
+  "forecast_view": "corrected"
+}

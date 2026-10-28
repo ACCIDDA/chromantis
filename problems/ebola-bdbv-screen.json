@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "id": "ebola-bdbv-screen",
+  "dataset": "../datasets/ebola.json",
+  "panel": "data/ebola/panel.npz",
+  "locations": "data/ebola/locations.csv",
+  "targets": ["ebola_cases"],
+  "forecast": {"horizons": [1, 2, 3, 4]},
+  "folds": {
+    "kind": "rolling_origin",
+    "ids": ["bdbv-jun", "bdbv-aug"],
+    "periods": {"bdbv-jun": ["2026-06-06", "2026-07-18"], "bdbv-aug": ["2026-07-25", "2026-08-29"]}
+  },
+  "evaluation": {
+    "kind": "weekly_quantile_wis", "inputs": "finalized", "draws": 1,
+    "primary": {"target": "ebola_cases", "scale": "natural", "geography": "locations"}
+  },
+  "comparison": {"kind": "none"}
+}

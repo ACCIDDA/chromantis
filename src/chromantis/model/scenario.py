@@ -61,13 +61,16 @@ CODES = {
     'error_seasons': {'latest', 'all'},
     'training_window': {'all', 'recent2', 'last2'},
     'ili_units': {'own', 'flu_scaled'},
-    'spatial': {'neighbors', 'distance', 'gravity', 'none', 'pooled', 'attention', 'pathogen_spatial', 'target_spatial', 'joint_location_target', 'national_broadcast', 'gated_pool'},
+    'spatial': {'neighbors', 'distance', 'gravity', 'none', 'pooled', 'attention', 'state_attention', 'region_attention', 'pathogen_spatial', 'target_spatial', 'joint_location_target', 'national_broadcast', 'gated_pool'},
     'heads': {'shared', 'state_us'},
     'decoder': {'legacy', 'residual2', 'quantile', 'quantile_small'},
     'noise': {'global', 'local'},
     'us_error': {'none', 'shared_factor'},
     'head_sharing': {'shared', 'pathogen', 'target'},
     'fit_partition': {'all', 'pathogen', 'target'},
+    'autoencoder_corpus': {'ili', 'pathogens', 'ili_pathogens'},
+    'autoencoder_pretrain_task': {'reconstruct', 'forecast', 'both'},
+    'latent_model': {'fixed', 'cvae'},
 }
 
 # One line per field for the generated key `docs/reference/scenario.md`,
@@ -96,7 +99,7 @@ MEANING = {
     'correction_noise': 'Scale of sampled out-of-fold correction residuals added to corrected admissions; 0 = point correction. Evaluation uses 16 sampled histories per issuance.',
     'correction_noise_train': 'Also add sampled correction residuals to corrected training histories each minibatch.',
     'reconstruction_weeks': 'joint only: recent context weeks whose final values are reconstruction labels.',
-    'path_loss_weight': 'Sampled models: weight of the energy score of each location\'s whole future path of log(1 + admissions) '
+    'path_loss_weight': 'Sampled models: weight of the energy score of each location\'s whole future path of log(1 + admissions), or native proportions for proportion-only problems, '
                         '(observed weeks only, divided by the square root of their number), so draws learn realistic joint paths (2026-10-11).',
     'peak_loss_weight': 'Sampled models: weight of the fair CRPS of each path\'s peak size (maximum log(1 + admissions) over the '
                         'observed future weeks) plus the fair CRPS of its soft peak week (softmax-weighted week position / horizons).',
@@ -104,6 +107,7 @@ MEANING = {
                             'using the mean softmax over sampled log-count paths; tied or missing peaks are excluded.',
     'log_loss_weight': 'Weight of an extra weekly admission loss (the trained admission targets) on the log(1 + count) scale, added to the native-scale loss.',
     'covariate_dropout': 'Probability a training episode has all covariates (e.g. Kinsa) hidden.',
+    'training_target_lag': 'Hide this many most recent target-history weeks during fitting and inner validation; future prediction labels, covariates, and evaluation inputs are unchanged.',
     'training_window': 'all = every non-held-out season; recent2 = two preceding seasons; last2 = latest two permitted non-held-out seasons (nested removal of oldest training season).',
     'stress_views': 'Also evaluate delayed-admission and covariate-missing input views of the same fitted model.',
     'ili_units': 'Own-source ILI proportions or auxiliary flu-head pseudo-tasks rescaled by fitting-only modern Q95 / historical ILI Q95.',
@@ -141,7 +145,7 @@ MEANING = {
     'dynamics': 'Recent-dynamics feature block (30 slope/acceleration/age/validity features); see architecture.md.',
     'loss_weights': 'Training target weights: the problem objective, count targets only, or proportion targets only.',
     'encoder': 'Temporal context encoder; see architecture.md.',
-    'spatial': 'Cross-location information exchange (none, shared attention, pathogen/target/joint scopes); '
+    'spatial': 'Cross-location exchange, including attention restricted to own-state or HHS-region locations, or unrestricted attention; '
                'see architecture.md.',
     'heads': 'State and US output heads shared or separate (`state_us`).',
     'sum_wis_weight': 'Auxiliary four-week flu admission sum WIS weight; sampled heads only; normalized by four times training-only admission Q95.',
@@ -168,6 +172,19 @@ MEANING = {
                      'workflow.md and experiments/b-2-t0/index.md#protocol.',
     'validation_weeks': 'patience > 0 only: consecutive early-stopping weeks hidden per block (design §4).',
     'validation_spacing': 'patience > 0 only: one validation block every this many weeks of a training season.',
+    'autoencoder_weight': 'Weight of the input-reconstruction loss: a head rebuilds every input history (all lookback weeks, '
+                          'normalized model space, mean squared error over observed cells) from the location code (2026-10-24).',
+    'autoencoder_mask': 'Probability that each training input cell is hidden from the encoder (masked autoencoding); '
+                        'the reconstruction target keeps it. Also used in autoencoder pretraining.',
+    'bottleneck': 'Size of a linear code the per-location, per-target representation passes through before the decoder (0 = none).',
+    'autoencoder_pretrain_steps': 'Pretraining updates on the extra-series corpus before normal training (0 = off).',
+    'autoencoder_corpus': 'Extra series for pretraining, rescaled per location to the fit-only flu Q95: pre-2022 state ILI (ili), '
+                          'COVID and RSV admissions/ED of the panel on fitting weeks (pathogens), or both.',
+    'autoencoder_pretrain_task': 'Pretraining objective on the corpus: masked input reconstruction, forecasting its future, or both.',
+    'latent_model': 'Episode latent: fixed standard normal (fixed) or conditional VAE (cvae), a prior learned from the history '
+                    'plus, in training, a posterior that sees the future labels.',
+    'cvae_weight': 'cvae: weight of the fair CRPS of posterior-latent samples (future reconstruction).',
+    'kl_weight': 'cvae: weight of KL(posterior || prior), nats per episode.',
     'validation_offset': 'patience > 0 only: week of each training season where the first block starts '
                          "(0-based, counted from the season's first epiweek, CDC week 31).",
 }
@@ -214,6 +231,7 @@ class Scenario:
     ili_units: str = 'own'
     ili_steps: int = 200
     ed_pretrain_steps: int = 0
+    state_pretrain_steps: int = 0
     correction_weeks: int = 8
     correction_ed: bool = False
     ili_training: str = 'none'
@@ -264,6 +282,7 @@ class Scenario:
     signal_features: str = 'none'
     covariate_set: str = 'none'
     input_normalization: str = 'none'
+    training_target_lag: int = 0
     validation_calendar: str = 'season'
     # Cross-validation early stopping (user decision 2026-09-22: CV settings belong to
     # the scenario). Only used when patience > 0: hide `validation_weeks` consecutive
@@ -290,6 +309,16 @@ class Scenario:
     # A prescribed empirical reporting process, shared by every held-out season.
     error_reference: str = ''
     forecast_view: str = 'corrected'
+    # Autoencoder and conditional-VAE options (2026-10-24); defaults reproduce earlier recipes.
+    autoencoder_weight: float = 0.
+    autoencoder_mask: float = 0.
+    bottleneck: int = 0
+    autoencoder_pretrain_steps: int = 0
+    autoencoder_corpus: str = 'ili_pathogens'
+    autoencoder_pretrain_task: str = 'reconstruct'
+    latent_model: str = 'fixed'
+    cvae_weight: float = 1.
+    kl_weight: float = .01
 
     def __post_init__(self):
         for key in CODES:
@@ -354,6 +383,8 @@ class Scenario:
             raise ValueError('Positive dimensions/epochs required; training members >= 2')
         if self.lookback < 2:
             raise ValueError('lookback must be at least two weeks')
+        if not 0 <= self.training_target_lag < self.lookback:
+            raise ValueError('training_target_lag must be nonnegative and shorter than lookback')
         if self.validation_members < 2 or self.location_embedding < 0 or self.weight_decay < 0:
             raise ValueError('Validation members >=2, nonnegative embedding and weight decay required')
         if self.patience < 0 or (self.patience and self.patience >= self.epochs):
@@ -370,6 +401,14 @@ class Scenario:
                              'validation_offset + validation_weeks <= validation_spacing')
         if not self.patience and (self.validation_weeks, self.validation_spacing, self.validation_offset) != (3, 16, 4):
             raise ValueError('validation_* settings only apply with patience > 0')
+        if min(self.autoencoder_weight, self.autoencoder_mask, self.bottleneck, self.autoencoder_pretrain_steps,
+               self.cvae_weight, self.kl_weight) < 0 or self.autoencoder_mask >= 1:
+            raise ValueError('Invalid autoencoder or conditional-VAE option')
+        if self.autoencoder_pretrain_steps and (self.encoder != 'mlp' or self.ili_training != 'none'
+                                                or self.ed_pretrain_steps or self.state_pretrain_steps):
+            raise ValueError('Autoencoder pretraining needs an MLP encoder and no other pretraining')
+        if self.latent_model == 'cvae' and (self.decoder not in ('legacy', 'residual2') or self.encoder != 'mlp'):
+            raise ValueError('A conditional-VAE latent needs a sampled MLP model')
         if not self.input_set or not self.covariate_set:
             raise ValueError('input_set and covariate_set must be named by the dataset specification')
 
@@ -414,4 +453,6 @@ class Scenario:
                     noise=self.noise, head_sharing=self.head_sharing, count_transform=self.count_transform,
                     ed_transform=self.ed_transform, geography=self.geography, coordinates=self.coordinates, dynamics=self.dynamics,
                     annual_calendar=self.annual_calendar, location_embedding=self.location_embedding,
-                    us_error=self.us_error, growth_anchor=self.growth_anchor)
+                    us_error=self.us_error, growth_anchor=self.growth_anchor, bottleneck=self.bottleneck,
+                    reconstruct_inputs=bool(self.autoencoder_weight or self.autoencoder_pretrain_steps),
+                    latent_model=self.latent_model)

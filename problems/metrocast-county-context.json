@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "id": "metrocast-county-context",
+  "dataset": "../datasets/metrocast-county-context.json",
+  "panel": "data/metrocast-county-context/panel.npz",
+  "locations": "data/metrocast-county-2024/locations.csv",
+  "targets": ["metrocast_flu_proportion"],
+  "forecast": {"horizons": [1, 2, 3, 4]},
+  "folds": {
+    "kind": "leave_one_season_out",
+    "ids": ["2024-2025"],
+    "training_ids": ["2022-2023", "2023-2024", "2024-2025"]
+  },
+  "evaluation": {
+    "kind": "weekly_quantile_wis",
+    "inputs": "finalized",
+    "draws": 1,
+    "primary": {"target": "metrocast_flu_proportion", "scale": "natural", "geography": "locations"}
+  },
+  "comparison": {"kind": "none"}
+}

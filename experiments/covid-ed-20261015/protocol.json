@@ -1,0 +1,54 @@
+{
+  "authorization": "User explicitly authorized all six GPUs for four hours after overnight cutoff.",
+  "deadline": "2026-10-15T16:10:00-04:00",
+  "scope": "Improve ED natural-scale WIS versus CovidHub-ensemble and marginal coverage; preserve admissions performance. Do not publish.",
+  "studies": [
+    "covid-ed-forward",
+    "covid-ed-screen",
+    "covid-ed-confirm"
+  ],
+  "seeds": "70-73 initial;74-79 confirmation",
+  "selection": "Use paired same-seed comparisons. Prioritize ED scores and coverage, including national separately; admissions-only headline ranking is insufficient. No post-hoc interval widening fitted on evaluation outcomes.",
+  "assumptions": [
+    "2025-26 already used adaptively; not untouched prospective test.",
+    "Archived input gaps still filled with finalized values.",
+    "Covariate gains must appear in ED and forward evaluation, not admissions-only retrospective rankings."
+  ],
+  "manager_commands": "experiments/covid-ed-20261015/manager-commands.sh",
+  "execution": {
+    "gpu_arrays": [],
+    "script": "scripts/covid_ed.sbatch",
+    "heartbeat": "covid-overnight-gpu-research",
+    "stop_utc": "2026-10-15T20:10:00Z",
+    "followup_gpu_array": 5010816,
+    "switch_job": 5010819,
+    "confirmation_scoring_job": 5010863,
+    "final_ranking_job": 5051292,
+    "gpu_stop_verified": "2026-10-15T16:10:00-04:00",
+    "final_ranking_completed": "2026-10-15T16:11:30-04:00",
+    "heartbeat_status": "PAUSED"
+  },
+  "decisions": [
+    "12:45ET: all6GPUs active; forward80/80complete, screen48running/1complete. Automatic rank failed because mixed ED-only/joint learned targets violate equal-target support checks. Added rank_covid_ed.py to partition by loss_weights and call unchanged shared scorer; scripts/rank.sbatch routes covid-ed-* studies to it. Repaired score5001163 completed; joint and ED-only full4seed ranks copied locally. Mixture/summer5001169 running; blends same-variant root pairs plus joint baselines with ED-only specialists, not pure target replacement. Forward2025-26 reused adaptive evaluation, training2022-23..2024-25 finalized future labels, archived inputs/finalized fills. Width256 ED linear transform shows state/DC ED Hub WISratio1.04690 vs matched logit baseline1.33582; sampled inpatient1.16825 vs baseline1.32179; wastewater not helpful here. Requires mixtures/coverage and fresh seeds before selection; confirmation study already includes these variants.",
+    "13:15ET sixGPUs active, screen40complete/40running, confirmationprequeued. Forward mixtures5001169 completed. States/DC ED Hub ratios baseline1.22525, linear1.08308, fourthroot1.10501, inpatient1.15550, wastewater1.22895; national baseline1.91680, linear1.51589, fourthroot1.50411, separate-national-head1.27352. ED95% marginal coverage states baseline84.24%,linear80.36%,fourthroot86.81%; national baseline79.59%,linear73.47%,fourthroot83.67%. Thus score gains do not resolve undercoverage. All train2022-23..2024-25 finalized future admissions/ED labels and evaluate archived2025-26 inputs with finalized gap fills, seeds70-73. Target-route audit5004491 reuses same aligned forecasts: admissions copied exactly from baseline pair; ED from linear/fourthroot/nationalhead/inpatient pair, no refit/calibration. Script asserts alignment and unchanged admissions. Fresh-seed confirmation already includes variants; do not label adaptive2025-26 check untouched.",
+    "13:45ET all6GPUs active, retrospective80complete, forward confirmation81complete/39running. Target-routing5004491 completed; admissions forecasts copied exactly and all routes have identical admissions headline0.247802; ED-only replacement is feasible without retraining admissions. Queued H100 replacement5010816 afterany4998183; controller5010819 cancels only4998183 after all120confirmation fits complete. FourL40 array4998182 remains unchanged. New H100 chain:32ED-specialist fits (ED-only linear/fourthroot/nationalhead plus matched ED-only logit roots, seeds80-83, earlier2022-25 training/archived2025-26 evaluation), then48provisional all-season production fits (six joint-model linear/fourthroot/nationalhead recipes,8seeds42-49), then existing confirmation/reserve. Hard20:10UTC cutoff unchanged. Confirmation rank/mixtures/summer5010863 queued after controller; source mixtures-confirm.json uses6seeds74-79. No target routing published, no production readiness claim; original shared checkout preserved.",
+    "14:15ET: all120confirmation and32specialist fits complete; production2complete/16running atcheck. Six-seed74-79 joint-mixture ED Hub ratios states baseline1.14376, fourthroot1.05067, linear1.07358,nationalhead1.13336; US baseline1.68956,fourthroot1.35257,linear1.47502,nationalhead1.09919. Fourthroot95% coverage states88.69%/US87.24% vs baseline83.04%/78.06%, still undercoverage. Specialist seeds80-83 width256 linear ED-only ratio1.01819states/1.36453US, compared matched logitED-only1.34354/3.16586; evaluate mixtures before choosing. All earlier2022-25 training/finalized future labels and archived2025-26 evaluation with finalized fills; joint versus ED-only learned targets distinguished. Launched24matched forward interaction fits (fourthroot, nationalhead, combined; both architectures,seeds84-87) plus16ED-only linear all-season production fits. ReplacementL40 array5018127 queued before canceling old reserve array4998182; H1005010816 continues48joint production fits. Current GPU arrays5018127/5010816;20:10UTC cutoff unchanged. rank_covid_ed helper skips held-out scoring for production problems. Created ed-progress.png/pdf/csv showing fresh-seed ED results and assumptions. No publication.",
+    "14:45ET sixGPUs active; combined24/24complete, joint production48/48complete, ED-only production16/16complete; workers continue reserve to20:10UTC. Combined four-seed84-87 preliminary individual scores: sampled fourthroot+nationalhead ED ratios1.14065states/1.13144US; quantile combined1.17957/1.93393, so no automatic win from combining changes. Submitted5023990 shared scorer + mixture/summer for specialists and combined branches; specialist scoring refresh uses all32 fits. Copied48joint production checkpoints; froze16 fourth-root joint-model hashes into covid-ed-fourth-root-candidate-20261015.json and started local export. Candidate is ED donor only: standalone export also changes admissions, so must not silently replace existing admissions release. All-season training2022-23..2025-26, finalized future admissions/ED labels;8seeds42-49 per architecture. No publication or readiness claim.",
+    "15:15ET sixGPUs active on reserve; final-mixture5023990 complete. ED-only width256 linear four-seed80-83 mixture ratio1.00241states/1.29641US; ED-only linear two-architecturepair1.04658/1.24602. Combined fourthroot+nationalhead joint pair seeds84-87 ratios1.10981/1.36770, no compelling gain over independently confirmed fourthroot pair. Different seeds are not paired treatment evidence. Added optional recipe_targets to production export: validates requested targets were learned and recipe names exist; restricts marginal quantile combination per target. Joint sample export explicitly rejected with routing because cross-target dependence is undefined. Built provisional36checkpoint routed release using unchanged20member admissions pair plus16member fourthroot ED pair; local operational export running on frozen2026-10-14 issuance. It remains provisional, no live publication, no forecast calibration on evaluation outcomes.",
+    "Routed operational export completed:9568rows,no missing values; exact dataframe equality verifies4784admissions rows identical to original half-perturbation candidate and4784ED rows identical to fourthroot donor. No publication.",
+    "15:45ET all6GPU allocations verified active. Queued final CPU rank5051292 afterany5018127/5010816, keeping20:10UTC GPU cutoff. Checked six-seed74-79 forward summer ED diagnostics: fourthroot pair meanWIS0.001636states vsbaseline0.001878 (~13%lower), US0.001629 vs0.002340 (~30%lower), same truth/task support hashes. Summer means June-September reference months within2025-26 fold, not continuous Aug2025-Aug2026; first/last dates bound disjoint months. Training2022-23..2024-25, finalized future joint labels, archived evaluation with finalized fills. These summer scores use available panel tasks, not identical Hub support, so do not call them Hub-relative gains. Existing candidate remains provisional; no new selection or publication.",
+    "FINAL: Slurm sacct verifies all six activeGPU tasks5018127/5010816 completed16:10:00 America/New_York exit0; finalCPUrank5051292 completed16:11:30 exit0. Heartbeat paused.400ED-focused fits complete, including64all-season production fits. Final reserve ranking167ab8973b3c collected along with retrospective score summaries. Retain36checkpoint routed provisional export with exactly unchanged admissions outputs and fourthroot ED outputs. Independent seed confirmation74-79 on reused2025-26 season: ED Hubratio1.05067states/1.35257US,95%marginalcoverage88.6855%/87.2449%; training2022-23..2024-25 finalized future joint labels, archived eval inputs with finalized fills. Not production-ready. Next scientific need is forward-valid uncertainty modeling/calibration and national ED improvement, with calibration fitted only on earlier training seasons. No further GPU work authorized in this round and no forecasts published."
+  ],
+  "provisional_release": "production/releases/covid-target-routed-candidate-20261015.json",
+  "completed_fits_at_1545": {
+    "covid-ed-forward": 80,
+    "covid-ed-screen": 80,
+    "covid-ed-confirm": 120,
+    "covid-ed-specialists": 32,
+    "covid-ed-combined": 24,
+    "covid-ed-production": 48,
+    "covid-ed-production-specialists": 16,
+    "covid-reserve": 229
+  },
+  "readiness": "Provisional operational candidate, not production-ready: ED remains worse than Hub ensemble and marginal intervals under-cover; reused adaptive validation season, finalized archive-gap fills, seed sensitivity. No publication."
+}

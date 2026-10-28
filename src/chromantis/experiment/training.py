@@ -48,6 +48,20 @@ def model_options(batch, problem, scenario, pop):
                    target_units=list(first['target_units']), target_groups=list(first['target_groups']),
                    target_input_indices=list(first['target_input_indices']),
                    **scenario.model_options())
+    if scenario.spatial in ('state_attention', 'region_attention'):
+        import csv
+        from chromantis.dataset.extract import HHS_REGIONS
+        memberships = {s: str(region) for region, states in HHS_REGIONS.items() for s in states.split()}
+        with open(problem.locations) as stream:
+            rows = list(csv.DictReader(stream))
+        states = {row['location']: row['state_abb'] for row in rows}
+        if len(states) != len(rows):
+            raise ValueError('Grouped attention location metadata must be unique')
+        options['location_groups'] = {
+            loc: states[loc] if scenario.spatial == 'state_attention' else memberships[states[loc]]
+            for loc in first['locations']}
+        if any(not group for group in options['location_groups'].values()):
+            raise ValueError('Grouped attention requires known state/region membership')
     if scenario.input_normalization == 'b0':
         normalization = [dict(e, X=np.stack((e['values'], e['available']), axis=2)) for e in batch]
         options.update(input_scales(normalization, scenario.count_transform, scenario.ed_transform, pop,
@@ -90,14 +104,15 @@ def fair_crps_draws(draws, truth):
 PEAK_SHARPNESS = 10.  # soft peak week: softmax(10 x log(1 + admissions)) over the observed future weeks
 
 
-def path_scores(samples, truth, mask):
-    """Per [episode, location]: energy score of log(1 + count) paths over the observed future weeks
+def path_scores(samples, truth, mask, log_counts=True):
+    """Per [episode, location]: energy score of log(1 + count), or native proportion paths, over observed weeks
     (divided by the square root of their number), and fair CRPS of the path peak size and of the soft
     peak week (position / number of weeks). samples [M, N, H, L], truth and mask [N, H, L]."""
     m, _, h, _ = samples.shape
     mask = mask.bool()
-    x = torch.where(mask[None], torch.log1p(samples.clamp_min(0)), 0)
-    y = torch.where(mask, torch.log1p(truth.clamp_min(0)), 0)
+    transform = (lambda v: torch.log1p(v.clamp_min(0))) if log_counts else (lambda v: v)
+    x = torch.where(mask[None], transform(samples), 0)
+    y = torch.where(mask, transform(truth), 0)
     count = mask.sum(1)
     distance = (x - y[None]).pow(2).sum(2).add(1e-12).sqrt().mean(0)
     flat = x.permute(1, 3, 0, 2).reshape(-1, m, h)
@@ -112,13 +127,17 @@ def path_scores(samples, truth, mask):
 
 
 def path_peak_loss(samples, truth, mask, weights, channels, problem, scenario, horizons):
-    """Recipe-weighted path and peak losses on the admission target; locations and episodes keep the
-    weekly objective's weights (summed over the future weeks)."""
+    """Path loss on counts (log scale) or the first proportion target (native scale).
+    Peak losses remain count-only. Locations and episodes keep the weekly objective's weights."""
     if not (scenario.path_loss_weight or scenario.peak_loss_weight or scenario.peak_log_loss_weight):
         return 0.
-    k = next(i for i, c in enumerate(channels) if problem.target_units[c] == 'count')
+    k = next((i for i, c in enumerate(channels) if problem.target_units[c] == 'count'), 0)
+    is_count = problem.target_units[channels[k]] == 'count'
+    if not is_count and (scenario.peak_loss_weight or scenario.peak_log_loss_weight):
+        raise ValueError('Proportion targets support native-scale path energy, not count peak losses')
     future = torch.as_tensor(np.asarray(horizons) > 0, device=samples.device)
-    energy, peak = path_scores(samples[:, :, future, channels[k]], truth[:, future, channels[k]], mask[:, future, channels[k]])
+    energy, peak = path_scores(samples[:, :, future, channels[k]], truth[:, future, channels[k]],
+                              mask[:, future, channels[k]], log_counts=is_count)
     w = weights[:, future, k].sum(1)
     loss = scenario.path_loss_weight * energy + scenario.peak_loss_weight * peak
     if scenario.peak_log_loss_weight:
@@ -192,7 +211,11 @@ def fit_component(train, validation, channels, component, options, problem, scen
     horizons = problem.model_horizons(scenario)
     model = factory(horizons=horizons, scale=loss_scales(unique_truth(train), problem.target_units), **options).to(device)
     ili = None
-    if scenario.ili_training != 'none' and scenario.encoder == 'mlp':
+    if scenario.state_pretrain_steps:
+        pretrain_panel(model, state_pretrain_panel(train, problem, scenario), problem, scenario,
+                       channels, seed, device, scenario.state_pretrain_steps, 'state_ed_pretrain')
+        torch.manual_seed(seed)
+    elif scenario.ili_training != 'none' and scenario.encoder == 'mlp':
         pretrain_panel(model, historical_panel(scenario.ili_path, train, problem, scenario), problem, scenario,
                        channels, seed, device, scenario.ili_steps, 'historical_panel_pretrain')
         torch.manual_seed(seed)  # Match modern minibatch ordering after transfer initialization.
@@ -200,6 +223,9 @@ def fit_component(train, validation, channels, component, options, problem, scen
         pretrain_panel(model, ed_pseudo_panel(train, problem, scenario), problem, scenario, channels, seed, device,
                        scenario.ed_pretrain_steps, 'ed_pseudo_pretrain')
         torch.manual_seed(seed)  # Match modern minibatch ordering after transfer initialization.
+    elif scenario.autoencoder_pretrain_steps:
+        autoencoder_pretrain(model, pretraining_corpus(train, problem, scenario), problem, scenario, channels, seed, device)
+        torch.manual_seed(seed)
     elif scenario.ili_training != 'none':
         from chromantis.model.series import HistoricalILI
         ili = HistoricalILI(scenario.ili_path, scenario.lookback, device, units=scenario.ili_units, steps=scenario.ili_steps)
@@ -211,6 +237,9 @@ def fit_component(train, validation, channels, component, options, problem, scen
     total_weights = torch.as_tensor(sum_wis_weights(train, horizons), device=device) if scenario.sum_wis_weight and 0 in channels else None
     if selecting:
         vvalues, vavailable, vy, vy_mask, vcal, vcov = to_tensors(validation, device)
+        if scenario.training_target_lag:
+            vvalues[:, -scenario.training_target_lag:] = 0
+            vavailable[:, -scenario.training_target_lag:] = False
         vweights = torch.as_tensor(objective_weights(validation, problem, scenario, channels), device=device)
         if scenario.reconstruction_labels:
             # Select epochs on finalized future labels; reconstruction is auxiliary.
@@ -227,7 +256,9 @@ def fit_component(train, validation, channels, component, options, problem, scen
         # Large members x batch products are split into gradient-accumulation chunks of at most
         # 1024 member-episodes (2026-10-06, GPU memory); the summed gradient equals the full
         # minibatch gradient. Default 128 members x 8 episodes is one chunk (unchanged).
-        chunk = max(1, 1024 // scenario.members)
+        # 2026-10-24: chunks also scale with the future weeks (4096 member-episode-weeks), so
+        # 36-week season models fit beside each other on one GPU; 4-week problems are unchanged.
+        chunk = max(1, 4096 // (scenario.members * max(4, sum(h > 0 for h in horizons))))
         for batch_ids in torch.randperm(len(train), device=device).split(scenario.batch_size):
             optimizer.zero_grad()
             batch_loss = 0.
@@ -248,10 +279,28 @@ def fit_component(train, validation, channels, component, options, problem, scen
                     # Whole-episode covariate outage (e.g. Kinsa feed missing), values and masks.
                     hidden = torch.as_tensor(rng.random(len(ids)) < scenario.covariate_dropout, device=device)
                     batch_cov = torch.where(hidden[:, None, None, None, None], torch.zeros_like(batch_cov), batch_cov)
-                samples = model(values=batch_values, available=batch_available, calendar=cal[ids],
+                if scenario.training_target_lag:
+                    # Simulate a reporting delay in the target history, not in future labels.
+                    # Advanced indexing above creates copies; the stored episodes stay intact.
+                    batch_values[:, -scenario.training_target_lag:] = 0
+                    batch_available[:, -scenario.training_target_lag:] = False
+                hide = (torch.rand(batch_values.shape, device=device) < scenario.autoencoder_mask
+                        if scenario.autoencoder_mask else None)
+                samples = model(values=batch_values, available=batch_available, calendar=cal[ids], hide=hide,
                                 covariates=batch_cov, locations=list(train[0]['locations']), members=scenario.members)
                 score = prediction_loss(model, samples[:, :, :, channels], y[ids][:, :, channels], y_mask[ids][:, :, channels])
                 loss = (weights[ids] * score / model.scale[channels]).sum() * scale
+                if scenario.autoencoder_weight:
+                    loss = loss + scenario.autoencoder_weight * reconstruction_loss(model)
+                if scenario.latent_model == 'cvae':
+                    # Posterior-latent draws should reproduce the observed future (fair CRPS, same
+                    # cell weights); KL ties the posterior to the history-only prior used in forecasting.
+                    posterior = model(values=batch_values, available=batch_available, calendar=cal[ids], hide=hide,
+                                      covariates=batch_cov, locations=list(train[0]['locations']), members=scenario.members,
+                                      future=(y[ids], y_mask[ids]))
+                    post_score = prediction_loss(model, posterior[:, :, :, channels], y[ids][:, :, channels], y_mask[ids][:, :, channels])
+                    loss = loss + scenario.cvae_weight * (weights[ids] * post_score / model.scale[channels]).sum() * scale
+                    loss = loss + scenario.kl_weight * model.last_kl.mean()
                 admissions = [i for i, c in enumerate(channels) if problem.target_units[c] == 'count']
                 if scenario.log_loss_weight and admissions:
                     # Weekly admissions on the log(1 + count) scale, the Hub log score's scale.
@@ -279,7 +328,10 @@ def fit_component(train, validation, channels, component, options, problem, scen
             val = 0.
             with torch.no_grad(), torch.random.fork_rng(devices=[torch.device(device)] if str(device).startswith("cuda") else []):
                 torch.manual_seed(seed + 900000)
-                for ids in torch.arange(len(validation), device=device).split(scenario.batch_size):
+                # Same episodes per pass as before for 4-week problems; 36-week models split further (2026-10-24).
+                weeks = max(4, sum(h > 0 for h in horizons))
+                for ids in torch.arange(len(validation), device=device).split(
+                        min(scenario.batch_size, max(1, 8192 // (scenario.validation_members * weeks)))):
                     samples = model(values=vvalues[ids], available=vavailable[ids], calendar=vcal[ids],
                                     covariates=None if vcov is None else vcov[ids],
                                     locations=list(validation[0]['locations']), members=scenario.validation_members)
@@ -309,6 +361,149 @@ def fit_component(train, validation, channels, component, options, problem, scen
     return model.cpu(), record
 
 
+def reconstruction_loss(model):
+    """Mean squared error of the rebuilt input histories over observed cells (normalized model space)."""
+    rebuilt, values, valid = model.last_reconstruction
+    return (torch.where(valid, rebuilt - values, 0) ** 2).sum() / valid.sum().clamp_min(1)
+
+
+def other_pathogen_panel(train, problem, scenario):
+    """Other pathogens' histories of the panel as pseudo target series (autoencoder corpus, 2026-10-24).
+
+    For each pathogen other than the targets' (COVID and RSV for flu), each target channel (e.g. flu admissions, flu ED share) is
+    replaced by the same-unit series of that pathogen, multiplied per location by
+    (fit-only Q95 of the target) / (Q95 of the other series on the same fitting weeks); ED
+    pseudo-values are clipped to [0, 1]. Only weeks in the fit episodes' truth are kept,
+    so held-out and early-stopping weeks never enter. Other inputs and covariates are
+    unavailable. This transfers epidemic shapes; it is not observed flu."""
+    from chromantis.dataset.episodes import episodes
+    dates, truth = unique_truth(train, with_dates=True)
+    with np.load(problem.panel) as p:
+        panel = {k: p[k] for k in ('dates', 'locations', 'target_names', 'covariate_names', 'covariate_national_names')}
+        source = p['targets'].copy()
+        n_cov, n_nat = p['covariates'].shape[-1], p['covariates_national'].shape[-1]
+    names = list(map(str, panel['target_names']))
+    panel_dates = panel['dates'].astype(str)
+    rows = np.isin(panel_dates, dates)
+    result = []
+    own = set(problem.target_groups)
+    for group in sorted({sig.group for sig in problem.dataset.signals} - own):
+        targets = np.full_like(source, np.nan)
+        for c, signal in enumerate(problem.target_signals):
+            other = next((s.name for s in problem.dataset.signals if s.group == group and s.unit == signal.unit), None)
+            if other is None or other not in names:
+                continue
+            series = np.where(rows[:, None], source[:, :, names.index(other)], np.nan)
+            for li in range(source.shape[1]):
+                observed = truth[:, c, 0, li][truth[:, c, 1, li].astype(bool)]
+                values = series[:, li][np.isfinite(series[:, li])]
+                if observed.size < 10 or values.size < 10 or not np.quantile(values, .95) > 0:
+                    continue
+                pseudo = series[:, li] * np.quantile(observed, .95) / np.quantile(values, .95)
+                targets[:, li, names.index(signal.name)] = np.clip(pseudo, 0, 1) if signal.unit == 'proportion' else pseudo
+        pseudo_panel = dict(panel, targets=targets,
+                            covariates=np.full((len(panel_dates), source.shape[1], n_cov), np.nan, np.float32),
+                            covariates_national=np.full((len(panel_dates), n_nat), np.nan, np.float32))
+        result.extend(future_only(episodes(pseudo_panel, problem, problem.input_names(scenario.input_set), scenario.lookback,
+                                           'scheduled_final', problem.covariate_names(scenario.covariate_set),
+                                           horizons=problem.model_horizons(scenario)), problem, scenario, require_labels=False))
+    return result
+
+
+def future_only(eps, problem, scenario, require_labels=True):
+    """Keep future-week labels only; drop episodes with no input (or, if required, no label)."""
+    future = np.asarray(problem.model_horizons(scenario)) > 0
+    result = []
+    for e in eps:
+        e['target_available'] = e['target_available'] & future[:, None, None]
+        e['target_values'] = np.where(e['target_available'], e['target_values'], 0).astype(np.float32)
+        e['Y'] = np.stack((e['target_values'], e['target_available']), axis=2)
+        if e['available'].any() and (e['target_available'].any() or not require_labels):
+            result.append(e)
+    return result
+
+
+def pretraining_corpus(train, problem, scenario):
+    corpus = []
+    if scenario.autoencoder_corpus in ('ili', 'ili_pathogens'):
+        corpus += historical_panel(scenario.ili_path, train, problem, scenario)
+    if scenario.autoencoder_corpus in ('pathogens', 'ili_pathogens'):
+        corpus += other_pathogen_panel(train, problem, scenario)
+    if not corpus:
+        raise ValueError('Empty autoencoder pretraining corpus')
+    return corpus
+
+
+def autoencoder_pretrain(model, corpus, problem, scenario, channels, seed, device):
+    """`autoencoder_pretrain_steps` Adam updates on the extra-series corpus (2026-10-24).
+
+    `reconstruct`: masked input reconstruction only (cells hidden with probability
+    `autoencoder_mask`, 0.3 when unset); `forecast`: the modern forecast loss on the corpus's
+    future weeks (as ILI pretraining); `both`: their sum. Batches of `batch_size` episodes."""
+    task = scenario.autoencoder_pretrain_task
+    forecasting = task in ('forecast', 'both')
+    labelled = [e for e in corpus if e['target_available'].any()]
+    if forecasting and not labelled:
+        raise ValueError('No labelled pretraining episodes')
+    pool = labelled if task == 'forecast' else corpus
+    weights = torch.as_tensor(loss_cell_weights(labelled, problem.target_weights(scenario.loss_weights))[:, :, channels],
+                              device=device) if forecasting else None
+    row = {id(e): i for i, e in enumerate(labelled)}
+    masking = scenario.autoencoder_mask or .3
+    optimizer = torch.optim.Adam(model.parameters(), lr=scenario.lr, weight_decay=scenario.weight_decay)
+    rng = np.random.default_rng(seed + 47000)
+    members = scenario.members if forecasting else 2
+    model.train()
+    for step in range(scenario.autoencoder_pretrain_steps):
+        chosen = rng.choice(len(pool), min(scenario.batch_size, len(pool)), replace=False)
+        optimizer.zero_grad()
+        parts = max(1, len(chosen) * members * max(4, sum(h > 0 for h in problem.model_horizons(scenario))) // 4096)
+        for part in np.array_split(chosen, min(parts, len(chosen))):
+            batch = [pool[i] for i in part]
+            values, available, y, y_mask, cal, cov = to_tensors(batch, device)
+            hide = torch.rand(values.shape, device=device) < masking if task != 'forecast' else None
+            samples = model(values=values, available=available, calendar=cal, covariates=cov, hide=hide,
+                            locations=list(batch[0]['locations']), members=members)
+            loss = 0.
+            if task != 'forecast':
+                loss = loss + reconstruction_loss(model) * len(part) / len(chosen)
+            if forecasting:
+                ok = torch.as_tensor([id(e) in row for e in batch], device=device)
+                w = weights[[row.get(id(e), 0) for e in batch]] * ok[:, None, None, None]
+                score = prediction_loss(model, samples[:, :, :, channels], y[:, :, channels], y_mask[:, :, channels])
+                loss = loss + (w * score / model.scale[channels]).sum() * len(labelled) / len(chosen)
+            if not torch.isfinite(loss):
+                raise ValueError('Nonfinite autoencoder pretraining loss')
+            loss.backward()
+        torch.nn.utils.clip_grad_norm_(model.parameters(), 5)
+        optimizer.step()
+    print(json.dumps(dict(phase=f'autoencoder_pretrain_{task}', steps=scenario.autoencoder_pretrain_steps,
+                          episodes=len(corpus), labelled=len(labelled), last_loss=float(loss.detach()))), flush=True)
+
+
+def state_pretrain_panel(train, problem, scenario):
+    """Pretrain on own-state ED percentages, then fine-tune on local observations.
+
+    Only dates visible in the fitting partition enter pretraining, including when
+    an inner validation block is masked. The held-out season never supplies labels.
+    """
+    from chromantis.dataset.build import load
+    from chromantis.dataset.cv import masked
+    from chromantis.dataset.episodes import episodes
+    allowed = set()
+    for e in train:
+        allowed.update(d for d, ok in zip(e['context_dates'], e['available'].any(axis=(1, 2))) if ok)
+        allowed.update(d for d, ok in zip(e['target_dates'], e['target_available'].any(axis=(1, 2))) if ok)
+    panel = load(problem.panel)
+    k = list(panel['covariate_names']).index('state_flu_proportion')
+    panel['targets'] = panel['covariates'][..., k:k+1].copy()
+    panel = masked(panel, np.isin(panel['dates'].astype(str), list(allowed)))
+    return [e for e in episodes(panel, problem, problem.input_names(scenario.input_set),
+                               scenario.lookback, 'scheduled_final',
+                               problem.covariate_names(scenario.covariate_set))
+            if e['context_dates'][-1] in allowed]
+
+
 def historical_panel(path, train, problem, scenario):
     """Pre-August-2022 state ILI as pseudo flu admission/ED panel episodes (flu MLP pretraining).
 
@@ -329,9 +524,9 @@ def historical_panel(path, train, problem, scenario):
     dataset_names = [signal.name for signal in problem.dataset.signals]
     targets = np.full((len(dates), len(locations), len(dataset_names)), np.nan, dtype=np.float32)
     for li, loc in enumerate(locations):
-        if loc not in sources:
+        if loc.upper() not in sources:
             continue
-        series = ili[:, sources.index(loc)]
+        series = ili[:, sources.index(loc.upper())]
         if not np.isfinite(series).sum() or not np.nanquantile(series, .95) > 0:
             continue
         for c, signal in enumerate(problem.target_signals):
@@ -571,7 +766,7 @@ def evaluate(model, eps, eval_members, device, output, keep_samples=False):
                     q=np.quantile(samples,LEVELS,axis=0)
         if keep_samples and samples is not None:
             kept.append(samples.astype(np.float32))
-        if samples is not None and len(e['target_dates']) == 4:
+        if samples is not None and len(e['target_dates']) == 4 and e['target_units'][0] == 'count':
             sum_quantiles.append(np.quantile(samples[:, :, 0].sum(axis=1), LEVELS, axis=0))
         count_channels = [i for i, unit in enumerate(e['target_units']) if unit == 'count']
         q[:, :, count_channels] = np.floor(q[:, :, count_channels] + .5)

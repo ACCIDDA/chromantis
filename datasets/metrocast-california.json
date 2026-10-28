@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "id": "metrocast-california",
+  "report_vintages": false,
+  "signals": [
+    {
+      "name": "metrocast_ca_flu_admissions",
+      "unit": "count",
+      "group": "flu",
+      "hub": null,
+      "hub_target": "Flu hosp admits",
+      "weight": 1.0
+    }
+  ],
+  "input_sets": {
+    "all": [
+      "metrocast_ca_flu_admissions"
+    ],
+    "target": [
+      "metrocast_ca_flu_admissions"
+    ]
+  },
+  "covariate_sets": {
+    "none": []
+  }
+}

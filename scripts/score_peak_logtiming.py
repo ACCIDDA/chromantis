@@ -17,15 +17,21 @@ from chromantis.seasonal import run, score
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--experiment', default='season-peak-logtiming')
+    parser.add_argument('--experiment', nargs='+', default=['season-peak-logtiming'],
+                        help='One or more experiments; runs of the same recipe name are pooled (2026-10-25)')
+    parser.add_argument('--out', help='Output folder; default <first experiment>/seasonal')
     args = parser.parse_args()
     torch.set_num_threads(1)
-    experiment = Path('data/experiments') / args.experiment
+    experiments = [Path('data/experiments') / name for name in args.experiment]
+    experiment = experiments[0]
     study = json.loads((experiment / 'study.json').read_text())
     settings = json.loads((experiment / 'experiment.json').read_text())
-    out = experiment / 'seasonal'
-    rows, complete = completed_runs(experiment)
-    assert complete
+    out = Path(args.out) if args.out else experiment / 'seasonal'
+    rows = []
+    for folder in experiments:
+        found, complete = completed_runs(folder)
+        assert complete
+        rows += [dict(r, attempt=str(folder / r['attempt'])) for r in found]
     problem = Problem.load('problems/us-flu-season-peak.json')
     out.mkdir(parents=True, exist_ok=True)
     folders = {
@@ -36,7 +42,7 @@ def main():
         checkpoints = out / 'checkpoints' / name
         for row in [r for r in rows if r['name'] == name]:
             for held in problem.folds:
-                source = experiment / row['attempt'] / f'eval_{held}' / 'model.pt'
+                source = Path(row['attempt']) / f'eval_{held}' / 'model.pt'
                 metadata = torch.load(source, map_location='cpu', weights_only=False)['metadata']
                 if (metadata['held_out_season'], metadata['seed']) != (held, row['seed']):
                     raise ValueError(f'Wrong checkpoint: {source}')

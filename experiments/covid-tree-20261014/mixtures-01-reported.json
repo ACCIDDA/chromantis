@@ -1,0 +1,258 @@
+{
+  "description": "Fixed comparison of eight named recipes: singles, all 28 pairs, and three larger mixtures. Equal weight per recipe and seed, seeds 42-45. Uses saved three-fold COVID forecasts on prescribed preliminary histories, no refitting; finalized held-out future labels. Primary October-May states/DC log admissions WIS; summer and archived reports remain separate checks. Replayed on archived reports without refitting, same recipe groups and seeds.",
+  "recipes": {
+    "Bes.reported": {
+      "experiment": "covid-r01",
+      "scenario": "history_source=reported,error_signals=all,input_set=target,correction_weeks=2,correction_ed=1,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reporting_strength=1.5,reconstruction_weeks=4,ed_transform=logit,spatial=neighbors,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=0.5,error_reference=2025-2026",
+      "seeds": [
+        42,
+        43,
+        44,
+        45
+      ],
+      "inputs": "reported"
+    },
+    "B_width256.reported": {
+      "experiment": "covid-r01",
+      "scenario": "history_source=reported,error_signals=all,input_set=target,correction_weeks=2,correction_ed=1,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,spatial=neighbors,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=0.5,error_reference=2025-2026",
+      "seeds": [
+        42,
+        43,
+        44,
+        45
+      ],
+      "inputs": "reported"
+    },
+    "Ba_ll.reported": {
+      "experiment": "covid-r01",
+      "scenario": "history_source=reported,error_signals=all,input_set=target,correction_weeks=2,correction_ed=1,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,spatial=neighbors,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=0.75,error_reference=2025-2026",
+      "seeds": [
+        42,
+        43,
+        44,
+        45
+      ],
+      "inputs": "reported"
+    },
+    "A4.reported": {
+      "experiment": "covid-r01",
+      "scenario": "history_source=reported,error_signals=all,input_set=target,correction_weeks=2,correction_ed=1,joint_weight=0.05,correction_penalty=30.0,reporting_missingness=0,reporting_method=synchronous_phase_log,ed_transform=logit,width=192,epochs=160,patience=25,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=1.0,error_reference=2025-2026",
+      "seeds": [
+        42,
+        43,
+        44,
+        45
+      ],
+      "inputs": "reported"
+    },
+    "Ba_ll.width512": {
+      "experiment": "covid-r01",
+      "scenario": "history_source=artificial,reconstruction_labels=1,error_signals=all,input_set=target,correction_weeks=2,correction_ed=1,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,spatial=neighbors,decoder=quantile,width=512,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,actual_share=1.0,log_loss_weight=0.75,error_reference=2025-2026",
+      "seeds": [
+        42,
+        43,
+        44,
+        45
+      ],
+      "inputs": "reported"
+    },
+    "A4.inpatient_covid": {
+      "experiment": "covid-r01",
+      "scenario": "history_source=artificial,history_correction=1,error_signals=all,input_set=target,correction_weeks=2,correction_ed=1,joint_weight=0.05,correction_penalty=30.0,reporting_missingness=0,reporting_method=synchronous_phase_log,ed_transform=logit,width=192,epochs=160,patience=25,fit_partition=pathogen,covariate_encoder=summary,covariate_set=inpatient_covid,input_normalization=b0,log_loss_weight=1.0,error_reference=2025-2026",
+      "seeds": [
+        42,
+        43,
+        44,
+        45
+      ],
+      "inputs": "reported"
+    },
+    "B_width256": {
+      "experiment": "covid-r01",
+      "scenario": "history_source=artificial,reconstruction_labels=1,error_signals=all,input_set=target,correction_weeks=2,correction_ed=1,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,spatial=neighbors,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=0.5,error_reference=2025-2026",
+      "seeds": [
+        42,
+        43,
+        44,
+        45
+      ],
+      "inputs": "reported"
+    },
+    "Ba_ll": {
+      "experiment": "covid-r01",
+      "scenario": "history_source=artificial,reconstruction_labels=1,error_signals=all,input_set=target,correction_weeks=2,correction_ed=1,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,spatial=neighbors,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,actual_share=1.0,log_loss_weight=0.75,error_reference=2025-2026",
+      "seeds": [
+        42,
+        43,
+        44,
+        45
+      ],
+      "inputs": "reported"
+    }
+  },
+  "groups": {
+    "Bes.reported": [
+      "Bes.reported"
+    ],
+    "B_width256.reported": [
+      "B_width256.reported"
+    ],
+    "Ba_ll.reported": [
+      "Ba_ll.reported"
+    ],
+    "A4.reported": [
+      "A4.reported"
+    ],
+    "Ba_ll.width512": [
+      "Ba_ll.width512"
+    ],
+    "A4.inpatient_covid": [
+      "A4.inpatient_covid"
+    ],
+    "B_width256": [
+      "B_width256"
+    ],
+    "Ba_ll": [
+      "Ba_ll"
+    ],
+    "Bes.reported+B_width256.reported": [
+      "Bes.reported",
+      "B_width256.reported"
+    ],
+    "Bes.reported+Ba_ll.reported": [
+      "Bes.reported",
+      "Ba_ll.reported"
+    ],
+    "Bes.reported+A4.reported": [
+      "Bes.reported",
+      "A4.reported"
+    ],
+    "Bes.reported+Ba_ll.width512": [
+      "Bes.reported",
+      "Ba_ll.width512"
+    ],
+    "Bes.reported+A4.inpatient_covid": [
+      "Bes.reported",
+      "A4.inpatient_covid"
+    ],
+    "Bes.reported+B_width256": [
+      "Bes.reported",
+      "B_width256"
+    ],
+    "Bes.reported+Ba_ll": [
+      "Bes.reported",
+      "Ba_ll"
+    ],
+    "B_width256.reported+Ba_ll.reported": [
+      "B_width256.reported",
+      "Ba_ll.reported"
+    ],
+    "B_width256.reported+A4.reported": [
+      "B_width256.reported",
+      "A4.reported"
+    ],
+    "B_width256.reported+Ba_ll.width512": [
+      "B_width256.reported",
+      "Ba_ll.width512"
+    ],
+    "B_width256.reported+A4.inpatient_covid": [
+      "B_width256.reported",
+      "A4.inpatient_covid"
+    ],
+    "B_width256.reported+B_width256": [
+      "B_width256.reported",
+      "B_width256"
+    ],
+    "B_width256.reported+Ba_ll": [
+      "B_width256.reported",
+      "Ba_ll"
+    ],
+    "Ba_ll.reported+A4.reported": [
+      "Ba_ll.reported",
+      "A4.reported"
+    ],
+    "Ba_ll.reported+Ba_ll.width512": [
+      "Ba_ll.reported",
+      "Ba_ll.width512"
+    ],
+    "Ba_ll.reported+A4.inpatient_covid": [
+      "Ba_ll.reported",
+      "A4.inpatient_covid"
+    ],
+    "Ba_ll.reported+B_width256": [
+      "Ba_ll.reported",
+      "B_width256"
+    ],
+    "Ba_ll.reported+Ba_ll": [
+      "Ba_ll.reported",
+      "Ba_ll"
+    ],
+    "A4.reported+Ba_ll.width512": [
+      "A4.reported",
+      "Ba_ll.width512"
+    ],
+    "A4.reported+A4.inpatient_covid": [
+      "A4.reported",
+      "A4.inpatient_covid"
+    ],
+    "A4.reported+B_width256": [
+      "A4.reported",
+      "B_width256"
+    ],
+    "A4.reported+Ba_ll": [
+      "A4.reported",
+      "Ba_ll"
+    ],
+    "Ba_ll.width512+A4.inpatient_covid": [
+      "Ba_ll.width512",
+      "A4.inpatient_covid"
+    ],
+    "Ba_ll.width512+B_width256": [
+      "Ba_ll.width512",
+      "B_width256"
+    ],
+    "Ba_ll.width512+Ba_ll": [
+      "Ba_ll.width512",
+      "Ba_ll"
+    ],
+    "A4.inpatient_covid+B_width256": [
+      "A4.inpatient_covid",
+      "B_width256"
+    ],
+    "A4.inpatient_covid+Ba_ll": [
+      "A4.inpatient_covid",
+      "Ba_ll"
+    ],
+    "B_width256+Ba_ll": [
+      "B_width256",
+      "Ba_ll"
+    ],
+    "reported_quantile_plus_sampled": [
+      "Bes.reported",
+      "B_width256.reported",
+      "A4.reported"
+    ],
+    "reported_plus_artificial": [
+      "B_width256.reported",
+      "A4.reported",
+      "Ba_ll.width512"
+    ],
+    "all_eight": [
+      "Bes.reported",
+      "B_width256.reported",
+      "Ba_ll.reported",
+      "A4.reported",
+      "Ba_ll.width512",
+      "A4.inpatient_covid",
+      "B_width256",
+      "Ba_ll"
+    ]
+  },
+  "rules": [
+    "mixture"
+  ],
+  "views": [
+    "corrected"
+  ],
+  "forecast_view": "corrected"
+}

@@ -1,0 +1,39 @@
+{
+  "description": "Chromantis sampling MLP/temporal models. Fit latest revised local flu ED percentages in 2022-23 and 2023-24; learn future local flu ED labels; evaluate 2024-25 revised input histories, horizons 0-3. ILI pretraining learns scaled state ILI before August 2022; state transfer learns own-state ED labels only within fitting seasons before local fine-tuning. Lower WIS is better. Four seeds per candidate.",
+  "seeds": [
+    42,
+    43,
+    44,
+    45
+  ],
+  "candidates": {
+    "mlp_linear_width64": "decoder=residual2,noise=local,epochs=160,members=32,forecast_view=raw",
+    "mlp_linear_width128": "decoder=residual2,noise=local,width=128,epochs=160,members=32,forecast_view=raw",
+    "mlp_linear_width256": "decoder=residual2,noise=local,width=256,epochs=160,members=32,forecast_view=raw",
+    "mlp_fourth_root_width64": "ed_transform=fourth_root,decoder=residual2,noise=local,epochs=160,members=32,forecast_view=raw",
+    "mlp_fourth_root_width128": "ed_transform=fourth_root,decoder=residual2,noise=local,width=128,epochs=160,members=32,forecast_view=raw",
+    "mlp_fourth_root_width256": "ed_transform=fourth_root,decoder=residual2,noise=local,width=256,epochs=160,members=32,forecast_view=raw",
+    "mlp_logit_width64": "ed_transform=logit,decoder=residual2,noise=local,epochs=160,members=32,forecast_view=raw",
+    "mlp_logit_width128": "ed_transform=logit,decoder=residual2,noise=local,width=128,epochs=160,members=32,forecast_view=raw",
+    "mlp_logit_width256": "ed_transform=logit,decoder=residual2,noise=local,width=256,epochs=160,members=32,forecast_view=raw",
+    "state_input": "decoder=residual2,noise=local,width=128,epochs=160,members=32,covariate_encoder=summary,covariate_set=state,forecast_view=raw",
+    "pooled_locations": "spatial=pooled,decoder=residual2,noise=local,width=128,epochs=160,members=32,forecast_view=raw",
+    "history8": "lookback=8,decoder=residual2,noise=local,width=128,epochs=160,members=32,forecast_view=raw",
+    "history20": "lookback=20,decoder=residual2,noise=local,width=128,epochs=160,members=32,forecast_view=raw",
+    "history26": "lookback=26,decoder=residual2,noise=local,width=128,epochs=160,members=32,forecast_view=raw",
+    "gru": "encoder=gru,decoder=residual2,noise=local,width=128,epochs=160,members=32,forecast_view=raw",
+    "convolution": "encoder=conv,decoder=residual2,noise=local,width=128,epochs=160,members=32,forecast_view=raw",
+    "global_noise": "decoder=residual2,width=128,epochs=160,members=32,forecast_view=raw",
+    "small_shared": "geography=0,dynamics=0,decoder=residual2,noise=local,width=32,epochs=160,members=32,forecast_view=raw",
+    "location_embedding": "decoder=residual2,noise=local,width=128,epochs=160,members=32,location_embedding=8,forecast_view=raw",
+    "more_updates": "decoder=residual2,noise=local,width=128,epochs=320,members=32,forecast_view=raw",
+    "ili_linear_200": "ili_units=flu_scaled,ili_training=pretrain,ili_path=data/metrocast/historical_ili.npz,decoder=residual2,noise=local,width=128,epochs=160,members=32,forecast_view=raw",
+    "state_transfer_linear_200": "state_pretrain_steps=200,decoder=residual2,noise=local,width=128,epochs=160,members=32,forecast_view=raw",
+    "ili_linear_800": "ili_units=flu_scaled,ili_steps=800,ili_training=pretrain,ili_path=data/metrocast/historical_ili.npz,decoder=residual2,noise=local,width=128,epochs=160,members=32,forecast_view=raw",
+    "state_transfer_linear_800": "state_pretrain_steps=800,decoder=residual2,noise=local,width=128,epochs=160,members=32,forecast_view=raw",
+    "ili_fourth_root_200": "ili_units=flu_scaled,ili_training=pretrain,ili_path=data/metrocast/historical_ili.npz,ed_transform=fourth_root,decoder=residual2,noise=local,width=128,epochs=160,members=32,forecast_view=raw",
+    "state_transfer_fourth_root_200": "state_pretrain_steps=200,ed_transform=fourth_root,decoder=residual2,noise=local,width=128,epochs=160,members=32,forecast_view=raw",
+    "ili_fourth_root_800": "ili_units=flu_scaled,ili_steps=800,ili_training=pretrain,ili_path=data/metrocast/historical_ili.npz,ed_transform=fourth_root,decoder=residual2,noise=local,width=128,epochs=160,members=32,forecast_view=raw",
+    "state_transfer_fourth_root_800": "state_pretrain_steps=800,ed_transform=fourth_root,decoder=residual2,noise=local,width=128,epochs=160,members=32,forecast_view=raw"
+  }
+}

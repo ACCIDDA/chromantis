@@ -47,7 +47,7 @@ def export(run):
                 frame = pd.DataFrame({
                     'reference_date': np.repeat(reference, h * l),
                     'target_end_date': np.repeat(data['target_dates'].reshape(-1), l),
-                    'location': np.tile([postal_to_fips[v] for v in data['locations']], n * h),
+                    'location': np.tile([postal_to_fips.get(v, str(v)) for v in data['locations']], n * h),
                     'horizon': np.tile(np.repeat(np.arange(h), l), n),
                     'model_original_truth': data['truth'][:, :, c, :].reshape(-1),
                     'model_original_mask': data['mask'][:, :, c, :].reshape(-1),

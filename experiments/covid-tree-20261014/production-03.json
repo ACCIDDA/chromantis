@@ -1,0 +1,18 @@
+{
+  "description": "Provisional three-block sampled MLP (A_blocks3) production fit: unchanged recipe from round1, all completed 2022-23..2025-26 seasons, finalized future COVID admissions and ED labels, artificial histories and their recipe-defined treatment, COVID 2025-26 error donors. Ten seeds. Candidate motivated by forward mixture results; not selected release.",
+  "candidates": {
+    "A_blocks3": "history_source=artificial,history_correction=1,error_signals=all,input_set=target,correction_weeks=2,correction_ed=1,joint_weight=0.05,correction_penalty=30.0,reporting_missingness=0,reporting_method=synchronous_phase_log,count_transform=sqrt,ed_transform=logit,decoder_blocks=3,width=96,epochs=160,patience=25,lr=0.002,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=0.5,error_reference=2025-2026"
+  },
+  "seeds": [
+    42,
+    43,
+    44,
+    45,
+    46,
+    47,
+    48,
+    49,
+    50,
+    51
+  ]
+}
