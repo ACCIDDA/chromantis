@@ -1,0 +1,10 @@
+{
+  "checkpoints": "/Users/chadi/Research/Tapestry/data/production-fits/peak-production-20261014",
+  "models": 6,
+  "dataset": "/Users/chadi/Research/Tapestry/data/operational-20261028/processed/panel.npz",
+  "issuance": "2026-10-28",
+  "reference_date": "2026-10-31",
+  "samples": 6000,
+  "last_reported_week": "2026-10-24",
+  "definition": "Operational season-peak forecasts for FluSight (`peak week inc flu hosp`, `peak inc flu hosp`), 2026-10-14."
+}

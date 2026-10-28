@@ -1,0 +1,95 @@
+{
+  "name": "covid-artificial-pair-candidate-20261015",
+  "model_abbr": "Chromantis",
+  "hub": "covid",
+  "problem": "problems/us-covid-production.json",
+  "rule": "mixture",
+  "view": "corrected",
+  "description": "PROVISIONAL comparison candidate, not final selected release. Width256 direct-quantile MLP trained on artificially preliminary COVID histories with recent-history reconstruction labels and neighboring-state exchange, plus width192 sampled MLP trained on corrected artificial COVID histories, without covariates. Each recipe retrained on all completed seasons 2022-23 through 2025-26, finalized future COVID admissions counts and ED proportions as labels, 2025-26 COVID reporting-error process. Ten seeds 42-51 per recipe. Deployment uses corrected reported inputs. Equal distribution weight per recipe and seed. Retrospective, forward-only and summer comparisons remain under review; no held-out accuracy is inferred from these production fits.",
+  "recipes": {
+    "B_width256": [
+      {
+        "checkpoint": "data/production-fits/covid-production-baselines/mlp-pathogen-scheduled_final-108adec8984f/s42/attempt-001/eval_2026-2027",
+        "sha256": "e99607ca1623717ef6ce2d12dae4b99a2c4a802cce02243e9bec7d9bebf94d3a"
+      },
+      {
+        "checkpoint": "data/production-fits/covid-production-baselines/mlp-pathogen-scheduled_final-108adec8984f/s43/attempt-001/eval_2026-2027",
+        "sha256": "364ec294495da5dbc173642931a87002640da750167142c394aca5e635fed865"
+      },
+      {
+        "checkpoint": "data/production-fits/covid-production-baselines/mlp-pathogen-scheduled_final-108adec8984f/s44/attempt-001/eval_2026-2027",
+        "sha256": "f67cdd3c33444f69f68704ccb1c9b0ef1aae6a7629d5abe09fdb1229a5e75287"
+      },
+      {
+        "checkpoint": "data/production-fits/covid-production-baselines/mlp-pathogen-scheduled_final-108adec8984f/s45/attempt-001/eval_2026-2027",
+        "sha256": "ca2a206c24986c45d05f7507bb3817cf2594b986c821a6a32e8584990cd83270"
+      },
+      {
+        "checkpoint": "data/production-fits/covid-production-baselines/mlp-pathogen-scheduled_final-108adec8984f/s46/attempt-001/eval_2026-2027",
+        "sha256": "d910ad330fa67cc644fd334928fefe784442f6896b339c3453a46954208e62e1"
+      },
+      {
+        "checkpoint": "data/production-fits/covid-production-baselines/mlp-pathogen-scheduled_final-108adec8984f/s47/attempt-001/eval_2026-2027",
+        "sha256": "70b3d83ded421f8ba6f29c4ec134b264faf41af43f216b86ebb7396da8ce638d"
+      },
+      {
+        "checkpoint": "data/production-fits/covid-production-baselines/mlp-pathogen-scheduled_final-108adec8984f/s48/attempt-001/eval_2026-2027",
+        "sha256": "f5dca207c9fb5f2a2ed3a5b02f6e02c26eca21075735a9c87d9e091e42c8e0f9"
+      },
+      {
+        "checkpoint": "data/production-fits/covid-production-baselines/mlp-pathogen-scheduled_final-108adec8984f/s49/attempt-001/eval_2026-2027",
+        "sha256": "d43d5907572254fe9f988a1aa959c1d148e92b4bddd0c15673fd5e851766aea3"
+      },
+      {
+        "checkpoint": "data/production-fits/covid-production-baselines/mlp-pathogen-scheduled_final-108adec8984f/s50/attempt-001/eval_2026-2027",
+        "sha256": "347bfca93c8a2fe1ae41661a6a903cd8cdb0349f90db83f47bde9be070803bad"
+      },
+      {
+        "checkpoint": "data/production-fits/covid-production-baselines/mlp-pathogen-scheduled_final-108adec8984f/s51/attempt-001/eval_2026-2027",
+        "sha256": "fc841c9bee06c865d36ca6e34696864958630e259e219404f44284ee9f328268"
+      }
+    ],
+    "A4": [
+      {
+        "checkpoint": "data/production-fits/covid-production-baselines/mlp-pathogen-scheduled_final-141631df44cb/s42/attempt-001/eval_2026-2027",
+        "sha256": "5dfb9b1aba975b572066d18af8a8fe4b64d1f89044c7d5d55fbc47c85b7d22a9"
+      },
+      {
+        "checkpoint": "data/production-fits/covid-production-baselines/mlp-pathogen-scheduled_final-141631df44cb/s43/attempt-001/eval_2026-2027",
+        "sha256": "4f85f9deaf781ad9ff39861ba0e2043b045392d8c65458ec599b9df76a742e9a"
+      },
+      {
+        "checkpoint": "data/production-fits/covid-production-baselines/mlp-pathogen-scheduled_final-141631df44cb/s44/attempt-001/eval_2026-2027",
+        "sha256": "9d4d4fc4215e066bd8d2704cbb14343798f0b7d21d9ad118f7edda62e8d0cd9f"
+      },
+      {
+        "checkpoint": "data/production-fits/covid-production-baselines/mlp-pathogen-scheduled_final-141631df44cb/s45/attempt-001/eval_2026-2027",
+        "sha256": "2df0b011fe6b592994f05eb7b1c5d3d33ca85a2f8c52d2ce9ebf60f3c7c7d141"
+      },
+      {
+        "checkpoint": "data/production-fits/covid-production-baselines/mlp-pathogen-scheduled_final-141631df44cb/s46/attempt-001/eval_2026-2027",
+        "sha256": "90911fb7328d9039d31645ac76f4e067880fbbf5792fdcba43cc08ac2c40f4fc"
+      },
+      {
+        "checkpoint": "data/production-fits/covid-production-baselines/mlp-pathogen-scheduled_final-141631df44cb/s47/attempt-001/eval_2026-2027",
+        "sha256": "550c400f9964cd0bcf824ee7909e239d29e402495669938f6d3f93f2e9593e10"
+      },
+      {
+        "checkpoint": "data/production-fits/covid-production-baselines/mlp-pathogen-scheduled_final-141631df44cb/s48/attempt-001/eval_2026-2027",
+        "sha256": "475311ba33c06d5c87654bcfda97a3eda973dbb4035c706e022186a16ea853d8"
+      },
+      {
+        "checkpoint": "data/production-fits/covid-production-baselines/mlp-pathogen-scheduled_final-141631df44cb/s49/attempt-001/eval_2026-2027",
+        "sha256": "0532bb9f9b712e497fb09fb61b340bbc3eb50fc30227ad964e28c9009ce587f2"
+      },
+      {
+        "checkpoint": "data/production-fits/covid-production-baselines/mlp-pathogen-scheduled_final-141631df44cb/s50/attempt-001/eval_2026-2027",
+        "sha256": "a890ee0ca98e4108e928fe5e96ef9b643ca7b8e98e25745add30d559e67f06a5"
+      },
+      {
+        "checkpoint": "data/production-fits/covid-production-baselines/mlp-pathogen-scheduled_final-141631df44cb/s51/attempt-001/eval_2026-2027",
+        "sha256": "129248eac4d9153f8c50b69a546cfeff1ca923cdde8551088466fe8e30ad348d"
+      }
+    ]
+  }
+}

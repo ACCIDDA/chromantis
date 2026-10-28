@@ -1,0 +1,170 @@
+{
+  "created_at": "2026-10-22T01:18:49.658829+00:00",
+  "reference_date": "2026-10-24",
+  "hub_commit": "b145a6a7707ca493f2a9a542de359b5e5fba0b84",
+  "hub": "/Users/chadi/Research/Tapestry/production/hubs/rsv-forecast-hub",
+  "local_labels": [
+    "ACCIDDA-Chromantis"
+  ],
+  "locations": [
+    "US",
+    "06",
+    "48",
+    "36",
+    "37",
+    "19"
+  ],
+  "featured_peers": [
+    "CEPH-Rtrend_rsv",
+    "CFA-NowcastAutoGP",
+    "CFA-PyRenew_E",
+    "CFA-PyRenew_H",
+    "CFA-PyRenew_HE",
+    "CMU-TimeSeries",
+    "NAU-Copycat",
+    "NAU-epymorph",
+    "NAU-epymorph_strata",
+    "RSVHub-baseline",
+    "UGA_flucast-INFLAenza",
+    "UM-DeepOutbreak",
+    "docxology-timesfm",
+    "fonz-wardweather"
+  ],
+  "missing_featured_peers": [],
+  "peer_models": [
+    "CEPH-Rtrend_rsv",
+    "CFA-NowcastAutoGP",
+    "CFA-PyRenew_E",
+    "CFA-PyRenew_H",
+    "CFA-PyRenew_HE",
+    "CMU-TimeSeries",
+    "NAU-Copycat",
+    "NAU-epymorph",
+    "NAU-epymorph_strata",
+    "RSVHub-baseline",
+    "UGA_flucast-INFLAenza",
+    "UM-DeepOutbreak",
+    "docxology-timesfm",
+    "fonz-wardweather"
+  ],
+  "warnings": [],
+  "sources": [
+    {
+      "path": "/Users/chadi/Research/Tapestry/production/submissions/2026-10-24/rsv/2026-10-24-ACCIDDA-Chromantis.csv",
+      "sha256": "5a6bb59573bd0f4a6f4d1ac910534e972a795cca6f755db86115fa4ecd7f4eab",
+      "role": "local",
+      "model": "ACCIDDA-Chromantis",
+      "definition": {
+        "note": "RSV four-recipe mixture (fixed 2026-10-14 before its score was seen): Ball_c0w512 (Ba_ll: width-512 direct-quantile MLP, neighbouring-state exchange, all actual archived reports, log-loss 0.75, calendar features off), A4c0 (A4: width-192 sampled MLP with corrected histories, Kinsa, log-loss 1, calendar off), A4i (A4 with all six admission/ED input histories) and Bw (B_width256 with all six input histories); Ball_c0w512 also uses all six. Trained on 2022-23 through 2025-26 (no held-out season), seeds 42-51 per recipe, on panel-rsv.npz: NHSN RSV admissions before 2024-11-02 treated as unobserved (voluntary reporting), so admission labels start November 2024; RSV ED from October 2022. Training admission/ED histories made preliminary with artificial errors from the prescribed 2025-26 RSV reporting process. Labels: latest finalized future RSV admissions and ED (September 2026 panel). Equal weight per recipe and per seed; predictive distributions mixed. Selected by tree search rsv-tree-20261013 (experiments/rsv-tree-20261013/protocol.json): held-out states/DC log-admission WIS 0.3105 on artificial preliminary inputs, 0.3114 replayed on archived reports (2024-25, 2025-26)."
+      },
+      "operational_panel_sha256": "a29b957449d8228291ed7c429d79f0e4e04056392daf7aae83c9e4ab05c67639"
+    },
+    {
+      "path": "model-output/CEPH-Rtrend_rsv/2026-10-24-CEPH-Rtrend_rsv.csv",
+      "sha256": "7bf4d5e2493ed934858aaec255f9c6bd2fe9a094c7e7d8f65046b6ac0109c230",
+      "role": "peer",
+      "model": "CEPH-Rtrend_rsv"
+    },
+    {
+      "path": "model-output/CFA-NowcastAutoGP/2026-10-24-CFA-NowcastAutoGP.csv",
+      "sha256": "4decc310cd75a5ed220cb17a5cd47213643d24c8ab1f3bf305d95b4bfc9d357a",
+      "role": "peer",
+      "model": "CFA-NowcastAutoGP"
+    },
+    {
+      "path": "model-output/CFA-PyRenew_E/2026-10-24-CFA-PyRenew_E.csv",
+      "sha256": "5f20d7fe729df94b0735a5cb478c2a89d637374e64cccf63daf307937c841d6e",
+      "role": "peer",
+      "model": "CFA-PyRenew_E"
+    },
+    {
+      "path": "model-output/CFA-PyRenew_H/2026-10-24-CFA-PyRenew_H.csv",
+      "sha256": "e67f1eac152332ce18ec0fd665aa70e25200233a23b4637daf4509b2093b771c",
+      "role": "peer",
+      "model": "CFA-PyRenew_H"
+    },
+    {
+      "path": "model-output/CFA-PyRenew_HE/2026-10-24-CFA-PyRenew_HE.csv",
+      "sha256": "74da89af8a44e2daf49f6d8e03bf8b1aa4bfa3e85be0d788a9941381ce161e35",
+      "role": "peer",
+      "model": "CFA-PyRenew_HE"
+    },
+    {
+      "path": "model-output/CMU-TimeSeries/2026-10-24-CMU-TimeSeries.csv",
+      "sha256": "e755bce98be08d61bab2699b36095e861d6869cf94d080a9f7978480272237f6",
+      "role": "peer",
+      "model": "CMU-TimeSeries"
+    },
+    {
+      "path": "model-output/NAU-Copycat/2026-10-24-NAU-Copycat.parquet",
+      "sha256": "113f70d4f73fd032311bb1d68efb3c593365d3ed72007a7b1a412c6338e747e9",
+      "role": "peer",
+      "model": "NAU-Copycat"
+    },
+    {
+      "path": "model-output/NAU-epymorph/2026-10-24-NAU-epymorph.csv",
+      "sha256": "4833bf83151da7f4c0dfb759248b0e9784c4e2a452d3db8af06986a2617804a4",
+      "role": "peer",
+      "model": "NAU-epymorph"
+    },
+    {
+      "path": "model-output/NAU-epymorph_strata/2026-10-24-NAU-epymorph_strata.csv",
+      "sha256": "ec4750bb87edaf6fffa03a1142532db8201dce8cae5eb4474570d3f959138f89",
+      "role": "peer",
+      "model": "NAU-epymorph_strata"
+    },
+    {
+      "path": "model-output/RSVHub-baseline/2026-10-24-RSVHub-baseline.csv",
+      "sha256": "ba64b1289a32a5cba07ba94cd2d0c8769a9b14df72ff662662dcda4b26f3cad3",
+      "role": "peer",
+      "model": "RSVHub-baseline"
+    },
+    {
+      "path": "model-output/UGA_flucast-INFLAenza/2026-10-24-UGA_flucast-INFLAenza.parquet",
+      "sha256": "cf565cf1d5720f116173d00b56c8f306f2c0b493f31b34a4c5708d3d33443cbb",
+      "role": "peer",
+      "model": "UGA_flucast-INFLAenza"
+    },
+    {
+      "path": "model-output/UM-DeepOutbreak/2026-10-24-UM-DeepOutbreak.csv",
+      "sha256": "3f9fcae20cfb847866ea476aa98d6a9d3a2255bce44e2331b8d21babcd9d3493",
+      "role": "peer",
+      "model": "UM-DeepOutbreak"
+    },
+    {
+      "path": "model-output/docxology-timesfm/2026-10-24-docxology-timesfm.csv",
+      "sha256": "121d79af5c72f227048eb799784240378bfd497ca81d330e3a78de45f8775a46",
+      "role": "peer",
+      "model": "docxology-timesfm"
+    },
+    {
+      "path": "model-output/fonz-wardweather/2026-10-24-fonz-wardweather.csv",
+      "sha256": "b6a1888d59c55b9bb8e38605731ac6db6571a2e3024239dff47859ee6924d18c",
+      "role": "peer",
+      "model": "fonz-wardweather"
+    },
+    {
+      "path": "auxiliary-data/locations.csv",
+      "sha256": "96b14b7376cd5ba6a4dd44b0cae860fdb1a40ddec776328c1b3c39c8c14b0636",
+      "role": "locations",
+      "model": null
+    },
+    {
+      "path": "target-data/time-series.parquet",
+      "sha256": "f381d1a7a2c775c9aa95182aa5a3f350c3e6b876191ecb6746ea94a5c1d462ec",
+      "role": "history",
+      "model": null
+    }
+  ],
+  "history_cutoff": "2026-10-17",
+  "zoom_weeks": 8,
+  "assumptions": [
+    "Descriptive forecast comparison, not accuracy scoring.",
+    "Latest target values at the pinned Hub commit, not reconstructed issuance-time truth.",
+    "No history dated after reference minus seven days is shown as current observations.",
+    "Prior season aligned by CDC week; unmatched week 53 omitted, no value rescaling.",
+    "Peer bands weight each available model median equally; local candidates are excluded.",
+    "Partial peer coverage is retained; no missing forecasts or history are imputed.",
+    "Training details are copied only from matching local export metadata; peer training is not inferred."
+  ]
+}

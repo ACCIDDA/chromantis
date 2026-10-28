@@ -1,0 +1,79 @@
+{
+  "name": "covid-ed-fourth-root-candidate-20261015",
+  "model_abbr": "Chromantis",
+  "hub": "covid",
+  "problem": "problems/us-covid-production.json",
+  "rule": "mixture",
+  "view": "corrected",
+  "description": "PROVISIONAL joint-target fourth-root ED candidate. Width256 quantile and width192 sampled MLPs, artificial reporting perturbations on half of training episodes, fourth-root ED transform. Both retrained on2022-23..2025-26 finalized future admissions and ED labels,2025-26 error donors;8seeds42-49 each. Equal recipe/seed distribution mixture. This standalone candidate changes both targets; it is an ED forecast donor, not a replacement for the existing admissions model. Not production-ready or published; coverage remains insufficient.",
+  "recipes": {
+    "quantile_width256": [
+      {
+        "checkpoint": "data/production-fits/covid-ed-production/mlp-pathogen-scheduled_final-4bbbda9d6413/s42/attempt-001/eval_2026-2027",
+        "sha256": "44adfbb4370378a2c8b89b73937c95dbdf6f42b60687e60a010947cfbe41c6aa"
+      },
+      {
+        "checkpoint": "data/production-fits/covid-ed-production/mlp-pathogen-scheduled_final-4bbbda9d6413/s43/attempt-001/eval_2026-2027",
+        "sha256": "a24fd75df7bcd3361a116903e23a81d4dc57d17c1fc7e143d0bf8828f4a6e0c3"
+      },
+      {
+        "checkpoint": "data/production-fits/covid-ed-production/mlp-pathogen-scheduled_final-4bbbda9d6413/s44/attempt-001/eval_2026-2027",
+        "sha256": "31454f7c484bbfa663eb7311eba9ff65330bf320e3c3ff8bd4e748f3dddbe744"
+      },
+      {
+        "checkpoint": "data/production-fits/covid-ed-production/mlp-pathogen-scheduled_final-4bbbda9d6413/s45/attempt-001/eval_2026-2027",
+        "sha256": "c34a58e097abd7049100529613f362907f193b9c60eacbe86fb4f1aeae6e272f"
+      },
+      {
+        "checkpoint": "data/production-fits/covid-ed-production/mlp-pathogen-scheduled_final-4bbbda9d6413/s46/attempt-001/eval_2026-2027",
+        "sha256": "7021f915ce556b103b070ba313cf70b826c8058374a9701d0f0b537f451cd5b9"
+      },
+      {
+        "checkpoint": "data/production-fits/covid-ed-production/mlp-pathogen-scheduled_final-4bbbda9d6413/s47/attempt-001/eval_2026-2027",
+        "sha256": "dbbe36a73559731e0068c564ed8e23d0b9955e502731b6a00107d27a16e3b84b"
+      },
+      {
+        "checkpoint": "data/production-fits/covid-ed-production/mlp-pathogen-scheduled_final-4bbbda9d6413/s48/attempt-001/eval_2026-2027",
+        "sha256": "6723876871e92b81b6a35dc6f293a9d2336380cfa67df6f2ddab192e4af5be1a"
+      },
+      {
+        "checkpoint": "data/production-fits/covid-ed-production/mlp-pathogen-scheduled_final-4bbbda9d6413/s49/attempt-001/eval_2026-2027",
+        "sha256": "b005312e2ebede96e4aae56dab8da734e74828f6ea7f5c8c84ccb928f4831bc6"
+      }
+    ],
+    "sampled_width192": [
+      {
+        "checkpoint": "data/production-fits/covid-ed-production/mlp-pathogen-scheduled_final-836e499812ca/s42/attempt-001/eval_2026-2027",
+        "sha256": "9029a9dcbfb6bc429718327d437f2b86549f2ee68b1d2c367d87705ee4a6a1ba"
+      },
+      {
+        "checkpoint": "data/production-fits/covid-ed-production/mlp-pathogen-scheduled_final-836e499812ca/s43/attempt-001/eval_2026-2027",
+        "sha256": "72339a7d9083ab66d43d30bf1265eb9a34506cedac37281be5705c7f37c37fc2"
+      },
+      {
+        "checkpoint": "data/production-fits/covid-ed-production/mlp-pathogen-scheduled_final-836e499812ca/s44/attempt-001/eval_2026-2027",
+        "sha256": "10793074123c20616d0a8dd4604b67d402a5a5fb939f6e235a27cb96f81d5b27"
+      },
+      {
+        "checkpoint": "data/production-fits/covid-ed-production/mlp-pathogen-scheduled_final-836e499812ca/s45/attempt-001/eval_2026-2027",
+        "sha256": "01a84294ef7dbe7fb5a70921f7d454698995903af67840bf05058d4897d79e3f"
+      },
+      {
+        "checkpoint": "data/production-fits/covid-ed-production/mlp-pathogen-scheduled_final-836e499812ca/s46/attempt-001/eval_2026-2027",
+        "sha256": "bacc26644bdbce106d31733a300d96069ab79fa506d647ad691089b8576b420d"
+      },
+      {
+        "checkpoint": "data/production-fits/covid-ed-production/mlp-pathogen-scheduled_final-836e499812ca/s47/attempt-001/eval_2026-2027",
+        "sha256": "f2fddf2e687ce59d6bc73ea70cd2f706610dec3149d2b9e2f59d1acd5c763f49"
+      },
+      {
+        "checkpoint": "data/production-fits/covid-ed-production/mlp-pathogen-scheduled_final-836e499812ca/s48/attempt-001/eval_2026-2027",
+        "sha256": "b9e9c33bce7f3409f92e3a7aba4fffe70747322b5a64c518e8eb95e13cebda46"
+      },
+      {
+        "checkpoint": "data/production-fits/covid-ed-production/mlp-pathogen-scheduled_final-836e499812ca/s49/attempt-001/eval_2026-2027",
+        "sha256": "f0bf071490ec3f22cb0af636927c626b035897cdac1e4b9a01da233a880fdbbc"
+      }
+    ]
+  }
+}

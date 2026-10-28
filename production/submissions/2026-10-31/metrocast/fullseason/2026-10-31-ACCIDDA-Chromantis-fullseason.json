@@ -1,0 +1,34 @@
+{
+ "experiment": "metrocast-submit-fullseason",
+ "name": "full_season_finalist_1",
+ "reference_date": "2026-10-31",
+ "members": [
+  {
+   "seed": 42,
+   "scenario": "lookback=52,geography=0,decoder=residual2,decoder_blocks=2,noise=local,epochs=320,batch_size=2,members=16,lr=0.002,covariate_encoder=growth,signal_features=smooth_multiscale,covariate_set=state,input_normalization=b0,path_loss_weight=1.0,covariate_dropout=0.1,forecast_view=raw",
+   "panel": "data/metrocast-20261028/panel.npz"
+  },
+  {
+   "seed": 43,
+   "scenario": "lookback=52,geography=0,decoder=residual2,decoder_blocks=2,noise=local,epochs=320,batch_size=2,members=16,lr=0.002,covariate_encoder=growth,signal_features=smooth_multiscale,covariate_set=state,input_normalization=b0,path_loss_weight=1.0,covariate_dropout=0.1,forecast_view=raw",
+   "panel": "data/metrocast-20261028/panel.npz"
+  },
+  {
+   "seed": 44,
+   "scenario": "lookback=52,geography=0,decoder=residual2,decoder_blocks=2,noise=local,epochs=320,batch_size=2,members=16,lr=0.002,covariate_encoder=growth,signal_features=smooth_multiscale,covariate_set=state,input_normalization=b0,path_loss_weight=1.0,covariate_dropout=0.1,forecast_view=raw",
+   "panel": "data/metrocast-20261028/panel.npz"
+  },
+  {
+   "seed": 45,
+   "scenario": "lookback=52,geography=0,decoder=residual2,decoder_blocks=2,noise=local,epochs=320,batch_size=2,members=16,lr=0.002,covariate_encoder=growth,signal_features=smooth_multiscale,covariate_set=state,input_normalization=b0,path_loss_weight=1.0,covariate_dropout=0.1,forecast_view=raw",
+   "panel": "data/metrocast-20261028/panel.npz"
+  },
+  {
+   "seed": 46,
+   "scenario": "lookback=52,geography=0,decoder=residual2,decoder_blocks=2,noise=local,epochs=320,batch_size=2,members=16,lr=0.002,covariate_encoder=growth,signal_features=smooth_multiscale,covariate_set=state,input_normalization=b0,path_loss_weight=1.0,covariate_dropout=0.1,forecast_view=raw",
+   "panel": "data/metrocast-20261028/panel.npz"
+  }
+ ],
+ "locations": 103,
+ "missing_eligible": []
+}

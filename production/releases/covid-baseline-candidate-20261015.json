@@ -1,0 +1,54 @@
+{
+  "name": "covid-baseline-candidate-20261015",
+  "model_abbr": "Chromantis",
+  "hub": "covid",
+  "problem": "problems/us-covid-production.json",
+  "rule": "mixture",
+  "view": "corrected",
+  "description": "PROVISIONAL pipeline-check candidate, not selected final release. Ten seeds (42-51) of a width-256 direct-quantile Chromantis MLP with neighboring-state exchange, trained on all completed 2022-23 through 2025-26 seasons. COVID admissions and ED histories are made preliminary using the COVID 2025-26 reporting process. Prediction labels: finalized future admissions counts and ED proportions, plus finalized recent-history reconstruction labels. Deployment: corrected archived/realtime reported histories; equal distribution mixture over ten seeds. No held-out results from these production fits. Recipe choice remains under comparison with reported-history models and mixtures.",
+  "recipes": {
+    "B_width256": [
+      {
+        "checkpoint": "data/production-fits/covid-production-baselines/mlp-pathogen-scheduled_final-108adec8984f/s42/attempt-001/eval_2026-2027",
+        "sha256": "e99607ca1623717ef6ce2d12dae4b99a2c4a802cce02243e9bec7d9bebf94d3a"
+      },
+      {
+        "checkpoint": "data/production-fits/covid-production-baselines/mlp-pathogen-scheduled_final-108adec8984f/s43/attempt-001/eval_2026-2027",
+        "sha256": "364ec294495da5dbc173642931a87002640da750167142c394aca5e635fed865"
+      },
+      {
+        "checkpoint": "data/production-fits/covid-production-baselines/mlp-pathogen-scheduled_final-108adec8984f/s44/attempt-001/eval_2026-2027",
+        "sha256": "f67cdd3c33444f69f68704ccb1c9b0ef1aae6a7629d5abe09fdb1229a5e75287"
+      },
+      {
+        "checkpoint": "data/production-fits/covid-production-baselines/mlp-pathogen-scheduled_final-108adec8984f/s45/attempt-001/eval_2026-2027",
+        "sha256": "ca2a206c24986c45d05f7507bb3817cf2594b986c821a6a32e8584990cd83270"
+      },
+      {
+        "checkpoint": "data/production-fits/covid-production-baselines/mlp-pathogen-scheduled_final-108adec8984f/s46/attempt-001/eval_2026-2027",
+        "sha256": "d910ad330fa67cc644fd334928fefe784442f6896b339c3453a46954208e62e1"
+      },
+      {
+        "checkpoint": "data/production-fits/covid-production-baselines/mlp-pathogen-scheduled_final-108adec8984f/s47/attempt-001/eval_2026-2027",
+        "sha256": "70b3d83ded421f8ba6f29c4ec134b264faf41af43f216b86ebb7396da8ce638d"
+      },
+      {
+        "checkpoint": "data/production-fits/covid-production-baselines/mlp-pathogen-scheduled_final-108adec8984f/s48/attempt-001/eval_2026-2027",
+        "sha256": "f5dca207c9fb5f2a2ed3a5b02f6e02c26eca21075735a9c87d9e091e42c8e0f9"
+      },
+      {
+        "checkpoint": "data/production-fits/covid-production-baselines/mlp-pathogen-scheduled_final-108adec8984f/s49/attempt-001/eval_2026-2027",
+        "sha256": "d43d5907572254fe9f988a1aa959c1d148e92b4bddd0c15673fd5e851766aea3"
+      },
+      {
+        "checkpoint": "data/production-fits/covid-production-baselines/mlp-pathogen-scheduled_final-108adec8984f/s50/attempt-001/eval_2026-2027",
+        "sha256": "347bfca93c8a2fe1ae41661a6a903cd8cdb0349f90db83f47bde9be070803bad"
+      },
+      {
+        "checkpoint": "data/production-fits/covid-production-baselines/mlp-pathogen-scheduled_final-108adec8984f/s51/attempt-001/eval_2026-2027",
+        "sha256": "fc841c9bee06c865d36ca6e34696864958630e259e219404f44284ee9f328268"
+      }
+    ]
+  },
+  "training_design": "experiments/covid-tree-20261014/production-baselines.json"
+}
