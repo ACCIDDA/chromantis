@@ -79,6 +79,7 @@ nav:
       - Scenario fields: reference/scenario.md
       - Python API: reference/python-api.md
       - Other models: reference/other-models.md
+      - Historical nowcast comparator: reference/baselinenowcast.md
       - FluSight model review: reference/flusight-2025-2026-model-review.md
       - Explorer API: explorer/api.md
       - Development: development.md

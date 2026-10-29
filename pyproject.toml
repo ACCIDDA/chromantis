@@ -27,6 +27,8 @@ docs = [
   "mkdocs>=1.6,<2",
   "mkdocs-material>=9.6,<10",
   "mkdocstrings[python]>=0.29,<1",
+  # Keep the Highlight API compatible with mkdocstrings 0.30.x.
+  "pymdown-extensions>=11,<12.2",
 ]
 
 [dependency-groups]
