@@ -20,7 +20,7 @@ data or scientific protocol changes.
 A fit learns weights. A replay supplies different evaluation inputs to saved
 weights. Production supplies new operational reports to a released set of fits.
 Combining saved predictive distributions also keeps the original weights.
-The [fitting diagram](reference/model-details.md#fitting-and-model-selection)
+The [fitting diagram](architecture.md#fitting-and-model-selection)
 shows the steps from candidate search to release fitting.
 
 | Work | Package entry point |
@@ -247,7 +247,7 @@ The problem defines permitted training and evaluation folds. For season folds,
 the inner split hides three weeks out of every 16, starting after the first
 four weeks, to choose an epoch count. A fresh fit then uses all permitted
 training weeks. Each outer evaluation season supplies no neural training labels.
-The [model details](reference/model-details.md#fitting-and-model-selection)
+The [model details](architecture.md#fitting-and-model-selection)
 show the split and its information boundaries. Other fold kinds are described
 in the [problem guide](multipathogen-pipeline.md#fold-kinds).
 

@@ -7,8 +7,7 @@ or RSV. Applications include current-week nowcasts, four-week forecasts,
 influenza season peaks and local ED forecasts.
 
 - [Documentation](https://accidda.github.io/chromantis/)
-- [Challenges and architecture](docs/architecture.md)
-- [Model details and figures](docs/reference/model-details.md)
+- [Architecture](docs/architecture.md): model, figures, training and evaluation
 - [Workflow](docs/workflow.md): acquire, build, plan, launch and rank
 - [Model runs](docs/experiments/index.md): dated forecasting reports; nowcasting section
 - [Data](docs/data/index.md) and [interactive staircase](https://accidda.github.io/chromantis/data/staircase/)

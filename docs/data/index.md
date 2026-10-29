@@ -12,7 +12,7 @@ counts; ED shares are proportions of visits attributed to a pathogen. Healthcare
 use, testing and reporting affect both outcomes.
 
 Each input carries an availability indicator. Missing labels receive no training
-weight. The [architecture guide](../architecture.md#challenge-2-missing-data-is-different-from-zero)
+weight. The [architecture guide](../architecture.md#missing-observations)
 explains how missing observations and archive gaps enter the models.
 
 ## Assumed publication schedule

@@ -61,7 +61,7 @@ origin. `training_window=recent2` and `last2` apply only to season folds.
 Reporting errors and frozen Hub comparisons still depend on season folds:
 their calibration and saved support are organized by CDC season. The loader
 rejects incompatible combinations. The
-[architecture guide](architecture.md#challenge-5-knowing-what-a-comparison-actually-measures)
+[architecture guide](architecture.md#103-metrics)
 explains how retrospective and forward splits change the interpretation of a
 score.
 

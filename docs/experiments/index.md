@@ -7,7 +7,7 @@ its models trained on, what they were scored on and with which seasons
 
 ## Influenza submission, October 2026
 
-- **Methods guide:** [challenges and architecture](../architecture.md), with [model details, figures and the 24 October release specifications](../reference/model-details.md).
+- **Methods guide:** [architecture, figures, training and the 24 October release specifications](../architecture.md).
 
 - **Autoencoders and conditional VAEs (24–26 October):** [input reconstruction, bottleneck, pretraining on extra series and a conditional-VAE latent on the flu weekly, season-peak and RSV recipes](autoenc-20261024/index.md).
 - **Submission choice (8 October):** [why B7 replaced the on-time System2 file](submission-choice-review-20261007.md), from the [B7 versus System2 comparison on real reports](b7-submission-comparison-20261007/index.md).

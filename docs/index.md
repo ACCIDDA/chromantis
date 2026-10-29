@@ -40,13 +40,10 @@ forecast; its future outcomes are not scored here.
 
 ## Understanding the method
 
-Five challenges shape the approach. Recent reports need revision estimates.
-Missing observations need a representation that distinguishes them from zero.
-The short epidemic record calls for learning across locations and signals.
-Forecasts need probabilities as well as central estimates. Model comparisons
-need a clear account of training data and information available at prediction
-time. The [architecture guide](architecture.md) follows these challenges from
-the incoming reports to the evaluated forecast.
+The [Architecture](architecture.md) page follows a forecast from its input
+histories through report correction, the neural network, training and evaluation.
+It includes the diagrams, equations and fitted-model settings alongside their
+explanations.
 
 Chromantis uses a state panel covering the 50 states, Washington, DC and a
 separate United States series. Local influenza forecasts use a Flu MetroCast
@@ -57,10 +54,9 @@ and modeling tools, with their own fitted models and output rules.
 
 | Your next step | Guide |
 |---|---|
-| Understand the models | [Challenges and architecture](architecture.md) |
+| Understand the models, layers and training | [Architecture](architecture.md) |
 | Install the package and run a study | [Setup](setup.md) and [research workflow](workflow.md) |
 | Examine the source data and reporting history | [Data](data/index.md) and [availability staircase](data/staircase.md) |
-| Find equations, network layers or release settings | [Model details](reference/model-details.md) |
 | Assess the experimental evidence | [Experiment reports](experiments/index.md) |
 | Trace an issued forecast to its inputs and fitted models | [Submission log](submissions.md) |
 | Configure or extend the code | [Model choices](reference/model-choices.md), [scenario fields](reference/scenario.md) and [Python API](reference/python-api.md) |
