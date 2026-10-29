@@ -1,8 +1,10 @@
 # Command-line reference
 
-The installed commands are `chromantis-data`, `chromantis-dataset`,
-`chromantis-experiment`, `chromantis-select`, and `chromantis-explore`. The
-checkout scripts shown below are equivalent.
+Run these commands from an installed environment or a checkout. The entry
+points `chromantis-data`, `chromantis-dataset`, `chromantis-experiment`,
+`chromantis-select` and `chromantis-explore` provide the corresponding installed
+commands. For a complete study, follow the [workflow](../workflow.md) from
+planning through ranking.
 
 ## Data repository
 
@@ -39,9 +41,9 @@ python -m chromantis.data --data-root data pull delphi_nssp \
   --resume-from data/.staging/delphi_nssp/<staging-id>
 ```
 
-Relevant options include `--mode`, `--snapshot-date`, `--report-time`,
-repeatable `--signal` and `--geo-type`, optional `--fill-method`, and bounded
-`--workers`.
+Choose a retrieval mode with `--mode`, restrict signals and geographies with
+repeatable `--signal` and `--geo-type`, and set concurrency with `--workers`.
+`--fill-method` selects a publisher fill variant when one exists.
 `--report-time` accepts a date or comparison such as `'<2026-09-01'` and is
 valid only in archive mode. `--snapshot-date` is valid only in snapshot mode.
 Both modes retain `reference_time` observation dates and full `report_time`
@@ -59,9 +61,9 @@ python -m chromantis.data pull delphi_claims_inpatient \
   --report-time 2026-09-11
 ```
 
-Resume requires identical query selectors and a matching saved `request.json`.
-Use the original command with `--resume-from` added; `--workers` can change.
-Staging directories without a query record must be restarted.
+To resume a pull, add `--resume-from` to the original command. Keep its query
+selectors unchanged; `--workers` may differ. Resume checks the saved
+`request.json`. A staging directory without that record needs a fresh pull.
 
 ### Hub historical state
 
@@ -129,6 +131,6 @@ NHSN measure allowlist size, Delphi/CDC crosswalks, and missing downloads. See
 | `python -m chromantis.production intervals\|peers\|diff ...` | Submission check plots and comparisons |
 | `python -m chromantis.dataset.ili` | Rebuild the pre-2022 historical ILI archive |
 
-The [workflow](../workflow.md) describes each step; the
+The [workflow](../workflow.md) explains planning, fitting and analysis. The
 [production README](https://github.com/ACCIDDA/chromantis/blob/main/production/README.md)
-the weekly submission.
+covers weekly issuance and submission.

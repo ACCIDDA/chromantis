@@ -1,54 +1,52 @@
 # Filters and interpretation
 
-The explorer groups choices as pathogen → logical source → signal, with a checkbox
-for each available release/provider/geography variant under each signal. COVID-19,
-influenza, and RSV come first, then combined and ARI measures, other respiratory
-viruses, and all-cause capacity; sources and signals are alphabetical within each
-pathogen. The shared selection policy assigns the pathogen (`pathogen_of`). NHSN
-and NSSP each combine their source products into one group, whose summary lists
-the providers present (CDC, Delphi, Forecast Hub); each hub retains its own group
-and target definitions.
-See [Shared selection](../data/methods.md) for the measure and file allowlists.
-Searching covers providers, dataset titles, source paths, column names, and
-complete series labels. Search and filters can restrict the available variants.
-Delphi variants are highlighted in the selector and can be selected alongside
-CDC variants from the same signal.
+The signal browser groups observations by pathogen, source and measure. Each
+checkbox selects a variant: a provider, release product, geography, unit or
+other dimension of that measure. You can compare several variants of the same
+signal, including CDC and Delphi versions. Search covers display names,
+providers, dataset titles, source paths, API fields and full series labels.
+
+COVID-19, influenza and RSV appear first, followed by combined respiratory
+illness, other viruses and all-cause capacity. Sources and signals are
+alphabetical within each pathogen. NHSN and NSSP combine related source
+products under their origins; the [selection policy](../data/methods.md)
+lists the retained measures and files.
 
 ## Signal filters
 
-| Filter | Meaning |
+| Filter | What you select |
 |---|---|
-| Cadence | Catalog `temporal_resolution`: daily, weekly, monthly, or sample-based |
-| Revision history | Whether the catalog marks the source as historically versioned |
-| Spatial support | Native state data or an explicitly labeled national context |
-| Data currency | Whether the last event date falls within its cadence-specific window |
+| Cadence | Daily, weekly, monthly or sample-based observations |
+| Revision history | Sources with or without archived versions |
+| Spatial support | Native state observations or national context |
+| Data currency | Series whose latest observation falls within a cadence-specific window |
 
-Currency thresholds are 14 days for daily, 35 for weekly, 75 for monthly, and
-45 for sample-based data. “Current” describes the indexed event dates; it is not
-a guarantee that a publisher will continue maintaining a product.
+The currency windows are 14 days for daily data, 35 for weekly, 75 for monthly
+and 45 for sample-based sources. A “current” label describes the indexed dates;
+it says nothing about future maintenance by the publisher.
 
-Filters are evaluated by the local API before pagination. The API reports
-variant counts; the UI additionally reports the distinct signals among returned
-variants. The UI requests all matching variants. Native-state support is the
-default and Reset restores it. Choose Any support or National broadcast for
-national-only demographic and RSV-NET products.
+The default spatial filter is native state, and **Reset** restores it. Choose
+**Any support** or **National broadcast** to see national-only demographic or
+RSV-NET products. The API applies filters before pagination. It reports matching
+variants, while the interface also counts distinct signals.
 
 ## Series interpretation
 
-Low-cardinality fields such as pathogen, subtype, model, target, unit, and
-quantile define separate dimension variants. Publisher `season`, `respseason`,
-and `season_week` fields are metadata and do not artificially split a covariate
-across seasons.
+Pathogen, subtype, model, target, unit and quantile can define separate variants.
+Publisher season fields remain metadata, allowing a covariate to continue
+across seasons. The selection policy excludes county, HSA, HHS, catchment and
+wastewater-site rows before indexing.
 
-Repeated raw rows for one state, series, event date, and latest vintage are shown
-as an unweighted mean. Tooltips expose the contributing row count. County, HSA, HHS, catchment, and wastewater-site rows are excluded by the shared
-post-intake filter before indexing.
+The plot displays repeated rows for one state, series, observation date and
+release as an unweighted mean. Hover to see the contributing row count.
 
 ## Scaling
 
-**Divide by mean** divides each selected series by its mean over the
-**common window**, the dates covered by every selected series, so all series
-average 1 there. The y-axis fits the common window; a longer series with larger
-values outside it leaves the top of the canvas. The axis title names the window.
-Revisions use the latest version's divisor. It does not alter the index or raw data, and it is not the
-normalization contract for model training.
+**Divide by mean** divides each series by its mean over the dates common to all
+selected series. Every series then averages 1 in that window. Historical
+versions use the latest version's divisor so revisions remain comparable.
+The axis title names the window. Values from a longer history outside that
+window can exceed the displayed y-axis range.
+
+This scaling changes the chart display. Raw observations, saved index values
+and model-training normalization keep their own definitions.

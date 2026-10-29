@@ -1,8 +1,9 @@
 # Python API
 
-The public acquisition types are re-exported by `chromantis.data`. Fetcher and
-explorer APIs are documented separately because most consumers should interact
-with them through the command line.
+Use these interfaces when building an analysis or extending the package. The
+acquisition types are re-exported by `chromantis.data`. The
+[command-line reference](cli.md) covers acquisition and explorer tasks that do
+not require Python integration.
 
 ## Data package
 

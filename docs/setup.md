@@ -1,18 +1,14 @@
 # Setup
 
-For local work, run `uv sync` from the checkout; use `.venv/bin/python` for commands.
-
-See [the canonical workflow](workflow.md) for the experiment planner
-and shared-dispatch commands, used after the environment setup below.
-
-These commands set up the checkout at
-`/proj/jlessler/projects/tapestry-all/tapestry` on Longleaf using uv-managed
-Python 3.11. Adjust the workspace paths if installing elsewhere. Python tools
-and caches live in the workspace; there is no R dependency to set up.
+For local work, run `uv sync` in the checkout and use `.venv/bin/python` for
+package commands. The sections below describe the Longleaf installation at
+`/proj/jlessler/projects/tapestry-all/tapestry`, with uv-managed Python 3.11.
+Substitute your checkout path if it differs. The [research workflow](workflow.md)
+covers planning and launching jobs once the environment is ready.
 
 ## Clone and install uv
 
-Run once. If uv is already available, skip the installer commands.
+Clone the repository once. Skip the installer if uv is already available.
 
 ```bash
 cd /proj/jlessler/projects/tapestry-all
@@ -25,7 +21,7 @@ env UV_INSTALL_DIR=/proj/jlessler/projects/tapestry-all/.local/bin \
 
 ## Python environment
 
-Set these variables in each new shell that uses this installation:
+Set the workspace paths in each new shell:
 
 ```bash
 export PATH=/proj/jlessler/projects/tapestry-all/.local/bin:$PATH
@@ -34,17 +30,19 @@ export UV_PYTHON_INSTALL_DIR=/proj/jlessler/projects/tapestry-all/.local/share/u
 cd /proj/jlessler/projects/tapestry-all/tapestry
 ```
 
-Install or update the default research environment:
+Install the research environment:
 
 ```bash
 uv sync --python-preference only-managed
 ```
 
-This creates `.venv`, installs Chromantis in editable mode, and includes training,
-evaluation, explorer, and test dependencies. Managed Python avoids inheriting
-the login shell's Anaconda installation.
+`uv sync` creates `.venv` and installs Chromantis in editable mode with training,
+evaluation, explorer and test dependencies. The managed interpreter avoids the
+login shell's Anaconda environment. Scoring uses Python and requires no R setup.
 
 ## Download the training sources
+
+Initialize the raw-data store and acquire the sources used by the state panel:
 
 ```bash
 uv run python -m chromantis.data --data-root data init
@@ -55,24 +53,17 @@ uv run python -m chromantis.data --data-root data pull \
     delphi_fluview_ilinet delphi_fluview_clinical delphi_flusurv
 ```
 
-These are the sources `chromantis.dataset.build` reads (targets, claims,
-wastewater, Kinsa, ILINet, clinical labs, FluSurv-NET; see [the source catalog](data/sources.md)). The
-`cdc_nhsn_*`/`cdc_nssp_*` Socrata specs and the legacy/RSVNet Hub mirrors
-remain in the catalog for comparison and are not required for the training
-panel. Downloading sources does not build them; see
-[the canonical workflow](workflow.md) for that next step.
-
-Scoring is pure Python (`chromantis.evaluation.standard`) -- no R module or
-package setup is needed. Use a Slurm allocation for training and substantial
-evaluation runs; the environment setup above does not request a GPU or submit
-a training job.
+The [source catalog](data/sources.md) describes targets, claims, wastewater,
+Kinsa, ILINet, clinical labs and FluSurv-NET. CDC Socrata entries and legacy or
+RSVNet Hub mirrors are available for comparison but are not required for this
+panel. Acquisition saves source snapshots; building the panel is a separate step.
+Use a Slurm allocation for training and substantial scoring work.
 
 ## Sync code and panel from the Mac
 
-`data/processed/panel.npz` (about 10 MB) is tracked in git despite the `/data/`
-ignore rule (added with `git add -f`), so code and panel travel together. From the
-Mac, push to a side branch of the cluster checkout (git refuses to update its
-checked-out branch), then fast-forward on Longleaf:
+The saved `data/processed/panel.npz` is tracked despite the general `/data/`
+ignore rule, so the panel can travel with the code. Push to a side branch on
+the cluster, then fast-forward its checkout:
 
 ```bash
 git remote add longleaf chadi@longleaf.unc.edu:/proj/jlessler/projects/tapestry-all/tapestry
@@ -80,36 +71,30 @@ git push longleaf HEAD:refs/heads/incoming
 ssh chadi@longleaf.unc.edu 'cd /proj/jlessler/projects/tapestry-all/tapestry && git merge --ff-only incoming'
 ```
 
-Rebuilding the panel on the cluster is not needed: sources are acquired and built
-on the Mac. A planned experiment pins the panel's sha256, so replacing the panel
-under a running experiment makes its remaining runs refuse to fit.
+Sources are usually acquired and built on the Mac, so a synced panel needs no
+cluster rebuild. A planned experiment pins its hash. Replacing it while the
+experiment runs prevents remaining tasks from fitting against changed data.
 
-**Not synced by git:** the population file `data/metadata/locations.csv` (the one
-population file; `LOCATIONS` in `planner.py`) and the frozen support
-`data/evaluation/b0_hub_comparison_q23` are git-ignored. Restore the population
-file as below (sha256 checked) and copy the frozen support to the cluster once
-(e.g. `rsync -a data/evaluation/b0_hub_comparison_q23 longleaf:.../data/evaluation/`).
-`plan` pins the sha256 of both (the frozen support through its `manifest.json`)
-next to the panel's, and runs refuse to fit if either changed.
+The location/population file `data/metadata/locations.csv` and frozen Hub support
+`data/evaluation/b0_hub_comparison_q23` are ignored by Git. Restore the location
+file using the pinned commits below and copy the frozen support separately,
+for example with `rsync`. The planner pins their hashes alongside the panel's.
 
 ## Build the training panel
 
-Run from `/proj/jlessler/projects/tapestry-all/tapestry`. Skip acquisition
-above once every source is already downloaded, then build the one array,
-`data/processed/panel.npz` (about a minute; one process per source):
+Build on the machine holding the source snapshots, before planning an experiment:
 
 ```bash
 .venv/bin/python -m chromantis.dataset.build build --data-root data
 .venv/bin/python -m chromantis.dataset.build show
 ```
 
-It holds the truth panel and the exact Wednesday as-of store that both input modes
-cut episodes from; see [the canonical workflow](workflow.md#acquire-and-build).
-`plan` records its sha256, so rebuild it before planning, not while an
-experiment is running.
+The panel contains reference outcomes and Wednesday report histories used to
+construct examples. The [workflow](workflow.md#acquire-and-build) includes the
+wastewater-index step and panel checks. If you already synced a built panel,
+continue with the metadata and frozen support instead.
 
-Restore the pinned hub commits and population table before registering the
-experiment:
+The commands below restore the pinned Hub commits and population table:
 
 ```bash
 (
@@ -136,51 +121,46 @@ printf '%s  %s\n' \
 )
 ```
 
-Keep these inputs fixed while an experiment runs. `plan` copies `src/` into
-`data/experiments/<experiment>/code`, and `jlessler.sbatch` runs that snapshot, so a
-Slurm experiment keeps the code it was planned with (re-planning re-pins it). A local
-`planner run` runs the working tree instead. Each attempt's `run.json` also records
-the git commit and whether the checkout had uncommitted changes; results for the
-paper are rerun from a clean tree.
+Keep these files fixed during an experiment. `plan` copies `src/` into
+`data/experiments/<experiment>/code`, and the Slurm launcher runs that snapshot.
+Replanning replaces it. Local `planner run` uses the working tree. Each attempt's
+`run.json` records its Git commit and whether the checkout had uncommitted changes.
 
 ## The frozen evaluation denominator
 
-`chromantis.experiment.planner`'s `fit`/`plan`/`rank` score every run against a
-pinned hub-ensemble denominator on the 23-quantile grid,
-`data/evaluation/b0_hub_comparison_q23` (`FROZEN` in `planner.py`). Preserve
-that directory across checkouts -- **there is currently no supported command
-to rebuild it from scratch.** A fresh frozen denominator requires an explicit new implementation; copying the
-existing pinned support is the supported setup path.
-
+Hub comparisons use the saved 23-quantile support at
+`data/evaluation/b0_hub_comparison_q23`, named by `FROZEN` in `planner.py`.
+Copy and preserve that directory across checkouts. The package has no supported
+command to rebuild it from scratch; constructing replacement support requires
+an explicit implementation and a new comparison definition.
 
 ## GPU execution
 
-The shared launcher uses the hidden `jlessler` partition. Patron resources are:
+The shared launcher uses the hidden `jlessler` partition:
 
 | Node | GPUs | Host memory | Physical CPU cores |
 |---|---|---:|---:|
 | `g1803jles01.ll.unc.edu` | 4 × L40, 48 GB each | 512 GB | 56 |
 | `g1803jles02.ll.unc.edu` | 2 × H100, 96 GB each | 2 TB | 64 |
 
-Use the [workflow's complete manager commands](workflow.md#plan-launch-and-resume)
-for planning, launching, checking and ranking. `scripts/jlessler.sbatch` and the
-shared dispatcher control fitting concurrency; use `LANES` for processes per GPU.
-Regular GPU partitions are an alternative when explicitly chosen for a run.
+Use the [manager commands](workflow.md#plan-launch-and-resume) to plan, launch,
+check and rank a study. `scripts/jlessler.sbatch` and the dispatcher control
+concurrency; `LANES` sets processes per GPU. A run can use a regular GPU partition
+when chosen for that study.
 
 ## Documentation hosting
 
-The GitHub repository is `ACCIDDA/chromantis`. Documentation is published at
-[accidda.github.io/chromantis/](https://accidda.github.io/chromantis/); the repository and Pages path are lowercase. GitHub Pages uses the existing Documentation
-Actions workflow on `main`. The Python package is `chromantis`; existing
-local and Longleaf checkout paths remain unchanged.
+The `ACCIDDA/chromantis` repository publishes the documentation at
+[accidda.github.io/chromantis/](https://accidda.github.io/chromantis/). The
+Documentation Action on `main` handles publication. The importable package is
+`chromantis`; existing local and cluster directory names can remain unchanged.
 
-For an existing checkout, update its GitHub remote with:
+Update an older checkout's remote with:
 
 ```bash
 git remote set-url origin https://github.com/ACCIDDA/chromantis.git
 ```
 
-Hosting migration, 2026-10-09: updated the repository and documentation URLs after
-the GitHub rename to lowercase `chromantis`. Documentation branding is Chromantis;
-the importable package is `chromantis`, while existing compute paths remain unchanged. Historical
-submitted metadata is preserved as recorded.
+The repository and documentation URLs changed to lowercase `chromantis` on
+9 October 2026. Historical submitted metadata retains the names recorded at
+the time.

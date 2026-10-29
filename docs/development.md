@@ -1,60 +1,66 @@
 # Development
 
+Most research changes belong in a study definition or an existing package
+module. A candidate configuration goes in a study file. A new analysis belongs
+in `chromantis.evaluation`, where the planner and saved-forecast ensembles can
+use it. The research and production paths share their combination code.
+
 ## Repository layout
 
-| Directory | Responsibility |
+| Directory | Contents |
 |---|---|
-| `src/chromantis/data` | Acquisition, snapshots, readers and shared selection |
-| `src/chromantis/dataset` | Panel construction, episodes, folds, reporting-error bootstrap, ILI archive |
-| `src/chromantis/model` | Network, scenarios, objective, correction trees |
-| `src/chromantis/experiment` | The training route (`fit.py`), fitting loop (`training.py`), planner, shared GPU dispatch |
-| `src/chromantis/evaluation` | The scorer (`standard.py`), ranking, saved-forecast ensembles, reports |
-| `src/chromantis/production` | Release replay, Hub export, submission plots and comparisons |
-| `src/chromantis/explorer` | Source indexing, API and interactive browser assets |
-| `experiments` | Study files (candidates, seeds, protocol) and ensemble groups files |
-| `production` | Releases, submitted files, Hub clones (ignored), metadata |
-| `scripts` | Cluster launch, notifications, explorer publishing and documentation navigation |
-| `docs/experiments` | Completed experiment reports and their evidence |
+| `src/chromantis/data` | Source acquisition, snapshots, readers and shared selection |
+| `src/chromantis/dataset` | Panels, examples, folds, reporting errors and ILI archive |
+| `src/chromantis/model` | Networks, scenarios, objectives and correction trees |
+| `src/chromantis/experiment` | Fit procedure, training loop, planner and GPU dispatch |
+| `src/chromantis/evaluation` | Scoring, rankings, forecast mixtures and reports |
+| `src/chromantis/production` | Release inference, Hub export and submission plots |
+| `src/chromantis/explorer` | Source index, API and browser interface |
+| `experiments` | Study definitions and ensemble groups |
+| `production` | Releases, submissions, metadata and ignored Hub clones |
+| `scripts` | Cluster launch, notifications, explorer publishing and docs tools |
+| `docs/experiments` | Experiment reports and their evidence |
 
-Each step has one implementation: one training route, one scorer, one ranking, one
-combination rule (shared by research ensembles and the production export). Add a
-candidate to a study file, not a planner script; add an analysis to
-`chromantis.evaluation`, not an experiment-specific script. Replaced code is deleted
-(history: [restructuring log](workflow.md#restructuring-log-8-october-2026)).
+Replace obsolete code when introducing its successor. The
+[8 October restructuring record](workflow.md#restructuring-log-8-october-2026)
+explains the consolidation into the shared training, scoring and release paths.
 
 ## Research iteration
 
-Use runs and inspection for routine iteration. Tests are reserved for plausible
-silent scientific errors: loss/score mathematics, weighting, leakage and data
-units/alignment. No broad regression suite or plot tests are required. When those
-calculations change, run the relevant focused checks in `tests/`.
+Use research runs and inspection for routine validation. Focus tests on errors
+that could silently change a scientific conclusion: loss and score mathematics,
+weights, leakage, and units or alignment. Run the relevant checks when those
+calculations change. Plotting and routine execution do not need a general
+regression suite.
 
-Experiment analysis belongs in `chromantis.evaluation`, called by `planner rank` or `evaluation.ensembles`.
-Use saved canonical ranking tables for written interpretation; keep the prose
-inside report write-up markers. Avoid another experiment-specific scoring or
-report-generation script. Dataset diagnostics use `chromantis.dataset.analyze_dataset`.
+Use `planner rank` or `evaluation.ensembles` for experiment analysis and the
+saved ranking tables for written results. Keep interpretations inside report
+write-up markers. Dataset diagnostics use `chromantis.dataset.analyze_dataset`.
 
 ## Documentation
+
+Preview the site or check a build with:
 
 ```bash
 uv run --no-dev --extra docs mkdocs serve
 uv run --no-dev --extra docs mkdocs build --strict
 ```
 
-The site builds without training data or model execution. Each experiment has
-`report.json` with an ISO report date, a title and `stage` (`nowcast` or `forecast`).
-The model-runs index (`docs/experiments/index.md`) is curated by hand, one line per
-phase; `scripts/docs_hooks.py` orders the sidebar by the report dates. Sidebar subsections are expanded.
+The build uses saved documentation assets and needs no training data. Each
+experiment's `report.json` supplies an ISO date, title and `stage` (`nowcast` or
+`forecast`). Add one line per phase to the hand-curated
+`docs/experiments/index.md`. The `scripts/docs_hooks.py` hook orders sidebar
+reports by their stated dates.
 
-The availability staircase is embedded in a docs page. Its standalone interactive
-view includes a return link. The general source explorer is published separately
-at `/explorer/`, using committed exports under `docs/explorer/data/` and the UI in
-`src/chromantis/explorer/static/`. Refresh that export with
-`scripts/update_published_explorer.sh`; the docs build does not download sources.
+The docs embed the availability staircase. The source explorer is published
+at `/explorer/` from saved exports under `docs/explorer/data/` and the interface
+under `src/chromantis/explorer/static/`. Run
+`scripts/update_published_explorer.sh` to refresh that export; a docs build uses
+what is already committed.
 
 ## Publishing
 
-The Documentation GitHub Action builds with `--strict` on pull requests and main.
-On main it publishes the site through GitHub Pages. Repository Pages settings use
-GitHub Actions as the publishing source. Model training and source credentials
-are not part of the documentation build.
+The Documentation GitHub Action runs a strict build on pull requests and `main`.
+Builds on `main` publish through GitHub Pages, whose publishing source is GitHub
+Actions. The publication process uses the saved site contents without training
+models or downloading surveillance sources.

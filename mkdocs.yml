@@ -51,8 +51,8 @@ hooks:
   - scripts/docs_hooks.py
 
 nav:
-  - Intro: index.md
-  - Architecture / reflection: architecture.md
+  - Introduction: index.md
+  - Challenges and architecture: architecture.md
   - Workflow:
       - Workflow: workflow.md
       - Setup: setup.md
@@ -73,6 +73,7 @@ nav:
       - Explorer: explorer/overview.md
       - Explorer filters: explorer/filters.md
   - Reference:
+      - Model details: reference/model-details.md
       - Commands: reference/cli.md
       - Model choices A–F: reference/model-choices.md
       - Scenario fields: reference/scenario.md

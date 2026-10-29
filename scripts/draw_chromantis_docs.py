@@ -1,4 +1,4 @@
-"""Draw concise manuscript figures; captions and equations live in the TeX files."""
+"""Draw the package documentation figures from saved data and schematic diagrams."""
 from pathlib import Path
 import matplotlib
 matplotlib.use('Agg')
@@ -8,7 +8,7 @@ import numpy as np
 import pandas as pd
 
 ROOT = Path(__file__).resolve().parents[1]
-OUT = ROOT / 'docs/chromantis-manuscript/figures'
+OUT = ROOT / 'docs/figures/chromantis'
 INK, BLUE, PALE, GRAY, GOLD = '#202c35', '#28698a', '#e6f0f5', '#edf0f2', '#f0deac'
 plt.rcParams.update({'font.family': 'DejaVu Sans', 'font.size': 10,
                      'svg.fonttype': 'none', 'pdf.fonttype': 42,
@@ -44,67 +44,73 @@ def arrow(ax, a, b, **kw):
 
 def save(fig, name):
     OUT.mkdir(parents=True, exist_ok=True)
-    for extension in ('svg', 'pdf'):
-        fig.savefig(OUT / f'{name}.{extension}')
+    fig.savefig(OUT / f'{name}.svg')
     plt.close(fig)
 
 
 def information():
-    fig, ax = canvas(3.25)
-    text(ax, .015, .94, 'A  Missing is different from zero', 11, True, ha='left')
+    fig, ax = canvas(3.7)
+    text(ax, .015, .95, 'A  An observed zero is different from a missing report', 11, True, ha='left')
     x, w = .33, .205
-    for i, label in enumerate(['Measured', 'Measured zero', 'Missing']):
-        text(ax, x+(i+.5)*w, .82, label, 10)
-    for y, label, values in [(.66, 'Value', ['12', '0', '0*']),
-                              (.54, 'Available (1/0)', ['1', '1', '0'])]:
+    for i, label in enumerate(['Observed', 'Observed zero', 'Missing']):
+        text(ax, x+(i+.5)*w, .83, label, 10)
+    for y, label, values in [(.67, 'Value', ['12', '0', '0*']),
+                            (.55, 'Available? (1 / 0)', ['1', '1', '0'])]:
         text(ax, .03, y+.055, label, 10, ha='left')
         for i, value in enumerate(values):
             box(ax, x+i*w, y, w, .11, value, GRAY if i == 2 else 'white', size=11)
-    text(ax, .015, .39, 'B  Correction, nowcast and forecast', 11, True, ha='left')
+    text(ax, .33, .495, '* Missing values use a zero placeholder after preprocessing.', 8.3, ha='left')
+    text(ax, .015, .40, 'B  Adjust the recent past, then predict the weeks ahead', 11, True, ha='left')
     left, cw = .14, .138
     dates = ['10 Oct', '17 Oct', '24 Oct', '31 Oct', '7 Nov', '14 Nov']
-    labels = ['Correct', 'Correct', 'Nowcast', '+1 week', '+2 weeks', '+3 weeks']
+    labels = ['Adjust\nreport', 'Adjust\nreport', 'Nowcast', 'Forecast\n+1 week',
+              'Forecast\n+2 weeks', 'Forecast\n+3 weeks']
     for i, (day, label) in enumerate(zip(dates, labels)):
         text(ax, left+(i+.5)*cw, .24, day, 9.5)
-        box(ax, left+i*cw, .07, cw, .12, label, PALE if i < 2 else GOLD if i == 2 else 'white', size=9.5)
+        box(ax, left+i*cw, .065, cw, .14, label,
+            PALE if i < 2 else GOLD if i == 2 else 'white', size=9)
     text(ax, .015, .24, 'Week\nending', 9, ha='left')
     boundary = left+2*cw
     ax.plot([boundary, boundary], [.045, .30], color=INK, linestyle=':', linewidth=1)
-    text(ax, boundary, .32, '21 Oct issuance', 9)
+    text(ax, boundary, .325, 'Issued 21 Oct 2026', 9)
     save(fig, 'information')
 
 
 def network():
-    fig, ax = canvas(4.2)
-    text(ax, .03, .96, 'Input at one location and one signal', 11, True, ha='left')
+    fig, ax = canvas(4.8)
+    text(ax, .03, .97, 'From a reported history to a forecast', 12, True, ha='left')
+    text(ax, .03, .91, 'One signal at one location; each column is one history week', 9, ha='left')
     start, cw = .35, .12
-    for y, label, vals in [(.84, 'Value', ['x', '0', 'x', '0']),
-                            (.75, 'Available (1/0)', ['1', '0', '1', '1'])]:
+    for y, label, vals in [(.80, 'Value', ['x', '0', 'x', '0']),
+                          (.71, 'Available? (1 / 0)', ['1', '0', '1', '1'])]:
         text(ax, .04, y+.04, label, 10, ha='left')
         for i, val in enumerate(vals):
             box(ax, start+i*cw, y, cw, .08, val, GRAY if i == 1 else 'white')
-    box(ax, .04, .52, .35, .12, 'Own-target encoder')
-    box(ax, .60, .52, .35, .12, 'All-signal context encoder')
-    arrow(ax, (.55, .73), (.215, .65))
-    arrow(ax, (.65, .73), (.775, .65))
-    box(ax, .60, .33, .35, .11, 'Neighbor exchange', dashed=True)
-    arrow(ax, (.775, .52), (.775, .445))
-    box(ax, .18, .16, .64, .105, 'Add target + offset; normalize', fill=PALE)
-    arrow(ax, (.215, .52), (.215, .275))
-    arrow(ax, (.775, .33), (.775, .275))
-    box(ax, .34, .015, .32, .085, 'Recipe decoder')
-    arrow(ax, (.50, .16), (.50, .105))
+    text(ax, .53, .675, 'Missing', 8, color='#555')
+    text(ax, .77, .675, 'Observed zero', 8, color='#555')
+    box(ax, .04, .51, .38, .105, 'Encode the target history', size=10)
+    box(ax, .58, .51, .38, .105, 'Encode all signals + context', size=10)
+    arrow(ax, (.53, .70), (.23, .62))
+    arrow(ax, (.65, .70), (.77, .62))
+    box(ax, .58, .35, .38, .095, 'Optional: add nearby-state context', dashed=True, size=9)
+    arrow(ax, (.77, .51), (.77, .45))
+    box(ax, .08, .18, .84, .105,
+        'Combine histories + target + forecast week; normalize', fill=PALE, size=10)
+    arrow(ax, (.23, .51), (.23, .29))
+    arrow(ax, (.77, .35), (.77, .29))
+    box(ax, .22, .025, .56, .095, 'Predict samples or ordered quantiles', size=10)
+    arrow(ax, (.50, .18), (.50, .125))
     save(fig, 'network')
 
 
 def decoders():
     fig, ax = canvas(3.65)
-    cols = [(.015, 'A  Base sampled'), (.355, 'B  Residual sampled'), (.695, 'C  Quantiles')]
+    cols = [(.015, 'A  Basic sampled'), (.355, 'B  Residual sampled'), (.695, 'C  Direct quantiles')]
     for x, label in cols:
         text(ax, x, .96, label, 10.5, True, ha='left')
     for x, _ in cols:
         text(ax, x+.14, .84, 'History features', 9.5)
-    box(ax, .015, .62, .275, .12, 'Modulate', PALE)
+    box(ax, .015, .62, .275, .12, 'Noise sets scale / shift', PALE)
     box(ax, .015, .37, .275, .12, 'MLP readout')
     arrow(ax, (.1525, .80), (.1525, .745))
     text(ax, .32, .68, '$z$', 11, color=BLUE)
@@ -112,21 +118,21 @@ def decoders():
     arrow(ax, (.1525, .62), (.1525, .495))
     box(ax, .345, .32, .295, .45, dashed=True)
     box(ax, .375, .61, .23, .10, 'Normalize')
-    box(ax, .375, .47, .23, .10, 'Modulate', PALE)
+    box(ax, .375, .47, .23, .10, 'Noise sets scale / shift', PALE)
     box(ax, .375, .33, .23, .10, 'MLP + skip')
     arrow(ax, (.49, .80), (.49, .715))
     arrow(ax, (.49, .61), (.49, .575))
     text(ax, .668, .52, '$z$', 11, color=BLUE)
     arrow(ax, (.655, .52), (.609, .52))
     arrow(ax, (.49, .47), (.49, .435))
-    text(ax, .595, .745, '× B', 9)
+    text(ax, .595, .745, 'Repeat', 9)
     box(ax, .375, .20, .23, .085, 'Linear readout', size=9)
     arrow(ax, (.49, .32), (.49, .29))
     box(ax, .695, .62, .285, .12, 'MLP: 23 outputs')
     box(ax, .695, .37, .285, .12, 'Median + positive gaps')
     arrow(ax, (.8375, .80), (.8375, .745))
     arrow(ax, (.8375, .62), (.8375, .495))
-    box(ax, .12, .035, .76, .105, 'Target-specific link to native units', fill=GRAY)
+    box(ax, .12, .035, .76, .105, 'Add the latest-value anchor; restore admission counts or ED share', fill=GRAY)
     for x, y in [(.1525, .37), (.49, .20), (.8375, .37)]:
         arrow(ax, (x, y), (x, .145))
     save(fig, 'decoders')
@@ -153,10 +159,10 @@ def forecast():
         q = rows.pivot(index='target_end_date', columns='output_type_id', values='value') * factor
         q.columns = q.columns.astype(float)
         q.index = pd.to_datetime(q.index)
-        ax.plot(dates[use], history, '.-', color=INK, markersize=3.5, linewidth=1, label='Reported')
+        ax.plot(dates[use], history, '.-', color=INK, markersize=3.5, linewidth=1, label='Reports at issuance')
         ax.fill_between(q.index, q[.025], q[.975], color=BLUE, alpha=.14, linewidth=0, label='95% interval')
         ax.fill_between(q.index, q[.25], q[.75], color=BLUE, alpha=.30, linewidth=0, label='50% interval')
-        ax.plot(q.index, q[.5], '.-', color=BLUE, markersize=4, linewidth=1.4, label='Median')
+        ax.plot(q.index, q[.5], '.-', color=BLUE, markersize=4, linewidth=1.4, label='Forecast median')
         ax.axvline(pd.Timestamp('2026-10-21'), color=INK, linestyle=':', linewidth=.8)
         ax.set_title(title, fontsize=10, loc='left', weight='bold')
         ax.set_ylabel(unit, fontsize=9)
@@ -166,9 +172,9 @@ def forecast():
         ax.tick_params(labelsize=8)
         ax.yaxis.grid(True, linewidth=.4, color='#dddddd')
     handles, labels = axes[0].get_legend_handles_labels()
-    fig.legend(handles, labels, ncol=4, loc='lower center', frameon=False, fontsize=8.5,
+    fig.legend(handles, labels, ncol=2, loc='lower center', frameon=False, fontsize=8.5,
                bbox_to_anchor=(.5, .005), handlelength=1.6)
-    fig.subplots_adjust(left=.095, right=.99, top=.90, bottom=.22, wspace=.32)
+    fig.subplots_adjust(left=.095, right=.99, top=.90, bottom=.27, wspace=.32)
     save(fig, 'forecast')
 
 
@@ -186,16 +192,16 @@ def fitting():
     green = '#298051'
     fig, ax = canvas(8.1)
     fig.set_figwidth(11.8)
-    text(ax, .015, .973, 'Fitting and LLM-guided recipe search', 15, True, ha='left')
+    text(ax, .015, .973, 'Fitting and evaluating a model', 15, True, ha='left')
     text(ax, .015, .937, 'Influenza example: a width-256 quantile MLP, with 12 weeks of admissions and ED history',
          10, ha='left')
 
     # A branching proposal history, followed by measured evaluation and feedback.
-    text(ax, .015, .879, 'A  LLM proposes recipe branches', 11, True, ha='left')
+    text(ax, .015, .879, 'A  LLM proposes configuration changes', 11, True, ha='left')
     box(ax, .02, .775, .325, .070, 'Fixed data, input policy, labels,\nseason folds and primary score', fill=GRAY, size=9)
     arrow(ax, (.1825, .775), (.1825, .751))
-    box(ax, .095, .685, .175, .065, 'Parent recipe\n256-wide quantile MLP', size=9)
-    children = [(.016, 'Training errors\n× 1.5'), (.129, 'Learning rate\n× 2'), (.242, 'Calendar inputs\noff')]
+    box(ax, .095, .685, .175, .065, 'Starting configuration\nWidth-256 quantile MLP', size=9)
+    children = [(.016, 'Reporting errors\n× 1.5 in training'), (.129, 'Learning rate\n× 2'), (.242, 'Calendar inputs\noff')]
     for x, label in children:
         arrow(ax, (.1825, .685), (x+.051, .651))
         box(ax, x, .586, .102, .064, label, size=8)
@@ -205,7 +211,7 @@ def fitting():
 
     box(ax, .025, .373, .31, .070, 'Code fits every candidate and seed;\nevaluates the same tasks and labels', fill=PALE, size=9)
     arrow(ax, (.183, .485), (.183, .447))
-    box(ax, .025, .270, .31, .073, 'Code ranks by log-admission WIS; lower is better.\nConfirm seed stability; expand promising branches.\nThe flu search required ≥4 seeds before expansion.', size=8.3)
+    box(ax, .025, .270, .31, .073, 'Code ranks by log-admission WIS; lower is better.\nRepeat seeds before continuing a branch.\nThe flu search required ≥4 seeds before expansion.', size=8.3)
     arrow(ax, (.183, .373), (.183, .347))
     ax.plot([.025, .006, .006, .095], [.3065, .3065, .7175, .7175], lw=.8, color=green)
     arrow(ax, (.07, .7175), (.094, .7175))
@@ -306,9 +312,9 @@ def llm_search():
     """Compact, schematic recipe search; numerical scores are computed by code."""
     fig, ax = canvas(3.5)
     fig.set_figwidth(6.4)
-    text(ax, .5, .964, 'LLM-guided recipe search', 12, True)
+    text(ax, .5, .964, 'Searching model configurations', 12, True)
     text(ax, .5, .906, 'Researcher fixes data, prediction labels, splits and score', 8.8)
-    box(ax, .35, .72, .30, .13, 'Current recipe', fill=PALE, size=10)
+    box(ax, .35, .72, .30, .13, 'Current configuration', fill=PALE, size=10)
     for x, label in [(.045, 'Change\nmodel width'), (.355, 'Change\nlearning rate'),
                      (.665, 'Change\ntraining inputs')]:
         arrow(ax, (.50, .72), (x+.14, .615))
@@ -318,7 +324,7 @@ def llm_search():
     arrow(ax, (.5, .435), (.5, .405))
     box(ax, .15, .26, .70, .14, 'Code refits and scores every candidate\nSame evaluation tasks; repeated seeds', fill=GRAY, size=9.5)
     arrow(ax, (.5, .26), (.5, .19))
-    box(ax, .12, .05, .76, .135, 'LLM compares measured scores; expands or prunes\nConfirm across seeds before expanding', fill=PALE, size=9.2)
+    box(ax, .12, .05, .76, .135, 'LLM uses measured scores to suggest the next round\nRepeat candidates with new seeds before continuing', fill=PALE, size=9.2)
     ax.plot([.88, .975, .975, .69], [.1175, .1175, .785, .785], color=BLUE, lw=1)
     ax.add_patch(FancyArrowPatch((.69, .785), (.653, .785), arrowstyle='-|>',
                                  mutation_scale=10, lw=1, color=BLUE))
@@ -335,7 +341,7 @@ def sampled_blocks():
 
     # Both encoders consist of two fully connected layers with one SiLU activation.
     for y, heading, features, name in [
-            (.815, 'Scaled own-target history [24]', 24, 'Own-target MLP: each location and target'),
+            (.815, 'Scaled own-target history [24]', 24, 'Target-history MLP: each location and target'),
             (.625, 'Scaled all-signal history + context [69]', 69, 'Context MLP: each location')]:
         text(ax, .18, y+.073, heading, 9)
         box(ax, .02, y, .115, .060, f'Linear\n{features} → 96', size=8.5)
@@ -347,7 +353,7 @@ def sampled_blocks():
         text(ax, .40, y+.030, '[96]', 8.2)
 
     box(ax, .45, .680, .205, .150,
-        'Add own + context\n+ target / week embeddings\n\nLayerNorm [96]', fill=PALE, size=8.8)
+        'Add history + context\n+ target + week projection\n\nLayerNorm [96]', fill=PALE, size=8.8)
     arrow(ax, (.417, .845), (.447, .785))
     arrow(ax, (.417, .655), (.447, .715))
     arrow(ax, (.655, .755), (.726, .755))

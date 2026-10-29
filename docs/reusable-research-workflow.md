@@ -1,54 +1,113 @@
-# Reusable research and submission workflow
+# From a research question to a submitted forecast
 
-How we went from data to the B7 influenza submission, and how to repeat it for another pathogen.
-The shared dataset/problem pipeline described below is implemented. Scientific choices
-for a new pathogen still have to be defined before running it.
+A successful search produces more than a winning score. It leaves enough
+information to explain why the model was chosen, reproduce the comparison and
+identify the weights behind each submitted forecast. Chromantis uses problem
+files, study files and release manifests to carry that record from research
+into weekly operation.
 
-"Tree search" here means the branching sequence of experiments (B0 → B7) that produced a submitted
-recipe. It has nothing to do with the regression trees that correct preliminary reports. B7 is one
-influenza recipe. The submitted Hub model is **ACCIDDA-Chromantis**; every submission is recorded in
-the [submission log](submissions.md).
+The procedure below grew out of the October 2026 influenza search. The submitted
+three-configuration mixture is recorded as B7; its public Hub name is
+ACCIDDA-Chromantis. Branching *configuration search* refers to the sequence of
+experiments. The gradient-boosted trees used to correct reports are separate
+models.
 
-## The workflow in six steps
+## Define the comparison
 
-Each step names who does it. "You" means the human researcher. "LLM" means a Claude or Codex
-assistant. "Code" means the planner, PyTorch, Slurm and the Python scorer. Numbers (losses, WIS)
-always come from code, never from an LLM.
+The researcher chooses the outcomes and units, available inputs, training and
+evaluation seasons, prediction labels, and score. Record those choices before
+fitting. For reporting revisions, specify which signals are changed and which
+seasons supply the errors. For evaluation, specify the weeks included and the
+information available at each forecast deadline.
 
-1. **Define the study (you, then LLM).** Before fitting anything, write `protocol.json`:
-   - targets and their units;
-   - which data are available on each Wednesday (for flu: sources at T-X, ED at T-0, Kinsa not revised);
-   - how training inputs are made preliminary (for flu: the 2025–26 reporting-error process);
-   - which values are the prediction labels;
-   - fitting seasons and evaluation seasons, including evaluation weeks (should include October);
-   - **the primary score, its tie-breakers, and which scores cannot veto a choice.**
+The protocol should name the primary score, tie-breakers and any measures used
+only as diagnostics. Changing these choices starts a new comparison. A problem
+file holds the task and evaluation design; a study file lists candidates and
+seeds. The [problem guide](multipathogen-pipeline.md) describes their fields.
 
-   Any later change to this file starts a new comparison. Old results are not re-ranked under it.
-2. **Screen (LLM proposes, you approve the batch and the time budget, code runs).** List candidates
-   in `candidates.json`. Where possible, change one thing per candidate. Use two seeds per candidate
-   and shared artificial reporting draws.
-3. **Confirm (same split of work).** Rerun three to five candidates with five new seeds. Extra seeds
-   measure how much fits vary between seeds. They do not remove bias from repeatedly choosing on the
-   same seasons.
-4. **Compare saved forecasts (code, with the LLM reporting).** Run the fitted models, without
-   retraining, on the same archived Wednesday reports. Mix their forecasts and score everything on
-   identical tasks. **Every comparison lists the exact candidate set and saved forecasts it used.**
-   Assistants gave opposite recommendations on 7 October partly because they compared different sets.
-5. **Release (you decide, code fits).** Record the choice and the reason in the study's decision list. Refit
-   the chosen recipes on all completed seasons. B7 used ten seeds per recipe; that is a starting
-   policy, not a rule. The release lists exact checkpoint paths and their hashes, not file-name
-   patterns.
-6. **Issue each week (code, then you).**
-   - Refresh data, then run the release on the new data (no retraining) and export the Hub file.
-   - Make the comparison graphs.
-   - **Push a safe file from the current release before the deadline.**
-   - Replace it after the deadline only on your explicit decision. On 8 October 2026, seven earlier
-     late re-pushes to FluSight had all been merged.
-   - Record every event in the [submission log](submissions.md): generated, submitted, merged,
-     superseded, renamed. Keep the submitted CSV and any replaced CSV.
+## Screen and confirm candidates
 
-Weekly issuance does not mean weekly retraining. A new recipe, correction model or training set is
-a new release.
+An assistant can propose configurations within the agreed question and compute
+budget. Code fits the models and calculates every loss and score. Start with two
+seeds and shared artificial reporting draws where that protocol applies. Change
+one factor at a time when the aim is to identify its effect.
+
+Repeat three to five promising candidates with five new seeds before choosing
+among close results. More seeds reveal sensitivity to training randomness.
+They cannot remove the selection bias created by searching the same epidemic
+seasons repeatedly.
+
+## Compare saved forecasts
+
+Replay candidate fits on the same archived reports without retraining. Score
+individual models and mixtures on identical tasks. Name the candidate set and
+saved forecasts in the comparison: recommendations based on different candidate
+sets answer different questions. That mismatch contributed to conflicting
+recommendations during the 7 October influenza search.
+
+The [workflow](workflow.md) gives the planner, replay and ranking commands.
+Use its saved tables to write the interpretation, with the model, training
+seasons, input treatments, prediction labels and evaluation inputs beside each
+result.
+
+## Fit a release
+
+The researcher chooses the models and records the reason in the study's decision
+list. Fresh fits then train the selected configurations on all completed
+training seasons. The October flu mixture used ten seeds per configuration;
+other problems can use a different count.
+
+The release manifest lists exact checkpoint paths and hashes, preprocessing,
+correction models and the combination rule. A change to a configuration,
+correction model or training set produces a new release. Weekly input updates
+reuse the release's saved weights.
+
+## Issue forecasts each week
+
+Refresh the sources, run the release on the new panel and export the Hub file.
+Draw the forecast and peer-comparison graphs for researcher review. Submit a
+file from the current release before the deadline. A decision to replace a file
+after the deadline belongs in the submission record, with its timing and reason.
+
+The [submission log](submissions.md) records generation, submission, merge,
+replacement and renaming. Keep each submitted file and any superseded version,
+with the input snapshot and file hashes. A weekly forecast should be traceable
+to both its fitted models and the reports those models received.
+
+## Keep the research record small
+
+| Record | Location |
+|---|---|
+| Candidates, seeds and protocol | `experiments/<study>.json` |
+| Saved-forecast combination groups | `experiments/<study>-ensembles.json` |
+| Chosen fits, hashes and export rule | `production/releases/<name>.json` |
+| Results and decision list | `docs/experiments/<study>/index.md` |
+| Issuance and publication history | `docs/submissions.md` |
+| Submitted and replaced files | `production/submissions/`, including `superseded/` |
+
+A decision entry names the choice, evidence files, candidate set, proposer and
+decision maker. When a branch stops, record whether time, failure or results
+caused it. Research interpretations belong inside the report's write-up markers
+so regeneration preserves them.
+
+Keep study definitions, release manifests, the submission log and submitted
+files in version control. Checkpoints, output caches and Hub clones stay outside
+it. The shared planner, scorer and exporter handle each stage; new studies add
+configuration files rather than their own scheduling or scoring systems.
+
+## Adapt the procedure to another problem
+
+Choose the new scientific assumptions before carrying over a flu configuration.
+Reporting errors, Kinsa inputs, ILI pretraining, seasons and loss weights all
+need a reason in the new setting. Reuse or build a dataset, write the problem,
+check its reporting evidence, then fit and score a simple unpublished forecast.
+That first run checks whether the full procedure represents the intended task.
+
+## Records from the October influenza search
+
+The notes below describe decisions and open issues as recorded on 8–9 October
+2026. They preserve the origin of the workflow; later submission records may
+supersede the operational details.
 
 ## Who did what for B7 (5–8 October 2026)
 
@@ -67,59 +126,6 @@ study on 7 October, which you stopped at 22:05. The training audit was written b
 your corrections at 01:05. Codex implemented the fixes. Keep such hand-offs in the decision list; a
 pasted recommendation is not evidence that the person who pasted it originated it.
 
-## Files
-
-```text
-experiments/<study>.json              candidates (name -> scenario string), seeds, protocol text
-experiments/<study>-ensembles.json    saved-forecast groups to combine and rank (optional)
-production/releases/<name>.json       recipes, checkpoint paths + SHA256, rule, input view, description
-docs/experiments/<study>/index.md     generated report + a hand-written "Decisions" list
-docs/submissions.md                   every issuance: data snapshot hash, release, CSV hash, PR/merge
-production/submissions/               submitted CSVs; superseded/ keeps replaced ones
-```
-
-- **Decisions** are a short dated list in the study's report write-up. Each item states:
-  - the decision;
-  - the candidate set and evidence files used;
-  - who proposed it and who decided it;
-  - why a branch stopped: time, failure, or poor results.
-- **No separate issuance record.** The submission log entry and the committed CSV are the record.
-- **Dataset and problem files.** The concrete migration is defined in the
-  [multi-pathogen pipeline](multipathogen-pipeline.md). A named dataset describes stored
-  signals, units, geography, vintages, and covariates. A problem selects targets and inputs and fixes
-  horizons, folds, truth, output type, and one primary evaluation. This replaces the earlier proposal
-  for one pathogen file: a pathogen can have several scientifically different forecasting problems.
-- **Git.** When committing, include `experiments/`, the release JSONs, the submission log and the
-  submitted CSVs. Checkpoints, `output/` and Hub clones stay out. As of 8 October all of
-  `production/` and `experiments/` are untracked (nothing committed yet, by the user's choice).
-- **No new machinery.** No database, workflow framework or second scheduler.
-
-## Code: one implementation per step (done 8 October 2026)
-
-| Step | Module | Command |
-|---|---|---|
-| Data acquisition, dated panel | `chromantis.data`, `chromantis.dataset` | `python -m chromantis.data pull`, `python -m chromantis.dataset.build build` |
-| Training (one route) | `experiment/fit.py`, `experiment/training.py` | `planner plan --problem ... --study ...`, `scripts/jlessler.sbatch`, `planner run` |
-| Evaluate fits on other inputs | `experiment/fit.py` `replay` | `planner replay` |
-| Internal evaluation | `evaluation/standard.py`, `ranking.py`, `report.py` | `planner rank` |
-| Saved-forecast ensembles | `evaluation/ensembles.py` | `python -m chromantis.evaluation.ensembles` |
-| Submission | `chromantis.production` + a release file | `python -m chromantis.production run` |
-
-About 50 experiment-specific scripts and the training routes no submitted model used were
-deleted; scenario options of the remaining route are all kept. Details, and the checks that the
-new code reproduces the submitted B7 file and B7 training exactly:
-[restructuring log](workflow.md#restructuring-log-8-october-2026). Target and input names,
-units, horizons, folds, and evaluation now come from a required problem file; flu, COVID-19,
-RSV, and joint-respiratory problem files use the same implementation.
-
-## Another problem or pathogen
-
-Reuse the procedure and the code; rerun the science. Do not carry over influenza's reporting
-errors, Kinsa, ILI pretraining, season boundaries, recipes, or evaluation weights. Follow the
-[multi-pathogen pipeline](multipathogen-pipeline.md): add or reuse a named dataset, write a problem
-that fixes targets, inputs, horizons, folds and the primary score, check source revision histories,
-then run steps 1–5 above. An unpublished forecast evaluated under that problem is the acceptance
-test.
 
 ## Open gaps from B7
 

@@ -1,59 +1,79 @@
-# Explorer
+# Data explorer
 
-The explorer consumes the shared [post-intake selection](../data/methods.md):
-**native state and national observations only**. HHS, county, HSA, catchment,
-and wastewater-site data are excluded before profiling and indexing. A state
-label on a site or county row does not make it a state observation.
+Use the explorer to compare surveillance series and see how their reported
+values changed. Choose a location and signals, then select an *As of* date to
+overlay the history available at that cutoff. The solid line shows the latest
+available values; the dashed line shows the selected historical version.
 
-The B2 covariates follow the same rule. Delphi inpatient and outpatient claims
-are ordinary raw, versioned explorer sources. Wastewater uses the registered
-`derived_nwss_state_indices` source, an immutable repository snapshot built from
-the registered Delphi NWSS signal and auxiliary snapshots. Its `data.csv.gz`
-contains `report_time`, `geo_type`, `geo_value`, `reference_time`, `pathogen`,
-`wval_like`, `pct_rank`, and `n_sites`; each row is one real publisher vintage,
-state or nation, and week. The explorer indexes `wval_like` and `pct_rank` and
-keeps the site count in the artifact for audit. Because this is a normal raw
-repository artifact, its manifest hash, source snapshot IDs, and transformation
-metadata participate in the same discovery and stale-index checks as every
-other source.
+The [published explorer](https://accidda.github.io/chromantis/explorer/) contains
+a saved export. Its banner gives the export date. A local explorer reads the
+sources downloaded to your checkout and can be refreshed as new reports arrive.
+The [availability staircase](../data/staircase.md) provides a different view:
+it classifies evidence for whether a report existed at each deadline.
 
-Kinsa's national cough, cold and flu signal is a normal raw source too:
-`pophive_kinsa_ili`, whose report times are PopHIVE Git commit times (see
-[Kinsa (PopHIVE)](../data/sources.md)). Its `archive.csv.gz` has the columns
-`report_time`, `geo_type`, `geo_value`, `reference_time` and
-`kinsa_cough_cold_flu`. It is a national series, filed under acute respiratory
-illness with provider kind `pophive`.
+## Using the data
 
-The Delphi V5 FluView and FluSurv-NET archives (added 2026-09-22) appear as two
-families: **FluView · Outpatient ILI and laboratory surveillance** (ILINet under
-influenza-like illness; clinical laboratory signals under influenza, keyed
-`fluview:ilinet_*`, `fluview:clinical_*`) and
-**FluSurv-NET · Influenza hospitalization rates**. `age_group` and
-`fill_method` are variant facets, so ILINet age strata and Delphi's pooled
-statewide New York stay labelled. FluSurv state series exist only for
-catchment states. Delphi's public health laboratory source is not included. See [FluView and FluSurv-NET](../data/sources.md).
+Start with a state or the United States. Search the signal list, then select
+the provider and release variants you want to plot. Native-state observations
+are the default. National context remains labeled as national when displayed
+beside state series. A state label attached to a county, catchment or wastewater
+site does not make that observation statewide; those rows are excluded from the
+selected explorer data.
 
-In the local 2026-09-16 claims snapshots, the selected influenza and COVID-19
-series in both claims products begin their publisher-vintage history on
-2020-05-29. The wastewater start is intentionally reported from the processed
-derived snapshot rather than assumed: it depends on the first vintage meeting the
-26-week group-history and three-site state thresholds.
+Each selection opens a card with its date range, point count and provenance.
+Publisher descriptions appear on hover, while API field names and source
+identifiers remain available for tracing the data. Delphi variants are orange
+in the selector and Hub variants blue. Within the chart, each series keeps one
+color across its latest and historical versions. Line widths and marker shapes
+help distinguish overlapping series. Hub targets use black for admissions
+(light gray in dark mode) and red for ED visits.
 
-There is one streaming Python indexer. SQLite holds metadata and latest points;
-Parquet holds compact Wednesday/Saturday history plus finalized (latest available)
-values. The raw scan reads all reports once; the saved ledger retains only the
-revisions needed for those views and drops repeated unchanged values. There is
-no revision-age limit. National observations are stored once under
-`US` and can be shown as explicitly labeled national context in state plots.
-Raw snapshots remain unchanged. The index is disposable: outdated or missing
-indexes are rebuilt, with no migration path.
+Selections persist when you change locations. The explorer looks for the
+corresponding variant with the same source, measure and other dimensions; a
+selected series with no observations remains visible as an empty selection.
+The US view uses published national observations. It never constructs a total
+from states. National-only products remain national context.
 
-Hub targets without an `as_of` column can still have release history in Git.
-The **Git commit history** variants show canonical target-file states saved by
-intake from the pinned branch's first-parent commits. Select an as-of date to
-resolve the latest eligible complete state, including removed observations.
-Native `as_of` variants remain separate. A commit fixes repository contents; its
-committer timestamp dates that state, not the provider release clock; see [the vintage policy](../data/methods.md).
+Hub presets select four series: the Hub's admission and ED targets, and their
+Delphi counterparts. They turn on **Divide by mean** so counts, percentages and
+proportions can share a plot. The divisor is each series' latest mean over the
+dates common to all selected series; historical versions use that same divisor.
+The [filter guide](filters.md) explains the units and display scaling.
+
+### Choose a date window
+
+Use the overview and date controls to select the observation period. Drag the
+selected window to pan or select a new range outside it. **All dates** restores
+the full history. Endpoints are included, with a minimum window of one day.
+The main y-axis adjusts to the window; the overview scales signals separately.
+Changing the observation window leaves the historical report cutoff unchanged.
+
+### Compare report versions
+
+The **As of** control selects information from the saved raw snapshots. Typed
+dates and chart clicks round back to the preceding Wednesday or Saturday.
+The version arrows move between those cutoffs; **← Wed** and **Wed →** move
+between Wednesdays. Forward movement stops at today. Observation dates keep
+their original cadence, so a daily series still has daily points.
+
+**Finalized (latest)** means the latest values in the selected source snapshot.
+Publishers may revise them again. Reports persist until a later eligible report
+changes them. Complete Hub releases preserve omissions and retractions, and a
+null latest revision does not restore an earlier value. Unversioned sources
+use an observation-date cutoff; sources without row publication dates use their
+saved snapshot or commit timestamp.
+
+The chart resolves Git history saved during intake without fetching Git at
+query time. `hub-history` can backfill a pinned acquisition, while `--hub-as-of`
+can acquire another historical tip. The [vintage policy](../data/methods.md#vintages-and-geography)
+describes these information cutoffs.
+
+Repeated rows for one state, measure, observation date and release are displayed
+as an unweighted mean, with the contributing count in the tooltip. **Index
+details** lists missing, excluded and malformed sources. The banner credits
+CMU Delphi, CDC and the respiratory Hubs and links to
+[EpiVis](https://delphi.cmu.edu/epivis/) and [RespiLens](https://respilens.org),
+which informed the interface. Its dismissal lasts for the current page load.
 
 ## Commands
 
@@ -120,146 +140,42 @@ indexes and source errors are reported separately. Validation checks SQLite
 IDs. It does not compare every value to raw data. Strict mode rejects source
 errors; intentional exclusions and quarantined conflicts remain audit entries.
 
-## Using the data
+## Source representation
 
-A banner under the title notes that the data come from CMU Delphi, the CDC, and the
-respiratory forecast hubs, that this special-purpose explorer comes with no
-guarantee, and points to Delphi [EpiVis](https://delphi.cmu.edu/epivis/) and
-ACCIDDA [RespiLens](https://respilens.org), which inspired it, for a useful dashboard.
-Dismissing it with × lasts only for the current page load; it returns on every visit.
+The explorer uses the shared [selection policy](../data/methods.md). Its selected
+stream contains native state and national observations. NHSN and NSSP group
+related CDC, Delphi and current Hub measures while keeping provider, release,
+unit and smoothing variants separate. Historical Hub products retain their own
+target definitions.
 
-Choose a location, search measures, and select acquisition/release, demographic,
-smoothing, or fill variants. Native-state signals are the default filter; choose
-national context to see national observations. These are candidate measurements,
-not an automatically chosen model channel set.
+Claims remain versioned raw sources. Wastewater comes from the registered
+`derived_nwss_state_indices` snapshot, with `wval_like` and `pct_rank` displayed
+and `n_sites` retained for audit. The snapshot records source IDs, hashes and
+transformations. Its first usable week depends on the 26-week history and
+three-site state thresholds.
 
-CDC API display names label the measures, with publisher descriptions on hover.
-The API field and Delphi signal/Hub target identifiers remain visible in each
-variant. Current Hub hospitalizations join NHSN, and ED targets join NSSP, at
-their corresponding CDC columns. Reported and smoothed NSSP columns remain
-separate. Historical Hub measures with different origins stay separate.
-
-Delphi variants in the signal list are orange and Hub variants blue. Each variant is one line named as a path (e.g. `Finalized/weekly/native state`); checking it opens a card with its point count, date range, and provenance. Each
-plotted series gets one color, shared by all its dated versions; line style
-(solid latest, dashed as-of) marks the version. The legend sits beside
-the location title with one column per series: its real (latest) data on top and
-the as-of revision directly below, reading *data / source* (plus the as-of date).
-Revisions are also drawn underneath the real data. Hover an entry for the full
-variant, maximum, and lineage. Hub target data is fixed: black for admissions (light gray in dark mode)
-and red for ED visits. Lines are drawn at 70% opacity, and each selected series has its own line width
-(widest drawn first) and marker shape (circle, square, triangle, cross, diamond;
-hollow for revisions) at staggered positions, so identical series stay visible
-as a thin line inside a thicker one with alternating markers.
-Colors stay consistent across the chart, legend, overview, and hover values, and
-remain stable when other lines are added or removed. Clear resets the color allocation.
-NHSN selection currently
-retains 14 all-age measures and excludes adult, pediatric, age-band, and
-unknown-age fields. Raw snapshots keep those fields.
-
-Signal selections persist when switching states, including signals unavailable in
-the new state (shown with no points). **United States (US)** appears when the index
-contains native national observations; it reads those published US records only,
-never a sum of states. Its spatial support is fixed to national. Selections follow
-the location: switching between US and states (or between states) swaps each selected
-variant for its counterpart in the new location when source, measure, and
-non-geographic dimensions match (Delphi `geo_type` files and NSSP `trend_source` are
-treated as geography). National-only products stay as labeled national context.
-National-context signals explicitly selected while viewing a state remain national.
-
-**Hub presets** (COVID-19 Hub, FluSight, RSV Hub) replace the selection with the
-Hub's target data and its Delphi ground truth for the current location: NHSN
-weekly admissions and reported NSSP ED visit percentage, four series in all.
-They also turn on **Divide by mean**, since counts,
-percentages, and proportions only overlay once scaled.
-
-On desktop, the signal browser fills the viewport height and scrolls independently
-beside the plot. Narrow screens retain the stacked layout.
-
-**View dates** selects the observation-date window using From/To date inputs or
-the overview below the chart. Drag its handles to resize, drag the selected window
-to pan, or drag outside it to select a new range. **All dates** restores the full
-history. The minimum window is one day; both endpoint dates are included. The
-overview scales each signal independently so mixed units remain visible. The main
-plot rescales its y-axis to observations within the window; series-maximum scaling
-still uses the full displayed version, independent of zoom. View dates do not
-change the publication cutoff. A chosen range persists across signal/version
-updates while overlapping the available history; it resets when no longer
-applicable or when selections are cleared. These controls run locally against
-already loaded points, without rebuilding the index or adding chart dependencies.
-
-Selecting an **As of** date automatically overlays two curves per signal: latest
-available values as a solid line, and values available at the selected date as a
-dashed line in the same color. "Latest" is the reference for finalized values
-here; the publisher may still revise it. The selected date's weekday is shown
-beside the picker and in the legend, so publisher release days (e.g. Wednesday)
-are easy to spot. A dashed crimson line marks the as-of date on the chart;
-clicking anywhere on the chart selects the corresponding historical cutoff. **← Wed**
-and **Wed →** step the date to the previous or next calendar Wednesday (from
-today when showing latest values); the next step stops at today.
-The **← / →** version arrows step through Wednesday and Saturday as-of views.
-Typed dates and chart clicks round back to the preceding Wednesday or Saturday;
-they never move the information cutoff forward. The API applies the same rule.
-Scrolling or arrowing the date field forward rounds forward instead, to the next
-Wednesday or Saturday (never past today), so it walks Wednesday ↔ Saturday rather
-than sticking on a Saturday (fixed 2026-09-23). The as-of date shown is therefore
-always a Wednesday or a Saturday.
-Daily observation dates remain daily; only the historical information cutoffs
-are restricted. A Tuesday report contributes to the Wednesday view, for example.
-**Finalized (latest)** always shows the latest available source values, including
-reports after the most recent historical cutoff. “Finalized” is the project's
-latest-value convention, not a claim that publishers cannot revise them again.
-Raw archives and the B2 training dataset are unchanged.
-
-The **As of** control uses publisher revisions already present
-in the selected raw snapshot. Delphi's last eligible advertised value remains
-available when there is no new change. Hub states likewise persist until a later
-complete state replaces them: unchanged rows still belong to the version.
-Full `as_of` releases preserve omissions and retractions. Unversioned data uses an event-date cutoff. Inputs without row
-publication dates are bounded by their saved snapshot/commit timestamp.
-The explorer resolves the Git history materialized during intake; it does not
-fetch or traverse Git during a query. `hub-history` backfills a pinned acquisition,
-and `--hub-as-of` can acquire a different historical tip when needed.
-
-Repeated rows for a state, measure, date, and release are shown as their
-unweighted mean, with the contributing sample count. Null latest revisions do
-not resurrect earlier values. Divide by mean divides every displayed version by
-the same series' latest mean over the common window, so dated versions with a
-shorter archived history (e.g. COVID-19 Hub snapshots before 2026-09-09 start at
-2024-11-09) stay comparable. A bar under the header and a spinner on the chart
-show while data is loading. **Index details** lists unavailable, excluded, and malformed sources.
-
-See the [local API](api.md) for catalog, series, versions, and data endpoints.
+Kinsa (`pophive_kinsa_ili`) is a national series with PopHIVE Git commit times
+as report timestamps. FluView groups outpatient ILI and clinical laboratory
+signals; FluSurv-NET supplies hospitalization rates for catchment states.
+Age and fill-method variants remain labeled. The public-health laboratory
+source is excluded. The [source catalog](../data/sources.md) gives the measures
+and coverage.
 
 ## Published explorer
 
-A static copy runs on GitHub Pages at
-[accidda.github.io/chromantis/explorer/](https://accidda.github.io/chromantis/explorer/).
-It uses the same page as the local server; when `data/catalog.json` sits next to
-the page, the browser answers the catalog, series, versions, and data requests
-itself and reads revisions with [hyparquet](https://github.com/hyparam/hyparquet)
-from one Parquet file per series, downloaded whole when that series is plotted.
-GitHub Pages gzips responses and applies byte ranges to the compressed stream, so
-ranged reads of a single large Parquet file do not work there.
+GitHub Pages serves a thinned export committed under `docs/explorer/data/`.
+It uses the local interface and one Parquet file per selected series. The
+browser downloads that file when plotting the series and resolves catalog,
+series, version and data requests locally. GitHub Pages' compressed byte-range
+behavior prevents using one large Parquet file for ranged reads.
 
-The copy is a thinned export of the local index, committed to
-`docs/explorer/data/`. It is not updated live or by CI:
+The export retains Wednesday/Saturday histories and latest values, carrying
+unchanged values forward. Later claims revisions remain available; there is no
+eight-week revision limit. Hub change logs retain removals. Rebuilding the local
+index leaves the published copy at its recorded export date until a new export
+is committed and deployed.
 
-- New exports use the same Wednesday/Saturday histories and latest values as
-  the local index, dropping repeated unchanged values. Retained values carry
-  forward until their next change.
-- There is no eight-week claims revision limit: later revisions are preserved.
-- Full-snapshot Hub target files become a change log that keeps removals, so an
-  as-of date resolves as it does locally.
-- Typed dates and chart clicks round back to Wednesday/Saturday, as locally.
-
-The already published copy is not regenerated or deployed by a local index
-rebuild. Its saved export date describes its contents.
-
-The published banner adds that the online version is not updated (with its export
-date) and that the local explorer is the ground-truth source. The docs header links
-to it as **Live explorer**.
-
-To refresh it after pulling new raw data:
+Refresh the published data after pulling sources with:
 
 ```bash
 scripts/update_published_explorer.sh
@@ -268,20 +184,20 @@ git commit -m "Update published explorer data"
 git push
 ```
 
-The script runs `index` (a no-op when raw data is unchanged) and then
-`python -m chromantis.explorer export --out docs/explorer/data`. On push to `main`,
-the Documentation workflow builds MkDocs, which copies the committed data, adds
-`index.html`, `app.js`, and `style.css` from `src/chromantis/explorer/static/`, and
-deploys the site.
+The script indexes changed raw data and runs `chromantis.explorer export`.
+Publication on `main` copies the committed export and the interface from
+`src/chromantis/explorer/static/` into the built site.
 
 ## History selection
 
-The explorer retains Wednesday and Saturday historical
-views plus final/latest values. This thins only the explorer's own disposable
-index: the raw snapshots under `data/raw/` keep every publisher release, and the
-dataset builder reads those, never the explorer index. Compaction reuses the export's change selection,
-keeps original publisher timestamps and float64 values in the local index, and
-selects complete-snapshot releases as whole states to preserve omissions.
-Repeated contributions within the same observation/release retain their
-unweighted mean and sample count. Source-vintage ranges remain provenance for
-the original reports, not the compact navigation schedule.
+The local index stores metadata and latest points in SQLite and a compact
+revision ledger in Parquet. The indexer scans all raw releases, retaining the
+changes needed for Wednesday/Saturday cutoffs and the latest view. It preserves
+publisher timestamps, float64 values, repeated-row counts and complete-release
+omissions. National observations are stored once under `US`.
+
+Compaction changes the disposable explorer index. Raw snapshots under
+`data/raw/` retain every acquired release, and the model dataset builder reads
+those snapshots. Indexes are rebuilt when missing, stale or incompatible with
+the schema or selection policy. The [local API](api.md) documents the data
+returned to the interface.

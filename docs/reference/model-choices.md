@@ -1,12 +1,14 @@
 # Model choices A–F
 
-Every Chromantis forecaster since the B3 pilot (5 October 2026) is defined by six separate
-choices (A has three parts), plus its prediction labels and its folds. Several words were used for more than
-one of these choices, so this page fixes the vocabulary. Every experiment report links
-its own table of choices to the sections below. Field names are the scenario fields
-([field key](scenario.md)); the names in parentheses are the names used before 8–9 October
-2026. They are no longer read: the B7 and System2 records were rewritten to the current names
-on 9 October 2026, and older experiments are kept as reports only.
+Two models with the same network can learn from different histories or receive
+different inputs when forecasting. Read a configuration through the six choices
+below: training histories, reporting-error source, affected signals, correction
+model, evaluation inputs and forecast view. The problem also specifies prediction
+labels and folds. Experiment reports use the letters A–F to link to these choices.
+
+The [scenario reference](scenario.md) lists the fields. Names in parentheses
+identify settings used before the 8–9 October 2026 renaming. The code accepts
+the current names; older terminology remains in dated reports.
 
 ## Words with several meanings {#terms}
 
@@ -20,8 +22,9 @@ on 9 October 2026, and older experiments are kept as reports only.
 
 ## A. Training histories: what the network learns from {#a-training-histories}
 
-Three separate fields (until 9 October 2026 bundled into one, `pilot_method`, briefly
-`training_histories`; the translation of old values is in the second table):
+Three fields specify what the forecaster sees and learns to reconstruct.
+They were separated on 9 October 2026 from the former `pilot_method` field,
+briefly named `training_histories`. The second table maps the older values.
 
 | Field | Values | Meaning |
 |---|---|---|
@@ -37,15 +40,17 @@ Three separate fields (until 9 October 2026 bundled into one, `pilot_method`, br
 | `corrected`, `two_stage` | `history_source=artificial`, `history_correction=1` |
 | `joint` | `history_source=artificial`, `reconstruction_labels=1` |
 
-Whatever A is, every fold also fits and saves a correction model ([D](#d-correction-model)),
-used at forecast time when the forecast view is `corrected` or `half` ([F](#f-input-view)).
-Code: `experiment/fit.py` `fit`.
+For problems with the reporting-error stage enabled, each fold also saves a
+correction model. The `corrected` and `half` forecast views use it at prediction
+time, regardless of the neural training treatment. The fitting route is
+`experiment/fit.py`.
 
 ## B. Error source: where the artificial reporting errors come from {#b-error-source}
 
-An empirical bootstrap of real reporting errors: for each training history, an error
-window from a real archived release with a similar epidemic phase is transported
-(age, signal and location aligned; labels never change). Code: `dataset/reporting_error.py`.
+The generator in `dataset/reporting_error.py` selects an archived error window
+with a similar epidemic phase and applies its revisions to a training history.
+Errors align by reporting age, signal and location. Future prediction labels
+keep their reference values.
 
 | Setting | Donor releases |
 |---|---|
@@ -53,19 +58,24 @@ window from a real archived release with a similar epidemic phase is transported
 | `error_seasons=all` (was `vintage_seasons`) | every permitted season, weights 1, ½, ¼ from the latest |
 | `error_reference=2025-2026` (was `revision_reference`) | the prescribed 2025–26 reporting process in every fold, including the fold that evaluates 2025–26 |
 
-It matters for `errors`, `corrected` and `joint` training histories, for correction models
-trained on synthetic examples ([D](#d-correction-model)), and for prescribed evaluation
-inputs ([E](#e-evaluation-inputs)). Details of the matching: `reporting_*` fields.
+The donor choice affects artificial training histories, correction models
+trained on synthetic pairs, and prescribed evaluation inputs. The `reporting_*`
+fields control the matching. Choosing a donor season is separate from choosing
+which epidemic seasons supply neural training labels.
 
 ## C. Error signals: which signals receive artificial errors {#c-error-signals}
 
-`error_signals` (was `revision_signals`): `admissions` (counts only; ED and covariates
-keep their final values), `targets` (admissions and ED), or `all` (also covariates).
-`error_scope` and `actual_share` can replace some artificial draws by actual reports.
+`error_signals` selects the affected training inputs. `admissions` changes
+counts and leaves ED and covariates at reference values. `targets` changes
+admissions and ED; `all` also changes covariates. `error_scope` and `actual_share`
+can substitute actual reports for some artificial draws. The former field name
+was `revision_signals`.
 
 ## D. Correction model: what the nowcaster learns from {#d-correction-model}
 
-`corrector_examples` + `corrector_model` (both were `pilot_nowcaster`):
+The corrector learns from paired preliminary and reference histories.
+`corrector_examples` chooses those pairs; `corrector_model` chooses trees or
+an MLP. The former `pilot_nowcaster` field combined both decisions.
 
 | Setting | The correction model learns from |
 |---|---|
@@ -74,14 +84,16 @@ keep their final values), `targets` (admissions and ED), or `all` (also covariat
 | `corrector_examples=synthetic_then_real` (was `pretrained_mlp`) | synthetic pretraining, then real pairs (MLP only) |
 | `corrector_model=tree` / `mlp` | gradient-boosted trees (default) / a residual MLP |
 
-It corrects the newest `correction_weeks` weeks of admissions, and of ED when
-`correction_ed=1`. `correction_noise` adds sampled correction errors (the `sampled` view).
-Code: `model/revision_tree.py`; saved per fold as `nowcaster.pkl`.
+The model adjusts the newest `correction_weeks` admission weeks and, with
+`correction_ed=1`, ED weeks. The `sampled` view uses `correction_noise` to add
+sampled correction errors. Each fold saves the model as `nowcaster.pkl`;
+`model/revision_tree.py` implements the tree route.
 
 ## E. Evaluation inputs: what the fitted model is scored on {#e-evaluation-inputs}
 
-The problem's `evaluation.inputs` value (formerly the recipe field
-`evaluation_inputs`, and before that `evaluation_vintaging`):
+The problem's `evaluation.inputs` selects the histories used to score every
+candidate. Earlier versions put this choice in recipe fields named
+`evaluation_inputs` or `evaluation_vintaging`.
 
 | Value | Inputs of every held-out forecast |
 |---|---|
@@ -93,8 +105,9 @@ without refitting. Production always uses the real operational reports of the is
 
 ## F. Forecast view: how the fitted pair is used at forecast time {#f-input-view}
 
-`forecast_view` (a recipe field since 9 October 2026; default `corrected`, what both
-submitted models use):
+`forecast_view` chooses how the saved model receives evaluation and operational
+inputs. The default is `corrected`, used by the weekly flu and RSV releases
+described in the October records.
 
 | View | Inputs given to the network |
 |---|---|
@@ -145,9 +158,11 @@ with a linear correction); those are not described by A–F.
 | **System2** (submitted on time) | 5 `corrected`, 3 `joint` | latest (2025–26 in production) | admissions; targets for 2 recipes | real trees for `corrected`, mostly synthetic for `joint` | production: real reports, `corrected` view | trained on all four seasons |
 | **B7** (merged submission) | 2 `corrected`, 1 `joint` | prescribed 2025–26 | targets | synthetic trees, admissions and ED | production: real reports, `corrected` view | trained on all four seasons |
 
-Two consequences:
-- B_width256 (`joint`) is trained on uncorrected histories but forecast with corrected inputs; it scored best that way in B7.
-- System2 and B7 differ in B, C and D at once, not only in their recipes.
+The width-256 quantile model learns from uncorrected preliminary histories
+but receives corrected reports at issuance. The earlier eight-configuration
+flu mixture and the three-configuration replacement also differ in their
+reporting-error sources, affected signals and corrector training. Their
+comparison changes several factors together.
 
 History: written 8 October 2026 at the user's request ("these terms mean many things"), with
 the renames listed in `model/scenario.py` (`RENAMED`). On 9 October 2026, after review, the

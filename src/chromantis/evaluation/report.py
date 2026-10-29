@@ -136,11 +136,13 @@ def report_metadata(directory, name):
 def write_scenario_key(path):
     """`docs/reference/scenario.md`: every `Scenario` field with type, default, allowed values, meaning."""
     lines = ['# Scenario fields', '',
-             'Generated from `chromantis.model.scenario.Scenario` (`CODES`, `MEANING`) by '
-             '`chromantis.evaluation.report.write_scenario_key`, rewritten by every report; do not edit by hand. '
-             'A scenario string names only the fields that differ from these defaults, as `key=value` tokens '
-             'joined by `,`; booleans are written `0`/`1`. See [the architecture](../architecture.md) and '
-             '[Workflow](../workflow.md).', '',
+             'A scenario string specifies model and training settings as comma-separated `key=value` fields. '
+             'Omitted fields use the defaults below; booleans use `0` or `1`. '
+             'The [model-choice guide](model-choices.md) explains the scientific choices, and the '
+             '[workflow](../workflow.md) shows how to run a configuration.', '',
+             'Report generation writes this table from `chromantis.model.scenario.Scenario` '
+             '(`CODES`, `MEANING`). Edit those definitions to change field descriptions; '
+             'manual table edits will be replaced.', '',
              '| Field | Type | Default | Allowed values | Meaning |', '|---|---|---|---|---|']
     for f in fields(Scenario):
         allowed = (', '.join(f'`{v}`' for v in sorted(CODES[f.name])) if f.name in CODES

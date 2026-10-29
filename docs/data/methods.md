@@ -1,17 +1,22 @@
 # Selection and provenance
 
+The raw store preserves acquired files. Selection decides which observations
+can enter the explorer or downstream analysis, and provenance records how each
+selected value relates to its source. These rules let you trace a plotted or
+modeled series without treating provider variants as interchangeable.
+
 ## Shared post-intake selection
 
-The selection layer lives in `chromantis.data.selection`, between immutable raw
-intake and consumers. The explorer uses it directly. Downstream analysis uses the
-same table decisions, measure allowlists, and canonical signal descriptions.
-The first selection step admits only native **state and national** observations.
-Unsupported partitions are skipped before opening them. Mixed tables are filtered
-row by row before measure selection and Hub conflict validation: HHS, HSA, county,
-catchment, and wastewater-site observations are discarded from the selected stream.
-A state field on a finer observation is context, not statewide support. National-only
-sources may omit geographic columns. Raw snapshots are retained on disk; this filter
-does not reclaim their disk space or select the model's final channel set.
+`chromantis.data.selection` applies shared table decisions, measure allowlists
+and signal descriptions after acquisition. The explorer uses it directly;
+downstream materialization follows the same selections.
+
+The selected stream includes native state and national observations. It skips
+unsupported partitions and filters mixed tables before measure selection and
+Hub conflict validation. HHS, HSA, county, catchment and wastewater-site rows
+are excluded. A state field on a finer observation supplies geographic context,
+not statewide support. National-only sources may omit geographic columns.
+Raw files remain on disk, and each model still chooses its own input signals.
 
 ```text
 Publisher → intake → immutable raw snapshots

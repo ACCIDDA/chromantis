@@ -1,17 +1,19 @@
 # Local explorer API
 
-The explorer binds to `127.0.0.1` by default and exposes no write endpoints.
+Use the local API to retrieve the indexed catalog, series and report versions
+for an analysis or interface. The server binds to `127.0.0.1` by default.
+All endpoints read saved data; none writes to the source store.
 
 ## Endpoints
 
 ### `GET /api/health`
 
-Returns server status and the active SQLite index path.
+The response contains server status and the active SQLite index path.
 
 ### `GET /api/catalog`
 
-Returns build metadata, indexed states, dataset counts, aggregation notes, and
-warnings for skipped sources. `selection` includes `policy_version`,
+The response contains build metadata, indexed locations, dataset counts,
+aggregation notes and warnings for skipped sources. `selection` includes `policy_version`,
 `raw_catalog_datasets`, `logical_source_groups`, `indexed_source_groups`,
 `indexed_signal_choices`, `indexed_variants`, grouping membership, and missing
 downloads. Counts distinguish canonical signal choices from stored variants.
@@ -20,9 +22,8 @@ Deliberately excluded file paths remain in the warnings audit with
 
 ### `GET /api/series`
 
-Series IDs belong to one index build and can change after a rebuild.
-
-Lists state-compatible selected variants. Each item includes `source_group`,
+This endpoint lists selected variants compatible with a location. Series IDs
+belong to one index build and may change after rebuilding. Each item includes `source_group`,
 `source_group_title`, `signal_key`, `signal_title`, `variant_label`,
 `variant_rank`, and raw provenance. Group by `signal_key` to inspect variants;
 multiple variant IDs may be sent together in data/version requests.
@@ -59,7 +60,7 @@ returns no US series; use `national` or omit the filter.
 
 ### `GET /api/data`
 
-Returns plot-ready points for at most 100 series IDs.
+Request plot-ready points for up to 100 series IDs:
 
 ```text
 /api/data?state=NY&series=12,19&scale=true

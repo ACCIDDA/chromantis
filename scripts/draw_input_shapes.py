@@ -25,7 +25,7 @@ from chromantis.dataset.episodes import calendar, episodes
 from chromantis.problem import Problem
 
 ROOT = Path(__file__).resolve().parents[1]
-OUT = ROOT / 'docs/chromantis-manuscript/figures'
+OUT = ROOT / 'docs/figures/chromantis'
 PANEL = ROOT / 'data/operational-20261021/processed/panel.npz'
 SUBMISSION = ROOT / 'production/submissions/2026-10-24/2026-10-24-ACCIDDA-Chromantis.csv'
 ISSUANCE = '2026-10-21'
@@ -171,7 +171,7 @@ def main():
 
     # Both encoders run per location. The own-target MLP also runs per target.
     text(107.5, 87, 'Each location, each target', fontsize=7.5, weight='bold')
-    box(94, 70, 27, 10, 'Own-target MLP\n24 → d → d')
+    box(94, 70, 27, 10, 'Target-history MLP\n24 → d → d')
     text(107.5, 83, 'Weights shared across locations and targets', fontsize=6.7)
     arrow((107.5, 70), (107.5, 67.5))
     vector(97, 64, 'Own-target v[l, c]  [d]', '[N, 52, 2 targets, d]', OWN)
@@ -185,7 +185,7 @@ def main():
     text(107.5, 23, 'Optional spatial exchange\nafter the context encoder', fontsize=6.7, color='#555')
     text(107.5, 14, 'Outlined feature vectors\nare schematic d-value slices', fontsize=6.7, color='#555')
 
-    box(129, 51, 27, 16, 'Add own-target + context\n+ target / horizon embeddings\nthen normalize', size=7.4)
+    box(129, 51, 27, 16, 'Add own-target + context\n+ target / numeric forecast week\nthen normalize', size=7.4)
     arrow((118, 65.5), (128.5, 62))
     arrow((118, 37.5), (128.5, 55))
     text(142.5, 71, '[N, 4, 52, 2, d]', fontsize=7)
@@ -213,7 +213,7 @@ def main():
     ax.plot([156, 161, 161], [37, 37, 56], color=INK, lw=.9)
     arrow((161, 56), (165.5, 56))
     text(181, bottom-8, '4 prediction weeks →', fontsize=7)
-    text(181, 17, 'M = sampled paths\nor direct quantiles', fontsize=7)
+    text(181, 17, 'Stack: possible futures\nGrid shown: median', fontsize=7)
 
     text(5.5, 7.5, 'Red cross: missing; black: available. Purple outlines: NC admissions and its feature/output slice. '
                        'N: episodes; d: hidden width.', ha='left', fontsize=7, color='#555')
@@ -221,8 +221,7 @@ def main():
                        'calendar on [-1, 1]. Model scaling uses training data.', ha='left', fontsize=7, color='#555')
 
     OUT.mkdir(parents=True, exist_ok=True)
-    for extension in ('svg', 'pdf'):
-        fig.savefig(OUT / f'shapes.{extension}')
+    fig.savefig(OUT / 'shapes.svg')
     plt.close(fig)
 
 

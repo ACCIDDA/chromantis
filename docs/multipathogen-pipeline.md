@@ -1,139 +1,148 @@
-# Multi-pathogen pipeline
+# Datasets, problems and model configurations
 
-Chromantis separates three things that used to be mixed in one scenario string:
+A pathogen can support several forecasting questions. Predicting COVID-19
+admissions over four weeks and predicting a season-long trajectory require
+different horizons, labels and evaluation. Chromantis represents that distinction
+with a *problem* file. Every candidate in a study is compared under the same
+problem.
 
-1. A **dataset** (`datasets/*.json`) lists the signals that can be built: name, unit,
-   pathogen group, Hub target, default training weight, the named input and covariate sets,
-   and whether archived report vintages exist (`report_vintages`).
-2. A **problem** (`problems/*.json`) picks targets from one dataset and fixes the forecast
-   horizons, the cross-validation folds, the evaluation inputs, the primary score and an
-   optional Hub comparison. Every model in one experiment is scored under one problem.
-3. A **recipe** (the scenario string) only says how a model is trained: architecture,
-   transforms, reporting-error treatment, correction, optimizer, budget. It cannot choose
-   targets, seasons, horizons or the score.
+Three definitions connect the stored data to a fitted model:
 
-A problem, not a pathogen, is the unit of comparison: four-week COVID-19 admissions and a
-30-week COVID-19 trajectory are two problems on the same dataset.
+| Definition | Contents | Location |
+|---|---|---|
+| Dataset | Available signals, units, pathogen groups, input/covariate sets and report-archive support | `datasets/*.json` |
+| Problem | Selected targets, panel, locations, horizons, folds, evaluation inputs and primary score | `problems/*.json` |
+| Configuration, or recipe | Architecture, transforms, reporting-error treatment, correction, optimizer and training budget | Scenario string in the study file |
 
-## Implemented (9 October 2026)
+Changing targets, inputs, horizons, folds or the primary score creates a new
+problem. A configuration describes how to learn that problem. The
+[workflow](workflow.md) gives the commands for planning and running a study.
 
-- **Loaders and checks** in `src/chromantis/problem.py`.
-  The loader rejects unknown or duplicate targets and folds, a headline target outside the
-  targets, a log-scale headline on a non-count target, a Hub comparison that does not match
-  the headline target's Hub, and sparse horizons (the weekly scorer labels array position
-  *k* as Hub horizon *k*, so horizons must be 1, 2, …, *n* with *n* ≥ 4).
-- **Named signals throughout.** Episodes, network, objective, correction trees, scorer and
-  FluSight export read signal names and units from the dataset; nothing assumes six
-  channels or that channels 0–2 are counts.
-- **Problems checked in:** short-term flu, COVID-19 and RSV (`us-*-short-term.json`), flu
-  with prescribed artificial evaluation inputs (`us-flu-short-term-prescribed.json`), all
-  six targets jointly, flu production (no held-out season), and a flu rolling-origin
-  example (`us-flu-rolling-origin.json`).
-- **Panel and locations per problem.** Each problem names its panel (`panel`) and its
-  location file with populations (`locations`), both repository-relative and git-ignored.
-  Problems may share a panel: the FluSight, COVID-19 and RSV problems all use
-  `data/processed/panel.npz` and `data/metadata/locations.csv`. A problem on other
-  locations (e.g. Flu MetroCast metro areas) points to its own panel and location file, so
-  building it never touches another problem's panel.
-- **Planner:** `plan` requires `--problem`, copies the problem and dataset files into the
-  experiment folder, and pins the hashes of the problem's panel (or `--dataset`), location
-  file and frozen Hub support. Slurm fits run the code copied at plan time and refuse to
-  start if a pinned file changed. `planner rank` uses the current code (user decision
-  9 October).
-- **Production:** a release names a problem; a checkpoint is replayed only under the problem
-  whose hash it recorded. Checkpoints trained before 9 October have no problem hash and must
-  be retrained (the B7 production fits will be retrained, user decision 9 October).
+## Define the dataset and problem
 
-### Fold kinds
+A dataset names each signal and its unit, optional Hub target and default
+training weight. It groups signals into named input and covariate sets and
+records whether archived reports exist with `report_vintages`.
 
-The problem's `folds.kind` decides which weeks a model trains on, which weeks are hidden
-for early stopping, and which weeks it is scored on (`dataset/cv.py`, `Problem.fold_labels`,
-`Problem.training_weeks`).
+A problem selects those signals and names a panel and location/population file.
+US respiratory problems can share `data/processed/panel.npz` and
+`data/metadata/locations.csv`. A local-area problem points to its own files,
+allowing its build to leave the state panel unchanged. The problem fixes future
+labels, horizons, evaluation folds, information available at prediction time
+and the score used to rank candidates.
 
-| Kind | Fold IDs | A model held out on fold *f* trains on | It is scored on |
+The loader in `src/chromantis/problem.py` checks signal names, folds, units and
+score consistency. A log-scale primary score requires a count target. A Hub
+comparison must match the primary target's Hub. The weekly evaluator requires
+consecutive model offsets `1, 2, …, n`, with at least four weeks, because its
+output positions correspond to Hub horizons 0 onward.
+
+The repository includes short-term flu, COVID-19, RSV and joint-respiratory
+problems, prescribed-input flu problems, production problems and a rolling-origin
+flu example. Choose the definition whose scientific assumptions match the
+intended study rather than inheriting a previous study's defaults.
+
+## Fold kinds
+
+The `folds.kind` field determines training and evaluation weeks. The same split
+also controls the inner validation used to select a training duration.
+
+| Kind | Fold definition | Training data for fold `f` | Evaluation data |
 |---|---|---|---|
-| `leave_one_season_out` | CDC seasons (epiweek 31 to 30), e.g. `2024-2025` | every other season in `training_ids` | season *f*, reference dates October–May |
-| `leave_one_period_out` | names in `periods: {id: [first, last]}` (e.g. outbreaks) | every other period in `training_ids`; weeks outside all periods are unused | every week of period *f* |
-| `rolling_origin` | names in `periods` (evaluation windows); no `training_ids` | every week before the first week of *f* | every week of window *f* |
+| `leave_one_season_out` | CDC epiweeks 31–30, such as `2024-2025` | Other seasons in `training_ids` | Season `f`, with weekly reference dates in October–May |
+| `leave_one_period_out` | Named nonoverlapping periods | Other periods in `training_ids` | Every week of period `f` |
+| `rolling_origin` | Named evaluation windows | Weeks before the first week of `f` | Every week of window `f` |
 
-Period dates are week-ending Saturdays, like the panel calendar, and periods may not
-overlap. Early-stopping weeks are counted from the start of each training season or period;
-for `rolling_origin`, from the first training week. `training_window=recent2/last2` only
-exists for season folds.
+Period endpoints are week-ending Saturdays. Weeks outside every period are
+unused for period folds. Inner validation positions count from the beginning
+of each training season or period, or from the first training week for rolling
+origin. `training_window=recent2` and `last2` apply only to season folds.
 
-Two respiratory-specific pieces still assume season folds and are rejected otherwise: the
-reporting-error stage (its donor errors and `error_reference` are per season) and Hub
-comparisons (the frozen Hub support is stored per season). Production problems use season
-folds.
+Reporting errors and frozen Hub comparisons still depend on season folds:
+their calibration and saved support are organized by CDC season. The loader
+rejects incompatible combinations. The
+[architecture guide](architecture.md#challenge-5-knowing-what-a-comparison-actually-measures)
+explains how retrospective and forward splits change the interpretation of a
+score.
 
-### Optional reporting-error stage
+## Choose the evaluation inputs
 
-The reporting-error stage is the whole report-vintage machinery: artificial reporting errors
-in training histories, the correction model (trees) and its `corrected`/`half` views,
-spread calibration, and scoring on archived Wednesday reports at each Hub's deadline.
+`evaluation.inputs` specifies what a fitted model receives at prediction time.
 
-A problem switches it off with `evaluation.inputs = "finalized"`. Its models are then
-evaluated on finalized histories released on each source's normal schedule, and the
-pipeline never builds error banks or correction models. The recipe must train on finalized
-histories and forecast from raw inputs (`history_source=finalized`, `forecast_view=raw`, no
-`error_reference`, `correction_noise` or `stress_views`); other recipes are rejected when
-planned. Each fold then writes only `model.pt`, `forecasts.npz` (raw view) and a manifest;
-`nowcaster.pkl` holds nothing.
+| Value | Evaluation histories | Reporting-error stage |
+|---|---|---|
+| `reported` | Archived reports under the documented deadline and fill policy | Enabled |
+| `prescribed` | Shared artificial preliminary histories | Enabled |
+| `finalized` | Reference histories under the source publication schedule | Disabled |
 
-`evaluation.inputs = "reported"` or `"prescribed"` requires a dataset with
-`report_vintages: true`. The respiratory dataset has it; a dataset built only from finalized
-outbreak data would not.
+Reported and prescribed evaluation require `report_vintages: true`. With
+finalized evaluation, the configuration must train on reference histories and
+use raw inputs: `history_source=finalized`, `forecast_view=raw`, without
+`error_reference`, `correction_noise` or stress views. Planning rejects other
+combinations. These folds save `model.pt`, raw `forecasts.npz` and a manifest;
+`nowcaster.pkl` contains no correction model.
 
-Without a Hub comparison (`comparison.kind = "none"`) the scorer writes only raw WIS and its
-breakdowns; the Hub-relative and pairwise tables are empty.
+A problem with `comparison.kind = "none"` produces raw scores and their
+breakdowns, leaving Hub-relative and pairwise tables empty.
 
-### Checks run
+## Choose the evaluator
 
-- The season-fold week roles (training, early-stopping, scored, unused) are identical to
-  the previous implementation for all flu folds and settings tried (19 combinations).
-- One-epoch smoke fits on CPU, numbers meaningless as scores:
-  - COVID-19 admissions and ED, 8-week horizon, trained on 2022–23, 2023–24 and 2025–26 with
-    artificial reporting errors and corrected histories, scored on 2024–25 Wednesday reports:
-    fits, writes every view, scores and ranks.
-  - Flu admissions and ED, rolling origin, trained on every week before 4 October 2025 with
-    finalized histories, scored on finalized histories from 4 October 2025 to 30 May 2026:
-    fits without any reporting-error stage, scores (34 forecast dates) and ranks.
+`weekly_quantile_wis` scores weekly quantiles, with the standard primary and
+coverage diagnostics on the first four future weeks. `season_peak` scores peak
+week and size for one count target over a specified CDC-week window. The peak
+evaluator requires leave-one-season-out folds, finalized inputs and
+`forecast.season_window_epiweeks`.
 
-## Not built yet
+An outcome such as accumulated burden or an outbreak-specific decision needs
+an evaluator that matches its question. Changing a label or primary score in
+prose cannot change the computation used by an existing evaluator.
 
-- **One long forecast table.** Forecasts stay in `forecasts.npz` with signal names and
-  units; the scorer reads that. A long table (fold, reference date, target, location,
-  horizon, quantile, value) is worth adding when an outside forecaster or a second
-  evaluator needs it.
-- **A second evaluator.** The only evaluator is `weekly_quantile_wis`: weekly WIS on the
-  Hub quantile grid, headline on horizons 0–3. Peak timing, peak size or cumulative
-  incidence for full-season models, and an outbreak evaluator for Ebola, need a new
-  evaluator kind declared in the problem.
-- **Builds for other location sets.** `dataset.build` only builds the US state panel
-  (its location list is fixed in `dataset/extract.py`); MetroCast or Ebola need their own
-  source adapters and a build to their problem's panel path.
-- **Reporting-error stage for non-season folds.** It would need donor errors defined per
-  period rather than per CDC season.
-- Ebola itself: outbreaks, case definition, geography, folds and primary score are not yet
-  chosen.
+## Plan and release
 
-## Adding Ebola
+`plan --problem ...` copies the problem and dataset definitions into the
+experiment directory and records hashes for the panel, locations and frozen
+comparison support. Slurm runs the planned code snapshot and refuses to fit
+if pinned inputs change. `planner rank` uses the current ranking code, following
+the 9 October 2026 decision.
 
-1. Choose outbreaks, weekly case definition, geography, forecast dates, horizons and folds
-   (likely `leave_one_period_out` over outbreaks or `rolling_origin` within one).
-2. Add source catalog entries and extraction adapters to the raw data store.
-3. Add an Ebola dataset file (`report_vintages: false` unless report archives exist) and
-   build it.
-4. Add an Ebola problem with `evaluation.inputs = "finalized"` and its primary score; add an
-   evaluator only if weekly WIS is not the right score.
-5. Train a simple recipe and score an unpublished forecast.
+A release names its problem. Checkpoint replay checks that problem against the
+hash saved during training. Checkpoints predating the problem-hash requirement
+need fresh fits. The October B7 models were subsequently retrained through this
+route; the [submission log](submissions.md) records the released checkpoints.
 
-## Rules
+## Add a new forecasting setting
 
-- Changing targets, inputs, horizons, folds or the primary score makes a new problem; it
-  does not make a differently named recipe.
-- No workflow framework, database, plugin system or second scheduler.
-- No compatibility layer: recipe strings with the removed task fields (`forecast_targets`,
-  `pathogen_inputs`, `forecast_weeks`, `evaluation_seasons`) fail, and old artifacts are
-  rerun with current code. Running Slurm jobs are unaffected because they use pinned code
-  snapshots.
+Choose the case or healthcare outcome, units, geography, forecast dates,
+horizons and folds first. Examine the reporting archive before choosing an
+input treatment. A dataset with revised outbreak histories alone should declare
+`report_vintages: false` and use finalized evaluation.
+
+Add source catalog entries and extraction adapters, build the panel at its own
+path, then define the problem and primary score. Fit a simple configuration and
+score an unpublished forecast before expanding the search. A proposed Ebola
+application, for example, would need explicit outbreak definitions and either
+outbreak-held-out periods or rolling-origin windows. Influenza's reporting-error
+process and season boundaries would require a scientific justification there.
+
+## Implementation record: 9 October 2026
+
+The original migration checked 19 combinations of flu season-fold settings
+against the previous week-role implementation and obtained identical roles.
+It also ran one-epoch CPU checks for two cases:
+
+- A COVID admissions/ED model trained on 2022–23, 2023–24 and 2025–26, with
+  artificial reporting errors and corrected training histories, then produced
+  eight-week forecasts from 2024–25 archived reports and completed ranking.
+- A rolling-origin flu model trained on weeks before 4 October 2025 with
+  reference histories, then produced forecasts from reference inputs over
+  4 October 2025–30 May 2026 and completed scoring for 34 forecast dates.
+
+Those runs checked execution and alignment; their one-epoch scores were not
+performance evidence. At the time, work remained on other geographic builders,
+non-season reporting errors and additional evaluators. Later applications should
+be judged from their own implementation and reports.
+
+The migration removed task fields such as `forecast_targets`, `pathogen_inputs`,
+`forecast_weeks` and `evaluation_seasons` from recipe strings. Old artifacts are
+rerun with current code rather than translated through a compatibility layer.
+Slurm jobs already running retain their pinned snapshots.

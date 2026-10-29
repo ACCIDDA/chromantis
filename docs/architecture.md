@@ -1,232 +1,233 @@
-# Architecture and reflection
+# Challenges and architecture
 
-Chromantis fits one probabilistic forecaster per configuration and seed. Its training
-histories can be made artificially preliminary with an empirical reporting-error
-bootstrap, and small correction trees fitted on those artificial histories correct
-the newest reported weeks before the forecaster sees them ([model choices A–F](reference/model-choices.md)). The
-[workflow](workflow.md) defines the training route, evaluation and commands.
+A surveillance history contains measurements of an epidemic and traces of the
+system reporting it. Chromantis uses that history to predict hospital admissions
+and emergency-department (ED) visit shares. The method has to account for late
+reports, gaps and a short training record before it can say much about the future.
 
-## Where the ideas come from {#2-what-is-borrowed-from-each-paper}
+The five sections below explain how those problems shape the models. Examples
+of released models refer to **24 October 2026**: those models trained on
+2022–23 through 2025–26 and predicted outcomes in 2026–27. The
+[model reference](reference/model-details.md) gives their training treatments,
+labels, layers and settings. The [submission log](submissions.md) records the
+model used for each later forecast.
 
-- **[Flusion](https://arxiv.org/abs/2407.19054v1):** learn across surveillance
-  signals and locations, with useful transforms and recent-history residuals.
-- **[InfluPaint](https://arxiv.org/abs/2604.24913v1):** the modeling background,
-  simulation infrastructure, and Slurm job management used as a starting point.
-  Chromantis uses observed data and a direct sample generator.
-- **[DeepMind's Functional Generative Networks](https://arxiv.org/abs/2506.10772v1):**
-  inject random noise into a network and fit its generated samples with fair
-  CRPS. Chromantis adapts that idea to small epidemic forecasting models.
-- **Hub ensembles as the yardstick:** forecasts are scored in pure Python
-  (`chromantis.evaluation.standard`): mean WIS per task, states/DC and US separately,
-  plus WIS relative to the Hub ensembles and the CDC pairwise ranking on frozen tasks.
+## Challenge 1: the newest reports are incomplete
 
-## The model
+Hospitals often add admissions to a week after its first report. A model that
+has learned only from revised histories can mistake the low end of a preliminary
+report for an epidemic decline. Chromantis addresses this problem both when
+preparing training examples and when issuing forecasts.
 
-Each location gets the recent history of all six channels: influenza, COVID-19,
-and RSV admissions, plus their three ED proportions. The history includes
-values and availability masks. Calendar and population features provide context;
-recent dynamics and location embeddings are experiment options.
+The weekly flu and RSV models first estimate revisions to the two newest
+observed admission and ED weeks. Small gradient-boosted tree models produce
+these estimates. A neural model reads the adjusted history and predicts the
+current week and three subsequent weeks.
 
-```mermaid
-flowchart TD
-    X["History at each location<br/>weeks × 6 channels × values and masks"] --> ENC["History encoder<br/>MLP / convolution / multiscale convolution"]
-    ENC --> MIX["Optional attention across locations and targets"]
-    MIX --> DEC["Residual decoder + random-noise modulation"]
-    Z["One fresh random draw per forecast member"] --> DEC
-    DEC --> Y["One possible four-week future<br/>Admissions in counts · ED in proportions"]
-    Y --> Q["Repeat with new draws<br/>Samples → intervals and quantiles"]
-```
+[![The difference between a missing report and an observed zero, followed by a timeline of correction and prediction](figures/chromantis/information.svg)](figures/chromantis/information.svg)
 
-The MLP flattens the short history. Convolutions learn patterns over successive
-weeks; the multiscale version uses several temporal spacings. Attention mixes
-the resulting representations across locations, within pathogens or targets,
-or across all location–target pairs. These are transformer-style exchange
-blocks, not a temporal-transformer encoder.
+A forecast issued on Wednesday 21 October uses reports through Saturday
+17 October. The trees adjust observed values for 10 and 17 October; the neural
+model predicts weeks ending 24 October through 14 November. The Hub labels
+those four prediction weeks as horizons 0–3. The first prediction is a nowcast
+of an unreported week. The revision estimates concern weeks already reported.
 
-Independent fits can specialize by pathogen or target while still consuming all
-six local histories. Encoder complexity, covariate representations and spatial
-sharing are scenario options; compare them with matched configurations in the
-[forecasting experiments](experiments/index.md).
+### Preparing training histories
 
-A member is a sampled future, not a predicted mean with an interval added
-later. Shared noise can connect its outputs, but good marginal CRPS or WIS
-does not by itself establish correct dependence across weeks or locations.
+The revised epidemic record covers more seasons than the archive of preliminary
+reports. Chromantis extends the training examples by applying reporting errors
+from archived releases to revised histories. It selects error windows with
+similar recent levels and growth, preserving aligned errors across signals and
+locations. Each example keeps its own epidemic trajectory and future prediction
+labels.
 
-## What the masks mean
+For the weekly flu release, reporting errors from 2025–26 make admission and ED
+training histories preliminary throughout 2022–23 to 2025–26. Two sampled-model
+configurations train on those histories after correction by cross-fitted trees.
+The direct-quantile configuration trains on the uncorrected preliminary
+histories and also learns reference values for four recent history weeks as
+auxiliary labels. All three receive tree-adjusted reports at issuance. One RSV
+configuration uses actual archived histories at eligible dates and artificial
+histories elsewhere.
 
-A mask says whether a value is available. It is not the value itself. Missing cells are stored
-as zero with a false mask, so a real observed zero remains distinct:
+Cross-fitting excludes reference labels inside an example's history window
+when training the trees that correct it. Each fit also saves trees for use on
+new reports. Those trees supply one adjusted history per fit. The resulting
+forecast uncertainty is conditional on that adjustment; it does not include a
+sampled range of possible reporting revisions. Missing observations retain their
+missing status.
 
-| Example | Stored value | Availability mask | Meaning |
-|---|---:|---:|---|
-| Reported zero admissions | 0 | 1 | Observed zero; the model can use it |
-| No report available | 0 | 0 | Missing; the zero is only a storage placeholder |
-| Preliminary count of 80 | 80 | 1 | Available input, even if it will later be revised |
+## Challenge 2: missing data is different from zero
 
-The **input mask** controls what the model sees. The **label mask** controls what
-can contribute to the loss. They are separate: a missing or provisional input
-can still have an eventual observed value to learn from. A missing label cannot
-be treated as a zero outcome.
+Zero admissions and an absent report carry different information. Chromantis
+passes an availability indicator alongside every input value. The indicator is
+1 for an observed value, including zero, and 0 for a missing value. Missing
+values receive a numerical placeholder of zero after preprocessing.
 
-```mermaid
-flowchart LR
-    A["At Wednesday cutoff<br/>Recent count = 80<br/>Input mask = 1"] --> M["Model sees 80"]
-    B["Later reference snapshot<br/>Same event week = 110<br/>Label mask = 1"] --> L["Score sampled correction against 110"]
-    M --> P["Sample eventual count"]
-    P --> L
-    C["No later reference value<br/>Label mask = 0"] --> S["Exclude this cell from the loss"]
-```
+| Recorded observation | Availability | How the model treats it |
+|---|---:|---|
+| Zero admissions | 1 | An observed outcome of zero |
+| A preliminary count of 80 | 1 | A report that may be revised |
+| No report | 0 | An unavailable observation, with a zero placeholder |
 
-This 80-to-110 example is illustrative, not a measured revision. The later 110
-must never replace the historical 80 in the input. Hidden values are
-zeroed before transforms, anchors, and derived features, so those features do
-not reveal a masked observation. Masking arbitrary sources and adding new
-covariates still require evaluation; having mask arrays alone is not evidence
-that all missing-data patterns work well.
+Training labels have their own availability indicators. An example can have a
+preliminary input and a later reference label for the same week. A missing future
+label contributes no training loss. The distinction lets models learn from
+partial histories without treating unknown outcomes as zero.
 
-## Training histories and correction
+Coverage determines how much evidence each outcome supplies. The RSV releases
+exclude admission inputs and labels before 2 November 2024, when reporting was
+voluntary. RSV ED histories begin in October 2022. The nominal four-season
+training period therefore contains fewer than four seasons of admission labels.
+The loss weights account for the labels available in each season.
 
-Six separate choices define a model; [Model choices A–F](reference/model-choices.md)
-explains each and what every experiment used. In short, choice A decides what the
-forecaster learns from: `history_source` is final reference histories, the actual archived
-Wednesday reports, or artificial preliminary histories drawn from an empirical bootstrap of
-reporting errors (`dataset/reporting_error.py`; age, signal and location aligned; labels
-never change). `history_correction=1` corrects artificial histories with small
-gradient-boosted trees (`model/revision_tree.py`), cross-fitted by origin block so a
-history is never corrected by trees that saw it. `reconstruction_labels=1` adds the reference
-values of the newest `reconstruction_weeks` as extra labels. At evaluation the same
-fitted model is scored on the reported (or prescribed artificial) inputs as they are
-(`raw`), with the newest weeks corrected by the fold's trees (`corrected`), or as a
-50/50 predictive mixture of the two (`half`).
+### Gaps in the report archive
 
-History: until 8 October 2026 the package also contained a standalone nowcaster
-(`task=nowcast`), a nowcast-to-forecast pipeline with sampled history handoff
-(`task=pipeline`), per-signal Wednesday finalizers (`task=finalize`; see the
-[seasonal nowcast report](experiments/seasonal-nowcast-20261001/index.md)), and
-finality-flag inputs. None was used by a submitted model and all were deleted
-([restructuring log](workflow.md#restructuring-log-8-october-2026)).
+A missing archived report can mean either that the source did not publish a
+value or that the archive failed to retain it. The standard reported-input
+builder cannot resolve that distinction. Where the assumed publication schedule
+permits an observation, it fills an archive gap from the later reference panel
+and records the substitution. Retrospective models can therefore receive values
+that the original forecaster never saw.
 
-## Fitting with CRPS
+The season-peak route uses archived reports without this fallback. It requires
+observations for past weeks inside the peak window to calculate the peak so far.
+Artificial reporting histories preserve genuine gaps, but the submitted
+configurations do not add publication gaps from their donor windows. Their
+training treatment simulates revisions to values. Performance during extended
+outages needs its own evaluation.
 
-For an observed value `y` and `M` independent members from one fitted model:
+The [data guide](data/index.md) documents the assumed publication schedules.
+The [availability staircase](data/staircase.md) shows the reporting evidence
+behind them.
 
-```text
-fair_CRPS = mean_m |sample_m - y|
-            - sum_{m != n} |sample_m - sample_n| / (2 M (M - 1))
-```
+## Challenge 3: learning from only a few epidemic seasons
 
-The first term measures error; the second accounts for predictive spread.
-The fair correction uses distinct member pairs. Scoring follows inverse
-transforms, in admission counts and ED proportions. Member counts are explicit scenario and evaluation settings.
+Four seasons provide many weekly observations but few independent epidemics.
+Chromantis shares neural-network weights across locations, allowing one state's
+examples to help train a forecasting rule used in another. Each configuration
+selects its input signals: a model may read its pathogen's admissions and ED
+histories, all six respiratory histories, or another set defined by the problem.
 
-### Loss scales and weights {#82-design-choices-for-b0-loss-and-weights}
+[![Target and context encoders combine surveillance histories before a decoder predicts outcomes](figures/chromantis/network.svg)](figures/chromantis/network.svg)
 
+The released MLP models use two encoders. Each encoder compresses its inputs
+into learned numerical features. The target-history encoder reads one outcome's
+values and availability indicators, with weights shared across targets and
+locations. The context encoder reads all selected signals at that location,
+plus enabled features such as calendar timing, population, recent changes and
+summaries of other surveillance sources.
 
-**Scientific objective:** the six targets have weights
-`[1, 1, 1, .5, .5, .5]` in flu/COVID/RSV admissions, then flu/COVID/RSV ED
-order. There is no extra flu preference. Native US receives **20%** of each
-target's geography objective; the **80%** state/DC component weights eligible
-jurisdictions equally. Seasons receive equal weight, with target weights
-normalized over the available targets *inside each season*.
+The decoder combines these features with the target identity and forecast week.
+Some configurations add context from nearby states. It predicts a change from
+the latest available transformed target value, then converts the result back
+to admission counts or ED proportions. The
+[layer diagram](reference/model-details.md#inside-a-sampled-model) expands one
+sampled flu network; the
+[input diagram](reference/model-details.md#inputs-and-outputs) follows the actual
+21 October reports through the model.
 
-**Values being scored are untransformed.** Count preprocessing (rates,
-fourth-root, log1p, etc.) and ED preprocessing are inverted before fair CRPS.
-Admissions are scored in counts; ED is scored in 0–1 proportions. Exported WIS
-likewise uses native values, with admission quantiles rounded to integers.
-Neither loss is computed in fourth-root or logit space.
+Flu, RSV, season peaks and local ED forecasts have separate fitted weights.
+The United States series is also a separate prediction, so national forecasts
+can differ from the sum of state forecasts. Experiments can select other
+encoders or spatial connections through the scenario settings.
 
-For fitting, define `s[c,l]` from native observed values in the fitting partition:
+## Challenge 4: describing a range of possible futures
 
-- With at least 26 observed unique weeks, use that channel/location's Q95.
-- With fewer observations, use `alpha * local_Q95 + (1-alpha) * pooled_channel_Q95`,
-  where `alpha = n_observed / 26`; no observations use the pooled scale.
-- Apply positive floors of **1 admission** and **.001 ED proportion** (0.1
-  percentage points). Missing placeholders do not enter the quantiles.
+A point forecast gives a likely outcome without expressing how far the outcome
+might fall from it. Chromantis learns a predictive distribution using either
+generated samples or direct quantile predictions.
 
-The 26-week pooling threshold and these floors are explicit engineering
-assumptions, not tuned results. Scales are fitted independently inside every
-outer/inner fitting partition and saved in checkpoints. They are fixed across
-representation and target-weight alternatives using the same partition.
-Normalization does not modify the observations: an admission CRPS of 20 with a
-historical Q95 of 200 contributes `20/200 = .10` to the normalized mean.
+A sampled model turns a random draw into one possible future. Repeated draws
+produce the distribution used to calculate medians and intervals. Shared
+randomness links weeks, targets and locations within a future; some
+configurations add local random draws. A direct-quantile model predicts 23
+probability levels for each outcome, location and week. It builds ordered
+quantiles from a median and positive gaps on either side.
 
-```text
-E[s,c,l] = mean_valid_dates_and_horizons(fair_CRPS_native / scale[c,l])
-G[s,c]   = .80 * mean_states_and_DC(E[s,c,l]) + .20 * E[s,c,US]
-L[s]     = sum_available_channels(weight[c] * G[s,c]) / sum_available_channels(weight[c])
-L        = mean_available_seasons(L[s])
-```
+[![Basic sampled, residual sampled and direct-quantile decoders](figures/chromantis/decoders.svg)](figures/chromantis/decoders.svg)
 
-Season membership uses the target date. Missing channels receive no weight in
-that season; valid zero observations remain eligible. Locations without labels
-are excluded from their state mean. If only one geography group is available,
-its weight renormalizes to one. The usual six-channel/52-location corpus has
-both groups. Masks and fixed per-cell weights are computed for the whole fitting
-partition before minibatching, so random batch composition does not redefine
-season/channel/location weights. Training and early stopping use this same
-aggregation; all validation noise sources use fixed independent draws.
+Sampled models learn from future reference outcomes by minimizing the fair
+continuous ranked probability score (CRPS). Direct-quantile models minimize
+quantile loss. Both objectives reward accurate distributions and account for
+spread. Models can also include losses for log admissions, entire paths or
+peaks. The [training reference](reference/model-details.md#training-losses-and-weights)
+gives the equations and weights.
 
-**Q95 normalization is a training surrogate for relative skill, not relative
-WIS against an ensemble.** Q95 measures typical outcome magnitude, not baseline
-forecast difficulty. The selection score below instead divides model WIS
-by ensemble WIS within each location. Do not divide training errors by that
-week's observed outcome or realized benchmark error. A future training-side
-baseline-error normalizer would be a separate, explicitly evaluated alternative.
+### Combining fitted distributions
 
-## Comparing with the ensemble {#103-metrics}
+The 24 October weekly flu release combines three configurations with ten fits
+per configuration. RSV combines four configurations with ten fits each. Each
+fit uses a different random seed. The release gives equal weight to each
+configuration and seed, pooling their predictive distributions before deriving
+the submitted quantiles.
 
-Export 23 quantiles and score WIS on the same frozen tasks as the hub ensemble.
-For each location, target, and season, divide the sum of model WIS by the sum
-of ensemble WIS. Average location ratios with 80% on equally weighted states/DC
-and 20% on native US. Within a season, weight admission targets 1 and ED targets
-0.5; then average the season scores equally. Missing groups renormalize over
-available support. Nonpositive ensemble denominators are errors.
+A distribution for each week does not specify how the weeks move together.
+The RSV submission constructs 200 paths, 50 per configuration, using sampled
+models' rank patterns to arrange values from the quantile models. Each path
+identifier connects weeks and targets within one location. It does not identify
+one shared national future.
 
-**One means ensemble parity; lower is better.** Average scores over the three
-seeds and report their spread. Coverage and individual target/season results
-remain necessary alongside the combined score.
+A separate six-seed flu model produces season-long paths for peak size and week.
+Its peak calculation retains reported past admissions as fixed values. The
+local ED submission joins a four-week model to a longer model by pairing paths
+with the same rank at week 3. That join preserves the predicted values and can
+introduce a jump. Decisions involving simultaneous peaks or total national
+demand need evidence about these joint predictions as well as individual
+weekly intervals.
 
-The frozen comparison support is incomplete:
+## Challenge 5: knowing what a comparison actually measures
 
-| Season | Targets with ensemble comparison support |
-|---|---|
-| 2023–24 | Influenza admissions |
-| 2024–25 | Influenza and COVID-19 admissions |
-| 2025–26 | All six targets |
+A retrospective score depends on more than the forecasting model. Training on
+later seasons, receiving revised inputs and selecting among many candidates
+can all affect the result. A useful comparison tells the reader which of these
+conditions applies.
 
-Since 5 October 2026 the evaluation inputs, deadlines, sample count and the additional
-Hub-pairwise, log-scale and raw-WIS tables are fixed for every experiment; see
-[Standard evaluation](workflow.md#standard-evaluation).
+Chromantis distinguishes fitting from replay. Fitting learns weights from the
+permitted training data and labels. Replay gives a saved model different
+evaluation inputs while retaining those weights. Weekly production runs also
+retain saved weights and read new operational reports.
 
-**Decision log, 2026-10-05 — standard evaluation.** (1) Forecasts are always scored on
-Wednesday reports with finalized values only where the schedule assumes availability
-and nothing was archived, starred in reports; this replaces each experiment's own
-replay/proxy input builder (the weekend `scheduled_reports` was removed). (2) Each
-pathogen's inputs are read at its own Hub's deadline, with holiday extensions from Git
-history; a common earliest deadline was rejected by the user. Deadline time moved from
-23:59 UTC to 23:00 Eastern, and date-only releases count at the end of their day.
-(3) ED is T-0 in every season, matching next season. (4) 512 samples everywhere.
-(5) Hub tables add the CDC pairwise ranking (with Google) and log(x + 1) scores for
-admissions; ED is never transformed; non-Hub targets get raw WIS. Earlier results used
-256 or 2,048 samples, 23:59 UTC Wednesday cutoffs and experiment-specific inputs; they
-must be refitted before comparison with standard results.
+[![The researcher fixes the study, an LLM proposes changes, and code fits and scores candidates](figures/chromantis/llm-search.svg)](figures/chromantis/llm-search.svg)
 
-Each fold trains on permitted non-held-out seasons. The available training calendar
-and scored seasons are recorded in the experiment. Finalized and scheduled-final
-inputs define retrospective benchmarks; fully as-of inputs define a different
-information boundary. Cross-validation used for model selection is not an untouched test.
+The researcher sets the data, labels, splits and score. A large language model
+(LLM) can propose candidate changes and use measured scores to suggest the next
+round. Code fits the models and calculates the scores. Repeated use of the same
+seasons makes those seasons part of model selection. Additional seeds measure
+variation from training randomness; they do not provide new epidemic seasons.
 
+### Training seasons and reporting evidence
 
-## Reflection
+Leave-one-season-out evaluation trains on the other permitted seasons. Among
+2022–23 through 2025–26, a model evaluated on 2024–25 can train on 2025–26.
+A forward evaluation trains only on data preceding the evaluation period.
+The [fitting diagram](reference/model-details.md#fitting-and-model-selection)
+shows the evaluation seasons and the separate validation weeks used to choose
+the training duration.
 
-Simple models and compact covariate representations are useful starting points.
-A winning configuration does not establish the benefit of each of its features:
-use comparisons that hold other scenario fields fixed and pair identical seeds.
-The B2 sweep supports no artificial masking as the default for its finalized
-T-0 protocol; both tested masking rates worsened mean relative WIS, with
-seed-only intervals crossing zero. See the [dated report](experiments/b-2-t0/index.md).
+Reporting-error calibration has its own data boundary. A model can exclude
+2025–26 epidemic outcomes from neural training while still using that season's
+reporting errors to prepare inputs. A comparison with those prescribed errors
+measures performance under the assumed reporting process. Archive fills add a
+further difference from forecasts made with the information available at the
+time. Both choices belong beside the reported scores.
 
-WIS, interval coverage and target/season results answer different questions.
-Strong marginal scores do not establish calibrated joint epidemic trajectories.
-The standalone nowcasting and pipeline code that earlier reports describe was deleted on
-8 October 2026; those reports remain as dated results.
+### Reading scores {#103-metrics}
+
+Weighted interval score (WIS) balances interval width against the distance of
+observations outside the intervals. Lower is better. Admission-count WIS
+emphasizes absolute errors; WIS after `log(1 + admissions)` gives more weight
+to relative errors at low burdens. ED WIS uses proportions. A model can improve
+one of these scores while worsening another.
+
+Ensemble-relative WIS divides the model's score by the Hub ensemble's on matched
+tasks. A value of 1 means equal performance; a value below 1 favors the model.
+The Hub's pairwise ranking uses another calculation. The
+[evaluation protocol](workflow.md#standard-evaluation) defines the task sets
+and aggregation for each score.
+
+The [experiment reports](experiments/index.md) provide the evidence for choosing
+models: scores by outcome, season and horizon, interval coverage and forecasts.
+Each result should identify the model, its training seasons and input treatment,
+its prediction labels, and its evaluation inputs and season. Those details let
+a reader decide how well the comparison answers their question.

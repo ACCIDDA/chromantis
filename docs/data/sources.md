@@ -1,9 +1,10 @@
 # Source catalog
 
-The checked-in catalog defines 23 independently retrievable datasets. The table
-below summarizes acquisition and modeling metadata; run
-`python -m chromantis.data catalog` for the complete machine-readable
-specifications, signals, natural keys, and source URLs.
+Use the catalog to identify a signal's provider, units, geography and report
+history before choosing it as a model input. The repository defines 23
+independently retrievable datasets. The table summarizes their acquisition
+properties; `python -m chromantis.data catalog` prints the full specifications,
+signals, natural keys and source URLs.
 
 | Dataset key | Provider | Fetcher | Cadence | Versioned | Native geography |
 |---|---|---|---|---:|---|

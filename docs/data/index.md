@@ -1,6 +1,24 @@
 # Data
 
-## Human-made assumptions on availability
+Surveillance data have two clocks: the week a measurement describes and the
+date its report becomes available. A report published in October can revise
+September's admission count. The later value can serve as a training label;
+a historical forecast needs the value available at its own deadline.
+
+The state panel contains weekly admissions and emergency-department (ED)
+shares for the 50 states, Washington, DC and the native US series, plus selected
+covariates. Local Flu MetroCast forecasts use a separate panel. Admissions are
+counts; ED shares are proportions of visits attributed to a pathogen. Healthcare
+use, testing and reporting affect both outcomes.
+
+Each input carries an availability indicator. Missing labels receive no training
+weight. The [architecture guide](../architecture.md#challenge-2-missing-data-is-different-from-zero)
+explains how missing observations and archive gaps enter the models.
+
+## Assumed publication schedule
+
+The schedule defines when the model may use a source. `T` is the latest
+completed Saturday in the forecast history; `T-1` means the preceding week.
 
 | Data source | Availability |
 | --- | --- |
@@ -13,21 +31,20 @@
 | Outpatient flu / COVID | T-0 |
 | NWSS | T-0 |
 
-T is the latest completed Saturday in the forecast context. These are human
-assumptions for the [B-2 training protocol](../experiments/b-2-t0/index.md#protocol), not measured release dates.
-The same schedule governs the [standard evaluation](../workflow.md#standard-evaluation).
-ED (NSSP) is assumed T-0 in **every** season because CDC publishes it in time for
-the Wednesday deadline since 2025–26 and will next season. In 2024–25 the archived
-NSSP data first appeared on the Friday after each week (one week late), so 2024–25
-newest-week ED inputs are mostly finalized values, starred in reports.
+The [B2 training protocol](../experiments/b-2-t0/index.md#protocol) introduced
+these assumptions, which also govern the
+[reported-input evaluation](../workflow.md#standard-evaluation). ED is available
+at T-0 in every modeled season under the chosen 2026–27 regime. The 2024–25
+archive instead shows ED publication on the following Friday, one week later.
+Retrospective newest-week ED inputs for that season therefore mostly use later
+reference fills, recorded by stars in reports.
 
 ## Deadlines
 
-Decided 5 October 2026: **each Hub's own deadline**, never a common earliest one. The
-panel reads archived reports at Wednesday 23:00 America/New_York (before: 23:59 UTC,
-i.e. 18:59/19:59 Eastern). A release labelled only by a date counts at the end of that
-UTC day; Git commits keep their exact time. Holiday extensions, from each Hub's
-`hub-config/tasks.json` / README history (`dataset/build.py` `HOLIDAY_DEADLINES`):
+Each pathogen uses its Hub's deadline. The panel reads archived reports at
+Wednesday 23:00 America/New_York, except for the holiday extensions below.
+Date-only releases count at the end of their UTC day; Git commits retain exact
+timestamps. This policy replaced the 23:59 UTC cutoff on 5 October 2026.
 
 | Hub reference date (Saturday) | Nominal Wednesday | FluSight | COVID Hub | RSV Hub |
 |---|---|---|---|---|
@@ -36,38 +53,48 @@ UTC day; Git commits keep their exact time. Holiday extensions, from each Hub's
 | 2025-12-27 | 2025-12-24 | Tue 2025-12-30 | Mon 2025-12-29 | Mon 2025-12-29 |
 | 2026-01-03 | 2025-12-31 | Mon 2026-01-05 | Sun 2026-01-04 | Sun 2026-01-04 |
 
-The Wednesday and its context Saturday stay fixed. The panel's main as-of arrays use
-the FluSight deadline (flu forecasts and all training episodes); the rows where the
-COVID or RSV deadline differs are stored separately and used for those pathogens'
-forecasts. No extension was found for the 2025-01-22 round (newest week 2025-01-18),
-whose admissions were not archived by the deadline: those inputs are finalized values
-and starred.
-
-Start here for **what is in the dataset, when it was available, and how much it changed**. Coverage of finalized history and evidence of historical availability are different questions; the pages below keep them separate.
+Extensions change the information cutoff but retain the nominal Wednesday and
+preceding Saturday. The panel's main report arrays use FluSight deadlines for
+flu forecasts and training. Separate arrays serve COVID or RSV forecasts when
+their deadlines differ. The archive contained no deadline extension for
+22 January 2025; missing admission reports for the preceding Saturday use
+reference fills and are marked accordingly.
 
 ## Explore the data
 
-| Question | Where to go |
-| --- | --- |
-| What could we see at each forecast deadline? | **[Interactive availability staircase](staircase.md)** — choose a target/covariate and state, then hover for evidence |
-| What are the sources, units and geographic definitions? | [Source catalog](sources.md) and the source-specific pages below |
+The [availability staircase](staircase.md) shows evidence for what had been
+reported at each deadline. The [revision explorer](revision-staircase.md)
+compares reported values with a fixed reference snapshot. The
+[source explorer](../explorer/overview.md) lets you compare individual series
+and versions. Reference-history coverage and evidence of historical availability
+answer different questions.
 
 ## Current dataset
 
-The default dataset is `data/processed/panel.npz`: **May 14, 2022–September 19, 2026**, 228 observation weeks, 52 locations (50 states, DC and native US), six targets and 14 covariate series. It includes the 12 weeks preceding the August 6, 2022 season start. **2022–23 is available for training**; B-2 evaluates 2025–26 and 2024–25; the general scenario default also supports 2023–24.
+The reference panel documented here is `data/processed/panel.npz`, covering
+14 May 2022–19 September 2026: 228 observation weeks, 52 locations, six targets
+and 14 covariate series. It includes 12 context weeks before the 6 August 2022
+season start. The 2022–23 season supplies training data; B2 evaluated 2024–25
+and 2025–26, while later problems also use 2023–24.
 
-The added season has finalized NHSN flu/COVID admissions for all 52 weeks and locations. The three ED outcomes begin October 1, 2022; RSV admissions are absent. Covariates retain their native gaps. Finite CDC finalized NHSN counts take precedence in retrospective targets; dated inputs do not receive that override.
-
-The availability study remains a dated audit. B-2 uses the assumptions above
-and the current finalized panel, retaining native gaps; it does not use the audit's
-historical release masks.
+The added 2022–23 season has revised flu and COVID admissions throughout its
+52 weeks and locations. ED outcomes begin 1 October 2022; RSV admissions are
+absent. Covariates retain their gaps. Finite CDC revised NHSN counts take
+precedence in reference outcomes; dated input reports keep their own values.
+B2 uses the assumed schedule above with native missing cells, rather than the
+availability audit's historical release masks.
 
 <!-- source-history:start -->
 ## First observation and first archived report dates
 
-These dates scan all downloaded native geographies for each modeled signal, with **no state selection, Saturday-only selection, season/deadline cutoff, fill-method filter, age-group filter, or conflicting-value rejection**. Earliest finite values are reported below; the CSV also records the first raw report including null rows. Acquisition scope still limits what exists in our downloaded archives.
+An observation date identifies the period measured. The report date below is
+the earliest archived release containing a finite value. Neither is the download
+date. A source can publish retrospective history, so its first archived report
+does not establish when the source first became available.
 
-**Observation date** is the day/week the measurement describes. **Report date** is the earliest release timestamp carried by our archive for a finite value. Neither is our download date. An archive beginning later than its observations contains retrospective history; its first report date is not proof the source was unavailable before that date.
+This scan includes all downloaded native geographies. It applies no state,
+Saturday, season, deadline, fill-method or age filter and no conflict rejection.
+The linked CSV also records first reports containing null rows.
 
 | Covariate | Earliest observation date | Earliest archived report date |
 | --- | --- | --- |
@@ -83,11 +110,18 @@ These dates scan all downloaded native geographies for each modeled signal, with
 | NWSS raw rsv_avg_conc_lin | 2022-02-27 | 2026-02-25 |
 | NWSS raw flu_avg_conc_lin | 2021-09-15 | 2026-02-25 |
 
-Kinsa here is the raw daily PopHIVE/Kinsa series, before requiring complete seven-day weeks. NWSS rows are raw sewershed concentrations, before deriving weekly state indices or imposing site-count/history requirements. The modeled wastewater indices therefore have different earliest observation weeks; see the raw-date CSV for their separate entries.
+Kinsa dates refer to the raw daily series, before the complete-seven-day rule.
+NWSS dates refer to raw sewershed concentrations, before weekly indices and
+site/history thresholds. The derived wastewater series have their own start
+dates in the CSV.
 
-A long archive history does not imply continuous coverage. In particular FluSurv has a major gap from November 2020 to November 2025, then to February 2026. First-date summaries cannot establish availability in each intervening season. ILINet's earliest archive entry can also be national rather than state-level.
+Earliest dates cannot establish continuous coverage. FluSurv has a large gap
+from November 2020 to November 2025 and another through February 2026. ILINet's
+first archived series may be national rather than state-level.
 
-[All signal dates and raw row counts](availability/raw-archive-starts.csv) · [Raw NWSS dates](availability/raw-nwss-starts.csv) · [Availability evidence](staircase.md).
+[All signal dates and raw row counts](availability/raw-archive-starts.csv) ·
+[Raw NWSS dates](availability/raw-nwss-starts.csv) ·
+[Availability evidence](staircase.md).
 <!-- source-history:end -->
 
 ## Sources and reporting frequency
@@ -100,16 +134,18 @@ A long archive history does not imply continuous coverage. In particular FluSurv
 | ILINet ILI, clinical lab positivity, FluSurv | Weekly; geographic coverage differs by source | [FluView and FluSurv](sources.md#fluview-and-flusurv) |
 | Wastewater | Irregular raw sampling, converted to weekly WVAL-like and percentile indices | [Wastewater](sources.md#wastewater) |
 
-
-**Claims caveat:** conflicting finite values sharing a report date are rejected by the model pipeline. Availability evidence counts those reports, but revision estimates remain conditional on the unambiguous subset. [Evidence and implications](methods.md#same-date-conflicts).
+Claims rows with conflicting finite values on one report date are rejected by
+the model pipeline. The availability view still counts evidence of those
+reports; revision estimates use the unambiguous subset. The
+[conflict audit](methods.md#same-date-conflicts) explains the implications.
 
 ## Acquisition, definitions and provenance
 
-- [Source catalog](sources.md) and [selection and provenance](methods.md).
-- [Vintages and geography](methods.md#vintages-and-geography).
-- [Storage and acquisition](methods.md#storage-and-provenance).
-- [Deadline audit policy](availability/provenance/deadline-policy.json) and [operational availability assumptions](availability/provenance/operational-policy.json).
-- [Panel diagnostics](panel.md), generated from the saved panel with its snapshot date and hash.
-- [General data explorer](../explorer/overview.md), [filters](../explorer/filters.md) and [local API](../explorer/api.md). This is separate from the availability staircase explorer above.
-
-Model comparisons are collected under [Experiments](../experiments/index.md). Data definitions, coverage, availability and revisions are collected here.
+Use the [source catalog](sources.md) to identify measures and the
+[selection and provenance guide](methods.md) to trace transformations, geography
+and report versions. [Panel diagnostics](panel.md) describe a saved snapshot
+with its date and hash. The
+[deadline audit policy](availability/provenance/deadline-policy.json) and
+[operational policy](availability/provenance/operational-policy.json) retain
+machine-readable assumptions. Model comparisons are in the
+[experiment reports](../experiments/index.md).
