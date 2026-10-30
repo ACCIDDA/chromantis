@@ -48,6 +48,27 @@ reconciled top-down in each trajectory: the national value is kept, provinces ar
 sum to it and health zones to their province. The code is `scripts/ebola_nowcast.py` and
 `scripts/ebola_project.py`.
 
+## Inputs and nowcast
+
+| Input | `top035_r020_child09` | `top004_r026_child20` | `top045_r017_child03` |
+|---|---|---|---|
+| Histories read | 6 weeks of square-root case counts | 6 weeks of square-root case counts | 6 weeks of square-root case counts |
+| Correction of the newest reported weeks | Reads each nowcast draw | Reads each nowcast draw | Reads each nowcast draw |
+| Other pathogens | No | No | No |
+| Additional data (covariates) | None | Outbreak-total cases, as summary features | Outbreak-total cases, as recent growth features |
+| Extra training data | West Africa 2014–15 and Kivu 2018–20 outbreaks | The same | The same |
+| Sharing across locations | Pooled across locations | Pooled across locations | None |
+| Other features | No calendar or population | No calendar or population | No calendar or population, no recent-dynamics features |
+
+**Nowcast.** This is the one challenge with a separate nowcast model, because recent onset
+weeks are incomplete and the Hub asks for those weeks as well as future ones. The negative-binomial nowcast described above fills the five newest
+onset weeks, and those filled weeks are both submitted as the nowcast and read by the neural
+models. Training stops at BDBV weeks through 19 September because later weeks are still
+growing; training uses the latest values with no artificial reporting errors.
+
+**Not used.** The panel also holds each location's parent-area (province or country) cases;
+no submitted recipe reads them.
+
 ## How it was chosen
 
 Tree search `ebola-20261026` (`experiments/ebola-20261026/`, problems

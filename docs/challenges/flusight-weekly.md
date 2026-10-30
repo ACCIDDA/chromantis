@@ -42,6 +42,32 @@ two newest admission and ED weeks are first corrected by the correction trees sa
 each fit (the `corrected` view). The architecture and these recipes are described on
 [Architecture](../architecture.md).
 
+## Inputs and nowcast
+
+| Input | `A_blocks3` | `B5_confirmed_candidate_1` | `B_width256` |
+|---|---|---|---|
+| Histories read | 12 weeks of flu admissions and ED share | 10 weeks of flu admissions and ED share | 12 weeks of flu admissions and ED share |
+| Correction of the newest reported weeks | Yes: saved trees, also used on its training histories | Yes: saved trees, also used on most of its training histories (10% left uncorrected) | Yes at issuance: saved trees. Trained on uncorrected histories, and also learns the final values of the last four history weeks |
+| Other pathogens | No | No | No |
+| Additional data (covariates) | National Kinsa | National Kinsa | None |
+| Extra training data | None | Pretrained on state ILI from before August 2022 | None |
+| Sharing across locations | None | None | Four neighbouring states |
+| Other features | Calendar, population | Calendar, population, multiscale level and slope features | Calendar, population |
+
+**Nowcast.** There is no separate nowcast model. Two things cover recent weeks. Before the
+neural network runs, small gradient-boosted trees estimate the revisions to the two newest
+reported admission and ED weeks; the same adjusted history then gives the forecast, so the
+forecast's uncertainty does not include a range of possible revisions. The neural network
+then predicts the week still unreported (Hub horizon 0) as the first of its four weeks.
+
+**Kinsa** is a national influenza-like illness series from PopHIVE, with no state values, so the
+same values are copied to every state and read as six summary features. A week counts only
+once all seven of its days are visible. Kinsa gets no artificial reporting errors in training
+and no correction at issuance.
+
+**Not used.** The data panel also holds wastewater (NWSS), insurance-claims inpatient and outpatient shares, ILINet, clinical-laboratory positivity and FluSurv-NET; no submitted flu model reads them. Bes, the model submitted for
+17 October only, read no covariates.
+
 ## How it was chosen
 
 - 5–7 October: B3–B7 recipe searches on the flu short-term problem, ending with the

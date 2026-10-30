@@ -35,6 +35,25 @@ draw 6,000 joint season paths pooled equally over the six seeds. Each path's max
 week give one peak draw (`chromantis.production.season_peak`). Reported weeks of the season
 are kept as reported.
 
+## Inputs and nowcast
+
+| Input | `Peak8` |
+|---|---|
+| Histories read | 8 weeks of flu admissions and ED share |
+| Correction of the newest reported weeks | No: reads the raw Wednesday reports. Trained on histories with artificial reporting errors, without tree correction |
+| Other pathogens | No |
+| Additional data (covariates) | None |
+| Extra training data | None |
+| Sharing across locations | Four neighbouring states |
+| Other features | Calendar, population, multiscale level and slope features |
+
+**Nowcast.** None, unlike the weekly targets in the same file, whose newest two weeks are
+corrected. Weeks of the season already reported stay as reported inside each season path, and
+the model's own path covers the weeks after them.
+
+**Not used.** Kinsa, which two of the weekly recipes read, and the other sources listed on
+[FluSight weekly](flusight-weekly.md#inputs-and-nowcast).
+
 ## How it was chosen
 
 - 7 October (stopped): [whole-season paths versus peak loss](../experiments/peak-study-20261007/index.md)

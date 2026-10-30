@@ -37,6 +37,26 @@ modified. No nowcast or revision correction is applied; missing weeks stay missi
 fits run on Longleaf (`/hickory/proj/jlessler/projects/tapestry-all/metrocast-20261019`) with
 `scripts/metrocast_submit_export.py`.
 
+## Inputs and nowcast
+
+| Input | `r010_c08` (weeks 0–3) | `full_season_finalist_1` (weeks 4 to end of season) |
+|---|---|---|
+| Histories read | 12 weeks of the location's flu ED percentage | 52 weeks of the location's flu ED percentage |
+| Correction of the newest reported weeks | No | No |
+| Other pathogens | No | No |
+| Additional data (covariates) | Own state's flu ED percentage from the Hub's target data, as recent growth features; hidden in 25% of training episodes | The same, hidden in 10% of training episodes |
+| Extra training data | None | None |
+| Sharing across locations | None | None |
+| Other features | Calendar, population | Calendar, smoothed multiscale features; no population |
+
+**Nowcast.** None. Both models trained on revised histories and read the Hub's published
+values as they are, without any artificial reporting errors or correction. Weeks a location has
+not reported stay missing (on 28 October, New York City was one week and the 12 Georgia
+locations two weeks behind the others), and the first forecast week is predicted directly.
+
+**Not used.** No flu admissions, Kinsa or other outside source: MetroCast models read Hub data
+only.
+
 ## How it was chosen
 
 Tree search `metrocast-20261019` of about 270 recipes (11 rounds, about 1,200 fits), scored

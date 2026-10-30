@@ -28,6 +28,30 @@ fourth-root ED versions of the same architectures for ED. Both were trained on 2
 through 2025–26 with labels the finalized future COVID admissions and ED shares; training
 reporting errors follow the COVID 2025–26 reporting process.
 
+## Inputs and nowcast
+
+For the leading candidate, `covid-half-perturbation-candidate-20261015`; nothing here has been
+submitted.
+
+| Input | Direct-quantile MLP (`B_width256.errors_half_time`) | Sampled MLP (`A4.errors_half_time`) |
+|---|---|---|
+| Histories read | 12 weeks of COVID admissions and ED share | 12 weeks of COVID admissions and ED share |
+| Correction of the newest reported weeks | Yes at issuance: saved trees. Trained on uncorrected histories, and also learns the final values of the last four history weeks | Yes: saved trees, also used on its training histories |
+| Other pathogens | No | No |
+| Additional data (covariates) | None | None |
+| Extra training data | None | None |
+| Sharing across locations | Four neighbouring states | None |
+| Other features | Calendar, population | Calendar, population |
+
+**Nowcast.** No separate nowcast model, as on [FluSight weekly](flusight-weekly.md#inputs-and-nowcast):
+trees estimate the revisions to the two newest reported weeks, and the neural network predicts
+the unreported week. Artificial reporting errors are applied to only half of the training
+episodes.
+
+**Not used.** No covariate is read by this candidate. The `covid-ed-20261015` search also tried
+the claims inpatient share and wastewater among its ED changes; neither is in the leading
+candidate.
+
 ## How they were found
 
 - `covid-tree-20261014` (`experiments/covid-tree-20261014/protocol.json`): current recipe

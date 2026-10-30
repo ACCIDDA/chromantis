@@ -43,6 +43,36 @@ prediction labels are the latest finalized future RSV admissions and ED shares (
 two newest weeks corrected (`corrected` view). Direct-quantile values are ordered by the
 sampled recipes' trajectories (Schaake shuffle) to give the 200 samples.
 
+## Inputs and nowcast
+
+| Input | `Ball_c0w512` | `Bw` | `A4c0` | `A4i` |
+|---|---|---|---|---|
+| Histories read (12 weeks) | RSV, flu and COVID admissions and ED share | RSV, flu and COVID admissions and ED share | RSV admissions and ED share | RSV, flu and COVID admissions and ED share |
+| Correction of the newest reported weeks | Yes at issuance. Trained on uncorrected histories, and also learns the final values of the last four history weeks | Yes at issuance. Trained on uncorrected histories, and also learns the final values of the last four history weeks | Yes: saved trees, also used on its training histories | Yes: saved trees, also used on its training histories |
+| Other pathogens | Flu and COVID | Flu and COVID | No | Flu and COVID |
+| Additional data (covariates) | None | None | National Kinsa | National Kinsa |
+| Extra training data | None | None | None | None |
+| Sharing across locations | Four neighbouring states | Four neighbouring states | None | None |
+| Other features | Population; no calendar | Calendar, population | Population; no calendar | Calendar, population |
+
+**Nowcast.** There is no separate nowcast model. Saved trees estimate the revisions to the two
+newest reported RSV admission and ED weeks; flu and COVID histories are read as reported, with
+no correction. The neural network then predicts the week still unreported (Hub horizon 0).
+
+**Training histories.** `Ball_c0w512` trained on actual archived reports where they exist and
+on histories with artificial reporting errors elsewhere; the other three trained on artificial
+errors only.
+
+**RSV admissions before 2 November 2024** are treated as unobserved in both inputs and labels,
+because reporting was voluntary. RSV ED share starts in October 2022.
+
+**Kinsa** is a national influenza-like illness series, not specific to RSV, with the same values
+copied to every state ([details](flusight-weekly.md#inputs-and-nowcast)).
+
+**Not used.** The panel's RSV-specific sources (RSV-NET and NREVSS positivity), wastewater,
+claims, ILINet, clinical-laboratory positivity and FluSurv-NET; no submitted RSV model reads
+them.
+
 ## How it was chosen
 
 Tree search `rsv-tree-20261013` (`experiments/rsv-tree-20261013/protocol.json`), rooted at
