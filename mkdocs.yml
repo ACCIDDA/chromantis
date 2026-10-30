@@ -53,14 +53,16 @@ hooks:
 nav:
   - Introduction: index.md
   - Architecture: architecture.md
-  - Workflow:
-      - Workflow: workflow.md
-      - Setup: setup.md
-      - Reusable research workflow: reusable-research-workflow.md
-      - Multi-pathogen pipeline: multipathogen-pipeline.md
-  - Submissions:
-      - Description and hub rules: reference/hub-scoring-2026-2027.md
-      - Submission log: submissions.md
+  - Challenges:
+      - Overview: challenges/index.md
+      - FluSight weekly: challenges/flusight-weekly.md
+      - FluSight season peak: challenges/flusight-peak.md
+      - RSV: challenges/rsv.md
+      - Flu MetroCast: challenges/metrocast.md
+      - COVID-19: challenges/covid.md
+      - BDBV (Ebola): challenges/ebola.md
+      - Weekly data pulls: challenges/weekly-inputs.md
+      - Respiratory hub rules: reference/hub-scoring-2026-2027.md
   - Experiments:
       - Model runs: experiments/index.md
   - Data:
@@ -72,6 +74,11 @@ nav:
       - Panel diagnostics: data/panel.md
       - Explorer: explorer/overview.md
       - Explorer filters: explorer/filters.md
+  - Workflow:
+      - Workflow: workflow.md
+      - Setup: setup.md
+      - Reusable research workflow: reusable-research-workflow.md
+      - Multi-pathogen pipeline: multipathogen-pipeline.md
   - Reference:
       - Commands: reference/cli.md
       - Model choices A–F: reference/model-choices.md

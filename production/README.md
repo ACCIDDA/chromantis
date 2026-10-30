@@ -4,8 +4,8 @@ Code and records for the real-time weekly submissions to the CDC FluSight
 Forecast Hub. Research code stays in `src/chromantis`; this folder holds only what
 turns a trained model into a submitted file.
 
-The [Chromantis submission log](../docs/submissions.md) covers all pathogens and model
-recipes across successive submissions. Its first entry records the merged forecast for
+The [challenge pages](../docs/challenges/index.md) hold one submission log per Hub,
+across successive submissions and model recipes. The FluSight log's oldest entry records the merged forecast for
 10 October 2026: the three-recipe B7 model submitted as ACCIDDA-EpiLoom, replacing
 the on-time eight-recipe model. It also identifies the outdated metadata and
 fallback definition. Hub metadata changes are deferred until the recipe is settled.
@@ -24,7 +24,7 @@ the planned package cleanup.
   are small MLPs and replay runs on a laptop CPU.
 - `submissions/<reference date>/` — every file we submitted, under its Hub name, with its export record,
   interval PDFs and peer-comparison PDF; `superseded/` keeps replaced files the same way.
-  The [submission log](../docs/submissions.md) records each issuance.
+  The [submission log](../docs/challenges/index.md) records each issuance.
 - `hubs/` (git-ignored) — two working clones, created 2026-10-07:
   - `hubs/FluSight-forecast-hub/` — `cdcepi/FluSight-forecast-hub`, read-only.
     Used for the current `hub-config/tasks.json`, `auxiliary-data/locations.csv`,
@@ -59,7 +59,7 @@ gh pr create --repo cdcepi/FluSight-forecast-hub --head jcblemai:submit-<referen
 ```
 
 Then record it (the CSV, its export record, interval PDFs and peer comparison, drawn from the
-local Hub clone) and add the issuance to [docs/submissions.md](../docs/submissions.md):
+local Hub clone) and add the issuance to its challenge page in [docs/challenges/](../docs/challenges/index.md):
 
 ```bash
 .venv/bin/python -m chromantis.production record production/output/<wednesday>/<release>/<reference>-ACCIDDA-Chromantis.csv

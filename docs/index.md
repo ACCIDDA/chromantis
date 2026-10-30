@@ -13,6 +13,62 @@ A low count in the latest report may reflect a decline in illness, unfinished
 reporting, or both. A forecasting model has to learn from that imperfect history.
 A researcher evaluating the model has to reconstruct what it could have known.
 
+## Challenges
+
+<div class="grid cards" markdown>
+
+-   **[FluSight weekly](challenges/flusight-weekly.md)**
+
+    ---
+
+    Flu hospital admissions and ED share, states, DC and US, 0–3 weeks ahead.
+
+    *Submitting.* B7 mixture, 30 fits. Last: 31 October 2026.
+
+-   **[FluSight season peak](challenges/flusight-peak.md)**
+
+    ---
+
+    Size and week of the 2026–27 flu admission peak, in the FluSight file.
+
+    *Submitting.* Peak8, 6 fits. Last: 31 October 2026.
+
+-   **[RSV Forecast Hub](challenges/rsv.md)**
+
+    ---
+
+    RSV hospital admissions and ED share, states, DC and US, 0–3 weeks ahead.
+
+    *Submitting.* Four-recipe mixture, 40 fits. Last: 31 October 2026.
+
+-   **[Flu MetroCast](challenges/metrocast.md)**
+
+    ---
+
+    Local flu ED percentage in 103 health service areas and cities, 0–3 weeks and full season.
+
+    *Submitting.* 4-week and full-season models spliced. Last: 31 October 2026.
+
+-   **[COVID-19 Forecast Hub](challenges/covid.md)**
+
+    ---
+
+    COVID-19 hospital admissions and ED share, states, DC and US.
+
+    *Research only.* Six provisional candidates, none submitted.
+
+-   **[BDBV Modeling Hub (Ebola)](challenges/ebola.md)**
+
+    ---
+
+    Confirmed Bundibugyo Ebola cases in the DRC by onset week: nowcast and 1–4 weeks ahead.
+
+    *Submitting.* Nowcast plus 12-fit ensemble. Last: 31 October 2026.
+
+</div>
+
+All submissions are listed on [Challenges](challenges/index.md).
+
 ## Reading a forecast
 
 [![North Carolina influenza forecasts: reported history, median, and central 50% and 95% prediction intervals](figures/chromantis/forecast.svg)](figures/chromantis/forecast.svg)
@@ -58,7 +114,7 @@ and modeling tools, with their own fitted models and output rules.
 | Install the package and run a study | [Setup](setup.md) and [research workflow](workflow.md) |
 | Examine the source data and reporting history | [Data](data/index.md) and [availability staircase](data/staircase.md) |
 | Assess the experimental evidence | [Experiment reports](experiments/index.md) |
-| Trace an issued forecast to its inputs and fitted models | [Submission log](submissions.md) |
+| Trace an issued forecast to its inputs and fitted models | [Challenges](challenges/index.md) and their submission logs |
 | Configure or extend the code | [Model choices](reference/model-choices.md), [scenario fields](reference/scenario.md) and [Python API](reference/python-api.md) |
 
 The [repository](https://github.com/ACCIDDA/chromantis) contains the source code,

@@ -34,8 +34,14 @@
       "width": 1200
     },
     {
-      "path": "figures/84626771b90f595e.png",
+      "path": "figures/84626771b90f595e-0.png",
       "caption": "dotplot",
+      "section": "Score diagnostics",
+      "width": 1200
+    },
+    {
+      "path": "figures/84626771b90f595e-1.png",
+      "caption": "dotplot, second half",
       "section": "Score diagnostics",
       "width": 1200
     },

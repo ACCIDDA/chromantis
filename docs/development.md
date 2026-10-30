@@ -22,7 +22,7 @@ use it. The research and production paths share their combination code.
 | `docs/experiments` | Experiment reports and their evidence |
 
 Replace obsolete code when introducing its successor. The
-[8 October restructuring record](workflow.md#restructuring-log-8-october-2026)
+[8 October restructuring record](experiments/flu-october-2026-records.md#restructuring-log-8-october-2026)
 explains the consolidation into the shared training, scoring and release paths.
 
 ## Research iteration

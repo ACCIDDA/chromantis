@@ -342,11 +342,12 @@ Protocol distinction: the current sweep is B-2 T-0, not the earlier availability
 
 <div class="report-plot" markdown="1">
 
-![dotplot](figures/84626771b90f595e.png){style="width: 1200px"}
+![dotplot, first half](figures/84626771b90f595e-0.png){style="width: 1200px"}
+![dotplot, second half](figures/84626771b90f595e-1.png){style="width: 1200px"}
 
 </div>
 
-[Open original figure](figures/84626771b90f595e.png)
+The figure is split in two halves and shown at half its original resolution to keep each file under 1 MB (29 October 2026).
 
 </figure>
 

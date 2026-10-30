@@ -108,7 +108,7 @@ the 9 October 2026 decision.
 A release names its problem. Checkpoint replay checks that problem against the
 hash saved during training. Checkpoints predating the problem-hash requirement
 need fresh fits. The October B7 models were subsequently retrained through this
-route; the [submission log](submissions.md) records the released checkpoints.
+route; the [challenge pages](challenges/index.md) records the released checkpoints.
 
 ## Add a new forecasting setting
 
@@ -119,30 +119,7 @@ input treatment. A dataset with revised outbreak histories alone should declare
 
 Add source catalog entries and extraction adapters, build the panel at its own
 path, then define the problem and primary score. Fit a simple configuration and
-score an unpublished forecast before expanding the search. A proposed Ebola
-application, for example, would need explicit outbreak definitions and either
-outbreak-held-out periods or rolling-origin windows. Influenza's reporting-error
-process and season boundaries would require a scientific justification there.
-
-## Implementation record: 9 October 2026
-
-The original migration checked 19 combinations of flu season-fold settings
-against the previous week-role implementation and obtained identical roles.
-It also ran one-epoch CPU checks for two cases:
-
-- A COVID admissions/ED model trained on 2022–23, 2023–24 and 2025–26, with
-  artificial reporting errors and corrected training histories, then produced
-  eight-week forecasts from 2024–25 archived reports and completed ranking.
-- A rolling-origin flu model trained on weeks before 4 October 2025 with
-  reference histories, then produced forecasts from reference inputs over
-  4 October 2025–30 May 2026 and completed scoring for 34 forecast dates.
-
-Those runs checked execution and alignment; their one-epoch scores were not
-performance evidence. At the time, work remained on other geographic builders,
-non-season reporting errors and additional evaluators. Later applications should
-be judged from their own implementation and reports.
-
-The migration removed task fields such as `forecast_targets`, `pathogen_inputs`,
-`forecast_weeks` and `evaluation_seasons` from recipe strings. Old artifacts are
-rerun with current code rather than translated through a compatibility layer.
-Slurm jobs already running retain their pinned snapshots.
+score an unpublished forecast before expanding the search. The Ebola
+application, for example, defines its outbreaks explicitly and scores rolling-origin
+windows in several outbreaks (`problems/ebola-multi-outbreak.json`); influenza's
+reporting-error process and season boundaries do not carry over to it.

@@ -4,8 +4,9 @@ Run after every panel rebuild:
 
     python -m chromantis.dataset.analyze_dataset [--dataset data/processed/panel.npz] [--output docs/data/panel.md]
 
-Writes one Markdown page with base64-embedded PNG figures (as the experiment reports do)
-and tables whose numbers are all computed here; no hand-written claims.
+Writes one Markdown page with tables whose numbers are all computed here (no hand-written
+claims) and its PNG figures in a folder beside it (`docs/data/panel/`). The figures were
+embedded as base64 until 29 October 2026, which made the page 2.8 MB.
 
 Definitions are the episode builder's own (`episodes.episodes`, user decision 2026-09-22
 that an unpublished cell is unavailable): vintaged episodes are cut with `lookback = asof_weeks =
@@ -35,6 +36,7 @@ import base64
 import hashlib
 import io
 import json
+import re
 from pathlib import Path
 
 import matplotlib
@@ -60,6 +62,21 @@ def _png(fig):
     fig.savefig(buffer, format='png', dpi=110, bbox_inches='tight')
     plt.close(fig)
     return f'![](data:image/png;base64,{base64.b64encode(buffer.getvalue()).decode()})'
+
+
+def write_page(text, output):
+    """Write the page, moving each embedded figure to `<page>/figure-N.png` beside it."""
+    output = Path(output)
+    folder = output.with_suffix('')
+    folder.mkdir(parents=True, exist_ok=True)
+    count = iter(range(1, 1000))
+
+    def save(match):
+        name = f'figure-{next(count)}.png'
+        (folder / name).write_bytes(base64.b64decode(match.group(1)))
+        return f'![]({folder.name}/{name})'
+
+    output.write_text(re.sub(r'!\[\]\(data:image/png;base64,([^)]+)\)', save, text))
 
 
 def _cells(panel, eps):
@@ -391,8 +408,7 @@ def analyze(dataset=PANEL_DATASET, output=OUTPUT, problem_path='problems/us-resp
         ww_coverage, '',
         _markdown(ww_table, 1), '',
     ]
-    Path(output).parent.mkdir(parents=True, exist_ok=True)
-    Path(output).write_text('\n'.join(lines))
+    write_page('\n'.join(lines), output)
     return dict(output=output, sha256=sha, episodes=len(eps), unpublished_pooled=headline.round(1).to_dict())
 
 

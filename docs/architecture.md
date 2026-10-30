@@ -9,7 +9,7 @@ forecasts and influenza season peaks.
 The sections below follow the data through the network, training, evaluation
 and forecast export. The diagrams and release tables describe the models used
 for **24 October 2026**, trained on 2022–23 through 2025–26 to forecast 2026–27.
-The [submission log](submissions.md) records subsequent releases and issuances.
+The [challenge pages](challenges/index.md) records subsequent releases and issuances.
 Click any figure to open the full-size SVG.
 
 A *configuration*, called a recipe in release files, specifies the inputs,
@@ -536,4 +536,4 @@ These commands draw figures; they do not train or score models. The data-backed
 figures require the saved operational panel and 24 October submission. The fitting
 figure also reads the saved search problem and configuration. See the
 [workflow](workflow.md) for the experiment manager and the
-[submission log](submissions.md) for issuance records.
+[challenge pages](challenges/index.md) for issuance records.
