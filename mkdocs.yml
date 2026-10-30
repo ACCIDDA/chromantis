@@ -52,6 +52,7 @@ hooks:
 
 nav:
   - Introduction: index.md
+  - What we learned: findings.md
   - Architecture: architecture.md
   - Challenges:
       - Overview: challenges/index.md
@@ -75,17 +76,18 @@ nav:
       - Explorer: explorer/overview.md
       - Explorer filters: explorer/filters.md
   - Workflow:
-      - Workflow: workflow.md
+      - From question to submission: reusable-research-workflow.md
+      - Run a study: workflow.md
+      - Define a dataset and problem: multipathogen-pipeline.md
+      - Read a configuration (choices A–F): reference/model-choices.md
+  - Software:
+      - Code layout and development: development.md
       - Setup: setup.md
-      - Reusable research workflow: reusable-research-workflow.md
-      - Multi-pathogen pipeline: multipathogen-pipeline.md
-  - Reference:
       - Commands: reference/cli.md
-      - Model choices A–F: reference/model-choices.md
       - Scenario fields: reference/scenario.md
       - Python API: reference/python-api.md
-      - Other models: reference/other-models.md
-      - Historical nowcast comparator: reference/baselinenowcast.md
-      - FluSight model review: reference/flusight-2025-2026-model-review.md
       - Explorer API: explorer/api.md
-      - Development: development.md
+  - Background:
+      - Other models: reference/other-models.md
+      - FluSight model review: reference/flusight-2025-2026-model-review.md
+      - Historical nowcast comparator: reference/baselinenowcast.md

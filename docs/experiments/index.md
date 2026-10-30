@@ -1,6 +1,7 @@
 # Model runs
 
-Experiments grouped by the challenge they served, newest first. Each report's "Model choices"
+Experiments grouped by the challenge they served, newest first. For the main results in plain
+language, see [What we learned](../findings.md). Each report's "Model choices"
 table says what its models trained on, what they were scored on and with which seasons
 ([Model choices A–F](../reference/model-choices.md)). What was submitted, and why, is on the
 [challenge pages](../challenges/index.md); how to run an experiment is in the

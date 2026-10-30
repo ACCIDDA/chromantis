@@ -1,17 +1,24 @@
 # Chromantis
 
-Chromantis forecasts hospital admissions and the share of emergency-department
-visits attributed to influenza, COVID-19 and respiratory syncytial virus (RSV).
-The package brings together surveillance data, models of reporting revisions,
-neural forecasting models and the tools needed to compare and submit forecasts.
-Researchers can use it to study current-week burden, the next four weeks, or
-longer outcomes such as the size and timing of an influenza season's peak.
+Chromantis is a forecasting system for infectious diseases. Every week it predicts how many
+people will be admitted to hospital with influenza or RSV, and what share of
+emergency-department visits those diseases will account for, for each US state, DC and
+the country, over the next few weeks. It also forecasts the size and timing of the flu season's
+peak, local flu activity in about 100 US areas, and confirmed cases in the 2026 Bundibugyo
+Ebola outbreak in the Democratic Republic of the Congo. COVID-19 models exist but are still at
+the research stage.
 
-The data pose a problem before forecasting begins. Hospitals and surveillance
-systems publish reports at different times, leave gaps and revise past values.
-A low count in the latest report may reflect a decline in illness, unfinished
-reporting, or both. A forecasting model has to learn from that imperfect history.
-A researcher evaluating the model has to reconstruct what it could have known.
+The forecasts are public. Each week they go to forecast hubs, shared repositories where many
+teams submit forecasts of the same targets so they can be scored side by side, under the name
+ACCIDDA-Chromantis.
+
+**The hard part is the data.** Hospitals and surveillance systems publish reports at different
+times, leave gaps and revise past values. A low count in the latest report may reflect a
+decline in illness, unfinished reporting, or both. A model has to learn from that imperfect
+history, and anyone evaluating it has to reconstruct what it could have known at the time.
+
+**New here?** [What we learned](findings.md) gives the main results in plain language, with
+how sure we are of each. Forecasts for each disease are under the challenges below.
 
 ## Challenges
 
@@ -94,29 +101,17 @@ two newest observed weeks before the saved neural models read the 21 October
 reports. The models kept their trained weights. The figure shows the issued
 forecast; its future outcomes are not scored here.
 
-## Understanding the method
+## Where to go next
 
-The [Architecture](architecture.md) page follows a forecast from its input
-histories through report correction, the neural network, training and evaluation.
-It includes the diagrams, equations and fitted-model settings alongside their
-explanations.
-
-Chromantis uses a state panel covering the 50 states, Washington, DC and a
-separate United States series. Local influenza forecasts use a Flu MetroCast
-panel. Flu, RSV, local ED and season-peak applications share the package's data
-and modeling tools, with their own fitted models and output rules.
-
-## Using the package
-
-| Your next step | Guide |
+| You want to | Go to |
 |---|---|
-| Understand the models, layers and training | [Architecture](architecture.md) |
-| Install the package and run a study | [Setup](setup.md) and [research workflow](workflow.md) |
-| Examine the source data and reporting history | [Data](data/index.md) and [availability staircase](data/staircase.md) |
-| Assess the experimental evidence | [Experiment reports](experiments/index.md) |
-| Trace an issued forecast to its inputs and fitted models | [Challenges](challenges/index.md) and their submission logs |
-| Configure or extend the code | [Model choices](reference/model-choices.md), [scenario fields](reference/scenario.md) and [Python API](reference/python-api.md) |
+| Read the main results in plain language | [What we learned](findings.md) |
+| See what is submitted and what each model reads | [Challenges](challenges/index.md) |
+| Understand how the model works, with diagrams | [Architecture](architecture.md) |
+| Look at the source data and how reports change | [Data](data/index.md) and the [availability staircase](data/staircase.md) |
+| Check the evidence behind a choice | [Model runs](experiments/index.md) |
+| See how a question becomes a submitted forecast | [Workflow](reusable-research-workflow.md) |
+| Install the package, run commands or change the code | [Software](development.md) |
 
-The [repository](https://github.com/ACCIDDA/chromantis) contains the source code,
-problem definitions and release manifests. Each experiment report records the
-training and evaluation setup behind its results.
+The [repository](https://github.com/ACCIDDA/chromantis) holds the source code, problem
+definitions and release manifests.
