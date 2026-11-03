@@ -10,7 +10,7 @@ Hub's rules, the model currently submitted, how it was chosen and its submission
 | [RSV Forecast Hub](rsv.md) | RSV admissions and ED share, states/DC/US, horizons 0–3 | Submitting | 31 October 2026, four-recipe mixture, PR 673 merged |
 | [Flu MetroCast](metrocast.md) | Local flu ED percentage, 103 locations, horizons 0–3 plus full season | Submitting | 31 October 2026, spliced 4-week and full-season models, PR 629 merged |
 | [COVID-19 Forecast Hub](covid.md) | COVID admissions and ED share | Research only | None |
-| [BDBV Modeling Hub (Ebola)](ebola.md) | DRC confirmed Ebola cases by onset week, country/provinces/health zones | Submitting | 31 October 2026, nowcast + 12-fit ensemble, PR 71 merged |
+| [BDBV Modeling Hub (Ebola)](ebola.md) | DRC confirmed Ebola cases by onset week, country/provinces/health zones | Submitting | 7 November 2026, nowcast + 12-fit ensemble, PR 96 open |
 
 The public model name is **ACCIDDA-Chromantis** on every Hub. It was submitted as
 ACCIDDA-EpiLoom for the 10 October 2026 FluSight round and renamed on the Hub on 8 October
@@ -30,6 +30,7 @@ recipe is settled, as decided on 8 October 2026.
 | RSV | 31 October 2026 | Four-recipe mixture rsv-four-20261014, 40 fits | PR 673 merged 28 October |
 | RSV | 24 October 2026 | Four-recipe mixture rsv-four-20261014, 40 fits | PR 657 merged 21 October |
 | RSV | 17 October 2026 | Four-recipe mixture rsv-four-20261014, 40 fits | First RSV submission; PR 641 merged 15 October |
+| BDBV (Ebola) | 7 November 2026 | Observed-onset nowcast + the same three recipes × four seeds, trained through 26 September | PR 96 opened 3 November |
 | BDBV (Ebola) | 31 October 2026 | Negative-binomial nowcast + three recipes × four seeds (12 fits) | First submission; PR 71 merged 27 October |
 | COVID-19 | — | — | No submission |
 

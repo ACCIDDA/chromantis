@@ -1,13 +1,13 @@
 """BDBV projection for one hub round: nowcast of the incomplete weeks, then a Chromantis ensemble.
 
-1. Nowcast (`ebola_nowcast.py`). Weeks ending 26 Sep-24 Oct are still growing between hub
-   releases. Each health zone's final count is drawn release step by release step from a
-   negative-binomial model fitted to the 17 -> 24 Oct release pair, so zones reporting zero can
+1. Nowcast (`ebola_nowcast.py`). The five newest onset weeks (3-31 Oct for the 1 Nov release) are
+   still growing between hub releases. Each health zone's final count is drawn release step by
+   release step from a negative-binomial model fitted to the latest release pair, so zones reporting zero can
    gain cases; provinces and the country are sums of their health zones. The draws are seeded,
    so every fit job sees the same 100 nowcast draws.
 2. Models (`fit`). Each recipe x seed is retrained on West Africa 2014-15, Kivu 2018-20 and BDBV
-   weeks through 19 Sep (latest values), with no held-out window, and samples weeks ending
-   31 Oct-21 Nov (1-4 weeks after the last data week) from every nowcast draw.
+   weeks through TRAIN_UNTIL (latest values), with no held-out window, and samples the 1-4 weeks
+   after the last data week from every nowcast draw.
 3. Trajectories (`merge`). Trajectory i = nowcast draw i + the forecast that model (i mod n_models)
    sampled from draw i, so all models contribute equally and every trajectory has its own
    nowcast. Future weeks are reconciled top-down within each trajectory: the national value is
@@ -18,6 +18,7 @@ History: until 27 Oct this script fitted one recipe (r027_child12, 4 seeds x 25 
 process; the five-window rescoring then favoured a three-recipe ensemble. The first ensemble
 (27 Oct) used a fixed completion multiplier per lag, which kept zones reporting zero at zero,
 and left future weeks unreconciled (national about 96 cases above the sum of health zones).
+From the 7 Nov round the hub requires a `forecast_date` column (the date the model was run).
 
     .venv/bin/python scripts/ebola_project.py fit --recipe top035_r020_child09 --seeds 42 43 44 45 --out DIR --device cuda
     .venv/bin/python scripts/ebola_project.py merge --out DIR --model-id UNC-Chromantis
@@ -53,9 +54,11 @@ RECIPES = {
                            'noise=local,latent=4,epochs=160,batch_size=32,members=16,annual_calendar=0,weight_decay=0.0001,'
                            'covariate_encoder=growth,covariate_set=outbreak,log_loss_weight=1.0,forecast_view=raw',
 }
-REFERENCE_DATE = '2026-10-31'
-LAST = '2026-10-24'          # latest release and last data week
-TRAIN_UNTIL = '2026-09-19'   # BDBV weeks after this one are still growing
+REFERENCE_DATE = '2026-11-07'
+FORECAST_DATE = '2026-11-03'  # the day the model is run; the hub checks it against the PR date
+RELEASE = '2026-11-01'       # latest hub target-data release (`as_of`); the 31 Oct round used 24 Oct
+LAST = '2026-10-31'          # last data week in that release
+TRAIN_UNTIL = '2026-09-26'   # five weeks before LAST: later BDBV weeks are still growing
 DRAWS = 100
 
 
@@ -71,15 +74,16 @@ class Setup:
         self.meta = pd.read_csv(self.problem.locations).set_index('location').loc[self.locations]
         self.bdbv = (self.meta.outbreak == 'bdbv-2026').to_numpy()
         t = pd.read_csv(Path(hub) / 'target-data/time-series.csv')
-        self.reported = t[t.as_of == LAST].pivot(index='target_end_date', columns='location', values='observation')
-        self.recent = [str(w) for w in self.dates if '2026-09-26' <= w <= LAST]
+        self.reported = t[t.as_of == RELEASE].pivot(index='target_end_date', columns='location', values='observation')
+        first = str(np.datetime64(LAST) - np.timedelta64(28, 'D'))   # lags 0-4
+        self.recent = [str(w) for w in self.dates if first <= w <= LAST]
         self.hz = [c for c in self.locations if self.meta.outbreak[c] == 'bdbv-2026' and self.meta.level[c] == 'local']
         self.provinces = [c for c in self.locations if self.meta.outbreak[c] == 'bdbv-2026' and self.meta.level[c] == 'middle']
         # Children by code (CD-TO-15 belongs to CD-TO), never by name.
         self.kids = {p: [h for h in self.hz if h.rsplit('-', 1)[0] == p] for p in self.provinces}
         if not all(self.kids.values()):
             raise ValueError(f'Provinces without health zones: {[p for p, k in self.kids.items() if not k]}')
-        self.draws = Nowcast(self.hz, hub).sample(LAST, self.recent, DRAWS)
+        self.draws = Nowcast(self.hz, hub, until=RELEASE).sample(RELEASE, self.recent, DRAWS)
 
     def full_panel(self, hz_values):
         """Panel copy with the BDBV incomplete weeks replaced by one draw; parents are sums."""
@@ -183,15 +187,16 @@ def merge(args):
                                 reported=s.reported[c].get(w) if c in s.reported else None,
                                 q05=np.quantile(v, .05), q25=np.quantile(v, .25), median=np.median(v),
                                 q75=np.quantile(v, .75), q95=np.quantile(v, .95)))
-            hub += [(REFERENCE_DATE, 'wk inc confirmed cases', w, c, 'sample', k + 1, float(v[k])) for k in range(DRAWS)]
+            hub += [(REFERENCE_DATE, FORECAST_DATE, 'wk inc confirmed cases', w, c, 'sample', k + 1, float(v[k])) for k in range(DRAWS)]
     pd.DataFrame(summary).to_csv(out / 'summary.csv', index=False)
     team = args.model_id
     sub = out / 'hub' / 'model-output' / team
     sub.mkdir(parents=True, exist_ok=True)
-    pd.DataFrame(hub, columns=['reference_date', 'target', 'target_end_date', 'location', 'output_type', 'output_type_id',
+    pd.DataFrame(hub, columns=['reference_date', 'forecast_date', 'target', 'target_end_date', 'location', 'output_type', 'output_type_id',
                                'value']).to_csv(sub / f'{REFERENCE_DATE}-{team}.csv', index=False)
     (out / 'settings.json').write_text(json.dumps(dict(models=[f.stem for f in files], recipes=RECIPES,
-                                                       nowcast='ebola_nowcast.py', train_until=TRAIN_UNTIL, last=LAST,
+                                                       nowcast='ebola_nowcast.py', train_until=TRAIN_UNTIL, release=RELEASE, last=LAST,
+                                                       forecast_date=FORECAST_DATE,
                                                        reference_date=REFERENCE_DATE, draws=DRAWS), indent=2) + '\n')
     print(sub / f'{REFERENCE_DATE}-{team}.csv', len(hub), 'rows,', len(files), 'models')
 

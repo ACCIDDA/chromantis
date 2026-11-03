@@ -25,9 +25,10 @@ import pandas as pd
 ROOT = Path('data/ebola')
 SRC = ROOT / 'source'
 HUB = Path('../hubs/BDBV-Modeling-Hub')
-# BDBV weeks from this one on are still being reported (the 10 Oct week grew 34 -> 314 -> 413
-# over the last three releases), so they are not usable as labels or finalized inputs.
-BDBV_INCOMPLETE_FROM = '2026-10-10'
+# BDBV weeks from this one on are still being reported (lags 0-2 of the latest release; the 10 Oct
+# week grew 34 -> 314 -> 413 -> 465 over four releases), so they are not usable as labels or
+# finalized inputs. Was 10 Oct for the 24 Oct release.
+BDBV_INCOMPLETE_FROM = '2026-10-17'
 
 
 def saturday_on_or_before(day):
@@ -120,7 +121,7 @@ def main():
         target_names=np.array(['ebola_cases']), targets=values[..., None], covariates=covariates,
         covariate_names=np.array(['parent_cases', 'outbreak_cases']),
         covariates_national=np.empty((len(dates), 0), np.float32), covariate_national_names=np.array([], dtype='U1'),
-        truth_day=np.array('2026-10-24'))
+        truth_day=np.array('2026-10-31'))
     meta.loc[locations].reset_index().assign(population=100000.0).to_csv(ROOT / 'locations.csv', index=False)
     summary = data.groupby(['outbreak', 'level']).agg(locations=('location', 'nunique'), cases=('observation', 'sum'),
                                                        first=('week', 'min'), last=('week', 'max'))

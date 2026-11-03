@@ -18,17 +18,19 @@ a scoring rule.
 | Item | Value |
 |---|---|
 | Public model | ACCIDDA-Chromantis |
-| Submitted | 31 October 2026 |
+| Submitted | 31 October and 7 November 2026 |
 | Current model | Negative-binomial nowcast, then three neural recipes × four seeds (12 fits) |
-| Latest file | 31 October 2026, [PR 71](https://github.com/InsightNet-US/BDBV-Modeling-Hub/pull/71), merged 27 October |
-| What we submit | 75 locations (country, 8 provinces, the 66 health zones with at least one reported case), weeks ending 26 September to 21 November, 100 trajectories |
+| Latest file | 7 November 2026, [PR 96](https://github.com/InsightNet-US/BDBV-Modeling-Hub/pull/96), opened 3 November |
+| What we submit | 75 locations (country, 8 provinces, the 66 health zones with at least one reported case), the five newest onset weeks (nowcast) and four weeks ahead, 100 trajectories, with `forecast_date` |
 
 ## Current model
 
 **Nowcast.** For each health zone, the cases still to be added to the five newest onset
 weeks are drawn release step by release step from a negative-binomial model fitted to the
-cases added between the 17 and 24 October Hub releases, so zones reporting zero can gain
-cases. Provinces and the country are sums of their health zones. 100 seeded draws.
+cases added between the two latest Hub releases, so zones reporting zero can gain cases. It
+runs on cases with an observed onset date; cases the Hub gave an imputed onset are added
+unchanged, plus 14% of the cases still to come for those reported without onset date.
+Provinces and the country are sums of their health zones. 100 seeded draws.
 
 **Forecast.** Three recipes, four seeds each (42–45), selected by the five-window rescoring
 below. All read the last six weeks of square-root case counts and sample joint four-week
@@ -39,7 +41,7 @@ trajectories:
 - `top045_r017_child03`: no pooling across locations, outbreak-total growth input.
 
 **Training.** Each fit was trained on weekly cases from the 2014–15 West Africa outbreak,
-the 2018–20 Kivu outbreak and BDBV weeks through 19 September 2026, at their latest values,
+the 2018–20 Kivu outbreak and BDBV weeks up to five weeks before the last data week (through 26 September 2026 for the 7 November file), at their latest values,
 with no held-out window. The prediction labels are the cases 1–4 weeks ahead.
 
 **Trajectories.** Trajectory i is nowcast draw i followed by the forecast that fit
@@ -63,7 +65,7 @@ sum to it and health zones to their province. The code is `scripts/ebola_nowcast
 **Nowcast.** This is the one challenge with a separate nowcast model, because recent onset
 weeks are incomplete and the Hub asks for those weeks as well as future ones. The negative-binomial nowcast described above fills the five newest
 onset weeks, and those filled weeks are both submitted as the nowcast and read by the neural
-models. Training stops at BDBV weeks through 19 September because later weeks are still
+models. Training stops five weeks before the last data week because later weeks are still
 growing; training uses the latest values with no artificial reporting errors.
 
 **Not used.** The panel also holds each location's parent-area (province or country) cases;
@@ -84,6 +86,39 @@ ensemble. There is no report page for this search yet.
 ## Submission log
 
 Newest first.
+
+### Reference date 7 November 2026
+
+[PR 96](https://github.com/InsightNet-US/BDBV-Modeling-Hub/pull/96) was opened on 3 November 2026 at
+14:58 EST from branch `ACCIDDA-Chromantis-2026-11-07` of `jcblemai/BDBV-Modeling-Hub`, based on the
+Hub's `main` at `b66c182`. From this round every row carries `forecast_date` (here 2026-11-03), checked
+against the date of the PR in Africa/Kinshasa.
+
+- **Model:** the same three recipes × four seeds (42–45), retrained on West Africa 2014–15, Kivu
+  2018–20 and BDBV weeks through 26 September 2026 (one week later than the 31 October file, keeping
+  the five-week rule), latest values, labels 1–4 weeks ahead. Fitted on the jlessler GPUs (L40 and H100)
+  from `/hickory/proj/jlessler/projects/tapestry-all/ebola-20261107`.
+- **Nowcast changes:** a spread per lag instead of one pooled spread (the 31 October file put the
+  newest week's 95th percentile at 1,130 national cases from 91 reported), and the model now runs on
+  cases with an observed onset date only. Cases the Hub gave an imputed onset are added unchanged, and
+  the cases still to come get 14% on top for those without onset date. The report week ending
+  31 October carried 141 cases without onset date (40–90 before), 59 of the newest week's 150 cases.
+  Scaling them as early reports had put the newest week at 652; with the change it is 626.
+- **Operational inputs:** Hub release of 1 November (Hub commit `b66c182`), panel rebuilt with BDBV
+  weeks ending 14 February to 31 October (9,477 cases). Nowcast for the weeks ending 3 to 31 October,
+  fitted on the 24 October → 1 November release pair.
+- **File:** `data/ebola/ensemble-2026-11-07/hub/model-output/ACCIDDA-Chromantis/2026-11-07-ACCIDDA-Chromantis.csv`,
+  SHA256 `daf23a9246200827b6e724defa47514384c46de7ad8eab1f40531c7a2c0a887e`, 67,500 sample rows
+  (100 × 75 locations × 9 weeks); country = sum of provinces = sum of health zones in every trajectory.
+- **This forecast (country):** reported 492, 465, 409, 381 and 150 for the weeks ending 3 to 31
+  October; nowcast medians 496, 490, 492, 618 and 626. Forecast medians for 7 to 28 November 647, 686,
+  697 and 700; 5–95% for 7 November 442–959. Higher than OHTJHU-BM, UQPSU-oldSchool and both seabbs
+  models this round, close to NTUCPH-LLM and pedro-zonemix. Run from the 24 October release, the same
+  nowcast was 4–10% above the now nearly final values of the weeks ending 3–17 October.
+- **Last round's check:** the 31 October file scored against the 1 November release on weeks at least
+  two weeks old (mean WIS over 23 sample quantiles, lower is better): health zones 0.80 vs 1.04 for
+  ACCIDDA-insightcast on their 45 shared locations, 0.58 vs 0.77 for OHTJHU-BM on 62.
+- **Record:** plots and summary in `data/ebola/ensemble-2026-11-07/`.
 
 ### Reference date 31 October 2026
 

@@ -3,7 +3,7 @@
 Writes projection.png (country and three provinces) and projection-all-locations.pdf (every
 submitted location, 12 per page: country, provinces, then health zones by total cases).
 
-    .venv/bin/python scripts/plot_ebola_projection.py data/ebola/ensemble-2026-10-31
+    .venv/bin/python scripts/plot_ebola_projection.py data/ebola/ensemble-2026-11-07
 """
 import sys
 from pathlib import Path
@@ -17,12 +17,14 @@ import pandas as pd
 
 HUB = Path('../hubs/BDBV-Modeling-Hub')
 BLUE, BAND, INK, MUTED, GRID = '#2a78d6', '#86b6ef', '#0b0b0b', '#52514e', '#e4e3df'
-# Other hub submissions for the same round, drawn as dashed medians where they cover a location.
-# MOBS-GLEAM_BDBV is the Epistorm model (repo epistorm/EBV2026); it covers the country only.
-OTHERS = [('OHTJHU-BM', 'OHTJHU-BM median', '#eb6834'), ('MOBS-GLEAM_BDBV', 'Epistorm (MOBS-GLEAM) median', '#1baf7a'),
-          ('CEPH-Rtrend_BDBV', 'CEPH-Rtrend median', '#6250d6')]
+# Other submissions for the same round, drawn as dashed medians where they cover a location: every
+# model's file on the hub's main branch, plus files from open PRs fetched into PRS (`git show pr-N:path`).
+# Until 3 Nov this was a hand-written list of three teams, which missed later submissions.
+PRS = Path('data/ebola/hub-prs/model-output')
+COLORS = ['#eb6834', '#1baf7a', '#6250d6', '#c2408f', '#8a6d1f', '#0f8f9e', '#d6a21e', '#7a7a7a']
 PANELS = [('CD', 'DRC (national)'), ('CD-IT', 'Ituri'), ('CD-NK', 'Nord Kivu'), ('CD-HU', 'Haut Uele')]
-TODAY = pd.Timestamp('2026-10-27')
+REFERENCE_DATE = '2026-11-07'
+TODAY = pd.Timestamp('2026-11-03')   # forecast_date
 
 
 def panel(ax, code, title, paths, weeks, locations, latest, other, start='2026-05-01', small=False):
@@ -31,7 +33,7 @@ def panel(ax, code, title, paths, weeks, locations, latest, other, start='2026-0
     rep = rep[rep.week >= start]
     complete = rep.week < weeks[0]
     ax.plot(rep.week[complete], rep.observation[complete], color=INK, lw=1.2 if small else 1.5, marker='o',
-            ms=2 if small else 3, label='Reported (24 Oct release)')
+            ms=2 if small else 3, label=f'Reported ({RELEASE} release)')
     ax.plot(rep.week[~complete], rep.observation[~complete], color=INK, lw=0, marker='o', ms=3.5 if small else 5,
             mfc='white', label='Reported so far (still incomplete)')
     for lo, hi, a in [(.05, .95, .25), (.25, .75, .45)]:
@@ -65,10 +67,18 @@ def main():
     d = np.load(folder / 'trajectories.npz')
     paths, weeks, locations = d['paths'], pd.to_datetime(d['weeks']), list(d['locations'].astype(str))
     t = pd.read_csv(HUB / 'target-data/time-series.csv')
-    latest = t[t.as_of == t.as_of.max()].assign(week=lambda x: pd.to_datetime(x.target_end_date))
-    files = [(HUB / f'model-output/{m}/2026-10-31-{m}.csv', label, color) for m, label, color in OTHERS]
-    other = [(pd.read_csv(f), label, color) for f, label, color in files if f.exists()]
-    heading = 'BDBV weekly confirmed cases: nowcast of weeks ending 26 Sep-24 Oct and forecast to 21 Nov\nACCIDDA_Chromantis'
+    global RELEASE
+    RELEASE = t.as_of.max()
+    latest = t[t.as_of == RELEASE].assign(week=lambda x: pd.to_datetime(x.target_end_date))
+    files = sorted(f for f in (HUB / 'model-output').glob(f'*/{REFERENCE_DATE}-*.csv') if f.parent.name != 'ACCIDDA-Chromantis')
+    pr = sorted(f for f in PRS.glob(f'*/{REFERENCE_DATE}-*.csv') if not any(g.parent.name == f.parent.name for g in files))
+    # A file can hold several forecast_dates (resubmissions); keep each team's latest.
+    other = [(o[o.forecast_date == o.forecast_date.max()], f'{f.parent.name}{" (open PR)" if f in pr else ""} median',
+              COLORS[i % len(COLORS)]) for i, f in enumerate(files + pr) for o in [pd.read_csv(f)]]
+    fmt = lambda w: f'{w.day} {w:%b}'
+    nowcast = weeks[weeks <= pd.Timestamp(RELEASE)]
+    heading = (f'BDBV weekly confirmed cases: nowcast of weeks ending {fmt(nowcast[0])}-{fmt(nowcast[-1])} '
+               f'and forecast to {fmt(weeks[-1])}\nACCIDDA_Chromantis')
 
     fig, axes = plt.subplots(2, 2, figsize=(12, 7.5), sharex=True)
     for ax, (code, title) in zip(axes.flat, PANELS):
