@@ -54,11 +54,11 @@ RECIPES = {
                            'noise=local,latent=4,epochs=160,batch_size=32,members=16,annual_calendar=0,weight_decay=0.0001,'
                            'covariate_encoder=growth,covariate_set=outbreak,log_loss_weight=1.0,forecast_view=raw',
 }
-REFERENCE_DATE = '2026-11-07'
-FORECAST_DATE = '2026-11-03'  # the day the model is run; the hub checks it against the PR date
-RELEASE = '2026-11-01'       # latest hub target-data release (`as_of`); the 31 Oct round used 24 Oct
-LAST = '2026-10-31'          # last data week in that release
-TRAIN_UNTIL = '2026-09-26'   # five weeks before LAST: later BDBV weeks are still growing
+REFERENCE_DATE = '2026-11-14'
+FORECAST_DATE = '2026-11-10'  # the day the model is run; the hub checks it against the PR date
+RELEASE = '2026-11-08'       # latest hub target-data release (`as_of`); the 7 Nov round used 1 Nov
+LAST = '2026-11-07'          # last data week in that release
+TRAIN_UNTIL = '2026-10-03'   # five weeks before LAST: later BDBV weeks are still growing
 DRAWS = 100
 
 

@@ -12,4 +12,4 @@
 set -euo pipefail
 export PYTHONPATH=$PWD/src PYTHONUNBUFFERED=1 OMP_NUM_THREADS=4
 seed=$((42 + SLURM_ARRAY_TASK_ID))
-.venv/bin/python scripts/ebola_project.py fit --recipe ${RECIPE:-top035_r020_child09} --seeds $seed --out data/ebola/ensemble-2026-11-07 --hub hub --device cuda
+.venv/bin/python scripts/ebola_project.py fit --recipe ${RECIPE:-top035_r020_child09} --seeds $seed --out data/ebola/ensemble-2026-11-14 --hub hub --device cuda

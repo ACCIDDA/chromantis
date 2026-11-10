@@ -18,16 +18,18 @@ a scoring rule.
 | Item | Value |
 |---|---|
 | Public model | ACCIDDA-Chromantis |
-| Submitted | 31 October and 7 November 2026 |
+| Submitted | 31 October, 7 November and 14 November 2026 |
 | Current model | Negative-binomial nowcast, then three neural recipes × four seeds (12 fits) |
-| Latest file | 7 November 2026, [PR 96](https://github.com/InsightNet-US/BDBV-Modeling-Hub/pull/96), opened 3 November |
+| Latest file | 14 November 2026, [PR 117](https://github.com/InsightNet-US/BDBV-Modeling-Hub/pull/117), opened 10 November |
 | What we submit | 75 locations (country, 8 provinces, the 66 health zones with at least one reported case), the five newest onset weeks (nowcast) and four weeks ahead, 100 trajectories, with `forecast_date` |
 
 ## Current model
 
 **Nowcast.** For each health zone, the cases still to be added to the five newest onset
-weeks are drawn release step by release step from a negative-binomial model fitted to the
-cases added between the two latest Hub releases, so zones reporting zero can gain cases. It
+weeks are drawn release step by release step from a negative-binomial model, so zones
+reporting zero can gain cases. The share added per release at each lag (weeks since the onset
+week ended) is the geometric mean over every pair of consecutive Hub releases since 9 October;
+the zone-level weights and dispersion are fitted to the latest release pair. It
 runs on cases with an observed onset date; cases the Hub gave an imputed onset are added
 unchanged, plus 14% of the cases still to come for those reported without onset date.
 Provinces and the country are sums of their health zones. 100 seeded draws.
@@ -41,7 +43,7 @@ trajectories:
 - `top045_r017_child03`: no pooling across locations, outbreak-total growth input.
 
 **Training.** Each fit was trained on weekly cases from the 2014–15 West Africa outbreak,
-the 2018–20 Kivu outbreak and BDBV weeks up to five weeks before the last data week (through 26 September 2026 for the 7 November file), at their latest values,
+the 2018–20 Kivu outbreak and BDBV weeks up to five weeks before the last data week (through 3 October 2026 for the 14 November file), at their latest values,
 with no held-out window. The prediction labels are the cases 1–4 weeks ahead.
 
 **Trajectories.** Trajectory i is nowcast draw i followed by the forecast that fit
@@ -87,12 +89,64 @@ ensemble. There is no report page for this search yet.
 
 Newest first.
 
+### Reference date 14 November 2026
+
+[PR 117](https://github.com/InsightNet-US/BDBV-Modeling-Hub/pull/117) was opened on 10 November 2026 at
+18:11 UTC from branch `ACCIDDA-Chromantis-2026-11-14` of `jcblemai/BDBV-Modeling-Hub`, based on the
+Hub's `main` at `f8dcc3b`, with `forecast_date` 2026-11-10. Hub validation passed.
+
+- **Model:** no code change to the nowcast or the recipes. The same three recipes × four seeds
+  (42–45), retrained on West Africa 2014–15, Kivu 2018–20 and BDBV weeks through 3 October 2026
+  (five-week rule), latest values, labels 1–4 weeks ahead. Fitted on the jlessler GPUs from
+  `/hickory/proj/jlessler/projects/tapestry-all/ebola-20261114`.
+- **Operational inputs:** Hub release of 8 November (Hub commit `f8dcc3b`), panel rebuilt with BDBV
+  weeks ending 14 February to 7 November (9,979 cases; still 66 health zones and 8 provinces).
+  `BDBV_INCOMPLETE_FROM` moved to 24 October. Nowcast for the weeks ending 10 October to 7 November.
+  Its growth per lag now averages four release pairs, including the slow 1 → 8 November pair (see the
+  7 November check below), so it is lower than last week's: lag 1 0.30 (was 0.34), lag 2 0.08 (was
+  0.12), and the lag-2 spread is 1.0 on the log scale (was 0.42).
+- **Hub change:** the Hub moved health zone CD-HK-19 (Manika) from Haut Katanga to Lualaba while
+  keeping its code. Our code takes the parent from the location code, which would put it under CD-HK.
+  It has no cases and is not in our file, so nothing changed this round; this must be handled if it
+  ever reports a case.
+- **File:** `data/ebola/ensemble-2026-11-14/hub/model-output/ACCIDDA-Chromantis/2026-11-14-ACCIDDA-Chromantis.csv`,
+  SHA256 `7abdbd7a3684e76828965c7be85e495806e07f96f48bb69c00baec3ce7c93bd5`, 67,500 sample rows
+  (100 × 75 locations × 9 weeks); country = sum of provinces = sum of health zones in every trajectory.
+- **This forecast (country):** reported 473, 420, 482, 349 and 68 for the weeks ending 10 October to
+  7 November; nowcast medians 478, 442, 534, 500 and 392 (5–95% for 7 November 266–622). Forecast
+  medians for 14 November to 5 December 372, 336, 318 and 308; 5–95% for 14 November 200–713. On the
+  submission day, between OHTJHU-BM (nowcast 340 for 7 November, forecast about 330) and
+  ACCIDDA-insightcast (404, about 415); MOBS-GLEAM, NTUCPH-LLM, pedro-zonemix and the baseline were
+  higher (420–500).
+- **Last round's check:** the 7 November file scored against the 8 November release on the weeks
+  ending 3–24 October (mean WIS over 23 sample quantiles, natural scale, lower is better; the week
+  ending 24 October will still grow a few percent). Health zones about level with the other teams:
+  0.65 vs 0.71 for ACCIDDA-insightcast and 0.60 for both seabbs models on 66 zones, 0.79 vs 0.77 for
+  OHTJHU-BM and pedro-zonemix on 54; 90% intervals covered 90% of zone-weeks. Country and provinces
+  too high: national WIS 41 vs 41 for ACCIDDA-insightcast, 4 for OHTJHU-BM, 14 for UQPSU-national_level,
+  21–23 for the seabbs models and 33 for pedro-zonemix (all on the same four weeks),
+  with the weeks ending 17 and 24 October outside the 90% interval (nowcast 492 and 618; now 420 and
+  482). The 31 October file, scored the same way on the weeks ending 26 September to 24 October, was
+  close: national medians 430, 509, 489, 426 and 429 against 433, 503, 473, 420 and 482, all inside
+  the 90% interval.
+- **Why the 7 November nowcast was high:** the 1 → 8 November release added far fewer cases to
+  recent weeks than any earlier release pair (461 cases in 7 days against 507–696; share added at
+  lag 1 0.18 against 0.29–0.40, at lag 2 0.02 against 0.10–0.20). The 7 November nowcast had averaged
+  the earlier, faster pairs, one of them spanning 8 days (24 October → 1 November) and one looking like
+  a backlog (17 → 24 October, large additions even at lags 3–4). Rerunning it from the 1 November
+  release with all cases (imputed onsets included, as before 3 November) gave the same 614 for the
+  week ending 24 October, so the 7 November nowcast changes were not the cause. Using only the latest
+  pair's growth gave 584; dropping the pull toward the previous three weeks' level gave 638. The
+  spread at lag 1 (0.2, the floor) was too narrow. Whether the slowdown is fewer infections or slower
+  reporting cannot be told yet.
+
 ### Reference date 7 November 2026
 
 [PR 96](https://github.com/InsightNet-US/BDBV-Modeling-Hub/pull/96) was opened on 3 November 2026 at
 14:58 EST from branch `ACCIDDA-Chromantis-2026-11-07` of `jcblemai/BDBV-Modeling-Hub`, based on the
 Hub's `main` at `b66c182`. From this round every row carries `forecast_date` (here 2026-11-03), checked
-against the date of the PR in Africa/Kinshasa.
+against the date of the PR in Africa/Kinshasa. Hub validation passed; merged on 4 November 2026 at
+09:07 UTC (commit `fb5c2de6`). Checked against the 8 November release in the 14 November entry.
 
 - **Model:** the same three recipes × four seeds (42–45), retrained on West Africa 2014–15, Kivu
   2018–20 and BDBV weeks through 26 September 2026 (one week later than the 31 October file, keeping
