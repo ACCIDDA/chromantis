@@ -7,9 +7,9 @@ Hub's rules, the model currently submitted, how it was chosen and its submission
 |---|---|---|---|
 | [FluSight weekly](flusight-weekly.md) | Flu admissions and ED share, states/DC/US, horizons 0–3 | Submitting | 7 November 2026, Bes with half-strength correction trees, PR 4011 open |
 | [FluSight season peak](flusight-peak.md) | Flu peak size and peak week, states/DC/US | Submitting | 7 November 2026, Peak8, same file |
-| [RSV Forecast Hub](rsv.md) | RSV admissions and ED share, states/DC/US, horizons 0–3 | Submitting | 7 November 2026, four-recipe mixture, PR 694 merged |
+| [RSV Forecast Hub](rsv.md) | RSV admissions and ED share, states/DC/US, horizons 0–3 | Submitting | 21 November 2026, four-recipe mixture with half-strength correction trees, PR 738 merged |
 | [Flu MetroCast](metrocast.md) | Local flu ED percentage, 103 locations, horizons 0–3 plus full season | Submitting | 7 November 2026, spliced 4-week and full-season models, PR 645 open |
-| [COVID-19 Forecast Hub](covid.md) | COVID admissions and ED share, states/DC/US, horizons 0–3 | Submitting | 7 November 2026, four-recipe mixture, PR 2018 merged |
+| [COVID-19 Forecast Hub](covid.md) | COVID admissions and ED share, states/DC/US, horizons 0–3 | Submitting | 21 November 2026, four-recipe mixture, PR 2068 merged |
 | [BDBV Modeling Hub (Ebola)](ebola.md) | DRC confirmed Ebola cases by onset week, country/provinces/health zones | Submitting | 14 November 2026, nowcast + 12-fit ensemble, PR 117 open |
 
 The public model name is **ACCIDDA-Chromantis** on every Hub. It was submitted as
@@ -29,6 +29,8 @@ recipe is settled, as decided on 8 October 2026.
 | Flu MetroCast | 7 November 2026 | Same two models as 31 October, same splice, cut at 12 June 2027 | PR 645 opened 4 November, validation passed |
 | Flu MetroCast | 31 October 2026 | Same two models as 24 October, same splice | PR 629 merged 29 October |
 | Flu MetroCast | 24 October 2026 | Season-CV winner `r010_c08` (5 fits) for horizons 0-3, spliced with full-season `full_season_finalist_1` (5 fits) to 12 June | First MetroCast submission; PR 609 opened after the deadline, merged 22 October |
+| RSV | 21 November 2026 | Same 40 fits, trees at half strength `rsv-four-cs050` | PR 738 merged 18 November |
+| RSV | 14 November 2026 | Same 40 fits, trees at half strength `rsv-four-cs050` | PR 721, opened 12 November after the window closed, merged by hand 12 November |
 | RSV | 7 November 2026 | Four-recipe mixture rsv-four-20261014, 40 fits | PR 694 merged 4 November |
 | RSV | 31 October 2026 | Four-recipe mixture rsv-four-20261014, 40 fits | PR 673 merged 28 October |
 | RSV | 24 October 2026 | Four-recipe mixture rsv-four-20261014, 40 fits | PR 657 merged 21 October |
@@ -36,6 +38,8 @@ recipe is settled, as decided on 8 October 2026.
 | BDBV (Ebola) | 14 November 2026 | Same nowcast code and three recipes × four seeds, trained through 3 October, 8 November release | PR 117 opened 10 November, validation passed |
 | BDBV (Ebola) | 7 November 2026 | Observed-onset nowcast + the same three recipes × four seeds, trained through 26 September | PR 96 merged 4 November |
 | BDBV (Ebola) | 31 October 2026 | Negative-binomial nowcast + three recipes × four seeds (12 fits) | First submission; PR 71 merged 27 October |
+| COVID-19 | 21 November 2026 | Four-recipe mixture covid-gru-four-candidate-20261103, 40 fits | PR 2068 merged 18 November |
+| COVID-19 | 14 November 2026 | Four-recipe mixture covid-gru-four-candidate-20261103, 40 fits | PR 2049, opened 12 November after the window closed, merged by hand 12 November |
 | COVID-19 | 7 November 2026 | Four-recipe mixture covid-gru-four-candidate-20261103, 40 fits | First COVID submission; metadata PR 2017 and forecast PR 2018 merged 4 November |
 
 ## Recording a submission

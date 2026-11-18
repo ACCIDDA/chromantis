@@ -1,11 +1,29 @@
 # Weekly data pulls
 
-The FluSight and RSV forecasts of each Wednesday read one operational data root. This page
+The FluSight, RSV and COVID forecasts of each Wednesday read one operational data root. This page
 records those pulls and the panel hashes; each challenge's submission log refers to them.
 The 14 October 2026 pulls (reference date 17 October) are recorded in the 17 October
 [FluSight](flusight-weekly.md#reference-date-17-october-2026) and
 [RSV](rsv.md#reference-date-17-october-2026) entries. MetroCast and BDBV read their own Hub
 target data, recorded in their entries.
+
+## Operational inputs, issuance 18 November 2026 (reference date 21 November)
+
+Root `data/operational-20261118/`: a new root sharing the raw snapshot store with the 11 November catalog, and fresh pulls on 18 November 2026 between 20:58 and 21:06 UTC (15:58-16:06 EST) of Delphi NHSN, Delphi NSSP, the FluSight, RSV and COVID Hub target histories, and PopHIVE Kinsa (pulled from the COVID/RSV session). The Hubs' target data had reached the week ending 14 November. Panels (built 16:09 EST):
+
+- Influenza (also read by COVID): `data/operational-20261118/processed/panel.npz`, SHA256 `d4cccc684df500c0a8c00657b1cd3c7816a2fb63d3e795b6044934547f40ed2a`.
+- RSV: `panel-rsv.npz` in the same folder, NHSN RSV admissions before 2024-11-02 masked, SHA256 `5cbf192f2880e133a395aa77d05e2c2f1806c38df42547ec28af5618a043c86b`.
+
+The panel was not checked cell by cell against the Hubs' target data.
+
+## Operational inputs, issuance 11 November 2026 (reference date 14 November)
+
+Root `data/operational-20261111/`, pulled from the flu session on Thursday 12 November 2026 between 16:51 and 17:02 EST (same sources as 4 November). The Hubs released the week ending 7 November on Thursday 12 November, a day late after Veterans Day, and took forecasts that day, although their configured submission window had closed on Wednesday 11 November at 23:59 EST. Panels:
+
+- Influenza (also read by COVID): `processed/panel.npz`, SHA256 `f478b2da51e97e1403ac557b4dbbb2dd46a9bf4cf38c9151a198c56b39cdb90d`.
+- RSV: `processed/panel-rsv.npz`, NHSN RSV admissions before 2024-11-02 masked, SHA256 `39e8c421c4160372ddddb9afdccacb7013606e2707cfc640f0ab3a659b458b77`.
+
+**Hospitals reporting after the holiday** (NHSN, the same hospitals for all three pathogens, sum over states and DC, as a share of the hospitals reporting 3-5 weeks earlier in the same release): 0.871 for the week ending 7 November and 0.960 for the week before, against 0.882-0.887 and 0.966-0.979 in the four previous Wednesday releases (0.844-0.887 for the newest week over this season and November 2025). Inputs were not adjusted. COVID admissions for that week were revised from 4,412 to 4,659 (+5.6%) by 18 November, an ordinary revision.
 
 ## Operational inputs, issuance 4 November 2026 (reference date 7 November)
 

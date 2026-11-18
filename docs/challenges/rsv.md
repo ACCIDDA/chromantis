@@ -15,9 +15,9 @@ admissions or log admissions ([Respiratory hub rules](../reference/hub-scoring-2
 | Item | Value |
 |---|---|
 | Public model | ACCIDDA-Chromantis |
-| Submitted | 17, 24 and 31 October, 7 and 14 November 2026 |
+| Submitted | 17, 24 and 31 October, 7, 14 and 21 November 2026 |
 | Current model | The same 40 fits with the tree correction at half strength, release `production/releases/rsv-four-cs050.json` (from 14 November; `rsv-four-20261014.json`, full strength, before) |
-| Latest file | 14 November 2026, [PR 721](https://github.com/CDCgov/rsv-forecast-hub/pull/721), opened 12 November |
+| Latest file | 21 November 2026, [PR 738](https://github.com/CDCgov/rsv-forecast-hub/pull/738), merged 18 November |
 | What we submit | 52 locations (no Puerto Rico), horizons 0–3, both targets, quantiles and 200 samples |
 
 Submissions by `jcblemai`, `emprzy` and `jlessler` merge automatically once Hub validation
@@ -44,7 +44,9 @@ two newest weeks corrected (`corrected` view). Direct-quantile values are ordere
 sampled recipes' trajectories (Schaake shuffle) to give the 200 samples. From 14 November the
 trees' log-correction is multiplied by 0.5 (release field `correction_strength`, no retraining),
 because at full strength the 17 October to 7 November files forecast too high (see the
-14 November entry).
+14 November entry). The trees themselves match the observed revisions (21 November entry):
+half strength scores better because it offsets the networks' excess growth, not because the
+trees over-correct.
 
 ## Inputs and nowcast
 
@@ -89,9 +91,32 @@ archived 2024–25 and 2025–26 reports. There is no report page for this searc
 Newest first. The shared data pulls of each Wednesday are on
 [Weekly data pulls](weekly-inputs.md).
 
+### Reference date 21 November 2026
+
+**Same 40 fits, tree correction at half strength, as on 14 November.** [PR 738](https://github.com/CDCgov/rsv-forecast-hub/pull/738) was opened at 16:10 EST on 18 November from branch `submit-2026-11-21` of the fork (commit `2369004`, "ACCIDDA-Chromantis 2026-11-21", no PR description). Every check passed, including validation (back to the Wednesday window), and the Hub bot merged it at 16:56 EST.
+
+- **Model:** release `production/releases/rsv-four-cs050.json`, issuance 18 November, view `corrected`.
+- **Operational inputs:** [18 November pulls](weekly-inputs.md#operational-inputs-issuance-18-november-2026-reference-date-21-november), RSV panel `panel-rsv.npz`, SHA256 `5cbf192f2880e133a395aa77d05e2c2f1806c38df42547ec28af5618a043c86b`.
+- **Earlier files, scored** with every Hub model against the Hub's target data of 18 November (weeks through 14 November), states and DC, horizons 0-3, pairwise relative WIS (baseline = 1, lower is better):
+  - The 14 November file (half strength) at horizon 0: 0.918 on log admissions (rank 9 of 17; RSVHub-ensemble 0.786), 0.801 on counts (rank 7), 0.814 on ED share (rank 8 of 10). The same fits at full strength would have scored 0.913, 0.848 and 0.849. US median 1,686 against 1,577 first reported. Every model lost ground to the baseline that week as growth slowed.
+  - All five files (17 October-14 November): 0.742 on log admissions (rank 10 of 19; ensemble 0.662), 0.722 on counts (rank 8; 0.664), 0.765 on ED share (rank 9 of 11; 0.626). Medians are on average 8% above the data.
+- **Do the trees over-correct? No.** The correction of the newest reported week by the trees saved with the 40 fits was compared with how much that week was later revised. Admissions are summed over states and DC, ED share is the US value, and the trees' factor is the mean over the fits. Wednesday reports of the 11 November panel and the Hub's data of 18 November (`production/output/2026-11-18/revision-vs-trees-covid-rsv/`). The trees add x1.088 at full strength (x1.043 at half). The newest week of the 7 October-4 November issuances has since grown x1.044-1.105 (median x1.068, still rising); in 2025-26 it ended x1.127 above its first report. The second-newest week: trees x1.042, observed so far about x1.028. The US RSV ED share is published to 0.1 percentage point, too coarse to check. So the RSV excess comes from the networks' growth, not from wrong revisions; half strength scores better on counts and ED share because it offsets that growth.
+- **Matched correction, tested and not adopted.** `Ball_c0w512` and `Bw` were trained on uncorrected preliminary histories with labels for the final values of the last four history weeks, so correcting their inputs might count the revisions twice. `A4c0` and `A4i` were trained on corrected histories. The release `rsv-four-matched` (trees at full strength for `A4c0` and `A4i`, reports as published for `Ball_c0w512` and `Bw`; per-recipe `correction_strength`, new on 18 November, no retraining) was rebuilt from the saved member forecasts of the 14 October-11 November issuances. Scored as above over the five weeks (19 models, 11 for ED; medians / observed last):
+
+  | Version | Log admissions | Counts | ED share | Medians / observed |
+  |---|---|---|---|---|
+  | Full strength | 0.741 | 0.731 | 0.770 | 1.084 |
+  | Half strength (submitted from 14 November) | 0.761 | 0.697 | 0.739 | 1.045 |
+  | Matched | 0.766 | 0.700 | 0.738 | 1.043 |
+  | No trees | 0.916 | 0.694 | 0.719 | 1.003 |
+
+  Matched behaves like half strength and gains nothing over it.
+- **File:** `production/submissions/2026-11-21/rsv/2026-11-21-ACCIDDA-Chromantis.parquet`, SHA256 `72dd955acd558e04676e9f6a17e12ccae38c7646c6eb9db680e24d7f7ba4d8b1`; the CSV beside it has the same rows. 9,568 quantile and 83,200 sample rows: 52 locations, horizons 0-3, admissions and ED share. US admissions medians 2,183; 2,617; 3,109; 3,688 (full strength: 2,262; 2,709; 3,212; 3,801) after 1,577 reported for the week ending 14 November. The 7 Hub models merged when it was run (baseline included) had horizon-0 US medians of 1,577-2,311.
+- **Record:** interval PDFs and the peer comparison (Hub clone `aa701e9`) in `production/submissions/2026-11-21/rsv/`.
+
 ### Reference date 14 November 2026
 
-**Same 40 fits, tree correction at half strength.** [PR 721](https://github.com/CDCgov/rsv-forecast-hub/pull/721) was opened at about 17:15 EST on Thursday 12 November from branch `submit-2026-11-14` of the fork (commit `f32d85e`, "ACCIDDA-Chromantis 2026-11-14", no PR description). The Hubs released the data for the week ending 7 November on Thursday 12 November, a day late after Veterans Day, and took forecasts that day, but the configured window still closed on Wednesday 11 November at 23:59 EST. So `validate-submission` failed on `submission_time` only (every check on the file passed), as it did on every other team's Thursday PR, which the Hub maintainers merged by hand. Authorization and `approve-and-merge` passed.
+**Same 40 fits, tree correction at half strength.** [PR 721](https://github.com/CDCgov/rsv-forecast-hub/pull/721) was opened at about 17:15 EST on Thursday 12 November from branch `submit-2026-11-14` of the fork (commit `f32d85e`, "ACCIDDA-Chromantis 2026-11-14", no PR description). The Hubs released the data for the week ending 7 November on Thursday 12 November, a day late after Veterans Day, and took forecasts that day, but the configured window still closed on Wednesday 11 November at 23:59 EST. So `validate-submission` failed on `submission_time` only (every check on the file passed), as it did on every other team's Thursday PR, which the Hub maintainers merged by hand. Authorization and `approve-and-merge` passed. A Hub maintainer (O957) merged it by hand at 17:22 EST on 12 November.
 
 - **Model:** release `production/releases/rsv-four-cs050.json`: the 40 fits of `rsv-four-20261014` (described under Current model, no refit) with the saved trees' log-correction of the two newest reported RSV admission and ED weeks multiplied by 0.5. View `corrected`, issuance 11 November.
 - **Operational inputs:** root `data/operational-20261111/` (pulled by the flu session on 12 November, 16:51-17:02 EST: Delphi NHSN and NSSP, FluSight, RSV and COVID Hub target data, Kinsa). RSV panel `processed/panel-rsv.npz`, NHSN RSV admissions before 2 November 2024 masked as in training, SHA256 `39e8c421c4160372ddddb9afdccacb7013606e2707cfc640f0ab3a659b458b77`.
@@ -104,7 +129,7 @@ Newest first. The shared data pulls of each Wednesday are on
   | 0 | 0.926 (15) | 0.752 (6) | 0.766 | 69 | 1.006 |
   | RSVHub-ensemble | 0.692 | 0.693 | 0.671 | 69 | 1.014 |
 
-  The trees cause the excess (medians 9% above the data at strength 1, 1% at 0), but removing them makes log admissions much worse. Half strength gives up 0.017 on log admissions for better admission counts, ED share and US scores. The flu forecast made the same choice on 4 November. Four issuances whose newest weeks are still being revised.
+  Removing the trees removes the excess (medians 9% above the data at strength 1, 1% at 0), but makes log admissions much worse. (On 18 November the trees were found to match the observed revisions; the excess comes from the networks, see the 21 November entry.) Half strength gives up 0.017 on log admissions for better admission counts, ED share and US scores. The flu forecast made the same choice on 4 November. Four issuances whose newest weeks are still being revised.
 - **Earlier files, scored the same way** (Hub target data of 12 November): over all four files, pairwise relative WIS 0.768 on log admissions (rank 9 of 17; RSVHub-ensemble 0.692), 0.807 on counts (rank 9), 0.831 on ED share (rank 8 of 10). The 7 November file at horizon 0: US median 1,468 against 1,207 first reported.
 - **Hospitals reporting** (NHSN, all pathogens, sum over states and DC, against the median 3-5 weeks earlier in the same release): 0.871 for the week ending 7 November and 0.960 for the week before, against 0.882-0.887 and 0.966-0.979 in the four previous Wednesday releases. The holiday reduced reporting only slightly, by less than the trees' correction, so inputs were not adjusted.
 - **File:** `production/submissions/2026-11-14/rsv/2026-11-14-ACCIDDA-Chromantis.parquet`, SHA256 `1a41e25469b3643ac2d726b2e1fa3c33904bd69958d229685362a60e90bd181a`; the CSV beside it has the same rows. 9,568 quantile and 83,200 sample rows: 52 locations, horizons 0-3, admissions and ED share. US admissions medians 1,686; 2,042; 2,451; 2,949 (full strength: 1,739; 2,104; 2,523; 3,029) after 1,207 reported for the week ending 7 November. The 10 other Hub models available had horizon-0 US medians of 1,390-1,746.

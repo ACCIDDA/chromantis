@@ -92,9 +92,32 @@ There is no report page for these searches yet.
 Newest first. The shared data pulls of each Wednesday are on
 [Weekly data pulls](weekly-inputs.md).
 
+### Reference date 21 November 2026
+
+**Same model as 7 and 14 November, full-strength tree correction.** [PR 2068](https://github.com/CDCgov/covid19-forecast-hub/pull/2068) was opened at 16:10 EST on 18 November from branch `submit-2026-11-21` of the fork (commit `2f82da6`, "ACCIDDA-Chromantis 2026-11-21", no PR description). Every check passed, including validation, and the Hub bot merged it at 16:14 EST.
+
+- **Model:** release `production/releases/covid-gru-four-candidate-20261103.json`, issuance 18 November, view `corrected`.
+- **Operational inputs:** [18 November pulls](weekly-inputs.md#operational-inputs-issuance-18-november-2026-reference-date-21-november), panel `panel.npz`, SHA256 `d4cccc684df500c0a8c00657b1cd3c7816a2fb63d3e795b6044934547f40ed2a`.
+- **Earlier files, scored** with every Hub model against the Hub's target data of 18 November (weeks through 14 November), states and DC, horizons 0-3, pairwise relative WIS (baseline = 1, lower is better):
+  - The 14 November file at horizon 0: 0.576 on log admissions (rank 13 of 20; CovidHub-ensemble 0.479), 0.762 on counts (rank 14), 0.830 on ED share (rank 4 of 9). The same fits at half strength would have scored 0.545, 0.695 and 0.801. US median 5,530 against 4,900 first reported.
+  - Both files (7 and 14 November): 0.467 on log admissions (rank 8 of 22; ensemble 0.431), 0.634 on counts (rank 13; 0.515), 0.761 on ED share (rank 5 of 10; 0.698). Medians 12% above the data.
+- **Why full strength was kept.** The same 40 fits were scored over five issuances (14 October-11 November, each on its own operational panel, no retraining; 22 models, 10 for ED):
+
+  | Version | Log admissions | Counts | ED share | Medians / observed |
+  |---|---|---|---|---|
+  | Full strength (submitted) | 0.410 (rank 5) | 0.518 | 0.891 | 0.892 |
+  | Half strength (`covid-gru-four-cs050`) | 0.422 | 0.528 | 0.912 | 0.866 |
+  | Matched (`covid-gru-four-matched`) | 0.421 | 0.523 | 0.908 | 0.878 |
+  | No trees (`covid-gru-four-cs000`) | 0.459 | 0.545 | 0.942 | 0.840 |
+  | CovidHub-ensemble | 0.409 | 0.515 | 0.804 | |
+
+  Over these five weeks the model was too low for the three October reference dates and too high for 7 and 14 November, with no consistent excess; full strength is best on every score. The trees do not over-correct COVID either: they add x1.054 to the newest admission week (x1.027 to US ED share), and that week has since grown x1.084 (x1.046-1.102) in 2026-27 and ended x1.111 in 2025-26 (ED x1.045-1.048); details in the [RSV entry](rsv.md#reference-date-21-november-2026). The matched release gives the trees at full strength to `Ah.neighbors` (trained on corrected histories) and `N.multiscale` (finalized histories) and reports as published to `pN.enc_gru` and `Bh.wd` (uncorrected histories with reconstruction labels); it gains nothing.
+- **File:** `production/submissions/2026-11-21/covid/2026-11-21-ACCIDDA-Chromantis.parquet`, SHA256 `2b19ef98c0ad2ca6cdea1dfe8a3845f6abdda1391137e52b8540fa4524debaa2`; the CSV beside it has the same rows. 9,568 quantile and 83,200 sample rows: 52 locations, horizons 0-3, admissions and ED share. US admissions medians 6,144; 7,014; 7,940; 8,764 (half strength: 5,963; 6,811; 7,719; 8,519) after 4,900 reported for the week ending 14 November (4,225; 4,747; 4,659 the three weeks before). This is above all 4 Hub models merged when it was run (baseline included; horizon-0 US medians 4,900-5,655, horizon 3 up to 6,819). The user chose full strength.
+- **Record:** interval PDFs and the peer comparison (Hub clone `72d118e`) in `production/submissions/2026-11-21/covid/`.
+
 ### Reference date 14 November 2026
 
-**Same model as 7 November.** [PR 2049](https://github.com/CDCgov/covid19-forecast-hub/pull/2049) was opened at about 17:15 EST on Thursday 12 November from branch `submit-2026-11-14` of the fork (commit `e670ff5`, "ACCIDDA-Chromantis 2026-11-14", no PR description). The Hubs released the data for the week ending 7 November on Thursday 12 November, a day late after Veterans Day, and took forecasts that day, but the configured window still closed on Wednesday 11 November at 23:59 EST. So `validate-submission` failed on `submission_time` only (every check on the file passed), as it did on every other team's Thursday PR, which the Hub maintainers merged by hand. Authorization passed; `approve-and-merge` failed on a GitHub GraphQL error, and the job could not be rerun from the fork.
+**Same model as 7 November.** [PR 2049](https://github.com/CDCgov/covid19-forecast-hub/pull/2049) was opened at about 17:15 EST on Thursday 12 November from branch `submit-2026-11-14` of the fork (commit `e670ff5`, "ACCIDDA-Chromantis 2026-11-14", no PR description). The Hubs released the data for the week ending 7 November on Thursday 12 November, a day late after Veterans Day, and took forecasts that day, but the configured window still closed on Wednesday 11 November at 23:59 EST. So `validate-submission` failed on `submission_time` only (every check on the file passed), as it did on every other team's Thursday PR, which the Hub maintainers merged by hand. Authorization passed; `approve-and-merge` failed on a GitHub GraphQL error, and the job could not be rerun from the fork. A Hub maintainer (O957) merged it by hand at 17:23 EST on 12 November.
 
 - **Model:** release `production/releases/covid-gru-four-candidate-20261103.json` (40 fits, described under Current model, no refit), full-strength tree correction, view `corrected`, issuance 11 November.
 - **Operational inputs:** root `data/operational-20261111/` (pulled by the flu session on 12 November, 16:51-17:02 EST), panel `processed/panel.npz`, SHA256 `f478b2da51e97e1403ac557b4dbbb2dd46a9bf4cf38c9151a198c56b39cdb90d` (the flu panel).
