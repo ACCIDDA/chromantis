@@ -1,0 +1,445 @@
+{
+  "release": {
+    "name": "covid-gru-four-candidate-20261103",
+    "model_abbr": "Chromantis",
+    "hub": "covid",
+    "problem": "problems/us-covid-production.json",
+    "rule": "mixture",
+    "view": "corrected",
+    "description": "Candidate for the first COVID Hub submission, 7 November 2026. Equal mixture of four recipes, each refit on all of 2022-23 through 2025-26 with finalized future admissions and ED labels, ten seeds (42-51) each: (1) width-192 sampled MLP with neighbouring-state exchange and artificial reporting errors on half of training episodes; (2) width-256 direct-quantile model with a GRU encoder, a US-only summary shared with states, and reporting errors on 25% of episodes; (3) width-256 direct-quantile MLP with finalized training histories, a US-only summary and multiscale signal features; (4) width-256 direct-quantile MLP with neighbouring-state exchange, errors on half of episodes and weight decay 1e-4. No covariates. Deployment uses corrected reported inputs. Not yet submitted.",
+    "recipes": {
+      "Ah.neighbors": [
+        {
+          "checkpoint": "data/production-fits/covid-1030-production01/mlp-pathogen-scheduled_final-470ac49f9789/s42/attempt-001/eval_2026-2027",
+          "sha256": "64d96e611dd4f82cbddc4f08497ee358d1b1dc608896062ac9d5da8be0a5a550"
+        },
+        {
+          "checkpoint": "data/production-fits/covid-1030-production01/mlp-pathogen-scheduled_final-470ac49f9789/s43/attempt-001/eval_2026-2027",
+          "sha256": "f8a603751f8ec7f934cf5027b0f75b1f14dd951b39e59da1924f063088f5d986"
+        },
+        {
+          "checkpoint": "data/production-fits/covid-1030-production01/mlp-pathogen-scheduled_final-470ac49f9789/s44/attempt-001/eval_2026-2027",
+          "sha256": "97f4a51e7b2c8046ca9e018d1cda578e3ebc50d42e921a7485b981d0f62849d1"
+        },
+        {
+          "checkpoint": "data/production-fits/covid-1030-production01/mlp-pathogen-scheduled_final-470ac49f9789/s45/attempt-001/eval_2026-2027",
+          "sha256": "e7140509bd573e9228a420f50373ca7981c18dc3ae1d811a12f2c24c2bd15939"
+        },
+        {
+          "checkpoint": "data/production-fits/covid-1030-production01/mlp-pathogen-scheduled_final-470ac49f9789/s46/attempt-001/eval_2026-2027",
+          "sha256": "b3f700ac941f4c4ff901f11b12e6801405ca32941effcbddbfa0dcc72cb15756"
+        },
+        {
+          "checkpoint": "data/production-fits/covid-1030-production01/mlp-pathogen-scheduled_final-470ac49f9789/s47/attempt-001/eval_2026-2027",
+          "sha256": "bafd5a5cf15790dcb69ed82c5547f0fea2c1e0df5e07317e2327e722a16ffcff"
+        },
+        {
+          "checkpoint": "data/production-fits/covid-1030-production01/mlp-pathogen-scheduled_final-470ac49f9789/s48/attempt-001/eval_2026-2027",
+          "sha256": "8a17cbbf487ab9176a537beeb0ffd7216f5b2211735f1b27ceda6dc0e87b1206"
+        },
+        {
+          "checkpoint": "data/production-fits/covid-1030-production01/mlp-pathogen-scheduled_final-470ac49f9789/s49/attempt-001/eval_2026-2027",
+          "sha256": "3c49278f60d0f480a547668911fdcfa1548ecb46683c98b8dc56c583438ea738"
+        },
+        {
+          "checkpoint": "data/production-fits/covid-1030-production01/mlp-pathogen-scheduled_final-470ac49f9789/s50/attempt-001/eval_2026-2027",
+          "sha256": "55d6da5b1a21db07bac54f2b753fa77b0ed53e54d328cd23a7bcced8ffc07d69"
+        },
+        {
+          "checkpoint": "data/production-fits/covid-1030-production01/mlp-pathogen-scheduled_final-470ac49f9789/s51/attempt-001/eval_2026-2027",
+          "sha256": "1a951bbaeb73808b813bca346123d89896cc9e57f82d61288b327d7bcdbc659e"
+        }
+      ],
+      "pN.enc_gru": [
+        {
+          "checkpoint": "data/production-fits/covid-1030-production04/gru-pathogen-scheduled_final-a9138ae0866a/s42/attempt-001/eval_2026-2027",
+          "sha256": "bbf284585ec6826b21322c28dd2fdd53d3202f4b21c9f72b8d5353d564fb3186"
+        },
+        {
+          "checkpoint": "data/production-fits/covid-1030-production04/gru-pathogen-scheduled_final-a9138ae0866a/s43/attempt-001/eval_2026-2027",
+          "sha256": "7b8838397d5a26e517598386b7c95093a99a74535f372d78611bc3290000d317"
+        },
+        {
+          "checkpoint": "data/production-fits/covid-1030-production04/gru-pathogen-scheduled_final-a9138ae0866a/s44/attempt-001/eval_2026-2027",
+          "sha256": "bb1b2ea3146f935bf87657df4c3737eab517ae57a5008cfa62e4de72a51f2ec7"
+        },
+        {
+          "checkpoint": "data/production-fits/covid-1030-production04/gru-pathogen-scheduled_final-a9138ae0866a/s45/attempt-001/eval_2026-2027",
+          "sha256": "bd7cea63ce7eb29c4172845b38e6a52ba48e8f6d3451f928d7adc648b49559e1"
+        },
+        {
+          "checkpoint": "data/production-fits/covid-1030-production04/gru-pathogen-scheduled_final-a9138ae0866a/s46/attempt-001/eval_2026-2027",
+          "sha256": "efd1ab6010e258f654fa0859606e1bb1f8f0abe6f43a49f664fd4118b370e914"
+        },
+        {
+          "checkpoint": "data/production-fits/covid-1030-production04/gru-pathogen-scheduled_final-a9138ae0866a/s47/attempt-001/eval_2026-2027",
+          "sha256": "e5614d74b7bf6acc5715f21f1f7d7bc28fead24c18eedd458e792154a45c57ed"
+        },
+        {
+          "checkpoint": "data/production-fits/covid-1030-production04/gru-pathogen-scheduled_final-a9138ae0866a/s48/attempt-001/eval_2026-2027",
+          "sha256": "d18d721dd2081a48532bc085288ddb29e995314abb1ff1dcb981f0a6b41aad61"
+        },
+        {
+          "checkpoint": "data/production-fits/covid-1030-production04/gru-pathogen-scheduled_final-a9138ae0866a/s49/attempt-001/eval_2026-2027",
+          "sha256": "4066ede1734c91cd8e1562729c59094e2ccdb789552052879824994783897da8"
+        },
+        {
+          "checkpoint": "data/production-fits/covid-1030-production04/gru-pathogen-scheduled_final-a9138ae0866a/s50/attempt-001/eval_2026-2027",
+          "sha256": "90105dc18aac3dd516ad021ca4b4c854f4de7b35c124ce9157592c5d81f0de1c"
+        },
+        {
+          "checkpoint": "data/production-fits/covid-1030-production04/gru-pathogen-scheduled_final-a9138ae0866a/s51/attempt-001/eval_2026-2027",
+          "sha256": "fca744d719ac411d64c130c4a9a95361b49508906445e608451e971a9cf2382d"
+        }
+      ],
+      "N.multiscale": [
+        {
+          "checkpoint": "data/production-fits/covid-1030-production04/mlp-pathogen-scheduled_final-5da8dcf13bc9/s42/attempt-001/eval_2026-2027",
+          "sha256": "a00b835387af51cc24318b06573527b6e8b3e9fde0541b775728aa11356e611c"
+        },
+        {
+          "checkpoint": "data/production-fits/covid-1030-production04/mlp-pathogen-scheduled_final-5da8dcf13bc9/s43/attempt-001/eval_2026-2027",
+          "sha256": "f4816b54a8503eabcaf372abbdc9b56a08c5a165f538461e34bac549671af394"
+        },
+        {
+          "checkpoint": "data/production-fits/covid-1030-production04/mlp-pathogen-scheduled_final-5da8dcf13bc9/s44/attempt-001/eval_2026-2027",
+          "sha256": "cf2818d57baf144dc607ec94f6a34705181e0068cf04fb15c95dc80db7912a41"
+        },
+        {
+          "checkpoint": "data/production-fits/covid-1030-production04/mlp-pathogen-scheduled_final-5da8dcf13bc9/s45/attempt-001/eval_2026-2027",
+          "sha256": "5bcbdd796f420b105d26a1d9c4d2a473e5866703417fa655dd21f03225f9aebf"
+        },
+        {
+          "checkpoint": "data/production-fits/covid-1030-production04/mlp-pathogen-scheduled_final-5da8dcf13bc9/s46/attempt-001/eval_2026-2027",
+          "sha256": "5fbda8bbd252239c2140eec43af5d3dc632a28c7ee9218ea02c6d3e5581dd1b4"
+        },
+        {
+          "checkpoint": "data/production-fits/covid-1030-production04/mlp-pathogen-scheduled_final-5da8dcf13bc9/s47/attempt-001/eval_2026-2027",
+          "sha256": "98021d96e3108680225d7f83a0a37e0bafb4aff7141b595c56ebf340e24e8296"
+        },
+        {
+          "checkpoint": "data/production-fits/covid-1030-production04/mlp-pathogen-scheduled_final-5da8dcf13bc9/s48/attempt-001/eval_2026-2027",
+          "sha256": "3d3716414d9e8c63769643b66ab7c5622fe527b34fc018e12b1ab4ec2ee0cd7e"
+        },
+        {
+          "checkpoint": "data/production-fits/covid-1030-production04/mlp-pathogen-scheduled_final-5da8dcf13bc9/s49/attempt-001/eval_2026-2027",
+          "sha256": "8b182387f65e008513cd670278d5286c6da62995a0b2d3acc47b3780488b6fe7"
+        },
+        {
+          "checkpoint": "data/production-fits/covid-1030-production04/mlp-pathogen-scheduled_final-5da8dcf13bc9/s50/attempt-001/eval_2026-2027",
+          "sha256": "a87da19d79627627e05a8a02e6c8c2cce83a4b6330ac0585061d41fc14a31d4e"
+        },
+        {
+          "checkpoint": "data/production-fits/covid-1030-production04/mlp-pathogen-scheduled_final-5da8dcf13bc9/s51/attempt-001/eval_2026-2027",
+          "sha256": "b5fcaa43eb5ffa3f9a3f4be3345857e8e121f31091eba97aa9b394fbb9a9a71e"
+        }
+      ],
+      "Bh.wd": [
+        {
+          "checkpoint": "data/production-fits/covid-1030-production01/mlp-pathogen-scheduled_final-e9dd73459cf4/s42/attempt-001/eval_2026-2027",
+          "sha256": "f51a4ed3728bce3ebb4b847eccf5cc7eca50fd01791b8b9784d7ce61742f4c18"
+        },
+        {
+          "checkpoint": "data/production-fits/covid-1030-production01/mlp-pathogen-scheduled_final-e9dd73459cf4/s43/attempt-001/eval_2026-2027",
+          "sha256": "37d16d17117cea8a283cef9a5a5681d455bfaa3067f7c0044a7314308f436747"
+        },
+        {
+          "checkpoint": "data/production-fits/covid-1030-production01/mlp-pathogen-scheduled_final-e9dd73459cf4/s44/attempt-001/eval_2026-2027",
+          "sha256": "8444007002610a2ae4b5350594bcd99261bec1ace90c2ade1850a0bd092fa61c"
+        },
+        {
+          "checkpoint": "data/production-fits/covid-1030-production01/mlp-pathogen-scheduled_final-e9dd73459cf4/s45/attempt-001/eval_2026-2027",
+          "sha256": "bac525dd3ae9730e195a2771f8d577f3a782c5de6f6201b66cb71d37733b363a"
+        },
+        {
+          "checkpoint": "data/production-fits/covid-1030-production01/mlp-pathogen-scheduled_final-e9dd73459cf4/s46/attempt-001/eval_2026-2027",
+          "sha256": "bf659b0a16b7fa0d2a1569a668ad63617f08584aefdaae50ee2a45b258adc0d3"
+        },
+        {
+          "checkpoint": "data/production-fits/covid-1030-production01/mlp-pathogen-scheduled_final-e9dd73459cf4/s47/attempt-001/eval_2026-2027",
+          "sha256": "29f2b971fa57efd856fd54e9e8caee3b46d1b489e21b75eaf96bed82a180c034"
+        },
+        {
+          "checkpoint": "data/production-fits/covid-1030-production01/mlp-pathogen-scheduled_final-e9dd73459cf4/s48/attempt-001/eval_2026-2027",
+          "sha256": "30ad826f32207bfe656beb11b709d86b3b00a02b15576b381d263feeae3dc724"
+        },
+        {
+          "checkpoint": "data/production-fits/covid-1030-production01/mlp-pathogen-scheduled_final-e9dd73459cf4/s49/attempt-001/eval_2026-2027",
+          "sha256": "eef41fc8a261ab664374cc605a41892074edb5e8f7fcd3facd405e1e7f594376"
+        },
+        {
+          "checkpoint": "data/production-fits/covid-1030-production01/mlp-pathogen-scheduled_final-e9dd73459cf4/s50/attempt-001/eval_2026-2027",
+          "sha256": "67381a3e65337263bb50e906fe60a180f438be9a9ff9d5ddf0a8462a4550481d"
+        },
+        {
+          "checkpoint": "data/production-fits/covid-1030-production01/mlp-pathogen-scheduled_final-e9dd73459cf4/s51/attempt-001/eval_2026-2027",
+          "sha256": "8604863066f2db4f7c2283d097cb82f561e8da2c7b88026b0d1e53cfded39f68"
+        }
+      ]
+    }
+  },
+  "sources": [
+    {
+      "recipe": "Ah.neighbors",
+      "directory": "production/output/2026-11-04/covid-gru-four-candidate-20261103/forecasts/Ah.neighbors/s42",
+      "checkpoint_sha256": "64d96e611dd4f82cbddc4f08497ee358d1b1dc608896062ac9d5da8be0a5a550",
+      "forecast_sha256": "2ec490910986fd9d90735dbad75b2892516da1fb4a88ffe78199f59f63084762"
+    },
+    {
+      "recipe": "Ah.neighbors",
+      "directory": "production/output/2026-11-04/covid-gru-four-candidate-20261103/forecasts/Ah.neighbors/s43",
+      "checkpoint_sha256": "f8a603751f8ec7f934cf5027b0f75b1f14dd951b39e59da1924f063088f5d986",
+      "forecast_sha256": "56b4fcd95901f6b9abeee14be08153da628220cccf7d3f8bfea2273b98bfda8b"
+    },
+    {
+      "recipe": "Ah.neighbors",
+      "directory": "production/output/2026-11-04/covid-gru-four-candidate-20261103/forecasts/Ah.neighbors/s44",
+      "checkpoint_sha256": "97f4a51e7b2c8046ca9e018d1cda578e3ebc50d42e921a7485b981d0f62849d1",
+      "forecast_sha256": "add4faaf01b5cc4aa7129a154bdf57e70aa9e5713365824013fd6020780ea9f8"
+    },
+    {
+      "recipe": "Ah.neighbors",
+      "directory": "production/output/2026-11-04/covid-gru-four-candidate-20261103/forecasts/Ah.neighbors/s45",
+      "checkpoint_sha256": "e7140509bd573e9228a420f50373ca7981c18dc3ae1d811a12f2c24c2bd15939",
+      "forecast_sha256": "0c7e64099b673c5e87c1ba805c434d8cc78e660bdaff2d5b2aa1a46d68c46921"
+    },
+    {
+      "recipe": "Ah.neighbors",
+      "directory": "production/output/2026-11-04/covid-gru-four-candidate-20261103/forecasts/Ah.neighbors/s46",
+      "checkpoint_sha256": "b3f700ac941f4c4ff901f11b12e6801405ca32941effcbddbfa0dcc72cb15756",
+      "forecast_sha256": "969f790251a54f6d188d6017b279bb83a01feede4dc93f244a5ae8aecbe48ba9"
+    },
+    {
+      "recipe": "Ah.neighbors",
+      "directory": "production/output/2026-11-04/covid-gru-four-candidate-20261103/forecasts/Ah.neighbors/s47",
+      "checkpoint_sha256": "bafd5a5cf15790dcb69ed82c5547f0fea2c1e0df5e07317e2327e722a16ffcff",
+      "forecast_sha256": "c910d8774153c8f128f21e92155542c31cc174ea2d7d767ee37730111d117f89"
+    },
+    {
+      "recipe": "Ah.neighbors",
+      "directory": "production/output/2026-11-04/covid-gru-four-candidate-20261103/forecasts/Ah.neighbors/s48",
+      "checkpoint_sha256": "8a17cbbf487ab9176a537beeb0ffd7216f5b2211735f1b27ceda6dc0e87b1206",
+      "forecast_sha256": "be7f3aace94623d81a03ed07cceb9803fc68a4d4a6736226d8b44fa00943b64c"
+    },
+    {
+      "recipe": "Ah.neighbors",
+      "directory": "production/output/2026-11-04/covid-gru-four-candidate-20261103/forecasts/Ah.neighbors/s49",
+      "checkpoint_sha256": "3c49278f60d0f480a547668911fdcfa1548ecb46683c98b8dc56c583438ea738",
+      "forecast_sha256": "e398bb785d31be777f0f431802b43fd15cc2b19f32c0d130b0f9d27273a80d9b"
+    },
+    {
+      "recipe": "Ah.neighbors",
+      "directory": "production/output/2026-11-04/covid-gru-four-candidate-20261103/forecasts/Ah.neighbors/s50",
+      "checkpoint_sha256": "55d6da5b1a21db07bac54f2b753fa77b0ed53e54d328cd23a7bcced8ffc07d69",
+      "forecast_sha256": "727b159a9ff5aff88169689b1311423121474405e6a4c248f2e8c9b3f87d6699"
+    },
+    {
+      "recipe": "Ah.neighbors",
+      "directory": "production/output/2026-11-04/covid-gru-four-candidate-20261103/forecasts/Ah.neighbors/s51",
+      "checkpoint_sha256": "1a951bbaeb73808b813bca346123d89896cc9e57f82d61288b327d7bcdbc659e",
+      "forecast_sha256": "a45ae0d3bcca0c9540b8dc15c5e1dcbad0ad6eccf17c81822a7983a4f4fbb7b2"
+    },
+    {
+      "recipe": "pN.enc_gru",
+      "directory": "production/output/2026-11-04/covid-gru-four-candidate-20261103/forecasts/pN.enc_gru/s42",
+      "checkpoint_sha256": "bbf284585ec6826b21322c28dd2fdd53d3202f4b21c9f72b8d5353d564fb3186",
+      "forecast_sha256": "f3825b14b053ba14ef18213631919e23dedc317f18ca01fb4ad271860a465983"
+    },
+    {
+      "recipe": "pN.enc_gru",
+      "directory": "production/output/2026-11-04/covid-gru-four-candidate-20261103/forecasts/pN.enc_gru/s43",
+      "checkpoint_sha256": "7b8838397d5a26e517598386b7c95093a99a74535f372d78611bc3290000d317",
+      "forecast_sha256": "852739abd0ffbf5724409f7b796082ebf92369fa1c70648f07e66bc7dbde0bc0"
+    },
+    {
+      "recipe": "pN.enc_gru",
+      "directory": "production/output/2026-11-04/covid-gru-four-candidate-20261103/forecasts/pN.enc_gru/s44",
+      "checkpoint_sha256": "bb1b2ea3146f935bf87657df4c3737eab517ae57a5008cfa62e4de72a51f2ec7",
+      "forecast_sha256": "095a00515883ecc129103e940420df67658c3d75b3ff9e9c7f0ef123f3b39625"
+    },
+    {
+      "recipe": "pN.enc_gru",
+      "directory": "production/output/2026-11-04/covid-gru-four-candidate-20261103/forecasts/pN.enc_gru/s45",
+      "checkpoint_sha256": "bd7cea63ce7eb29c4172845b38e6a52ba48e8f6d3451f928d7adc648b49559e1",
+      "forecast_sha256": "00776f37b103b25db001889a0b1cfac8d9d73eee079a847b7eb783ccc8b6a458"
+    },
+    {
+      "recipe": "pN.enc_gru",
+      "directory": "production/output/2026-11-04/covid-gru-four-candidate-20261103/forecasts/pN.enc_gru/s46",
+      "checkpoint_sha256": "efd1ab6010e258f654fa0859606e1bb1f8f0abe6f43a49f664fd4118b370e914",
+      "forecast_sha256": "d8d7f1bd1adddce43efc7d2a9e41d033c51da35f8615571eac40f611ca40a81b"
+    },
+    {
+      "recipe": "pN.enc_gru",
+      "directory": "production/output/2026-11-04/covid-gru-four-candidate-20261103/forecasts/pN.enc_gru/s47",
+      "checkpoint_sha256": "e5614d74b7bf6acc5715f21f1f7d7bc28fead24c18eedd458e792154a45c57ed",
+      "forecast_sha256": "45b50e113f4d0d594c7730247c57320ecbe74a1850bdbb3516b69014df578973"
+    },
+    {
+      "recipe": "pN.enc_gru",
+      "directory": "production/output/2026-11-04/covid-gru-four-candidate-20261103/forecasts/pN.enc_gru/s48",
+      "checkpoint_sha256": "d18d721dd2081a48532bc085288ddb29e995314abb1ff1dcb981f0a6b41aad61",
+      "forecast_sha256": "eee7c22ae3ba6f0448e805474ff2c4b37e4765e86f486d594fbeafc1bd82d593"
+    },
+    {
+      "recipe": "pN.enc_gru",
+      "directory": "production/output/2026-11-04/covid-gru-four-candidate-20261103/forecasts/pN.enc_gru/s49",
+      "checkpoint_sha256": "4066ede1734c91cd8e1562729c59094e2ccdb789552052879824994783897da8",
+      "forecast_sha256": "da8b7602bb2804b3f2853fb3456a61d031c832a09e773b16d959c407a515370b"
+    },
+    {
+      "recipe": "pN.enc_gru",
+      "directory": "production/output/2026-11-04/covid-gru-four-candidate-20261103/forecasts/pN.enc_gru/s50",
+      "checkpoint_sha256": "90105dc18aac3dd516ad021ca4b4c854f4de7b35c124ce9157592c5d81f0de1c",
+      "forecast_sha256": "41fb5bdf695a549fae241966f8f5b1fa46d5e57c37c13d748b23bf1a72586966"
+    },
+    {
+      "recipe": "pN.enc_gru",
+      "directory": "production/output/2026-11-04/covid-gru-four-candidate-20261103/forecasts/pN.enc_gru/s51",
+      "checkpoint_sha256": "fca744d719ac411d64c130c4a9a95361b49508906445e608451e971a9cf2382d",
+      "forecast_sha256": "1029706f5455977c921130e107ce15ec517bbc94e5dfb50ae24aa7f99de5d36a"
+    },
+    {
+      "recipe": "N.multiscale",
+      "directory": "production/output/2026-11-04/covid-gru-four-candidate-20261103/forecasts/N.multiscale/s42",
+      "checkpoint_sha256": "a00b835387af51cc24318b06573527b6e8b3e9fde0541b775728aa11356e611c",
+      "forecast_sha256": "851dbca24e02810e8615e91a3a226a09932dbefbb487517701b2f9be55c8992e"
+    },
+    {
+      "recipe": "N.multiscale",
+      "directory": "production/output/2026-11-04/covid-gru-four-candidate-20261103/forecasts/N.multiscale/s43",
+      "checkpoint_sha256": "f4816b54a8503eabcaf372abbdc9b56a08c5a165f538461e34bac549671af394",
+      "forecast_sha256": "9a853df35a4e5685f10ddd16f0aafcc357c3116f434ce83263c6e92d52b11503"
+    },
+    {
+      "recipe": "N.multiscale",
+      "directory": "production/output/2026-11-04/covid-gru-four-candidate-20261103/forecasts/N.multiscale/s44",
+      "checkpoint_sha256": "cf2818d57baf144dc607ec94f6a34705181e0068cf04fb15c95dc80db7912a41",
+      "forecast_sha256": "dc72a54595e2f0448a1875f70d2be91b58d4eeac58fcef15a50cd6588b6fcc8b"
+    },
+    {
+      "recipe": "N.multiscale",
+      "directory": "production/output/2026-11-04/covid-gru-four-candidate-20261103/forecasts/N.multiscale/s45",
+      "checkpoint_sha256": "5bcbdd796f420b105d26a1d9c4d2a473e5866703417fa655dd21f03225f9aebf",
+      "forecast_sha256": "61371b932ff3f07ce7f78a4e79301f92b538f43d49c646b73870a6e7af2633bf"
+    },
+    {
+      "recipe": "N.multiscale",
+      "directory": "production/output/2026-11-04/covid-gru-four-candidate-20261103/forecasts/N.multiscale/s46",
+      "checkpoint_sha256": "5fbda8bbd252239c2140eec43af5d3dc632a28c7ee9218ea02c6d3e5581dd1b4",
+      "forecast_sha256": "bc5cdef917cc812b1d2ff4d5f2cc8ac0bd79adac27f61ecb766793c972c43065"
+    },
+    {
+      "recipe": "N.multiscale",
+      "directory": "production/output/2026-11-04/covid-gru-four-candidate-20261103/forecasts/N.multiscale/s47",
+      "checkpoint_sha256": "98021d96e3108680225d7f83a0a37e0bafb4aff7141b595c56ebf340e24e8296",
+      "forecast_sha256": "d74f103a0af342994e5e3c62709d539dc9e000ea20801cd4d86f43682130e33b"
+    },
+    {
+      "recipe": "N.multiscale",
+      "directory": "production/output/2026-11-04/covid-gru-four-candidate-20261103/forecasts/N.multiscale/s48",
+      "checkpoint_sha256": "3d3716414d9e8c63769643b66ab7c5622fe527b34fc018e12b1ab4ec2ee0cd7e",
+      "forecast_sha256": "171351542e7cc4ecbdeff56704757cf38fe9386b9bdef5244059c2f1a6fd9593"
+    },
+    {
+      "recipe": "N.multiscale",
+      "directory": "production/output/2026-11-04/covid-gru-four-candidate-20261103/forecasts/N.multiscale/s49",
+      "checkpoint_sha256": "8b182387f65e008513cd670278d5286c6da62995a0b2d3acc47b3780488b6fe7",
+      "forecast_sha256": "6a16c524ee45423545c9a01bdd664c8b61fcecd31644e6a70e691c4d422acb71"
+    },
+    {
+      "recipe": "N.multiscale",
+      "directory": "production/output/2026-11-04/covid-gru-four-candidate-20261103/forecasts/N.multiscale/s50",
+      "checkpoint_sha256": "a87da19d79627627e05a8a02e6c8c2cce83a4b6330ac0585061d41fc14a31d4e",
+      "forecast_sha256": "0e40ec7bfaab4054ad62b08754d1878377b61646bb85ec1d69cd62c54d3ab2cf"
+    },
+    {
+      "recipe": "N.multiscale",
+      "directory": "production/output/2026-11-04/covid-gru-four-candidate-20261103/forecasts/N.multiscale/s51",
+      "checkpoint_sha256": "b5fcaa43eb5ffa3f9a3f4be3345857e8e121f31091eba97aa9b394fbb9a9a71e",
+      "forecast_sha256": "dce1c4d4256c84274b9aa183c7d694ae325e43af95ef4988e2ba178096f62a92"
+    },
+    {
+      "recipe": "Bh.wd",
+      "directory": "production/output/2026-11-04/covid-gru-four-candidate-20261103/forecasts/Bh.wd/s42",
+      "checkpoint_sha256": "f51a4ed3728bce3ebb4b847eccf5cc7eca50fd01791b8b9784d7ce61742f4c18",
+      "forecast_sha256": "fd4993a49f8029746f034fe2074152eda36a7e36b6b389b3e3ac565b61f952a1"
+    },
+    {
+      "recipe": "Bh.wd",
+      "directory": "production/output/2026-11-04/covid-gru-four-candidate-20261103/forecasts/Bh.wd/s43",
+      "checkpoint_sha256": "37d16d17117cea8a283cef9a5a5681d455bfaa3067f7c0044a7314308f436747",
+      "forecast_sha256": "24ce626b579fda65c9ddbb4ccf219ef7e8f69e8da62b56c215c487cdc589637c"
+    },
+    {
+      "recipe": "Bh.wd",
+      "directory": "production/output/2026-11-04/covid-gru-four-candidate-20261103/forecasts/Bh.wd/s44",
+      "checkpoint_sha256": "8444007002610a2ae4b5350594bcd99261bec1ace90c2ade1850a0bd092fa61c",
+      "forecast_sha256": "e101936d2c396816a5153d9ce6381269b328b85c6987e28e58d2ba5b7810a590"
+    },
+    {
+      "recipe": "Bh.wd",
+      "directory": "production/output/2026-11-04/covid-gru-four-candidate-20261103/forecasts/Bh.wd/s45",
+      "checkpoint_sha256": "bac525dd3ae9730e195a2771f8d577f3a782c5de6f6201b66cb71d37733b363a",
+      "forecast_sha256": "d2f77d272738b6d125cb5590fc0eb313ecbb66e1163911bd74b36e4dcb700ae8"
+    },
+    {
+      "recipe": "Bh.wd",
+      "directory": "production/output/2026-11-04/covid-gru-four-candidate-20261103/forecasts/Bh.wd/s46",
+      "checkpoint_sha256": "bf659b0a16b7fa0d2a1569a668ad63617f08584aefdaae50ee2a45b258adc0d3",
+      "forecast_sha256": "4be8d045877ffb10f4002dc20d24b1dd1f56c87bfb499c7db531bfecea289f80"
+    },
+    {
+      "recipe": "Bh.wd",
+      "directory": "production/output/2026-11-04/covid-gru-four-candidate-20261103/forecasts/Bh.wd/s47",
+      "checkpoint_sha256": "29f2b971fa57efd856fd54e9e8caee3b46d1b489e21b75eaf96bed82a180c034",
+      "forecast_sha256": "7f351abf7f944f9cb9201d356562f47d4dbe00855d378db28c3af4efd1b02a97"
+    },
+    {
+      "recipe": "Bh.wd",
+      "directory": "production/output/2026-11-04/covid-gru-four-candidate-20261103/forecasts/Bh.wd/s48",
+      "checkpoint_sha256": "30ad826f32207bfe656beb11b709d86b3b00a02b15576b381d263feeae3dc724",
+      "forecast_sha256": "a205355c8af6d131117e701585708c1dac4507c5a6e511d625021d8378eb8658"
+    },
+    {
+      "recipe": "Bh.wd",
+      "directory": "production/output/2026-11-04/covid-gru-four-candidate-20261103/forecasts/Bh.wd/s49",
+      "checkpoint_sha256": "eef41fc8a261ab664374cc605a41892074edb5e8f7fcd3facd405e1e7f594376",
+      "forecast_sha256": "92f9463d09781a2a67ef6fe00941cd35b0cad1a438f6974fb71c8c999a9acb99"
+    },
+    {
+      "recipe": "Bh.wd",
+      "directory": "production/output/2026-11-04/covid-gru-four-candidate-20261103/forecasts/Bh.wd/s50",
+      "checkpoint_sha256": "67381a3e65337263bb50e906fe60a180f438be9a9ff9d5ddf0a8462a4550481d",
+      "forecast_sha256": "96b9d93d30b9ac56835e92907010d41a0638274d391d79bd0bcdfeb42e8308c4"
+    },
+    {
+      "recipe": "Bh.wd",
+      "directory": "production/output/2026-11-04/covid-gru-four-candidate-20261103/forecasts/Bh.wd/s51",
+      "checkpoint_sha256": "8604863066f2db4f7c2283d097cb82f561e8da2c7b88026b0d1e53cfded39f68",
+      "forecast_sha256": "e20bdfe5481925dc8b9882c9825abc7bba573ae27f7c34ae9e25b449628de363"
+    }
+  ],
+  "adjustments": [],
+  "rows": 92768,
+  "issuance": "2026-11-04",
+  "operational_panel_sha256": "6486441cdc6ef06dbc6a5a9724a8841b196ca6b4ba0bf55cf5f64fcf2b162d7c",
+  "hub_tasks_sha256": "66910ec9d8ce2d189c5fb5c7406f8b81c1469ad931a16660f442d98a7fc9e572",
+  "output_sha256": "da1304b4bc45412d3f8a2130f68fcbeec9a1423a7495ca475440bc2faeb1a401",
+  "problem": "problems/us-covid-production.json",
+  "problem_sha256": "53ffac1d582727a777ed837d3b7ed9a2ba0e3a2c886079b385782092e6bab70f",
+  "definition": {
+    "note": "Candidate for the first COVID Hub submission, 7 November 2026. Equal mixture of four recipes, each refit on all of 2022-23 through 2025-26 with finalized future admissions and ED labels, ten seeds (42-51) each: (1) width-192 sampled MLP with neighbouring-state exchange and artificial reporting errors on half of training episodes; (2) width-256 direct-quantile model with a GRU encoder, a US-only summary shared with states, and reporting errors on 25% of episodes; (3) width-256 direct-quantile MLP with finalized training histories, a US-only summary and multiscale signal features; (4) width-256 direct-quantile MLP with neighbouring-state exchange, errors on half of episodes and weight decay 1e-4. No covariates. Deployment uses corrected reported inputs. Not yet submitted."
+  },
+  "trajectories": {
+    "samples_per_location": 200,
+    "recipes": {
+      "Ah.neighbors": "own draws",
+      "pN.enc_gru": "stratified marginals from quantiles, Schaake-ordered by the sampling recipes",
+      "N.multiscale": "stratified marginals from quantiles, Schaake-ordered by the sampling recipes",
+      "Bh.wd": "stratified marginals from quantiles, Schaake-ordered by the sampling recipes"
+    },
+    "sample_id": "<location abbreviation>_<k>, shared by every horizon and target of a location"
+  },
+  "parquet_sha256": "632ea80f92beb76ce33372e7d9235bd6a4968a01bd8c71331a4d23cd76047585"
+}

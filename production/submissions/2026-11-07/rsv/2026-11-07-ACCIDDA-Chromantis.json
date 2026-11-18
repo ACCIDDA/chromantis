@@ -1,0 +1,447 @@
+{
+  "release": {
+    "name": "rsv-four-20261014",
+    "model_abbr": "Chromantis",
+    "hub": "rsv",
+    "problem": "problems/us-rsv-production.json",
+    "rule": "mixture",
+    "view": "corrected",
+    "description": "RSV four-recipe mixture (fixed 2026-10-14 before its score was seen): Ball_c0w512 (Ba_ll: width-512 direct-quantile MLP, neighbouring-state exchange, all actual archived reports, log-loss 0.75, calendar features off), A4c0 (A4: width-192 sampled MLP with corrected histories, Kinsa, log-loss 1, calendar off), A4i (A4 with all six admission/ED input histories) and Bw (B_width256 with all six input histories); Ball_c0w512 also uses all six. Trained on 2022-23 through 2025-26 (no held-out season), seeds 42-51 per recipe, on panel-rsv.npz: NHSN RSV admissions before 2024-11-02 treated as unobserved (voluntary reporting), so admission labels start November 2024; RSV ED from October 2022. Training admission/ED histories made preliminary with artificial errors from the prescribed 2025-26 RSV reporting process. Labels: latest finalized future RSV admissions and ED (September 2026 panel). Equal weight per recipe and per seed; predictive distributions mixed. Selected by tree search rsv-tree-20261013 (experiments/rsv-tree-20261013/protocol.json): held-out states/DC log-admission WIS 0.3105 on artificial preliminary inputs, 0.3114 replayed on archived reports (2024-25, 2025-26).",
+    "training_design": "experiments/rsv-tree-20261013/production-01.json",
+    "checkpoints_from": "longleaf:/proj/jlessler/projects/tapestry-all/tapestry/data/experiments/rsv-production-20261014",
+    "recipes": {
+      "Ball_c0w512": [
+        {
+          "checkpoint": "data/production-fits/rsv-production-20261014/mlp-pathogen-scheduled_final-d6ef19f705ec/s42/attempt-001/eval_2026-2027",
+          "sha256": "87cba3f1cb15d87d8115b4d4e7f30d80278ec1350fad9a43cd5a90994f3ff160"
+        },
+        {
+          "checkpoint": "data/production-fits/rsv-production-20261014/mlp-pathogen-scheduled_final-d6ef19f705ec/s43/attempt-001/eval_2026-2027",
+          "sha256": "ef62f8899c38d10c8926fbaeb8d238b6e7a33d68a91b3eba8a3374c729846e8e"
+        },
+        {
+          "checkpoint": "data/production-fits/rsv-production-20261014/mlp-pathogen-scheduled_final-d6ef19f705ec/s44/attempt-001/eval_2026-2027",
+          "sha256": "dfa295628f9d41db13b3c18bdffad6293fd31439e2730e84fb04e1f00e2338f4"
+        },
+        {
+          "checkpoint": "data/production-fits/rsv-production-20261014/mlp-pathogen-scheduled_final-d6ef19f705ec/s45/attempt-001/eval_2026-2027",
+          "sha256": "c3b38d356d17a7da6f268713f44f142fec0910d21d85fdb263eb4f8cd48c447f"
+        },
+        {
+          "checkpoint": "data/production-fits/rsv-production-20261014/mlp-pathogen-scheduled_final-d6ef19f705ec/s46/attempt-001/eval_2026-2027",
+          "sha256": "6d41d6fe54269c3a22cc38d34623f1c633601c1b41bf2cad9ca7da40ee9c8639"
+        },
+        {
+          "checkpoint": "data/production-fits/rsv-production-20261014/mlp-pathogen-scheduled_final-d6ef19f705ec/s47/attempt-001/eval_2026-2027",
+          "sha256": "6e45fe038ecda881ac42503858f4b8287040e74fc8d8acd8ff36428a8247066f"
+        },
+        {
+          "checkpoint": "data/production-fits/rsv-production-20261014/mlp-pathogen-scheduled_final-d6ef19f705ec/s48/attempt-001/eval_2026-2027",
+          "sha256": "03c5eb98c1bf8d5bd72c804f080634c68fab5a7f7555ecb3ba676304caad776f"
+        },
+        {
+          "checkpoint": "data/production-fits/rsv-production-20261014/mlp-pathogen-scheduled_final-d6ef19f705ec/s49/attempt-001/eval_2026-2027",
+          "sha256": "e937d200d225cafe690bcbff893c01ff815f2cdd1c4fa1594dc92d2c9b294908"
+        },
+        {
+          "checkpoint": "data/production-fits/rsv-production-20261014/mlp-pathogen-scheduled_final-d6ef19f705ec/s50/attempt-001/eval_2026-2027",
+          "sha256": "73c3cc56ac5c3d1318671cdfa002af4280de8c5a0e5a2e675711ea38dedf28fc"
+        },
+        {
+          "checkpoint": "data/production-fits/rsv-production-20261014/mlp-pathogen-scheduled_final-d6ef19f705ec/s51/attempt-001/eval_2026-2027",
+          "sha256": "cd0b5a7ca1f95694a321c0e925e4827c3a874e81f3c23830ee9b3d70a1287bba"
+        }
+      ],
+      "A4c0": [
+        {
+          "checkpoint": "data/production-fits/rsv-production-20261014/mlp-pathogen-scheduled_final-f42354ba0afa/s42/attempt-001/eval_2026-2027",
+          "sha256": "dc860d36e34e56cb7109818e6340b5264622f767f0b42d8bfe0ab9630f328c08"
+        },
+        {
+          "checkpoint": "data/production-fits/rsv-production-20261014/mlp-pathogen-scheduled_final-f42354ba0afa/s43/attempt-001/eval_2026-2027",
+          "sha256": "55e0c4ca8c87cf875db5a8278b089d94286eb4c86bb12be02371c92277dd49c2"
+        },
+        {
+          "checkpoint": "data/production-fits/rsv-production-20261014/mlp-pathogen-scheduled_final-f42354ba0afa/s44/attempt-001/eval_2026-2027",
+          "sha256": "f7f37adcf4acc0f923a3f5ce47598491dc486ffead2a849dd6f8e8b267750deb"
+        },
+        {
+          "checkpoint": "data/production-fits/rsv-production-20261014/mlp-pathogen-scheduled_final-f42354ba0afa/s45/attempt-001/eval_2026-2027",
+          "sha256": "d8d2a993d2cd148c34f960dd8857a66c1cc265ac71eb97150535ef0872d97dba"
+        },
+        {
+          "checkpoint": "data/production-fits/rsv-production-20261014/mlp-pathogen-scheduled_final-f42354ba0afa/s46/attempt-001/eval_2026-2027",
+          "sha256": "2e590bcd161766f45a5e1f4d7cab397fa06642150e0ae183917d4b096af1fce3"
+        },
+        {
+          "checkpoint": "data/production-fits/rsv-production-20261014/mlp-pathogen-scheduled_final-f42354ba0afa/s47/attempt-001/eval_2026-2027",
+          "sha256": "5345cca13b49f9a1ae61663c5fa96525331b781b7bc8c34b05d1e5b448f73a32"
+        },
+        {
+          "checkpoint": "data/production-fits/rsv-production-20261014/mlp-pathogen-scheduled_final-f42354ba0afa/s48/attempt-001/eval_2026-2027",
+          "sha256": "fd90fa9bd8abd2e29f72019a3c8ac6aebd7c8992335c88ae0ab98a90fb364964"
+        },
+        {
+          "checkpoint": "data/production-fits/rsv-production-20261014/mlp-pathogen-scheduled_final-f42354ba0afa/s49/attempt-001/eval_2026-2027",
+          "sha256": "aff8a7acc15449e2da771bdaf38e8ddfeda48989e79de708f86460e365cbaa22"
+        },
+        {
+          "checkpoint": "data/production-fits/rsv-production-20261014/mlp-pathogen-scheduled_final-f42354ba0afa/s50/attempt-001/eval_2026-2027",
+          "sha256": "3ae8d62cc32b2fddb763a198606cefe614a42d9ac57ce9bff6674cbe56d7fa05"
+        },
+        {
+          "checkpoint": "data/production-fits/rsv-production-20261014/mlp-pathogen-scheduled_final-f42354ba0afa/s51/attempt-001/eval_2026-2027",
+          "sha256": "1a4a0a0c436d26adc19abc4e149ff704ce5d31ee0d1dab0154d37e37e9f57d8c"
+        }
+      ],
+      "A4i": [
+        {
+          "checkpoint": "data/production-fits/rsv-production-20261014/mlp-pathogen-scheduled_final-92e3adb2028d/s42/attempt-001/eval_2026-2027",
+          "sha256": "d341ab403b60dae21dd50521c99b7129b96c4713fe1ea4e60355a0cef31d8320"
+        },
+        {
+          "checkpoint": "data/production-fits/rsv-production-20261014/mlp-pathogen-scheduled_final-92e3adb2028d/s43/attempt-001/eval_2026-2027",
+          "sha256": "9163edc696dd855808196839c9e6396f2653f4fa9d342d61149786ebb1def076"
+        },
+        {
+          "checkpoint": "data/production-fits/rsv-production-20261014/mlp-pathogen-scheduled_final-92e3adb2028d/s44/attempt-001/eval_2026-2027",
+          "sha256": "2d71db7edbc7dbf9a41d32fc4269ae2e543e52d446f8a19c64539b78f73a7da0"
+        },
+        {
+          "checkpoint": "data/production-fits/rsv-production-20261014/mlp-pathogen-scheduled_final-92e3adb2028d/s45/attempt-001/eval_2026-2027",
+          "sha256": "bc006f46645ee3f738541a86d2e1d091495b8265faa24175885eb0cfd55fc6ca"
+        },
+        {
+          "checkpoint": "data/production-fits/rsv-production-20261014/mlp-pathogen-scheduled_final-92e3adb2028d/s46/attempt-001/eval_2026-2027",
+          "sha256": "f9fd265a8890c13151fa904361e3af8daf6b32bea53b1550cd80cc220452aed2"
+        },
+        {
+          "checkpoint": "data/production-fits/rsv-production-20261014/mlp-pathogen-scheduled_final-92e3adb2028d/s47/attempt-001/eval_2026-2027",
+          "sha256": "c23b605671898850cbc3be35278c7c8fbf880e4645090077ec0337a6dc61663c"
+        },
+        {
+          "checkpoint": "data/production-fits/rsv-production-20261014/mlp-pathogen-scheduled_final-92e3adb2028d/s48/attempt-001/eval_2026-2027",
+          "sha256": "8b6ec41cda8b9a995bb9e65eec1aa5451286afafa5311b6d88f0ce075a06aaac"
+        },
+        {
+          "checkpoint": "data/production-fits/rsv-production-20261014/mlp-pathogen-scheduled_final-92e3adb2028d/s49/attempt-001/eval_2026-2027",
+          "sha256": "d0460817519c252b800c45b27913cc46cdbebf3dbf50917285d0219ef950f2d8"
+        },
+        {
+          "checkpoint": "data/production-fits/rsv-production-20261014/mlp-pathogen-scheduled_final-92e3adb2028d/s50/attempt-001/eval_2026-2027",
+          "sha256": "b51924470654db0faf239806f7aa33770d4393250089ca6d5f42ba94f024f4b7"
+        },
+        {
+          "checkpoint": "data/production-fits/rsv-production-20261014/mlp-pathogen-scheduled_final-92e3adb2028d/s51/attempt-001/eval_2026-2027",
+          "sha256": "02f7b3a778868d7c33fc67f218f0c57c33e7bb1532abef4b534fdcd381fd654e"
+        }
+      ],
+      "Bw": [
+        {
+          "checkpoint": "data/production-fits/rsv-production-20261014/mlp-pathogen-scheduled_final-2f6d0339c21b/s42/attempt-001/eval_2026-2027",
+          "sha256": "d95337e08fff7227bc80981749bf69e0f4b847a92098f08367249d2c8d168fb0"
+        },
+        {
+          "checkpoint": "data/production-fits/rsv-production-20261014/mlp-pathogen-scheduled_final-2f6d0339c21b/s43/attempt-001/eval_2026-2027",
+          "sha256": "da5e3fd79e361e21a0b997c8efd06d59cf1052a6fdef09db78b30ce7a00f5b79"
+        },
+        {
+          "checkpoint": "data/production-fits/rsv-production-20261014/mlp-pathogen-scheduled_final-2f6d0339c21b/s44/attempt-001/eval_2026-2027",
+          "sha256": "ac51bb8ce058751ad6bcdd0bcf726733a75b518c119029aca75b216d839c4f37"
+        },
+        {
+          "checkpoint": "data/production-fits/rsv-production-20261014/mlp-pathogen-scheduled_final-2f6d0339c21b/s45/attempt-001/eval_2026-2027",
+          "sha256": "e62e12dc9275b1ee96c42c281f998e15e65cff5c9707394ab87b273824381409"
+        },
+        {
+          "checkpoint": "data/production-fits/rsv-production-20261014/mlp-pathogen-scheduled_final-2f6d0339c21b/s46/attempt-001/eval_2026-2027",
+          "sha256": "406bcb625d585b3688e1a26167b355eedcab51a2d5ce5c14284f3a894d98a370"
+        },
+        {
+          "checkpoint": "data/production-fits/rsv-production-20261014/mlp-pathogen-scheduled_final-2f6d0339c21b/s47/attempt-001/eval_2026-2027",
+          "sha256": "1adef1400234141bc7926be6a3d63afeba28deab0eab09f1fdfa9832b923bed8"
+        },
+        {
+          "checkpoint": "data/production-fits/rsv-production-20261014/mlp-pathogen-scheduled_final-2f6d0339c21b/s48/attempt-001/eval_2026-2027",
+          "sha256": "05c93ca1dd6554a9d79fe7a45f81d65f3d5e4512d9c2c5de7cedb05f4d77560c"
+        },
+        {
+          "checkpoint": "data/production-fits/rsv-production-20261014/mlp-pathogen-scheduled_final-2f6d0339c21b/s49/attempt-001/eval_2026-2027",
+          "sha256": "99f7c84f7889854fee2ce0d5356e1976cd1972a722986d816395054425025440"
+        },
+        {
+          "checkpoint": "data/production-fits/rsv-production-20261014/mlp-pathogen-scheduled_final-2f6d0339c21b/s50/attempt-001/eval_2026-2027",
+          "sha256": "2ed3ad635748cc8300aa5461a58e2def56b7f7dcc066504ae2b80754382ca78c"
+        },
+        {
+          "checkpoint": "data/production-fits/rsv-production-20261014/mlp-pathogen-scheduled_final-2f6d0339c21b/s51/attempt-001/eval_2026-2027",
+          "sha256": "41c005e9fc1927045f8dfc05a91c56c772d17b351db7c42ea9a0b5211217c7e7"
+        }
+      ]
+    }
+  },
+  "sources": [
+    {
+      "recipe": "Ball_c0w512",
+      "directory": "production/output/2026-11-04/rsv-four-20261014/forecasts/Ball_c0w512/s42",
+      "checkpoint_sha256": "87cba3f1cb15d87d8115b4d4e7f30d80278ec1350fad9a43cd5a90994f3ff160",
+      "forecast_sha256": "4ea1cfb6892c2a4e323afc0c5575a87b06aa60822d484cef2009d9a6ed86c21b"
+    },
+    {
+      "recipe": "Ball_c0w512",
+      "directory": "production/output/2026-11-04/rsv-four-20261014/forecasts/Ball_c0w512/s43",
+      "checkpoint_sha256": "ef62f8899c38d10c8926fbaeb8d238b6e7a33d68a91b3eba8a3374c729846e8e",
+      "forecast_sha256": "18efddb16d4d0924e0d756e690e4858b994434bc61444414b9904313b28406f7"
+    },
+    {
+      "recipe": "Ball_c0w512",
+      "directory": "production/output/2026-11-04/rsv-four-20261014/forecasts/Ball_c0w512/s44",
+      "checkpoint_sha256": "dfa295628f9d41db13b3c18bdffad6293fd31439e2730e84fb04e1f00e2338f4",
+      "forecast_sha256": "a6690641e9b4cf330ca001c8022a257aec29ba26a17bf16a23aae885e7ff9a0a"
+    },
+    {
+      "recipe": "Ball_c0w512",
+      "directory": "production/output/2026-11-04/rsv-four-20261014/forecasts/Ball_c0w512/s45",
+      "checkpoint_sha256": "c3b38d356d17a7da6f268713f44f142fec0910d21d85fdb263eb4f8cd48c447f",
+      "forecast_sha256": "6850806e40a87ea15982161ee75da8b5c18a2071a2d88ad431c40f8d1731f311"
+    },
+    {
+      "recipe": "Ball_c0w512",
+      "directory": "production/output/2026-11-04/rsv-four-20261014/forecasts/Ball_c0w512/s46",
+      "checkpoint_sha256": "6d41d6fe54269c3a22cc38d34623f1c633601c1b41bf2cad9ca7da40ee9c8639",
+      "forecast_sha256": "50cb4333404a154ce78221c4d68addc4935d4ede6c0308a17b8cbef41020bd2b"
+    },
+    {
+      "recipe": "Ball_c0w512",
+      "directory": "production/output/2026-11-04/rsv-four-20261014/forecasts/Ball_c0w512/s47",
+      "checkpoint_sha256": "6e45fe038ecda881ac42503858f4b8287040e74fc8d8acd8ff36428a8247066f",
+      "forecast_sha256": "9301d45853a3479b8a9303ac3a01fca673fbec33e81b79ae7daec6903bbd87cd"
+    },
+    {
+      "recipe": "Ball_c0w512",
+      "directory": "production/output/2026-11-04/rsv-four-20261014/forecasts/Ball_c0w512/s48",
+      "checkpoint_sha256": "03c5eb98c1bf8d5bd72c804f080634c68fab5a7f7555ecb3ba676304caad776f",
+      "forecast_sha256": "6e7c987ca9f2e17f0f2cbf2a87a5ef64c31503a1ee6a747e192201af567ef058"
+    },
+    {
+      "recipe": "Ball_c0w512",
+      "directory": "production/output/2026-11-04/rsv-four-20261014/forecasts/Ball_c0w512/s49",
+      "checkpoint_sha256": "e937d200d225cafe690bcbff893c01ff815f2cdd1c4fa1594dc92d2c9b294908",
+      "forecast_sha256": "78b0e090b9c2f799a435bdbbd6f58a59163b87ba74b1dfdf8bbb4314da22870f"
+    },
+    {
+      "recipe": "Ball_c0w512",
+      "directory": "production/output/2026-11-04/rsv-four-20261014/forecasts/Ball_c0w512/s50",
+      "checkpoint_sha256": "73c3cc56ac5c3d1318671cdfa002af4280de8c5a0e5a2e675711ea38dedf28fc",
+      "forecast_sha256": "9f6ca7c7da2c789228edb204a7763187186bda769f0641114ff47753cdb06b4c"
+    },
+    {
+      "recipe": "Ball_c0w512",
+      "directory": "production/output/2026-11-04/rsv-four-20261014/forecasts/Ball_c0w512/s51",
+      "checkpoint_sha256": "cd0b5a7ca1f95694a321c0e925e4827c3a874e81f3c23830ee9b3d70a1287bba",
+      "forecast_sha256": "8a8b74ab50fea547802eaf633939018c964e580ac1c97e4243b3204bda7df307"
+    },
+    {
+      "recipe": "A4c0",
+      "directory": "production/output/2026-11-04/rsv-four-20261014/forecasts/A4c0/s42",
+      "checkpoint_sha256": "dc860d36e34e56cb7109818e6340b5264622f767f0b42d8bfe0ab9630f328c08",
+      "forecast_sha256": "bbfb4897a82b31a19b1abeab6b331969c08348de3f81814ef764b266a44685ee"
+    },
+    {
+      "recipe": "A4c0",
+      "directory": "production/output/2026-11-04/rsv-four-20261014/forecasts/A4c0/s43",
+      "checkpoint_sha256": "55e0c4ca8c87cf875db5a8278b089d94286eb4c86bb12be02371c92277dd49c2",
+      "forecast_sha256": "abc7197ef664cd8cdcc8d705d2ad3ee13aabd7157bdcb64f8cb5c6f163f3fde6"
+    },
+    {
+      "recipe": "A4c0",
+      "directory": "production/output/2026-11-04/rsv-four-20261014/forecasts/A4c0/s44",
+      "checkpoint_sha256": "f7f37adcf4acc0f923a3f5ce47598491dc486ffead2a849dd6f8e8b267750deb",
+      "forecast_sha256": "760264b9fdced3b1cdb1a4d19c8f03d1ebb0d5715ef2a58cd6a78f3bbc1e5b41"
+    },
+    {
+      "recipe": "A4c0",
+      "directory": "production/output/2026-11-04/rsv-four-20261014/forecasts/A4c0/s45",
+      "checkpoint_sha256": "d8d2a993d2cd148c34f960dd8857a66c1cc265ac71eb97150535ef0872d97dba",
+      "forecast_sha256": "3f28c808c6e60da6cd32fe92d2015b2cf6536b00995261e75c42fe5e51347f1a"
+    },
+    {
+      "recipe": "A4c0",
+      "directory": "production/output/2026-11-04/rsv-four-20261014/forecasts/A4c0/s46",
+      "checkpoint_sha256": "2e590bcd161766f45a5e1f4d7cab397fa06642150e0ae183917d4b096af1fce3",
+      "forecast_sha256": "2e27f22b6b8ffbc02a32097dddb38c2028c18edbe99aab3bfd7d9ca123e5b6d3"
+    },
+    {
+      "recipe": "A4c0",
+      "directory": "production/output/2026-11-04/rsv-four-20261014/forecasts/A4c0/s47",
+      "checkpoint_sha256": "5345cca13b49f9a1ae61663c5fa96525331b781b7bc8c34b05d1e5b448f73a32",
+      "forecast_sha256": "4510d56f92fb4bbe45e999a92febd5e35667cfb9cf76c267ae3a87184ee8aac9"
+    },
+    {
+      "recipe": "A4c0",
+      "directory": "production/output/2026-11-04/rsv-four-20261014/forecasts/A4c0/s48",
+      "checkpoint_sha256": "fd90fa9bd8abd2e29f72019a3c8ac6aebd7c8992335c88ae0ab98a90fb364964",
+      "forecast_sha256": "e54690b4590f4d962a57f4d6b394ea917602a1e8597ea45144d8647bea18b7d1"
+    },
+    {
+      "recipe": "A4c0",
+      "directory": "production/output/2026-11-04/rsv-four-20261014/forecasts/A4c0/s49",
+      "checkpoint_sha256": "aff8a7acc15449e2da771bdaf38e8ddfeda48989e79de708f86460e365cbaa22",
+      "forecast_sha256": "c0815d38cf784a7258ef9e10e9f2b56eb669948b884cabe2cbda2d9adbccd932"
+    },
+    {
+      "recipe": "A4c0",
+      "directory": "production/output/2026-11-04/rsv-four-20261014/forecasts/A4c0/s50",
+      "checkpoint_sha256": "3ae8d62cc32b2fddb763a198606cefe614a42d9ac57ce9bff6674cbe56d7fa05",
+      "forecast_sha256": "b4d5053555109dba5463f00afa80d71f30917be903fb81feeb03c4b340c89520"
+    },
+    {
+      "recipe": "A4c0",
+      "directory": "production/output/2026-11-04/rsv-four-20261014/forecasts/A4c0/s51",
+      "checkpoint_sha256": "1a4a0a0c436d26adc19abc4e149ff704ce5d31ee0d1dab0154d37e37e9f57d8c",
+      "forecast_sha256": "5a85bcdc2f91c4594e7f3c757178cc9598f8098215bbeec55cd6412deda46720"
+    },
+    {
+      "recipe": "A4i",
+      "directory": "production/output/2026-11-04/rsv-four-20261014/forecasts/A4i/s42",
+      "checkpoint_sha256": "d341ab403b60dae21dd50521c99b7129b96c4713fe1ea4e60355a0cef31d8320",
+      "forecast_sha256": "48499be918a7656303b8d48e7b66c6b246ffc201d7f0ee7292c0594549619968"
+    },
+    {
+      "recipe": "A4i",
+      "directory": "production/output/2026-11-04/rsv-four-20261014/forecasts/A4i/s43",
+      "checkpoint_sha256": "9163edc696dd855808196839c9e6396f2653f4fa9d342d61149786ebb1def076",
+      "forecast_sha256": "bcf24ec75d616ca75bd3fc4594c5dda3306b82a0f9550e2ea98b795bf0a650fc"
+    },
+    {
+      "recipe": "A4i",
+      "directory": "production/output/2026-11-04/rsv-four-20261014/forecasts/A4i/s44",
+      "checkpoint_sha256": "2d71db7edbc7dbf9a41d32fc4269ae2e543e52d446f8a19c64539b78f73a7da0",
+      "forecast_sha256": "ffd99bc25bed714a2ee6259dfb184ad15286070de0dcaadc9cb13b43ba90c1ad"
+    },
+    {
+      "recipe": "A4i",
+      "directory": "production/output/2026-11-04/rsv-four-20261014/forecasts/A4i/s45",
+      "checkpoint_sha256": "bc006f46645ee3f738541a86d2e1d091495b8265faa24175885eb0cfd55fc6ca",
+      "forecast_sha256": "41db71892e6dfc9afc2be7a6063705b06a605adf48fd6cb9b4d7f27939d15fa9"
+    },
+    {
+      "recipe": "A4i",
+      "directory": "production/output/2026-11-04/rsv-four-20261014/forecasts/A4i/s46",
+      "checkpoint_sha256": "f9fd265a8890c13151fa904361e3af8daf6b32bea53b1550cd80cc220452aed2",
+      "forecast_sha256": "2b36ab56f5c80f70898b8ff1561704d287d7c1dcd4c4997258cb579c04e47b79"
+    },
+    {
+      "recipe": "A4i",
+      "directory": "production/output/2026-11-04/rsv-four-20261014/forecasts/A4i/s47",
+      "checkpoint_sha256": "c23b605671898850cbc3be35278c7c8fbf880e4645090077ec0337a6dc61663c",
+      "forecast_sha256": "9db450d6fff14797670c94f009e53bc5483803ae4f3d45a5e6c2c5c2be9239d5"
+    },
+    {
+      "recipe": "A4i",
+      "directory": "production/output/2026-11-04/rsv-four-20261014/forecasts/A4i/s48",
+      "checkpoint_sha256": "8b6ec41cda8b9a995bb9e65eec1aa5451286afafa5311b6d88f0ce075a06aaac",
+      "forecast_sha256": "edfa10152553104bff07fbb4b7413ed1736026a59db5b028b385dc2796f07fad"
+    },
+    {
+      "recipe": "A4i",
+      "directory": "production/output/2026-11-04/rsv-four-20261014/forecasts/A4i/s49",
+      "checkpoint_sha256": "d0460817519c252b800c45b27913cc46cdbebf3dbf50917285d0219ef950f2d8",
+      "forecast_sha256": "422f15cace335c13fa80c76aadfbaff998dbdf0f5859d3f25a2e17ee3fd6b41e"
+    },
+    {
+      "recipe": "A4i",
+      "directory": "production/output/2026-11-04/rsv-four-20261014/forecasts/A4i/s50",
+      "checkpoint_sha256": "b51924470654db0faf239806f7aa33770d4393250089ca6d5f42ba94f024f4b7",
+      "forecast_sha256": "dfee0cd9f48065daaabc9e1fcb9eca01ef5088f93c0e85125ffac1fb24340890"
+    },
+    {
+      "recipe": "A4i",
+      "directory": "production/output/2026-11-04/rsv-four-20261014/forecasts/A4i/s51",
+      "checkpoint_sha256": "02f7b3a778868d7c33fc67f218f0c57c33e7bb1532abef4b534fdcd381fd654e",
+      "forecast_sha256": "487f261937b76631365f9d3ffb67338acbf3030105febcd2907ec7e6526002b7"
+    },
+    {
+      "recipe": "Bw",
+      "directory": "production/output/2026-11-04/rsv-four-20261014/forecasts/Bw/s42",
+      "checkpoint_sha256": "d95337e08fff7227bc80981749bf69e0f4b847a92098f08367249d2c8d168fb0",
+      "forecast_sha256": "0a6d2573dfcc7b334128717ea663bf334d389e23980b52c264c762df9a2a2b5e"
+    },
+    {
+      "recipe": "Bw",
+      "directory": "production/output/2026-11-04/rsv-four-20261014/forecasts/Bw/s43",
+      "checkpoint_sha256": "da5e3fd79e361e21a0b997c8efd06d59cf1052a6fdef09db78b30ce7a00f5b79",
+      "forecast_sha256": "5aebadaa539d077ac531e91d88b57a1cf9190651eac1922f305bec85304b23c0"
+    },
+    {
+      "recipe": "Bw",
+      "directory": "production/output/2026-11-04/rsv-four-20261014/forecasts/Bw/s44",
+      "checkpoint_sha256": "ac51bb8ce058751ad6bcdd0bcf726733a75b518c119029aca75b216d839c4f37",
+      "forecast_sha256": "7d898d6eb8a2dae9820b019ea55166a10c84e6708972cdad7bebf9bd66cca71d"
+    },
+    {
+      "recipe": "Bw",
+      "directory": "production/output/2026-11-04/rsv-four-20261014/forecasts/Bw/s45",
+      "checkpoint_sha256": "e62e12dc9275b1ee96c42c281f998e15e65cff5c9707394ab87b273824381409",
+      "forecast_sha256": "bf11951ad7d47ca2f9b6278797a5ec9f176ee362f3bf28df03edb15ffb0366a6"
+    },
+    {
+      "recipe": "Bw",
+      "directory": "production/output/2026-11-04/rsv-four-20261014/forecasts/Bw/s46",
+      "checkpoint_sha256": "406bcb625d585b3688e1a26167b355eedcab51a2d5ce5c14284f3a894d98a370",
+      "forecast_sha256": "6d9a624df6a4ccc882ea431bf942e7011f6beef3e8743a12723a4015e4a872b0"
+    },
+    {
+      "recipe": "Bw",
+      "directory": "production/output/2026-11-04/rsv-four-20261014/forecasts/Bw/s47",
+      "checkpoint_sha256": "1adef1400234141bc7926be6a3d63afeba28deab0eab09f1fdfa9832b923bed8",
+      "forecast_sha256": "05e20c549abfc522734d774eaa34214e9c5b9fafe04eabc82097b5f0f14261d0"
+    },
+    {
+      "recipe": "Bw",
+      "directory": "production/output/2026-11-04/rsv-four-20261014/forecasts/Bw/s48",
+      "checkpoint_sha256": "05c93ca1dd6554a9d79fe7a45f81d65f3d5e4512d9c2c5de7cedb05f4d77560c",
+      "forecast_sha256": "dde6b143a463357346e075009bd8ff2f580c65ebe58b0192b50fd068dd039df8"
+    },
+    {
+      "recipe": "Bw",
+      "directory": "production/output/2026-11-04/rsv-four-20261014/forecasts/Bw/s49",
+      "checkpoint_sha256": "99f7c84f7889854fee2ce0d5356e1976cd1972a722986d816395054425025440",
+      "forecast_sha256": "99848e4d8fa58130ac6aa6a1a13c2b6366fc9dbba20615539eb1eb90bae332d6"
+    },
+    {
+      "recipe": "Bw",
+      "directory": "production/output/2026-11-04/rsv-four-20261014/forecasts/Bw/s50",
+      "checkpoint_sha256": "2ed3ad635748cc8300aa5461a58e2def56b7f7dcc066504ae2b80754382ca78c",
+      "forecast_sha256": "9d23a59d7b2a1fc4418fd2d60ed7768655bc0cd486372494cc88f5968486e42f"
+    },
+    {
+      "recipe": "Bw",
+      "directory": "production/output/2026-11-04/rsv-four-20261014/forecasts/Bw/s51",
+      "checkpoint_sha256": "41c005e9fc1927045f8dfc05a91c56c772d17b351db7c42ea9a0b5211217c7e7",
+      "forecast_sha256": "1754e2068f6113b1a69ecf71a9c5615a31e1bd2aa2819b5ab9de879b30401ed9"
+    }
+  ],
+  "adjustments": [],
+  "rows": 92768,
+  "issuance": "2026-11-04",
+  "operational_panel_sha256": "df76a3a84b2d496cde79b216c4ef1ddd4c658d321f3c68e1bf586f5c276ea19c",
+  "hub_tasks_sha256": "98b23a4f28ad5685c456e22edb3fc7fe7695abd18b9f9050a81b6ae639c71696",
+  "output_sha256": "fd3eabf01f9a187eae19d2bb19b541cd8fd8308b466c57437020cb157afe9800",
+  "problem": "problems/us-rsv-production.json",
+  "problem_sha256": "1b0a53a21df368af83ebabac3aa8e368109e907bf0bbe2906ff1880ea1b6ba72",
+  "definition": {
+    "note": "RSV four-recipe mixture (fixed 2026-10-14 before its score was seen): Ball_c0w512 (Ba_ll: width-512 direct-quantile MLP, neighbouring-state exchange, all actual archived reports, log-loss 0.75, calendar features off), A4c0 (A4: width-192 sampled MLP with corrected histories, Kinsa, log-loss 1, calendar off), A4i (A4 with all six admission/ED input histories) and Bw (B_width256 with all six input histories); Ball_c0w512 also uses all six. Trained on 2022-23 through 2025-26 (no held-out season), seeds 42-51 per recipe, on panel-rsv.npz: NHSN RSV admissions before 2024-11-02 treated as unobserved (voluntary reporting), so admission labels start November 2024; RSV ED from October 2022. Training admission/ED histories made preliminary with artificial errors from the prescribed 2025-26 RSV reporting process. Labels: latest finalized future RSV admissions and ED (September 2026 panel). Equal weight per recipe and per seed; predictive distributions mixed. Selected by tree search rsv-tree-20261013 (experiments/rsv-tree-20261013/protocol.json): held-out states/DC log-admission WIS 0.3105 on artificial preliminary inputs, 0.3114 replayed on archived reports (2024-25, 2025-26)."
+  },
+  "trajectories": {
+    "samples_per_location": 200,
+    "recipes": {
+      "Ball_c0w512": "stratified marginals from quantiles, Schaake-ordered by the sampling recipes",
+      "A4c0": "own draws",
+      "A4i": "own draws",
+      "Bw": "stratified marginals from quantiles, Schaake-ordered by the sampling recipes"
+    },
+    "sample_id": "<location abbreviation>_<k>, shared by every horizon and target of a location"
+  },
+  "parquet_sha256": "71af854e2501deba4b678e455bf91bf44d5fc5619e8da537cec7886fee9e64de"
+}

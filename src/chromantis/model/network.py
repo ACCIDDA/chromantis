@@ -845,6 +845,9 @@ def load_model(saved):
     for retired in ('supplied_final', 'supplied_estimated'):
         if config.pop(retired, False):
             raise ValueError(f'Checkpoint uses {retired}, removed on 2026-10-08')
+    # Derived again from the other options in __init__; not an argument of Model.
+    config.pop('remote_groups', None)
+    config.pop('target_remote', None)
     factory = Model
     if config.get('encoder') in ('series_mlp', 'series_mixer'):
         from .series import SeriesModel

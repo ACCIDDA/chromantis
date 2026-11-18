@@ -1,0 +1,38 @@
+{
+  "seeds": [
+    42,
+    43,
+    44,
+    45,
+    46
+  ],
+  "candidates": {
+    "ref": "geography=0,decoder=residual2,noise=local,epochs=160,batch_size=2,members=16,forecast_view=raw",
+    "ref_wide": "geography=0,decoder=residual2,decoder_blocks=2,latent=32,width=128,weight_decay=0.001,noise=local,epochs=160,batch_size=2,members=16,forecast_view=raw",
+    "ref_path": "geography=0,decoder=residual2,noise=local,epochs=160,batch_size=2,members=16,path_loss_weight=0.25,forecast_view=raw",
+    "ref_ili": "ili_units=flu_scaled,ili_steps=600,ili_training=pretrain,ili_path=data/metrocast-california/historical_ili.npz,geography=0,decoder=residual2,noise=local,epochs=160,batch_size=2,members=16,forecast_view=raw",
+    "ref_log1p": "geography=0,decoder=residual2,noise=local,epochs=160,batch_size=2,members=16,forecast_view=raw,count_transform=log1p",
+    "opt_attention": "geography=0,spatial=attention,decoder=residual2,noise=local,epochs=160,batch_size=2,members=16,forecast_view=raw",
+    "opt_epochs400": "geography=0,decoder=residual2,noise=local,epochs=400,batch_size=2,members=16,forecast_view=raw",
+    "ref_lookback24": "geography=0,decoder=residual2,noise=local,epochs=160,batch_size=2,members=16,forecast_view=raw,lookback=24",
+    "cov_tp_state_ed_raw": "geography=0,decoder=residual2,noise=local,epochs=160,batch_size=2,members=16,forecast_view=raw,covariate_set=tp+state+ed,covariate_encoder=raw",
+    "cov_tp_ed_raw": "geography=0,decoder=residual2,noise=local,epochs=160,batch_size=2,members=16,forecast_view=raw,covariate_set=tp+ed,covariate_encoder=raw",
+    "cov_tp_state_raw": "geography=0,decoder=residual2,noise=local,epochs=160,batch_size=2,members=16,forecast_view=raw,covariate_set=tp+state,covariate_encoder=raw",
+    "cov_tp_raw": "geography=0,decoder=residual2,noise=local,epochs=160,batch_size=2,members=16,forecast_view=raw,covariate_set=tp,covariate_encoder=raw",
+    "cov_tp_growth_drop0.25": "geography=0,decoder=residual2,noise=local,epochs=160,batch_size=2,members=16,forecast_view=raw,covariate_set=tp,covariate_encoder=growth,covariate_dropout=0.25",
+    "cov_state_raw": "geography=0,decoder=residual2,noise=local,epochs=160,batch_size=2,members=16,forecast_view=raw,covariate_set=state,covariate_encoder=raw",
+    "log1p_cov_tp_state": "geography=0,decoder=residual2,noise=local,epochs=160,batch_size=2,members=16,forecast_view=raw,count_transform=log1p,covariate_set=tp+state,covariate_encoder=growth,covariate_dropout=0.25",
+    "wide_path": "geography=0,decoder=residual2,decoder_blocks=2,latent=32,width=128,weight_decay=0.001,noise=local,epochs=160,batch_size=2,members=16,path_loss_weight=0.25,forecast_view=raw",
+    "wide_log1p": "geography=0,decoder=residual2,decoder_blocks=2,latent=32,width=128,weight_decay=0.001,noise=local,epochs=160,batch_size=2,members=16,forecast_view=raw,count_transform=log1p",
+    "wide_cov_tp_state_ed_raw": "geography=0,decoder=residual2,decoder_blocks=2,latent=32,width=128,weight_decay=0.001,noise=local,epochs=160,batch_size=2,members=16,forecast_view=raw,covariate_set=tp+state+ed,covariate_encoder=raw"
+  },
+  "parents": {},
+  "training_seasons": [
+    "leave one season out over 2022-23..2025-26 (seasons start in August; data from 2022-10-01)"
+  ],
+  "evaluation_season": "each of 2022-23, 2023-24, 2024-25, 2025-26 held out in turn",
+  "inputs": "Rebuilt panel: private CDPH historical + latest versioned release + Hub target data; 7 locations. Covariates (CDPH dashboard test positivity, statewide admissions, statewide ED visits) missing before July 2024.",
+  "labels": "Future weekly flu hospital admissions as defined by the Hub target.",
+  "selection": "Primary: location-mean WIS over weeks 0-4 after the last data week (Hub horizons -1..3), averaged over seeds and held-out seasons.",
+  "evaluation_inputs": "Revised (latest) values; report vintages not used yet."
+}

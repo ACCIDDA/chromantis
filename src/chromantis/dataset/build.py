@@ -72,6 +72,7 @@ COVARIATE_GROUPS = {
     'flusurv': ('flusurv_flu_rate',),
     'rsvnet': ('rsvnet_rsv_rate',),
     'nrevss_rsv': ('nrevss_rsv_pct_positive',),
+    'hosprep': ('hosprep_flu', 'hosprep_covid', 'hosprep_rsv'),
 }
 COVARIATE_NAMES = tuple(name for group in COVARIATE_GROUPS.values() for name in group)
 STATE_COVARIATE_NAMES = tuple(n for n in COVARIATE_NAMES if n not in NATIONAL_ONLY)
@@ -90,7 +91,8 @@ HUBS = ('flusight', 'covid', 'rsv')
 # RSV Hub repository starts 2025-08-14, so 2024-25 RSV keeps the plain Wednesday.
 HOLIDAY_DEADLINES = {
     'flusight': {'2024-12-28': '2024-12-26', '2025-01-04': '2025-01-02',
-                 '2025-12-27': '2025-12-30', '2026-01-03': '2026-01-05'},
+                 '2025-12-27': '2025-12-30', '2026-01-03': '2026-01-05',
+                 '2026-11-14': '2026-11-12'},  # Veterans Day: window end -3 -> -2, d0357402 2026-11-06
     'covid': {'2024-12-28': '2024-12-26', '2025-01-04': '2025-01-02',
               '2025-12-27': '2025-12-29', '2026-01-03': '2026-01-04'},
     'rsv': {'2025-12-27': '2025-12-29', '2026-01-03': '2026-01-04'},

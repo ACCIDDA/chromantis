@@ -101,6 +101,11 @@ DELPHI_COVARIATES = {
     'clinical_lab_flu_pct_positive': ('delphi_fluview_clinical', 'pct_positive'),
     # FluSurv-NET catchment rate; states only where the network has a catchment.
     'flusurv_flu_rate': ('delphi_flusurv', 'rate_overall'),
+    # Hospitals reporting each pathogen's admissions (NHSN `totalconf*newadmhosprep`), archived from 2024-12-11.
+    # A first report from fewer hospitals than usual is revised up more (2026-11-12 analysis); added 2026-11-13.
+    'hosprep_flu': ('delphi_nhsn', 'hosprep_confirmed_admissions_flu_ew'),
+    'hosprep_covid': ('delphi_nhsn', 'hosprep_confirmed_admissions_covid_ew'),
+    'hosprep_rsv': ('delphi_nhsn', 'hosprep_confirmed_admissions_rsv_ew'),
 }
 DELPHI_FILLS = {'ilinet_ili': ('nyc_plus_ny_minus_nyc',)}
 NWSS_INDICES = ('nwss_flu_wval_like', 'nwss_covid_wval_like', 'nwss_rsv_wval_like',

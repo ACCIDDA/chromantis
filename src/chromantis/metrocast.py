@@ -6,13 +6,17 @@ import numpy as np
 import pandas as pd
 
 
-def write_samples(samples, locations, reference_date, destination, seed=42, target='Flu ED visits pct'):
+def write_samples(samples, locations, reference_date, destination, seed=42, target='Flu ED visits pct', first_horizon=0):
     """Write [draw, week, location] native-unit draws as 100 intact weekly paths.
 
     The caller supplies joint model draws, not independently sampled marginal
     quantiles. With more than 100 draws, one subset is used across all horizons
     and locations. Jurisdiction eligibility is checked against the pinned Hub.
     Flu-ED proportions convert to percentages; admission counts stay unchanged.
+    Week i of the samples ends first_horizon+i weeks after the reference date
+    (California admissions start at -1). Sample IDs must be unique to one Hub modeling task
+    (hubValidations spl_mt_unique), so ED uses S1-S100 and admissions S101-S200; the 14 Nov 2026
+    file first reused S1-S100 for both and failed validation.
     """
     reference = date.fromisoformat(str(reference_date))
     if reference.weekday() != 5:
@@ -39,7 +43,7 @@ def write_samples(samples, locations, reference_date, destination, seed=42, targ
         raise ValueError(f'Unknown MetroCast {target} locations: {sorted(set(locations) - eligible)}')
     if reference.isoformat() not in task['task_ids']['reference_date']['optional']:
         raise ValueError('Reference date is outside the pinned MetroCast season')
-    if any((reference + timedelta(weeks=h)).isoformat() not in
+    if any((reference + timedelta(weeks=first_horizon + h)).isoformat() not in
            task['task_ids']['target_end_date']['optional'] for h in range(weeks)):
         raise ValueError('A target date is outside the pinned MetroCast season')
     ids = np.random.default_rng(seed).choice(len(x), 100, replace=False)
@@ -48,10 +52,10 @@ def write_samples(samples, locations, reference_date, destination, seed=42, targ
     output = pd.DataFrame(dict(
         reference_date=[reference] * (100 * weeks * n),
         target=target,
-        target_end_date=np.tile(np.repeat([reference + timedelta(weeks=h) for h in range(weeks)], n), 100),
+        target_end_date=np.tile(np.repeat([reference + timedelta(weeks=first_horizon + h) for h in range(weeks)], n), 100),
         location=np.tile(locations, 100 * weeks),
         output_type='sample',
-        output_type_id=np.repeat(np.array([f'S{i}' for i in range(1, 101)]), weeks * n),
+        output_type_id=np.repeat(np.array([f'S{i + (100 if target == "Flu hosp admits" else 0)}' for i in range(1, 101)]), weeks * n),
         value=x.reshape(-1).astype(float) * (100 if target == 'Flu ED visits pct' else 1),
     ))
     destination = Path(destination)

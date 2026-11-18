@@ -12,6 +12,7 @@ Searches marked "no report yet" have their protocol and decisions in the reposit
 
 ## FluSight weekly influenza
 
+- **Reporting delays in 2026-27 versus earlier seasons (14 November):** [how much first reports of NHSN flu admissions and NSSP flu ED share are revised, at matched incidence, and how hospital coverage explains it](reporting-delays-2026-27/index.md).
 - **Autoencoders and conditional VAEs (24–26 October):** [input reconstruction, bottleneck, pretraining on extra series and a conditional-VAE latent on the flu weekly, season-peak and RSV recipes](autoenc-20261024/index.md).
 - **Tree search around B3–B7 (10–12 October, no report yet):** `experiments/tree-20261010/protocol.json`; its best recipe, Bes, was submitted for 17 October.
 - **Records of the October campaign (5–9 October):** [audit, B7 relaunch protocol, restructuring and decision history](flu-october-2026-records.md).

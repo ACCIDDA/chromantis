@@ -1,0 +1,263 @@
+{
+  "recipes": {
+    "Bf": {
+      "experiment": "covid-1030-confirmfwd01",
+      "scenario": "error_signals=all,input_set=target,correction_weeks=2,correction_ed=1,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,spatial=neighbors,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=0.5,error_reference=2024-2025",
+      "seeds": [
+        204,
+        205,
+        206,
+        207,
+        208,
+        209,
+        210,
+        211,
+        212,
+        213,
+        214,
+        215
+      ]
+    },
+    "P": {
+      "experiment": "covid-1030-confirmfwd01",
+      "scenario": "error_signals=all,input_set=target,correction_weeks=2,correction_ed=1,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,spatial=pooled,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=0.5,error_reference=2024-2025",
+      "seeds": [
+        204,
+        205,
+        206,
+        207,
+        208,
+        209,
+        210,
+        211,
+        212,
+        213,
+        214,
+        215
+      ]
+    },
+    "N": {
+      "experiment": "covid-1030-confirmfwd01",
+      "scenario": "error_signals=all,input_set=target,correction_weeks=2,correction_ed=1,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,spatial=national_broadcast,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=0.5,error_reference=2024-2025",
+      "seeds": [
+        204,
+        205,
+        206,
+        207,
+        208,
+        209,
+        210,
+        211,
+        212,
+        213,
+        214,
+        215
+      ]
+    },
+    "G": {
+      "experiment": "covid-1030-confirmfwd01",
+      "scenario": "error_signals=all,input_set=target,correction_weeks=2,correction_ed=1,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,spatial=gated_pool,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=0.5,error_reference=2024-2025",
+      "seeds": [
+        204,
+        205,
+        206,
+        207,
+        208,
+        209,
+        210,
+        211,
+        212,
+        213,
+        214,
+        215
+      ]
+    },
+    "pN": {
+      "experiment": "covid-1030-confirmfwd01",
+      "scenario": "history_source=artificial,reconstruction_labels=1,error_signals=all,input_set=target,correction_weeks=2,correction_ed=1,reporting_probability=0.25,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,spatial=national_broadcast,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=0.5,error_reference=2024-2025",
+      "seeds": [
+        204,
+        205,
+        206,
+        207,
+        208,
+        209,
+        210,
+        211,
+        212,
+        213,
+        214,
+        215
+      ]
+    },
+    "pP": {
+      "experiment": "covid-1030-confirmfwd01",
+      "scenario": "history_source=artificial,reconstruction_labels=1,error_signals=all,input_set=target,correction_weeks=2,correction_ed=1,reporting_probability=0.25,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,spatial=pooled,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=0.5,error_reference=2024-2025",
+      "seeds": [
+        204,
+        205,
+        206,
+        207,
+        208,
+        209,
+        210,
+        211,
+        212,
+        213,
+        214,
+        215
+      ]
+    },
+    "Ah.N": {
+      "experiment": "covid-1030-confirmfwd01",
+      "scenario": "history_source=artificial,history_correction=1,error_signals=all,input_set=target,correction_weeks=2,correction_ed=1,reporting_probability=0.5,joint_weight=0.05,correction_penalty=30.0,reporting_missingness=0,reporting_method=synchronous_phase_log,ed_transform=logit,width=192,epochs=160,patience=25,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=1.0,error_reference=2024-2025,spatial=national_broadcast",
+      "seeds": [
+        204,
+        205,
+        206,
+        207,
+        208,
+        209,
+        210,
+        211,
+        212,
+        213,
+        214,
+        215
+      ]
+    },
+    "t.Bh": {
+      "experiment": "covid-1030-fwd01",
+      "scenario": "history_source=artificial,reconstruction_labels=1,error_signals=all,input_set=target,correction_weeks=2,correction_ed=1,reporting_probability=0.5,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,spatial=neighbors,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=0.5,error_reference=2024-2025",
+      "seeds": [
+        200,
+        201,
+        202,
+        203
+      ]
+    },
+    "t.Ah": {
+      "experiment": "covid-1030-fwd01",
+      "scenario": "history_source=artificial,history_correction=1,error_signals=all,input_set=target,correction_weeks=2,correction_ed=1,reporting_probability=0.5,joint_weight=0.05,correction_penalty=30.0,reporting_missingness=0,reporting_method=synchronous_phase_log,ed_transform=logit,width=192,epochs=160,patience=25,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=1.0,error_reference=2024-2025",
+      "seeds": [
+        200,
+        201,
+        202,
+        203
+      ]
+    },
+    "t.pN": {
+      "experiment": "covid-1030-fwd03",
+      "scenario": "history_source=artificial,reconstruction_labels=1,error_signals=all,input_set=target,correction_weeks=2,correction_ed=1,reporting_probability=0.25,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,spatial=national_broadcast,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=0.5,error_reference=2024-2025",
+      "seeds": [
+        200,
+        201,
+        202,
+        203
+      ]
+    },
+    "t.Ah.N": {
+      "experiment": "covid-1030-fwd03",
+      "scenario": "history_source=artificial,history_correction=1,error_signals=all,input_set=target,correction_weeks=2,correction_ed=1,reporting_probability=0.5,joint_weight=0.05,correction_penalty=30.0,reporting_missingness=0,reporting_method=synchronous_phase_log,ed_transform=logit,width=192,epochs=160,patience=25,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=1.0,error_reference=2024-2025,spatial=national_broadcast",
+      "seeds": [
+        200,
+        201,
+        202,
+        203
+      ]
+    }
+  },
+  "groups": {
+    "pN alone": [
+      "pN"
+    ],
+    "N alone": [
+      "N"
+    ],
+    "G alone": [
+      "G"
+    ],
+    "P alone": [
+      "P"
+    ],
+    "pP alone": [
+      "pP"
+    ],
+    "Bf alone": [
+      "Bf"
+    ],
+    "Ah.N alone": [
+      "Ah.N"
+    ],
+    "pN+Ah.N": [
+      "pN",
+      "Ah.N"
+    ],
+    "N+Ah.N": [
+      "N",
+      "Ah.N"
+    ],
+    "G+Ah.N": [
+      "G",
+      "Ah.N"
+    ],
+    "pN+N": [
+      "pN",
+      "N"
+    ],
+    "pN+G": [
+      "pN",
+      "G"
+    ],
+    "N+G": [
+      "N",
+      "G"
+    ],
+    "pN+P": [
+      "pN",
+      "P"
+    ],
+    "pN+N+G": [
+      "pN",
+      "N",
+      "G"
+    ],
+    "pN+N+Ah.N": [
+      "pN",
+      "N",
+      "Ah.N"
+    ],
+    "pN+G+Ah.N": [
+      "pN",
+      "G",
+      "Ah.N"
+    ],
+    "pN+N+G+Ah.N": [
+      "pN",
+      "N",
+      "G",
+      "Ah.N"
+    ],
+    "pN+pP+N+P": [
+      "pN",
+      "pP",
+      "N",
+      "P"
+    ],
+    "s200-203 fallback design Bh+Ah": [
+      "t.Bh",
+      "t.Ah"
+    ],
+    "s200-203 pN+Ah.N": [
+      "t.pN",
+      "t.Ah.N"
+    ],
+    "s200-203 pN alone": [
+      "t.pN"
+    ]
+  },
+  "rules": [
+    "mixture"
+  ],
+  "forecast_view": "corrected"
+}

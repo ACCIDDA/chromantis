@@ -1,0 +1,238 @@
+{
+  "created_at": "2026-11-18T21:35:48.424188+00:00",
+  "reference_date": "2026-11-21",
+  "hub_commit": "788b6a769f5dee3f7d022ad7fc68b022678c4c77",
+  "hub": "/Users/chadi/Research/Tapestry/production/hubs/FluSight-forecast-hub",
+  "local_labels": [
+    "ACCIDDA-Chromantis"
+  ],
+  "locations": [
+    "US",
+    "06",
+    "48",
+    "36",
+    "37",
+    "19"
+  ],
+  "featured_peers": [
+    "CCC_and_Tom-ARX23 (PR #4138)",
+    "CU-ensemble",
+    "Cornell_JHU-SCARCHhierarSIR",
+    "Cornell_JHU-hierarchSIR",
+    "Emory-EpiRSI",
+    "FluSight-baseline",
+    "FluTurists-ensemble",
+    "Gatech-ensemble_prob",
+    "HallAI-FluTrend",
+    "LUcompUncertLab-puca",
+    "NAU_PyBNF-GroundHogCGR",
+    "NAU_PyBNF-OracleSIHRS",
+    "NU-EMBERS",
+    "OHTJHU-BM",
+    "OHT_JHU-nbxd",
+    "PLANET_NEU-ClaudeScience",
+    "UMass-AR2 (PR #4139)",
+    "UMass-axial_r2",
+    "UMass-trends_ensemble",
+    "bayvaxbio-CountCast (PR #4117)",
+    "docxology-panelqr",
+    "reasonspire-lagQR (PR #4137)"
+  ],
+  "missing_featured_peers": [],
+  "peer_models": [
+    "CCC_and_Tom-ARX23 (PR #4138)",
+    "CU-ensemble",
+    "Cornell_JHU-SCARCHhierarSIR",
+    "Cornell_JHU-hierarchSIR",
+    "Emory-EpiRSI",
+    "FluSight-baseline",
+    "FluTurists-ensemble",
+    "Gatech-ensemble_prob",
+    "HallAI-FluTrend",
+    "LUcompUncertLab-puca",
+    "NAU_PyBNF-GroundHogCGR",
+    "NAU_PyBNF-OracleSIHRS",
+    "NU-EMBERS",
+    "OHTJHU-BM",
+    "OHT_JHU-nbxd",
+    "PLANET_NEU-ClaudeScience",
+    "UMass-AR2 (PR #4139)",
+    "UMass-axial_r2",
+    "UMass-trends_ensemble",
+    "bayvaxbio-CountCast (PR #4117)",
+    "docxology-panelqr",
+    "reasonspire-lagQR (PR #4137)"
+  ],
+  "warnings": [
+    "ACCIDDA-Chromantis: companion JSON hash does not match; model description not reused."
+  ],
+  "sources": [
+    {
+      "path": "/Users/chadi/Research/Tapestry/production/submissions/2026-11-21/2026-11-21-ACCIDDA-Chromantis.csv",
+      "sha256": "40930e3973426fd25b8d5223a9f9a309b979f9b2846944040019a7119b173b1d",
+      "role": "local",
+      "model": "ACCIDDA-Chromantis"
+    },
+    {
+      "path": "model-output/CU-ensemble/2026-11-21-CU-ensemble.csv",
+      "sha256": "d0acc1728185f6013305e0982262b5a532c5e53e28c8db0bfed3b2aff1716a8d",
+      "role": "peer",
+      "model": "CU-ensemble"
+    },
+    {
+      "path": "model-output/Cornell_JHU-SCARCHhierarSIR/2026-11-21-Cornell_JHU-SCARCHhierarSIR.csv",
+      "sha256": "82740a2a89520c81405610689becade9b5995def13e443034ac50723ed989a85",
+      "role": "peer",
+      "model": "Cornell_JHU-SCARCHhierarSIR"
+    },
+    {
+      "path": "model-output/Cornell_JHU-hierarchSIR/2026-11-21-Cornell_JHU-hierarchSIR.csv",
+      "sha256": "34b617593f4c087725a2fcbb4fe88693d77c82f1e500f800c5bcf4a19f9b60df",
+      "role": "peer",
+      "model": "Cornell_JHU-hierarchSIR"
+    },
+    {
+      "path": "model-output/Emory-EpiRSI/2026-11-21-Emory-EpiRSI.csv",
+      "sha256": "5022477e7dcc51d0d931f30e1df00021687801fc79956d5c0d40a4a92ca2b94e",
+      "role": "peer",
+      "model": "Emory-EpiRSI"
+    },
+    {
+      "path": "model-output/FluSight-baseline/2026-11-21-FluSight-baseline.csv",
+      "sha256": "cafc3d2b425864b004f97e1d51690d21eecf7a4233db6ea6d27f84f9f94c609a",
+      "role": "peer",
+      "model": "FluSight-baseline"
+    },
+    {
+      "path": "model-output/FluTurists-ensemble/2026-11-21-FluTurists-ensemble.csv",
+      "sha256": "4d5aca8aa10e545ac6fa5cd1ee8fa86c4a5aca2964b226be399895a98f010512",
+      "role": "peer",
+      "model": "FluTurists-ensemble"
+    },
+    {
+      "path": "model-output/Gatech-ensemble_prob/2026-11-21-Gatech-ensemble_prob.csv",
+      "sha256": "fbb0b06fb267c412e1e7f5a8f942b9aa843cba079182e8a3d87cf5e7d57a26bb",
+      "role": "peer",
+      "model": "Gatech-ensemble_prob"
+    },
+    {
+      "path": "model-output/HallAI-FluTrend/2026-11-21-HallAI-FluTrend.csv",
+      "sha256": "7fc550fa4386f98323d80b418b7ef3a4509516f8378f3ec2c4fc76fc1645f188",
+      "role": "peer",
+      "model": "HallAI-FluTrend"
+    },
+    {
+      "path": "model-output/LUcompUncertLab-puca/2026-11-21-LUcompUncertLab-puca.csv",
+      "sha256": "08874e775a14e9113a9bb2d6f98b63c90bbea64d5343d647a1c7246fbf47a207",
+      "role": "peer",
+      "model": "LUcompUncertLab-puca"
+    },
+    {
+      "path": "model-output/NAU_PyBNF-GroundHogCGR/2026-11-21-NAU_PyBNF-GroundHogCGR.csv",
+      "sha256": "457bfb57cdbaf2c4c396a607e59e381dcbab04e1ea5f5a81284e681143a11619",
+      "role": "peer",
+      "model": "NAU_PyBNF-GroundHogCGR"
+    },
+    {
+      "path": "model-output/NAU_PyBNF-OracleSIHRS/2026-11-21-NAU_PyBNF-OracleSIHRS.csv",
+      "sha256": "833200f2f0ec71bec215f1f6388a2b25fe00a15fe7dd42295061297a27439540",
+      "role": "peer",
+      "model": "NAU_PyBNF-OracleSIHRS"
+    },
+    {
+      "path": "model-output/NU-EMBERS/2026-11-21-NU-EMBERS.csv",
+      "sha256": "31913699d5f0adb25eb082958267c32ef069ac01ad34dbe23520713bc92ccbd0",
+      "role": "peer",
+      "model": "NU-EMBERS"
+    },
+    {
+      "path": "model-output/OHTJHU-BM/2026-11-21-OHTJHU-BM.csv",
+      "sha256": "5657478cd8985f26da83983563bf9e1b73583e2b16082c7e2af556d0103df568",
+      "role": "peer",
+      "model": "OHTJHU-BM"
+    },
+    {
+      "path": "model-output/OHT_JHU-nbxd/2026-11-21-OHT_JHU-nbxd.csv",
+      "sha256": "f0e19c8b4ddde73029423dd253e88c9a7c8d4442e931f39714bde59bd65f3066",
+      "role": "peer",
+      "model": "OHT_JHU-nbxd"
+    },
+    {
+      "path": "model-output/PLANET_NEU-ClaudeScience/2026-11-21-PLANET_NEU-ClaudeScience.csv",
+      "sha256": "417559ef6aa9c53084363c66dec96b0a448797818c727710ccd7057847df3a5e",
+      "role": "peer",
+      "model": "PLANET_NEU-ClaudeScience"
+    },
+    {
+      "path": "model-output/UMass-axial_r2/2026-11-21-UMass-axial_r2.csv",
+      "sha256": "12863cb2b5061ed9b1373d784410b3c38a0a059208717872d0d964b7665f39dc",
+      "role": "peer",
+      "model": "UMass-axial_r2"
+    },
+    {
+      "path": "model-output/UMass-trends_ensemble/2026-11-21-UMass-trends_ensemble.parquet",
+      "sha256": "f88b1818f82def67353bc562ce602847395cba2d5998030d26a5fdbceb98bec7",
+      "role": "peer",
+      "model": "UMass-trends_ensemble"
+    },
+    {
+      "path": "model-output/docxology-panelqr/2026-11-21-docxology-panelqr.csv",
+      "sha256": "b046a58bce08ab9e10e9b3c4e64fee12453952199b9eb8bd721cf67acfbcc3fb",
+      "role": "peer",
+      "model": "docxology-panelqr"
+    },
+    {
+      "path": "https://raw.githubusercontent.com/reichlab/FluSight-forecast-hub/77fdcd635eccdf3302b0d6c8a2ee6db30e5db1c0/model-output/UMass-AR2/2026-11-21-UMass-AR2.csv",
+      "sha256": "7b6489a8885b708f15d5d6189a46e076fd40d2854cd8ae2733c427afd381e8d9",
+      "role": "peer",
+      "model": "UMass-AR2 (PR #4139)"
+    },
+    {
+      "path": "https://raw.githubusercontent.com/tommmitchell/FluSight-forecast-hub/901bf142ebd99d81db95de53d0a24365d6052a93/model-output/CCC_and_Tom-ARX23/2026-11-21-CCC_and_Tom-ARX23.csv",
+      "sha256": "4903b190326784eb4772f1dd896f1a90e2492c6a67db7eddb3fca4ff5bdfddc0",
+      "role": "peer",
+      "model": "CCC_and_Tom-ARX23 (PR #4138)"
+    },
+    {
+      "path": "https://raw.githubusercontent.com/reasonspire/FluSight-forecast-hub/7443b7d85361d9bdc07353c1844f351f9dbadd46/model-output/reasonspire-lagQR/2026-11-21-reasonspire-lagQR.csv",
+      "sha256": "d6d1b976ae8d9854984c05b88eb5e1133b2f6e5269e4aaaf04ffd56099d6f9f8",
+      "role": "peer",
+      "model": "reasonspire-lagQR (PR #4137)"
+    },
+    {
+      "path": "https://raw.githubusercontent.com/Ascaris-Equi/FluSight-forecast-hub/ae8a5a04a84179f0d21251cf8e19251a41f65200/model-output/bayvaxbio-CountCast/2026-11-21-bayvaxbio-CountCast.csv",
+      "sha256": "34bdd11e6147c3b46dc36f90489305905032041ee451ea5e5c78ee09707c3b06",
+      "role": "peer",
+      "model": "bayvaxbio-CountCast (PR #4117)"
+    },
+    {
+      "path": "auxiliary-data/locations.csv",
+      "sha256": "80aaa24750044a837e063812a1d0a22339c8b3a92513f71a23dac613eaaa29e0",
+      "role": "locations",
+      "model": null
+    },
+    {
+      "path": "target-data/target-hospital-admissions.csv",
+      "sha256": "bd51bd4121ad0cbbfc5027891b3d03616d2c50e25ee318f6e5d79fc9738a4dcc",
+      "role": "history",
+      "model": null
+    },
+    {
+      "path": "target-data/target-ed-visits-prop.csv",
+      "sha256": "7983ccd9ddfad52c3d9f459fdc864ce2972fd7d4498648758ff0f71f356ce326",
+      "role": "history",
+      "model": null
+    }
+  ],
+  "history_cutoff": "2026-11-14",
+  "zoom_weeks": 8,
+  "assumptions": [
+    "Descriptive forecast comparison, not accuracy scoring.",
+    "Latest target values at the pinned Hub commit, not reconstructed issuance-time truth.",
+    "No history dated after reference minus seven days is shown as current observations.",
+    "Prior season aligned by CDC week; unmatched week 53 omitted, no value rescaling.",
+    "Peer bands weight each available model median equally; local candidates are excluded.",
+    "Partial peer coverage is retained; no missing forecasts or history are imputed.",
+    "Training details are copied only from matching local export metadata; peer training is not inferred."
+  ]
+}

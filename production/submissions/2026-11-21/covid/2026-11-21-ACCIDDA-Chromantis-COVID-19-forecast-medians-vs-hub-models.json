@@ -1,0 +1,114 @@
+{
+  "created_at": "2026-11-18T21:11:24.687166+00:00",
+  "reference_date": "2026-11-21",
+  "hub_commit": "72d118e2e2b57735d11081e24c5f89df201e04a7",
+  "hub": "/Users/chadi/Research/Tapestry/production/hubs/covid19-forecast-hub",
+  "local_labels": [
+    "ACCIDDA-Chromantis"
+  ],
+  "locations": [
+    "US",
+    "06",
+    "48",
+    "36",
+    "37",
+    "19"
+  ],
+  "featured_peers": [
+    "CMU-TimeSeries (PR #2065)",
+    "CMU-TimeSeries_Cal (PR #2065)",
+    "CovidHub-baseline",
+    "Emory-EpiRSI",
+    "OHT_JHU-nbxd",
+    "UMass-ar6_pooled (PR #2067)",
+    "docxology-analog"
+  ],
+  "missing_featured_peers": [],
+  "peer_models": [
+    "CMU-TimeSeries (PR #2065)",
+    "CMU-TimeSeries_Cal (PR #2065)",
+    "CovidHub-baseline",
+    "Emory-EpiRSI",
+    "OHT_JHU-nbxd",
+    "UMass-ar6_pooled (PR #2067)",
+    "docxology-analog"
+  ],
+  "warnings": [],
+  "sources": [
+    {
+      "path": "/Users/chadi/Research/Tapestry/production/submissions/2026-11-21/covid/2026-11-21-ACCIDDA-Chromantis.csv",
+      "sha256": "bedc74249edebeea03dbcf8b349f847f98eea2c9b33bdef72bee4b5448eec02b",
+      "role": "local",
+      "model": "ACCIDDA-Chromantis",
+      "definition": {
+        "note": "Candidate for the first COVID Hub submission, 7 November 2026. Equal mixture of four recipes, each refit on all of 2022-23 through 2025-26 with finalized future admissions and ED labels, ten seeds (42-51) each: (1) width-192 sampled MLP with neighbouring-state exchange and artificial reporting errors on half of training episodes; (2) width-256 direct-quantile model with a GRU encoder, a US-only summary shared with states, and reporting errors on 25% of episodes; (3) width-256 direct-quantile MLP with finalized training histories, a US-only summary and multiscale signal features; (4) width-256 direct-quantile MLP with neighbouring-state exchange, errors on half of episodes and weight decay 1e-4. No covariates. Deployment uses corrected reported inputs. Not yet submitted."
+      },
+      "operational_panel_sha256": "d4cccc684df500c0a8c00657b1cd3c7816a2fb63d3e795b6044934547f40ed2a"
+    },
+    {
+      "path": "model-output/CovidHub-baseline/2026-11-21-CovidHub-baseline.csv",
+      "sha256": "8481bea52db85ff25d34bc46d122081eacb1683de6e212a9f63f638f0484bc86",
+      "role": "peer",
+      "model": "CovidHub-baseline"
+    },
+    {
+      "path": "model-output/Emory-EpiRSI/2026-11-21-Emory-EpiRSI.csv",
+      "sha256": "90f5563d156743c158d29988974e1b6946a2448b7d486aa5bbb8868c446af950",
+      "role": "peer",
+      "model": "Emory-EpiRSI"
+    },
+    {
+      "path": "model-output/OHT_JHU-nbxd/2026-11-21-OHT_JHU-nbxd.csv",
+      "sha256": "c14b51def9306c391ebb14262af50870ed40da5d4e8f13f2b548b40df401a741",
+      "role": "peer",
+      "model": "OHT_JHU-nbxd"
+    },
+    {
+      "path": "model-output/docxology-analog/2026-11-21-docxology-analog.csv",
+      "sha256": "416c6374b06e811ff728c35005b8f3c10d0bedf76a7a36e17e0ed7b7d2cc45c8",
+      "role": "peer",
+      "model": "docxology-analog"
+    },
+    {
+      "path": "https://raw.githubusercontent.com/reichlab/cdcgov-covid19-forecast-hub/e5e4b87700beb28e75544689726a706398033aaf/model-output/UMass-ar6_pooled/2026-11-21-UMass-ar6_pooled.csv",
+      "sha256": "de9c8b736c402162efccea78e5db15b43e722081a6253a46b0e0ffea86da5f3c",
+      "role": "peer",
+      "model": "UMass-ar6_pooled (PR #2067)"
+    },
+    {
+      "path": "https://raw.githubusercontent.com/cmu-delphi/covid19-forecast-hub/08e99d70a11ab54ae1e2f91fc266b19502eb882b/model-output/CMU-TimeSeries/2026-11-21-CMU-TimeSeries.csv",
+      "sha256": "0cbd0d411072568bc34ec0ee6f4d1a19c4c32084d55caa75020474ca772983af",
+      "role": "peer",
+      "model": "CMU-TimeSeries (PR #2065)"
+    },
+    {
+      "path": "https://raw.githubusercontent.com/cmu-delphi/covid19-forecast-hub/08e99d70a11ab54ae1e2f91fc266b19502eb882b/model-output/CMU-TimeSeries_Cal/2026-11-21-CMU-TimeSeries_Cal.csv",
+      "sha256": "e096f2dffd4014dc62db47a6f2d38eeeb60900a3d38a717544454ddfea6226ab",
+      "role": "peer",
+      "model": "CMU-TimeSeries_Cal (PR #2065)"
+    },
+    {
+      "path": "auxiliary-data/locations.csv",
+      "sha256": "96b14b7376cd5ba6a4dd44b0cae860fdb1a40ddec776328c1b3c39c8c14b0636",
+      "role": "locations",
+      "model": null
+    },
+    {
+      "path": "target-data/time-series.parquet",
+      "sha256": "49ed5fa93f50d910fdd55c4644b5c910f00f31975ca5d94f9d057a4d0f5033bf",
+      "role": "history",
+      "model": null
+    }
+  ],
+  "history_cutoff": "2026-11-14",
+  "zoom_weeks": 8,
+  "assumptions": [
+    "Descriptive forecast comparison, not accuracy scoring.",
+    "Latest target values at the pinned Hub commit, not reconstructed issuance-time truth.",
+    "No history dated after reference minus seven days is shown as current observations.",
+    "Prior season aligned by CDC week; unmatched week 53 omitted, no value rescaling.",
+    "Peer bands weight each available model median equally; local candidates are excluded.",
+    "Partial peer coverage is retained; no missing forecasts or history are imputed.",
+    "Training details are copied only from matching local export metadata; peer training is not inferred."
+  ]
+}

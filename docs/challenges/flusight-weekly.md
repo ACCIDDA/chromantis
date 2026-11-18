@@ -16,57 +16,64 @@ the same file and have their own page, [Season peak](flusight-peak.md).
 | Item | Value |
 |---|---|
 | Public model | ACCIDDA-Chromantis (the 10 October file was submitted as ACCIDDA-EpiLoom and renamed on the Hub on 8 October) |
-| Submitted | 10, 17, 24 and 31 October 2026 |
-| Current model | B7 refit, release `production/releases/b7-20261009.json` (30 fits) |
-| Latest file | 31 October 2026, [PR 3943](https://github.com/cdcepi/FluSight-forecast-hub/pull/3943), merged 28 October |
+| Submitted | 10, 17, 24 and 31 October and 7 November 2026 |
+| Current model | Bes with its correction trees at half strength, release `production/releases/bes-cs050.json` (the 10 fits of `bes-20261010`), from 7 November; B7 refit (`b7-20261009`, 30 fits) on 24 and 31 October |
+| Latest file | 7 November 2026, [PR 4011](https://github.com/cdcepi/FluSight-forecast-hub/pull/4011), opened 4 November |
 | What we submit | 52 locations (no Puerto Rico), horizons 0–3, both targets, quantiles only |
 
 ## Current model
 
-Three neural-network recipes, ten seeds each (30 fits), mixed with equal weight per
-recipe and per seed:
-
-- `A_blocks3`: width-96 sampled MLP with a three-block decoder and Kinsa.
-- `B5_confirmed_candidate_1`: width-96 sampled MLP with Kinsa, pretrained on historical
-  state ILI before August 2022.
-- `B_width256`: width-256 direct-quantile MLP with neighbouring-state exchange, no Kinsa.
+Bes: one neural-network recipe, `B_width256`, ten seeds (42–51), mixed with equal weight per
+seed. It is a width-256 MLP that predicts 23 quantiles directly and exchanges information
+with four neighbouring states. It is the `B_width256` recipe of B7 trained with stronger
+artificial reporting errors, without B7's two Kinsa recipes.
 
 **Training.** Every fit was trained on the four completed seasons 2022–23 through 2025–26,
 with no season held out. The admission and ED training histories were made to look like
-preliminary reports by adding artificial errors drawn from the 2025–26 reporting process.
+preliminary reports by adding artificial errors from the 2025–26 reporting process at 1.5
+times their strength; the model also learns the final values of the last four history weeks.
 The prediction labels are the latest finalized future flu admissions and ED shares
-(September 2026 panel).
+(September 2026 panel). Loss: the quantile loss plus 0.5 times the log-admission loss.
 
 **Each week.** The saved fits are not retrained. They read that Wednesday's reports; the
 two newest admission and ED weeks are first corrected by the correction trees saved with
-each fit (the `corrected` view). The architecture and these recipes are described on
-[Architecture](../architecture.md).
+each fit (the `corrected` view), at half strength: the trees' log-correction is multiplied
+by 0.5 (`correction_strength` in the release, from 7 November). The architecture is described on
+[Architecture](../architecture.md). B7, submitted for 10, 24 and 31 October, is described in
+the 10 October entry.
 
 ## Inputs and nowcast
 
-| Input | `A_blocks3` | `B5_confirmed_candidate_1` | `B_width256` |
-|---|---|---|---|
-| Histories read | 12 weeks of flu admissions and ED share | 10 weeks of flu admissions and ED share | 12 weeks of flu admissions and ED share |
-| Correction of the newest reported weeks | Yes: saved trees, also used on its training histories | Yes: saved trees, also used on most of its training histories (10% left uncorrected) | Yes at issuance: saved trees. Trained on uncorrected histories, and also learns the final values of the last four history weeks |
-| Other pathogens | No | No | No |
-| Additional data (covariates) | National Kinsa | National Kinsa | None |
-| Extra training data | None | Pretrained on state ILI from before August 2022 | None |
-| Sharing across locations | None | None | Four neighbouring states |
-| Other features | Calendar, population | Calendar, population, multiscale level and slope features | Calendar, population |
+| Input | Bes (`B_width256`) |
+|---|---|
+| Histories read | 12 weeks of flu admissions and ED share |
+| Correction of the newest reported weeks | Yes at issuance: saved trees at half strength. Trained on uncorrected histories with 1.5x artificial reporting errors, and also learns the final values of the last four history weeks |
+| Other pathogens | No |
+| Additional data (covariates) | None |
+| Extra training data | None |
+| Sharing across locations | Four neighbouring states |
+| Other features | Calendar, population |
 
 **Nowcast.** There is no separate nowcast model. Two things cover recent weeks. Before the
 neural network runs, small gradient-boosted trees estimate the revisions to the two newest
 reported admission and ED weeks; the same adjusted history then gives the forecast, so the
 forecast's uncertainty does not include a range of possible revisions. The neural network
 then predicts the week still unreported (Hub horizon 0) as the first of its four weeks.
+At full strength, Bes's trees raise the newest admission week x1.137 and the second-newest
+x1.072 (B7's: x1.099 and x1.050), while those weeks ended about x1.108 and x1.029 above their
+reports in 2025-26 and are heading for about x1.08 and x1.03 in 2026-27. At half strength
+they add about x1.066 and x1.035. On ED share Bes's trees add x1.041 and x1.020 at full strength
+(observed about x1.03 and x1.005). Measured on 4 November:
+`production/output/2026-11-04/revision-vs-trees/`.
 
 **Kinsa** is a national influenza-like illness series from PopHIVE, with no state values, so the
 same values are copied to every state and read as six summary features. A week counts only
 once all seven of its days are visible. Kinsa gets no artificial reporting errors in training
-and no correction at issuance.
+and no correction at issuance. Two of B7's three recipes read it; Bes does not.
 
-**Not used.** The data panel also holds wastewater (NWSS), insurance-claims inpatient and outpatient shares, ILINet, clinical-laboratory positivity and FluSurv-NET; no submitted flu model reads them. Bes, the model submitted for
-17 October only, read no covariates.
+**Not used.** The data panel also holds wastewater (NWSS), insurance-claims inpatient and
+outpatient shares, ILINet, clinical-laboratory positivity and FluSurv-NET; no submitted flu
+model reads them. Bes reads no covariates.
 
 ## How it was chosen
 
@@ -79,6 +86,12 @@ and no correction at issuance.
   for 17 October only. There is no report page for this search yet.
 - 21 and 28 October: B7 replaced Bes after Bes over-forecast the week ending 17 October;
   the reasons and the one-week scores are in the 24 and 31 October entries below.
+- 4 November: Bes replaced B7 again, on the user's decision. Both were run on the same four
+  Wednesday issuances (7–28 October) and scored against the Hub data of 4 November; Bes was
+  better on state/DC log admissions, B7 on ED share and nationally (7 November entry).
+- 4 November, later: Bes's trees were found to add more than the observed revisions; Bes was
+  rerun at tree strengths 0, 0.25, 0.5 and 0.75 on the same issuances and the 0.5 version
+  replaced the full-strength file before the deadline (7 November entry).
 - Other flu experiments are listed on [Model runs](../experiments/index.md#flusight-weekly-influenza).
 
 ## Submission log
@@ -86,6 +99,20 @@ and no correction at issuance.
 Newest first. Each entry states the fitted checkpoints, training seasons and treatments,
 prediction labels, operational inputs, file hash and Hub PR record. The shared data pulls
 of each Wednesday are on [Weekly data pulls](weekly-inputs.md).
+
+### Reference date 7 November 2026
+
+**Bes with its correction trees at half strength, submitted instead of B7**, on the user's decisions on 4 November. [PR 4011](https://github.com/cdcepi/FluSight-forecast-hub/pull/4011) was opened at 16:58 EST from branch `submit-2026-11-07` of the fork (commit `53ca46d2`, "ACCIDDA-Chromantis 2026-11-07", no PR description), based on the Hub's `main` of that afternoon (`487bc2ae`), with Bes at full tree strength; Hub validation passed. At 17:41 EST a second commit on the same branch (`4a80ae4c`, same message) replaced the file with Bes at half tree strength, before the deadline and before any merge. The full-strength file is in `production/submissions/2026-11-07/superseded/` (SHA256 `42e15293e12ace14afa0cceac31f88f7001ff51f2f89ceaff905e5017ea2e207`).
+
+- **Why half-strength trees:** for every issuance of 2025-26 (12 November 2025 to 31 March 2026, archived first reports) and 2026-27, the saved trees' correction was compared with how much the two newest reported weeks were later revised (sum over states and DC for admissions, median over states for ED share). Newest admission week: Bes's trees add x1.137, B7's x1.099; it ended x1.108 above its first report in 2025-26 (10 weeks later) and is at x1.072 after four weeks in 2026-27 (x1.101 at that point in 2025-26). Second-newest week: Bes x1.072, B7 x1.050, observed x1.029 in 2025-26 and x1.021 so far. The trees give nearly the same factor every week (Bes 1.13-1.18 in 2025-26) while revisions varied (1.08-1.16). The trees were fitted on seasons that include 2025-26. Bes was then rerun on the same four October issuances with the trees' log-correction multiplied by 0, 0.25, 0.5 and 0.75 (new release field `correction_strength`, no retraining) and scored as below. Pairwise relative WIS, states and DC, each version ranked alone among the 58 Hub models (20 for ED; lower is better): log admissions 0.419 (strength 1), 0.417 (0.75), 0.417 (0.5), 0.420 (0.25), 0.427 (0); counts 0.526, 0.509, 0.498, 0.493, 0.494 (all but strength 1 rank first); ED share 0.627, 0.616, 0.607, 0.599, 0.593 (ensemble 0.574). US admissions mean WIS on counts 546, 492, 451, 419, 399 (B7 409). Strength 0.5 ties for best on log admissions and brings the trees' additions to about x1.066 and x1.035, close to the observed revisions. Even without trees Bes's horizon-0 WIS (0.61 counts, 0.71 ED share, relative to the baseline) stays above the ensemble's (0.60, 0.59), so part of the excess comes from the network, which was trained on uncorrected histories and is given corrected ones. Scores and figures: `production/output/2026-11-04/bes-correction-strength/` and `bes-variants-vs-b7/`.
+
+- **Why Bes rather than B7:** both saved models were run on the same four Wednesday issuances (7, 14, 21 and 28 October; B7 on 7 October run on 4 November, the other seven files from earlier weeks) and every task observed so far (horizons 0-3, weeks ending 10-31 October) was scored against the Hub's target data of 4 November, which is not final. Pairwise relative WIS on the 51 states and DC (FluSight-baseline = 1, lower is better), among 59 Hub models: log admissions, Bes 0.419 (rank 1) against B7 0.468 (rank 7) and FluSight-ensemble 0.473; admission counts, Bes 0.526 (rank 3) against 0.531 (rank 5), ensemble 0.548; ED share, among 21 models, Bes 0.627 (rank 7) against 0.598 (rank 4), ensemble 0.574. Bes's mean WIS divided by B7's on the same tasks was 0.91-0.99 at horizon 0 and 0.81-0.92 at horizons 1-3 on log admissions; on counts 1.04-1.36 at horizon 0 and 0.87-0.95 later; on ED share 1.08-1.34 at horizons 0-1. On US admissions B7 was better (mean log WIS 0.061 against 0.073, 10 tasks). Four issuances early in the season; later revisions of the scored weeks would favour Bes, the higher model. Figures and tables: `production/output/2026-11-04/b7-vs-bes/` (`b7-vs-bes-past-accuracy.pdf`, overlaid intervals, peer comparison, `diff/summary.md`).
+- **Season-peak targets:** in the same file, see [Season peak](flusight-peak.md).
+- **Weekly model:** release `production/releases/bes-cs050.json`: the 10 fits of `bes-20261010` described above (trained on 2022-23 through 2025-26 with 1.5x the prescribed 2025-26 reporting errors, labels latest finalized future flu admissions and ED share) with `correction_strength` 0.5. No refit: the saved fits were run on the 4 November reports, newest two admission and ED weeks corrected by each fit's saved trees with the log-correction halved (`corrected` view). Equal weight per seed; predictive distributions mixed.
+- **Operational inputs:** [4 November pulls](weekly-inputs.md#operational-inputs-issuance-4-november-2026-reference-date-7-november).
+- **Last week's file, scored:** the 31 October file (B7 refit) at horizon 0, against the first report for the week ending 31 October. US admissions median 8,183 against 8,245 observed. On the 51 state/DC tasks, its mean WIS divided by FluSight-baseline's was 0.50 on log admissions, 0.63 on counts and 0.58 on ED share (lower is better). All submitted files so far (10 October B7, 17 October Bes, 24 and 31 October B7 refit), scored on every observed task against the 4 November data: pairwise relative WIS 0.454 on log admissions (rank 3 of 58; FluSight-ensemble 0.473), 0.527 on counts (rank 3; 0.548), 0.625 on ED share (rank 6 of 20; 0.574). One-off script (WIS = twice the mean pinball loss over the 23 quantiles; pairwise ratios among models covering at least half our tasks), not the research scorer.
+- **File:** `production/submissions/2026-11-07/2026-11-07-ACCIDDA-Chromantis.csv`, SHA256 `19429fb5cf37eede1bfd71ba687c35d23a3db211e397cc9d22539b4152df8cf8`, 12,532 rows: 9,568 weekly quantile rows (52 locations, no Puerto Rico; horizons 0-3; admissions and ED share) followed by 2,964 peak rows (the weekly CSV followed by the peak CSV, as for 31 October). US admissions medians: 12,796; 15,437; 18,405; 20,197 in horizon order (full-strength Bes: 13,437; 16,130; 19,084; 20,755; B7: 11,631; 13,730; 16,476; 19,553). US ED share at horizon 0: 2.45% (full strength 2.49%, B7 2.18%). At horizon 0, the US admissions median is above about 91% of the 23 merged Hub models at 17:40 EST. Local checks passed: no quantile crossing, integer weekly counts, ED at most 0.19, correct target dates, peak-week probabilities summing to one, no duplicate tasks. The export record (`.json`) describes the weekly part only.
+- **Record:** interval PDFs, the peer comparison (merged Hub models only, at 17:40 EST) and the season-peak PDF with its manifest are in `production/submissions/2026-11-07/`; all PDFs of the round are also in its `shared-pdfs/`. The unsubmitted B7 file is in `production/output/2026-11-04/combined-b7/`.
 
 ### Reference date 31 October 2026
 

@@ -44,8 +44,21 @@ class TrajectoryNowcaster:
                 x=np.divide(np.where(ca[a:b],cv[a:b],0).sum(0),ca[a:b].sum(0),out=np.zeros_like(cv[0]),where=ca[a:b].sum(0)>0)
                 pieces.append(np.sign(x.T)*np.log1p(np.abs(x.T)))
         shared=np.concatenate(pieces,axis=1)
+        # Hospital coverage (2026-11-13): hospitals reporting the corrected week / median of weeks -6..-4,
+        # one column per `hosprep_*` covariate and age; cells filled from final values are unknown.
+        coverage=[]
+        if 'covariates' in e:
+            names=e.get('covariate_names',())
+            known=ca&~e['covariates_filled'] if 'covariates_filled' in e else ca
+            for k,name in enumerate(names):
+                if not name.startswith('hosprep'):
+                    continue
+                ref=np.nanmedian(np.where(known[-6:-3,k],cv[-6:-3,k],np.nan),axis=0)
+                with np.errstate(divide='ignore',invalid='ignore'):
+                    ratio=np.log(np.where(known[-self.weeks:,k],cv[-self.weeks:,k],np.nan)/ref)
+                coverage.append(np.where(np.isfinite(ratio),ratio,np.nan)[::-1])  # [age, L], age 0 = newest
         # Keep age explicit, with one common estimator to share phase relationships.
-        rows=[np.column_stack((np.full(l,age),shared)) for age in range(self.weeks)]
+        rows=[np.column_stack((np.full(l,age),shared,*[c[age] for c in coverage])) for age in range(self.weeks)]
         return np.stack(rows),floor[channel]
 
     def fit(self,examples, pretraining=None, neural=False, seed=42):

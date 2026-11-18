@@ -1,0 +1,327 @@
+{
+  "reference_date": "2026-11-14",
+  "weeks": [
+    "2026-11-07",
+    "2026-11-14",
+    "2026-11-21",
+    "2026-11-28",
+    "2026-12-05",
+    "2026-12-12",
+    "2026-12-19",
+    "2026-12-26",
+    "2027-01-02",
+    "2027-01-09",
+    "2027-01-16",
+    "2027-01-23",
+    "2027-01-30",
+    "2027-02-06",
+    "2027-02-13",
+    "2027-02-20",
+    "2027-02-27",
+    "2027-03-06",
+    "2027-03-13",
+    "2027-03-20",
+    "2027-03-27",
+    "2027-04-03",
+    "2027-04-10",
+    "2027-04-17",
+    "2027-04-24",
+    "2027-05-01",
+    "2027-05-08",
+    "2027-05-15",
+    "2027-05-22",
+    "2027-05-29",
+    "2027-06-05",
+    "2027-06-12"
+  ],
+  "recipes": [
+    "cov_tp_state_ed_raw",
+    "log1p_cov_tp_state",
+    "ref_wide"
+  ],
+  "fits": [
+    {
+      "recipe": "cov_tp_state_ed_raw",
+      "seed": 42,
+      "scenario": "geography=0,decoder=residual2,noise=local,epochs=160,batch_size=2,members=16,covariate_set=tp+state+ed,forecast_view=raw",
+      "checkpoint": "data/experiments/metrocast-ca-prod/mlp-all-scheduled_final-9bfd5a59214f/s42/attempt-001"
+    },
+    {
+      "recipe": "cov_tp_state_ed_raw",
+      "seed": 43,
+      "scenario": "geography=0,decoder=residual2,noise=local,epochs=160,batch_size=2,members=16,covariate_set=tp+state+ed,forecast_view=raw",
+      "checkpoint": "data/experiments/metrocast-ca-prod/mlp-all-scheduled_final-9bfd5a59214f/s43/attempt-001"
+    },
+    {
+      "recipe": "cov_tp_state_ed_raw",
+      "seed": 44,
+      "scenario": "geography=0,decoder=residual2,noise=local,epochs=160,batch_size=2,members=16,covariate_set=tp+state+ed,forecast_view=raw",
+      "checkpoint": "data/experiments/metrocast-ca-prod/mlp-all-scheduled_final-9bfd5a59214f/s44/attempt-001"
+    },
+    {
+      "recipe": "cov_tp_state_ed_raw",
+      "seed": 45,
+      "scenario": "geography=0,decoder=residual2,noise=local,epochs=160,batch_size=2,members=16,covariate_set=tp+state+ed,forecast_view=raw",
+      "checkpoint": "data/experiments/metrocast-ca-prod/mlp-all-scheduled_final-9bfd5a59214f/s45/attempt-001"
+    },
+    {
+      "recipe": "cov_tp_state_ed_raw",
+      "seed": 46,
+      "scenario": "geography=0,decoder=residual2,noise=local,epochs=160,batch_size=2,members=16,covariate_set=tp+state+ed,forecast_view=raw",
+      "checkpoint": "data/experiments/metrocast-ca-prod/mlp-all-scheduled_final-9bfd5a59214f/s46/attempt-001"
+    },
+    {
+      "recipe": "log1p_cov_tp_state",
+      "seed": 42,
+      "scenario": "count_transform=log1p,geography=0,decoder=residual2,noise=local,epochs=160,batch_size=2,members=16,covariate_encoder=growth,covariate_set=tp+state,covariate_dropout=0.25,forecast_view=raw",
+      "checkpoint": "data/experiments/metrocast-ca-prod/mlp-all-scheduled_final-971663ee2169/s42/attempt-001"
+    },
+    {
+      "recipe": "log1p_cov_tp_state",
+      "seed": 43,
+      "scenario": "count_transform=log1p,geography=0,decoder=residual2,noise=local,epochs=160,batch_size=2,members=16,covariate_encoder=growth,covariate_set=tp+state,covariate_dropout=0.25,forecast_view=raw",
+      "checkpoint": "data/experiments/metrocast-ca-prod/mlp-all-scheduled_final-971663ee2169/s43/attempt-001"
+    },
+    {
+      "recipe": "log1p_cov_tp_state",
+      "seed": 44,
+      "scenario": "count_transform=log1p,geography=0,decoder=residual2,noise=local,epochs=160,batch_size=2,members=16,covariate_encoder=growth,covariate_set=tp+state,covariate_dropout=0.25,forecast_view=raw",
+      "checkpoint": "data/experiments/metrocast-ca-prod/mlp-all-scheduled_final-971663ee2169/s44/attempt-001"
+    },
+    {
+      "recipe": "log1p_cov_tp_state",
+      "seed": 45,
+      "scenario": "count_transform=log1p,geography=0,decoder=residual2,noise=local,epochs=160,batch_size=2,members=16,covariate_encoder=growth,covariate_set=tp+state,covariate_dropout=0.25,forecast_view=raw",
+      "checkpoint": "data/experiments/metrocast-ca-prod/mlp-all-scheduled_final-971663ee2169/s45/attempt-001"
+    },
+    {
+      "recipe": "log1p_cov_tp_state",
+      "seed": 46,
+      "scenario": "count_transform=log1p,geography=0,decoder=residual2,noise=local,epochs=160,batch_size=2,members=16,covariate_encoder=growth,covariate_set=tp+state,covariate_dropout=0.25,forecast_view=raw",
+      "checkpoint": "data/experiments/metrocast-ca-prod/mlp-all-scheduled_final-971663ee2169/s46/attempt-001"
+    },
+    {
+      "recipe": "ref_wide",
+      "seed": 42,
+      "scenario": "geography=0,decoder=residual2,decoder_blocks=2,noise=local,latent=32,width=128,epochs=160,batch_size=2,members=16,weight_decay=0.001,forecast_view=raw",
+      "checkpoint": "data/experiments/metrocast-ca-prod/mlp-all-scheduled_final-4545f171efaf/s42/attempt-001"
+    },
+    {
+      "recipe": "ref_wide",
+      "seed": 43,
+      "scenario": "geography=0,decoder=residual2,decoder_blocks=2,noise=local,latent=32,width=128,epochs=160,batch_size=2,members=16,weight_decay=0.001,forecast_view=raw",
+      "checkpoint": "data/experiments/metrocast-ca-prod/mlp-all-scheduled_final-4545f171efaf/s43/attempt-001"
+    },
+    {
+      "recipe": "ref_wide",
+      "seed": 44,
+      "scenario": "geography=0,decoder=residual2,decoder_blocks=2,noise=local,latent=32,width=128,epochs=160,batch_size=2,members=16,weight_decay=0.001,forecast_view=raw",
+      "checkpoint": "data/experiments/metrocast-ca-prod/mlp-all-scheduled_final-4545f171efaf/s44/attempt-001"
+    },
+    {
+      "recipe": "ref_wide",
+      "seed": 45,
+      "scenario": "geography=0,decoder=residual2,decoder_blocks=2,noise=local,latent=32,width=128,epochs=160,batch_size=2,members=16,weight_decay=0.001,forecast_view=raw",
+      "checkpoint": "data/experiments/metrocast-ca-prod/mlp-all-scheduled_final-4545f171efaf/s45/attempt-001"
+    },
+    {
+      "recipe": "ref_wide",
+      "seed": 46,
+      "scenario": "geography=0,decoder=residual2,decoder_blocks=2,noise=local,latent=32,width=128,epochs=160,batch_size=2,members=16,weight_decay=0.001,forecast_view=raw",
+      "checkpoint": "data/experiments/metrocast-ca-prod/mlp-all-scheduled_final-4545f171efaf/s46/attempt-001"
+    }
+  ],
+  "draws_per_fit": 7,
+  "panel": "data/metrocast-california/panel.npz",
+  "quantiles_10_50_90_first_five_weeks": {
+    "bay-area": {
+      "2026-11-07": [
+        210.2,
+        352.2,
+        671.3
+      ],
+      "2026-11-14": [
+        223.4,
+        384.2,
+        724.3
+      ],
+      "2026-11-21": [
+        246.2,
+        465.1,
+        807.9
+      ],
+      "2026-11-28": [
+        284.9,
+        580.9,
+        931.7
+      ],
+      "2026-12-05": [
+        329.4,
+        706.7,
+        1019.6
+      ]
+    },
+    "california": {
+      "2026-11-07": [
+        701.3,
+        1322.4,
+        2422.9
+      ],
+      "2026-11-14": [
+        781.9,
+        1471.0,
+        2514.0
+      ],
+      "2026-11-21": [
+        908.8,
+        1673.8,
+        2895.0
+      ],
+      "2026-11-28": [
+        1107.2,
+        2079.9,
+        3394.3
+      ],
+      "2026-12-05": [
+        1153.5,
+        2417.6,
+        4005.1
+      ]
+    },
+    "central-california": {
+      "2026-11-07": [
+        67.6,
+        129.7,
+        256.7
+      ],
+      "2026-11-14": [
+        79.8,
+        160.5,
+        298.2
+      ],
+      "2026-11-21": [
+        102.2,
+        209.6,
+        349.7
+      ],
+      "2026-11-28": [
+        127.9,
+        261.1,
+        422.5
+      ],
+      "2026-12-05": [
+        161.2,
+        326.6,
+        525.7
+      ]
+    },
+    "greater-sierra-sacramento": {
+      "2026-11-07": [
+        82.9,
+        148.9,
+        317.4
+      ],
+      "2026-11-14": [
+        93.6,
+        172.8,
+        341.8
+      ],
+      "2026-11-21": [
+        105.9,
+        218.7,
+        374.6
+      ],
+      "2026-11-28": [
+        130.9,
+        240.9,
+        433.1
+      ],
+      "2026-12-05": [
+        173.2,
+        301.2,
+        509.3
+      ]
+    },
+    "los-angeles": {
+      "2026-11-07": [
+        201.5,
+        343.2,
+        587.0
+      ],
+      "2026-11-14": [
+        221.3,
+        364.4,
+        640.0
+      ],
+      "2026-11-21": [
+        263.7,
+        452.1,
+        724.8
+      ],
+      "2026-11-28": [
+        304.6,
+        540.9,
+        819.9
+      ],
+      "2026-12-05": [
+        310.4,
+        629.5,
+        951.0
+      ]
+    },
+    "rural-north": {
+      "2026-11-07": [
+        5.3,
+        10.2,
+        24.8
+      ],
+      "2026-11-14": [
+        6.1,
+        11.9,
+        28.0
+      ],
+      "2026-11-21": [
+        7.6,
+        15.6,
+        34.0
+      ],
+      "2026-11-28": [
+        10.3,
+        20.2,
+        40.9
+      ],
+      "2026-12-05": [
+        12.3,
+        28.5,
+        51.1
+      ]
+    },
+    "southern-california": {
+      "2026-11-07": [
+        231.1,
+        414.2,
+        724.7
+      ],
+      "2026-11-14": [
+        264.2,
+        439.7,
+        771.7
+      ],
+      "2026-11-21": [
+        297.5,
+        507.3,
+        889.3
+      ],
+      "2026-11-28": [
+        334.6,
+        628.6,
+        1060.5
+      ],
+      "2026-12-05": [
+        371.4,
+        737.9,
+        1203.4
+      ]
+    }
+  }
+}

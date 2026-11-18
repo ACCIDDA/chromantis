@@ -1,0 +1,25 @@
+{
+  "candidates": {
+    "original": {},
+    "target_identity_four_fifths": {"source_scale": 0.8},
+    "target_identity_one_fifth_more": {"source_scale": 1.2},
+    "shared_context_four_fifths": {"context_scale": 0.8},
+    "shared_context_one_fifth_more": {"context_scale": 1.2},
+    "calendar_one_tenth_more": {"calendar_scale": 1.1},
+    "level_circuit_reference_0.4": {"level_circuit": 0.06, "level_reference": 0.4},
+    "level_circuit_reference_0.55": {"level_circuit": 0.06, "level_reference": 0.55},
+    "level_plus_outer_tail": {"level_circuit": 0.03, "level_reference": 0.7, "outer_gap_bias": 0.5},
+    "median_plus_outer_tail": {"median_scale": 0.9, "outer_gap_bias": 0.5}
+  },
+  "rationale": {
+    "target_identity_four_fifths": "Reduce the target-identity embedding relative to dynamic histories before LayerNorm.",
+    "target_identity_one_fifth_more": "Opposite intervention to distinguish insufficient target separation from an overly strong static identity contribution.",
+    "shared_context_four_fifths": "Reduce the shared history/calendar/geography path relative to target-specific local history.",
+    "shared_context_one_fifth_more": "Opposite intervention on the same path.",
+    "calendar_one_tenth_more": "Calendar weakening hurt the two latest seasons; test a small strengthening rather than removal.",
+    "level_circuit_reference_0.4": "The circuit at reference 0.7 helped older seasons but hurt the latest; a lower explicit reference changes its level-dependent balance.",
+    "level_circuit_reference_0.55": "Intermediate reference for the same programmed circuit.",
+    "level_plus_outer_tail": "Combine the modest median circuit with the independently tested outer-tail expansion.",
+    "median_plus_outer_tail": "Combine the initial median shrinkage with outer-tail expansion; both are direct saved-tensor edits."
+  }
+}

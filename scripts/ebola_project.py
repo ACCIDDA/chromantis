@@ -36,6 +36,7 @@ from chromantis.dataset.episodes import calendar, episodes
 from chromantis.experiment import training
 from chromantis.model.scenario import Scenario
 from chromantis.problem import Problem
+from ebola_noise import InputNoise
 from ebola_nowcast import Nowcast
 
 # Selected by the five-window rescoring (experiments/ebola-20261026/rescore-multi-rank.csv):
@@ -54,11 +55,11 @@ RECIPES = {
                            'noise=local,latent=4,epochs=160,batch_size=32,members=16,annual_calendar=0,weight_decay=0.0001,'
                            'covariate_encoder=growth,covariate_set=outbreak,log_loss_weight=1.0,forecast_view=raw',
 }
-REFERENCE_DATE = '2026-11-14'
-FORECAST_DATE = '2026-11-10'  # the day the model is run; the hub checks it against the PR date
-RELEASE = '2026-11-08'       # latest hub target-data release (`as_of`); the 7 Nov round used 1 Nov
-LAST = '2026-11-07'          # last data week in that release
-TRAIN_UNTIL = '2026-10-03'   # five weeks before LAST: later BDBV weeks are still growing
+REFERENCE_DATE = '2026-11-21'
+FORECAST_DATE = '2026-11-17'  # the day the model is run; the hub checks it against the PR date
+RELEASE = '2026-11-15'       # latest hub target-data release (`as_of`); the 14 Nov round used 8 Nov
+LAST = '2026-11-14'          # last data week in that release
+TRAIN_UNTIL = '2026-10-10'   # five weeks before LAST: later BDBV weeks are still growing
 DRAWS = 100
 
 
@@ -119,7 +120,8 @@ def fit(args):
     device = torch.device(args.device)
     for seed in args.seeds:
         torch.manual_seed(seed)
-        model, _ = training.fit_models(train, None, train, problem, scenario, seed, device, pop)
+        noise = InputNoise(problem, args.input_noise) if args.input_noise else None   # see ebola_noise.py
+        model, _ = training.fit_models(train, None, train, problem, scenario, seed, device, pop, augmenter=noise)
         # Sample on the CPU: fitted input scales stay CPU tensors, and 100 forward passes are cheap.
         model = model.cpu().eval()
         samples = []
@@ -133,7 +135,7 @@ def fit(args):
             samples.append(out[:, 0, :])
         np.savez_compressed(Path(args.out) / f'samples-{args.recipe}-s{seed}.npz', samples=np.array(samples),
                             target_dates=np.array(origins[0]['target_dates']), locations=s.locations,
-                            recipe=RECIPES[args.recipe], seed=seed)
+                            recipe=RECIPES[args.recipe], seed=seed, input_noise=args.input_noise)
         print(f'{args.recipe} seed {seed} done', flush=True)
 
 
@@ -197,6 +199,7 @@ def merge(args):
     (out / 'settings.json').write_text(json.dumps(dict(models=[f.stem for f in files], recipes=RECIPES,
                                                        nowcast='ebola_nowcast.py', train_until=TRAIN_UNTIL, release=RELEASE, last=LAST,
                                                        forecast_date=FORECAST_DATE,
+                                                       input_noise=float(models[0]['input_noise']) if 'input_noise' in models[0] else 0.,
                                                        reference_date=REFERENCE_DATE, draws=DRAWS), indent=2) + '\n')
     print(sub / f'{REFERENCE_DATE}-{team}.csv', len(hub), 'rows,', len(files), 'models')
 
@@ -210,6 +213,7 @@ def main():
     parser.add_argument('--hub', default='../hubs/BDBV-Modeling-Hub')
     parser.add_argument('--device', default='cpu')
     parser.add_argument('--model-id', default='UNC-Chromantis')
+    parser.add_argument('--input-noise', type=float, default=.5, help='strength of artificial nowcast noise in training (ebola_noise.py); 0 = none (the default until the 14 Nov resubmission)')
     args = parser.parse_args()
     Path(args.out).mkdir(parents=True, exist_ok=True)
     fit(args) if args.command == 'fit' else merge(args)

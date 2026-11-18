@@ -184,6 +184,7 @@ def episodes(panel, problem, input_names, lookback, input_mode, covariate_names=
                 if reported:
                     episode['covariates_filled'] = cov_filled & cov_available
             episode['covariates'] = np.stack((cov_values, cov_available), axis=-2)
+            episode['covariate_names'] = tuple(covariate_names)
         result.append(episode)
     return result
 

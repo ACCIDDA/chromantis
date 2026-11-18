@@ -9,7 +9,8 @@ not the reports the model saw), so it also checks the file against what the Hub 
     .venv/bin/python -m chromantis.production intervals production/output/2026-10-07/Chromantis/2026-10-10-ACCIDDA-Chromantis.csv
 
 Several CSVs for the same reference date are overlaid for comparison (50% and 95% bands and
-medians, one color per file, labels from --labels) and written next to the first file as
+medians, one color per file, labels from --labels; files given with --median-csv add only a
+dashed median line, 4 November 2026) and written next to the first file as
 <first>-vs-<others>-<pathogen>-<target>-forecast-intervals-50-95.pdf (single file:
 <CSV stem>-<pathogen>-<target>-forecast-intervals-50-80-95.pdf, e.g. ...-RSV-hospital-admissions-...):
 
@@ -37,13 +38,18 @@ def main(argv=None):
     p.add_argument('csv', type=Path, nargs='+')
     p.add_argument('--labels', nargs='+', help='One label per CSV (default: file stems)')
     p.add_argument('--hub', type=Path, help="Local Hub clone (default: the clone of the CSV's Hub)")
+    p.add_argument('--median-csv', type=Path, nargs='*', default=[], help='Files drawn as a dashed median line only')
+    p.add_argument('--median-labels', nargs='*', help='One label per --median-csv file')
     args = p.parse_args(argv)
     subs = [pd.read_csv(f, dtype={'location': str, 'output_type_id': str}, parse_dates=['target_end_date', 'reference_date'])
             .query("output_type == 'quantile'") for f in args.csv]
     labels = args.labels or [f.stem for f in args.csv]
     if len(labels) != len(subs) or len({s.reference_date.iloc[0] for s in subs}) != 1:
         raise ValueError('Give one label per CSV; all CSVs must share one reference date')
-    compare = len(subs) > 1
+    extra = [pd.read_csv(f, dtype={'location': str, 'output_type_id': str}, parse_dates=['target_end_date', 'reference_date'])
+             .query("output_type == 'quantile'") for f in args.median_csv]
+    extra_labels = args.median_labels or [f.stem for f in args.median_csv]
+    compare = len(subs) + len(extra) > 1
     sub = subs[0]
     reference = sub.reference_date.iloc[0]
     season_start = pd.Timestamp(reference.year if reference.month >= 8 else reference.year - 1, 8, 1)
@@ -59,7 +65,7 @@ def main(argv=None):
         fig, axes = plt.subplots(len(locations), 2, figsize=(10, 2.6 * len(locations)), squeeze=False)
         for row, location in zip(axes, locations):
             qs = []
-            for other in subs:
+            for other in subs + extra:
                 q = other[(other.target == target) & (other.location == location)].pivot(index='target_end_date', columns='output_type_id', values='value')
                 q.columns = q.columns.astype(float).round(3)
                 qs.append(q)
@@ -75,7 +81,9 @@ def main(argv=None):
                             past_max.append(past.max())
                             ax.plot(past.index + shift, past.values, color='grey', ls='--', lw=.5,
                                     label='previous seasons' if k == 1 else None)
-                for k, q in enumerate(qs):
+                for k, q in enumerate(qs[len(subs):], len(subs)):
+                    ax.plot(q.index, q[0.5], color=COLORS[k], ls='--', marker='.', lw=1.2, label=f'{extra_labels[k - len(subs)]} median')
+                for k, q in enumerate(qs[:len(subs)]):
                     color = COLORS[k] if compare else 'darkblue'
                     for lo, hi, alpha in (COMPARE_BANDS if compare else BANDS):
                         ax.fill_between(q.index, q[lo], q[hi], color=color, alpha=alpha, lw=0,
@@ -87,7 +95,7 @@ def main(argv=None):
                 start = reference - pd.Timedelta(weeks=12) if zoom else season_start
                 end = qs[0].index.max() + pd.Timedelta(days=4) if zoom else season_start + pd.Timedelta(weeks=52)
                 ax.set_xlim(start, end)
-                visible = [s[(s.index >= start) & (s.index <= end)].max() for s in (shown, *(q[0.975] for q in qs))] + past_max
+                visible = [s[(s.index >= start) & (s.index <= end)].max() for s in (shown, *(q[0.975] for q in qs[:len(subs)]), *(q[0.5] for q in qs[len(subs):]))] + past_max
                 ax.set_ylim(0, 1.05 * max(v for v in visible if pd.notna(v)) or 1)
                 ax.set_title(f'{names.get(location, location)}', fontsize=9)
                 ax.xaxis.set_major_formatter(mdates.DateFormatter('%d %b %y'))
@@ -96,7 +104,7 @@ def main(argv=None):
                 ax.spines[['top', 'right']].set_visible(False)
             row[0].set_ylabel(label, fontsize=8)
         axes[0, 0].legend(fontsize=7, loc='upper left')
-        title = ' vs '.join(labels) if compare else args.csv[0].stem
+        title = ' vs '.join(labels + [f'{l} (median)' for l in extra_labels]) if compare else args.csv[0].stem
         fig.suptitle(f'{title}: {target}, reference date {reference.date()}', y=1.0)
         fig.tight_layout()
         stem = args.csv[0].stem + ''.join(f'-vs-{l}' for l in labels[1:]) if compare else args.csv[0].stem

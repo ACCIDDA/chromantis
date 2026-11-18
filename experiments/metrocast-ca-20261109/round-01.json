@@ -1,0 +1,34 @@
+{
+  "seeds": [
+    42,
+    43,
+    44,
+    45,
+    46
+  ],
+  "candidates": {
+    "ref": "geography=0,decoder=residual2,noise=local,epochs=160,batch_size=2,members=16,forecast_view=raw",
+    "old_finalist_1_ili_lag1": "ili_units=flu_scaled,ili_steps=600,ili_training=pretrain,ili_path=data/metrocast-california/historical_ili.npz,geography=0,decoder=residual2,noise=local,epochs=160,batch_size=2,members=16,training_target_lag=1,forecast_view=raw",
+    "old_finalist_2_path_lag1": "geography=0,decoder=residual2,noise=local,epochs=160,batch_size=2,members=16,training_target_lag=1,path_loss_weight=0.25,forecast_view=raw",
+    "ref_lag1": "geography=0,decoder=residual2,noise=local,epochs=160,batch_size=2,members=16,training_target_lag=1,forecast_view=raw",
+    "ref_ili": "ili_units=flu_scaled,ili_steps=600,ili_training=pretrain,ili_path=data/metrocast-california/historical_ili.npz,geography=0,decoder=residual2,noise=local,epochs=160,batch_size=2,members=16,forecast_view=raw",
+    "ref_path": "geography=0,decoder=residual2,noise=local,epochs=160,batch_size=2,members=16,path_loss_weight=0.25,forecast_view=raw",
+    "ref_log1p": "geography=0,decoder=residual2,noise=local,epochs=160,batch_size=2,members=16,forecast_view=raw,count_transform=log1p",
+    "ref_sqrt": "geography=0,decoder=residual2,noise=local,epochs=160,batch_size=2,members=16,forecast_view=raw,count_transform=sqrt",
+    "ref_wide": "geography=0,decoder=residual2,decoder_blocks=2,latent=32,width=128,weight_decay=0.001,noise=local,epochs=160,batch_size=2,members=16,forecast_view=raw",
+    "ref_long_fit": "geography=0,decoder=residual2,noise=local,epochs=320,batch_size=2,members=32,forecast_view=raw",
+    "ref_lookback8": "geography=0,decoder=residual2,noise=local,epochs=160,batch_size=2,members=16,forecast_view=raw,lookback=8",
+    "ref_lookback24": "geography=0,decoder=residual2,noise=local,epochs=160,batch_size=2,members=16,forecast_view=raw,lookback=24",
+    "ref_pooled": "geography=0,spatial=pooled,decoder=residual2,noise=local,epochs=160,batch_size=2,members=16,forecast_view=raw",
+    "ref_ili_log1p": "ili_units=flu_scaled,ili_steps=600,ili_training=pretrain,ili_path=data/metrocast-california/historical_ili.npz,geography=0,decoder=residual2,noise=local,epochs=160,batch_size=2,members=16,forecast_view=raw,count_transform=log1p"
+  },
+  "parents": {},
+  "training_seasons": [
+    "2024-07-06 through 2025-07-26"
+  ],
+  "evaluation_season": "2025-08-02 through 2026-06-13",
+  "inputs": "Revised CDPH published regional admission sums (data.chhs.ca.gov Respiratory Virus Dashboard), 7 locations (6 regions + statewide). No covariates. ILI variants pretrain on 2010-11..2021-22 California state ILI broadcast to the 7 locations.",
+  "labels": "Future published sums over nonmissing age groups (Hub 'Flu hosp admits' definition); duplicate region/weeks masked.",
+  "selection": "Primary: location-mean WIS over weeks 1-5 after the last published week (= Hub horizons -1..3). Secondary: full-season bands and log-count path energy.",
+  "evaluation_inputs": "Revised source only; no archived releases and no Hub ensemble for this target."
+}

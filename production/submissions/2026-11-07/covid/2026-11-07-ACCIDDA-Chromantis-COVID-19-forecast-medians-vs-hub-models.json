@@ -1,0 +1,138 @@
+{
+  "created_at": "2026-11-04T22:05:08.811590+00:00",
+  "reference_date": "2026-11-07",
+  "hub_commit": "46efdbf32a5f0f610e712979436c3937ab454ebf",
+  "hub": "/Users/chadi/Research/Tapestry/production/hubs/covid19-forecast-hub",
+  "local_labels": [
+    "ACCIDDA-Chromantis"
+  ],
+  "locations": [
+    "US",
+    "06",
+    "48",
+    "36",
+    "37",
+    "19"
+  ],
+  "featured_peers": [
+    "CADPH-CovidCAT_Ensemble",
+    "CEPH-Rtrend_covid (PR #2016)",
+    "CMU-TimeSeries (PR #2014)",
+    "CMU-TimeSeries_Cal (PR #2014)",
+    "CovidHub-baseline",
+    "Emory-EpiRSI",
+    "NDP-v1",
+    "NEU_ISI-AdaptiveEnsemble",
+    "UMass-ar6_pooled",
+    "UMass-gbqr (PR #2015)"
+  ],
+  "missing_featured_peers": [],
+  "peer_models": [
+    "CADPH-CovidCAT_Ensemble",
+    "CEPH-Rtrend_covid (PR #2016)",
+    "CMU-TimeSeries (PR #2014)",
+    "CMU-TimeSeries_Cal (PR #2014)",
+    "CovidHub-baseline",
+    "Emory-EpiRSI",
+    "NDP-v1",
+    "NEU_ISI-AdaptiveEnsemble",
+    "UMass-ar6_pooled",
+    "UMass-gbqr (PR #2015)"
+  ],
+  "warnings": [],
+  "sources": [
+    {
+      "path": "/Users/chadi/Research/Tapestry/production/submissions/2026-11-07/covid/2026-11-07-ACCIDDA-Chromantis.csv",
+      "sha256": "da1304b4bc45412d3f8a2130f68fcbeec9a1423a7495ca475440bc2faeb1a401",
+      "role": "local",
+      "model": "ACCIDDA-Chromantis",
+      "definition": {
+        "note": "Candidate for the first COVID Hub submission, 7 November 2026. Equal mixture of four recipes, each refit on all of 2022-23 through 2025-26 with finalized future admissions and ED labels, ten seeds (42-51) each: (1) width-192 sampled MLP with neighbouring-state exchange and artificial reporting errors on half of training episodes; (2) width-256 direct-quantile model with a GRU encoder, a US-only summary shared with states, and reporting errors on 25% of episodes; (3) width-256 direct-quantile MLP with finalized training histories, a US-only summary and multiscale signal features; (4) width-256 direct-quantile MLP with neighbouring-state exchange, errors on half of episodes and weight decay 1e-4. No covariates. Deployment uses corrected reported inputs. Not yet submitted."
+      },
+      "operational_panel_sha256": "6486441cdc6ef06dbc6a5a9724a8841b196ca6b4ba0bf55cf5f64fcf2b162d7c"
+    },
+    {
+      "path": "model-output/CADPH-CovidCAT_Ensemble/2026-11-07-CADPH-CovidCAT_Ensemble.csv",
+      "sha256": "7c2dfeb73de8cdf6447c03b74c383a2e4e6c756afaf545296b6678959a4fb324",
+      "role": "peer",
+      "model": "CADPH-CovidCAT_Ensemble"
+    },
+    {
+      "path": "model-output/CovidHub-baseline/2026-11-07-CovidHub-baseline.csv",
+      "sha256": "4af71a0c0c4a01f1544fd7d05c49321c3060fc95b3c8b282247f11e4009f65a9",
+      "role": "peer",
+      "model": "CovidHub-baseline"
+    },
+    {
+      "path": "model-output/Emory-EpiRSI/2026-11-07-Emory-EpiRSI.csv",
+      "sha256": "12e4e121a04af422090f17269075ea916f76ffc6a8ce4ed028632281b5702cd7",
+      "role": "peer",
+      "model": "Emory-EpiRSI"
+    },
+    {
+      "path": "model-output/NDP-v1/2026-11-07-NDP-v1.csv",
+      "sha256": "f6bb85cb0659708c89b8d49d898351b7efbe046524f10f6bd8712ab5721304eb",
+      "role": "peer",
+      "model": "NDP-v1"
+    },
+    {
+      "path": "model-output/NEU_ISI-AdaptiveEnsemble/2026-11-07-NEU_ISI-AdaptiveEnsemble.csv",
+      "sha256": "de883735528c60fb02198e00a36be31f11cc909186d020830b745c37a2dcffd9",
+      "role": "peer",
+      "model": "NEU_ISI-AdaptiveEnsemble"
+    },
+    {
+      "path": "model-output/UMass-ar6_pooled/2026-11-07-UMass-ar6_pooled.csv",
+      "sha256": "8a5b106d18982e3f629bc8672e87aa22621773b7dd2ba27f895e86eec0d68644",
+      "role": "peer",
+      "model": "UMass-ar6_pooled"
+    },
+    {
+      "path": "https://raw.githubusercontent.com/shreeyamhade/covid19-forecast-hub/5404f6295479516063d96ceca5b96396ea2b8caa/model-output/CEPH-Rtrend_covid/2026-11-07-CEPH-Rtrend_covid.csv",
+      "sha256": "a10bdb5acdc0fede93af0f225b9b2a13f64e4e438a5f3d240cba074e64a21102",
+      "role": "peer",
+      "model": "CEPH-Rtrend_covid (PR #2016)"
+    },
+    {
+      "path": "https://raw.githubusercontent.com/reichlab/cdcgov-covid19-forecast-hub/9c487c8c41b0cf6d5bb22b020ad4f62eedfc9ce5/model-output/UMass-gbqr/2026-11-07-UMass-gbqr.csv",
+      "sha256": "04d20f392284dc3dc807da2d4e69cd792b847d7483941a68b1a896707b2cfc88",
+      "role": "peer",
+      "model": "UMass-gbqr (PR #2015)"
+    },
+    {
+      "path": "https://raw.githubusercontent.com/cmu-delphi/covid19-forecast-hub/b73989aac182cceadf93c3717709b4ff1af02e43/model-output/CMU-TimeSeries/2026-11-07-CMU-TimeSeries.csv",
+      "sha256": "08dd77b656c75a5f545da15e4b7b9c2eb5353fb6aed7aaa4e8a275654d90d6e0",
+      "role": "peer",
+      "model": "CMU-TimeSeries (PR #2014)"
+    },
+    {
+      "path": "https://raw.githubusercontent.com/cmu-delphi/covid19-forecast-hub/b73989aac182cceadf93c3717709b4ff1af02e43/model-output/CMU-TimeSeries_Cal/2026-11-07-CMU-TimeSeries_Cal.csv",
+      "sha256": "895866797495b69c1c71375cd7aae3859f26bb1083ba35f3f29610a94fc261a2",
+      "role": "peer",
+      "model": "CMU-TimeSeries_Cal (PR #2014)"
+    },
+    {
+      "path": "auxiliary-data/locations.csv",
+      "sha256": "96b14b7376cd5ba6a4dd44b0cae860fdb1a40ddec776328c1b3c39c8c14b0636",
+      "role": "locations",
+      "model": null
+    },
+    {
+      "path": "target-data/time-series.parquet",
+      "sha256": "39bf473d8f0dff430a36c5a867e6f060acf3205eed8d1de867951f871adb356c",
+      "role": "history",
+      "model": null
+    }
+  ],
+  "history_cutoff": "2026-10-31",
+  "zoom_weeks": 8,
+  "assumptions": [
+    "Descriptive forecast comparison, not accuracy scoring.",
+    "Latest target values at the pinned Hub commit, not reconstructed issuance-time truth.",
+    "No history dated after reference minus seven days is shown as current observations.",
+    "Prior season aligned by CDC week; unmatched week 53 omitted, no value rescaling.",
+    "Peer bands weight each available model median equally; local candidates are excluded.",
+    "Partial peer coverage is retained; no missing forecasts or history are imputed.",
+    "Training details are copied only from matching local export metadata; peer training is not inferred."
+  ]
+}

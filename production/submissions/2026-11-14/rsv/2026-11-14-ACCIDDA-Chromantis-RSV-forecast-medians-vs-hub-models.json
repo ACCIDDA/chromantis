@@ -1,0 +1,146 @@
+{
+  "created_at": "2026-11-12T22:16:35.326460+00:00",
+  "reference_date": "2026-11-14",
+  "hub_commit": "c2381bf23c5d866f0b84c6bdfe1733f8a4d9ae2a",
+  "hub": "/Users/chadi/Research/Tapestry/production/hubs/rsv-forecast-hub",
+  "local_labels": [
+    "ACCIDDA-Chromantis"
+  ],
+  "locations": [
+    "US",
+    "06",
+    "48",
+    "36",
+    "37",
+    "19"
+  ],
+  "featured_peers": [
+    "ACCIDDA-insightcast",
+    "CEPH-Rtrend_rsv",
+    "CMU-TimeSeries",
+    "DMAPRIME-HYB",
+    "Emory-EpiRSI",
+    "NAU-Copycat",
+    "NAU-epymorph",
+    "NAU-epymorph_strata",
+    "RSVHub-baseline",
+    "UGA_flucast-INFLAenza",
+    "docxology-timesfm"
+  ],
+  "missing_featured_peers": [],
+  "peer_models": [
+    "ACCIDDA-insightcast",
+    "CEPH-Rtrend_rsv",
+    "CMU-TimeSeries",
+    "DMAPRIME-HYB",
+    "Emory-EpiRSI",
+    "NAU-Copycat",
+    "NAU-epymorph",
+    "NAU-epymorph_strata",
+    "RSVHub-baseline",
+    "UGA_flucast-INFLAenza",
+    "docxology-timesfm"
+  ],
+  "warnings": [],
+  "sources": [
+    {
+      "path": "/Users/chadi/Research/Tapestry/production/submissions/2026-11-14/rsv/2026-11-14-ACCIDDA-Chromantis.csv",
+      "sha256": "ddfb3efdc799a170c6da9cfd022e2a2bfe97e2039411a50038962ca29e0be8d9",
+      "role": "local",
+      "model": "ACCIDDA-Chromantis",
+      "definition": {
+        "note": "RSV four-recipe mixture (fixed 2026-10-14 before its score was seen): Ball_c0w512 (Ba_ll: width-512 direct-quantile MLP, neighbouring-state exchange, all actual archived reports, log-loss 0.75, calendar features off), A4c0 (A4: width-192 sampled MLP with corrected histories, Kinsa, log-loss 1, calendar off), A4i (A4 with all six admission/ED input histories) and Bw (B_width256 with all six input histories); Ball_c0w512 also uses all six. Trained on 2022-23 through 2025-26 (no held-out season), seeds 42-51 per recipe, on panel-rsv.npz: NHSN RSV admissions before 2024-11-02 treated as unobserved (voluntary reporting), so admission labels start November 2024; RSV ED from October 2022. Training admission/ED histories made preliminary with artificial errors from the prescribed 2025-26 RSV reporting process. Labels: latest finalized future RSV admissions and ED (September 2026 panel). Equal weight per recipe and per seed; predictive distributions mixed. Selected by tree search rsv-tree-20261013 (experiments/rsv-tree-20261013/protocol.json): held-out states/DC log-admission WIS 0.3105 on artificial preliminary inputs, 0.3114 replayed on archived reports (2024-25, 2025-26). Correction strength 0.5: the saved trees' log-correction of the two newest reported weeks is multiplied by 0.5 at issuance (no retraining; release rsv-four-20261014)."
+      },
+      "operational_panel_sha256": "39e8c421c4160372ddddb9afdccacb7013606e2707cfc640f0ab3a659b458b77"
+    },
+    {
+      "path": "model-output/ACCIDDA-insightcast/2026-11-14-ACCIDDA-insightcast.csv",
+      "sha256": "6adbbac311374d81741690e8c023314a6b0a8a75b7812f10444e73efa502eede",
+      "role": "peer",
+      "model": "ACCIDDA-insightcast"
+    },
+    {
+      "path": "model-output/CEPH-Rtrend_rsv/2026-11-14-CEPH-Rtrend_rsv.csv",
+      "sha256": "2580cc9a4c036d7569a703ac872ae4e4df22170966cb8df889e7710a7e67ec51",
+      "role": "peer",
+      "model": "CEPH-Rtrend_rsv"
+    },
+    {
+      "path": "model-output/CMU-TimeSeries/2026-11-14-CMU-TimeSeries.csv",
+      "sha256": "4780491b84c544ebbc22b6edab1feb72382bb270c969e106c8734dbb98485c44",
+      "role": "peer",
+      "model": "CMU-TimeSeries"
+    },
+    {
+      "path": "model-output/DMAPRIME-HYB/2026-11-14-DMAPRIME-HYB.csv",
+      "sha256": "9ccc951f213203a0b0830146d79ed029a1697f039fd514e70e45c66f70785ff6",
+      "role": "peer",
+      "model": "DMAPRIME-HYB"
+    },
+    {
+      "path": "model-output/Emory-EpiRSI/2026-11-14-Emory-EpiRSI.csv",
+      "sha256": "439f5eb91b8c40925f49a570a4eb97db7658754680c01c195935efba90f8f965",
+      "role": "peer",
+      "model": "Emory-EpiRSI"
+    },
+    {
+      "path": "model-output/NAU-Copycat/2026-11-14-NAU-Copycat.parquet",
+      "sha256": "6df81e273def245f6abfc0246644cb137cb9e04065da94792f4826d829db1fc8",
+      "role": "peer",
+      "model": "NAU-Copycat"
+    },
+    {
+      "path": "model-output/NAU-epymorph/2026-11-14-NAU-epymorph.csv",
+      "sha256": "fd9dabf2f3febb884c4863add91d777ed68377cc5471b08eeff59ad4af027230",
+      "role": "peer",
+      "model": "NAU-epymorph"
+    },
+    {
+      "path": "model-output/NAU-epymorph_strata/2026-11-14-NAU-epymorph_strata.csv",
+      "sha256": "ee0c13a1ff9f2147901df403f29e0f8fb6ea39ce8536efb191d403f19d5764a5",
+      "role": "peer",
+      "model": "NAU-epymorph_strata"
+    },
+    {
+      "path": "model-output/RSVHub-baseline/2026-11-14-RSVHub-baseline.csv",
+      "sha256": "29b77168b74f865035fe0d51d5b1cfefe59912a54c286d0a877eb5b7db2f86ee",
+      "role": "peer",
+      "model": "RSVHub-baseline"
+    },
+    {
+      "path": "model-output/UGA_flucast-INFLAenza/2026-11-14-UGA_flucast-INFLAenza.parquet",
+      "sha256": "663afdc491f78a84acbef49adb86c796dcace51acd7dad02025d8d423a048144",
+      "role": "peer",
+      "model": "UGA_flucast-INFLAenza"
+    },
+    {
+      "path": "model-output/docxology-timesfm/2026-11-14-docxology-timesfm.csv",
+      "sha256": "6a71649c15a1479f5c72fb9c3e7b7e207631af27822377df960b915bc993a660",
+      "role": "peer",
+      "model": "docxology-timesfm"
+    },
+    {
+      "path": "auxiliary-data/locations.csv",
+      "sha256": "96b14b7376cd5ba6a4dd44b0cae860fdb1a40ddec776328c1b3c39c8c14b0636",
+      "role": "locations",
+      "model": null
+    },
+    {
+      "path": "target-data/time-series.parquet",
+      "sha256": "74e81cc049fc7c75c6afa41f642a605bf36be5295ea75f3e86f0c71c1bf026dc",
+      "role": "history",
+      "model": null
+    }
+  ],
+  "history_cutoff": "2026-11-07",
+  "zoom_weeks": 8,
+  "assumptions": [
+    "Descriptive forecast comparison, not accuracy scoring.",
+    "Latest target values at the pinned Hub commit, not reconstructed issuance-time truth.",
+    "No history dated after reference minus seven days is shown as current observations.",
+    "Prior season aligned by CDC week; unmatched week 53 omitted, no value rescaling.",
+    "Peer bands weight each available model median equally; local candidates are excluded.",
+    "Partial peer coverage is retained; no missing forecasts or history are imputed.",
+    "Training details are copied only from matching local export metadata; peer training is not inferred."
+  ]
+}

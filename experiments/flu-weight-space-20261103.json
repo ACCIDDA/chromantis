@@ -1,0 +1,27 @@
+{
+  "candidates": {
+    "original": {},
+    "all_gaps_plus_0.25": {"gap_bias": 0.25},
+    "outer_gaps_plus_0.5": {"outer_gap_bias": 0.5},
+    "outer_gaps_plus_1": {"outer_gap_bias": 1.0},
+    "calendar_half": {"calendar_scale": 0.5},
+    "neighbor_half": {"geographic_scale": 0.5},
+    "slope_three_quarters": {"slope_scale": 0.75},
+    "slope_one_quarter_more": {"slope_scale": 1.25},
+    "acceleration_half": {"acceleration_scale": 0.5},
+    "horizon_four_fifths": {"horizon_scale": 0.8},
+    "local_history_one_fifth_more": {"focal_scale": 1.2}
+  },
+  "rationale": {
+    "all_gaps_plus_0.25": "Increase uncertainty through the 22 gap biases; keep the median weights untouched.",
+    "outer_gaps_plus_0.5": "The 95% intervals undercover more than the 50% intervals: expand only gaps outside the central 50% interval.",
+    "outer_gaps_plus_1": "A stronger version of the same outer-tail correction, changing only 12 biases per checkpoint.",
+    "calendar_half": "Test whether the learned seasonal calendar dominates observed epidemic timing.",
+    "neighbor_half": "Test whether messages from nearby states overwhelm local epidemic differences.",
+    "slope_three_quarters": "Test excess sensitivity to recent two-week growth in potentially revised observations.",
+    "slope_one_quarter_more": "Test the competing explanation of insufficient responsiveness to recent growth.",
+    "acceleration_half": "Reduce sensitivity to the noisier second difference while retaining the first difference.",
+    "horizon_four_fifths": "Test whether horizon-conditioned extrapolation contributes to longer-horizon errors.",
+    "local_history_one_fifth_more": "Increase the target-specific local history contribution relative to shared context before normalization."
+  }
+}

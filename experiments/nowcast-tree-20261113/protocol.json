@@ -1,0 +1,26 @@
+{
+  "study": "nowcast-tree-20261113",
+  "started": "2026-11-13",
+  "goal": "A flu model whose nowcast of the two newest reported weeks is right without a production correction factor (no correction_strength), using the number of hospitals reporting at first report. Successor of tree-20261010, which selected Bes on artificial evaluation histories.",
+  "history": "4-12 November 2026: Bes's saved correction trees added x1.14 / x1.07 to the newest / second-newest flu admission week while those weeks ended about x1.08-1.11 / x1.03 above their reports; B7's trees added x1.10 / x1.05. Bes's trees learn from artificial errors at 1.5x strength, and Bes's network is trained on uncorrected histories yet given corrected ones. For 7 November Bes was submitted with its trees halved (production correction_strength 0.5), for 14 November B7. The share of usual hospitals reporting a week at first report (Delphi hosprep_confirmed_admissions_flu_ew) predicts each state's revision: 70-80% -> x1.18, 95-100% -> x1.02 (production/output/2026-11-12/hosprep/).",
+  "data": "Research panel data/processed/panel-coverage.npz, built 2026-11-13 from data/operational-20261111 with truth day 2026-11-12 (finalized values as of 12 November). New state covariates hosprep_flu/covid/rsv = hospitals reporting each pathogen's admissions, archived from 11 December 2024; earlier issuances see final counts, which the trees treat as unknown. Not the frozen 5 October panel: every recipe here, including the references, is refit on it.",
+  "problem": "problems/us-flu-short-term-coverage.json",
+  "problem_in_words": "Flu admissions and ED share, 1-4 weeks after the last reported week (Hub horizons 0-3). 2024-25 and 2025-26, the seasons with archived hospital counts, are each held out in turn, training on the other seasons of 2022-23..2025-26. Labels are finalized future values. Evaluation inputs are the archived Wednesday reports of the held-out season (no artificial histories).",
+  "forward_problem": "problems/us-flu-forward-2025-26-coverage.json (trained on 2022-23..2024-25, scored on archived 2025-26 reports); run for finalists.",
+  "families": {
+    "ref": "References refit on the new panel: Bes as submitted (ref.Bes), Bes with no trees at forecast time (ref.Bes_raw), B7's A_blocks3.",
+    "T": "Trees do the nowcast, at full strength: trees learn from real archived report -> value 12 weeks later pairs (corrector_examples=real) and read the coverage of each corrected week; with covariate_set=hosprep the network also reads coverage, and training histories carry jointly drawn coverage errors (error_signals=all). T.real_cov_s1_hc trains the network on corrected histories (history_correction) so it does not correct twice.",
+    "N": "The network does the nowcast: no trees at forecast time (forecast_view=raw); it learns final values of recent weeks (reconstruction_labels) from artificial histories at strength 1, with or without the coverage covariate."
+  },
+  "selection_score": "Primary: states/DC mean WIS of log(1 + admissions), October-May reference dates, horizons 0-3 (problem horizons 1-4), 2024-25 and 2025-26 equal; lower is better; averaged over seeds 44-47. Reported beside it: horizon-0 WIS on counts, ED share WIS, US log WIS, interval coverage, and the nowcast's own error against values 12 weeks later (nowcast-diagnostics).",
+  "expansion_rule": "As tree-20261010: four seeds per node; a child is better than its parent only if lower by more than the pooled seed noise (sd of seed-pair differences / sqrt 2); each round expands the best four nodes and combines what helped; an axis is closed for a family after two rounds of children all worse beyond noise. Finalists are compared as seed mixtures and checked on the forward problem and on the 2026-27 reports (live gate).",
+  "decisions": [
+    {
+      "date": "2026-11-13",
+      "round": 1,
+      "what": "Round 1 (12 recipes x seeds 44-47, experiment nowcast-tree-20261113-r01) and the same recipes on the forward problem (nowcast-tree-20261113-fwd01), one Slurm array 9136360 over the six lab GPUs; scoring is queued by the last worker.",
+      "smoke": "Local CPU run (2 epochs, seed 44) of T.real_cov_s1_hc, T.mlp_cov_s1 and N.cov_s1 completed on both folds. Trees learned from real 2024-25 report pairs with coverage features: held-out 2024-25 newest-week admissions MAE vs values 12 weeks later 72.8 raw -> 36.1 corrected per state; applied to the 2026-27 issuances they add x1.06-1.08 to the newest week and x1.00-1.01 to the second-newest (summed over states), x1.080 on 11 November when coverage is lowest.",
+      "added": "T.real_cov_s1_all (error_seasons=all): real report pairs from every permitted season instead of the latest one."
+    }
+  ]
+}

@@ -336,8 +336,13 @@ def replay_runs(folder, inputs, device, seeds=None):
 
 
 def main(argv=None):
+    arguments = sys.argv[1:] if argv is None else argv
+    if arguments and arguments[0] == 'weight-edit':
+        from .weight_edit import main as weight_edit_main
+        return weight_edit_main(arguments[1:])
     parser = argparse.ArgumentParser(description=__doc__)
     sub = parser.add_subparsers(dest='command', required=True)
+    sub.add_parser('weight-edit', help='Plan, run, inspect and rank fixed edits to saved quantile weights')
     fit_parser = sub.add_parser('fit', help='Fit and evaluate one scenario/seed across its held-out seasons')
     fit_parser.add_argument('--scenario', required=True)
     fit_parser.add_argument('--problem', required=True)

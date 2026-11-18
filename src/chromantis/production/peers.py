@@ -127,7 +127,11 @@ def main(argv=None):
     def add_peer(path, raw, model):
         if model in local_models or hashlib.sha256(raw).hexdigest() in local_hashes:
             return
-        d = read_medians(raw, Path(path).suffix, reference)
+        try:
+            d = read_medians(raw, Path(path).suffix, reference)
+        except ValueError as e:  # e.g. a Hub file whose rows carry another reference date (COVID Hub, 14 Nov 2026)
+            print(f'skipping peer {path}: {e}')
+            return
         if d.empty:
             return
         if model in peer_frames:

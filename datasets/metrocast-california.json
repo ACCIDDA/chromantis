@@ -21,6 +21,9 @@
     ]
   },
   "covariate_sets": {
-    "none": []
+    "none": [],
+    "tp": ["ca_flu_test_positivity"],
+    "state": ["ca_statewide_flu_admissions"],
+    "ed": ["ca_statewide_flu_ed_visits"]
   }
 }

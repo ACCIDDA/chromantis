@@ -1,0 +1,19 @@
+{
+  "candidates": {
+    "original": {},
+    "level_circuit_zero": {"level_circuit": 0.0, "level_reference": 0.7},
+    "level_circuit_plus_0.01": {"level_circuit": 0.01, "level_reference": 0.7},
+    "level_circuit_plus_0.03": {"level_circuit": 0.03, "level_reference": 0.7},
+    "level_circuit_plus_0.06": {"level_circuit": 0.06, "level_reference": 0.7},
+    "level_circuit_minus_0.01": {"level_circuit": -0.01, "level_reference": 0.7},
+    "level_circuit_minus_0.03": {"level_circuit": -0.03, "level_reference": 0.7}
+  },
+  "rationale": {
+    "level_circuit_zero": "Measure collateral changes from repurposing weak neuron paths, with the new circuit disconnected from the median.",
+    "level_circuit_plus_0.01": "Program a signed recent-level correction: SiLU(x)-SiLU(-x)=x through paired units and a LayerNorm-cancelling difference. Reference 0.7 is in normalized fourth-root admission space; ED uses centered logit space and reference zero.",
+    "level_circuit_plus_0.03": "Stronger programmed level dependence to counter mean reversion during large waves.",
+    "level_circuit_plus_0.06": "Larger causal intervention for the same circuit.",
+    "level_circuit_minus_0.01": "Opposite direction tests whether amplification, rather than mean reversion, causes errors.",
+    "level_circuit_minus_0.03": "Stronger opposite-direction intervention."
+  }
+}

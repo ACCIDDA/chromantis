@@ -1,0 +1,390 @@
+{
+  "created_at": "2026-11-04T22:41:19.533481+00:00",
+  "reference_date": "2026-11-07",
+  "hub_commit": "487bc2ae67786bbd1bca011df83a858fb428a761",
+  "hub": "/Users/chadi/Research/Tapestry/production/hubs/FluSight-forecast-hub",
+  "local_labels": [
+    "ACCIDDA-Chromantis"
+  ],
+  "locations": [
+    "US",
+    "06",
+    "48",
+    "36",
+    "37",
+    "19"
+  ],
+  "featured_peers": [
+    "CADPH-FluCAT_Ensemble",
+    "CEPH-Rtrend_fluH (PR #4008)",
+    "CFA-NowcastAutoGP (PR #4014)",
+    "CFA-PyRenew_E (PR #4014)",
+    "CFA-PyRenew_H (PR #4014)",
+    "CFA-PyRenew_HE (PR #4014)",
+    "CMU-TimeSeries (PR #4007)",
+    "CMU-TimeSeries_Cal (PR #4007)",
+    "Cornell_JHU-SCARCHhierarSIR",
+    "Cornell_JHU-hierarchSIR",
+    "DMAPRIME-HYB (PR #4006)",
+    "DMAPRIME-RF (PR #4012)",
+    "Emory-EpiRSI",
+    "FluSight-baseline",
+    "FluTurists-ensemble",
+    "HallAI-FluTrend",
+    "LUcompUncertLab-puca",
+    "MIGHTE-Base",
+    "MIGHTE-Linear",
+    "MIGHTE-Nsemble",
+    "MOBS-EpyStrain_Flu",
+    "MOBS-GLEAM_NCB_FLUH",
+    "MOBS-GLEAM_PONG (PR #4005)",
+    "NAU-epymorph",
+    "NAU_PyBNF-GroundHogCGR (PR #3995)",
+    "NAU_PyBNF-OracleSIHRS (PR #3995)",
+    "NDP-v1",
+    "NEU_ISI-AdaptiveEnsemble",
+    "NEU_ISI-FluBcast",
+    "NU-EMBERS (PR #3980)",
+    "OHTJHU-BM",
+    "OHTJHU-FLUFFHEAD (PR #4003)",
+    "OHT_JHU-nbxd (PR #4013)",
+    "PLANET_NEU-ClaudeScience",
+    "PSI-PROF",
+    "PSI-PROF_MOA",
+    "Schnitzels-stack5",
+    "Sentinel-Ens (PR #4004)",
+    "UMass-AR2",
+    "UMass-flusion (PR #4009)",
+    "bayvaxbio-CountCast"
+  ],
+  "missing_featured_peers": [],
+  "peer_models": [
+    "CADPH-FluCAT_Ensemble",
+    "CEPH-Rtrend_fluH (PR #4008)",
+    "CFA-NowcastAutoGP (PR #4014)",
+    "CFA-PyRenew_E (PR #4014)",
+    "CFA-PyRenew_H (PR #4014)",
+    "CFA-PyRenew_HE (PR #4014)",
+    "CMU-TimeSeries (PR #4007)",
+    "CMU-TimeSeries_Cal (PR #4007)",
+    "Cornell_JHU-SCARCHhierarSIR",
+    "Cornell_JHU-hierarchSIR",
+    "DMAPRIME-HYB (PR #4006)",
+    "DMAPRIME-RF (PR #4012)",
+    "Emory-EpiRSI",
+    "FluSight-baseline",
+    "FluTurists-ensemble",
+    "HallAI-FluTrend",
+    "LUcompUncertLab-puca",
+    "MIGHTE-Base",
+    "MIGHTE-Linear",
+    "MIGHTE-Nsemble",
+    "MOBS-EpyStrain_Flu",
+    "MOBS-GLEAM_NCB_FLUH",
+    "MOBS-GLEAM_PONG (PR #4005)",
+    "NAU-epymorph",
+    "NAU_PyBNF-GroundHogCGR (PR #3995)",
+    "NAU_PyBNF-OracleSIHRS (PR #3995)",
+    "NDP-v1",
+    "NEU_ISI-AdaptiveEnsemble",
+    "NEU_ISI-FluBcast",
+    "NU-EMBERS (PR #3980)",
+    "OHTJHU-BM",
+    "OHTJHU-FLUFFHEAD (PR #4003)",
+    "OHT_JHU-nbxd (PR #4013)",
+    "PLANET_NEU-ClaudeScience",
+    "PSI-PROF",
+    "PSI-PROF_MOA",
+    "Schnitzels-stack5",
+    "Sentinel-Ens (PR #4004)",
+    "UMass-AR2",
+    "UMass-flusion (PR #4009)",
+    "bayvaxbio-CountCast"
+  ],
+  "warnings": [
+    "ACCIDDA-Chromantis: companion JSON hash does not match; model description not reused."
+  ],
+  "sources": [
+    {
+      "path": "/Users/chadi/Research/Tapestry/production/submissions/2026-11-07/2026-11-07-ACCIDDA-Chromantis.csv",
+      "sha256": "19429fb5cf37eede1bfd71ba687c35d23a3db211e397cc9d22539b4152df8cf8",
+      "role": "local",
+      "model": "ACCIDDA-Chromantis"
+    },
+    {
+      "path": "model-output/CADPH-FluCAT_Ensemble/2026-11-07-CADPH-FluCAT_Ensemble.csv",
+      "sha256": "0588fad86e8819d906e48be311cc0e57e65811f1463ff9fc5cd8d18ec431c7b0",
+      "role": "peer",
+      "model": "CADPH-FluCAT_Ensemble"
+    },
+    {
+      "path": "model-output/Cornell_JHU-SCARCHhierarSIR/2026-11-07-Cornell_JHU-SCARCHhierarSIR.csv",
+      "sha256": "b0fd11715ea063fa03e9616384e987bf877e9845bee66ecfa00570ae3e8e6e9b",
+      "role": "peer",
+      "model": "Cornell_JHU-SCARCHhierarSIR"
+    },
+    {
+      "path": "model-output/Cornell_JHU-hierarchSIR/2026-11-07-Cornell_JHU-hierarchSIR.csv",
+      "sha256": "c696072adc9935072bce45ce43792d2897fc2f66a154b484c7784d2c5cc5fc8f",
+      "role": "peer",
+      "model": "Cornell_JHU-hierarchSIR"
+    },
+    {
+      "path": "model-output/Emory-EpiRSI/2026-11-07-Emory-EpiRSI.csv",
+      "sha256": "c53b09f40312e39b10594f04db89cccd54054fcde4d3dcf262211dbb019fee25",
+      "role": "peer",
+      "model": "Emory-EpiRSI"
+    },
+    {
+      "path": "model-output/FluSight-baseline/2026-11-07-FluSight-baseline.csv",
+      "sha256": "29072c53880b5678f6b183637510dbcd58502423daf0578df1c409702fae6877",
+      "role": "peer",
+      "model": "FluSight-baseline"
+    },
+    {
+      "path": "model-output/FluTurists-ensemble/2026-11-07-FluTurists-ensemble.csv",
+      "sha256": "142d5824b0f10ee1ac2adcaed6dcd73469a694c155d830b68d8167142203d73a",
+      "role": "peer",
+      "model": "FluTurists-ensemble"
+    },
+    {
+      "path": "model-output/HallAI-FluTrend/2026-11-07-HallAI-FluTrend.csv",
+      "sha256": "1210e93dcb24c317bca325f61146fd17986d47d15e33052d3bd4b78509bc9759",
+      "role": "peer",
+      "model": "HallAI-FluTrend"
+    },
+    {
+      "path": "model-output/LUcompUncertLab-puca/2026-11-07-LUcompUncertLab-puca.csv",
+      "sha256": "64ae734e40b421771c609bda8b35126566f5c9a4749f8e99042dff708dbbd9aa",
+      "role": "peer",
+      "model": "LUcompUncertLab-puca"
+    },
+    {
+      "path": "model-output/MIGHTE-Base/2026-11-07-MIGHTE-Base.csv",
+      "sha256": "f8c27822be2e70824a1701cc2a8f9d77924c467705559a17c79384558c41caff",
+      "role": "peer",
+      "model": "MIGHTE-Base"
+    },
+    {
+      "path": "model-output/MIGHTE-Linear/2026-11-07-MIGHTE-Linear.csv",
+      "sha256": "af34fb79d668239f147df4adc97e3a8867172b8f85f1fdb6c421d326af4faf0d",
+      "role": "peer",
+      "model": "MIGHTE-Linear"
+    },
+    {
+      "path": "model-output/MIGHTE-Nsemble/2026-11-07-MIGHTE-Nsemble.csv",
+      "sha256": "7fbe36a7b6038bbb454bce0a6c530b98a2dfa81f990be0d9bcc76919b32367b7",
+      "role": "peer",
+      "model": "MIGHTE-Nsemble"
+    },
+    {
+      "path": "model-output/MOBS-EpyStrain_Flu/2026-11-07-MOBS-EpyStrain_Flu.parquet",
+      "sha256": "b47d2d9e41af926e6db4e3303619068e6301def92400a382b0f01bdc073b504e",
+      "role": "peer",
+      "model": "MOBS-EpyStrain_Flu"
+    },
+    {
+      "path": "model-output/MOBS-GLEAM_NCB_FLUH/2026-11-07-MOBS-GLEAM_NCB_FLUH.csv",
+      "sha256": "8f5917bdd9ac0e7931015a7d5ca6cf8c532ae44d225d8e81d1b275ed53584866",
+      "role": "peer",
+      "model": "MOBS-GLEAM_NCB_FLUH"
+    },
+    {
+      "path": "model-output/NAU-epymorph/2026-11-07-NAU-epymorph.csv",
+      "sha256": "99ace317a711ac51906f83531b5160f364d1ab5ce19e8d02cfc288dcf939f54c",
+      "role": "peer",
+      "model": "NAU-epymorph"
+    },
+    {
+      "path": "model-output/NDP-v1/2026-11-07-NDP-v1.csv",
+      "sha256": "5a63055c6b76e1e5024d0ff4ab121f0bf8096e5ebe1e1ad569ec05c80c07a54a",
+      "role": "peer",
+      "model": "NDP-v1"
+    },
+    {
+      "path": "model-output/NEU_ISI-AdaptiveEnsemble/2026-11-07-NEU_ISI-AdaptiveEnsemble.csv",
+      "sha256": "e1bba758ae4c1b647f8f3edefa593a72187f36bd9d7ef133fed32b3d10a50e0a",
+      "role": "peer",
+      "model": "NEU_ISI-AdaptiveEnsemble"
+    },
+    {
+      "path": "model-output/NEU_ISI-FluBcast/2026-11-07-NEU_ISI-FluBcast.csv",
+      "sha256": "81c8ddbbac985e9737e82fc9cba8b8adb6524a0e076c0d6fa7e478a840b238ae",
+      "role": "peer",
+      "model": "NEU_ISI-FluBcast"
+    },
+    {
+      "path": "model-output/OHTJHU-BM/2026-11-07-OHTJHU-BM.csv",
+      "sha256": "ba94300914acea9bbfd1d310ad2f6006162b52d9eabf684a6fd3c9e156d82488",
+      "role": "peer",
+      "model": "OHTJHU-BM"
+    },
+    {
+      "path": "model-output/PLANET_NEU-ClaudeScience/2026-11-07-PLANET_NEU-ClaudeScience.csv",
+      "sha256": "a2f74bbf1159e4d21a48a0e47f42443f00637e5ccb6c48b35b398a3a8f5038f8",
+      "role": "peer",
+      "model": "PLANET_NEU-ClaudeScience"
+    },
+    {
+      "path": "model-output/PSI-PROF/2026-11-07-PSI-PROF.parquet",
+      "sha256": "5ec2be5dc546464c48d15a359abbf696df5c658bfb3e18f47efa0be93489f8d2",
+      "role": "peer",
+      "model": "PSI-PROF"
+    },
+    {
+      "path": "model-output/PSI-PROF_MOA/2026-11-07-PSI-PROF_MOA.parquet",
+      "sha256": "7e73cbda23c8e53fac71bdeca6cf71103634ee7a4dd8682adbffae41e009d080",
+      "role": "peer",
+      "model": "PSI-PROF_MOA"
+    },
+    {
+      "path": "model-output/Schnitzels-stack5/2026-11-07-Schnitzels-stack5.csv",
+      "sha256": "6635b336fb7bbeca936a1c5738974f3e94b395d8ed919b3debbed1071f1c0a03",
+      "role": "peer",
+      "model": "Schnitzels-stack5"
+    },
+    {
+      "path": "model-output/UMass-AR2/2026-11-07-UMass-AR2.csv",
+      "sha256": "51197ed9aac0a61d883ae4d545d196770ae5bc2421fb34f215f3ef66313a25e4",
+      "role": "peer",
+      "model": "UMass-AR2"
+    },
+    {
+      "path": "model-output/bayvaxbio-CountCast/2026-11-07-bayvaxbio-CountCast.csv",
+      "sha256": "6d5b87c83d8878a07397f5af8b62db82dbc650e6372a04657b67550f65556865",
+      "role": "peer",
+      "model": "bayvaxbio-CountCast"
+    },
+    {
+      "path": "https://raw.githubusercontent.com/antoniobgondim/FluSight-forecast-hub/644a50172ecf30513226ec93019c70f93a68014d/model-output/CFA-NowcastAutoGP/2026-11-07-CFA-NowcastAutoGP.csv",
+      "sha256": "cdbf76d35b93bbee19599bc798d05a0e58661355cfa9e66b8d8a35372fb64632",
+      "role": "peer",
+      "model": "CFA-NowcastAutoGP (PR #4014)"
+    },
+    {
+      "path": "https://raw.githubusercontent.com/antoniobgondim/FluSight-forecast-hub/644a50172ecf30513226ec93019c70f93a68014d/model-output/CFA-PyRenew_E/2026-11-07-CFA-PyRenew_E.csv",
+      "sha256": "939f5371fbe34a460178e0b69f4c1d32d22bb248281cb7c70f98fcedbd4b1a31",
+      "role": "peer",
+      "model": "CFA-PyRenew_E (PR #4014)"
+    },
+    {
+      "path": "https://raw.githubusercontent.com/antoniobgondim/FluSight-forecast-hub/644a50172ecf30513226ec93019c70f93a68014d/model-output/CFA-PyRenew_H/2026-11-07-CFA-PyRenew_H.csv",
+      "sha256": "e390525dc943823282530dd438a3f6d89436ea5cb16c884f4409677cbf45ddcf",
+      "role": "peer",
+      "model": "CFA-PyRenew_H (PR #4014)"
+    },
+    {
+      "path": "https://raw.githubusercontent.com/antoniobgondim/FluSight-forecast-hub/644a50172ecf30513226ec93019c70f93a68014d/model-output/CFA-PyRenew_HE/2026-11-07-CFA-PyRenew_HE.csv",
+      "sha256": "6e7f67a496fdc969d0b6b0384b81a054f507262c05309b115577ea7a3f4b2899",
+      "role": "peer",
+      "model": "CFA-PyRenew_HE (PR #4014)"
+    },
+    {
+      "path": "https://raw.githubusercontent.com/atulchin/FluSight-forecast-hub/888e55e3f7320147ac406de2b1473263cbbbfda7/model-output/OHT_JHU-nbxd/2026-11-07-OHT_JHU-nbxd.csv",
+      "sha256": "1d0c5b87e08a215a4db194225bf5f00712e3aaccc12a56371bb9e688e7772da6",
+      "role": "peer",
+      "model": "OHT_JHU-nbxd (PR #4013)"
+    },
+    {
+      "path": "https://raw.githubusercontent.com/GaurobSaha/FluSight-forecast-hub/7915758b6423e7a22c86b96e61ab9e27329f894b/model-output/DMAPRIME-RF/2026-11-07-DMAPRIME-RF.csv",
+      "sha256": "3f19fcfb3925b1101352ecc332e53632b23b8434b6e16c652b73e657228c4726",
+      "role": "peer",
+      "model": "DMAPRIME-RF (PR #4012)"
+    },
+    {
+      "path": "https://raw.githubusercontent.com/reichlab/FluSight-forecast-hub/363cb8376457595b15705b31ddc5821c5cc92b6d/model-output/UMass-flusion/2026-11-07-UMass-flusion.csv",
+      "sha256": "b787478383ef292829e3aa6ca7c815b72664a66403ccae852a13d665a84233fc",
+      "role": "peer",
+      "model": "UMass-flusion (PR #4009)"
+    },
+    {
+      "path": "https://raw.githubusercontent.com/shreeyamhade/FluSight-forecast-hub/44b927daa2284c044e836286b45be86186f10922/model-output/CEPH-Rtrend_fluH/2026-11-07-CEPH-Rtrend_fluH.csv",
+      "sha256": "6e4bd3aa74fa0a294ffead8b39d3df276361ce9703fc6142744700046e87243c",
+      "role": "peer",
+      "model": "CEPH-Rtrend_fluH (PR #4008)"
+    },
+    {
+      "path": "https://raw.githubusercontent.com/cmu-delphi/FluSight-forecast-hub/c734bf7788a75994a66e2dc44518c983dfe0f1d7/model-output/CMU-TimeSeries/2026-11-07-CMU-TimeSeries.csv",
+      "sha256": "0231c023a34c901dc410b686c314a49d86388447765f6c43c7e1f4c5fb8011d1",
+      "role": "peer",
+      "model": "CMU-TimeSeries (PR #4007)"
+    },
+    {
+      "path": "https://raw.githubusercontent.com/cmu-delphi/FluSight-forecast-hub/c734bf7788a75994a66e2dc44518c983dfe0f1d7/model-output/CMU-TimeSeries_Cal/2026-11-07-CMU-TimeSeries_Cal.csv",
+      "sha256": "78bd4527a3d019236958535bf508f8d79e0c6f0e287c23cdb1b66dc9f398e061",
+      "role": "peer",
+      "model": "CMU-TimeSeries_Cal (PR #4007)"
+    },
+    {
+      "path": "https://raw.githubusercontent.com/DMA-PRIME/FluSight-forecast-hub/cbf85ba0eecbba1d1fb068e177ec8cfb911f8152/model-output/DMAPRIME-HYB/2026-11-07-DMAPRIME-HYB.csv",
+      "sha256": "278e06623ae923acce2b38988919ae0aa2b4857845e7b251a20e0b1403e153b7",
+      "role": "peer",
+      "model": "DMAPRIME-HYB (PR #4006)"
+    },
+    {
+      "path": "https://raw.githubusercontent.com/aleurbi/FluSight-forecast-hub/3b75e4af0428abe98460843b582fdc5685ca24fe/model-output/MOBS-GLEAM_PONG/2026-11-07-MOBS-GLEAM_PONG.csv",
+      "sha256": "1629747b681130502e6a3f10e3781654899f0f0a42bac715fec6911ca9201990",
+      "role": "peer",
+      "model": "MOBS-GLEAM_PONG (PR #4005)"
+    },
+    {
+      "path": "https://raw.githubusercontent.com/xairu23/FluSight-forecast-hub/eb79fd29e7ec70b71e95893b324917f51c4b26cb/model-output/Sentinel-Ens/2026-11-07-Sentinel-Ens.csv",
+      "sha256": "d6cf6f8df1eb44f4e370beda34f58342f544105a6e83a07a8d6c5e70cbb3f2cf",
+      "role": "peer",
+      "model": "Sentinel-Ens (PR #4004)"
+    },
+    {
+      "path": "https://raw.githubusercontent.com/eklein-cddep/FluSight-forecast-hub/953dd1afe560b9352a03f8e4cf9eff758d51dcc9/model-output/OHTJHU-FLUFFHEAD/2026-11-07-OHTJHU-FLUFFHEAD.csv",
+      "sha256": "8c6ca7077c5752b41b1c4f06cf3609b3f5e64c63dce208e9b9beda51489dbbab",
+      "role": "peer",
+      "model": "OHTJHU-FLUFFHEAD (PR #4003)"
+    },
+    {
+      "path": "https://raw.githubusercontent.com/elyfmiller/FluSight-forecast-hub/cec8608db51116722e349b2df1dc0d22d28689ca/model-output/NAU_PyBNF-GroundHogCGR/2026-11-07-NAU_PyBNF-GroundHogCGR.csv",
+      "sha256": "0de90710f49a02defc26fdbecf9bfdecd850adb97a91ce4269aaf9b2d015d8e8",
+      "role": "peer",
+      "model": "NAU_PyBNF-GroundHogCGR (PR #3995)"
+    },
+    {
+      "path": "https://raw.githubusercontent.com/elyfmiller/FluSight-forecast-hub/cec8608db51116722e349b2df1dc0d22d28689ca/model-output/NAU_PyBNF-OracleSIHRS/2026-11-07-NAU_PyBNF-OracleSIHRS.csv",
+      "sha256": "9402fb92b2d8299b39572be7a65749bef74e2cdf0390d9ef1cf9b10cbda52deb",
+      "role": "peer",
+      "model": "NAU_PyBNF-OracleSIHRS (PR #3995)"
+    },
+    {
+      "path": "https://raw.githubusercontent.com/dimitri-lopez/FluSight-forecast-hub/6a14c746b7a353ab7d61f609664554342b4823a2/model-output/NU-EMBERS/2026-11-07-NU-EMBERS.csv",
+      "sha256": "44bf83be10c8949e0c8c5ed6e43dd206dfeb3f7cba2249dd4585fea271ce0c95",
+      "role": "peer",
+      "model": "NU-EMBERS (PR #3980)"
+    },
+    {
+      "path": "auxiliary-data/locations.csv",
+      "sha256": "80aaa24750044a837e063812a1d0a22339c8b3a92513f71a23dac613eaaa29e0",
+      "role": "locations",
+      "model": null
+    },
+    {
+      "path": "target-data/target-hospital-admissions.csv",
+      "sha256": "c1a98bd361f75024bb2391f594af69a3f246bb104845b855624340df66bbb949",
+      "role": "history",
+      "model": null
+    },
+    {
+      "path": "target-data/target-ed-visits-prop.csv",
+      "sha256": "b40a9e7fe6a4f5ef0b5daf2de7c2a694838514815e14977381f931e2668cc029",
+      "role": "history",
+      "model": null
+    }
+  ],
+  "history_cutoff": "2026-10-31",
+  "zoom_weeks": 8,
+  "assumptions": [
+    "Descriptive forecast comparison, not accuracy scoring.",
+    "Latest target values at the pinned Hub commit, not reconstructed issuance-time truth.",
+    "No history dated after reference minus seven days is shown as current observations.",
+    "Prior season aligned by CDC week; unmatched week 53 omitted, no value rescaling.",
+    "Peer bands weight each available model median equally; local candidates are excluded.",
+    "Partial peer coverage is retained; no missing forecasts or history are imputed.",
+    "Training details are copied only from matching local export metadata; peer training is not inferred."
+  ]
+}

@@ -1,0 +1,106 @@
+{
+  "created_at": "2026-11-04T22:00:19.825715+00:00",
+  "reference_date": "2026-11-07",
+  "hub_commit": "c5f5f65c38132451948edc963b14b61d70e6f4b3",
+  "hub": "/Users/chadi/Research/Tapestry/production/hubs/rsv-forecast-hub",
+  "local_labels": [
+    "ACCIDDA-Chromantis"
+  ],
+  "locations": [
+    "US",
+    "06",
+    "48",
+    "36",
+    "37",
+    "19"
+  ],
+  "featured_peers": [
+    "CEPH-Rtrend_rsv (PR #693)",
+    "Emory-EpiRSI",
+    "NAU-epymorph",
+    "NAU-epymorph_strata",
+    "NDP-v1",
+    "RSVHub-baseline"
+  ],
+  "missing_featured_peers": [],
+  "peer_models": [
+    "CEPH-Rtrend_rsv (PR #693)",
+    "Emory-EpiRSI",
+    "NAU-epymorph",
+    "NAU-epymorph_strata",
+    "NDP-v1",
+    "RSVHub-baseline"
+  ],
+  "warnings": [],
+  "sources": [
+    {
+      "path": "/Users/chadi/Research/Tapestry/production/submissions/2026-11-07/rsv/2026-11-07-ACCIDDA-Chromantis.csv",
+      "sha256": "fd3eabf01f9a187eae19d2bb19b541cd8fd8308b466c57437020cb157afe9800",
+      "role": "local",
+      "model": "ACCIDDA-Chromantis",
+      "definition": {
+        "note": "RSV four-recipe mixture (fixed 2026-10-14 before its score was seen): Ball_c0w512 (Ba_ll: width-512 direct-quantile MLP, neighbouring-state exchange, all actual archived reports, log-loss 0.75, calendar features off), A4c0 (A4: width-192 sampled MLP with corrected histories, Kinsa, log-loss 1, calendar off), A4i (A4 with all six admission/ED input histories) and Bw (B_width256 with all six input histories); Ball_c0w512 also uses all six. Trained on 2022-23 through 2025-26 (no held-out season), seeds 42-51 per recipe, on panel-rsv.npz: NHSN RSV admissions before 2024-11-02 treated as unobserved (voluntary reporting), so admission labels start November 2024; RSV ED from October 2022. Training admission/ED histories made preliminary with artificial errors from the prescribed 2025-26 RSV reporting process. Labels: latest finalized future RSV admissions and ED (September 2026 panel). Equal weight per recipe and per seed; predictive distributions mixed. Selected by tree search rsv-tree-20261013 (experiments/rsv-tree-20261013/protocol.json): held-out states/DC log-admission WIS 0.3105 on artificial preliminary inputs, 0.3114 replayed on archived reports (2024-25, 2025-26)."
+      },
+      "operational_panel_sha256": "df76a3a84b2d496cde79b216c4ef1ddd4c658d321f3c68e1bf586f5c276ea19c"
+    },
+    {
+      "path": "model-output/Emory-EpiRSI/2026-11-07-Emory-EpiRSI.csv",
+      "sha256": "c76992ea8650d1c97dccd9f0dd466c0de2167fda5c954edc70a1dd394d901111",
+      "role": "peer",
+      "model": "Emory-EpiRSI"
+    },
+    {
+      "path": "model-output/NAU-epymorph/2026-11-07-NAU-epymorph.csv",
+      "sha256": "ee4d8ce1ce748cc44b326af2d378f3057b518cb850d393e17476ab6a53d642cd",
+      "role": "peer",
+      "model": "NAU-epymorph"
+    },
+    {
+      "path": "model-output/NAU-epymorph_strata/2026-11-07-NAU-epymorph_strata.csv",
+      "sha256": "cba00384207ca83c14cd52db2e327375b09f09f327716badc65d9407a1e30dfc",
+      "role": "peer",
+      "model": "NAU-epymorph_strata"
+    },
+    {
+      "path": "model-output/NDP-v1/2026-11-07-NDP-v1.csv",
+      "sha256": "80c83914a7988dd211f3e3a76a2ab93e42fd3f93cec73044bf46eef661c67f99",
+      "role": "peer",
+      "model": "NDP-v1"
+    },
+    {
+      "path": "model-output/RSVHub-baseline/2026-11-07-RSVHub-baseline.csv",
+      "sha256": "45994ef4a3dc05320c06cc311f9709cf6fef816ca1a3e35a5013e71d10dd746f",
+      "role": "peer",
+      "model": "RSVHub-baseline"
+    },
+    {
+      "path": "https://raw.githubusercontent.com/shreeyamhade/rsv-forecast-hub/382cce71cefce46c0c25965da6361e8803232883/model-output/CEPH-Rtrend_rsv/2026-11-07-CEPH-Rtrend_rsv.csv",
+      "sha256": "8eca3a3199dcb994406f5131a9a569d52c6f56c37b34d63525fbb5eae4cb9a40",
+      "role": "peer",
+      "model": "CEPH-Rtrend_rsv (PR #693)"
+    },
+    {
+      "path": "auxiliary-data/locations.csv",
+      "sha256": "96b14b7376cd5ba6a4dd44b0cae860fdb1a40ddec776328c1b3c39c8c14b0636",
+      "role": "locations",
+      "model": null
+    },
+    {
+      "path": "target-data/time-series.parquet",
+      "sha256": "49f6b40f197b61f3db7100a31dab842c1dd1bb329789aa58576c855f74ba7d5b",
+      "role": "history",
+      "model": null
+    }
+  ],
+  "history_cutoff": "2026-10-31",
+  "zoom_weeks": 8,
+  "assumptions": [
+    "Descriptive forecast comparison, not accuracy scoring.",
+    "Latest target values at the pinned Hub commit, not reconstructed issuance-time truth.",
+    "No history dated after reference minus seven days is shown as current observations.",
+    "Prior season aligned by CDC week; unmatched week 53 omitted, no value rescaling.",
+    "Peer bands weight each available model median equally; local candidates are excluded.",
+    "Partial peer coverage is retained; no missing forecasts or history are imputed.",
+    "Training details are copied only from matching local export metadata; peer training is not inferred."
+  ]
+}

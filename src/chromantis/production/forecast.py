@@ -11,6 +11,11 @@ recipe, with the SHA256 of each `model.pt`:
 `forecast_checkpoint` replays one checkpoint: the saved network, input scales and
 correction trees on the issuance's reported inputs (`corrected` view: newest weeks
 corrected by the saved trees; `raw`: as reported), 512 sampled members, seed + 1000.
+An optional release field `correction_strength` (default 1) multiplies the trees' log-correction
+(0: no correction; added 4 November 2026 after the trees were found to over-correct Bes's
+newest weeks against observed revisions). It may also be a {recipe: strength} map (18 November
+2026): recipes trained on uncorrected histories with reconstruction labels already learn the
+revisions, so correcting their inputs counts them twice.
 Writes `forecasts.npz` (marginal quantiles, and the sampled trajectories of sampling recipes)
 and `operational-manifest.json`.
 
@@ -45,7 +50,7 @@ def read_release(path):
 
 
 def forecast_checkpoint(checkpoint, problem, dataset, issuance, output, view='corrected', members=MEMBERS,
-                        device='cpu', expected_sha256=None):
+                        device='cpu', expected_sha256=None, correction_strength=1.0):
     checkpoint, output = Path(checkpoint), Path(output)
     if expected_sha256 and sha256(checkpoint / 'model.pt') != expected_sha256:
         raise ValueError(f'{checkpoint}/model.pt differs from the released checkpoint')
@@ -84,7 +89,9 @@ def forecast_checkpoint(checkpoint, problem, dataset, issuance, output, view='co
                          f'{scenario.forecast_view!r}, the view it was ranked in')
     if view == 'corrected':
         with (checkpoint / 'nowcaster.pkl').open('rb') as stream:
-            eps = pickle.load(stream).apply_batch(eps)
+            nowcaster = pickle.load(stream)
+        nowcaster.strength *= correction_strength  # scales the trees' log-correction; 0 keeps reports as published
+        eps = nowcaster.apply_batch(eps)
     elif view != 'raw':
         raise ValueError('Operational views are raw or corrected (half is not implemented in production)')
     model = load_model(torch.load(checkpoint / 'model.pt', map_location='cpu', weights_only=False)).to(device)
@@ -95,7 +102,8 @@ def forecast_checkpoint(checkpoint, problem, dataset, issuance, output, view='co
     evaluate(model, eps, members, device, output, keep_samples=True)
     record = dict(checkpoint=str(checkpoint.resolve()), checkpoint_sha256=sha256(checkpoint / 'model.pt'),
                   operational_dataset=str(Path(dataset).resolve()), operational_dataset_sha256=sha256(dataset),
-                  issuance=issuance, input_view=view, seed=metadata['seed'], scenario=metadata['scenario'],
+                  issuance=issuance, input_view=view, correction_strength=correction_strength,
+                  seed=metadata['seed'], scenario=metadata['scenario'],
                   problem=problem.reference, problem_id=problem.id, problem_sha256=problem.hash,
                   forecast_hub=release_hub, training_fold=metadata['fold'], members=members,
                   future_labels_used=False)
@@ -115,10 +123,14 @@ def forecast_release(release, dataset, issuance, out, device='cpu', jobs=4):
             seed = json.loads((Path(member['checkpoint']) / 'manifest.json').read_text())['seed']
             target = Path(out) / recipe / f's{seed}'
             if not (target / 'operational-manifest.json').exists():
-                tasks.append((member['checkpoint'], target, member['sha256']))
+                tasks.append((member['checkpoint'], target, member['sha256'], recipe))
     print(f'{sum(map(len, release["recipes"].values()))} members; {len(tasks)} to forecast', flush=True)
+    # A number applies to every recipe; a {recipe: strength} map sets it per recipe (from 18 November 2026:
+    # recipes trained on uncorrected histories already learn the revisions, so they get 0).
+    strength = release.get('correction_strength', 1.0)
     run = lambda task: forecast_checkpoint(task[0], problem, dataset, issuance, task[1], release['view'],
-                                           device=device, expected_sha256=task[2])
+                                           device=device, expected_sha256=task[2],
+                                           correction_strength=strength[task[3]] if isinstance(strength, dict) else strength)
     with ThreadPoolExecutor(jobs) as pool:
         list(pool.map(run, tasks))
     return {recipe: [Path(out) / recipe / f's{json.loads((Path(m["checkpoint"]) / "manifest.json").read_text())["seed"]}'

@@ -11,24 +11,46 @@ samples are optional. The Hub dashboard scores both natural and `log(value + 1)`
 
 ## Status
 
-**Research only: nothing has been submitted.** Two searches ran on 14–15 October 2026 and
-left six provisional release files, none published:
-`production/releases/covid-*-candidate-20261015.json`. The search record says the export was
-checked, but scientific acceptance is incomplete: ED and national intervals were too narrow,
-archive gaps were filled with finalized values, and the evaluation design was disputed.
+**Submitting from 7 November 2026.** First-time teams register metadata, reviewed by hand:
+[PR 2017](https://github.com/CDCgov/covid19-forecast-hub/pull/2017), opened at about 17:00 EST
+on 4 November (after the Hub's suggested 4 PM deadline) and merged at 17:05 EST. The first
+forecast is [PR 2018](https://github.com/CDCgov/covid19-forecast-hub/pull/2018), merged at
+17:19 EST.
 
-## Candidates
+## Current model
 
-The leading candidate is `covid-half-perturbation-candidate-20261015`: an equal mixture of a
-width-256 direct-quantile MLP (neighbouring-state exchange, recent-history reconstruction
-labels) and a width-192 sampled MLP (corrected artificial histories), with artificial
-reporting errors on half of the training episodes and no covariates. The target-routed
-candidate `covid-target-routed-candidate-20261015` keeps that pair for admissions and uses
-fourth-root ED versions of the same architectures for ED. Both were trained on 2022–23
-through 2025–26 with labels the finalized future COVID admissions and ED shares; training
-reporting errors follow the COVID 2025–26 reporting process.
+Release `production/releases/covid-gru-four-candidate-20261103.json`: an equal mixture of
+four recipes, each refit on all of 2022–23 through 2025–26 with labels the finalized future
+COVID admissions and ED shares, ten seeds (42–51) per recipe, equal weight per seed:
+
+- `Ah.neighbors`: width-192 sampled MLP, neighbouring-state exchange, artificial reporting
+  errors on half of the training episodes. Its draws order the other recipes' samples.
+- `pN.enc_gru`: GRU encoder, states share a US-only summary, artificial reporting errors on
+  25% of the training episodes.
+- `N.multiscale`: finalized training histories, US-only summary, multiscale history features.
+- `Bh.wd`: neighbouring-state exchange, artificial reporting errors on half of the training
+  episodes, weight decay.
+
+It was chosen in the `covid-tree-20261030` search (`experiments/covid-tree-20261030/protocol.json`,
+decision of 3 November). Lower is better for every score:
+
+- Held-out seasons (the same four recipes trained on the other seasons, seeds 208–215):
+  states/DC WIS of log(1 + admissions) 0.2197, against 0.2371 for the earlier two-recipe
+  fallback. Trained on 2022–23 to 2024–25 and scored on archived 2025–26 reports, its WIS
+  divided by CovidHub-ensemble's was 0.92 (states/DC) and 0.84 (US) on log admissions, and
+  1.06 and 1.41 on ED share.
+- Live check: the all-season fits run on the 14 and 21 October reports, horizons 0–1, truth as
+  of 28 October. Log-admission WIS 0.172 (states/DC) and 0.039 (US), against 0.170 and 0.048
+  for CovidHub-ensemble.
+
+The recipes and the mixture were selected on the same seasons, seeds and live weeks that
+score them, so these numbers are optimistic. The October 2026 candidates
+(`covid-*-candidate-20261015.json`) were never submitted.
 
 ## Inputs and nowcast
+
+The table below describes the 15 October candidate, not the submitted model; it has not been
+updated.
 
 For the leading candidate, `covid-half-perturbation-candidate-20261015`; nothing here has been
 submitted.
@@ -67,4 +89,55 @@ There is no report page for these searches yet.
 
 ## Submission log
 
-No submission.
+Newest first. The shared data pulls of each Wednesday are on
+[Weekly data pulls](weekly-inputs.md).
+
+### Reference date 14 November 2026
+
+**Same model as 7 November.** [PR 2049](https://github.com/CDCgov/covid19-forecast-hub/pull/2049) was opened at about 17:15 EST on Thursday 12 November from branch `submit-2026-11-14` of the fork (commit `e670ff5`, "ACCIDDA-Chromantis 2026-11-14", no PR description). The Hubs released the data for the week ending 7 November on Thursday 12 November, a day late after Veterans Day, and took forecasts that day, but the configured window still closed on Wednesday 11 November at 23:59 EST. So `validate-submission` failed on `submission_time` only (every check on the file passed), as it did on every other team's Thursday PR, which the Hub maintainers merged by hand. Authorization passed; `approve-and-merge` failed on a GitHub GraphQL error, and the job could not be rerun from the fork.
+
+- **Model:** release `production/releases/covid-gru-four-candidate-20261103.json` (40 fits, described under Current model, no refit), full-strength tree correction, view `corrected`, issuance 11 November.
+- **Operational inputs:** root `data/operational-20261111/` (pulled by the flu session on 12 November, 16:51-17:02 EST), panel `processed/panel.npz`, SHA256 `f478b2da51e97e1403ac557b4dbbb2dd46a9bf4cf38c9151a198c56b39cdb90d` (the flu panel).
+- **Why the correction was not weakened.** The 40 fits were rerun with the trees' log-correction multiplied by 0.5 and 0 (releases `covid-gru-four-cs050` and `covid-gru-four-cs000`, no retraining) on the 14, 21, 28 October and 4 November issuances, each on that week's operational panel, and every version was scored with the Hub's models against the Hub's target data of 12 November (weeks through 7 November), states and DC, horizons 0-3. Pairwise relative WIS, baseline = 1, lower is better, each version ranked alone among 21 models (9 for ED):
+
+  | Correction strength | Log admissions | Admissions | ED share | US admissions mean WIS | States/DC medians ÷ observed |
+  |---|---|---|---|---|---|
+  | 1 (submitted) | 0.409 (rank 2) | 0.493 (3) | 0.909 | 363 | 0.885 |
+  | 0.5 | 0.425 (3) | 0.512 (3) | 0.939 | 406 | 0.859 |
+  | 0 | 0.462 (12) | 0.539 (6) | 0.981 | 454 | 0.833 |
+  | CovidHub-ensemble | 0.425 | 0.526 | 0.810 | 362 | 0.852 |
+
+  Over these four issuances the model was not too high (medians below the data, which will still be revised up); the submitted 7 November file was: US median 5,217 at horizon 0 against 4,412 first reported. Scored at horizon 0 against the 12 November data, that file had pairwise relative WIS 0.535 on log admissions (rank 9 of 20; CovidHub-ensemble 0.472), 0.778 on counts (rank 14) and 0.805 on ED share (rank 5 of 9).
+- **Hospitals reporting:** slightly fewer than usual for the week ending 7 November after the holiday (0.871 of the hospitals reporting 3-5 weeks earlier, against 0.882-0.887 in the four previous Wednesday releases; details in the [RSV entry](rsv.md#reference-date-14-november-2026)). Inputs were not adjusted.
+- **File:** `production/submissions/2026-11-14/covid/2026-11-14-ACCIDDA-Chromantis.parquet`, SHA256 `1b369930d73e07fffc6ecf3b872642e71ece16a0a6451f24808d11106495222e`; the CSV beside it has the same rows. 9,568 quantile and 83,200 sample rows: 52 locations, horizons 0-3, admissions and ED share. US admissions medians 5,530; 6,259; 7,055; 7,784, after 4,412 reported for the week ending 7 November (4,709 for the week before). This is above all 11 other Hub models available when it was run (horizon-0 US medians 4,322-5,279). Most of the rise comes from the network: with no tree correction the horizon-0 median is 5,213. The user chose to submit it.
+- **Record:** interval PDFs and the peer comparison (Hub clone `57fefdf`) in `production/submissions/2026-11-14/covid/`. Making that comparison exposed a merged file (UGA_flucast-INFLAenza) whose rows carry another reference date. `production/peers.py` now skips such a file with a message instead of stopping.
+
+### Reference date 7 November 2026
+
+**First COVID submission.** [PR 2018](https://github.com/CDCgov/covid19-forecast-hub/pull/2018)
+was opened at about 17:05 EST on 4 November from branch `submit-2026-11-07` of the fork
+`jcblemai/covid19-forecast-hub` (commit `2197126`, "ACCIDDA-Chromantis 2026-11-07", no PR
+description). Its first checks started about a minute before the metadata
+([PR 2017](https://github.com/CDCgov/covid19-forecast-hub/pull/2017), branch
+`metadata-chromantis`, deliberately short methods text) was merged at 17:05 EST, so
+`metadata_exists` and the authorization check failed; every check on the file itself passed
+(quantiles, samples coarser than the configured compound task set, submission window). Merging
+the Hub's main into the branch (commit `c8dde3f`) re-ran the checks: Hub validation, the
+designated-user authorization check and `approve-and-merge` passed, and it was merged at
+17:19 EST on 4 November.
+
+- **Not submitted:** horizon -1 (nowcast of the week ending 31 October) and Puerto Rico; both
+  are optional, and the CovidHub-ensemble covers them.
+- **Model:** release `production/releases/covid-gru-four-candidate-20261103.json` (40 fits,
+  described under Current model, no refit), run with the `corrected` view on the 4 November
+  operational panel `data/operational-20261104/processed/panel.npz`, SHA256
+  `6486441cdc6ef06dbc6a5a9724a8841b196ca6b4ba0bf55cf5f64fcf2b162d7c` (the flu and RSV panel).
+- **File:** `production/submissions/2026-11-07/covid/2026-11-07-ACCIDDA-Chromantis.parquet`,
+  SHA256 `632ea80f92beb76ce33372e7d9235bd6a4968a01bd8c71331a4d23cd76047585`; the CSV beside it
+  has the same rows. 23 quantiles and 200 sample trajectories per location and target,
+  horizons 0–3, 52 locations, admissions and ED share.
+- **Level:** US admissions medians 5,217; 5,562; 5,942; 6,333, after 4,540 reported for the
+  week ending 31 October (4,122 the week before). When it was run, Emory-EpiRSI's US medians
+  rose to 5,261 and UMass-ar6_pooled's to 5,489 at horizon 3.
+- **Record:** interval PDFs and the peer comparison (Hub clone `46efdbf3`) in
+  `production/submissions/2026-11-07/covid/`.

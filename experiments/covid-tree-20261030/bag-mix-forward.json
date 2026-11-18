@@ -1,0 +1,562 @@
+{
+  "recipes": {
+    "pN|a": {
+      "experiment": "covid-1030-bagfwda",
+      "scenario": "history_source=artificial,reconstruction_labels=1,error_signals=all,input_set=target,correction_weeks=2,correction_ed=1,reporting_probability=0.25,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,spatial=national_broadcast,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=0.5,error_reference=2024-2025",
+      "seeds": [
+        208,
+        209,
+        210,
+        211
+      ]
+    },
+    "pN|b": {
+      "experiment": "covid-1030-bagfwdb",
+      "scenario": "history_source=artificial,reconstruction_labels=1,error_signals=all,input_set=target,correction_weeks=2,correction_ed=1,reporting_probability=0.25,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,spatial=national_broadcast,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=0.5,error_reference=2024-2025",
+      "seeds": [
+        208,
+        209,
+        210,
+        211
+      ]
+    },
+    "pN|c": {
+      "experiment": "covid-1030-bagfwdc",
+      "scenario": "history_source=artificial,reconstruction_labels=1,error_signals=all,input_set=target,correction_weeks=2,correction_ed=1,reporting_probability=0.25,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,spatial=national_broadcast,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=0.5,error_reference=2024-2025",
+      "seeds": [
+        208,
+        209,
+        210,
+        211
+      ]
+    },
+    "pN|full": {
+      "experiment": "covid-1030-confirmfwd01",
+      "scenario": "history_source=artificial,reconstruction_labels=1,error_signals=all,input_set=target,correction_weeks=2,correction_ed=1,reporting_probability=0.25,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,spatial=national_broadcast,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=0.5,error_reference=2024-2025",
+      "seeds": [
+        208,
+        209,
+        210,
+        211
+      ]
+    },
+    "N|a": {
+      "experiment": "covid-1030-bagfwda",
+      "scenario": "error_signals=all,input_set=target,correction_weeks=2,correction_ed=1,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,spatial=national_broadcast,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=0.5,error_reference=2024-2025",
+      "seeds": [
+        208,
+        209,
+        210,
+        211
+      ]
+    },
+    "N|b": {
+      "experiment": "covid-1030-bagfwdb",
+      "scenario": "error_signals=all,input_set=target,correction_weeks=2,correction_ed=1,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,spatial=national_broadcast,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=0.5,error_reference=2024-2025",
+      "seeds": [
+        208,
+        209,
+        210,
+        211
+      ]
+    },
+    "N|c": {
+      "experiment": "covid-1030-bagfwdc",
+      "scenario": "error_signals=all,input_set=target,correction_weeks=2,correction_ed=1,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,spatial=national_broadcast,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=0.5,error_reference=2024-2025",
+      "seeds": [
+        208,
+        209,
+        210,
+        211
+      ]
+    },
+    "N|full": {
+      "experiment": "covid-1030-confirmfwd01",
+      "scenario": "error_signals=all,input_set=target,correction_weeks=2,correction_ed=1,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,spatial=national_broadcast,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=0.5,error_reference=2024-2025",
+      "seeds": [
+        208,
+        209,
+        210,
+        211
+      ]
+    },
+    "G|a": {
+      "experiment": "covid-1030-bagfwda",
+      "scenario": "error_signals=all,input_set=target,correction_weeks=2,correction_ed=1,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,spatial=gated_pool,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=0.5,error_reference=2024-2025",
+      "seeds": [
+        208,
+        209,
+        210,
+        211
+      ]
+    },
+    "G|b": {
+      "experiment": "covid-1030-bagfwdb",
+      "scenario": "error_signals=all,input_set=target,correction_weeks=2,correction_ed=1,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,spatial=gated_pool,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=0.5,error_reference=2024-2025",
+      "seeds": [
+        208,
+        209,
+        210,
+        211
+      ]
+    },
+    "G|c": {
+      "experiment": "covid-1030-bagfwdc",
+      "scenario": "error_signals=all,input_set=target,correction_weeks=2,correction_ed=1,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,spatial=gated_pool,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=0.5,error_reference=2024-2025",
+      "seeds": [
+        208,
+        209,
+        210,
+        211
+      ]
+    },
+    "G|full": {
+      "experiment": "covid-1030-confirmfwd01",
+      "scenario": "error_signals=all,input_set=target,correction_weeks=2,correction_ed=1,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,spatial=gated_pool,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=0.5,error_reference=2024-2025",
+      "seeds": [
+        208,
+        209,
+        210,
+        211
+      ]
+    },
+    "Ah.N|a": {
+      "experiment": "covid-1030-bagfwda",
+      "scenario": "history_source=artificial,history_correction=1,error_signals=all,input_set=target,correction_weeks=2,correction_ed=1,reporting_probability=0.5,joint_weight=0.05,correction_penalty=30.0,reporting_missingness=0,reporting_method=synchronous_phase_log,ed_transform=logit,width=192,epochs=160,patience=25,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=1.0,error_reference=2024-2025,spatial=national_broadcast",
+      "seeds": [
+        208,
+        209,
+        210,
+        211
+      ]
+    },
+    "Ah.N|b": {
+      "experiment": "covid-1030-bagfwdb",
+      "scenario": "history_source=artificial,history_correction=1,error_signals=all,input_set=target,correction_weeks=2,correction_ed=1,reporting_probability=0.5,joint_weight=0.05,correction_penalty=30.0,reporting_missingness=0,reporting_method=synchronous_phase_log,ed_transform=logit,width=192,epochs=160,patience=25,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=1.0,error_reference=2024-2025,spatial=national_broadcast",
+      "seeds": [
+        208,
+        209,
+        210,
+        211
+      ]
+    },
+    "Ah.N|c": {
+      "experiment": "covid-1030-bagfwdc",
+      "scenario": "history_source=artificial,history_correction=1,error_signals=all,input_set=target,correction_weeks=2,correction_ed=1,reporting_probability=0.5,joint_weight=0.05,correction_penalty=30.0,reporting_missingness=0,reporting_method=synchronous_phase_log,ed_transform=logit,width=192,epochs=160,patience=25,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=1.0,error_reference=2024-2025,spatial=national_broadcast",
+      "seeds": [
+        208,
+        209,
+        210,
+        211
+      ]
+    },
+    "Ah.N|full": {
+      "experiment": "covid-1030-confirmfwd01",
+      "scenario": "history_source=artificial,history_correction=1,error_signals=all,input_set=target,correction_weeks=2,correction_ed=1,reporting_probability=0.5,joint_weight=0.05,correction_penalty=30.0,reporting_missingness=0,reporting_method=synchronous_phase_log,ed_transform=logit,width=192,epochs=160,patience=25,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=1.0,error_reference=2024-2025,spatial=national_broadcast",
+      "seeds": [
+        208,
+        209,
+        210,
+        211
+      ]
+    },
+    "Bf|a": {
+      "experiment": "covid-1030-bagfwda",
+      "scenario": "error_signals=all,input_set=target,correction_weeks=2,correction_ed=1,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,spatial=neighbors,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=0.5,error_reference=2024-2025",
+      "seeds": [
+        208,
+        209,
+        210,
+        211
+      ]
+    },
+    "Bf|b": {
+      "experiment": "covid-1030-bagfwdb",
+      "scenario": "error_signals=all,input_set=target,correction_weeks=2,correction_ed=1,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,spatial=neighbors,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=0.5,error_reference=2024-2025",
+      "seeds": [
+        208,
+        209,
+        210,
+        211
+      ]
+    },
+    "Bf|c": {
+      "experiment": "covid-1030-bagfwdc",
+      "scenario": "error_signals=all,input_set=target,correction_weeks=2,correction_ed=1,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,spatial=neighbors,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=0.5,error_reference=2024-2025",
+      "seeds": [
+        208,
+        209,
+        210,
+        211
+      ]
+    },
+    "Bf|full": {
+      "experiment": "covid-1030-confirmfwd01",
+      "scenario": "error_signals=all,input_set=target,correction_weeks=2,correction_ed=1,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,spatial=neighbors,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=0.5,error_reference=2024-2025",
+      "seeds": [
+        208,
+        209,
+        210,
+        211
+      ]
+    },
+    "Bh.ushead|a": {
+      "experiment": "covid-1030-bagfwda",
+      "scenario": "history_source=artificial,reconstruction_labels=1,error_signals=all,input_set=target,correction_weeks=2,correction_ed=1,reporting_probability=0.5,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,spatial=neighbors,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=0.5,error_reference=2024-2025,heads=state_us",
+      "seeds": [
+        208,
+        209,
+        210,
+        211
+      ]
+    },
+    "Bh.ushead|b": {
+      "experiment": "covid-1030-bagfwdb",
+      "scenario": "history_source=artificial,reconstruction_labels=1,error_signals=all,input_set=target,correction_weeks=2,correction_ed=1,reporting_probability=0.5,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,spatial=neighbors,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=0.5,error_reference=2024-2025,heads=state_us",
+      "seeds": [
+        208,
+        209,
+        210,
+        211
+      ]
+    },
+    "Bh.ushead|c": {
+      "experiment": "covid-1030-bagfwdc",
+      "scenario": "history_source=artificial,reconstruction_labels=1,error_signals=all,input_set=target,correction_weeks=2,correction_ed=1,reporting_probability=0.5,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,spatial=neighbors,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=0.5,error_reference=2024-2025,heads=state_us",
+      "seeds": [
+        208,
+        209,
+        210,
+        211
+      ]
+    },
+    "Bh.ushead|full": {
+      "experiment": "covid-1030-leadersfwd01",
+      "scenario": "history_source=artificial,reconstruction_labels=1,error_signals=all,input_set=target,correction_weeks=2,correction_ed=1,reporting_probability=0.5,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,spatial=neighbors,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=0.5,error_reference=2024-2025,heads=state_us",
+      "seeds": [
+        208,
+        209,
+        210,
+        211
+      ]
+    },
+    "Bh.wd|a": {
+      "experiment": "covid-1030-bagfwda",
+      "scenario": "history_source=artificial,reconstruction_labels=1,error_signals=all,input_set=target,correction_weeks=2,correction_ed=1,reporting_probability=0.5,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,spatial=neighbors,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=0.5,error_reference=2024-2025,weight_decay=0.0001",
+      "seeds": [
+        208,
+        209,
+        210,
+        211
+      ]
+    },
+    "Bh.wd|b": {
+      "experiment": "covid-1030-bagfwdb",
+      "scenario": "history_source=artificial,reconstruction_labels=1,error_signals=all,input_set=target,correction_weeks=2,correction_ed=1,reporting_probability=0.5,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,spatial=neighbors,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=0.5,error_reference=2024-2025,weight_decay=0.0001",
+      "seeds": [
+        208,
+        209,
+        210,
+        211
+      ]
+    },
+    "Bh.wd|c": {
+      "experiment": "covid-1030-bagfwdc",
+      "scenario": "history_source=artificial,reconstruction_labels=1,error_signals=all,input_set=target,correction_weeks=2,correction_ed=1,reporting_probability=0.5,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,spatial=neighbors,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=0.5,error_reference=2024-2025,weight_decay=0.0001",
+      "seeds": [
+        208,
+        209,
+        210,
+        211
+      ]
+    },
+    "Bh.wd|full": {
+      "experiment": "covid-1030-leadersfwd01",
+      "scenario": "history_source=artificial,reconstruction_labels=1,error_signals=all,input_set=target,correction_weeks=2,correction_ed=1,reporting_probability=0.5,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,spatial=neighbors,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=0.5,error_reference=2024-2025,weight_decay=0.0001",
+      "seeds": [
+        208,
+        209,
+        210,
+        211
+      ]
+    },
+    "Ah.neighbors|a": {
+      "experiment": "covid-1030-bagfwda",
+      "scenario": "history_source=artificial,history_correction=1,error_signals=all,input_set=target,correction_weeks=2,correction_ed=1,reporting_probability=0.5,joint_weight=0.05,correction_penalty=30.0,reporting_missingness=0,reporting_method=synchronous_phase_log,ed_transform=logit,width=192,epochs=160,patience=25,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=1.0,error_reference=2024-2025,spatial=neighbors",
+      "seeds": [
+        208,
+        209,
+        210,
+        211
+      ]
+    },
+    "Ah.neighbors|b": {
+      "experiment": "covid-1030-bagfwdb",
+      "scenario": "history_source=artificial,history_correction=1,error_signals=all,input_set=target,correction_weeks=2,correction_ed=1,reporting_probability=0.5,joint_weight=0.05,correction_penalty=30.0,reporting_missingness=0,reporting_method=synchronous_phase_log,ed_transform=logit,width=192,epochs=160,patience=25,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=1.0,error_reference=2024-2025,spatial=neighbors",
+      "seeds": [
+        208,
+        209,
+        210,
+        211
+      ]
+    },
+    "Ah.neighbors|c": {
+      "experiment": "covid-1030-bagfwdc",
+      "scenario": "history_source=artificial,history_correction=1,error_signals=all,input_set=target,correction_weeks=2,correction_ed=1,reporting_probability=0.5,joint_weight=0.05,correction_penalty=30.0,reporting_missingness=0,reporting_method=synchronous_phase_log,ed_transform=logit,width=192,epochs=160,patience=25,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=1.0,error_reference=2024-2025,spatial=neighbors",
+      "seeds": [
+        208,
+        209,
+        210,
+        211
+      ]
+    },
+    "Ah.neighbors|full": {
+      "experiment": "covid-1030-leadersfwd01",
+      "scenario": "history_source=artificial,history_correction=1,error_signals=all,input_set=target,correction_weeks=2,correction_ed=1,reporting_probability=0.5,joint_weight=0.05,correction_penalty=30.0,reporting_missingness=0,reporting_method=synchronous_phase_log,ed_transform=logit,width=192,epochs=160,patience=25,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=1.0,error_reference=2024-2025,spatial=neighbors",
+      "seeds": [
+        208,
+        209,
+        210,
+        211
+      ]
+    }
+  },
+  "groups": {
+    "pN full": [
+      "pN|full"
+    ],
+    "pN avg3": [
+      "pN|a",
+      "pN|b",
+      "pN|c"
+    ],
+    "pN avg4": [
+      "pN|a",
+      "pN|b",
+      "pN|c",
+      "pN|full"
+    ],
+    "N full": [
+      "N|full"
+    ],
+    "N avg3": [
+      "N|a",
+      "N|b",
+      "N|c"
+    ],
+    "N avg4": [
+      "N|a",
+      "N|b",
+      "N|c",
+      "N|full"
+    ],
+    "G full": [
+      "G|full"
+    ],
+    "G avg3": [
+      "G|a",
+      "G|b",
+      "G|c"
+    ],
+    "G avg4": [
+      "G|a",
+      "G|b",
+      "G|c",
+      "G|full"
+    ],
+    "Ah.N full": [
+      "Ah.N|full"
+    ],
+    "Ah.N avg3": [
+      "Ah.N|a",
+      "Ah.N|b",
+      "Ah.N|c"
+    ],
+    "Ah.N avg4": [
+      "Ah.N|a",
+      "Ah.N|b",
+      "Ah.N|c",
+      "Ah.N|full"
+    ],
+    "Bf full": [
+      "Bf|full"
+    ],
+    "Bf avg3": [
+      "Bf|a",
+      "Bf|b",
+      "Bf|c"
+    ],
+    "Bf avg4": [
+      "Bf|a",
+      "Bf|b",
+      "Bf|c",
+      "Bf|full"
+    ],
+    "Bh.ushead full": [
+      "Bh.ushead|full"
+    ],
+    "Bh.ushead avg3": [
+      "Bh.ushead|a",
+      "Bh.ushead|b",
+      "Bh.ushead|c"
+    ],
+    "Bh.ushead avg4": [
+      "Bh.ushead|a",
+      "Bh.ushead|b",
+      "Bh.ushead|c",
+      "Bh.ushead|full"
+    ],
+    "Bh.wd full": [
+      "Bh.wd|full"
+    ],
+    "Bh.wd avg3": [
+      "Bh.wd|a",
+      "Bh.wd|b",
+      "Bh.wd|c"
+    ],
+    "Bh.wd avg4": [
+      "Bh.wd|a",
+      "Bh.wd|b",
+      "Bh.wd|c",
+      "Bh.wd|full"
+    ],
+    "Ah.neighbors full": [
+      "Ah.neighbors|full"
+    ],
+    "Ah.neighbors avg3": [
+      "Ah.neighbors|a",
+      "Ah.neighbors|b",
+      "Ah.neighbors|c"
+    ],
+    "Ah.neighbors avg4": [
+      "Ah.neighbors|a",
+      "Ah.neighbors|b",
+      "Ah.neighbors|c",
+      "Ah.neighbors|full"
+    ],
+    "pN+G+Ah.N full": [
+      "pN|full",
+      "G|full",
+      "Ah.N|full"
+    ],
+    "pN+G+Ah.N avg3": [
+      "pN|a",
+      "pN|b",
+      "pN|c",
+      "G|a",
+      "G|b",
+      "G|c",
+      "Ah.N|a",
+      "Ah.N|b",
+      "Ah.N|c"
+    ],
+    "pN+G+Ah.N avg4": [
+      "pN|a",
+      "pN|b",
+      "pN|c",
+      "pN|full",
+      "G|a",
+      "G|b",
+      "G|c",
+      "G|full",
+      "Ah.N|a",
+      "Ah.N|b",
+      "Ah.N|c",
+      "Ah.N|full"
+    ],
+    "pN+Ah.N full": [
+      "pN|full",
+      "Ah.N|full"
+    ],
+    "pN+Ah.N avg3": [
+      "pN|a",
+      "pN|b",
+      "pN|c",
+      "Ah.N|a",
+      "Ah.N|b",
+      "Ah.N|c"
+    ],
+    "pN+Ah.N avg4": [
+      "pN|a",
+      "pN|b",
+      "pN|c",
+      "pN|full",
+      "Ah.N|a",
+      "Ah.N|b",
+      "Ah.N|c",
+      "Ah.N|full"
+    ],
+    "U+Wd+An full": [
+      "Bh.ushead|full",
+      "Bh.wd|full",
+      "Ah.neighbors|full"
+    ],
+    "U+Wd+An avg3": [
+      "Bh.ushead|a",
+      "Bh.ushead|b",
+      "Bh.ushead|c",
+      "Bh.wd|a",
+      "Bh.wd|b",
+      "Bh.wd|c",
+      "Ah.neighbors|a",
+      "Ah.neighbors|b",
+      "Ah.neighbors|c"
+    ],
+    "U+Wd+An avg4": [
+      "Bh.ushead|a",
+      "Bh.ushead|b",
+      "Bh.ushead|c",
+      "Bh.ushead|full",
+      "Bh.wd|a",
+      "Bh.wd|b",
+      "Bh.wd|c",
+      "Bh.wd|full",
+      "Ah.neighbors|a",
+      "Ah.neighbors|b",
+      "Ah.neighbors|c",
+      "Ah.neighbors|full"
+    ],
+    "pN+U+Wd+An full": [
+      "pN|full",
+      "Bh.ushead|full",
+      "Bh.wd|full",
+      "Ah.neighbors|full"
+    ],
+    "pN+U+Wd+An avg3": [
+      "pN|a",
+      "pN|b",
+      "pN|c",
+      "Bh.ushead|a",
+      "Bh.ushead|b",
+      "Bh.ushead|c",
+      "Bh.wd|a",
+      "Bh.wd|b",
+      "Bh.wd|c",
+      "Ah.neighbors|a",
+      "Ah.neighbors|b",
+      "Ah.neighbors|c"
+    ],
+    "pN+U+Wd+An avg4": [
+      "pN|a",
+      "pN|b",
+      "pN|c",
+      "pN|full",
+      "Bh.ushead|a",
+      "Bh.ushead|b",
+      "Bh.ushead|c",
+      "Bh.ushead|full",
+      "Bh.wd|a",
+      "Bh.wd|b",
+      "Bh.wd|c",
+      "Bh.wd|full",
+      "Ah.neighbors|a",
+      "Ah.neighbors|b",
+      "Ah.neighbors|c",
+      "Ah.neighbors|full"
+    ]
+  },
+  "rules": [
+    "mixture"
+  ],
+  "forecast_view": "corrected"
+}

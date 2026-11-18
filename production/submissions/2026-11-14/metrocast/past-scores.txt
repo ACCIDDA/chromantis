@@ -1,0 +1,24 @@
+Pairwise relative WIS, all rounds ['2026-10-24', '2026-10-31', '2026-11-07'] horizons 0-3 observed so far (1 = baseline, lower is better)
+                          rel_wis  tasks
+DMAPRIME-QR_E               0.607    615
+DMAPRIME-ObsHYB             0.608    579
+MOBS-EpyStrain_Flu          0.615    502
+NAU-Copycat                 0.630     90
+UMass-SAR                   0.638    420
+epiENGAGE-ensemble_short    0.641    615
+ACCIDDA-Chromantis          0.660    615
+VTSanghani-PRIME            0.665    615
+epiENGAGE-ensemble_long     0.688    615
+UT-GBQR                     0.709    579
+NAU-INFLAenza               0.710     90
+epiforecasts-dyngam         0.743    543
+epiENGAGE-renewal_rt        0.784    615
+CU-NeuralWalkODE            0.836    615
+epiENGAGE-baseline          1.000    579
+
+Ours / baseline mean WIS on the same tasks, by round and horizon
+horizon        0     1     2
+ref                         
+2026-10-24  0.87  0.65  0.62
+2026-10-31  0.56  0.58   NaN
+2026-11-07  0.73   NaN   NaN

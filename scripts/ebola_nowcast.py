@@ -10,7 +10,8 @@ onset weeks at that release, theta_k the release's growth for lag k (shared by e
 eps and phi fitted by maximum likelihood. Zones that report zero but had recent cases can therefore
 gain cases (16 zones went from 0 to positive for the newest week between the 17 and 24 October
 releases), and eps lets a quiet zone receive a case. theta_k varies a lot between releases (weeks
-three weeks old gained 11 cases in one release pair and 41 in the next), so each draw multiplies it
+three weeks old gained 11 cases in one release pair and 41 in the next); a draw takes the geometric
+mean over the two latest release pairs (RECENT_PAIRS) and multiplies it
 by a shared lognormal factor, with a spread per lag: the standard deviation of log theta_k across
 release pairs (at least 0.2), or lag 1's spread plus 0.15 for a lag seen in only one pair. A week is
 final after lag 4. Provinces and the country are sums of their health zones.
@@ -30,7 +31,8 @@ from 91 reported, about twice the largest week so far (595). Until 3 Nov the mod
 cases, imputed onsets included: the report week ending 31 Oct carried 141 cases without onset date
 (40-90 in other weeks), 59 of the newest week's 150 cases had imputed onsets (11 of 91 a week before),
 and multiplying them as if they were early reports lifted the newest two weeks to 614 and 652 national
-cases while cases by report week stayed at 400-500.
+cases while cases by report week stayed at 400-500. Until 17 Nov theta_k was the geometric mean over
+every release pair since 9 Oct (see RECENT_PAIRS).
 
     .venv/bin/python scripts/ebola_nowcast.py      # fit on the latest release pair, check on the first
 """
@@ -45,6 +47,7 @@ HUB = Path('../hubs/BDBV-Modeling-Hub')
 LAGS = range(5)          # lags (weeks since the onset week ended) that still grow
 FIRST_RELEASE = '2026-10-09'   # consecutive releases from here on are compared; 18 Aug is too far back
 MIN_SIGMA, NO_REPLICATE_MARGIN = .2, .15
+RECENT_PAIRS = 2         # theta_k = geometric mean over this many latest release pairs (spread uses all pairs)
 
 
 def releases(hub=HUB, imputed=False):
@@ -119,7 +122,12 @@ class Nowcast:
         a, e = self.params['alpha'], self.params['eps']
         self.theta = pd.DataFrame({p[1]: thetas(d[p], a, e) for p in self.pairs})   # lag x release pair
         logs = np.log(self.theta.clip(lower=1e-3))
-        self.mean_theta = np.exp(logs.mean(1))
+        # Growth: the latest RECENT_PAIRS pairs only. Until 17 Nov it averaged every pair since 9 Oct;
+        # the 8 and 15 Nov pairs agree on much slower late growth (lag 2: 0.018 and 0.025, against
+        # 0.09-0.20 before), and the all-pair average overshot the national count for weeks 1-2 weeks
+        # old by 10-22% in the 7 and 14 Nov rounds. Rerun on the 24 Oct, 1 Nov and 8 Nov releases
+        # against the 15 Nov counts, the last two pairs gave mean national WIS 35.1 against 36.1.
+        self.mean_theta = np.exp(logs.iloc[:, -RECENT_PAIRS:].mean(1)).fillna(np.exp(logs.mean(1)))
         # Spread of the shared growth factor, per lag. A lag seen in one pair has no disagreement to
         # measure (lag 0 in the Friday 9 Oct release), so it takes lag 1's spread plus a margin.
         sd = logs.std(axis=1, ddof=1).clip(lower=MIN_SIGMA)

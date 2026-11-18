@@ -14,7 +14,7 @@ same file are on [FluSight weekly](flusight-weekly.md).
 | Item | Value |
 |---|---|
 | Public model | ACCIDDA-Chromantis, in the same file as the weekly targets |
-| Submitted | 17, 24 and 31 October 2026 |
+| Submitted | 17, 24 and 31 October and 7 November 2026 |
 | Current model | Peak8, release `production/releases/peak-20261014.json` (6 fits) |
 | What we submit | 52 locations (no Puerto Rico), both peak targets |
 
@@ -51,7 +51,7 @@ are kept as reported.
 corrected. Weeks of the season already reported stay as reported inside each season path, and
 the model's own path covers the weeks after them.
 
-**Not used.** Kinsa, which two of the weekly recipes read, and the other sources listed on
+**Not used.** Kinsa, which two of the B7 weekly recipes read (submitted until 31 October), and the other sources listed on
 [FluSight weekly](flusight-weekly.md#inputs-and-nowcast).
 
 ## How it was chosen
@@ -72,6 +72,12 @@ the model's own path covers the weeks after them.
 
 Newest first. The file, PR and operational inputs are shared with the weekly targets and are
 recorded in the [FluSight weekly log](flusight-weekly.md#submission-log).
+
+### Reference date 7 November 2026
+
+Same file and PR as the [weekly entry](flusight-weekly.md#reference-date-7-november-2026); the weekly targets are Bes with half-strength correction trees from this round, the peak targets are unchanged.
+
+- **Peak model:** the same Peak8 release and six fits (`production/releases/peak-20261014.json`), run on the 4 November panel with 6,000 season paths (last reported week 31 October). US peak size median 36,888 admissions (5-95%: 23,328-55,801); peak week median 19 December 2026 (10-90%: 28 November 2026 to 2 January 2027).
 
 ### Reference date 31 October 2026
 

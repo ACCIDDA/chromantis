@@ -1,0 +1,15 @@
+{
+  "candidates": {
+    "original": {},
+    "learned_time_plus_quarter_week": {"horizon_shift_weeks": 0.25},
+    "learned_time_plus_half_week": {"horizon_shift_weeks": 0.5},
+    "learned_time_plus_one_week": {"horizon_shift_weeks": 1.0},
+    "learned_time_minus_half_week": {"horizon_shift_weeks": -0.5}
+  },
+  "rationale": {
+    "learned_time_plus_quarter_week": "Add one quarter of a week to the learned horizon coordinate by editing 256 horizon biases; test delayed response to archived reports.",
+    "learned_time_plus_half_week": "Same exact affine weight-space translation by half a week; learned medians and spreads can respond together.",
+    "learned_time_plus_one_week": "Same exact translation by one week, testing a stronger timing adjustment.",
+    "learned_time_minus_half_week": "Opposite-direction intervention to test whether the decoder instead extrapolates too aggressively."
+  }
+}
