@@ -38,6 +38,8 @@ the project root is `/hickory/proj/jlessler/projects/tapestry-all/`.
 ## Laptop and Longleaf stay in sync
 
 Nothing may exist only on a laptop: collaborators work from GitHub and Longleaf alone.
+`scripts/sync_longleaf.sh` does the first two steps below in one command (`--git` for
+commits only); run it after every commit session, data pull or submission.
 - Code, docs, release files and submitted forecasts: commit on `main`, push to GitHub,
   then fast-forward the Longleaf checkout `tapestry-all/tapestry` to the same commit.
 - Git-ignored data and outputs (`data/`, `production/output/`, `output/`, `sandbox/`,
