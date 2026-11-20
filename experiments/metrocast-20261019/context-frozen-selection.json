@@ -1,0 +1,59 @@
+{
+  "candidates": {
+    "context_none": "lookback=52,geography=0,spatial=attention,decoder=residual2,decoder_blocks=2,noise=local,epochs=320,members=32,lr=0.002,covariate_encoder=growth,signal_features=smooth_multiscale,input_normalization=b0,training_target_lag=1,forecast_view=raw",
+    "context_state": "lookback=52,geography=0,spatial=attention,decoder=residual2,decoder_blocks=2,noise=local,epochs=320,members=32,lr=0.002,covariate_encoder=growth,signal_features=smooth_multiscale,covariate_set=state,input_normalization=b0,training_target_lag=1,forecast_view=raw",
+    "context_state_regional": "lookback=52,geography=0,spatial=attention,decoder=residual2,decoder_blocks=2,noise=local,epochs=320,members=32,lr=0.002,covariate_encoder=growth,signal_features=smooth_multiscale,covariate_set=state_regional,input_normalization=b0,training_target_lag=1,forecast_view=raw"
+  },
+  "criterion": "Choose architecture/spatial mode using 2024-25 revised WIS, then retain matched none/state/state+region comparisons; no holdout selection.",
+  "development": [
+    {
+      "scenario": "ed_transform=logit,geography=0,decoder=residual2,noise=local,width=128,epochs=160,members=32,covariate_set=state,training_target_lag=1,forecast_view=raw",
+      "wis": 0.007569682534690575
+    },
+    {
+      "scenario": "ed_transform=logit,geography=0,decoder=residual2,noise=local,width=128,epochs=160,members=32,covariate_set=state_regional,training_target_lag=1,forecast_view=raw",
+      "wis": 0.007920869155870125
+    },
+    {
+      "scenario": "ed_transform=logit,geography=0,decoder=residual2,noise=local,width=128,epochs=160,members=32,training_target_lag=1,forecast_view=raw",
+      "wis": 0.006755009595088325
+    },
+    {
+      "scenario": "ed_transform=logit,geography=0,spatial=attention,decoder=residual2,noise=local,width=128,epochs=160,members=32,covariate_set=state,training_target_lag=1,forecast_view=raw",
+      "wis": 0.00735054937218945
+    },
+    {
+      "scenario": "ed_transform=logit,geography=0,spatial=attention,decoder=residual2,noise=local,width=128,epochs=160,members=32,covariate_set=state_regional,training_target_lag=1,forecast_view=raw",
+      "wis": 0.00743078811929045
+    },
+    {
+      "scenario": "ed_transform=logit,geography=0,spatial=attention,decoder=residual2,noise=local,width=128,epochs=160,members=32,training_target_lag=1,forecast_view=raw",
+      "wis": 0.006888666858974825
+    },
+    {
+      "scenario": "lookback=52,geography=0,decoder=residual2,decoder_blocks=2,noise=local,epochs=320,members=32,lr=0.002,covariate_encoder=growth,signal_features=smooth_multiscale,covariate_set=state,input_normalization=b0,training_target_lag=1,forecast_view=raw",
+      "wis": 0.005938020928153875
+    },
+    {
+      "scenario": "lookback=52,geography=0,decoder=residual2,decoder_blocks=2,noise=local,epochs=320,members=32,lr=0.002,covariate_encoder=growth,signal_features=smooth_multiscale,covariate_set=state_regional,input_normalization=b0,training_target_lag=1,forecast_view=raw",
+      "wis": 0.0060634953861861
+    },
+    {
+      "scenario": "lookback=52,geography=0,decoder=residual2,decoder_blocks=2,noise=local,epochs=320,members=32,lr=0.002,covariate_encoder=growth,signal_features=smooth_multiscale,input_normalization=b0,training_target_lag=1,forecast_view=raw",
+      "wis": 0.0062484260301318255
+    },
+    {
+      "scenario": "lookback=52,geography=0,spatial=attention,decoder=residual2,decoder_blocks=2,noise=local,epochs=320,members=32,lr=0.002,covariate_encoder=growth,signal_features=smooth_multiscale,covariate_set=state,input_normalization=b0,training_target_lag=1,forecast_view=raw",
+      "wis": 0.00568661190983305
+    },
+    {
+      "scenario": "lookback=52,geography=0,spatial=attention,decoder=residual2,decoder_blocks=2,noise=local,epochs=320,members=32,lr=0.002,covariate_encoder=growth,signal_features=smooth_multiscale,covariate_set=state_regional,input_normalization=b0,training_target_lag=1,forecast_view=raw",
+      "wis": 0.005959572942687175
+    },
+    {
+      "scenario": "lookback=52,geography=0,spatial=attention,decoder=residual2,decoder_blocks=2,noise=local,epochs=320,members=32,lr=0.002,covariate_encoder=growth,signal_features=smooth_multiscale,input_normalization=b0,training_target_lag=1,forecast_view=raw",
+      "wis": 0.0054256938437375005
+    }
+  ],
+  "frozen_at": "2026-10-21T05:34:19.450915+00:00"
+}

@@ -1,0 +1,93 @@
+{
+  "seeds": [
+    42,
+    43,
+    44,
+    45
+  ],
+  "candidates": {
+    "history24": "lookback=24,ed_transform=logit,geography=0,decoder=residual2,noise=local,width=128,epochs=160,members=32,training_target_lag=1,forecast_view=raw",
+    "history36": "lookback=36,ed_transform=logit,geography=0,decoder=residual2,noise=local,width=128,epochs=160,members=32,training_target_lag=1,forecast_view=raw",
+    "width64": "ed_transform=logit,geography=0,decoder=residual2,noise=local,epochs=160,members=32,training_target_lag=1,forecast_view=raw",
+    "width256": "ed_transform=logit,geography=0,decoder=residual2,noise=local,width=256,epochs=160,members=32,training_target_lag=1,forecast_view=raw",
+    "epochs80": "ed_transform=logit,geography=0,decoder=residual2,noise=local,width=128,epochs=80,members=32,training_target_lag=1,forecast_view=raw",
+    "epochs320": "ed_transform=logit,geography=0,decoder=residual2,noise=local,width=128,epochs=320,members=32,training_target_lag=1,forecast_view=raw",
+    "members128": "ed_transform=logit,geography=0,decoder=residual2,noise=local,width=128,epochs=160,training_target_lag=1,forecast_view=raw",
+    "lag2": "ed_transform=logit,geography=0,decoder=residual2,noise=local,width=128,epochs=160,members=32,training_target_lag=2,forecast_view=raw"
+  },
+  "parents": {
+    "history24": {
+      "parent_experiment": "metrocast-county-delay-r059",
+      "parent_scenario": "ed_transform=logit,geography=0,decoder=residual2,noise=local,width=128,epochs=160,members=32,training_target_lag=1,forecast_view=raw",
+      "changes": {
+        "lookback": 24
+      },
+      "reason": "One-factor branches from 12-week shared-weight model trained with latest target week hidden. Select only on archived 2024-25 county ensemble comparison."
+    },
+    "history36": {
+      "parent_experiment": "metrocast-county-delay-r059",
+      "parent_scenario": "ed_transform=logit,geography=0,decoder=residual2,noise=local,width=128,epochs=160,members=32,training_target_lag=1,forecast_view=raw",
+      "changes": {
+        "lookback": 36
+      },
+      "reason": "One-factor branches from 12-week shared-weight model trained with latest target week hidden. Select only on archived 2024-25 county ensemble comparison."
+    },
+    "width64": {
+      "parent_experiment": "metrocast-county-delay-r059",
+      "parent_scenario": "ed_transform=logit,geography=0,decoder=residual2,noise=local,width=128,epochs=160,members=32,training_target_lag=1,forecast_view=raw",
+      "changes": {
+        "width": 64
+      },
+      "reason": "One-factor branches from 12-week shared-weight model trained with latest target week hidden. Select only on archived 2024-25 county ensemble comparison."
+    },
+    "width256": {
+      "parent_experiment": "metrocast-county-delay-r059",
+      "parent_scenario": "ed_transform=logit,geography=0,decoder=residual2,noise=local,width=128,epochs=160,members=32,training_target_lag=1,forecast_view=raw",
+      "changes": {
+        "width": 256
+      },
+      "reason": "One-factor branches from 12-week shared-weight model trained with latest target week hidden. Select only on archived 2024-25 county ensemble comparison."
+    },
+    "epochs80": {
+      "parent_experiment": "metrocast-county-delay-r059",
+      "parent_scenario": "ed_transform=logit,geography=0,decoder=residual2,noise=local,width=128,epochs=160,members=32,training_target_lag=1,forecast_view=raw",
+      "changes": {
+        "epochs": 80
+      },
+      "reason": "One-factor branches from 12-week shared-weight model trained with latest target week hidden. Select only on archived 2024-25 county ensemble comparison."
+    },
+    "epochs320": {
+      "parent_experiment": "metrocast-county-delay-r059",
+      "parent_scenario": "ed_transform=logit,geography=0,decoder=residual2,noise=local,width=128,epochs=160,members=32,training_target_lag=1,forecast_view=raw",
+      "changes": {
+        "epochs": 320
+      },
+      "reason": "One-factor branches from 12-week shared-weight model trained with latest target week hidden. Select only on archived 2024-25 county ensemble comparison."
+    },
+    "members128": {
+      "parent_experiment": "metrocast-county-delay-r059",
+      "parent_scenario": "ed_transform=logit,geography=0,decoder=residual2,noise=local,width=128,epochs=160,members=32,training_target_lag=1,forecast_view=raw",
+      "changes": {
+        "members": 128
+      },
+      "reason": "One-factor branches from 12-week shared-weight model trained with latest target week hidden. Select only on archived 2024-25 county ensemble comparison."
+    },
+    "lag2": {
+      "parent_experiment": "metrocast-county-delay-r059",
+      "parent_scenario": "ed_transform=logit,geography=0,decoder=residual2,noise=local,width=128,epochs=160,members=32,training_target_lag=1,forecast_view=raw",
+      "changes": {
+        "training_target_lag": 2
+      },
+      "reason": "One-factor branches from 12-week shared-weight model trained with latest target week hidden. Select only on archived 2024-25 county ensemble comparison."
+    }
+  },
+  "training_seasons": [
+    "2022-2023",
+    "2023-2024"
+  ],
+  "evaluation_season": "2024-2025",
+  "inputs": "Revised 2022-23/2023-24 county histories; latest target week hidden during fitting and inner validation, or two weeks for lag2. No state covariates.",
+  "labels": "Unchanged future county flu ED proportions.",
+  "selection": "Same 190 tasks and nine quantiles versus epiENGAGE-ensemble_mean in five Texas counties; no 2025-26 selection.",
+  "evaluation_inputs": "Strictly archived histories available by Wednesday for March 1-May 10 2025 reference dates; no revised fill."
+}

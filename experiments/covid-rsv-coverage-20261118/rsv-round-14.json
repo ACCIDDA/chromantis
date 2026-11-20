@@ -1,0 +1,24 @@
+{
+ "description": "RSV round 14 (2026-11-19 11:45): location-exchange designs not yet tried on the live leader (distance- and gravity-weighted neighbours, attention across states, joint location-target and target-level exchange), replacing the US-only summary. Main, forward, live.",
+ "round": 14,
+ "seeds": [
+  44,
+  45,
+  46,
+  47
+ ],
+ "parents": {
+  "A4c0.national.rsvnet.calendar.weeks1.distance": "A4c0.national.rsvnet.calendar.weeks1",
+  "A4c0.national.rsvnet.calendar.weeks1.gravity": "A4c0.national.rsvnet.calendar.weeks1",
+  "A4c0.national.rsvnet.calendar.weeks1.state_attention": "A4c0.national.rsvnet.calendar.weeks1",
+  "A4c0.national.rsvnet.calendar.weeks1.joint_location_target": "A4c0.national.rsvnet.calendar.weeks1",
+  "A4c0.national.rsvnet.calendar.weeks1.target_spatial": "A4c0.national.rsvnet.calendar.weeks1"
+ },
+ "candidates": {
+  "A4c0.national.rsvnet.calendar.weeks1.distance": "history_source=artificial,history_correction=1,error_signals=all,input_set=target,correction_weeks=1,correction_ed=1,joint_weight=0.05,correction_penalty=30.0,reporting_missingness=0,reporting_method=synchronous_phase_log,ed_transform=logit,width=192,epochs=160,patience=25,fit_partition=pathogen,covariate_encoder=summary,covariate_set=kinsa+rsvnet,input_normalization=b0,log_loss_weight=1.0,error_reference=2025-2026,spatial=distance",
+  "A4c0.national.rsvnet.calendar.weeks1.gravity": "history_source=artificial,history_correction=1,error_signals=all,input_set=target,correction_weeks=1,correction_ed=1,joint_weight=0.05,correction_penalty=30.0,reporting_missingness=0,reporting_method=synchronous_phase_log,ed_transform=logit,width=192,epochs=160,patience=25,fit_partition=pathogen,covariate_encoder=summary,covariate_set=kinsa+rsvnet,input_normalization=b0,log_loss_weight=1.0,error_reference=2025-2026,spatial=gravity",
+  "A4c0.national.rsvnet.calendar.weeks1.state_attention": "history_source=artificial,history_correction=1,error_signals=all,input_set=target,correction_weeks=1,correction_ed=1,joint_weight=0.05,correction_penalty=30.0,reporting_missingness=0,reporting_method=synchronous_phase_log,ed_transform=logit,width=192,epochs=160,patience=25,fit_partition=pathogen,covariate_encoder=summary,covariate_set=kinsa+rsvnet,input_normalization=b0,log_loss_weight=1.0,error_reference=2025-2026,spatial=state_attention",
+  "A4c0.national.rsvnet.calendar.weeks1.joint_location_target": "history_source=artificial,history_correction=1,error_signals=all,input_set=target,correction_weeks=1,correction_ed=1,joint_weight=0.05,correction_penalty=30.0,reporting_missingness=0,reporting_method=synchronous_phase_log,ed_transform=logit,width=192,epochs=160,patience=25,fit_partition=pathogen,covariate_encoder=summary,covariate_set=kinsa+rsvnet,input_normalization=b0,log_loss_weight=1.0,error_reference=2025-2026,spatial=joint_location_target",
+  "A4c0.national.rsvnet.calendar.weeks1.target_spatial": "history_source=artificial,history_correction=1,error_signals=all,input_set=target,correction_weeks=1,correction_ed=1,joint_weight=0.05,correction_penalty=30.0,reporting_missingness=0,reporting_method=synchronous_phase_log,ed_transform=logit,width=192,epochs=160,patience=25,fit_partition=pathogen,covariate_encoder=summary,covariate_set=kinsa+rsvnet,input_normalization=b0,log_loss_weight=1.0,error_reference=2025-2026,spatial=target_spatial"
+ }
+}

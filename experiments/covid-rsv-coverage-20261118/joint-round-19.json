@@ -1,0 +1,28 @@
+{
+ "description": "Joint round 19 (2026-11-19 18:30): one model trained on flu, COVID and RSV admissions and ED share together (fit_partition=all, all six histories as inputs), from the COVID leader recipe (GRU, US-only summary, real-pair trees, log-loss 1) and the RSV leader recipe (A4c0, US summary, Kinsa+RSV-NET, calendar, one-week trees); controls fit each pathogen separately inside the same run, with all six or only own histories. Scored on the COVID and RSV rows of the joint problems (RSV admissions masked before Nov 2024).",
+ "round": 19,
+ "seeds": [
+  44,
+  45,
+  46,
+  47
+ ],
+ "parents": {
+  "J.gru.all": "J.gru.separate",
+  "J.gru.all.heads_pathogen": "J.gru.all",
+  "J.gru.separate": "J.gru.separate.target_inputs",
+  "J.a4c0.all": "J.a4c0.separate",
+  "J.a4c0.all.heads_pathogen": "J.a4c0.all",
+  "J.a4c0.separate": "J.a4c0.separate.target_inputs"
+ },
+ "candidates": {
+  "J.gru.all": "history_source=artificial,reconstruction_labels=1,error_signals=all,input_set=all,correction_weeks=2,correction_ed=1,reporting_probability=0.25,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,spatial=national_broadcast,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=all,covariate_encoder=summary,input_normalization=b0,log_loss_weight=1.0,error_reference=2025-2026,encoder=gru,corrector_examples=real",
+  "J.gru.all.heads_pathogen": "history_source=artificial,reconstruction_labels=1,error_signals=all,input_set=all,correction_weeks=2,correction_ed=1,reporting_probability=0.25,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,spatial=national_broadcast,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=all,covariate_encoder=summary,input_normalization=b0,log_loss_weight=1.0,error_reference=2025-2026,encoder=gru,corrector_examples=real,head_sharing=pathogen",
+  "J.gru.separate": "history_source=artificial,reconstruction_labels=1,error_signals=all,input_set=all,correction_weeks=2,correction_ed=1,reporting_probability=0.25,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,spatial=national_broadcast,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=1.0,error_reference=2025-2026,encoder=gru,corrector_examples=real",
+  "J.a4c0.all": "history_source=artificial,history_correction=1,error_signals=all,input_set=all,correction_weeks=1,correction_ed=1,joint_weight=0.05,correction_penalty=30.0,reporting_missingness=0,reporting_method=synchronous_phase_log,ed_transform=logit,width=192,epochs=160,patience=25,fit_partition=all,covariate_encoder=summary,covariate_set=kinsa+rsvnet,input_normalization=b0,log_loss_weight=1.0,error_reference=2025-2026,spatial=national_broadcast",
+  "J.a4c0.all.heads_pathogen": "history_source=artificial,history_correction=1,error_signals=all,input_set=all,correction_weeks=1,correction_ed=1,joint_weight=0.05,correction_penalty=30.0,reporting_missingness=0,reporting_method=synchronous_phase_log,ed_transform=logit,width=192,epochs=160,patience=25,fit_partition=all,covariate_encoder=summary,covariate_set=kinsa+rsvnet,input_normalization=b0,log_loss_weight=1.0,error_reference=2025-2026,spatial=national_broadcast,head_sharing=pathogen",
+  "J.a4c0.separate": "history_source=artificial,history_correction=1,error_signals=all,input_set=all,correction_weeks=1,correction_ed=1,joint_weight=0.05,correction_penalty=30.0,reporting_missingness=0,reporting_method=synchronous_phase_log,ed_transform=logit,width=192,epochs=160,patience=25,fit_partition=pathogen,covariate_encoder=summary,covariate_set=kinsa+rsvnet,input_normalization=b0,log_loss_weight=1.0,error_reference=2025-2026,spatial=national_broadcast",
+  "J.gru.separate.target_inputs": "history_source=artificial,reconstruction_labels=1,error_signals=all,input_set=target,correction_weeks=2,correction_ed=1,reporting_probability=0.25,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,spatial=national_broadcast,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=1.0,error_reference=2025-2026,encoder=gru,corrector_examples=real",
+  "J.a4c0.separate.target_inputs": "history_source=artificial,history_correction=1,error_signals=all,input_set=target,correction_weeks=1,correction_ed=1,joint_weight=0.05,correction_penalty=30.0,reporting_missingness=0,reporting_method=synchronous_phase_log,ed_transform=logit,width=192,epochs=160,patience=25,fit_partition=pathogen,covariate_encoder=summary,covariate_set=kinsa+rsvnet,input_normalization=b0,log_loss_weight=1.0,error_reference=2025-2026,spatial=national_broadcast"
+ }
+}

@@ -1,0 +1,15 @@
+{
+ "description": "COVID live gate 16: round-18 recipes refit on all of 2022-23..2025-26.",
+ "seeds": [
+  42,
+  43,
+  44,
+  45
+ ],
+ "candidates": {
+  "T.pN_gru.real.log_loss1.cov_trees.hc": "history_source=artificial,error_signals=all,input_set=target,correction_weeks=2,correction_ed=1,reporting_probability=0.25,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,ed_transform=logit,spatial=national_broadcast,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=1.0,error_reference=2025-2026,encoder=gru,corrector_examples=real,covariate_set=hosprep_covid,network_coverage=0,history_correction=1",
+  "T.pN_gru.real.log_loss1.cov_trees.all_seasons": "history_source=artificial,reconstruction_labels=1,error_signals=all,input_set=target,correction_weeks=2,correction_ed=1,reporting_probability=0.25,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,spatial=national_broadcast,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=1.0,error_reference=2025-2026,encoder=gru,corrector_examples=real,covariate_set=hosprep_covid,network_coverage=0,error_seasons=all",
+  "T.pN_gru.real.log_loss1.cov_trees.mlp": "history_source=artificial,reconstruction_labels=1,error_signals=all,input_set=target,correction_weeks=2,correction_ed=1,reporting_probability=0.25,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,spatial=national_broadcast,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=1.0,error_reference=2025-2026,encoder=gru,corrector_examples=synthetic_then_real,covariate_set=hosprep_covid,network_coverage=0,corrector_model=mlp",
+  "T.pN_gru.real_cov_hc.no_net_cov": "history_source=artificial,error_signals=all,input_set=target,correction_weeks=2,correction_ed=1,reporting_probability=0.25,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,ed_transform=logit,spatial=national_broadcast,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=0.5,error_reference=2025-2026,encoder=gru,corrector_examples=real,covariate_set=hosprep_covid,history_correction=1,network_coverage=0"
+ }
+}

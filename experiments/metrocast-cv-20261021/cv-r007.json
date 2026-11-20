@@ -1,0 +1,232 @@
+{
+ "seeds": [
+  42,
+  43,
+  44,
+  45
+ ],
+ "candidates": {
+  "r007_c00": "decoder=residual2,decoder_blocks=2,noise=local,latent=32,epochs=160,members=64,covariate_encoder=growth,covariate_set=state,input_normalization=b0,covariate_dropout=0.25,forecast_view=raw",
+  "r007_c01": "decoder=residual2,noise=local,latent=32,width=128,epochs=120,members=64,lr=0.0005,covariate_encoder=growth,covariate_set=state,input_normalization=b0,covariate_dropout=0.25,forecast_view=raw",
+  "r007_c02": "decoder=residual2,decoder_blocks=2,noise=local,latent=32,width=128,epochs=160,members=32,lr=0.0005,covariate_encoder=growth,covariate_set=state,input_normalization=b0,covariate_dropout=0.25,forecast_view=raw",
+  "r007_c03": "ed_transform=logit,decoder=residual2,decoder_blocks=2,noise=local,latent=4,width=128,epochs=160,members=64,covariate_encoder=growth,covariate_set=state,input_normalization=b0,covariate_dropout=0.25,forecast_view=raw",
+  "r007_c04": "decoder=residual2,decoder_blocks=3,noise=local,latent=4,width=128,epochs=160,members=64,covariate_set=state,input_normalization=b0,covariate_dropout=0.25,forecast_view=raw",
+  "r007_c05": "ed_transform=fourth_root,decoder=residual2,decoder_blocks=2,noise=local,latent=32,width=128,epochs=160,members=64,covariate_encoder=growth,covariate_set=state,input_normalization=b0,covariate_dropout=0.25,forecast_view=raw",
+  "r007_c06": "state_pretrain_steps=400,ed_transform=fourth_root,decoder=residual2,noise=local,latent=32,width=128,epochs=160,members=32,covariate_encoder=growth,covariate_set=state,input_normalization=b0,covariate_dropout=0.25,forecast_view=raw",
+  "r007_c07": "lookback=26,decoder=residual2,decoder_blocks=2,noise=local,latent=32,width=128,epochs=160,members=64,covariate_encoder=growth,covariate_set=state,input_normalization=b0,covariate_dropout=0.25,forecast_view=raw",
+  "r007_c08": "decoder=residual2,noise=local,latent=32,width=128,epochs=80,members=64,covariate_encoder=growth,covariate_set=state,input_normalization=b0,covariate_dropout=0.25,forecast_view=raw",
+  "r007_c09": "decoder=residual2,decoder_blocks=2,noise=local,latent=32,width=128,epochs=240,members=32,covariate_encoder=growth,covariate_set=state,input_normalization=b0,covariate_dropout=0.25,forecast_view=raw",
+  "r007_c10": "ili_units=flu_scaled,ili_steps=800,ili_training=pretrain,ili_path=data/metrocast/historical_ili.npz,ed_transform=logit,decoder=residual2,decoder_blocks=2,noise=local,latent=32,width=128,epochs=160,members=64,covariate_encoder=growth,covariate_set=state,input_normalization=b0,covariate_dropout=0.25,forecast_view=raw",
+  "r007_c11": "decoder=residual2,decoder_blocks=2,latent=32,width=128,epochs=160,members=32,covariate_set=state,input_normalization=b0,training_target_lag=1,covariate_dropout=0.25,forecast_view=raw",
+  "r007_c12": "geography=0,decoder=residual2,noise=local,latent=32,width=128,epochs=160,members=32,covariate_encoder=growth,covariate_set=state,input_normalization=b0,covariate_dropout=0.25,forecast_view=raw",
+  "r007_c13": "decoder=residual2,decoder_blocks=2,noise=local,latent=32,width=128,epochs=160,members=32,covariate_encoder=growth,covariate_set=state,covariate_dropout=0.25,forecast_view=raw",
+  "r007_c14": "ed_transform=fourth_root,decoder=residual2,noise=local,latent=32,width=128,epochs=160,members=64,covariate_encoder=growth,covariate_set=state,input_normalization=b0,covariate_dropout=0.25,forecast_view=raw",
+  "r007_c15": "ed_transform=logit,decoder=residual2,decoder_blocks=2,noise=local,latent=32,width=128,epochs=160,members=16,covariate_encoder=growth,covariate_set=state,input_normalization=b0,covariate_dropout=0.25,forecast_view=raw",
+  "r007_c16": "state_pretrain_steps=1600,decoder=residual2,decoder_blocks=2,noise=local,latent=32,width=128,epochs=160,members=64,covariate_encoder=growth,covariate_set=state,input_normalization=b0,covariate_dropout=0.25,forecast_view=raw",
+  "r007_c17": "decoder=residual2,noise=local,latent=32,width=128,epochs=160,members=64,covariate_set=state,training_target_lag=2,covariate_dropout=0.25,forecast_view=raw",
+  "r007_c18": "decoder=residual2,decoder_blocks=2,noise=local,width=128,epochs=160,members=32,covariate_encoder=summary,covariate_set=state,input_normalization=b0,covariate_dropout=0.25,forecast_view=raw",
+  "r007_c19": "ed_transform=fourth_root,decoder=residual2,noise=local,latent=32,width=128,epochs=160,members=32,covariate_encoder=growth,covariate_set=state,input_normalization=b0,covariate_dropout=0.25,forecast_view=raw",
+  "r007_c20": "decoder=residual2,decoder_blocks=2,noise=local,latent=32,width=128,epochs=160,members=32,weight_decay=0.0001,covariate_encoder=growth,covariate_set=state,input_normalization=b0,covariate_dropout=0.25,forecast_view=raw",
+  "r007_c21": "decoder=residual2,noise=local,latent=32,width=128,epochs=160,members=64,covariate_encoder=growth,covariate_set=state,input_normalization=b0,covariate_dropout=0.5,forecast_view=raw",
+  "r007_c22": "decoder=residual2,decoder_blocks=2,noise=local,latent=32,width=128,epochs=160,members=32,covariate_set=state,input_normalization=b0,covariate_dropout=0.25,forecast_view=raw",
+  "r007_c23": "state_pretrain_steps=1600,decoder=residual2,noise=local,latent=32,width=128,epochs=160,batch_size=16,members=64,covariate_encoder=growth,covariate_set=state,input_normalization=b0,covariate_dropout=0.25,forecast_view=raw",
+  "r007_ref": "decoder=residual2,noise=local,width=128,epochs=160,members=32,training_target_lag=1,forecast_view=raw"
+ },
+ "parents": {
+  "r007_c00": {
+   "parent": "r005_c23",
+   "parent_cv_log_ratio": -0.2291626917628864,
+   "changes": {
+    "width": "64"
+   }
+  },
+  "r007_c01": {
+   "parent": "r006_c00",
+   "parent_cv_log_ratio": -0.2291626914839409,
+   "changes": {
+    "epochs": "120",
+    "lr": "0.0005"
+   }
+  },
+  "r007_c02": {
+   "parent": "r004_c00",
+   "parent_cv_log_ratio": -0.2316348836454236,
+   "changes": {
+    "lr": "0.0005"
+   }
+  },
+  "r007_c03": {
+   "parent": "r006_c10",
+   "parent_cv_log_ratio": -0.2269227070361731,
+   "changes": {
+    "latent": "4"
+   }
+  },
+  "r007_c04": {
+   "parent": "r006_c00",
+   "parent_cv_log_ratio": -0.2291626914839409,
+   "changes": {
+    "latent": "4",
+    "decoder_blocks": "3",
+    "covariate_set": "state",
+    "covariate_encoder": "raw"
+   }
+  },
+  "r007_c05": {
+   "parent": "r004_c00",
+   "parent_cv_log_ratio": -0.2316348836454236,
+   "changes": {
+    "members": "64",
+    "ed_transform": "fourth_root"
+   }
+  },
+  "r007_c06": {
+   "parent": "r005_c07",
+   "parent_cv_log_ratio": -0.2315107513995814,
+   "changes": {
+    "ed_transform": "fourth_root",
+    "state_pretrain_steps": "400"
+   }
+  },
+  "r007_c07": {
+   "parent": "r005_c23",
+   "parent_cv_log_ratio": -0.2291626917628864,
+   "changes": {
+    "lookback": "26"
+   }
+  },
+  "r007_c08": {
+   "parent": "r006_c00",
+   "parent_cv_log_ratio": -0.2291626914839409,
+   "changes": {
+    "epochs": "80",
+    "signal_features": "none"
+   }
+  },
+  "r007_c09": {
+   "parent": "r004_c00",
+   "parent_cv_log_ratio": -0.2316348836454236,
+   "changes": {
+    "epochs": "240"
+   }
+  },
+  "r007_c10": {
+   "parent": "r006_c10",
+   "parent_cv_log_ratio": -0.2269227070361731,
+   "changes": {
+    "spatial": "none",
+    "ili_units": "flu_scaled",
+    "ili_steps": "800",
+    "ili_training": "pretrain",
+    "ili_path": "data/metrocast/historical_ili.npz"
+   }
+  },
+  "r007_c11": {
+   "parent": "r004_c00",
+   "parent_cv_log_ratio": -0.2316348836454236,
+   "changes": {
+    "training_target_lag": "1",
+    "noise": "global",
+    "covariate_set": "state",
+    "covariate_encoder": "raw"
+   }
+  },
+  "r007_c12": {
+   "parent": "r005_c07",
+   "parent_cv_log_ratio": -0.2315107513995814,
+   "changes": {
+    "geography": "False"
+   }
+  },
+  "r007_c13": {
+   "parent": "r004_c00",
+   "parent_cv_log_ratio": -0.2316348836454236,
+   "changes": {
+    "input_normalization": "none"
+   }
+  },
+  "r007_c14": {
+   "parent": "r006_c00",
+   "parent_cv_log_ratio": -0.2291626914839409,
+   "changes": {
+    "ed_transform": "fourth_root",
+    "training_target_lag": "0"
+   }
+  },
+  "r007_c15": {
+   "parent": "r006_c10",
+   "parent_cv_log_ratio": -0.2269227070361731,
+   "changes": {
+    "members": "16"
+   }
+  },
+  "r007_c16": {
+   "parent": "r005_c23",
+   "parent_cv_log_ratio": -0.2291626917628864,
+   "changes": {
+    "ed_transform": "linear",
+    "state_pretrain_steps": "1600"
+   }
+  },
+  "r007_c17": {
+   "parent": "r006_c00",
+   "parent_cv_log_ratio": -0.2291626914839409,
+   "changes": {
+    "training_target_lag": "2",
+    "input_normalization": "none",
+    "covariate_set": "state",
+    "covariate_encoder": "raw"
+   }
+  },
+  "r007_c18": {
+   "parent": "r004_c00",
+   "parent_cv_log_ratio": -0.2316348836454236,
+   "changes": {
+    "latent": "16",
+    "covariate_encoder": "summary"
+   }
+  },
+  "r007_c19": {
+   "parent": "r005_c07",
+   "parent_cv_log_ratio": -0.2315107513995814,
+   "changes": {
+    "ed_transform": "fourth_root"
+   }
+  },
+  "r007_c20": {
+   "parent": "r004_c00",
+   "parent_cv_log_ratio": -0.2316348836454236,
+   "changes": {
+    "weight_decay": "0.0001"
+   }
+  },
+  "r007_c21": {
+   "parent": "r006_c00",
+   "parent_cv_log_ratio": -0.2291626914839409,
+   "changes": {
+    "covariate_dropout": "0.5",
+    "signal_features": "none"
+   }
+  },
+  "r007_c22": {
+   "parent": "r004_c00",
+   "parent_cv_log_ratio": -0.2316348836454236,
+   "changes": {
+    "covariate_dropout": "0.25",
+    "weight_decay": "0.0",
+    "covariate_set": "state",
+    "covariate_encoder": "raw"
+   }
+  },
+  "r007_c23": {
+   "parent": "r006_c00",
+   "parent_cv_log_ratio": -0.2291626914839409,
+   "changes": {
+    "batch_size": "16",
+    "ed_transform": "linear",
+    "state_pretrain_steps": "1600"
+   }
+  }
+ },
+ "selection": "mean over four folds of log(WIS / reference WIS); lower is better"
+}

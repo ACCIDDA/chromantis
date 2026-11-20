@@ -1,0 +1,20 @@
+{
+ "description": "COVID round 25 (2026-11-20 02:25): remaining untried options on the live leader: flu+COVID histories, all three admission histories. 8 seeds. Main, forward, live. All-admissions inputs dropped: that input set lacks the COVID ED history the ED target needs.",
+ "round": 25,
+ "seeds": [
+  44,
+  45,
+  46,
+  47,
+  48,
+  49,
+  50,
+  51
+ ],
+ "parents": {
+  "T.pN_gru.real.log_loss1.inputs_flu_covid": "T.pN_gru.real.log_loss1"
+ },
+ "candidates": {
+  "T.pN_gru.real.log_loss1.inputs_flu_covid": "history_source=artificial,reconstruction_labels=1,error_signals=all,input_set=flu_covid,correction_weeks=2,correction_ed=1,reporting_probability=0.25,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,spatial=national_broadcast,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=1.0,error_reference=2025-2026,encoder=gru,corrector_examples=real"
+ }
+}

@@ -91,6 +91,8 @@ MEANING = {
                           'final values (synthetic), real archived reports paired with their mature values (real), or '
                           'synthetic pretraining then real (synthetic_then_real, MLP only). Was pilot_nowcaster.',
     'corrector_model': 'Correction model: gradient-boosted trees (tree) or a residual MLP (mlp). Was pilot_nowcaster.',
+    'network_coverage': 'Whether the network also reads the hospital-coverage covariates (hosprep_*); 0 keeps them for the '
+                        'correction trees only (19 Nov 2026: coverage made the trees more accurate but some networks worse).',
     'input_set': 'Named target-history input set declared by the dataset specification.',
     'error_seasons': 'Choice B: archived seasons supplying artificial reporting errors and real correction pairs: latest permitted training season, or every archived training season with recency weights 1, 1/2, 1/4.',
     'actual_share': 'Probability a training episode uses the actual archived report (finalized fill where none) instead of an artificial-error draw.',
@@ -226,6 +228,7 @@ class Scenario:
     error_scope: str = 'all'
     error_signals: str = 'admissions'
     corrector_examples: str = 'synthetic'
+    network_coverage: int = 1
     corrector_model: str = 'tree'
     input_set: str = 'all'
     ili_units: str = 'own'
@@ -350,7 +353,8 @@ class Scenario:
         if self.growth_anchor and self.encoder not in ('series_mlp', 'series_mixer', 'mlp'):
             raise ValueError('Growth anchor needs an MLP or shared series encoder')
         if not (0 <= self.actual_share <= 1 and 0 <= self.uncorrected_share <= 1 and 0 <= self.covariate_dropout <= 1
-                and self.correction_realizations >= 1 and self.correction_noise >= 0 and self.log_loss_weight >= 0):
+                and self.correction_realizations >= 1 and self.correction_noise >= 0 and self.log_loss_weight >= 0
+                and self.network_coverage in (0, 1)):
             raise ValueError('Invalid B5 vintage/nowcast/loss option')
         if self.history_correction and self.history_source != 'artificial':
             raise ValueError('history_correction corrects artificial training histories (history_source=artificial)')

@@ -1,0 +1,42 @@
+{
+ "seeds": [
+  42,
+  43,
+  44,
+  45
+ ],
+ "candidates": {
+  "ref_lag0": "decoder=residual2,noise=local,width=128,epochs=160,members=32,forecast_view=raw",
+  "county_recipe_lag0": "ed_transform=logit,geography=0,decoder=residual2,noise=local,width=128,epochs=80,members=32,forecast_view=raw",
+  "r109_child21_lag1_lag0": "lookback=52,decoder=residual2,decoder_blocks=2,noise=local,latent=8,epochs=320,batch_size=16,members=64,lr=0.002,covariate_encoder=growth,signal_features=smooth_multiscale,covariate_set=state,input_normalization=b0,covariate_dropout=0.25,forecast_view=raw",
+  "state_growth_lag0": "decoder=residual2,noise=local,width=128,epochs=160,members=32,covariate_set=state,covariate_encoder=growth,covariate_dropout=0.1,forecast_view=raw",
+  "state_summary_lag0": "decoder=residual2,noise=local,width=128,epochs=160,members=32,covariate_set=state,covariate_encoder=summary,covariate_dropout=0.1,forecast_view=raw",
+  "state_raw_lag0": "decoder=residual2,noise=local,width=128,epochs=160,members=32,covariate_set=state,covariate_encoder=raw,covariate_dropout=0.1,forecast_view=raw",
+  "state_growth_drop25_lag0": "decoder=residual2,noise=local,width=128,epochs=160,members=32,covariate_set=state,covariate_encoder=growth,covariate_dropout=0.25,forecast_view=raw",
+  "state_pretrain800_lag0": "decoder=residual2,noise=local,width=128,epochs=160,members=32,state_pretrain_steps=800,forecast_view=raw",
+  "ili_pretrain800_lag0": "decoder=residual2,noise=local,width=128,epochs=160,members=32,ili_units=flu_scaled,ili_steps=800,ili_training=pretrain,ili_path=data/metrocast/historical_ili.npz,forecast_view=raw",
+  "pooled_lag0": "decoder=residual2,noise=local,width=128,epochs=160,members=32,spatial=pooled,forecast_view=raw",
+  "gated_pool_lag0": "decoder=residual2,noise=local,width=128,epochs=160,members=32,spatial=gated_pool,forecast_view=raw",
+  "attention_lag0": "decoder=residual2,noise=local,width=128,epochs=160,members=32,spatial=attention,forecast_view=raw",
+  "logit_lag0": "decoder=residual2,noise=local,width=128,epochs=160,members=32,ed_transform=logit,forecast_view=raw",
+  "fourth_root_lag0": "decoder=residual2,noise=local,width=128,epochs=160,members=32,ed_transform=fourth_root,forecast_view=raw",
+  "lookback8_lag0": "decoder=residual2,noise=local,width=128,epochs=160,members=32,lookback=8,forecast_view=raw",
+  "lookback26_lag0": "decoder=residual2,noise=local,width=128,epochs=160,members=32,lookback=26,forecast_view=raw",
+  "lookback52_lag0": "decoder=residual2,noise=local,width=128,epochs=160,members=32,lookback=52,forecast_view=raw",
+  "width64_lag0": "decoder=residual2,noise=local,width=64,epochs=160,members=32,forecast_view=raw",
+  "width256_lag0": "decoder=residual2,noise=local,width=256,epochs=160,members=32,forecast_view=raw",
+  "epochs80_lag0": "decoder=residual2,noise=local,width=128,epochs=80,members=32,forecast_view=raw",
+  "epochs320_lag0": "decoder=residual2,noise=local,width=128,epochs=320,members=32,forecast_view=raw",
+  "members64_lag0": "decoder=residual2,noise=local,width=128,epochs=160,members=64,forecast_view=raw",
+  "no_geography_lag0": "decoder=residual2,noise=local,width=128,epochs=160,members=32,geography=0,forecast_view=raw",
+  "multiscale_lag0": "decoder=residual2,noise=local,width=128,epochs=160,members=32,signal_features=multiscale,forecast_view=raw",
+  "b0_norm_lag0": "decoder=residual2,noise=local,width=128,epochs=160,members=32,input_normalization=b0,forecast_view=raw",
+  "wd001_lag0": "decoder=residual2,noise=local,width=128,epochs=160,members=32,weight_decay=0.001,forecast_view=raw",
+  "annual_calendar_lag0": "decoder=residual2,noise=local,width=128,epochs=160,members=32,annual_calendar=1,forecast_view=raw",
+  "noise_global_lag0": "decoder=residual2,noise=global,width=128,epochs=160,members=32,forecast_view=raw",
+  "growth_anchor_lag0": "decoder=residual2,noise=local,width=128,epochs=160,members=32,growth_anchor=1,forecast_view=raw",
+  "location_embedding0_lag0": "decoder=residual2,noise=local,width=128,epochs=160,members=32,location_embedding=0,forecast_view=raw",
+  "decoder_blocks2_lag0": "decoder=residual2,noise=local,width=128,epochs=160,members=32,decoder_blocks=2,forecast_view=raw"
+ },
+ "purpose": "same candidates as r000 with the latest history week visible in training"
+}

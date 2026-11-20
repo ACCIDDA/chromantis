@@ -1,0 +1,31 @@
+{
+ "description": "RSV round 1b (2026-11-18): covariates on T.Bw.real_cov_hc, chosen before round 1 was scored because the live decomposition put the excess in the network growth, not in the nowcast, and history_correction removes the double correction; plus the same treatment on a second root. Covariates are read as reported at each issuance.",
+ "round": "1b",
+ "seeds": [
+  44,
+  45,
+  46,
+  47
+ ],
+ "parents": {
+  "T.Bw.real_cov_hc.ww": "T.Bw.real_cov_hc",
+  "T.Bw.real_cov_hc.ww_rank": "T.Bw.real_cov_hc",
+  "T.Bw.real_cov_hc.rsvnet": "T.Bw.real_cov_hc",
+  "T.Bw.real_cov_hc.nrevss": "T.Bw.real_cov_hc",
+  "T.Bw.real_cov_hc.kinsa": "T.Bw.real_cov_hc",
+  "T.Bw.real_cov_hc.ilinet": "T.Bw.real_cov_hc",
+  "T.Bw.real_cov_hc.ww_nrevss": "T.Bw.real_cov_hc",
+  "T.Ball_c0w512.real_cov_hc": "T.Ball_c0w512.real_cov"
+ },
+ "candidates": {
+  "T.Bw.real_cov_hc": "history_source=artificial,error_signals=all,input_set=all,correction_weeks=2,correction_ed=1,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,ed_transform=logit,spatial=neighbors,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=0.5,error_reference=2025-2026,corrector_examples=real,covariate_set=hosprep_rsv,history_correction=1",
+  "T.Bw.real_cov_hc.ww": "history_source=artificial,error_signals=all,input_set=all,correction_weeks=2,correction_ed=1,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,ed_transform=logit,spatial=neighbors,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=0.5,error_reference=2025-2026,corrector_examples=real,covariate_set=ww_rsv+hosprep_rsv,history_correction=1",
+  "T.Bw.real_cov_hc.ww_rank": "history_source=artificial,error_signals=all,input_set=all,correction_weeks=2,correction_ed=1,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,ed_transform=logit,spatial=neighbors,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=0.5,error_reference=2025-2026,corrector_examples=real,covariate_set=ww_rsv_pct_rank+hosprep_rsv,history_correction=1",
+  "T.Bw.real_cov_hc.rsvnet": "history_source=artificial,error_signals=all,input_set=all,correction_weeks=2,correction_ed=1,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,ed_transform=logit,spatial=neighbors,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=0.5,error_reference=2025-2026,corrector_examples=real,covariate_set=rsvnet+hosprep_rsv,history_correction=1",
+  "T.Bw.real_cov_hc.nrevss": "history_source=artificial,error_signals=all,input_set=all,correction_weeks=2,correction_ed=1,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,ed_transform=logit,spatial=neighbors,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=0.5,error_reference=2025-2026,corrector_examples=real,covariate_set=nrevss_rsv+hosprep_rsv,history_correction=1",
+  "T.Bw.real_cov_hc.kinsa": "history_source=artificial,error_signals=all,input_set=all,correction_weeks=2,correction_ed=1,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,ed_transform=logit,spatial=neighbors,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=0.5,error_reference=2025-2026,corrector_examples=real,covariate_set=kinsa+hosprep_rsv,history_correction=1",
+  "T.Bw.real_cov_hc.ilinet": "history_source=artificial,error_signals=all,input_set=all,correction_weeks=2,correction_ed=1,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,ed_transform=logit,spatial=neighbors,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=0.5,error_reference=2025-2026,corrector_examples=real,covariate_set=ilinet+hosprep_rsv,history_correction=1",
+  "T.Bw.real_cov_hc.ww_nrevss": "history_source=artificial,error_signals=all,input_set=all,correction_weeks=2,correction_ed=1,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,ed_transform=logit,spatial=neighbors,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=0.5,error_reference=2025-2026,corrector_examples=real,covariate_set=ww_rsv+nrevss_rsv+hosprep_rsv,history_correction=1",
+  "T.Ball_c0w512.real_cov_hc": "history_source=artificial,error_signals=all,input_set=all,correction_weeks=2,correction_ed=1,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,ed_transform=logit,spatial=neighbors,decoder=quantile,width=512,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,actual_share=1.0,log_loss_weight=0.75,error_reference=2025-2026,annual_calendar=0,corrector_examples=real,covariate_set=hosprep_rsv,history_correction=1"
+ }
+}

@@ -1,0 +1,37 @@
+{
+  "seeds": [
+    42,
+    43,
+    44,
+    45
+  ],
+  "candidates": {
+    "geography0_lag0": "lookback=52,geography=0,decoder=residual2,decoder_blocks=2,noise=local,epochs=320,batch_size=2,members=16,lr=0.002,covariate_encoder=growth,signal_features=smooth_multiscale,covariate_set=state,input_normalization=b0,path_loss_weight=0.25,covariate_dropout=0.1,forecast_view=raw",
+    "geography0_lag1": "lookback=52,geography=0,decoder=residual2,decoder_blocks=2,noise=local,epochs=320,batch_size=2,members=16,lr=0.002,covariate_encoder=growth,signal_features=smooth_multiscale,covariate_set=state,input_normalization=b0,training_target_lag=1,path_loss_weight=0.25,covariate_dropout=0.1,forecast_view=raw",
+    "width128_lag0": "lookback=52,decoder=residual2,decoder_blocks=2,noise=local,width=128,epochs=320,batch_size=2,members=16,lr=0.002,covariate_encoder=growth,signal_features=smooth_multiscale,covariate_set=state,input_normalization=b0,path_loss_weight=0.25,covariate_dropout=0.1,forecast_view=raw",
+    "width128_lag1": "lookback=52,decoder=residual2,decoder_blocks=2,noise=local,width=128,epochs=320,batch_size=2,members=16,lr=0.002,covariate_encoder=growth,signal_features=smooth_multiscale,covariate_set=state,input_normalization=b0,training_target_lag=1,path_loss_weight=0.25,covariate_dropout=0.1,forecast_view=raw",
+    "pathweight1_lag0": "lookback=52,decoder=residual2,decoder_blocks=2,noise=local,epochs=320,batch_size=2,members=16,lr=0.002,covariate_encoder=growth,signal_features=smooth_multiscale,covariate_set=state,input_normalization=b0,path_loss_weight=1.0,covariate_dropout=0.1,forecast_view=raw",
+    "pathweight1_lag1": "lookback=52,decoder=residual2,decoder_blocks=2,noise=local,epochs=320,batch_size=2,members=16,lr=0.002,covariate_encoder=growth,signal_features=smooth_multiscale,covariate_set=state,input_normalization=b0,training_target_lag=1,path_loss_weight=1.0,covariate_dropout=0.1,forecast_view=raw",
+    "county_recipe_34weeks_lag0": "ed_transform=logit,geography=0,decoder=residual2,decoder_blocks=2,noise=local,width=128,epochs=80,batch_size=2,members=16,lr=0.002,covariate_encoder=growth,signal_features=smooth_multiscale,covariate_set=state,input_normalization=b0,path_loss_weight=0.25,covariate_dropout=0.1,forecast_view=raw",
+    "county_recipe_34weeks_lag1": "ed_transform=logit,geography=0,decoder=residual2,decoder_blocks=2,noise=local,width=128,epochs=80,batch_size=2,members=16,lr=0.002,covariate_encoder=growth,signal_features=smooth_multiscale,covariate_set=state,input_normalization=b0,training_target_lag=1,path_loss_weight=0.25,covariate_dropout=0.1,forecast_view=raw"
+  },
+  "parents": {
+    "geography0_lag0": "metrocast-full-season-memory-r057:direct weekly+path",
+    "geography0_lag1": "metrocast-full-season-memory-r057:direct weekly+path",
+    "width128_lag0": "metrocast-full-season-memory-r057:direct weekly+path",
+    "width128_lag1": "metrocast-full-season-memory-r057:direct weekly+path",
+    "pathweight1_lag0": "metrocast-full-season-memory-r057:direct weekly+path",
+    "pathweight1_lag1": "metrocast-full-season-memory-r057:direct weekly+path",
+    "county_recipe_34weeks_lag0": "metrocast-full-season-memory-r057:direct weekly+path",
+    "county_recipe_34weeks_lag1": "metrocast-full-season-memory-r057:direct weekly+path"
+  },
+  "training_seasons": [
+    "2022-2023",
+    "2023-2024"
+  ],
+  "evaluation_season": "2024-2025",
+  "inputs": "Revised target histories; lag1 hides only latest target week in fitting/inner validation; original covariates unchanged.",
+  "labels": "Future local flu ED proportions,34weeks",
+  "selection": "Four direct-model changes: disable geography embeddings, width128, pathweight1, or the county80epoch12weeklogitrecipe adapted to34weeks; crossed with traininggap0/1.",
+  "evaluation_inputs": "Revised histories at four early2024 origins; whole34WIS/native pathenergy,notensemblecomparison."
+}

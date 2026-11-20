@@ -1,0 +1,16 @@
+{
+ "description": "RSV backtest reseed 4 (2026-11-19 07:40): seeds 52-55 of the release candidates on the main and forward problems (12 backtest seeds with reseeds 2-3).",
+ "seeds": [
+  52,
+  53,
+  54,
+  55
+ ],
+ "candidates": {
+  "A4c0.national.rsvnet.calendar.weeks1": "history_source=artificial,history_correction=1,error_signals=all,input_set=target,correction_weeks=1,correction_ed=1,joint_weight=0.05,correction_penalty=30.0,reporting_missingness=0,reporting_method=synchronous_phase_log,ed_transform=logit,width=192,epochs=160,patience=25,fit_partition=pathogen,covariate_encoder=summary,covariate_set=kinsa+rsvnet,input_normalization=b0,log_loss_weight=1.0,error_reference=2025-2026,spatial=national_broadcast",
+  "A4c0.national.rsvnet.calendar": "history_source=artificial,history_correction=1,error_signals=all,input_set=target,correction_weeks=2,correction_ed=1,joint_weight=0.05,correction_penalty=30.0,reporting_missingness=0,reporting_method=synchronous_phase_log,ed_transform=logit,width=192,epochs=160,patience=25,fit_partition=pathogen,covariate_encoder=summary,covariate_set=kinsa+rsvnet,input_normalization=b0,log_loss_weight=1.0,error_reference=2025-2026,spatial=national_broadcast",
+  "A4c0.national": "history_source=artificial,history_correction=1,error_signals=targets,input_set=target,correction_weeks=2,correction_ed=1,joint_weight=0.05,correction_penalty=30.0,reporting_missingness=0,reporting_method=synchronous_phase_log,ed_transform=logit,width=192,epochs=160,patience=25,fit_partition=pathogen,covariate_encoder=summary,covariate_set=kinsa,input_normalization=b0,log_loss_weight=1.0,error_reference=2025-2026,annual_calendar=0,spatial=national_broadcast",
+  "A4c0.national.rsvnet": "history_source=artificial,history_correction=1,error_signals=all,input_set=target,correction_weeks=2,correction_ed=1,joint_weight=0.05,correction_penalty=30.0,reporting_missingness=0,reporting_method=synchronous_phase_log,ed_transform=logit,width=192,epochs=160,patience=25,fit_partition=pathogen,covariate_encoder=summary,covariate_set=kinsa+rsvnet,input_normalization=b0,log_loss_weight=1.0,error_reference=2025-2026,annual_calendar=0,spatial=national_broadcast",
+  "Bw.national.hc.log1p": "history_source=artificial,error_signals=targets,input_set=all,correction_weeks=2,correction_ed=1,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,ed_transform=logit,spatial=national_broadcast,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=0.5,error_reference=2025-2026,history_correction=1,count_transform=log1p"
+ }
+}

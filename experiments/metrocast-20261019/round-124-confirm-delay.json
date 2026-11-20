@@ -1,0 +1,29 @@
+{
+  "seeds": [
+    42,
+    43,
+    44,
+    45,
+    46
+  ],
+  "candidates": {
+    "r111_child13_fit_lag1": "lookback=52,geography=0,decoder=residual2,noise=local,latent=32,width=192,epochs=320,batch_size=16,members=64,lr=0.002,covariate_encoder=growth,signal_features=multiscale,covariate_set=state,input_normalization=b0,training_target_lag=1,covariate_dropout=0.1,forecast_view=raw",
+    "r101_child04_fit_lag1": "lookback=52,decoder=residual2,noise=local,latent=8,epochs=320,batch_size=16,members=64,lr=0.002,covariate_encoder=growth,signal_features=smooth_multiscale,covariate_set=state,input_normalization=b0,training_target_lag=1,covariate_dropout=0.1,forecast_view=raw",
+    "r109_child21_fit_lag1": "lookback=52,decoder=residual2,decoder_blocks=2,noise=local,latent=8,epochs=320,batch_size=16,members=64,lr=0.002,covariate_encoder=growth,signal_features=smooth_multiscale,covariate_set=state,input_normalization=b0,training_target_lag=1,covariate_dropout=0.25,forecast_view=raw",
+    "r111_child04_fit_lag1": "lookback=52,geography=0,decoder=residual2,decoder_blocks=2,noise=local,latent=8,epochs=320,batch_size=16,members=64,lr=0.002,covariate_encoder=growth,signal_features=smooth_multiscale,covariate_set=state,input_normalization=b0,training_target_lag=1,covariate_dropout=0.25,forecast_view=raw",
+    "r104_child02_fit_lag1": "lookback=52,decoder=residual2,noise=local,latent=32,width=192,epochs=320,batch_size=16,members=64,lr=0.002,covariate_encoder=growth,signal_features=multiscale,covariate_set=state,input_normalization=b0,training_target_lag=1,covariate_dropout=0.1,forecast_view=raw",
+    "direct_reference_fit_lag1": "decoder=residual2,noise=local,width=128,epochs=160,members=32,training_target_lag=1,forecast_view=raw",
+    "county_development_recipe_fit_on_main_panel": "ed_transform=logit,geography=0,decoder=residual2,noise=local,width=128,epochs=80,members=32,training_target_lag=1,forecast_view=raw"
+  },
+  "parents": {},
+  "training_seasons": [
+    "2022-2023",
+    "2023-2024",
+    "2024-2025"
+  ],
+  "evaluation_season": "2025-2026",
+  "inputs": "Same revised training data as paired finalists, with latest target-history week hidden during fitting and inner validation. Covariates unchanged.",
+  "labels": "Unchanged future local flu ED proportions on the main 90-location panel.",
+  "selection": "Predeclared reporting-delay ablation; no tuning or choosing mixture weights on confirmation outcomes.",
+  "evaluation_inputs": "Identical revised and strictly before-Wednesday archived replay as paired finalists."
+}

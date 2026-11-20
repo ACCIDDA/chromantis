@@ -1,0 +1,21 @@
+{
+  "seeds": [
+    42,
+    43,
+    44,
+    45
+  ],
+  "candidates": {
+    "county_direct_52week": "lookback=52,geography=0,decoder=residual2,decoder_blocks=2,noise=local,epochs=320,batch_size=32,members=64,lr=0.002,covariate_encoder=growth,signal_features=smooth_multiscale,input_normalization=b0,forecast_view=raw",
+    "county_initial_12week": "ed_transform=logit,geography=0,decoder=residual2,noise=local,width=128,epochs=160,members=32,forecast_view=raw"
+  },
+  "parents": {},
+  "training_seasons": [
+    "2022-2023",
+    "2023-2024"
+  ],
+  "evaluation_season": "2024-2025",
+  "inputs": "latest revised local flu ED histories; optional own-state ED history",
+  "labels": "future observed local flu ED proportions; pretraining labels stated by each scenario",
+  "selection": "WIS on 2024-25 only; lower is better; confirmation outcomes never enter search"
+}

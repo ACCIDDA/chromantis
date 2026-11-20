@@ -1,0 +1,30 @@
+{
+ "description": "COVID round 5 (2026-11-19 00:10). RSV: the live gate favours A4c0.national (sampled MLP trained on corrected histories, US-only summary; 0.2542, bias +7%) while Bw.national overshoots live (+20%, +15% even with trees off); this round expands A4c0.national and trains Bw.national on corrected histories (hc) so the network does not learn the reporting uplift itself. COVID: expands T.pN_gru.real.log_loss1 and T.N_ms.real, including the corrected-history version of the GRU recipe.",
+ "round": 5,
+ "seeds": [
+  44,
+  45,
+  46,
+  47
+ ],
+ "parents": {
+  "T.pN_gru.real.ll1.all_seasons": "T.pN_gru.real.log_loss1",
+  "T.pN_gru.real.ll1.lookback8": "T.pN_gru.real.log_loss1",
+  "T.pN_gru.real.ll1.lr_half": "T.pN_gru.real.log_loss1",
+  "T.pN_gru.real.ll0.75": "T.pN_gru.real.log_loss1",
+  "T.pN_gru.real.ll1.hc": "T.pN_gru.real.log_loss1",
+  "T.N_ms.real.ll1": "T.N_ms.real",
+  "T.N_ms.real.gru": "T.N_ms.real",
+  "T.N_ms.real.errors_quarter": "T.N_ms.real"
+ },
+ "candidates": {
+  "T.pN_gru.real.ll1.all_seasons": "history_source=artificial,reconstruction_labels=1,error_signals=all,input_set=target,correction_weeks=2,correction_ed=1,reporting_probability=0.25,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,spatial=national_broadcast,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=1.0,error_reference=2025-2026,encoder=gru,corrector_examples=real,error_seasons=all",
+  "T.pN_gru.real.ll1.lookback8": "history_source=artificial,reconstruction_labels=1,error_signals=all,input_set=target,correction_weeks=2,correction_ed=1,reporting_probability=0.25,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,spatial=national_broadcast,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=1.0,error_reference=2025-2026,encoder=gru,corrector_examples=real,lookback=8",
+  "T.pN_gru.real.ll1.lr_half": "history_source=artificial,reconstruction_labels=1,error_signals=all,input_set=target,correction_weeks=2,correction_ed=1,reporting_probability=0.25,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,spatial=national_broadcast,decoder=quantile,width=256,epochs=240,patience=25,lr=0.00025,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=1.0,error_reference=2025-2026,encoder=gru,corrector_examples=real",
+  "T.pN_gru.real.ll0.75": "history_source=artificial,reconstruction_labels=1,error_signals=all,input_set=target,correction_weeks=2,correction_ed=1,reporting_probability=0.25,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,spatial=national_broadcast,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=0.75,error_reference=2025-2026,encoder=gru,corrector_examples=real",
+  "T.pN_gru.real.ll1.hc": "history_source=artificial,error_signals=all,input_set=target,correction_weeks=2,correction_ed=1,reporting_probability=0.25,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,ed_transform=logit,spatial=national_broadcast,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=1.0,error_reference=2025-2026,encoder=gru,corrector_examples=real,history_correction=1",
+  "T.N_ms.real.ll1": "error_signals=all,input_set=target,correction_weeks=2,correction_ed=1,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,spatial=national_broadcast,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=1.0,error_reference=2025-2026,signal_features=multiscale,corrector_examples=real",
+  "T.N_ms.real.gru": "error_signals=all,input_set=target,correction_weeks=2,correction_ed=1,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,spatial=national_broadcast,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=0.5,error_reference=2025-2026,signal_features=multiscale,corrector_examples=real,encoder=gru",
+  "T.N_ms.real.errors_quarter": "error_signals=all,input_set=target,correction_weeks=2,correction_ed=1,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,spatial=national_broadcast,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=0.5,error_reference=2025-2026,signal_features=multiscale,corrector_examples=real,history_source=artificial,reconstruction_labels=1,reporting_probability=0.25"
+ }
+}

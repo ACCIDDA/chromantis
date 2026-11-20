@@ -1,0 +1,26 @@
+{
+ "description": "RSV round 13 (2026-11-19 09:45): the full-season backtest leader Bw.national.hc.log1p (12-seed mixtures 0.2754 main) is poor in October and live; give it what helped the October/live leader (one-week trees, RSV-NET, Kinsa) and width/log-loss options, looking for one recipe good in both phases. Main, forward, live.",
+ "round": 13,
+ "seeds": [
+  44,
+  45,
+  46,
+  47
+ ],
+ "parents": {
+  "Bw.national.hc.log1p.weeks1": "Bw.national.hc.log1p",
+  "Bw.national.hc.log1p.rsvnet": "Bw.national.hc.log1p",
+  "Bw.national.hc.log1p.kinsa_rsvnet": "Bw.national.hc.log1p",
+  "Bw.national.hc.log1p.w512": "Bw.national.hc.log1p",
+  "Bw.national.hc.log1p.ll1": "Bw.national.hc.log1p",
+  "Bw.national.hc.log1p.weeks1.rsvnet": "Bw.national.hc.log1p"
+ },
+ "candidates": {
+  "Bw.national.hc.log1p.weeks1": "history_source=artificial,error_signals=targets,input_set=all,correction_weeks=1,correction_ed=1,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,ed_transform=logit,spatial=national_broadcast,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=0.5,error_reference=2025-2026,history_correction=1,count_transform=log1p",
+  "Bw.national.hc.log1p.rsvnet": "history_source=artificial,error_signals=all,input_set=all,correction_weeks=2,correction_ed=1,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,ed_transform=logit,spatial=national_broadcast,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=0.5,error_reference=2025-2026,history_correction=1,count_transform=log1p,covariate_set=rsvnet",
+  "Bw.national.hc.log1p.kinsa_rsvnet": "history_source=artificial,error_signals=all,input_set=all,correction_weeks=2,correction_ed=1,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,ed_transform=logit,spatial=national_broadcast,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=0.5,error_reference=2025-2026,history_correction=1,count_transform=log1p,covariate_set=kinsa+rsvnet",
+  "Bw.national.hc.log1p.w512": "history_source=artificial,error_signals=targets,input_set=all,correction_weeks=2,correction_ed=1,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,ed_transform=logit,spatial=national_broadcast,decoder=quantile,width=512,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=0.5,error_reference=2025-2026,history_correction=1,count_transform=log1p",
+  "Bw.national.hc.log1p.ll1": "history_source=artificial,error_signals=targets,input_set=all,correction_weeks=2,correction_ed=1,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,ed_transform=logit,spatial=national_broadcast,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=1.0,error_reference=2025-2026,history_correction=1,count_transform=log1p",
+  "Bw.national.hc.log1p.weeks1.rsvnet": "history_source=artificial,error_signals=all,input_set=all,correction_weeks=1,correction_ed=1,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,ed_transform=logit,spatial=national_broadcast,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=0.5,error_reference=2025-2026,history_correction=1,count_transform=log1p,covariate_set=rsvnet"
+ }
+}

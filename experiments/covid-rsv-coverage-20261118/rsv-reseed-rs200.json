@@ -1,0 +1,16 @@
+{
+ "description": "RSV reseed RS200 (2026-11-19 23:25): backtest seeds 48-55, main and forward.",
+ "seeds": [
+  48,
+  49,
+  50,
+  51,
+  52,
+  53,
+  54,
+  55
+ ],
+ "candidates": {
+  "RS200.correction_penalty10.0.covariate_dropout0.2.epochs320.patience60": "history_source=artificial,history_correction=1,error_signals=all,input_set=target,correction_weeks=1,correction_ed=1,joint_weight=0.05,correction_penalty=10.0,reporting_missingness=0,reporting_method=synchronous_phase_log,ed_transform=logit,width=192,epochs=320,patience=60,fit_partition=pathogen,covariate_encoder=summary,covariate_set=kinsa+rsvnet,input_normalization=b0,log_loss_weight=1.0,error_reference=2025-2026,spatial=national_broadcast,covariate_dropout=0.2"
+ }
+}

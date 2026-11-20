@@ -1,0 +1,10 @@
+{
+  "candidates": {
+    "full_season_finalist_1": "lookback=52,geography=0,decoder=residual2,decoder_blocks=2,noise=local,epochs=320,batch_size=2,members=16,lr=0.002,covariate_encoder=growth,signal_features=smooth_multiscale,covariate_set=state,input_normalization=b0,path_loss_weight=1.0,covariate_dropout=0.1,forecast_view=raw",
+    "full_season_finalist_1_paired_history_gap": "lookback=52,geography=0,decoder=residual2,decoder_blocks=2,noise=local,epochs=320,batch_size=2,members=16,lr=0.002,covariate_encoder=growth,signal_features=smooth_multiscale,covariate_set=state,input_normalization=b0,training_target_lag=1,path_loss_weight=1.0,covariate_dropout=0.1,forecast_view=raw"
+  },
+  "experiment": "metrocast-current-fullseason-r129",
+  "frozen_at": "2026-10-21T05:47:08.312296+00:00",
+  "reference_date": "2026-10-24",
+  "selection": "Development-only frozen recipes; confirmation outcomes not consulted."
+}

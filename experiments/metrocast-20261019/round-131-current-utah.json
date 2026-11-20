@@ -1,0 +1,25 @@
+{
+  "seeds": [
+    42,
+    43,
+    44,
+    45,
+    46
+  ],
+  "candidates": {
+    "utah_finalist_1": "lookback=52,geography=0,decoder=residual2,decoder_blocks=2,epochs=320,batch_size=2,members=16,lr=0.002,covariate_encoder=growth,signal_features=smooth_multiscale,input_normalization=b0,path_loss_weight=0.25,covariate_dropout=0.1,forecast_view=raw",
+    "utah_finalist_1_paired_history_gap": "lookback=52,geography=0,decoder=residual2,decoder_blocks=2,epochs=320,batch_size=2,members=16,lr=0.002,covariate_encoder=growth,signal_features=smooth_multiscale,input_normalization=b0,training_target_lag=1,path_loss_weight=0.25,covariate_dropout=0.1,forecast_view=raw"
+  },
+  "parents": {},
+  "training_seasons": [
+    "2022-2023",
+    "2023-2024",
+    "2024-2025",
+    "2025-2026"
+  ],
+  "evaluation_season": "2026-2027; current partial-season diagnostics, never used for recipe selection",
+  "inputs": "Provisional unmerged PR587 revised weekly Utah histories; no release archive; selected target-history fitting gap.",
+  "labels": "Future local flu ED proportions",
+  "selection": "Recipes copied from development-only frozen selections; confirmation outcomes are not read.",
+  "export": "2026-10-24 reference, equal five-seed mixture, 100 intact trajectories; no publication."
+}

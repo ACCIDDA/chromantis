@@ -1,0 +1,24 @@
+{
+ "description": "COVID confirm seeds 46-61 (2026-11-19 04:50): joint weight 0.3 on the leader (gate 7: 0.1735 against about 0.178 on 4 seeds).",
+ "seeds": [
+  46,
+  47,
+  48,
+  49,
+  50,
+  51,
+  52,
+  53,
+  54,
+  55,
+  56,
+  57,
+  58,
+  59,
+  60,
+  61
+ ],
+ "candidates": {
+  "T.pN_gru.real.log_loss1.joint0.3": "history_source=artificial,reconstruction_labels=1,error_signals=all,input_set=target,correction_weeks=2,correction_ed=1,reporting_probability=0.25,joint_weight=0.3,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,spatial=national_broadcast,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=1.0,error_reference=2025-2026,encoder=gru,corrector_examples=real"
+ }
+}

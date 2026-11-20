@@ -1,0 +1,80 @@
+{
+  "seeds": [
+    42,
+    43,
+    44,
+    45
+  ],
+  "candidates": {
+    "direct_local_training_weekly_loss": "lookback=52,decoder=residual2,decoder_blocks=2,noise=local,epochs=320,batch_size=2,members=16,lr=0.002,covariate_encoder=growth,signal_features=smooth_multiscale,covariate_set=state,input_normalization=b0,covariate_dropout=0.1,forecast_view=raw",
+    "direct_local_training_weekly_and_path_loss": "lookback=52,decoder=residual2,decoder_blocks=2,noise=local,epochs=320,batch_size=2,members=16,lr=0.002,covariate_encoder=growth,signal_features=smooth_multiscale,covariate_set=state,input_normalization=b0,path_loss_weight=0.25,covariate_dropout=0.1,forecast_view=raw",
+    "state_ED_transfer_weekly_loss": "state_pretrain_steps=800,lookback=36,dynamics=0,decoder=residual2,decoder_blocks=4,noise=local,latent=32,width=384,epochs=160,batch_size=2,members=16,lr=0.0005,annual_calendar=0,location_embedding=8,covariate_encoder=summary,signal_features=multiscale,covariate_set=state,covariate_dropout=0.25,forecast_view=raw",
+    "state_ED_transfer_weekly_and_path_loss": "state_pretrain_steps=800,lookback=36,dynamics=0,decoder=residual2,decoder_blocks=4,noise=local,latent=32,width=384,epochs=160,batch_size=2,members=16,lr=0.0005,annual_calendar=0,location_embedding=8,covariate_encoder=summary,signal_features=multiscale,covariate_set=state,path_loss_weight=0.25,covariate_dropout=0.25,forecast_view=raw",
+    "ILI_pretraining_weekly_loss": "ili_units=flu_scaled,ili_steps=800,ili_training=pretrain,ili_path=data/metrocast/historical_ili.npz,ed_transform=logit,decoder=residual2,noise=local,width=128,epochs=160,batch_size=2,members=16,covariate_set=state,covariate_dropout=0.25,forecast_view=raw",
+    "ILI_pretraining_weekly_and_path_loss": "ili_units=flu_scaled,ili_steps=800,ili_training=pretrain,ili_path=data/metrocast/historical_ili.npz,ed_transform=logit,decoder=residual2,noise=local,width=128,epochs=160,batch_size=2,members=16,covariate_set=state,path_loss_weight=0.25,covariate_dropout=0.25,forecast_view=raw"
+  },
+  "parents": {
+    "direct_local_training_weekly_loss": {
+      "parent_experiment": "metrocast-full-season-r055",
+      "parent_scenario": "lookback=52,decoder=residual2,decoder_blocks=2,noise=local,epochs=320,batch_size=32,members=32,lr=0.002,covariate_encoder=growth,signal_features=smooth_multiscale,covariate_set=state,input_normalization=b0,covariate_dropout=0.1,forecast_view=raw",
+      "changes": {
+        "batch_size": 2,
+        "members": 16
+      },
+      "reason": "Full-season decoder activations exhausted shared GPU memory with 4 or 8 concurrent fits; reduce batch and draws, preserving 34-week horizon and labels."
+    },
+    "direct_local_training_weekly_and_path_loss": {
+      "parent_experiment": "metrocast-full-season-r055",
+      "parent_scenario": "lookback=52,decoder=residual2,decoder_blocks=2,noise=local,epochs=320,batch_size=32,members=32,lr=0.002,covariate_encoder=growth,signal_features=smooth_multiscale,covariate_set=state,input_normalization=b0,path_loss_weight=0.25,covariate_dropout=0.1,forecast_view=raw",
+      "changes": {
+        "batch_size": 2,
+        "members": 16
+      },
+      "reason": "Full-season decoder activations exhausted shared GPU memory with 4 or 8 concurrent fits; reduce batch and draws, preserving 34-week horizon and labels."
+    },
+    "state_ED_transfer_weekly_loss": {
+      "parent_experiment": "metrocast-full-season-r055",
+      "parent_scenario": "state_pretrain_steps=800,lookback=36,dynamics=0,decoder=residual2,decoder_blocks=4,noise=local,latent=32,width=384,epochs=160,members=32,lr=0.0005,annual_calendar=0,location_embedding=8,covariate_encoder=summary,signal_features=multiscale,covariate_set=state,covariate_dropout=0.25,forecast_view=raw",
+      "changes": {
+        "batch_size": 2,
+        "members": 16
+      },
+      "reason": "Full-season decoder activations exhausted shared GPU memory with 4 or 8 concurrent fits; reduce batch and draws, preserving 34-week horizon and labels."
+    },
+    "state_ED_transfer_weekly_and_path_loss": {
+      "parent_experiment": "metrocast-full-season-r055",
+      "parent_scenario": "state_pretrain_steps=800,lookback=36,dynamics=0,decoder=residual2,decoder_blocks=4,noise=local,latent=32,width=384,epochs=160,members=32,lr=0.0005,annual_calendar=0,location_embedding=8,covariate_encoder=summary,signal_features=multiscale,covariate_set=state,path_loss_weight=0.25,covariate_dropout=0.25,forecast_view=raw",
+      "changes": {
+        "batch_size": 2,
+        "members": 16
+      },
+      "reason": "Full-season decoder activations exhausted shared GPU memory with 4 or 8 concurrent fits; reduce batch and draws, preserving 34-week horizon and labels."
+    },
+    "ILI_pretraining_weekly_loss": {
+      "parent_experiment": "metrocast-full-season-r055",
+      "parent_scenario": "ili_units=flu_scaled,ili_steps=800,ili_training=pretrain,ili_path=data/metrocast/historical_ili.npz,ed_transform=logit,decoder=residual2,noise=local,width=128,epochs=160,members=32,covariate_set=state,covariate_dropout=0.25,forecast_view=raw",
+      "changes": {
+        "batch_size": 2,
+        "members": 16
+      },
+      "reason": "Full-season decoder activations exhausted shared GPU memory with 4 or 8 concurrent fits; reduce batch and draws, preserving 34-week horizon and labels."
+    },
+    "ILI_pretraining_weekly_and_path_loss": {
+      "parent_experiment": "metrocast-full-season-r055",
+      "parent_scenario": "ili_units=flu_scaled,ili_steps=800,ili_training=pretrain,ili_path=data/metrocast/historical_ili.npz,ed_transform=logit,decoder=residual2,noise=local,width=128,epochs=160,members=32,covariate_set=state,path_loss_weight=0.25,covariate_dropout=0.25,forecast_view=raw",
+      "changes": {
+        "batch_size": 2,
+        "members": 16
+      },
+      "reason": "Full-season decoder activations exhausted shared GPU memory with 4 or 8 concurrent fits; reduce batch and draws, preserving 34-week horizon and labels."
+    }
+  },
+  "training_seasons": [
+    "2022-2023",
+    "2023-2024"
+  ],
+  "evaluation_season": "2024-2025",
+  "inputs": "latest revised local flu ED histories; optional own-state ED history",
+  "labels": "future observed local flu ED proportions; pretraining labels stated by each scenario",
+  "selection": "WIS on 2024-25 only; lower is better; confirmation outcomes never enter search"
+}

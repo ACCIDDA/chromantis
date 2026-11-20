@@ -1,0 +1,20 @@
+{
+ "description": "RSV round 12 (2026-11-19 08:45): training length, learning rate, decoder and width on the live leaders (COVID: the GRU leader forecasts too low at horizons 2-3 live; checking undertraining). Main, forward, live.",
+ "round": 12,
+ "seeds": [
+  44,
+  45,
+  46,
+  47
+ ],
+ "parents": {
+  "A4c0.national.rsvnet.calendar.weeks1.long": "A4c0.national.rsvnet.calendar.weeks1",
+  "A4c0.national.rsvnet.calendar.weeks1.w128": "A4c0.national.rsvnet.calendar.weeks1",
+  "A4c0.national.rsvnet.calendar.weeks1.lr_half": "A4c0.national.rsvnet.calendar.weeks1"
+ },
+ "candidates": {
+  "A4c0.national.rsvnet.calendar.weeks1.long": "history_source=artificial,history_correction=1,error_signals=all,input_set=target,correction_weeks=1,correction_ed=1,joint_weight=0.05,correction_penalty=30.0,reporting_missingness=0,reporting_method=synchronous_phase_log,ed_transform=logit,width=192,epochs=300,patience=50,fit_partition=pathogen,covariate_encoder=summary,covariate_set=kinsa+rsvnet,input_normalization=b0,log_loss_weight=1.0,error_reference=2025-2026,spatial=national_broadcast",
+  "A4c0.national.rsvnet.calendar.weeks1.w128": "history_source=artificial,history_correction=1,error_signals=all,input_set=target,correction_weeks=1,correction_ed=1,joint_weight=0.05,correction_penalty=30.0,reporting_missingness=0,reporting_method=synchronous_phase_log,ed_transform=logit,width=128,epochs=160,patience=25,fit_partition=pathogen,covariate_encoder=summary,covariate_set=kinsa+rsvnet,input_normalization=b0,log_loss_weight=1.0,error_reference=2025-2026,spatial=national_broadcast",
+  "A4c0.national.rsvnet.calendar.weeks1.lr_half": "history_source=artificial,history_correction=1,error_signals=all,input_set=target,correction_weeks=1,correction_ed=1,joint_weight=0.05,correction_penalty=30.0,reporting_missingness=0,reporting_method=synchronous_phase_log,ed_transform=logit,width=192,epochs=160,patience=25,fit_partition=pathogen,covariate_encoder=summary,covariate_set=kinsa+rsvnet,input_normalization=b0,log_loss_weight=1.0,error_reference=2025-2026,spatial=national_broadcast,lr=0.0005"
+ }
+}

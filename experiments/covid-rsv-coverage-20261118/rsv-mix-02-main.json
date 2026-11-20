@@ -1,0 +1,138 @@
+{
+ "description": "RSV mixtures on the main problem (2026-11-19 02:50). Only experiments planned after the 18 Nov 18:15 dataset-spec edit (same problem hash); seeds 44-47 or 48-51 (equal counts per recipe).",
+ "recipes": {
+  "A4cN": {
+   "experiment": "rsv-cov-r02",
+   "scenario": "history_source=artificial,history_correction=1,error_signals=targets,input_set=target,correction_weeks=2,correction_ed=1,joint_weight=0.05,correction_penalty=30.0,reporting_missingness=0,reporting_method=synchronous_phase_log,ed_transform=logit,width=192,epochs=160,patience=25,fit_partition=pathogen,covariate_encoder=summary,covariate_set=kinsa,input_normalization=b0,log_loss_weight=1.0,error_reference=2025-2026,annual_calendar=0,spatial=national_broadcast",
+   "seeds": [
+    44,
+    45,
+    46,
+    47
+   ]
+  },
+  "A4cNR": {
+   "experiment": "rsv-cov-r05",
+   "scenario": "history_source=artificial,history_correction=1,error_signals=all,input_set=target,correction_weeks=2,correction_ed=1,joint_weight=0.05,correction_penalty=30.0,reporting_missingness=0,reporting_method=synchronous_phase_log,ed_transform=logit,width=192,epochs=160,patience=25,fit_partition=pathogen,covariate_encoder=summary,covariate_set=kinsa+rsvnet,input_normalization=b0,log_loss_weight=1.0,error_reference=2025-2026,annual_calendar=0,spatial=national_broadcast",
+   "seeds": [
+    44,
+    45,
+    46,
+    47
+   ]
+  },
+  "A4cNoK": {
+   "experiment": "rsv-cov-r05",
+   "scenario": "history_source=artificial,history_correction=1,error_signals=targets,input_set=target,correction_weeks=2,correction_ed=1,joint_weight=0.05,correction_penalty=30.0,reporting_missingness=0,reporting_method=synchronous_phase_log,ed_transform=logit,width=192,epochs=160,patience=25,fit_partition=pathogen,covariate_encoder=summary,covariate_set=none,input_normalization=b0,log_loss_weight=1.0,error_reference=2025-2026,annual_calendar=0,spatial=national_broadcast",
+   "seeds": [
+    44,
+    45,
+    46,
+    47
+   ]
+  },
+  "A4cCal": {
+   "experiment": "rsv-cov-r05",
+   "scenario": "history_source=artificial,history_correction=1,error_signals=targets,input_set=target,correction_weeks=2,correction_ed=1,joint_weight=0.05,correction_penalty=30.0,reporting_missingness=0,reporting_method=synchronous_phase_log,ed_transform=logit,width=192,epochs=160,patience=25,fit_partition=pathogen,covariate_encoder=summary,covariate_set=kinsa,input_normalization=b0,log_loss_weight=1.0,error_reference=2025-2026,spatial=national_broadcast",
+   "seeds": [
+    44,
+    45,
+    46,
+    47
+   ]
+  },
+  "BwNhc": {
+   "experiment": "rsv-cov-r05",
+   "scenario": "history_source=artificial,error_signals=targets,input_set=all,correction_weeks=2,correction_ed=1,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,ed_transform=logit,spatial=national_broadcast,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=0.5,error_reference=2025-2026,history_correction=1",
+   "seeds": [
+    44,
+    45,
+    46,
+    47
+   ]
+  },
+  "BwN": {
+   "experiment": "rsv-cov-r02",
+   "scenario": "history_source=artificial,reconstruction_labels=1,error_signals=targets,input_set=all,correction_weeks=2,correction_ed=1,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,spatial=national_broadcast,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=0.5,error_reference=2025-2026",
+   "seeds": [
+    44,
+    45,
+    46,
+    47
+   ]
+  },
+  "Bw": {
+   "experiment": "rsv-cov-reseed02",
+   "scenario": "history_source=artificial,reconstruction_labels=1,error_signals=targets,input_set=all,correction_weeks=2,correction_ed=1,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,spatial=neighbors,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=0.5,error_reference=2025-2026",
+   "seeds": [
+    48,
+    49,
+    50,
+    51
+   ]
+  },
+  "A4c0": {
+   "experiment": "rsv-cov-reseed02",
+   "scenario": "history_source=artificial,history_correction=1,error_signals=targets,input_set=target,correction_weeks=2,correction_ed=1,joint_weight=0.05,correction_penalty=30.0,reporting_missingness=0,reporting_method=synchronous_phase_log,ed_transform=logit,width=192,epochs=160,patience=25,fit_partition=pathogen,covariate_encoder=summary,covariate_set=kinsa,input_normalization=b0,log_loss_weight=1.0,error_reference=2025-2026,annual_calendar=0",
+   "seeds": [
+    48,
+    49,
+    50,
+    51
+   ]
+  },
+  "A4i": {
+   "experiment": "rsv-cov-reseed02",
+   "scenario": "history_source=artificial,history_correction=1,error_signals=targets,input_set=all,correction_weeks=2,correction_ed=1,joint_weight=0.05,correction_penalty=30.0,reporting_missingness=0,reporting_method=synchronous_phase_log,ed_transform=logit,width=192,epochs=160,patience=25,fit_partition=pathogen,covariate_encoder=summary,covariate_set=kinsa,input_normalization=b0,log_loss_weight=1.0,error_reference=2025-2026",
+   "seeds": [
+    48,
+    49,
+    50,
+    51
+   ]
+  }
+ },
+ "groups": {
+  "A4cN alone": [
+   "A4cN"
+  ],
+  "A4cNR alone": [
+   "A4cNR"
+  ],
+  "A4cN+A4cNR": [
+   "A4cN",
+   "A4cNR"
+  ],
+  "A4cN+NR+NoK+Cal": [
+   "A4cN",
+   "A4cNR",
+   "A4cNoK",
+   "A4cCal"
+  ],
+  "A4cN+NR+BwNhc": [
+   "A4cN",
+   "A4cNR",
+   "BwNhc"
+  ],
+  "A4cN+BwNhc": [
+   "A4cN",
+   "BwNhc"
+  ],
+  "BwN alone": [
+   "BwN"
+  ],
+  "A4cN+BwN": [
+   "A4cN",
+   "BwN"
+  ],
+  "Submitted-like (Bw+A4c0+A4i)": [
+   "Bw",
+   "A4c0",
+   "A4i"
+  ]
+ },
+ "rules": [
+  "mixture"
+ ],
+ "forecast_view": "corrected"
+}

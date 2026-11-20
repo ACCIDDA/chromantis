@@ -1,0 +1,20 @@
+{
+ "seeds": [
+  42,
+  43,
+  44,
+  45,
+  46
+ ],
+ "candidates": {
+  "direct_mlp_hidden_latest_week": "decoder=residual2,noise=local,width=128,epochs=160,members=32,training_target_lag=1,forecast_view=raw"
+ },
+ "training_seasons": [
+  "2022-2023",
+  "2023-2024",
+  "2024-2025",
+  "2025-2026"
+ ],
+ "labels": "future local flu ED proportions",
+ "purpose": "fallback current-season refit on the 103-location panel (Utah districts, NYC flu ED series)"
+}

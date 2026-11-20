@@ -1,0 +1,28 @@
+{
+ "description": "RSV round 10 (2026-11-19 05:45): intermediate count transforms (sqrt, fourth root) between the raw counts that win the early season and the log counts that win the full season; latent-noise options for sampled recipes; pretraining on the historical ILI archive. Main, forward, live. ILI pretraining dropped: it needs a shared series encoder or a flu MLP.",
+ "round": 10,
+ "seeds": [
+  44,
+  45,
+  46,
+  47
+ ],
+ "parents": {
+  "A4c0.national.rsvnet.calendar.weeks1.sqrt": "A4c0.national.rsvnet.calendar.weeks1",
+  "A4c0.national.rsvnet.calendar.weeks1.fourth_root": "A4c0.national.rsvnet.calendar.weeks1",
+  "A4c0.national.rsvnet.calendar.weeks1.noise_local": "A4c0.national.rsvnet.calendar.weeks1",
+  "A4c0.national.rsvnet.calendar.weeks1.us_shared": "A4c0.national.rsvnet.calendar.weeks1",
+  "A4c0.national.rsvnet.calendar.weeks1.w256": "A4c0.national.rsvnet.calendar.weeks1",
+  "Bw.national.hc.sqrt": "Bw.national.hc.log1p",
+  "Bw.national.hc.fourth_root": "Bw.national.hc.log1p"
+ },
+ "candidates": {
+  "A4c0.national.rsvnet.calendar.weeks1.sqrt": "history_source=artificial,history_correction=1,error_signals=all,input_set=target,correction_weeks=1,correction_ed=1,joint_weight=0.05,correction_penalty=30.0,reporting_missingness=0,reporting_method=synchronous_phase_log,ed_transform=logit,width=192,epochs=160,patience=25,fit_partition=pathogen,covariate_encoder=summary,covariate_set=kinsa+rsvnet,input_normalization=b0,log_loss_weight=1.0,error_reference=2025-2026,spatial=national_broadcast,count_transform=sqrt",
+  "A4c0.national.rsvnet.calendar.weeks1.fourth_root": "history_source=artificial,history_correction=1,error_signals=all,input_set=target,correction_weeks=1,correction_ed=1,joint_weight=0.05,correction_penalty=30.0,reporting_missingness=0,reporting_method=synchronous_phase_log,ed_transform=logit,width=192,epochs=160,patience=25,fit_partition=pathogen,covariate_encoder=summary,covariate_set=kinsa+rsvnet,input_normalization=b0,log_loss_weight=1.0,error_reference=2025-2026,spatial=national_broadcast,count_transform=fourth_root",
+  "A4c0.national.rsvnet.calendar.weeks1.noise_local": "history_source=artificial,history_correction=1,error_signals=all,input_set=target,correction_weeks=1,correction_ed=1,joint_weight=0.05,correction_penalty=30.0,reporting_missingness=0,reporting_method=synchronous_phase_log,ed_transform=logit,width=192,epochs=160,patience=25,fit_partition=pathogen,covariate_encoder=summary,covariate_set=kinsa+rsvnet,input_normalization=b0,log_loss_weight=1.0,error_reference=2025-2026,spatial=national_broadcast,noise=local",
+  "A4c0.national.rsvnet.calendar.weeks1.us_shared": "history_source=artificial,history_correction=1,error_signals=all,input_set=target,correction_weeks=1,correction_ed=1,joint_weight=0.05,correction_penalty=30.0,reporting_missingness=0,reporting_method=synchronous_phase_log,ed_transform=logit,width=192,epochs=160,patience=25,fit_partition=pathogen,covariate_encoder=summary,covariate_set=kinsa+rsvnet,input_normalization=b0,log_loss_weight=1.0,error_reference=2025-2026,spatial=national_broadcast,us_error=shared_factor",
+  "A4c0.national.rsvnet.calendar.weeks1.w256": "history_source=artificial,history_correction=1,error_signals=all,input_set=target,correction_weeks=1,correction_ed=1,joint_weight=0.05,correction_penalty=30.0,reporting_missingness=0,reporting_method=synchronous_phase_log,ed_transform=logit,width=256,epochs=160,patience=25,fit_partition=pathogen,covariate_encoder=summary,covariate_set=kinsa+rsvnet,input_normalization=b0,log_loss_weight=1.0,error_reference=2025-2026,spatial=national_broadcast",
+  "Bw.national.hc.sqrt": "history_source=artificial,error_signals=targets,input_set=all,correction_weeks=2,correction_ed=1,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,ed_transform=logit,spatial=national_broadcast,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=0.5,error_reference=2025-2026,history_correction=1,count_transform=sqrt",
+  "Bw.national.hc.fourth_root": "history_source=artificial,error_signals=targets,input_set=all,correction_weeks=2,correction_ed=1,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,ed_transform=logit,spatial=national_broadcast,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=0.5,error_reference=2025-2026,history_correction=1,count_transform=fourth_root"
+ }
+}

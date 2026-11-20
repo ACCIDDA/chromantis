@@ -1,0 +1,24 @@
+{
+ "description": "COVID round 10 (2026-11-19 05:45): intermediate count transforms (sqrt, fourth root) between the raw counts that win the early season and the log counts that win the full season; latent-noise options for sampled recipes; pretraining on the historical ILI archive. Main, forward, live. ILI pretraining dropped: it needs a shared series encoder or a flu MLP.",
+ "round": 10,
+ "seeds": [
+  44,
+  45,
+  46,
+  47
+ ],
+ "parents": {
+  "T.pN_gru.real.log_loss1.sqrt": "T.pN_gru.real.log_loss1",
+  "T.pN_gru.real.log_loss1.fourth_root": "T.pN_gru.real.log_loss1",
+  "S.Ah.gru_national.real.noise_local": "S.Ah.gru_national.real",
+  "S.Ah.gru_national.real.us_shared": "S.Ah.gru_national.real",
+  "S.Ah.gru_national.real.ll0.5": "S.Ah.gru_national.real"
+ },
+ "candidates": {
+  "T.pN_gru.real.log_loss1.sqrt": "history_source=artificial,reconstruction_labels=1,error_signals=all,input_set=target,correction_weeks=2,correction_ed=1,reporting_probability=0.25,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,spatial=national_broadcast,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=1.0,error_reference=2025-2026,encoder=gru,corrector_examples=real,count_transform=sqrt",
+  "T.pN_gru.real.log_loss1.fourth_root": "history_source=artificial,reconstruction_labels=1,error_signals=all,input_set=target,correction_weeks=2,correction_ed=1,reporting_probability=0.25,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,spatial=national_broadcast,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=1.0,error_reference=2025-2026,encoder=gru,corrector_examples=real,count_transform=fourth_root",
+  "S.Ah.gru_national.real.noise_local": "history_source=artificial,history_correction=1,error_signals=all,input_set=target,correction_weeks=2,correction_ed=1,reporting_probability=0.5,joint_weight=0.05,correction_penalty=30.0,reporting_missingness=0,reporting_method=synchronous_phase_log,ed_transform=logit,width=192,epochs=160,patience=25,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=1.0,error_reference=2025-2026,spatial=national_broadcast,encoder=gru,corrector_examples=real,noise=local",
+  "S.Ah.gru_national.real.us_shared": "history_source=artificial,history_correction=1,error_signals=all,input_set=target,correction_weeks=2,correction_ed=1,reporting_probability=0.5,joint_weight=0.05,correction_penalty=30.0,reporting_missingness=0,reporting_method=synchronous_phase_log,ed_transform=logit,width=192,epochs=160,patience=25,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=1.0,error_reference=2025-2026,spatial=national_broadcast,encoder=gru,corrector_examples=real,us_error=shared_factor",
+  "S.Ah.gru_national.real.ll0.5": "history_source=artificial,history_correction=1,error_signals=all,input_set=target,correction_weeks=2,correction_ed=1,reporting_probability=0.5,joint_weight=0.05,correction_penalty=30.0,reporting_missingness=0,reporting_method=synchronous_phase_log,ed_transform=logit,width=192,epochs=160,patience=25,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=0.5,error_reference=2025-2026,spatial=national_broadcast,encoder=gru,corrector_examples=real"
+ }
+}

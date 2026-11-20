@@ -1,0 +1,30 @@
+{
+ "description": "RSV round 23b (2026-11-20 08:25): the RSV local search around RS200.correction_penalty10.0.covariate_dropout0.2.epochs320.patience60 redone from the RSV round-22 file. Round 23 (rsv-round-23) and rsv-reseed-08's RS200 looked the name up across both pathogens' round files and took COVID's RS200 (a GRU quantile recipe without covariates) instead, so they say nothing about RSV RS200. Main, forward, live.",
+ "round": "23b",
+ "seeds": [
+  44,
+  45,
+  46,
+  47
+ ],
+ "parents": {
+  "L2.dropout0.1": "RS200.correction_penalty10.0.covariate_dropout0.2.epochs320.patience60",
+  "L2.dropout0.3": "RS200.correction_penalty10.0.covariate_dropout0.2.epochs320.patience60",
+  "L2.penalty30": "RS200.correction_penalty10.0.covariate_dropout0.2.epochs320.patience60",
+  "L2.penalty3": "RS200.correction_penalty10.0.covariate_dropout0.2.epochs320.patience60",
+  "L2.epochs400": "RS200.correction_penalty10.0.covariate_dropout0.2.epochs320.patience60",
+  "L2.patience80": "RS200.correction_penalty10.0.covariate_dropout0.2.epochs320.patience60",
+  "L2.ll1.25": "RS200.correction_penalty10.0.covariate_dropout0.2.epochs320.patience60",
+  "L2.w224": "RS200.correction_penalty10.0.covariate_dropout0.2.epochs320.patience60"
+ },
+ "candidates": {
+  "L2.dropout0.1": "history_source=artificial,history_correction=1,error_signals=all,input_set=target,correction_weeks=1,correction_ed=1,joint_weight=0.05,correction_penalty=10.0,reporting_missingness=0,reporting_method=synchronous_phase_log,ed_transform=logit,width=192,epochs=320,patience=60,fit_partition=pathogen,covariate_encoder=summary,covariate_set=kinsa+rsvnet,input_normalization=b0,log_loss_weight=1.0,error_reference=2025-2026,spatial=national_broadcast,covariate_dropout=0.1",
+  "L2.dropout0.3": "history_source=artificial,history_correction=1,error_signals=all,input_set=target,correction_weeks=1,correction_ed=1,joint_weight=0.05,correction_penalty=10.0,reporting_missingness=0,reporting_method=synchronous_phase_log,ed_transform=logit,width=192,epochs=320,patience=60,fit_partition=pathogen,covariate_encoder=summary,covariate_set=kinsa+rsvnet,input_normalization=b0,log_loss_weight=1.0,error_reference=2025-2026,spatial=national_broadcast,covariate_dropout=0.3",
+  "L2.penalty30": "history_source=artificial,history_correction=1,error_signals=all,input_set=target,correction_weeks=1,correction_ed=1,joint_weight=0.05,correction_penalty=30.0,reporting_missingness=0,reporting_method=synchronous_phase_log,ed_transform=logit,width=192,epochs=320,patience=60,fit_partition=pathogen,covariate_encoder=summary,covariate_set=kinsa+rsvnet,input_normalization=b0,log_loss_weight=1.0,error_reference=2025-2026,spatial=national_broadcast,covariate_dropout=0.2",
+  "L2.penalty3": "history_source=artificial,history_correction=1,error_signals=all,input_set=target,correction_weeks=1,correction_ed=1,joint_weight=0.05,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,ed_transform=logit,width=192,epochs=320,patience=60,fit_partition=pathogen,covariate_encoder=summary,covariate_set=kinsa+rsvnet,input_normalization=b0,log_loss_weight=1.0,error_reference=2025-2026,spatial=national_broadcast,covariate_dropout=0.2",
+  "L2.epochs400": "history_source=artificial,history_correction=1,error_signals=all,input_set=target,correction_weeks=1,correction_ed=1,joint_weight=0.05,correction_penalty=10.0,reporting_missingness=0,reporting_method=synchronous_phase_log,ed_transform=logit,width=192,epochs=400,patience=60,fit_partition=pathogen,covariate_encoder=summary,covariate_set=kinsa+rsvnet,input_normalization=b0,log_loss_weight=1.0,error_reference=2025-2026,spatial=national_broadcast,covariate_dropout=0.2",
+  "L2.patience80": "history_source=artificial,history_correction=1,error_signals=all,input_set=target,correction_weeks=1,correction_ed=1,joint_weight=0.05,correction_penalty=10.0,reporting_missingness=0,reporting_method=synchronous_phase_log,ed_transform=logit,width=192,epochs=320,patience=80,fit_partition=pathogen,covariate_encoder=summary,covariate_set=kinsa+rsvnet,input_normalization=b0,log_loss_weight=1.0,error_reference=2025-2026,spatial=national_broadcast,covariate_dropout=0.2",
+  "L2.ll1.25": "history_source=artificial,history_correction=1,error_signals=all,input_set=target,correction_weeks=1,correction_ed=1,joint_weight=0.05,correction_penalty=10.0,reporting_missingness=0,reporting_method=synchronous_phase_log,ed_transform=logit,width=192,epochs=320,patience=60,fit_partition=pathogen,covariate_encoder=summary,covariate_set=kinsa+rsvnet,input_normalization=b0,log_loss_weight=1.25,error_reference=2025-2026,spatial=national_broadcast,covariate_dropout=0.2",
+  "L2.w224": "history_source=artificial,history_correction=1,error_signals=all,input_set=target,correction_weeks=1,correction_ed=1,joint_weight=0.05,correction_penalty=10.0,reporting_missingness=0,reporting_method=synchronous_phase_log,ed_transform=logit,width=224,epochs=320,patience=60,fit_partition=pathogen,covariate_encoder=summary,covariate_set=kinsa+rsvnet,input_normalization=b0,log_loss_weight=1.0,error_reference=2025-2026,spatial=national_broadcast,covariate_dropout=0.2"
+ }
+}

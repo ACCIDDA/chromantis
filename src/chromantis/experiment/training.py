@@ -68,6 +68,9 @@ def model_options(batch, problem, scenario, pop):
                                     first['input_units']))
     if covariate_names:
         offset, scale, trained = covariate_scales(batch)
+        if not scenario.network_coverage:
+            # Coverage for the correction trees only: the network sees these covariates as never available.
+            trained = [[False] * len(row) if str(name).startswith('hosprep') else row for name, row in zip(covariate_names, trained)]
         options.update(covariate_offset=offset, covariate_scale=scale, covariate_trained=trained)
     return options
 

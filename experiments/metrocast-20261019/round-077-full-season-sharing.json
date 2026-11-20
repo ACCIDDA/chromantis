@@ -1,0 +1,38 @@
+{
+  "seeds": [
+    42,
+    43,
+    44,
+    45
+  ],
+  "candidates": {
+    "local_history_none_lag0": "lookback=52,geography=0,decoder=residual2,decoder_blocks=2,noise=local,epochs=320,batch_size=2,members=16,lr=0.002,covariate_encoder=growth,signal_features=smooth_multiscale,input_normalization=b0,path_loss_weight=1.0,covariate_dropout=0.1,forecast_view=raw",
+    "local_history_none_lag1": "lookback=52,geography=0,decoder=residual2,decoder_blocks=2,noise=local,epochs=320,batch_size=2,members=16,lr=0.002,covariate_encoder=growth,signal_features=smooth_multiscale,input_normalization=b0,training_target_lag=1,path_loss_weight=1.0,covariate_dropout=0.1,forecast_view=raw",
+    "local_history_attention_lag0": "lookback=52,geography=0,spatial=attention,decoder=residual2,decoder_blocks=2,noise=local,epochs=320,batch_size=2,members=16,lr=0.002,covariate_encoder=growth,signal_features=smooth_multiscale,input_normalization=b0,path_loss_weight=1.0,covariate_dropout=0.1,forecast_view=raw",
+    "local_history_attention_lag1": "lookback=52,geography=0,spatial=attention,decoder=residual2,decoder_blocks=2,noise=local,epochs=320,batch_size=2,members=16,lr=0.002,covariate_encoder=growth,signal_features=smooth_multiscale,input_normalization=b0,training_target_lag=1,path_loss_weight=1.0,covariate_dropout=0.1,forecast_view=raw",
+    "local_history_state_attention_lag0": "lookback=52,geography=0,spatial=state_attention,decoder=residual2,decoder_blocks=2,noise=local,epochs=320,batch_size=2,members=16,lr=0.002,covariate_encoder=growth,signal_features=smooth_multiscale,input_normalization=b0,path_loss_weight=1.0,covariate_dropout=0.1,forecast_view=raw",
+    "local_history_state_attention_lag1": "lookback=52,geography=0,spatial=state_attention,decoder=residual2,decoder_blocks=2,noise=local,epochs=320,batch_size=2,members=16,lr=0.002,covariate_encoder=growth,signal_features=smooth_multiscale,input_normalization=b0,training_target_lag=1,path_loss_weight=1.0,covariate_dropout=0.1,forecast_view=raw",
+    "local_history_region_attention_lag0": "lookback=52,geography=0,spatial=region_attention,decoder=residual2,decoder_blocks=2,noise=local,epochs=320,batch_size=2,members=16,lr=0.002,covariate_encoder=growth,signal_features=smooth_multiscale,input_normalization=b0,path_loss_weight=1.0,covariate_dropout=0.1,forecast_view=raw",
+    "local_history_region_attention_lag1": "lookback=52,geography=0,spatial=region_attention,decoder=residual2,decoder_blocks=2,noise=local,epochs=320,batch_size=2,members=16,lr=0.002,covariate_encoder=growth,signal_features=smooth_multiscale,input_normalization=b0,training_target_lag=1,path_loss_weight=1.0,covariate_dropout=0.1,forecast_view=raw"
+  },
+  "parents": {
+    "local_history_none_lag0": "metrocast-full-season-direct-refine-r073:no_embedding_path1_lag0",
+    "local_history_none_lag1": "metrocast-full-season-direct-refine-r073:no_embedding_path1_lag0",
+    "local_history_attention_lag0": "metrocast-full-season-direct-refine-r073:no_embedding_path1_lag0",
+    "local_history_attention_lag1": "metrocast-full-season-direct-refine-r073:no_embedding_path1_lag0",
+    "local_history_state_attention_lag0": "metrocast-full-season-direct-refine-r073:no_embedding_path1_lag0",
+    "local_history_state_attention_lag1": "metrocast-full-season-direct-refine-r073:no_embedding_path1_lag0",
+    "local_history_region_attention_lag0": "metrocast-full-season-direct-refine-r073:no_embedding_path1_lag0",
+    "local_history_region_attention_lag1": "metrocast-full-season-direct-refine-r073:no_embedding_path1_lag0"
+  },
+  "training_seasons": [
+    "2022-2023",
+    "2023-2024"
+  ],
+  "evaluation_season": "2024-2025",
+  "inputs": "Revised main90 local flu ED histories only; no state/regional covariates. Shared weights only, unrestricted attention, own-state attention, or own-HHS-region attention; explicit current metadata state_abb and HHS mapping stored in checkpoints. Missing sources masked; empty groups retain local context. Each paired fitting/inner-validation latest target-history week visible versus hidden.",
+  "labels": "Unchanged future local flu ED proportions; no historical ILI or state-ED transfer.",
+  "selection": "2024-25 individual4seed whole34WIS/pathenergy only, eligible full-season-sharing; no2025-26 tuning. State/region group definitions use current jurisdictions, never historical county relabeling.",
+  "model": "52week linear width64 MLP320epochs,batch2,members16,geography0,weekly+native-pathloss weight1,34outputs; all settings matched except message scope and target training gap.",
+  "evaluation_inputs": "Same revised four early2024-25 origins and targets throughJune14; equal observed-location weighting. Not archived operational performance or actual ensemble comparison."
+}

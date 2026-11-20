@@ -1,0 +1,24 @@
+{
+ "description": "RSV round 9 (2026-11-19 03:50): the nowcast trees themselves on the live leader: regularization (correction_penalty), how many recent weeks are corrected (correction_weeks), and the joint-training weight. Main, forward and live gate.",
+ "round": 9,
+ "seeds": [
+  44,
+  45,
+  46,
+  47
+ ],
+ "parents": {
+  "A4c0.national.rsvnet.calendar.penalty3": "A4c0.national.rsvnet.calendar",
+  "A4c0.national.rsvnet.calendar.penalty100": "A4c0.national.rsvnet.calendar",
+  "A4c0.national.rsvnet.calendar.weeks3": "A4c0.national.rsvnet.calendar",
+  "A4c0.national.rsvnet.calendar.weeks1": "A4c0.national.rsvnet.calendar",
+  "A4c0.national.rsvnet.calendar.joint0.2": "A4c0.national.rsvnet.calendar"
+ },
+ "candidates": {
+  "A4c0.national.rsvnet.calendar.penalty3": "history_source=artificial,history_correction=1,error_signals=all,input_set=target,correction_weeks=2,correction_ed=1,joint_weight=0.05,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,ed_transform=logit,width=192,epochs=160,patience=25,fit_partition=pathogen,covariate_encoder=summary,covariate_set=kinsa+rsvnet,input_normalization=b0,log_loss_weight=1.0,error_reference=2025-2026,spatial=national_broadcast",
+  "A4c0.national.rsvnet.calendar.penalty100": "history_source=artificial,history_correction=1,error_signals=all,input_set=target,correction_weeks=2,correction_ed=1,joint_weight=0.05,correction_penalty=100.0,reporting_missingness=0,reporting_method=synchronous_phase_log,ed_transform=logit,width=192,epochs=160,patience=25,fit_partition=pathogen,covariate_encoder=summary,covariate_set=kinsa+rsvnet,input_normalization=b0,log_loss_weight=1.0,error_reference=2025-2026,spatial=national_broadcast",
+  "A4c0.national.rsvnet.calendar.weeks3": "history_source=artificial,history_correction=1,error_signals=all,input_set=target,correction_weeks=3,correction_ed=1,joint_weight=0.05,correction_penalty=30.0,reporting_missingness=0,reporting_method=synchronous_phase_log,ed_transform=logit,width=192,epochs=160,patience=25,fit_partition=pathogen,covariate_encoder=summary,covariate_set=kinsa+rsvnet,input_normalization=b0,log_loss_weight=1.0,error_reference=2025-2026,spatial=national_broadcast",
+  "A4c0.national.rsvnet.calendar.weeks1": "history_source=artificial,history_correction=1,error_signals=all,input_set=target,correction_weeks=1,correction_ed=1,joint_weight=0.05,correction_penalty=30.0,reporting_missingness=0,reporting_method=synchronous_phase_log,ed_transform=logit,width=192,epochs=160,patience=25,fit_partition=pathogen,covariate_encoder=summary,covariate_set=kinsa+rsvnet,input_normalization=b0,log_loss_weight=1.0,error_reference=2025-2026,spatial=national_broadcast",
+  "A4c0.national.rsvnet.calendar.joint0.2": "history_source=artificial,history_correction=1,error_signals=all,input_set=target,correction_weeks=2,correction_ed=1,joint_weight=0.2,correction_penalty=30.0,reporting_missingness=0,reporting_method=synchronous_phase_log,ed_transform=logit,width=192,epochs=160,patience=25,fit_partition=pathogen,covariate_encoder=summary,covariate_set=kinsa+rsvnet,input_normalization=b0,log_loss_weight=1.0,error_reference=2025-2026,spatial=national_broadcast"
+ }
+}

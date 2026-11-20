@@ -1,0 +1,133 @@
+{
+ "description": "covid 12-seed mixtures (main)",
+ "recipes": {
+  "GruL1": {
+   "runs": [
+    "data/experiments/covid-cov-r04/gru-pathogen-scheduled_final-98d53523395c/s44/attempt-001",
+    "data/experiments/covid-cov-r04/gru-pathogen-scheduled_final-98d53523395c/s45/attempt-001",
+    "data/experiments/covid-cov-r04/gru-pathogen-scheduled_final-98d53523395c/s46/attempt-001",
+    "data/experiments/covid-cov-r04/gru-pathogen-scheduled_final-98d53523395c/s47/attempt-001",
+    "data/experiments/covid-cov-reseed03/gru-pathogen-scheduled_final-98d53523395c/s48/attempt-001",
+    "data/experiments/covid-cov-reseed03/gru-pathogen-scheduled_final-98d53523395c/s49/attempt-001",
+    "data/experiments/covid-cov-reseed03/gru-pathogen-scheduled_final-98d53523395c/s50/attempt-001",
+    "data/experiments/covid-cov-reseed03/gru-pathogen-scheduled_final-98d53523395c/s51/attempt-001",
+    "data/experiments/covid-cov-reseed04/gru-pathogen-scheduled_final-98d53523395c/s52/attempt-001",
+    "data/experiments/covid-cov-reseed04/gru-pathogen-scheduled_final-98d53523395c/s53/attempt-001",
+    "data/experiments/covid-cov-reseed04/gru-pathogen-scheduled_final-98d53523395c/s54/attempt-001",
+    "data/experiments/covid-cov-reseed04/gru-pathogen-scheduled_final-98d53523395c/s55/attempt-001"
+   ],
+   "scenario": "history_source=artificial,reconstruction_labels=1,error_signals=all,corrector_examples=real,input_set=target,correction_weeks=2,correction_ed=1,reporting_probability=0.25,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,encoder=gru,spatial=national_broadcast,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=1.0,error_reference=2025-2026"
+  },
+  "Att": {
+   "runs": [
+    "data/experiments/covid-cov-r07/attention-pathogen-scheduled_final-37bfa2ce89f5/s44/attempt-001",
+    "data/experiments/covid-cov-r07/attention-pathogen-scheduled_final-37bfa2ce89f5/s45/attempt-001",
+    "data/experiments/covid-cov-r07/attention-pathogen-scheduled_final-37bfa2ce89f5/s46/attempt-001",
+    "data/experiments/covid-cov-r07/attention-pathogen-scheduled_final-37bfa2ce89f5/s47/attempt-001",
+    "data/experiments/covid-cov-reseed03/attention-pathogen-scheduled_final-37bfa2ce89f5/s48/attempt-001",
+    "data/experiments/covid-cov-reseed03/attention-pathogen-scheduled_final-37bfa2ce89f5/s49/attempt-001",
+    "data/experiments/covid-cov-reseed03/attention-pathogen-scheduled_final-37bfa2ce89f5/s50/attempt-001",
+    "data/experiments/covid-cov-reseed03/attention-pathogen-scheduled_final-37bfa2ce89f5/s51/attempt-001",
+    "data/experiments/covid-cov-reseed04/attention-pathogen-scheduled_final-37bfa2ce89f5/s52/attempt-001",
+    "data/experiments/covid-cov-reseed04/attention-pathogen-scheduled_final-37bfa2ce89f5/s53/attempt-001",
+    "data/experiments/covid-cov-reseed04/attention-pathogen-scheduled_final-37bfa2ce89f5/s54/attempt-001",
+    "data/experiments/covid-cov-reseed04/attention-pathogen-scheduled_final-37bfa2ce89f5/s55/attempt-001"
+   ],
+   "scenario": "history_source=artificial,reconstruction_labels=1,error_signals=all,corrector_examples=real,input_set=target,correction_weeks=2,correction_ed=1,reporting_probability=0.25,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,encoder=attention,spatial=national_broadcast,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=1.0,error_reference=2025-2026"
+  },
+  "J03": {
+   "runs": [
+    "data/experiments/covid-cov-r09/gru-pathogen-scheduled_final-7f8dba322e0e/s44/attempt-001",
+    "data/experiments/covid-cov-r09/gru-pathogen-scheduled_final-7f8dba322e0e/s45/attempt-001",
+    "data/experiments/covid-cov-r09/gru-pathogen-scheduled_final-7f8dba322e0e/s46/attempt-001",
+    "data/experiments/covid-cov-r09/gru-pathogen-scheduled_final-7f8dba322e0e/s47/attempt-001",
+    "data/experiments/covid-cov-reseed03/gru-pathogen-scheduled_final-7f8dba322e0e/s48/attempt-001",
+    "data/experiments/covid-cov-reseed03/gru-pathogen-scheduled_final-7f8dba322e0e/s49/attempt-001",
+    "data/experiments/covid-cov-reseed03/gru-pathogen-scheduled_final-7f8dba322e0e/s50/attempt-001",
+    "data/experiments/covid-cov-reseed03/gru-pathogen-scheduled_final-7f8dba322e0e/s51/attempt-001",
+    "data/experiments/covid-cov-reseed04/gru-pathogen-scheduled_final-7f8dba322e0e/s52/attempt-001",
+    "data/experiments/covid-cov-reseed04/gru-pathogen-scheduled_final-7f8dba322e0e/s53/attempt-001",
+    "data/experiments/covid-cov-reseed04/gru-pathogen-scheduled_final-7f8dba322e0e/s54/attempt-001",
+    "data/experiments/covid-cov-reseed04/gru-pathogen-scheduled_final-7f8dba322e0e/s55/attempt-001"
+   ],
+   "scenario": "history_source=artificial,reconstruction_labels=1,error_signals=all,corrector_examples=real,input_set=target,correction_weeks=2,correction_ed=1,reporting_probability=0.25,joint_weight=0.3,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,encoder=gru,spatial=national_broadcast,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=1.0,error_reference=2025-2026"
+  },
+  "SAhGru": {
+   "runs": [
+    "data/experiments/covid-cov-r08/gru-pathogen-scheduled_final-f006c7c3d4ea/s44/attempt-001",
+    "data/experiments/covid-cov-r08/gru-pathogen-scheduled_final-f006c7c3d4ea/s45/attempt-001",
+    "data/experiments/covid-cov-r08/gru-pathogen-scheduled_final-f006c7c3d4ea/s46/attempt-001",
+    "data/experiments/covid-cov-r08/gru-pathogen-scheduled_final-f006c7c3d4ea/s47/attempt-001",
+    "data/experiments/covid-cov-reseed03/gru-pathogen-scheduled_final-f006c7c3d4ea/s48/attempt-001",
+    "data/experiments/covid-cov-reseed03/gru-pathogen-scheduled_final-f006c7c3d4ea/s49/attempt-001",
+    "data/experiments/covid-cov-reseed03/gru-pathogen-scheduled_final-f006c7c3d4ea/s50/attempt-001",
+    "data/experiments/covid-cov-reseed03/gru-pathogen-scheduled_final-f006c7c3d4ea/s51/attempt-001",
+    "data/experiments/covid-cov-reseed04/gru-pathogen-scheduled_final-f006c7c3d4ea/s52/attempt-001",
+    "data/experiments/covid-cov-reseed04/gru-pathogen-scheduled_final-f006c7c3d4ea/s53/attempt-001",
+    "data/experiments/covid-cov-reseed04/gru-pathogen-scheduled_final-f006c7c3d4ea/s54/attempt-001",
+    "data/experiments/covid-cov-reseed04/gru-pathogen-scheduled_final-f006c7c3d4ea/s55/attempt-001"
+   ],
+   "scenario": "history_source=artificial,history_correction=1,error_signals=all,corrector_examples=real,input_set=target,correction_weeks=2,correction_ed=1,reporting_probability=0.5,joint_weight=0.05,correction_penalty=30.0,reporting_missingness=0,reporting_method=synchronous_phase_log,ed_transform=logit,encoder=gru,spatial=national_broadcast,width=192,epochs=160,patience=25,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=1.0,error_reference=2025-2026"
+  },
+  "Gru": {
+   "runs": [
+    "data/experiments/covid-cov-r02/gru-pathogen-scheduled_final-e11803f32d89/s44/attempt-001",
+    "data/experiments/covid-cov-r02/gru-pathogen-scheduled_final-e11803f32d89/s45/attempt-001",
+    "data/experiments/covid-cov-r02/gru-pathogen-scheduled_final-e11803f32d89/s46/attempt-001",
+    "data/experiments/covid-cov-r02/gru-pathogen-scheduled_final-e11803f32d89/s47/attempt-001",
+    "data/experiments/covid-cov-reseed02/gru-pathogen-scheduled_final-e11803f32d89/s48/attempt-001",
+    "data/experiments/covid-cov-reseed02/gru-pathogen-scheduled_final-e11803f32d89/s49/attempt-001",
+    "data/experiments/covid-cov-reseed02/gru-pathogen-scheduled_final-e11803f32d89/s50/attempt-001",
+    "data/experiments/covid-cov-reseed02/gru-pathogen-scheduled_final-e11803f32d89/s51/attempt-001",
+    "data/experiments/covid-cov-reseed04/gru-pathogen-scheduled_final-e11803f32d89/s52/attempt-001",
+    "data/experiments/covid-cov-reseed04/gru-pathogen-scheduled_final-e11803f32d89/s53/attempt-001",
+    "data/experiments/covid-cov-reseed04/gru-pathogen-scheduled_final-e11803f32d89/s54/attempt-001",
+    "data/experiments/covid-cov-reseed04/gru-pathogen-scheduled_final-e11803f32d89/s55/attempt-001"
+   ],
+   "scenario": "history_source=artificial,reconstruction_labels=1,error_signals=all,corrector_examples=real,input_set=target,correction_weeks=2,correction_ed=1,reporting_probability=0.25,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,encoder=gru,spatial=national_broadcast,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=0.5,error_reference=2025-2026"
+  }
+ },
+ "groups": {
+  "GruL1 alone": [
+   "GruL1"
+  ],
+  "GruL1+Att": [
+   "GruL1",
+   "Att"
+  ],
+  "GruL1+Att+SAhGru": [
+   "GruL1",
+   "Att",
+   "SAhGru"
+  ],
+  "GruL1+Gru+SAhGru": [
+   "GruL1",
+   "Gru",
+   "SAhGru"
+  ],
+  "GruL1+SAhGru": [
+   "GruL1",
+   "SAhGru"
+  ],
+  "J03 alone": [
+   "J03"
+  ],
+  "J03+Att": [
+   "J03",
+   "Att"
+  ],
+  "GruL1+J03+Att+SAhGru": [
+   "GruL1",
+   "J03",
+   "Att",
+   "SAhGru"
+  ],
+  "Att alone": [
+   "Att"
+  ]
+ },
+ "rules": [
+  "mixture"
+ ],
+ "forecast_view": "corrected"
+}

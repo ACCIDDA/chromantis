@@ -1,0 +1,91 @@
+{
+  "candidates": {
+    "california_direct_reference": "geography=0,decoder=residual2,noise=local,epochs=160,batch_size=2,members=16,forecast_view=raw",
+    "california_finalist_1": "ili_units=flu_scaled,ili_steps=600,ili_training=pretrain,ili_path=data/metrocast-california/historical_ili.npz,geography=0,decoder=residual2,noise=local,epochs=160,batch_size=2,members=16,training_target_lag=1,forecast_view=raw",
+    "california_finalist_2": "geography=0,decoder=residual2,noise=local,epochs=160,batch_size=2,members=16,training_target_lag=1,path_loss_weight=0.25,forecast_view=raw"
+  },
+  "criterion": "Best available-horizon winter WIS and log-count path energy on Feb-Jun2025 only, plus direct reference; pilot cannot validate all34 future weeks.",
+  "development": [
+    {
+      "Path energy log1p counts": 1.4989129216250718,
+      "WIS admission counts": 456.15927369980665,
+      "scenario": "geography=0,decoder=residual2,noise=local,epochs=160,batch_size=2,members=16,forecast_view=raw"
+    },
+    {
+      "Path energy log1p counts": 1.505479599499364,
+      "WIS admission counts": 433.15796043004525,
+      "scenario": "geography=0,decoder=residual2,noise=local,epochs=160,batch_size=2,members=16,path_loss_weight=0.25,forecast_view=raw"
+    },
+    {
+      "Path energy log1p counts": 1.4550435329937597,
+      "WIS admission counts": 457.8354741922227,
+      "scenario": "geography=0,decoder=residual2,noise=local,epochs=160,batch_size=2,members=16,training_target_lag=1,forecast_view=raw"
+    },
+    {
+      "Path energy log1p counts": 1.357526951266411,
+      "WIS admission counts": 405.6913254128347,
+      "scenario": "geography=0,decoder=residual2,noise=local,epochs=160,batch_size=2,members=16,training_target_lag=1,path_loss_weight=0.25,forecast_view=raw"
+    },
+    {
+      "Path energy log1p counts": 1.4631576500241716,
+      "WIS admission counts": 402.4755880310561,
+      "scenario": "ili_units=flu_scaled,ili_steps=600,ili_training=pretrain,ili_path=data/metrocast-california/historical_ili.npz,geography=0,decoder=residual2,noise=local,epochs=160,batch_size=2,members=16,forecast_view=raw"
+    },
+    {
+      "Path energy log1p counts": 1.5239875402267318,
+      "WIS admission counts": 407.4508250942462,
+      "scenario": "ili_units=flu_scaled,ili_steps=600,ili_training=pretrain,ili_path=data/metrocast-california/historical_ili.npz,geography=0,decoder=residual2,noise=local,epochs=160,batch_size=2,members=16,path_loss_weight=0.25,forecast_view=raw"
+    },
+    {
+      "Path energy log1p counts": 1.384184447944214,
+      "WIS admission counts": 330.3121080858572,
+      "scenario": "ili_units=flu_scaled,ili_steps=600,ili_training=pretrain,ili_path=data/metrocast-california/historical_ili.npz,geography=0,decoder=residual2,noise=local,epochs=160,batch_size=2,members=16,training_target_lag=1,forecast_view=raw"
+    },
+    {
+      "Path energy log1p counts": 1.4340842459335266,
+      "WIS admission counts": 384.9220579457917,
+      "scenario": "ili_units=flu_scaled,ili_steps=600,ili_training=pretrain,ili_path=data/metrocast-california/historical_ili.npz,geography=0,decoder=residual2,noise=local,epochs=160,batch_size=2,members=16,training_target_lag=1,path_loss_weight=0.25,forecast_view=raw"
+    },
+    {
+      "Path energy log1p counts": 1.7203126140903608,
+      "WIS admission counts": 641.986988659312,
+      "scenario": "geography=0,spatial=attention,decoder=residual2,noise=local,epochs=160,batch_size=2,members=16,forecast_view=raw"
+    },
+    {
+      "Path energy log1p counts": 1.6579935355493203,
+      "WIS admission counts": 619.4969831926014,
+      "scenario": "geography=0,spatial=attention,decoder=residual2,noise=local,epochs=160,batch_size=2,members=16,training_target_lag=1,forecast_view=raw"
+    },
+    {
+      "Path energy log1p counts": 2.1396303780395587,
+      "WIS admission counts": 864.9731053004409,
+      "scenario": "geography=0,spatial=pooled,decoder=residual2,noise=local,epochs=160,batch_size=2,members=16,forecast_view=raw"
+    },
+    {
+      "Path energy log1p counts": 1.8476408456102846,
+      "WIS admission counts": 666.9915124825721,
+      "scenario": "geography=0,spatial=pooled,decoder=residual2,noise=local,epochs=160,batch_size=2,members=16,training_target_lag=1,forecast_view=raw"
+    },
+    {
+      "Path energy log1p counts": 1.6323266401824696,
+      "WIS admission counts": 468.3711889265945,
+      "scenario": "ili_units=flu_scaled,ili_steps=600,ili_training=pretrain,ili_path=data/metrocast-california/historical_ili.npz,geography=0,spatial=attention,decoder=residual2,noise=local,epochs=160,batch_size=2,members=16,forecast_view=raw"
+    },
+    {
+      "Path energy log1p counts": 1.4084938879100704,
+      "WIS admission counts": 370.2336491315916,
+      "scenario": "ili_units=flu_scaled,ili_steps=600,ili_training=pretrain,ili_path=data/metrocast-california/historical_ili.npz,geography=0,spatial=attention,decoder=residual2,noise=local,epochs=160,batch_size=2,members=16,training_target_lag=1,forecast_view=raw"
+    },
+    {
+      "Path energy log1p counts": 2.0263120807402313,
+      "WIS admission counts": 678.0213538676003,
+      "scenario": "ili_units=flu_scaled,ili_steps=600,ili_training=pretrain,ili_path=data/metrocast-california/historical_ili.npz,geography=0,spatial=pooled,decoder=residual2,noise=local,epochs=160,batch_size=2,members=16,forecast_view=raw"
+    },
+    {
+      "Path energy log1p counts": 1.4627442306145688,
+      "WIS admission counts": 368.9756353752737,
+      "scenario": "ili_units=flu_scaled,ili_steps=600,ili_training=pretrain,ili_path=data/metrocast-california/historical_ili.npz,geography=0,spatial=pooled,decoder=residual2,noise=local,epochs=160,batch_size=2,members=16,training_target_lag=1,forecast_view=raw"
+    }
+  ],
+  "frozen_at": "2026-10-21T05:34:30.890104+00:00"
+}

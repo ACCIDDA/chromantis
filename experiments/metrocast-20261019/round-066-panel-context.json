@@ -1,0 +1,33 @@
+{
+  "seeds": [
+    42,
+    43,
+    44,
+    45
+  ],
+  "candidates": {
+    "short12_none_none": "ed_transform=logit,geography=0,decoder=residual2,noise=local,width=128,epochs=160,members=32,training_target_lag=1,forecast_view=raw",
+    "short12_none_state": "ed_transform=logit,geography=0,decoder=residual2,noise=local,width=128,epochs=160,members=32,covariate_set=state,training_target_lag=1,forecast_view=raw",
+    "short12_none_state_regional": "ed_transform=logit,geography=0,decoder=residual2,noise=local,width=128,epochs=160,members=32,covariate_set=state_regional,training_target_lag=1,forecast_view=raw",
+    "short12_attention_none": "ed_transform=logit,geography=0,spatial=attention,decoder=residual2,noise=local,width=128,epochs=160,members=32,training_target_lag=1,forecast_view=raw",
+    "short12_attention_state": "ed_transform=logit,geography=0,spatial=attention,decoder=residual2,noise=local,width=128,epochs=160,members=32,covariate_set=state,training_target_lag=1,forecast_view=raw",
+    "short12_attention_state_regional": "ed_transform=logit,geography=0,spatial=attention,decoder=residual2,noise=local,width=128,epochs=160,members=32,covariate_set=state_regional,training_target_lag=1,forecast_view=raw",
+    "long52_none_none": "lookback=52,geography=0,decoder=residual2,decoder_blocks=2,noise=local,epochs=320,members=32,lr=0.002,covariate_encoder=growth,signal_features=smooth_multiscale,input_normalization=b0,training_target_lag=1,forecast_view=raw",
+    "long52_none_state": "lookback=52,geography=0,decoder=residual2,decoder_blocks=2,noise=local,epochs=320,members=32,lr=0.002,covariate_encoder=growth,signal_features=smooth_multiscale,covariate_set=state,input_normalization=b0,training_target_lag=1,forecast_view=raw",
+    "long52_none_state_regional": "lookback=52,geography=0,decoder=residual2,decoder_blocks=2,noise=local,epochs=320,members=32,lr=0.002,covariate_encoder=growth,signal_features=smooth_multiscale,covariate_set=state_regional,input_normalization=b0,training_target_lag=1,forecast_view=raw",
+    "long52_attention_none": "lookback=52,geography=0,spatial=attention,decoder=residual2,decoder_blocks=2,noise=local,epochs=320,members=32,lr=0.002,covariate_encoder=growth,signal_features=smooth_multiscale,input_normalization=b0,training_target_lag=1,forecast_view=raw",
+    "long52_attention_state": "lookback=52,geography=0,spatial=attention,decoder=residual2,decoder_blocks=2,noise=local,epochs=320,members=32,lr=0.002,covariate_encoder=growth,signal_features=smooth_multiscale,covariate_set=state,input_normalization=b0,training_target_lag=1,forecast_view=raw",
+    "long52_attention_state_regional": "lookback=52,geography=0,spatial=attention,decoder=residual2,decoder_blocks=2,noise=local,epochs=320,members=32,lr=0.002,covariate_encoder=growth,signal_features=smooth_multiscale,covariate_set=state_regional,input_normalization=b0,training_target_lag=1,forecast_view=raw"
+  },
+  "parents": {},
+  "training_seasons": [
+    "2022-2023",
+    "2023-2024"
+  ],
+  "evaluation_season": "2024-2025",
+  "inputs": "Unchanged revised90-locationtargethistories with latesttargetweek hidden duringfitting/innervalidation; covnone versus own-stateNSSP versus ownstate+unweightedother-HHS-statefluEDmean; covlatestweekmasked.",
+  "labels": "UnchangedfuturelocalfluEDproportions; no2025-26modelselection.",
+  "selection": "Four-week2024-25WIS only, no directensemblebenchmark available forcurrentHSAgeography inthatseason.",
+  "evaluation_inputs": "Revised2024-25targetandcovariatehistories onsource schedule. Archivedsourcecutoffs prepared forlaterconfirmation, not claimed operational performance.",
+  "geography": "Ownstate and HHSregion mapped explicitly in data/metrocast-panel-context/manifest.json; unweightedmeanofstatepercentages isnotaregionalEDrate; targetNYC inconsistency remains."
+}

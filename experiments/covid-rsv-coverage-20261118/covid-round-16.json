@@ -1,0 +1,22 @@
+{
+ "description": "COVID round 16 (2026-11-19 16:00): hospital coverage for the correction trees only (network_coverage=0, new option). On held-out real reports, trees reading coverage cut the newest-week error by 30% (COVID) and 34% (RSV) against 20% / 13% without it, but feeding coverage to the network hurt the GRU recipe. Controls with the network also reading coverage. Main, forward, live.",
+ "round": 16,
+ "seeds": [
+  44,
+  45,
+  46,
+  47
+ ],
+ "parents": {
+  "T.pN_gru.real.log_loss1.cov_trees": "T.pN_gru.real.log_loss1",
+  "T.pN_gru.real.log_loss1.cov_trees_and_net": "T.pN_gru.real.log_loss1",
+  "T.pN_gru.real.cov_trees": "T.pN_gru.real",
+  "T.pN_gru.real.log_loss1.cov_trees.weeks1": "T.pN_gru.real.log_loss1"
+ },
+ "candidates": {
+  "T.pN_gru.real.log_loss1.cov_trees": "history_source=artificial,reconstruction_labels=1,error_signals=all,input_set=target,correction_weeks=2,correction_ed=1,reporting_probability=0.25,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,spatial=national_broadcast,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=1.0,error_reference=2025-2026,encoder=gru,corrector_examples=real,covariate_set=hosprep_covid,network_coverage=0",
+  "T.pN_gru.real.log_loss1.cov_trees_and_net": "history_source=artificial,reconstruction_labels=1,error_signals=all,input_set=target,correction_weeks=2,correction_ed=1,reporting_probability=0.25,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,spatial=national_broadcast,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=1.0,error_reference=2025-2026,encoder=gru,corrector_examples=real,covariate_set=hosprep_covid",
+  "T.pN_gru.real.cov_trees": "history_source=artificial,reconstruction_labels=1,error_signals=all,input_set=target,correction_weeks=2,correction_ed=1,reporting_probability=0.25,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,spatial=national_broadcast,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=0.5,error_reference=2025-2026,encoder=gru,corrector_examples=real,covariate_set=hosprep_covid,network_coverage=0",
+  "T.pN_gru.real.log_loss1.cov_trees.weeks1": "history_source=artificial,reconstruction_labels=1,error_signals=all,input_set=target,correction_weeks=1,correction_ed=1,reporting_probability=0.25,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,spatial=national_broadcast,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=1.0,error_reference=2025-2026,encoder=gru,corrector_examples=real,covariate_set=hosprep_covid,network_coverage=0"
+ }
+}

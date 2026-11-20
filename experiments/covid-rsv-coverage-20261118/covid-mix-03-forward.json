@@ -1,0 +1,95 @@
+{
+ "description": "COVID mixtures 03 on the forward problem (seeds 44-47).",
+ "recipes": {
+  "GruL1": {
+   "experiment": "covid-cov-fwd04",
+   "scenario": "history_source=artificial,reconstruction_labels=1,error_signals=all,input_set=target,correction_weeks=2,correction_ed=1,reporting_probability=0.25,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,spatial=national_broadcast,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=1.0,error_reference=2025-2026,encoder=gru,corrector_examples=real",
+   "seeds": [
+    44,
+    45,
+    46,
+    47
+   ]
+  },
+  "Gru": {
+   "experiment": "covid-cov-fwd02",
+   "scenario": "history_source=artificial,reconstruction_labels=1,error_signals=all,input_set=target,correction_weeks=2,correction_ed=1,reporting_probability=0.25,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,spatial=national_broadcast,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=0.5,error_reference=2025-2026,encoder=gru,corrector_examples=real",
+   "seeds": [
+    44,
+    45,
+    46,
+    47
+   ]
+  },
+  "Att": {
+   "experiment": "covid-cov-fwd07",
+   "scenario": "history_source=artificial,reconstruction_labels=1,error_signals=all,input_set=target,correction_weeks=2,correction_ed=1,reporting_probability=0.25,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,spatial=national_broadcast,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=1.0,error_reference=2025-2026,encoder=attention,corrector_examples=real",
+   "seeds": [
+    44,
+    45,
+    46,
+    47
+   ]
+  },
+  "SmMs": {
+   "experiment": "covid-cov-fwd07",
+   "scenario": "history_source=artificial,reconstruction_labels=1,error_signals=all,input_set=target,correction_weeks=2,correction_ed=1,reporting_probability=0.25,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,spatial=national_broadcast,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=1.0,error_reference=2025-2026,encoder=gru,corrector_examples=real,signal_features=smooth_multiscale",
+   "seeds": [
+    44,
+    45,
+    46,
+    47
+   ]
+  },
+  "SAhGru": {
+   "experiment": "covid-cov-fwd08",
+   "scenario": "history_source=artificial,history_correction=1,error_signals=all,input_set=target,correction_weeks=2,correction_ed=1,reporting_probability=0.5,joint_weight=0.05,correction_penalty=30.0,reporting_missingness=0,reporting_method=synchronous_phase_log,ed_transform=logit,width=192,epochs=160,patience=25,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=1.0,error_reference=2025-2026,spatial=national_broadcast,encoder=gru,corrector_examples=real",
+   "seeds": [
+    44,
+    45,
+    46,
+    47
+   ]
+  }
+ },
+ "groups": {
+  "GruL1 alone": [
+   "GruL1"
+  ],
+  "GruL1+Att": [
+   "GruL1",
+   "Att"
+  ],
+  "GruL1+SmMs": [
+   "GruL1",
+   "SmMs"
+  ],
+  "GruL1+SAhGru": [
+   "GruL1",
+   "SAhGru"
+  ],
+  "GruL1+Gru+SAhGru": [
+   "GruL1",
+   "Gru",
+   "SAhGru"
+  ],
+  "GruL1+Att+SAhGru": [
+   "GruL1",
+   "Att",
+   "SAhGru"
+  ],
+  "GruL1+Gru+Att+SAhGru": [
+   "GruL1",
+   "Gru",
+   "Att",
+   "SAhGru"
+  ],
+  "Att alone": [
+   "Att"
+  ]
+ },
+ "rules": [
+  "mixture"
+ ],
+ "forecast_view": "corrected"
+}

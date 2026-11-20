@@ -1,0 +1,128 @@
+{
+ "description": "rsv 12-seed mixtures (forward)",
+ "recipes": {
+  "W1": {
+   "runs": [
+    "data/experiments/rsv-cov-fwd09/mlp-pathogen-scheduled_final-c16d8e808d8e/s44/attempt-001",
+    "data/experiments/rsv-cov-fwd09/mlp-pathogen-scheduled_final-c16d8e808d8e/s45/attempt-001",
+    "data/experiments/rsv-cov-fwd09/mlp-pathogen-scheduled_final-c16d8e808d8e/s46/attempt-001",
+    "data/experiments/rsv-cov-fwd09/mlp-pathogen-scheduled_final-c16d8e808d8e/s47/attempt-001",
+    "data/experiments/rsv-cov-reseedfwd03/mlp-pathogen-scheduled_final-c16d8e808d8e/s48/attempt-001",
+    "data/experiments/rsv-cov-reseedfwd03/mlp-pathogen-scheduled_final-c16d8e808d8e/s49/attempt-001",
+    "data/experiments/rsv-cov-reseedfwd03/mlp-pathogen-scheduled_final-c16d8e808d8e/s50/attempt-001",
+    "data/experiments/rsv-cov-reseedfwd03/mlp-pathogen-scheduled_final-c16d8e808d8e/s51/attempt-001",
+    "data/experiments/rsv-cov-reseedfwd04/mlp-pathogen-scheduled_final-c16d8e808d8e/s52/attempt-001",
+    "data/experiments/rsv-cov-reseedfwd04/mlp-pathogen-scheduled_final-c16d8e808d8e/s53/attempt-001",
+    "data/experiments/rsv-cov-reseedfwd04/mlp-pathogen-scheduled_final-c16d8e808d8e/s54/attempt-001",
+    "data/experiments/rsv-cov-reseedfwd04/mlp-pathogen-scheduled_final-c16d8e808d8e/s55/attempt-001"
+   ],
+   "scenario": "history_source=artificial,history_correction=1,error_signals=all,input_set=target,correction_weeks=1,correction_ed=1,joint_weight=0.05,correction_penalty=30.0,reporting_missingness=0,reporting_method=synchronous_phase_log,ed_transform=logit,spatial=national_broadcast,width=192,epochs=160,patience=25,fit_partition=pathogen,covariate_encoder=summary,covariate_set=kinsa+rsvnet,input_normalization=b0,log_loss_weight=1.0,error_reference=2025-2026"
+  },
+  "NRCal": {
+   "runs": [
+    "data/experiments/rsv-cov-fwd06/mlp-pathogen-scheduled_final-3210f56785d7/s44/attempt-001",
+    "data/experiments/rsv-cov-fwd06/mlp-pathogen-scheduled_final-3210f56785d7/s45/attempt-001",
+    "data/experiments/rsv-cov-fwd06/mlp-pathogen-scheduled_final-3210f56785d7/s46/attempt-001",
+    "data/experiments/rsv-cov-fwd06/mlp-pathogen-scheduled_final-3210f56785d7/s47/attempt-001",
+    "data/experiments/rsv-cov-reseedfwd03/mlp-pathogen-scheduled_final-3210f56785d7/s48/attempt-001",
+    "data/experiments/rsv-cov-reseedfwd03/mlp-pathogen-scheduled_final-3210f56785d7/s49/attempt-001",
+    "data/experiments/rsv-cov-reseedfwd03/mlp-pathogen-scheduled_final-3210f56785d7/s50/attempt-001",
+    "data/experiments/rsv-cov-reseedfwd03/mlp-pathogen-scheduled_final-3210f56785d7/s51/attempt-001",
+    "data/experiments/rsv-cov-reseedfwd04/mlp-pathogen-scheduled_final-3210f56785d7/s52/attempt-001",
+    "data/experiments/rsv-cov-reseedfwd04/mlp-pathogen-scheduled_final-3210f56785d7/s53/attempt-001",
+    "data/experiments/rsv-cov-reseedfwd04/mlp-pathogen-scheduled_final-3210f56785d7/s54/attempt-001",
+    "data/experiments/rsv-cov-reseedfwd04/mlp-pathogen-scheduled_final-3210f56785d7/s55/attempt-001"
+   ],
+   "scenario": "history_source=artificial,history_correction=1,error_signals=all,input_set=target,correction_weeks=2,correction_ed=1,joint_weight=0.05,correction_penalty=30.0,reporting_missingness=0,reporting_method=synchronous_phase_log,ed_transform=logit,spatial=national_broadcast,width=192,epochs=160,patience=25,fit_partition=pathogen,covariate_encoder=summary,covariate_set=kinsa+rsvnet,input_normalization=b0,log_loss_weight=1.0,error_reference=2025-2026"
+  },
+  "A4cN": {
+   "runs": [
+    "data/experiments/rsv-cov-fwd02/mlp-pathogen-scheduled_final-724c02b4f537/s44/attempt-001",
+    "data/experiments/rsv-cov-fwd02/mlp-pathogen-scheduled_final-724c02b4f537/s45/attempt-001",
+    "data/experiments/rsv-cov-fwd02/mlp-pathogen-scheduled_final-724c02b4f537/s46/attempt-001",
+    "data/experiments/rsv-cov-fwd02/mlp-pathogen-scheduled_final-724c02b4f537/s47/attempt-001",
+    "data/experiments/rsv-cov-reseedfwd02/mlp-pathogen-scheduled_final-724c02b4f537/s48/attempt-001",
+    "data/experiments/rsv-cov-reseedfwd02/mlp-pathogen-scheduled_final-724c02b4f537/s49/attempt-001",
+    "data/experiments/rsv-cov-reseedfwd02/mlp-pathogen-scheduled_final-724c02b4f537/s50/attempt-001",
+    "data/experiments/rsv-cov-reseedfwd02/mlp-pathogen-scheduled_final-724c02b4f537/s51/attempt-001",
+    "data/experiments/rsv-cov-reseedfwd04/mlp-pathogen-scheduled_final-724c02b4f537/s52/attempt-001",
+    "data/experiments/rsv-cov-reseedfwd04/mlp-pathogen-scheduled_final-724c02b4f537/s53/attempt-001",
+    "data/experiments/rsv-cov-reseedfwd04/mlp-pathogen-scheduled_final-724c02b4f537/s54/attempt-001",
+    "data/experiments/rsv-cov-reseedfwd04/mlp-pathogen-scheduled_final-724c02b4f537/s55/attempt-001"
+   ],
+   "scenario": "history_source=artificial,history_correction=1,error_signals=targets,input_set=target,correction_weeks=2,correction_ed=1,joint_weight=0.05,correction_penalty=30.0,reporting_missingness=0,reporting_method=synchronous_phase_log,ed_transform=logit,spatial=national_broadcast,width=192,epochs=160,patience=25,annual_calendar=0,fit_partition=pathogen,covariate_encoder=summary,covariate_set=kinsa,input_normalization=b0,log_loss_weight=1.0,error_reference=2025-2026"
+  },
+  "NR": {
+   "runs": [
+    "data/experiments/rsv-cov-fwd05/mlp-pathogen-scheduled_final-9b45b1580b59/s44/attempt-001",
+    "data/experiments/rsv-cov-fwd05/mlp-pathogen-scheduled_final-9b45b1580b59/s45/attempt-001",
+    "data/experiments/rsv-cov-fwd05/mlp-pathogen-scheduled_final-9b45b1580b59/s46/attempt-001",
+    "data/experiments/rsv-cov-fwd05/mlp-pathogen-scheduled_final-9b45b1580b59/s47/attempt-001",
+    "data/experiments/rsv-cov-reseedfwd03/mlp-pathogen-scheduled_final-9b45b1580b59/s48/attempt-001",
+    "data/experiments/rsv-cov-reseedfwd03/mlp-pathogen-scheduled_final-9b45b1580b59/s49/attempt-001",
+    "data/experiments/rsv-cov-reseedfwd03/mlp-pathogen-scheduled_final-9b45b1580b59/s50/attempt-001",
+    "data/experiments/rsv-cov-reseedfwd03/mlp-pathogen-scheduled_final-9b45b1580b59/s51/attempt-001",
+    "data/experiments/rsv-cov-reseedfwd04/mlp-pathogen-scheduled_final-9b45b1580b59/s52/attempt-001",
+    "data/experiments/rsv-cov-reseedfwd04/mlp-pathogen-scheduled_final-9b45b1580b59/s53/attempt-001",
+    "data/experiments/rsv-cov-reseedfwd04/mlp-pathogen-scheduled_final-9b45b1580b59/s54/attempt-001",
+    "data/experiments/rsv-cov-reseedfwd04/mlp-pathogen-scheduled_final-9b45b1580b59/s55/attempt-001"
+   ],
+   "scenario": "history_source=artificial,history_correction=1,error_signals=all,input_set=target,correction_weeks=2,correction_ed=1,joint_weight=0.05,correction_penalty=30.0,reporting_missingness=0,reporting_method=synchronous_phase_log,ed_transform=logit,spatial=national_broadcast,width=192,epochs=160,patience=25,annual_calendar=0,fit_partition=pathogen,covariate_encoder=summary,covariate_set=kinsa+rsvnet,input_normalization=b0,log_loss_weight=1.0,error_reference=2025-2026"
+  },
+  "BwHcLog": {
+   "runs": [
+    "data/experiments/rsv-cov-fwd08/mlp-pathogen-scheduled_final-cb3d407ee0dd/s44/attempt-001",
+    "data/experiments/rsv-cov-fwd08/mlp-pathogen-scheduled_final-cb3d407ee0dd/s45/attempt-001",
+    "data/experiments/rsv-cov-fwd08/mlp-pathogen-scheduled_final-cb3d407ee0dd/s46/attempt-001",
+    "data/experiments/rsv-cov-fwd08/mlp-pathogen-scheduled_final-cb3d407ee0dd/s47/attempt-001",
+    "data/experiments/rsv-cov-reseedfwd03/mlp-pathogen-scheduled_final-cb3d407ee0dd/s48/attempt-001",
+    "data/experiments/rsv-cov-reseedfwd03/mlp-pathogen-scheduled_final-cb3d407ee0dd/s49/attempt-001",
+    "data/experiments/rsv-cov-reseedfwd03/mlp-pathogen-scheduled_final-cb3d407ee0dd/s50/attempt-001",
+    "data/experiments/rsv-cov-reseedfwd03/mlp-pathogen-scheduled_final-cb3d407ee0dd/s51/attempt-001",
+    "data/experiments/rsv-cov-reseedfwd04/mlp-pathogen-scheduled_final-cb3d407ee0dd/s52/attempt-001",
+    "data/experiments/rsv-cov-reseedfwd04/mlp-pathogen-scheduled_final-cb3d407ee0dd/s53/attempt-001",
+    "data/experiments/rsv-cov-reseedfwd04/mlp-pathogen-scheduled_final-cb3d407ee0dd/s54/attempt-001",
+    "data/experiments/rsv-cov-reseedfwd04/mlp-pathogen-scheduled_final-cb3d407ee0dd/s55/attempt-001"
+   ],
+   "scenario": "history_source=artificial,history_correction=1,error_signals=targets,correction_weeks=2,correction_ed=1,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,count_transform=log1p,ed_transform=logit,spatial=national_broadcast,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=0.5,error_reference=2025-2026"
+  }
+ },
+ "groups": {
+  "W1 alone": [
+   "W1"
+  ],
+  "W1+NRCal": [
+   "W1",
+   "NRCal"
+  ],
+  "W1+A4cN+NR": [
+   "W1",
+   "A4cN",
+   "NR"
+  ],
+  "A4cN+NR": [
+   "A4cN",
+   "NR"
+  ],
+  "NRCal alone": [
+   "NRCal"
+  ],
+  "W1+BwHcLog": [
+   "W1",
+   "BwHcLog"
+  ],
+  "BwHcLog alone": [
+   "BwHcLog"
+  ],
+  "W1+NRCal+A4cN+NR": [
+   "W1",
+   "NRCal",
+   "A4cN",
+   "NR"
+  ]
+ },
+ "rules": [
+  "mixture"
+ ],
+ "forecast_view": "corrected"
+}

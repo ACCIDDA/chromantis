@@ -1,0 +1,176 @@
+{
+  "candidates": {
+    "utah_direct_reference": "lookback=52,geography=0,decoder=residual2,decoder_blocks=2,noise=local,epochs=320,batch_size=2,members=16,lr=0.002,covariate_encoder=growth,signal_features=smooth_multiscale,input_normalization=b0,path_loss_weight=0.25,covariate_dropout=0.1,forecast_view=raw",
+    "utah_direct_reference_paired_history_gap": "lookback=52,geography=0,decoder=residual2,decoder_blocks=2,noise=local,epochs=320,batch_size=2,members=16,lr=0.002,covariate_encoder=growth,signal_features=smooth_multiscale,input_normalization=b0,training_target_lag=1,path_loss_weight=0.25,covariate_dropout=0.1,forecast_view=raw",
+    "utah_finalist_1": "lookback=52,geography=0,decoder=residual2,decoder_blocks=2,epochs=320,batch_size=2,members=16,lr=0.002,covariate_encoder=growth,signal_features=smooth_multiscale,input_normalization=b0,path_loss_weight=0.25,covariate_dropout=0.1,forecast_view=raw",
+    "utah_finalist_1_paired_history_gap": "lookback=52,geography=0,decoder=residual2,decoder_blocks=2,epochs=320,batch_size=2,members=16,lr=0.002,covariate_encoder=growth,signal_features=smooth_multiscale,input_normalization=b0,training_target_lag=1,path_loss_weight=0.25,covariate_dropout=0.1,forecast_view=raw"
+  },
+  "criterion": "Utah-only mean four-seed 2024-25 whole34 WIS and intact-path energy; direct reference and paired training gaps. Equal14 locations including overlapping statewide. No main-panel or holdout ranking.",
+  "eligible": [
+    {
+      "experiment": "metrocast-utah-proposed-fullseason-r074",
+      "name": "mlp12_logit_80epochs_attention_lag0",
+      "path_energy": 2.2298093685614213,
+      "scenario": "ed_transform=logit,geography=0,spatial=attention,decoder=residual2,decoder_blocks=2,noise=local,width=128,epochs=80,batch_size=2,members=16,lr=0.002,covariate_encoder=growth,signal_features=smooth_multiscale,input_normalization=b0,path_loss_weight=0.25,covariate_dropout=0.1,forecast_view=raw",
+      "wis": 1.3283810160916483
+    },
+    {
+      "experiment": "metrocast-utah-proposed-fullseason-r074",
+      "name": "mlp12_logit_80epochs_attention_lag1",
+      "path_energy": 4.5368890244779845,
+      "scenario": "ed_transform=logit,geography=0,spatial=attention,decoder=residual2,decoder_blocks=2,noise=local,width=128,epochs=80,batch_size=2,members=16,lr=0.002,covariate_encoder=growth,signal_features=smooth_multiscale,input_normalization=b0,training_target_lag=1,path_loss_weight=0.25,covariate_dropout=0.1,forecast_view=raw",
+      "wis": 2.796812391481888
+    },
+    {
+      "experiment": "metrocast-utah-proposed-fullseason-r074",
+      "name": "mlp12_logit_80epochs_none_lag0",
+      "path_energy": 2.462657496133553,
+      "scenario": "ed_transform=logit,geography=0,decoder=residual2,decoder_blocks=2,noise=local,width=128,epochs=80,batch_size=2,members=16,lr=0.002,covariate_encoder=growth,signal_features=smooth_multiscale,input_normalization=b0,path_loss_weight=0.25,covariate_dropout=0.1,forecast_view=raw",
+      "wis": 1.490292210389285
+    },
+    {
+      "experiment": "metrocast-utah-proposed-fullseason-r074",
+      "name": "mlp12_logit_80epochs_none_lag1",
+      "path_energy": 4.5629076909140815,
+      "scenario": "ed_transform=logit,geography=0,decoder=residual2,decoder_blocks=2,noise=local,width=128,epochs=80,batch_size=2,members=16,lr=0.002,covariate_encoder=growth,signal_features=smooth_multiscale,input_normalization=b0,training_target_lag=1,path_loss_weight=0.25,covariate_dropout=0.1,forecast_view=raw",
+      "wis": 2.75913168772802
+    },
+    {
+      "experiment": "metrocast-utah-proposed-fullseason-r074",
+      "name": "mlp52_linear_320epochs_attention_lag0",
+      "path_energy": 1.6527350592826093,
+      "scenario": "lookback=52,geography=0,spatial=attention,decoder=residual2,decoder_blocks=2,noise=local,epochs=320,batch_size=2,members=16,lr=0.002,covariate_encoder=growth,signal_features=smooth_multiscale,input_normalization=b0,path_loss_weight=0.25,covariate_dropout=0.1,forecast_view=raw",
+      "wis": 0.9293721408018791
+    },
+    {
+      "experiment": "metrocast-utah-proposed-fullseason-r074",
+      "name": "mlp52_linear_320epochs_attention_lag1",
+      "path_energy": 5.13720173288935,
+      "scenario": "lookback=52,geography=0,spatial=attention,decoder=residual2,decoder_blocks=2,noise=local,epochs=320,batch_size=2,members=16,lr=0.002,covariate_encoder=growth,signal_features=smooth_multiscale,input_normalization=b0,training_target_lag=1,path_loss_weight=0.25,covariate_dropout=0.1,forecast_view=raw",
+      "wis": 3.3538819717313704
+    },
+    {
+      "experiment": "metrocast-utah-proposed-fullseason-r074",
+      "name": "mlp52_linear_320epochs_none_lag0",
+      "path_energy": 1.5087821013626777,
+      "scenario": "lookback=52,geography=0,decoder=residual2,decoder_blocks=2,noise=local,epochs=320,batch_size=2,members=16,lr=0.002,covariate_encoder=growth,signal_features=smooth_multiscale,input_normalization=b0,path_loss_weight=0.25,covariate_dropout=0.1,forecast_view=raw",
+      "wis": 0.8831389638940773
+    },
+    {
+      "experiment": "metrocast-utah-proposed-fullseason-r074",
+      "name": "mlp52_linear_320epochs_none_lag1",
+      "path_energy": 4.1006922987954955,
+      "scenario": "lookback=52,geography=0,decoder=residual2,decoder_blocks=2,noise=local,epochs=320,batch_size=2,members=16,lr=0.002,covariate_encoder=growth,signal_features=smooth_multiscale,input_normalization=b0,training_target_lag=1,path_loss_weight=0.25,covariate_dropout=0.1,forecast_view=raw",
+      "wis": 2.6762687202052384
+    },
+    {
+      "experiment": "metrocast-utah-proposed-fullseason-r076",
+      "name": "utah_global_noise_lag0",
+      "path_energy": 1.4151849817218525,
+      "scenario": "lookback=52,geography=0,decoder=residual2,decoder_blocks=2,epochs=320,batch_size=2,members=16,lr=0.002,covariate_encoder=growth,signal_features=smooth_multiscale,input_normalization=b0,path_loss_weight=0.25,covariate_dropout=0.1,forecast_view=raw",
+      "wis": 0.8023085286188479
+    },
+    {
+      "experiment": "metrocast-utah-proposed-fullseason-r076",
+      "name": "utah_global_noise_lag1",
+      "path_energy": 2.965045652152704,
+      "scenario": "lookback=52,geography=0,decoder=residual2,decoder_blocks=2,epochs=320,batch_size=2,members=16,lr=0.002,covariate_encoder=growth,signal_features=smooth_multiscale,input_normalization=b0,training_target_lag=1,path_loss_weight=0.25,covariate_dropout=0.1,forecast_view=raw",
+      "wis": 1.8387271061472248
+    },
+    {
+      "experiment": "metrocast-utah-proposed-fullseason-r076",
+      "name": "utah_history26_lag0",
+      "path_energy": 1.4552046677895953,
+      "scenario": "lookback=26,geography=0,decoder=residual2,decoder_blocks=2,noise=local,epochs=320,batch_size=2,members=16,lr=0.002,covariate_encoder=growth,signal_features=smooth_multiscale,input_normalization=b0,path_loss_weight=0.25,covariate_dropout=0.1,forecast_view=raw",
+      "wis": 0.8719454598497014
+    },
+    {
+      "experiment": "metrocast-utah-proposed-fullseason-r076",
+      "name": "utah_history26_lag1",
+      "path_energy": 4.735493002226576,
+      "scenario": "lookback=26,geography=0,decoder=residual2,decoder_blocks=2,noise=local,epochs=320,batch_size=2,members=16,lr=0.002,covariate_encoder=growth,signal_features=smooth_multiscale,input_normalization=b0,training_target_lag=1,path_loss_weight=0.25,covariate_dropout=0.1,forecast_view=raw",
+      "wis": 3.0337085776130945
+    },
+    {
+      "experiment": "metrocast-utah-proposed-fullseason-r076",
+      "name": "utah_path1_lag0",
+      "path_energy": 1.4223960768764041,
+      "scenario": "lookback=52,geography=0,decoder=residual2,decoder_blocks=2,noise=local,epochs=320,batch_size=2,members=16,lr=0.002,covariate_encoder=growth,signal_features=smooth_multiscale,input_normalization=b0,path_loss_weight=1.0,covariate_dropout=0.1,forecast_view=raw",
+      "wis": 0.8186735811811076
+    },
+    {
+      "experiment": "metrocast-utah-proposed-fullseason-r076",
+      "name": "utah_path1_lag1",
+      "path_energy": 3.834596346963995,
+      "scenario": "lookback=52,geography=0,decoder=residual2,decoder_blocks=2,noise=local,epochs=320,batch_size=2,members=16,lr=0.002,covariate_encoder=growth,signal_features=smooth_multiscale,input_normalization=b0,training_target_lag=1,path_loss_weight=1.0,covariate_dropout=0.1,forecast_view=raw",
+      "wis": 2.4029057564787575
+    },
+    {
+      "experiment": "metrocast-utah-proposed-fullseason-r076",
+      "name": "utah_pooled_context_lag0",
+      "path_energy": 2.026914688758552,
+      "scenario": "lookback=52,geography=0,spatial=pooled,decoder=residual2,decoder_blocks=2,noise=local,epochs=320,batch_size=2,members=16,lr=0.002,covariate_encoder=growth,signal_features=smooth_multiscale,input_normalization=b0,path_loss_weight=0.25,covariate_dropout=0.1,forecast_view=raw",
+      "wis": 1.170067830484101
+    },
+    {
+      "experiment": "metrocast-utah-proposed-fullseason-r076",
+      "name": "utah_pooled_context_lag1",
+      "path_energy": 5.621652276853898,
+      "scenario": "lookback=52,geography=0,spatial=pooled,decoder=residual2,decoder_blocks=2,noise=local,epochs=320,batch_size=2,members=16,lr=0.002,covariate_encoder=growth,signal_features=smooth_multiscale,input_normalization=b0,training_target_lag=1,path_loss_weight=0.25,covariate_dropout=0.1,forecast_view=raw",
+      "wis": 3.6760240355067806
+    }
+  ],
+  "frozen_at": "2026-10-21T05:36:27.613379+00:00",
+  "proposed_manifest_sha256": "9a4ecea6e6846e47b1284a489f6871a5a4571b96a9f2ed160bb620d7a0ff7f07",
+  "proposed_source": {
+    "dashboard_averages_used": false,
+    "dates": [
+      "2018-10-06",
+      "2026-10-10"
+    ],
+    "development_season": "2024-2025",
+    "geography": "13 named Utah districts plus statewide; state overlaps district population",
+    "inputs": "Single revised weekly source; no historical release-availability or ensemble-performance claim",
+    "labels": "Proposed weekly influenza ED visit percentages divided by 100 exactly once",
+    "locations": [
+      "bear-river",
+      "central",
+      "davis",
+      "salt-lake",
+      "san-juan",
+      "southeast",
+      "southwest",
+      "summit",
+      "tooele",
+      "tri-county",
+      "utah",
+      "utah-county",
+      "wasatch",
+      "weber-morgan"
+    ],
+    "mapping": "Explicit district names, independently equal to every proposed target-data row; numeric raw region 4/5 do not match metadata codes",
+    "merged_at_capture": false,
+    "published": false,
+    "reserved_season": "2025-2026; excluded from iterative selection",
+    "source_hashes": {
+      "latest-data.csv": "9579891d50a7a07dde38fea634e66a41b07f8e2c056623b642f1549736b80b03",
+      "locations.csv": "f4f3a41735e1d80ec33f534f7833fdffccd3830e91635f717b458965c088076a",
+      "pull-587.json": "b82ee83b435b80d52feaa0db1754035b560c72491643b520542fb6bcb650379d",
+      "time-series.csv": "1b0184b0a443128d42d5facfc48de4437e138dcc4804cbec817a83bb5031a2b6",
+      "utah-weekly.csv": "c0d84d5879033b43eb6c1e5a203f311fa2ebeca986edc907ebb3087fd1c67827"
+    },
+    "source_pr": "https://github.com/reichlab/flu-metrocast/pull/587",
+    "source_repository": "EpiForeSITE/flu-metrocast-utah",
+    "source_sha": "747e9104202f44ad90778c3e0903e326b737525f",
+    "status": "Provisional unmerged source; separate from pinned main panel",
+    "training_seasons": [
+      "2022-2023",
+      "2023-2024"
+    ],
+    "weighting": "Equal observed-location weight, including the overlapping statewide series"
+  },
+  "source_sha256": {
+    "data/experiments/metrocast-utah-proposed-fullseason-r074/early-season-long-horizon.csv": "fd3efe43b174ea9c3690d584111cc20cd3e6c469792560803606d0fe687bc1a3",
+    "data/experiments/metrocast-utah-proposed-fullseason-r076/early-season-long-horizon.csv": "2e96bd6dad95cbff28f3c2c21712f5ea72289f21ce96957667f4c7aed72d323c"
+  }
+}

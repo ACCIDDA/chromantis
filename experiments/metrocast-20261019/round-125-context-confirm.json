@@ -1,0 +1,25 @@
+{
+  "seeds": [
+    42,
+    43,
+    44,
+    45,
+    46
+  ],
+  "candidates": {
+    "context_none": "lookback=52,geography=0,spatial=attention,decoder=residual2,decoder_blocks=2,noise=local,epochs=320,members=32,lr=0.002,covariate_encoder=growth,signal_features=smooth_multiscale,input_normalization=b0,training_target_lag=1,forecast_view=raw",
+    "context_state": "lookback=52,geography=0,spatial=attention,decoder=residual2,decoder_blocks=2,noise=local,epochs=320,members=32,lr=0.002,covariate_encoder=growth,signal_features=smooth_multiscale,covariate_set=state,input_normalization=b0,training_target_lag=1,forecast_view=raw",
+    "context_state_regional": "lookback=52,geography=0,spatial=attention,decoder=residual2,decoder_blocks=2,noise=local,epochs=320,members=32,lr=0.002,covariate_encoder=growth,signal_features=smooth_multiscale,covariate_set=state_regional,input_normalization=b0,training_target_lag=1,forecast_view=raw"
+  },
+  "parents": {},
+  "training_seasons": [
+    "2022-2023",
+    "2023-2024",
+    "2024-2025"
+  ],
+  "evaluation_season": "2025-2026",
+  "inputs": "Revised local history with latest target week hidden during fitting/validation; covariates none versus own-state NSSP versus own-state and other HHS-state mean, latest covariate week masked.",
+  "labels": "Unchanged future flu ED proportions for 90 jurisdictions.",
+  "selection": "Architecture and spatial mode chosen using 2024-25 only; all three context treatments frozen before confirmation.",
+  "evaluation_inputs": "Revised histories plus conservative archived local/state/regional replay against matched ensemble tasks."
+}

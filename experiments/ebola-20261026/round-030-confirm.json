@@ -1,0 +1,21 @@
+{
+  "seeds": [
+    42,
+    43,
+    44,
+    45,
+    46
+  ],
+  "candidates": {
+    "r027_child12": "growth_anchor=1,lookback=6,count_transform=sqrt,geography=0,spatial=pooled,decoder=residual2,decoder_blocks=4,noise=local,latent=4,epochs=160,batch_size=32,members=16,annual_calendar=0,weight_decay=0.0001,covariate_encoder=summary,covariate_set=outbreak,log_loss_weight=1.0,forecast_view=raw",
+    "r028_child21": "growth_anchor=1,lookback=6,count_transform=sqrt,geography=0,spatial=pooled,decoder=residual2,decoder_blocks=4,latent=4,epochs=160,batch_size=32,members=16,annual_calendar=0,weight_decay=0.0001,covariate_encoder=summary,covariate_set=outbreak,log_loss_weight=1.0,forecast_view=raw",
+    "r027_child06": "growth_anchor=1,lookback=6,count_transform=sqrt,geography=0,dynamics=0,spatial=pooled,decoder=residual2,decoder_blocks=2,noise=local,latent=4,width=128,epochs=160,batch_size=32,members=16,lr=0.0005,annual_calendar=0,weight_decay=0.0001,covariate_encoder=summary,covariate_set=outbreak,log_loss_weight=1.0,forecast_view=raw",
+    "r027_child17": "growth_anchor=1,lookback=6,count_transform=sqrt,geography=0,spatial=pooled,decoder=residual2,decoder_blocks=2,noise=local,epochs=160,batch_size=32,members=16,annual_calendar=0,weight_decay=0.0001,covariate_encoder=summary,covariate_set=outbreak,log_loss_weight=1.0,forecast_view=raw",
+    "r026_child20": "growth_anchor=1,lookback=6,count_transform=sqrt,geography=0,spatial=pooled,decoder=residual2,decoder_blocks=2,noise=local,latent=4,width=128,epochs=160,batch_size=32,members=16,annual_calendar=0,weight_decay=0.0001,covariate_encoder=summary,covariate_set=outbreak,log_loss_weight=1.0,covariate_dropout=0.25,forecast_view=raw",
+    "root_reference": "geography=0,decoder=residual2,noise=local,epochs=160,members=32,annual_calendar=0,forecast_view=raw"
+  },
+  "parents": {},
+  "training": "weekly cases, West Africa 2014-15 districts/countries/total, Kivu 2018-20 health zones/provinces/total, and BDBV 2026 weeks before the scoring window; latest values",
+  "evaluation": "BDBV 2026 5 Sep-3 Oct; inputs are latest (finalized) values; horizons 1-4 weeks",
+  "selection": "task-weighted mean WIS over BDBV locations, natural scale; lower is better; the confirmation window never enters the search"
+}

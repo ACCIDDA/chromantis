@@ -1,0 +1,38 @@
+{
+  "seeds": [
+    42,
+    43,
+    44,
+    45
+  ],
+  "candidates": {
+    "mlp_width64": "geography=0,decoder=residual2,noise=local,epochs=160,members=32,annual_calendar=0,forecast_view=raw",
+    "mlp_width32": "geography=0,decoder=residual2,noise=local,width=32,epochs=160,members=32,annual_calendar=0,forecast_view=raw",
+    "mlp_width128": "geography=0,decoder=residual2,noise=local,width=128,epochs=160,members=32,annual_calendar=0,forecast_view=raw",
+    "mlp_width256": "geography=0,decoder=residual2,noise=local,width=256,epochs=160,members=32,annual_calendar=0,forecast_view=raw",
+    "log1p": "count_transform=log1p,geography=0,decoder=residual2,noise=local,epochs=160,members=32,annual_calendar=0,forecast_view=raw",
+    "sqrt": "count_transform=sqrt,geography=0,decoder=residual2,noise=local,epochs=160,members=32,annual_calendar=0,forecast_view=raw",
+    "history6": "lookback=6,geography=0,decoder=residual2,noise=local,epochs=160,members=32,annual_calendar=0,forecast_view=raw",
+    "history8": "lookback=8,geography=0,decoder=residual2,noise=local,epochs=160,members=32,annual_calendar=0,forecast_view=raw",
+    "history20": "lookback=20,geography=0,decoder=residual2,noise=local,epochs=160,members=32,annual_calendar=0,forecast_view=raw",
+    "gru": "geography=0,encoder=gru,decoder=residual2,noise=local,epochs=160,members=32,annual_calendar=0,forecast_view=raw",
+    "convolution": "geography=0,encoder=conv,decoder=residual2,noise=local,epochs=160,members=32,annual_calendar=0,forecast_view=raw",
+    "multiscale_conv": "geography=0,encoder=multiscale_conv,decoder=residual2,noise=local,epochs=160,members=32,annual_calendar=0,forecast_view=raw",
+    "pooled_locations": "geography=0,spatial=pooled,decoder=residual2,noise=local,epochs=160,members=32,annual_calendar=0,forecast_view=raw",
+    "attention_locations": "geography=0,spatial=attention,decoder=residual2,noise=local,epochs=160,members=32,annual_calendar=0,forecast_view=raw",
+    "parent_input": "geography=0,decoder=residual2,noise=local,epochs=160,members=32,annual_calendar=0,covariate_encoder=summary,covariate_set=parent,forecast_view=raw",
+    "outbreak_input": "geography=0,decoder=residual2,noise=local,epochs=160,members=32,annual_calendar=0,covariate_encoder=summary,covariate_set=outbreak,forecast_view=raw",
+    "parent_outbreak_raw": "geography=0,decoder=residual2,noise=local,epochs=160,members=32,annual_calendar=0,covariate_set=parent+outbreak,forecast_view=raw",
+    "global_noise": "geography=0,decoder=residual2,epochs=160,members=32,annual_calendar=0,forecast_view=raw",
+    "fewer_updates": "geography=0,decoder=residual2,noise=local,epochs=80,members=32,annual_calendar=0,forecast_view=raw",
+    "more_updates": "geography=0,decoder=residual2,noise=local,epochs=320,members=32,annual_calendar=0,forecast_view=raw",
+    "log_loss": "geography=0,decoder=residual2,noise=local,epochs=160,members=32,annual_calendar=0,log_loss_weight=0.5,forecast_view=raw",
+    "no_dynamics": "geography=0,dynamics=0,decoder=residual2,noise=local,epochs=160,members=32,annual_calendar=0,forecast_view=raw",
+    "growth_anchor": "growth_anchor=1,geography=0,decoder=residual2,noise=local,epochs=160,members=32,annual_calendar=0,forecast_view=raw",
+    "batch16_lr2e-3": "geography=0,decoder=residual2,noise=local,epochs=160,batch_size=16,members=32,lr=0.002,annual_calendar=0,forecast_view=raw"
+  },
+  "parents": {},
+  "training": "weekly cases, West Africa 2014-15 districts/countries/total, Kivu 2018-20 health zones/provinces/total, and BDBV 2026 weeks before the scoring window; latest values",
+  "evaluation": "BDBV 2026 6 Jun-18 Jul and 25 Jul-29 Aug; inputs are latest (finalized) values; horizons 1-4 weeks",
+  "selection": "task-weighted mean WIS over BDBV locations, natural scale; lower is better; the confirmation window never enters the search"
+}

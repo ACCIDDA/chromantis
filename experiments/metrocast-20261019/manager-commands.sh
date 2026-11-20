@@ -740,3 +740,541 @@ LANES=8 GPUS=6 sbatch --job-name=metrocast-full-season-direct-refine-r082 --arra
 
 sbatch --job-name=metrocast-full-season-direct-refine-r082-score scripts/metrocast_full_season_score.sbatch metrocast-full-season-direct-refine-r082 --wait
 # Submitted batch job 5903558
+
+# metrocast-screen-r083; actual execution uses the already queued metrocast_tree.sbatch workers.
+.venv/bin/python -m chromantis.experiment.planner plan -e metrocast-screen-r083 --problem problems/metrocast-flu-screen.json --study experiments/metrocast-20261019/round-083-screen.json --device cuda
+LANES=4 GPUS=6 sbatch --job-name=metrocast-screen-r083 --array=0-3 scripts/jlessler.sbatch metrocast-screen-r083
+LANES=8 GPUS=6 sbatch --job-name=metrocast-screen-r083 --array=0-1 --nodelist=g1803jles02 scripts/jlessler.sbatch metrocast-screen-r083
+.venv/bin/python -m chromantis.experiment.planner status -e metrocast-screen-r083
+.venv/bin/python -m chromantis.experiment.planner rank -e metrocast-screen-r083 --allow-incomplete --no-report
+
+# metrocast-screen-r084; actual execution uses the already queued metrocast_tree.sbatch workers.
+.venv/bin/python -m chromantis.experiment.planner plan -e metrocast-screen-r084 --problem problems/metrocast-flu-screen.json --study experiments/metrocast-20261019/round-084-screen.json --device cuda
+LANES=4 GPUS=6 sbatch --job-name=metrocast-screen-r084 --array=0-3 scripts/jlessler.sbatch metrocast-screen-r084
+LANES=8 GPUS=6 sbatch --job-name=metrocast-screen-r084 --array=0-1 --nodelist=g1803jles02 scripts/jlessler.sbatch metrocast-screen-r084
+.venv/bin/python -m chromantis.experiment.planner status -e metrocast-screen-r084
+.venv/bin/python -m chromantis.experiment.planner rank -e metrocast-screen-r084 --allow-incomplete --no-report
+
+# metrocast-screen-r085; actual execution uses the already queued metrocast_tree.sbatch workers.
+.venv/bin/python -m chromantis.experiment.planner plan -e metrocast-screen-r085 --problem problems/metrocast-flu-screen.json --study experiments/metrocast-20261019/round-085-screen.json --device cuda
+LANES=4 GPUS=6 sbatch --job-name=metrocast-screen-r085 --array=0-3 scripts/jlessler.sbatch metrocast-screen-r085
+LANES=8 GPUS=6 sbatch --job-name=metrocast-screen-r085 --array=0-1 --nodelist=g1803jles02 scripts/jlessler.sbatch metrocast-screen-r085
+.venv/bin/python -m chromantis.experiment.planner status -e metrocast-screen-r085
+.venv/bin/python -m chromantis.experiment.planner rank -e metrocast-screen-r085 --allow-incomplete --no-report
+
+# metrocast-screen-r086; actual execution uses the already queued metrocast_tree.sbatch workers.
+.venv/bin/python -m chromantis.experiment.planner plan -e metrocast-screen-r086 --problem problems/metrocast-flu-screen.json --study experiments/metrocast-20261019/round-086-screen.json --device cuda
+LANES=4 GPUS=6 sbatch --job-name=metrocast-screen-r086 --array=0-3 scripts/jlessler.sbatch metrocast-screen-r086
+LANES=8 GPUS=6 sbatch --job-name=metrocast-screen-r086 --array=0-1 --nodelist=g1803jles02 scripts/jlessler.sbatch metrocast-screen-r086
+.venv/bin/python -m chromantis.experiment.planner status -e metrocast-screen-r086
+.venv/bin/python -m chromantis.experiment.planner rank -e metrocast-screen-r086 --allow-incomplete --no-report
+
+# metrocast-screen-r087; actual execution uses the already queued metrocast_tree.sbatch workers.
+.venv/bin/python -m chromantis.experiment.planner plan -e metrocast-screen-r087 --problem problems/metrocast-flu-screen.json --study experiments/metrocast-20261019/round-087-screen.json --device cuda
+LANES=4 GPUS=6 sbatch --job-name=metrocast-screen-r087 --array=0-3 scripts/jlessler.sbatch metrocast-screen-r087
+LANES=8 GPUS=6 sbatch --job-name=metrocast-screen-r087 --array=0-1 --nodelist=g1803jles02 scripts/jlessler.sbatch metrocast-screen-r087
+.venv/bin/python -m chromantis.experiment.planner status -e metrocast-screen-r087
+.venv/bin/python -m chromantis.experiment.planner rank -e metrocast-screen-r087 --allow-incomplete --no-report
+
+# metrocast-screen-r088; actual execution uses the already queued metrocast_tree.sbatch workers.
+.venv/bin/python -m chromantis.experiment.planner plan -e metrocast-screen-r088 --problem problems/metrocast-flu-screen.json --study experiments/metrocast-20261019/round-088-screen.json --device cuda
+LANES=4 GPUS=6 sbatch --job-name=metrocast-screen-r088 --array=0-3 scripts/jlessler.sbatch metrocast-screen-r088
+LANES=8 GPUS=6 sbatch --job-name=metrocast-screen-r088 --array=0-1 --nodelist=g1803jles02 scripts/jlessler.sbatch metrocast-screen-r088
+.venv/bin/python -m chromantis.experiment.planner status -e metrocast-screen-r088
+.venv/bin/python -m chromantis.experiment.planner rank -e metrocast-screen-r088 --allow-incomplete --no-report
+
+# metrocast-screen-r089; actual execution uses the already queued metrocast_tree.sbatch workers.
+.venv/bin/python -m chromantis.experiment.planner plan -e metrocast-screen-r089 --problem problems/metrocast-flu-screen.json --study experiments/metrocast-20261019/round-089-screen.json --device cuda
+LANES=4 GPUS=6 sbatch --job-name=metrocast-screen-r089 --array=0-3 scripts/jlessler.sbatch metrocast-screen-r089
+LANES=8 GPUS=6 sbatch --job-name=metrocast-screen-r089 --array=0-1 --nodelist=g1803jles02 scripts/jlessler.sbatch metrocast-screen-r089
+.venv/bin/python -m chromantis.experiment.planner status -e metrocast-screen-r089
+.venv/bin/python -m chromantis.experiment.planner rank -e metrocast-screen-r089 --allow-incomplete --no-report
+
+# metrocast-screen-r090; actual execution uses the already queued metrocast_tree.sbatch workers.
+.venv/bin/python -m chromantis.experiment.planner plan -e metrocast-screen-r090 --problem problems/metrocast-flu-screen.json --study experiments/metrocast-20261019/round-090-screen.json --device cuda
+LANES=4 GPUS=6 sbatch --job-name=metrocast-screen-r090 --array=0-3 scripts/jlessler.sbatch metrocast-screen-r090
+LANES=8 GPUS=6 sbatch --job-name=metrocast-screen-r090 --array=0-1 --nodelist=g1803jles02 scripts/jlessler.sbatch metrocast-screen-r090
+.venv/bin/python -m chromantis.experiment.planner status -e metrocast-screen-r090
+.venv/bin/python -m chromantis.experiment.planner rank -e metrocast-screen-r090 --allow-incomplete --no-report
+
+# metrocast-screen-r091; actual execution uses the already queued metrocast_tree.sbatch workers.
+.venv/bin/python -m chromantis.experiment.planner plan -e metrocast-screen-r091 --problem problems/metrocast-flu-screen.json --study experiments/metrocast-20261019/round-091-screen.json --device cuda
+LANES=4 GPUS=6 sbatch --job-name=metrocast-screen-r091 --array=0-3 scripts/jlessler.sbatch metrocast-screen-r091
+LANES=8 GPUS=6 sbatch --job-name=metrocast-screen-r091 --array=0-1 --nodelist=g1803jles02 scripts/jlessler.sbatch metrocast-screen-r091
+.venv/bin/python -m chromantis.experiment.planner status -e metrocast-screen-r091
+.venv/bin/python -m chromantis.experiment.planner rank -e metrocast-screen-r091 --allow-incomplete --no-report
+
+# metrocast-screen-r092; actual execution uses the already queued metrocast_tree.sbatch workers.
+.venv/bin/python -m chromantis.experiment.planner plan -e metrocast-screen-r092 --problem problems/metrocast-flu-screen.json --study experiments/metrocast-20261019/round-092-screen.json --device cuda
+LANES=4 GPUS=6 sbatch --job-name=metrocast-screen-r092 --array=0-3 scripts/jlessler.sbatch metrocast-screen-r092
+LANES=8 GPUS=6 sbatch --job-name=metrocast-screen-r092 --array=0-1 --nodelist=g1803jles02 scripts/jlessler.sbatch metrocast-screen-r092
+.venv/bin/python -m chromantis.experiment.planner status -e metrocast-screen-r092
+.venv/bin/python -m chromantis.experiment.planner rank -e metrocast-screen-r092 --allow-incomplete --no-report
+
+# metrocast-screen-r093; actual execution uses the already queued metrocast_tree.sbatch workers.
+.venv/bin/python -m chromantis.experiment.planner plan -e metrocast-screen-r093 --problem problems/metrocast-flu-screen.json --study experiments/metrocast-20261019/round-093-screen.json --device cuda
+LANES=4 GPUS=6 sbatch --job-name=metrocast-screen-r093 --array=0-3 scripts/jlessler.sbatch metrocast-screen-r093
+LANES=8 GPUS=6 sbatch --job-name=metrocast-screen-r093 --array=0-1 --nodelist=g1803jles02 scripts/jlessler.sbatch metrocast-screen-r093
+.venv/bin/python -m chromantis.experiment.planner status -e metrocast-screen-r093
+.venv/bin/python -m chromantis.experiment.planner rank -e metrocast-screen-r093 --allow-incomplete --no-report
+
+# metrocast-screen-r094; actual execution uses the already queued metrocast_tree.sbatch workers.
+.venv/bin/python -m chromantis.experiment.planner plan -e metrocast-screen-r094 --problem problems/metrocast-flu-screen.json --study experiments/metrocast-20261019/round-094-screen.json --device cuda
+LANES=4 GPUS=6 sbatch --job-name=metrocast-screen-r094 --array=0-3 scripts/jlessler.sbatch metrocast-screen-r094
+LANES=8 GPUS=6 sbatch --job-name=metrocast-screen-r094 --array=0-1 --nodelist=g1803jles02 scripts/jlessler.sbatch metrocast-screen-r094
+.venv/bin/python -m chromantis.experiment.planner status -e metrocast-screen-r094
+.venv/bin/python -m chromantis.experiment.planner rank -e metrocast-screen-r094 --allow-incomplete --no-report
+
+# metrocast-screen-r095; actual execution uses the already queued metrocast_tree.sbatch workers.
+.venv/bin/python -m chromantis.experiment.planner plan -e metrocast-screen-r095 --problem problems/metrocast-flu-screen.json --study experiments/metrocast-20261019/round-095-screen.json --device cuda
+LANES=4 GPUS=6 sbatch --job-name=metrocast-screen-r095 --array=0-3 scripts/jlessler.sbatch metrocast-screen-r095
+LANES=8 GPUS=6 sbatch --job-name=metrocast-screen-r095 --array=0-1 --nodelist=g1803jles02 scripts/jlessler.sbatch metrocast-screen-r095
+.venv/bin/python -m chromantis.experiment.planner status -e metrocast-screen-r095
+.venv/bin/python -m chromantis.experiment.planner rank -e metrocast-screen-r095 --allow-incomplete --no-report
+
+# metrocast-screen-r096; actual execution uses the already queued metrocast_tree.sbatch workers.
+.venv/bin/python -m chromantis.experiment.planner plan -e metrocast-screen-r096 --problem problems/metrocast-flu-screen.json --study experiments/metrocast-20261019/round-096-screen.json --device cuda
+LANES=4 GPUS=6 sbatch --job-name=metrocast-screen-r096 --array=0-3 scripts/jlessler.sbatch metrocast-screen-r096
+LANES=8 GPUS=6 sbatch --job-name=metrocast-screen-r096 --array=0-1 --nodelist=g1803jles02 scripts/jlessler.sbatch metrocast-screen-r096
+.venv/bin/python -m chromantis.experiment.planner status -e metrocast-screen-r096
+.venv/bin/python -m chromantis.experiment.planner rank -e metrocast-screen-r096 --allow-incomplete --no-report
+
+# metrocast-screen-r097; actual execution uses the already queued metrocast_tree.sbatch workers.
+.venv/bin/python -m chromantis.experiment.planner plan -e metrocast-screen-r097 --problem problems/metrocast-flu-screen.json --study experiments/metrocast-20261019/round-097-screen.json --device cuda
+LANES=4 GPUS=6 sbatch --job-name=metrocast-screen-r097 --array=0-3 scripts/jlessler.sbatch metrocast-screen-r097
+LANES=8 GPUS=6 sbatch --job-name=metrocast-screen-r097 --array=0-1 --nodelist=g1803jles02 scripts/jlessler.sbatch metrocast-screen-r097
+.venv/bin/python -m chromantis.experiment.planner status -e metrocast-screen-r097
+.venv/bin/python -m chromantis.experiment.planner rank -e metrocast-screen-r097 --allow-incomplete --no-report
+
+# metrocast-screen-r098; actual execution uses the already queued metrocast_tree.sbatch workers.
+.venv/bin/python -m chromantis.experiment.planner plan -e metrocast-screen-r098 --problem problems/metrocast-flu-screen.json --study experiments/metrocast-20261019/round-098-screen.json --device cuda
+LANES=4 GPUS=6 sbatch --job-name=metrocast-screen-r098 --array=0-3 scripts/jlessler.sbatch metrocast-screen-r098
+LANES=8 GPUS=6 sbatch --job-name=metrocast-screen-r098 --array=0-1 --nodelist=g1803jles02 scripts/jlessler.sbatch metrocast-screen-r098
+.venv/bin/python -m chromantis.experiment.planner status -e metrocast-screen-r098
+.venv/bin/python -m chromantis.experiment.planner rank -e metrocast-screen-r098 --allow-incomplete --no-report
+
+# metrocast-screen-r099; actual execution uses the already queued metrocast_tree.sbatch workers.
+.venv/bin/python -m chromantis.experiment.planner plan -e metrocast-screen-r099 --problem problems/metrocast-flu-screen.json --study experiments/metrocast-20261019/round-099-screen.json --device cuda
+LANES=4 GPUS=6 sbatch --job-name=metrocast-screen-r099 --array=0-3 scripts/jlessler.sbatch metrocast-screen-r099
+LANES=8 GPUS=6 sbatch --job-name=metrocast-screen-r099 --array=0-1 --nodelist=g1803jles02 scripts/jlessler.sbatch metrocast-screen-r099
+.venv/bin/python -m chromantis.experiment.planner status -e metrocast-screen-r099
+.venv/bin/python -m chromantis.experiment.planner rank -e metrocast-screen-r099 --allow-incomplete --no-report
+
+# metrocast-screen-r100; actual execution uses the already queued metrocast_tree.sbatch workers.
+.venv/bin/python -m chromantis.experiment.planner plan -e metrocast-screen-r100 --problem problems/metrocast-flu-screen.json --study experiments/metrocast-20261019/round-100-screen.json --device cuda
+LANES=4 GPUS=6 sbatch --job-name=metrocast-screen-r100 --array=0-3 scripts/jlessler.sbatch metrocast-screen-r100
+LANES=8 GPUS=6 sbatch --job-name=metrocast-screen-r100 --array=0-1 --nodelist=g1803jles02 scripts/jlessler.sbatch metrocast-screen-r100
+.venv/bin/python -m chromantis.experiment.planner status -e metrocast-screen-r100
+.venv/bin/python -m chromantis.experiment.planner rank -e metrocast-screen-r100 --allow-incomplete --no-report
+
+# metrocast-screen-r101; actual execution uses the already queued metrocast_tree.sbatch workers.
+.venv/bin/python -m chromantis.experiment.planner plan -e metrocast-screen-r101 --problem problems/metrocast-flu-screen.json --study experiments/metrocast-20261019/round-101-screen.json --device cuda
+LANES=4 GPUS=6 sbatch --job-name=metrocast-screen-r101 --array=0-3 scripts/jlessler.sbatch metrocast-screen-r101
+LANES=8 GPUS=6 sbatch --job-name=metrocast-screen-r101 --array=0-1 --nodelist=g1803jles02 scripts/jlessler.sbatch metrocast-screen-r101
+.venv/bin/python -m chromantis.experiment.planner status -e metrocast-screen-r101
+.venv/bin/python -m chromantis.experiment.planner rank -e metrocast-screen-r101 --allow-incomplete --no-report
+
+# metrocast-screen-r102; actual execution uses the already queued metrocast_tree.sbatch workers.
+.venv/bin/python -m chromantis.experiment.planner plan -e metrocast-screen-r102 --problem problems/metrocast-flu-screen.json --study experiments/metrocast-20261019/round-102-screen.json --device cuda
+LANES=4 GPUS=6 sbatch --job-name=metrocast-screen-r102 --array=0-3 scripts/jlessler.sbatch metrocast-screen-r102
+LANES=8 GPUS=6 sbatch --job-name=metrocast-screen-r102 --array=0-1 --nodelist=g1803jles02 scripts/jlessler.sbatch metrocast-screen-r102
+.venv/bin/python -m chromantis.experiment.planner status -e metrocast-screen-r102
+.venv/bin/python -m chromantis.experiment.planner rank -e metrocast-screen-r102 --allow-incomplete --no-report
+
+# metrocast-screen-r103; actual execution uses the already queued metrocast_tree.sbatch workers.
+.venv/bin/python -m chromantis.experiment.planner plan -e metrocast-screen-r103 --problem problems/metrocast-flu-screen.json --study experiments/metrocast-20261019/round-103-screen.json --device cuda
+LANES=4 GPUS=6 sbatch --job-name=metrocast-screen-r103 --array=0-3 scripts/jlessler.sbatch metrocast-screen-r103
+LANES=8 GPUS=6 sbatch --job-name=metrocast-screen-r103 --array=0-1 --nodelist=g1803jles02 scripts/jlessler.sbatch metrocast-screen-r103
+.venv/bin/python -m chromantis.experiment.planner status -e metrocast-screen-r103
+.venv/bin/python -m chromantis.experiment.planner rank -e metrocast-screen-r103 --allow-incomplete --no-report
+
+# metrocast-screen-r104; actual execution uses the already queued metrocast_tree.sbatch workers.
+.venv/bin/python -m chromantis.experiment.planner plan -e metrocast-screen-r104 --problem problems/metrocast-flu-screen.json --study experiments/metrocast-20261019/round-104-screen.json --device cuda
+LANES=4 GPUS=6 sbatch --job-name=metrocast-screen-r104 --array=0-3 scripts/jlessler.sbatch metrocast-screen-r104
+LANES=8 GPUS=6 sbatch --job-name=metrocast-screen-r104 --array=0-1 --nodelist=g1803jles02 scripts/jlessler.sbatch metrocast-screen-r104
+.venv/bin/python -m chromantis.experiment.planner status -e metrocast-screen-r104
+.venv/bin/python -m chromantis.experiment.planner rank -e metrocast-screen-r104 --allow-incomplete --no-report
+
+# metrocast-screen-r105; actual execution uses the already queued metrocast_tree.sbatch workers.
+.venv/bin/python -m chromantis.experiment.planner plan -e metrocast-screen-r105 --problem problems/metrocast-flu-screen.json --study experiments/metrocast-20261019/round-105-screen.json --device cuda
+LANES=4 GPUS=6 sbatch --job-name=metrocast-screen-r105 --array=0-3 scripts/jlessler.sbatch metrocast-screen-r105
+LANES=8 GPUS=6 sbatch --job-name=metrocast-screen-r105 --array=0-1 --nodelist=g1803jles02 scripts/jlessler.sbatch metrocast-screen-r105
+.venv/bin/python -m chromantis.experiment.planner status -e metrocast-screen-r105
+.venv/bin/python -m chromantis.experiment.planner rank -e metrocast-screen-r105 --allow-incomplete --no-report
+
+# metrocast-screen-r106; actual execution uses the already queued metrocast_tree.sbatch workers.
+.venv/bin/python -m chromantis.experiment.planner plan -e metrocast-screen-r106 --problem problems/metrocast-flu-screen.json --study experiments/metrocast-20261019/round-106-screen.json --device cuda
+LANES=4 GPUS=6 sbatch --job-name=metrocast-screen-r106 --array=0-3 scripts/jlessler.sbatch metrocast-screen-r106
+LANES=8 GPUS=6 sbatch --job-name=metrocast-screen-r106 --array=0-1 --nodelist=g1803jles02 scripts/jlessler.sbatch metrocast-screen-r106
+.venv/bin/python -m chromantis.experiment.planner status -e metrocast-screen-r106
+.venv/bin/python -m chromantis.experiment.planner rank -e metrocast-screen-r106 --allow-incomplete --no-report
+
+# metrocast-screen-r107; actual execution uses the already queued metrocast_tree.sbatch workers.
+.venv/bin/python -m chromantis.experiment.planner plan -e metrocast-screen-r107 --problem problems/metrocast-flu-screen.json --study experiments/metrocast-20261019/round-107-screen.json --device cuda
+LANES=4 GPUS=6 sbatch --job-name=metrocast-screen-r107 --array=0-3 scripts/jlessler.sbatch metrocast-screen-r107
+LANES=8 GPUS=6 sbatch --job-name=metrocast-screen-r107 --array=0-1 --nodelist=g1803jles02 scripts/jlessler.sbatch metrocast-screen-r107
+.venv/bin/python -m chromantis.experiment.planner status -e metrocast-screen-r107
+.venv/bin/python -m chromantis.experiment.planner rank -e metrocast-screen-r107 --allow-incomplete --no-report
+
+# metrocast-screen-r108; actual execution uses the already queued metrocast_tree.sbatch workers.
+.venv/bin/python -m chromantis.experiment.planner plan -e metrocast-screen-r108 --problem problems/metrocast-flu-screen.json --study experiments/metrocast-20261019/round-108-screen.json --device cuda
+LANES=4 GPUS=6 sbatch --job-name=metrocast-screen-r108 --array=0-3 scripts/jlessler.sbatch metrocast-screen-r108
+LANES=8 GPUS=6 sbatch --job-name=metrocast-screen-r108 --array=0-1 --nodelist=g1803jles02 scripts/jlessler.sbatch metrocast-screen-r108
+.venv/bin/python -m chromantis.experiment.planner status -e metrocast-screen-r108
+.venv/bin/python -m chromantis.experiment.planner rank -e metrocast-screen-r108 --allow-incomplete --no-report
+
+# metrocast-screen-r109; actual execution uses the already queued metrocast_tree.sbatch workers.
+.venv/bin/python -m chromantis.experiment.planner plan -e metrocast-screen-r109 --problem problems/metrocast-flu-screen.json --study experiments/metrocast-20261019/round-109-screen.json --device cuda
+LANES=4 GPUS=6 sbatch --job-name=metrocast-screen-r109 --array=0-3 scripts/jlessler.sbatch metrocast-screen-r109
+LANES=8 GPUS=6 sbatch --job-name=metrocast-screen-r109 --array=0-1 --nodelist=g1803jles02 scripts/jlessler.sbatch metrocast-screen-r109
+.venv/bin/python -m chromantis.experiment.planner status -e metrocast-screen-r109
+.venv/bin/python -m chromantis.experiment.planner rank -e metrocast-screen-r109 --allow-incomplete --no-report
+
+# metrocast-screen-r110; actual execution uses the already queued metrocast_tree.sbatch workers.
+.venv/bin/python -m chromantis.experiment.planner plan -e metrocast-screen-r110 --problem problems/metrocast-flu-screen.json --study experiments/metrocast-20261019/round-110-screen.json --device cuda
+LANES=4 GPUS=6 sbatch --job-name=metrocast-screen-r110 --array=0-3 scripts/jlessler.sbatch metrocast-screen-r110
+LANES=8 GPUS=6 sbatch --job-name=metrocast-screen-r110 --array=0-1 --nodelist=g1803jles02 scripts/jlessler.sbatch metrocast-screen-r110
+.venv/bin/python -m chromantis.experiment.planner status -e metrocast-screen-r110
+.venv/bin/python -m chromantis.experiment.planner rank -e metrocast-screen-r110 --allow-incomplete --no-report
+
+# metrocast-screen-r111; actual execution uses the already queued metrocast_tree.sbatch workers.
+.venv/bin/python -m chromantis.experiment.planner plan -e metrocast-screen-r111 --problem problems/metrocast-flu-screen.json --study experiments/metrocast-20261019/round-111-screen.json --device cuda
+LANES=4 GPUS=6 sbatch --job-name=metrocast-screen-r111 --array=0-3 scripts/jlessler.sbatch metrocast-screen-r111
+LANES=8 GPUS=6 sbatch --job-name=metrocast-screen-r111 --array=0-1 --nodelist=g1803jles02 scripts/jlessler.sbatch metrocast-screen-r111
+.venv/bin/python -m chromantis.experiment.planner status -e metrocast-screen-r111
+.venv/bin/python -m chromantis.experiment.planner rank -e metrocast-screen-r111 --allow-incomplete --no-report
+
+# metrocast-screen-r112; actual execution uses the already queued metrocast_tree.sbatch workers.
+.venv/bin/python -m chromantis.experiment.planner plan -e metrocast-screen-r112 --problem problems/metrocast-flu-screen.json --study experiments/metrocast-20261019/round-112-screen.json --device cuda
+LANES=4 GPUS=6 sbatch --job-name=metrocast-screen-r112 --array=0-3 scripts/jlessler.sbatch metrocast-screen-r112
+LANES=8 GPUS=6 sbatch --job-name=metrocast-screen-r112 --array=0-1 --nodelist=g1803jles02 scripts/jlessler.sbatch metrocast-screen-r112
+.venv/bin/python -m chromantis.experiment.planner status -e metrocast-screen-r112
+.venv/bin/python -m chromantis.experiment.planner rank -e metrocast-screen-r112 --allow-incomplete --no-report
+
+# metrocast-screen-r113; actual execution uses the already queued metrocast_tree.sbatch workers.
+.venv/bin/python -m chromantis.experiment.planner plan -e metrocast-screen-r113 --problem problems/metrocast-flu-screen.json --study experiments/metrocast-20261019/round-113-screen.json --device cuda
+LANES=4 GPUS=6 sbatch --job-name=metrocast-screen-r113 --array=0-3 scripts/jlessler.sbatch metrocast-screen-r113
+LANES=8 GPUS=6 sbatch --job-name=metrocast-screen-r113 --array=0-1 --nodelist=g1803jles02 scripts/jlessler.sbatch metrocast-screen-r113
+.venv/bin/python -m chromantis.experiment.planner status -e metrocast-screen-r113
+.venv/bin/python -m chromantis.experiment.planner rank -e metrocast-screen-r113 --allow-incomplete --no-report
+
+# metrocast-screen-r114; actual execution uses the already queued metrocast_tree.sbatch workers.
+.venv/bin/python -m chromantis.experiment.planner plan -e metrocast-screen-r114 --problem problems/metrocast-flu-screen.json --study experiments/metrocast-20261019/round-114-screen.json --device cuda
+LANES=4 GPUS=6 sbatch --job-name=metrocast-screen-r114 --array=0-3 scripts/jlessler.sbatch metrocast-screen-r114
+LANES=8 GPUS=6 sbatch --job-name=metrocast-screen-r114 --array=0-1 --nodelist=g1803jles02 scripts/jlessler.sbatch metrocast-screen-r114
+.venv/bin/python -m chromantis.experiment.planner status -e metrocast-screen-r114
+.venv/bin/python -m chromantis.experiment.planner rank -e metrocast-screen-r114 --allow-incomplete --no-report
+
+# metrocast-screen-r115; actual execution uses the already queued metrocast_tree.sbatch workers.
+.venv/bin/python -m chromantis.experiment.planner plan -e metrocast-screen-r115 --problem problems/metrocast-flu-screen.json --study experiments/metrocast-20261019/round-115-screen.json --device cuda
+LANES=4 GPUS=6 sbatch --job-name=metrocast-screen-r115 --array=0-3 scripts/jlessler.sbatch metrocast-screen-r115
+LANES=8 GPUS=6 sbatch --job-name=metrocast-screen-r115 --array=0-1 --nodelist=g1803jles02 scripts/jlessler.sbatch metrocast-screen-r115
+.venv/bin/python -m chromantis.experiment.planner status -e metrocast-screen-r115
+.venv/bin/python -m chromantis.experiment.planner rank -e metrocast-screen-r115 --allow-incomplete --no-report
+
+# metrocast-screen-r116; actual execution uses the already queued metrocast_tree.sbatch workers.
+.venv/bin/python -m chromantis.experiment.planner plan -e metrocast-screen-r116 --problem problems/metrocast-flu-screen.json --study experiments/metrocast-20261019/round-116-screen.json --device cuda
+LANES=4 GPUS=6 sbatch --job-name=metrocast-screen-r116 --array=0-3 scripts/jlessler.sbatch metrocast-screen-r116
+LANES=8 GPUS=6 sbatch --job-name=metrocast-screen-r116 --array=0-1 --nodelist=g1803jles02 scripts/jlessler.sbatch metrocast-screen-r116
+.venv/bin/python -m chromantis.experiment.planner status -e metrocast-screen-r116
+.venv/bin/python -m chromantis.experiment.planner rank -e metrocast-screen-r116 --allow-incomplete --no-report
+
+# metrocast-screen-r117; actual execution uses the already queued metrocast_tree.sbatch workers.
+.venv/bin/python -m chromantis.experiment.planner plan -e metrocast-screen-r117 --problem problems/metrocast-flu-screen.json --study experiments/metrocast-20261019/round-117-screen.json --device cuda
+LANES=4 GPUS=6 sbatch --job-name=metrocast-screen-r117 --array=0-3 scripts/jlessler.sbatch metrocast-screen-r117
+LANES=8 GPUS=6 sbatch --job-name=metrocast-screen-r117 --array=0-1 --nodelist=g1803jles02 scripts/jlessler.sbatch metrocast-screen-r117
+.venv/bin/python -m chromantis.experiment.planner status -e metrocast-screen-r117
+.venv/bin/python -m chromantis.experiment.planner rank -e metrocast-screen-r117 --allow-incomplete --no-report
+
+# metrocast-screen-r118; actual execution uses the already queued metrocast_tree.sbatch workers.
+.venv/bin/python -m chromantis.experiment.planner plan -e metrocast-screen-r118 --problem problems/metrocast-flu-screen.json --study experiments/metrocast-20261019/round-118-screen.json --device cuda
+LANES=4 GPUS=6 sbatch --job-name=metrocast-screen-r118 --array=0-3 scripts/jlessler.sbatch metrocast-screen-r118
+LANES=8 GPUS=6 sbatch --job-name=metrocast-screen-r118 --array=0-1 --nodelist=g1803jles02 scripts/jlessler.sbatch metrocast-screen-r118
+.venv/bin/python -m chromantis.experiment.planner status -e metrocast-screen-r118
+.venv/bin/python -m chromantis.experiment.planner rank -e metrocast-screen-r118 --allow-incomplete --no-report
+
+# metrocast-screen-r119; actual execution uses the already queued metrocast_tree.sbatch workers.
+.venv/bin/python -m chromantis.experiment.planner plan -e metrocast-screen-r119 --problem problems/metrocast-flu-screen.json --study experiments/metrocast-20261019/round-119-screen.json --device cuda
+LANES=4 GPUS=6 sbatch --job-name=metrocast-screen-r119 --array=0-3 scripts/jlessler.sbatch metrocast-screen-r119
+LANES=8 GPUS=6 sbatch --job-name=metrocast-screen-r119 --array=0-1 --nodelist=g1803jles02 scripts/jlessler.sbatch metrocast-screen-r119
+.venv/bin/python -m chromantis.experiment.planner status -e metrocast-screen-r119
+.venv/bin/python -m chromantis.experiment.planner rank -e metrocast-screen-r119 --allow-incomplete --no-report
+
+# metrocast-screen-r120; actual execution uses the already queued metrocast_tree.sbatch workers.
+.venv/bin/python -m chromantis.experiment.planner plan -e metrocast-screen-r120 --problem problems/metrocast-flu-screen.json --study experiments/metrocast-20261019/round-120-screen.json --device cuda
+LANES=4 GPUS=6 sbatch --job-name=metrocast-screen-r120 --array=0-3 scripts/jlessler.sbatch metrocast-screen-r120
+LANES=8 GPUS=6 sbatch --job-name=metrocast-screen-r120 --array=0-1 --nodelist=g1803jles02 scripts/jlessler.sbatch metrocast-screen-r120
+.venv/bin/python -m chromantis.experiment.planner status -e metrocast-screen-r120
+.venv/bin/python -m chromantis.experiment.planner rank -e metrocast-screen-r120 --allow-incomplete --no-report
+
+# metrocast-screen-r121; actual execution uses the already queued metrocast_tree.sbatch workers.
+.venv/bin/python -m chromantis.experiment.planner plan -e metrocast-screen-r121 --problem problems/metrocast-flu-screen.json --study experiments/metrocast-20261019/round-121-screen.json --device cuda
+LANES=4 GPUS=6 sbatch --job-name=metrocast-screen-r121 --array=0-3 scripts/jlessler.sbatch metrocast-screen-r121
+LANES=8 GPUS=6 sbatch --job-name=metrocast-screen-r121 --array=0-1 --nodelist=g1803jles02 scripts/jlessler.sbatch metrocast-screen-r121
+.venv/bin/python -m chromantis.experiment.planner status -e metrocast-screen-r121
+.venv/bin/python -m chromantis.experiment.planner rank -e metrocast-screen-r121 --allow-incomplete --no-report
+
+# metrocast-confirm-r122; actual execution uses the already queued metrocast_tree.sbatch workers.
+.venv/bin/python -m chromantis.experiment.planner plan -e metrocast-confirm-r122 --problem problems/metrocast-flu-confirm.json --study experiments/metrocast-20261019/round-122-confirm.json --device cuda
+LANES=4 GPUS=6 sbatch --job-name=metrocast-confirm-r122 --array=0-3 scripts/jlessler.sbatch metrocast-confirm-r122
+LANES=8 GPUS=6 sbatch --job-name=metrocast-confirm-r122 --array=0-1 --nodelist=g1803jles02 scripts/jlessler.sbatch metrocast-confirm-r122
+.venv/bin/python -m chromantis.experiment.planner status -e metrocast-confirm-r122
+.venv/bin/python -m chromantis.experiment.planner rank -e metrocast-confirm-r122 --allow-incomplete --no-report
+
+sbatch --job-name=metrocast-confirm-r122-score scripts/metrocast_confirmation_score.sbatch metrocast-confirm-r122
+# Submitted batch job 6005040
+.venv/bin/python scripts/score_metrocast_confirmation.py -e metrocast-confirm-r122
+
+# metrocast-full-season-confirm-r123; actual execution uses the already queued metrocast_tree.sbatch workers.
+.venv/bin/python -m chromantis.experiment.planner plan -e metrocast-full-season-confirm-r123 --problem problems/metrocast-flu-full-season-confirm.json --study experiments/metrocast-20261019/round-123-full-season-confirm.json --device cuda
+LANES=4 GPUS=6 sbatch --job-name=metrocast-full-season-confirm-r123 --array=0-3 scripts/jlessler.sbatch metrocast-full-season-confirm-r123
+LANES=8 GPUS=6 sbatch --job-name=metrocast-full-season-confirm-r123 --array=0-1 --nodelist=g1803jles02 scripts/jlessler.sbatch metrocast-full-season-confirm-r123
+.venv/bin/python -m chromantis.experiment.planner status -e metrocast-full-season-confirm-r123
+.venv/bin/python -m chromantis.experiment.planner rank -e metrocast-full-season-confirm-r123 --allow-incomplete --no-report
+
+sbatch --job-name=metrocast-full-season-confirm-r123-score scripts/metrocast_confirmation_score.sbatch metrocast-full-season-confirm-r123
+# Submitted batch job 6005229
+.venv/bin/python scripts/score_metrocast_confirmation.py -e metrocast-full-season-confirm-r123
+.venv/bin/python scripts/score_metrocast_full_season.py -e metrocast-full-season-confirm-r123 --paths --confirmation
+
+# metrocast-confirm-delay-r124; actual execution uses the already queued metrocast_tree.sbatch workers.
+.venv/bin/python -m chromantis.experiment.planner plan -e metrocast-confirm-delay-r124 --problem problems/metrocast-flu-confirm.json --study experiments/metrocast-20261019/round-124-confirm-delay.json --device cuda
+LANES=4 GPUS=6 sbatch --job-name=metrocast-confirm-delay-r124 --array=0-3 scripts/jlessler.sbatch metrocast-confirm-delay-r124
+LANES=8 GPUS=6 sbatch --job-name=metrocast-confirm-delay-r124 --array=0-1 --nodelist=g1803jles02 scripts/jlessler.sbatch metrocast-confirm-delay-r124
+.venv/bin/python -m chromantis.experiment.planner status -e metrocast-confirm-delay-r124
+.venv/bin/python -m chromantis.experiment.planner rank -e metrocast-confirm-delay-r124 --allow-incomplete --no-report
+
+sbatch --job-name=metrocast-confirm-delay-r124-score scripts/metrocast_confirmation_score.sbatch metrocast-confirm-delay-r124
+# Submitted batch job 6005344
+.venv/bin/python scripts/score_metrocast_confirmation.py -e metrocast-confirm-delay-r124
+
+# metrocast-context-confirm-r125; actual execution uses the already queued metrocast_tree.sbatch workers.
+.venv/bin/python -m chromantis.experiment.planner plan -e metrocast-context-confirm-r125 --problem problems/metrocast-panel-context-confirm.json --study experiments/metrocast-20261019/round-125-context-confirm.json --device cuda
+LANES=4 GPUS=6 sbatch --job-name=metrocast-context-confirm-r125 --array=0-3 scripts/jlessler.sbatch metrocast-context-confirm-r125
+LANES=8 GPUS=6 sbatch --job-name=metrocast-context-confirm-r125 --array=0-1 --nodelist=g1803jles02 scripts/jlessler.sbatch metrocast-context-confirm-r125
+.venv/bin/python -m chromantis.experiment.planner status -e metrocast-context-confirm-r125
+.venv/bin/python -m chromantis.experiment.planner rank -e metrocast-context-confirm-r125 --allow-incomplete --no-report
+
+sbatch --job-name=metrocast-context-confirm-r125-score scripts/metrocast_confirmation_score.sbatch metrocast-context-confirm-r125
+# Submitted batch job 6005468
+.venv/bin/python scripts/score_metrocast_confirmation.py -e metrocast-context-confirm-r125
+
+# metrocast-california-confirm-r126; actual execution uses the already queued metrocast_tree.sbatch workers.
+.venv/bin/python -m chromantis.experiment.planner plan -e metrocast-california-confirm-r126 --problem problems/metrocast-california-confirm.json --study experiments/metrocast-20261019/round-126-california-confirm.json --device cuda
+LANES=4 GPUS=6 sbatch --job-name=metrocast-california-confirm-r126 --array=0-3 scripts/jlessler.sbatch metrocast-california-confirm-r126
+LANES=8 GPUS=6 sbatch --job-name=metrocast-california-confirm-r126 --array=0-1 --nodelist=g1803jles02 scripts/jlessler.sbatch metrocast-california-confirm-r126
+.venv/bin/python -m chromantis.experiment.planner status -e metrocast-california-confirm-r126
+.venv/bin/python -m chromantis.experiment.planner rank -e metrocast-california-confirm-r126 --allow-incomplete --no-report
+
+sbatch --job-name=metrocast-california-confirm-r126-score scripts/metrocast_confirmation_score.sbatch metrocast-california-confirm-r126
+# Submitted batch job 6005484
+.venv/bin/python scripts/score_metrocast_california.py -e metrocast-california-confirm-r126 --confirmation
+
+# metrocast-utah-confirm-r127; actual execution uses the already queued metrocast_tree.sbatch workers.
+.venv/bin/python -m chromantis.experiment.planner plan -e metrocast-utah-confirm-r127 --problem problems/metrocast-utah-confirm.json --study experiments/metrocast-20261019/round-127-utah-confirm.json --device cuda
+LANES=4 GPUS=6 sbatch --job-name=metrocast-utah-confirm-r127 --array=0-3 scripts/jlessler.sbatch metrocast-utah-confirm-r127
+LANES=8 GPUS=6 sbatch --job-name=metrocast-utah-confirm-r127 --array=0-1 --nodelist=g1803jles02 scripts/jlessler.sbatch metrocast-utah-confirm-r127
+.venv/bin/python -m chromantis.experiment.planner status -e metrocast-utah-confirm-r127
+.venv/bin/python -m chromantis.experiment.planner rank -e metrocast-utah-confirm-r127 --allow-incomplete --no-report
+
+sbatch --job-name=metrocast-utah-confirm-r127-score scripts/metrocast_confirmation_score.sbatch metrocast-utah-confirm-r127
+# Submitted batch job 6005659
+.venv/bin/python scripts/score_metrocast_full_season.py -e metrocast-utah-confirm-r127 --paths --confirmation
+
+# metrocast-current-fourweek-r128; actual execution uses the already queued metrocast_tree.sbatch workers.
+.venv/bin/python -m chromantis.experiment.planner plan -e metrocast-current-fourweek-r128 --problem problems/metrocast-current-fourweek.json --study experiments/metrocast-20261019/round-128-current-fourweek.json --device cuda
+LANES=4 GPUS=6 sbatch --job-name=metrocast-current-fourweek-r128 --array=0-3 scripts/jlessler.sbatch metrocast-current-fourweek-r128
+LANES=8 GPUS=6 sbatch --job-name=metrocast-current-fourweek-r128 --array=0-1 --nodelist=g1803jles02 scripts/jlessler.sbatch metrocast-current-fourweek-r128
+.venv/bin/python -m chromantis.experiment.planner status -e metrocast-current-fourweek-r128
+.venv/bin/python -m chromantis.experiment.planner rank -e metrocast-current-fourweek-r128 --allow-incomplete --no-report
+
+sbatch --job-name=metrocast-current-fourweek-r128-export scripts/metrocast_current_export.sbatch metrocast-current-fourweek-r128
+# Submitted batch job 6006262
+.venv/bin/python scripts/export_metrocast_current.py -e metrocast-current-fourweek-r128
+
+# metrocast-current-fullseason-r129; actual execution uses the already queued metrocast_tree.sbatch workers.
+.venv/bin/python -m chromantis.experiment.planner plan -e metrocast-current-fullseason-r129 --problem problems/metrocast-current-fullseason.json --study experiments/metrocast-20261019/round-129-current-fullseason.json --device cuda
+LANES=4 GPUS=6 sbatch --job-name=metrocast-current-fullseason-r129 --array=0-3 scripts/jlessler.sbatch metrocast-current-fullseason-r129
+LANES=8 GPUS=6 sbatch --job-name=metrocast-current-fullseason-r129 --array=0-1 --nodelist=g1803jles02 scripts/jlessler.sbatch metrocast-current-fullseason-r129
+.venv/bin/python -m chromantis.experiment.planner status -e metrocast-current-fullseason-r129
+.venv/bin/python -m chromantis.experiment.planner rank -e metrocast-current-fullseason-r129 --allow-incomplete --no-report
+
+sbatch --job-name=metrocast-current-fullseason-r129-export scripts/metrocast_current_export.sbatch metrocast-current-fullseason-r129
+# Submitted batch job 6006967
+.venv/bin/python scripts/export_metrocast_current.py -e metrocast-current-fullseason-r129
+
+# metrocast-current-california-r130; actual execution uses the already queued metrocast_tree.sbatch workers.
+.venv/bin/python -m chromantis.experiment.planner plan -e metrocast-current-california-r130 --problem problems/metrocast-current-california.json --study experiments/metrocast-20261019/round-130-current-california.json --device cuda
+LANES=4 GPUS=6 sbatch --job-name=metrocast-current-california-r130 --array=0-3 scripts/jlessler.sbatch metrocast-current-california-r130
+LANES=8 GPUS=6 sbatch --job-name=metrocast-current-california-r130 --array=0-1 --nodelist=g1803jles02 scripts/jlessler.sbatch metrocast-current-california-r130
+.venv/bin/python -m chromantis.experiment.planner status -e metrocast-current-california-r130
+.venv/bin/python -m chromantis.experiment.planner rank -e metrocast-current-california-r130 --allow-incomplete --no-report
+
+sbatch --job-name=metrocast-current-california-r130-export scripts/metrocast_current_export.sbatch metrocast-current-california-r130
+# Submitted batch job 6009101
+.venv/bin/python scripts/export_metrocast_current.py -e metrocast-current-california-r130
+
+# metrocast-current-utah-r131; actual execution uses the already queued metrocast_tree.sbatch workers.
+.venv/bin/python -m chromantis.experiment.planner plan -e metrocast-current-utah-r131 --problem problems/metrocast-current-utah.json --study experiments/metrocast-20261019/round-131-current-utah.json --device cuda
+LANES=4 GPUS=6 sbatch --job-name=metrocast-current-utah-r131 --array=0-3 scripts/jlessler.sbatch metrocast-current-utah-r131
+LANES=8 GPUS=6 sbatch --job-name=metrocast-current-utah-r131 --array=0-1 --nodelist=g1803jles02 scripts/jlessler.sbatch metrocast-current-utah-r131
+.venv/bin/python -m chromantis.experiment.planner status -e metrocast-current-utah-r131
+.venv/bin/python -m chromantis.experiment.planner rank -e metrocast-current-utah-r131 --allow-incomplete --no-report
+
+sbatch --job-name=metrocast-current-utah-r131-export scripts/metrocast_current_export.sbatch metrocast-current-utah-r131
+# Submitted batch job 6009433
+.venv/bin/python scripts/export_metrocast_current.py -e metrocast-current-utah-r131
+
+# metrocast-screen-r132; actual execution uses the already queued metrocast_tree.sbatch workers.
+.venv/bin/python -m chromantis.experiment.planner plan -e metrocast-screen-r132 --problem problems/metrocast-flu-screen.json --study experiments/metrocast-20261019/round-132-screen.json --device cuda
+LANES=4 GPUS=6 sbatch --job-name=metrocast-screen-r132 --array=0-3 scripts/jlessler.sbatch metrocast-screen-r132
+LANES=8 GPUS=6 sbatch --job-name=metrocast-screen-r132 --array=0-1 --nodelist=g1803jles02 scripts/jlessler.sbatch metrocast-screen-r132
+.venv/bin/python -m chromantis.experiment.planner status -e metrocast-screen-r132
+.venv/bin/python -m chromantis.experiment.planner rank -e metrocast-screen-r132 --allow-incomplete --no-report
+
+# metrocast-screen-r133; actual execution uses the already queued metrocast_tree.sbatch workers.
+.venv/bin/python -m chromantis.experiment.planner plan -e metrocast-screen-r133 --problem problems/metrocast-flu-screen.json --study experiments/metrocast-20261019/round-133-screen.json --device cuda
+LANES=4 GPUS=6 sbatch --job-name=metrocast-screen-r133 --array=0-3 scripts/jlessler.sbatch metrocast-screen-r133
+LANES=8 GPUS=6 sbatch --job-name=metrocast-screen-r133 --array=0-1 --nodelist=g1803jles02 scripts/jlessler.sbatch metrocast-screen-r133
+.venv/bin/python -m chromantis.experiment.planner status -e metrocast-screen-r133
+.venv/bin/python -m chromantis.experiment.planner rank -e metrocast-screen-r133 --allow-incomplete --no-report
+
+# metrocast-screen-r134; actual execution uses the already queued metrocast_tree.sbatch workers.
+.venv/bin/python -m chromantis.experiment.planner plan -e metrocast-screen-r134 --problem problems/metrocast-flu-screen.json --study experiments/metrocast-20261019/round-134-screen.json --device cuda
+LANES=4 GPUS=6 sbatch --job-name=metrocast-screen-r134 --array=0-3 scripts/jlessler.sbatch metrocast-screen-r134
+LANES=8 GPUS=6 sbatch --job-name=metrocast-screen-r134 --array=0-1 --nodelist=g1803jles02 scripts/jlessler.sbatch metrocast-screen-r134
+.venv/bin/python -m chromantis.experiment.planner status -e metrocast-screen-r134
+.venv/bin/python -m chromantis.experiment.planner rank -e metrocast-screen-r134 --allow-incomplete --no-report
+
+# metrocast-screen-r135; actual execution uses the already queued metrocast_tree.sbatch workers.
+.venv/bin/python -m chromantis.experiment.planner plan -e metrocast-screen-r135 --problem problems/metrocast-flu-screen.json --study experiments/metrocast-20261019/round-135-screen.json --device cuda
+LANES=4 GPUS=6 sbatch --job-name=metrocast-screen-r135 --array=0-3 scripts/jlessler.sbatch metrocast-screen-r135
+LANES=8 GPUS=6 sbatch --job-name=metrocast-screen-r135 --array=0-1 --nodelist=g1803jles02 scripts/jlessler.sbatch metrocast-screen-r135
+.venv/bin/python -m chromantis.experiment.planner status -e metrocast-screen-r135
+.venv/bin/python -m chromantis.experiment.planner rank -e metrocast-screen-r135 --allow-incomplete --no-report
+
+# metrocast-screen-r136; actual execution uses the already queued metrocast_tree.sbatch workers.
+.venv/bin/python -m chromantis.experiment.planner plan -e metrocast-screen-r136 --problem problems/metrocast-flu-screen.json --study experiments/metrocast-20261019/round-136-screen.json --device cuda
+LANES=4 GPUS=6 sbatch --job-name=metrocast-screen-r136 --array=0-3 scripts/jlessler.sbatch metrocast-screen-r136
+LANES=8 GPUS=6 sbatch --job-name=metrocast-screen-r136 --array=0-1 --nodelist=g1803jles02 scripts/jlessler.sbatch metrocast-screen-r136
+.venv/bin/python -m chromantis.experiment.planner status -e metrocast-screen-r136
+.venv/bin/python -m chromantis.experiment.planner rank -e metrocast-screen-r136 --allow-incomplete --no-report
+
+# metrocast-screen-r137; actual execution uses the already queued metrocast_tree.sbatch workers.
+.venv/bin/python -m chromantis.experiment.planner plan -e metrocast-screen-r137 --problem problems/metrocast-flu-screen.json --study experiments/metrocast-20261019/round-137-screen.json --device cuda
+LANES=4 GPUS=6 sbatch --job-name=metrocast-screen-r137 --array=0-3 scripts/jlessler.sbatch metrocast-screen-r137
+LANES=8 GPUS=6 sbatch --job-name=metrocast-screen-r137 --array=0-1 --nodelist=g1803jles02 scripts/jlessler.sbatch metrocast-screen-r137
+.venv/bin/python -m chromantis.experiment.planner status -e metrocast-screen-r137
+.venv/bin/python -m chromantis.experiment.planner rank -e metrocast-screen-r137 --allow-incomplete --no-report
+
+# metrocast-screen-r138; actual execution uses the already queued metrocast_tree.sbatch workers.
+.venv/bin/python -m chromantis.experiment.planner plan -e metrocast-screen-r138 --problem problems/metrocast-flu-screen.json --study experiments/metrocast-20261019/round-138-screen.json --device cuda
+LANES=4 GPUS=6 sbatch --job-name=metrocast-screen-r138 --array=0-3 scripts/jlessler.sbatch metrocast-screen-r138
+LANES=8 GPUS=6 sbatch --job-name=metrocast-screen-r138 --array=0-1 --nodelist=g1803jles02 scripts/jlessler.sbatch metrocast-screen-r138
+.venv/bin/python -m chromantis.experiment.planner status -e metrocast-screen-r138
+.venv/bin/python -m chromantis.experiment.planner rank -e metrocast-screen-r138 --allow-incomplete --no-report
+
+# metrocast-screen-r139; actual execution uses the already queued metrocast_tree.sbatch workers.
+.venv/bin/python -m chromantis.experiment.planner plan -e metrocast-screen-r139 --problem problems/metrocast-flu-screen.json --study experiments/metrocast-20261019/round-139-screen.json --device cuda
+LANES=4 GPUS=6 sbatch --job-name=metrocast-screen-r139 --array=0-3 scripts/jlessler.sbatch metrocast-screen-r139
+LANES=8 GPUS=6 sbatch --job-name=metrocast-screen-r139 --array=0-1 --nodelist=g1803jles02 scripts/jlessler.sbatch metrocast-screen-r139
+.venv/bin/python -m chromantis.experiment.planner status -e metrocast-screen-r139
+.venv/bin/python -m chromantis.experiment.planner rank -e metrocast-screen-r139 --allow-incomplete --no-report
+
+# metrocast-screen-r140; actual execution uses the already queued metrocast_tree.sbatch workers.
+.venv/bin/python -m chromantis.experiment.planner plan -e metrocast-screen-r140 --problem problems/metrocast-flu-screen.json --study experiments/metrocast-20261019/round-140-screen.json --device cuda
+LANES=4 GPUS=6 sbatch --job-name=metrocast-screen-r140 --array=0-3 scripts/jlessler.sbatch metrocast-screen-r140
+LANES=8 GPUS=6 sbatch --job-name=metrocast-screen-r140 --array=0-1 --nodelist=g1803jles02 scripts/jlessler.sbatch metrocast-screen-r140
+.venv/bin/python -m chromantis.experiment.planner status -e metrocast-screen-r140
+.venv/bin/python -m chromantis.experiment.planner rank -e metrocast-screen-r140 --allow-incomplete --no-report
+
+# metrocast-screen-r141; actual execution uses the already queued metrocast_tree.sbatch workers.
+.venv/bin/python -m chromantis.experiment.planner plan -e metrocast-screen-r141 --problem problems/metrocast-flu-screen.json --study experiments/metrocast-20261019/round-141-screen.json --device cuda
+LANES=4 GPUS=6 sbatch --job-name=metrocast-screen-r141 --array=0-3 scripts/jlessler.sbatch metrocast-screen-r141
+LANES=8 GPUS=6 sbatch --job-name=metrocast-screen-r141 --array=0-1 --nodelist=g1803jles02 scripts/jlessler.sbatch metrocast-screen-r141
+.venv/bin/python -m chromantis.experiment.planner status -e metrocast-screen-r141
+.venv/bin/python -m chromantis.experiment.planner rank -e metrocast-screen-r141 --allow-incomplete --no-report
+
+# metrocast-screen-r142; actual execution uses the already queued metrocast_tree.sbatch workers.
+.venv/bin/python -m chromantis.experiment.planner plan -e metrocast-screen-r142 --problem problems/metrocast-flu-screen.json --study experiments/metrocast-20261019/round-142-screen.json --device cuda
+LANES=4 GPUS=6 sbatch --job-name=metrocast-screen-r142 --array=0-3 scripts/jlessler.sbatch metrocast-screen-r142
+LANES=8 GPUS=6 sbatch --job-name=metrocast-screen-r142 --array=0-1 --nodelist=g1803jles02 scripts/jlessler.sbatch metrocast-screen-r142
+.venv/bin/python -m chromantis.experiment.planner status -e metrocast-screen-r142
+.venv/bin/python -m chromantis.experiment.planner rank -e metrocast-screen-r142 --allow-incomplete --no-report
+
+# metrocast-screen-r143; actual execution uses the already queued metrocast_tree.sbatch workers.
+.venv/bin/python -m chromantis.experiment.planner plan -e metrocast-screen-r143 --problem problems/metrocast-flu-screen.json --study experiments/metrocast-20261019/round-143-screen.json --device cuda
+LANES=4 GPUS=6 sbatch --job-name=metrocast-screen-r143 --array=0-3 scripts/jlessler.sbatch metrocast-screen-r143
+LANES=8 GPUS=6 sbatch --job-name=metrocast-screen-r143 --array=0-1 --nodelist=g1803jles02 scripts/jlessler.sbatch metrocast-screen-r143
+.venv/bin/python -m chromantis.experiment.planner status -e metrocast-screen-r143
+.venv/bin/python -m chromantis.experiment.planner rank -e metrocast-screen-r143 --allow-incomplete --no-report
+
+# metrocast-screen-r144; actual execution uses the already queued metrocast_tree.sbatch workers.
+.venv/bin/python -m chromantis.experiment.planner plan -e metrocast-screen-r144 --problem problems/metrocast-flu-screen.json --study experiments/metrocast-20261019/round-144-screen.json --device cuda
+LANES=4 GPUS=6 sbatch --job-name=metrocast-screen-r144 --array=0-3 scripts/jlessler.sbatch metrocast-screen-r144
+LANES=8 GPUS=6 sbatch --job-name=metrocast-screen-r144 --array=0-1 --nodelist=g1803jles02 scripts/jlessler.sbatch metrocast-screen-r144
+.venv/bin/python -m chromantis.experiment.planner status -e metrocast-screen-r144
+.venv/bin/python -m chromantis.experiment.planner rank -e metrocast-screen-r144 --allow-incomplete --no-report
+
+# metrocast-screen-r145; actual execution uses the already queued metrocast_tree.sbatch workers.
+.venv/bin/python -m chromantis.experiment.planner plan -e metrocast-screen-r145 --problem problems/metrocast-flu-screen.json --study experiments/metrocast-20261019/round-145-screen.json --device cuda
+LANES=4 GPUS=6 sbatch --job-name=metrocast-screen-r145 --array=0-3 scripts/jlessler.sbatch metrocast-screen-r145
+LANES=8 GPUS=6 sbatch --job-name=metrocast-screen-r145 --array=0-1 --nodelist=g1803jles02 scripts/jlessler.sbatch metrocast-screen-r145
+.venv/bin/python -m chromantis.experiment.planner status -e metrocast-screen-r145
+.venv/bin/python -m chromantis.experiment.planner rank -e metrocast-screen-r145 --allow-incomplete --no-report
+
+# metrocast-screen-r146; actual execution uses the already queued metrocast_tree.sbatch workers.
+.venv/bin/python -m chromantis.experiment.planner plan -e metrocast-screen-r146 --problem problems/metrocast-flu-screen.json --study experiments/metrocast-20261019/round-146-screen.json --device cuda
+LANES=4 GPUS=6 sbatch --job-name=metrocast-screen-r146 --array=0-3 scripts/jlessler.sbatch metrocast-screen-r146
+LANES=8 GPUS=6 sbatch --job-name=metrocast-screen-r146 --array=0-1 --nodelist=g1803jles02 scripts/jlessler.sbatch metrocast-screen-r146
+.venv/bin/python -m chromantis.experiment.planner status -e metrocast-screen-r146
+.venv/bin/python -m chromantis.experiment.planner rank -e metrocast-screen-r146 --allow-incomplete --no-report
+
+# metrocast-screen-r147; actual execution uses the already queued metrocast_tree.sbatch workers.
+.venv/bin/python -m chromantis.experiment.planner plan -e metrocast-screen-r147 --problem problems/metrocast-flu-screen.json --study experiments/metrocast-20261019/round-147-screen.json --device cuda
+LANES=4 GPUS=6 sbatch --job-name=metrocast-screen-r147 --array=0-3 scripts/jlessler.sbatch metrocast-screen-r147
+LANES=8 GPUS=6 sbatch --job-name=metrocast-screen-r147 --array=0-1 --nodelist=g1803jles02 scripts/jlessler.sbatch metrocast-screen-r147
+.venv/bin/python -m chromantis.experiment.planner status -e metrocast-screen-r147
+.venv/bin/python -m chromantis.experiment.planner rank -e metrocast-screen-r147 --allow-incomplete --no-report
+
+# metrocast-screen-r148; actual execution uses the already queued metrocast_tree.sbatch workers.
+.venv/bin/python -m chromantis.experiment.planner plan -e metrocast-screen-r148 --problem problems/metrocast-flu-screen.json --study experiments/metrocast-20261019/round-148-screen.json --device cuda
+LANES=4 GPUS=6 sbatch --job-name=metrocast-screen-r148 --array=0-3 scripts/jlessler.sbatch metrocast-screen-r148
+LANES=8 GPUS=6 sbatch --job-name=metrocast-screen-r148 --array=0-1 --nodelist=g1803jles02 scripts/jlessler.sbatch metrocast-screen-r148
+.venv/bin/python -m chromantis.experiment.planner status -e metrocast-screen-r148
+.venv/bin/python -m chromantis.experiment.planner rank -e metrocast-screen-r148 --allow-incomplete --no-report
+
+# metrocast-screen-r149; actual execution uses the already queued metrocast_tree.sbatch workers.
+.venv/bin/python -m chromantis.experiment.planner plan -e metrocast-screen-r149 --problem problems/metrocast-flu-screen.json --study experiments/metrocast-20261019/round-149-screen.json --device cuda
+LANES=4 GPUS=6 sbatch --job-name=metrocast-screen-r149 --array=0-3 scripts/jlessler.sbatch metrocast-screen-r149
+LANES=8 GPUS=6 sbatch --job-name=metrocast-screen-r149 --array=0-1 --nodelist=g1803jles02 scripts/jlessler.sbatch metrocast-screen-r149
+.venv/bin/python -m chromantis.experiment.planner status -e metrocast-screen-r149
+.venv/bin/python -m chromantis.experiment.planner rank -e metrocast-screen-r149 --allow-incomplete --no-report
+
+# metrocast-screen-r150; actual execution uses the already queued metrocast_tree.sbatch workers.
+.venv/bin/python -m chromantis.experiment.planner plan -e metrocast-screen-r150 --problem problems/metrocast-flu-screen.json --study experiments/metrocast-20261019/round-150-screen.json --device cuda
+LANES=4 GPUS=6 sbatch --job-name=metrocast-screen-r150 --array=0-3 scripts/jlessler.sbatch metrocast-screen-r150
+LANES=8 GPUS=6 sbatch --job-name=metrocast-screen-r150 --array=0-1 --nodelist=g1803jles02 scripts/jlessler.sbatch metrocast-screen-r150
+.venv/bin/python -m chromantis.experiment.planner status -e metrocast-screen-r150
+.venv/bin/python -m chromantis.experiment.planner rank -e metrocast-screen-r150 --allow-incomplete --no-report
+
+# metrocast-screen-r151; actual execution uses the already queued metrocast_tree.sbatch workers.
+.venv/bin/python -m chromantis.experiment.planner plan -e metrocast-screen-r151 --problem problems/metrocast-flu-screen.json --study experiments/metrocast-20261019/round-151-screen.json --device cuda
+LANES=4 GPUS=6 sbatch --job-name=metrocast-screen-r151 --array=0-3 scripts/jlessler.sbatch metrocast-screen-r151
+LANES=8 GPUS=6 sbatch --job-name=metrocast-screen-r151 --array=0-1 --nodelist=g1803jles02 scripts/jlessler.sbatch metrocast-screen-r151
+.venv/bin/python -m chromantis.experiment.planner status -e metrocast-screen-r151
+.venv/bin/python -m chromantis.experiment.planner rank -e metrocast-screen-r151 --allow-incomplete --no-report
+
+# metrocast-screen-r152; actual execution uses the already queued metrocast_tree.sbatch workers.
+.venv/bin/python -m chromantis.experiment.planner plan -e metrocast-screen-r152 --problem problems/metrocast-flu-screen.json --study experiments/metrocast-20261019/round-152-screen.json --device cuda
+LANES=4 GPUS=6 sbatch --job-name=metrocast-screen-r152 --array=0-3 scripts/jlessler.sbatch metrocast-screen-r152
+LANES=8 GPUS=6 sbatch --job-name=metrocast-screen-r152 --array=0-1 --nodelist=g1803jles02 scripts/jlessler.sbatch metrocast-screen-r152
+.venv/bin/python -m chromantis.experiment.planner status -e metrocast-screen-r152
+.venv/bin/python -m chromantis.experiment.planner rank -e metrocast-screen-r152 --allow-incomplete --no-report
+
+# metrocast-screen-r153; actual execution uses the already queued metrocast_tree.sbatch workers.
+.venv/bin/python -m chromantis.experiment.planner plan -e metrocast-screen-r153 --problem problems/metrocast-flu-screen.json --study experiments/metrocast-20261019/round-153-screen.json --device cuda
+LANES=4 GPUS=6 sbatch --job-name=metrocast-screen-r153 --array=0-3 scripts/jlessler.sbatch metrocast-screen-r153
+LANES=8 GPUS=6 sbatch --job-name=metrocast-screen-r153 --array=0-1 --nodelist=g1803jles02 scripts/jlessler.sbatch metrocast-screen-r153
+.venv/bin/python -m chromantis.experiment.planner status -e metrocast-screen-r153
+.venv/bin/python -m chromantis.experiment.planner rank -e metrocast-screen-r153 --allow-incomplete --no-report

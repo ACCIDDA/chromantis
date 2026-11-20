@@ -1,0 +1,291 @@
+{
+  "seeds": [
+    42,
+    43,
+    44,
+    45
+  ],
+  "candidates": {
+    "r021_child00": "lookback=10,count_transform=sqrt,geography=0,encoder=multiscale_conv,decoder=residual2,noise=local,latent=4,epochs=160,batch_size=32,members=16,annual_calendar=0,weight_decay=0.0001,covariate_encoder=growth,covariate_set=outbreak,log_loss_weight=1.0,forecast_view=raw",
+    "r021_child01": "lookback=6,count_transform=log1p,geography=0,encoder=conv,decoder=residual2,noise=local,width=128,epochs=160,batch_size=4,members=16,lr=0.0003,annual_calendar=0,weight_decay=0.001,log_loss_weight=1.0,forecast_view=raw",
+    "r021_child02": "growth_anchor=1,lookback=6,geography=0,dynamics=0,spatial=pooled,decoder=residual2,noise=local,latent=4,epochs=160,batch_size=32,members=64,annual_calendar=0,weight_decay=0.0001,covariate_set=outbreak,log_loss_weight=1.0,forecast_view=raw",
+    "r021_child03": "growth_anchor=1,lookback=6,count_transform=sqrt,geography=0,spatial=pooled,decoder=residual2,noise=local,latent=4,epochs=160,batch_size=32,members=16,annual_calendar=0,weight_decay=0.0001,covariate_set=outbreak,log_loss_weight=1.0,forecast_view=raw",
+    "r021_child04": "growth_anchor=1,lookback=6,count_transform=sqrt,geography=0,spatial=pooled,decoder=residual2,noise=local,latent=4,epochs=160,batch_size=32,members=64,annual_calendar=0,weight_decay=0.0001,covariate_encoder=growth,covariate_set=outbreak,input_normalization=b0,log_loss_weight=0.5,forecast_view=raw",
+    "r021_child05": "growth_anchor=1,lookback=6,count_transform=sqrt,geography=0,spatial=pooled,decoder=residual2,noise=local,latent=4,epochs=80,batch_size=32,members=16,annual_calendar=0,weight_decay=0.0001,covariate_encoder=growth,covariate_set=outbreak,log_loss_weight=1.0,forecast_view=raw",
+    "r021_child06": "growth_anchor=1,lookback=10,count_transform=sqrt,geography=0,decoder=residual2,noise=local,latent=4,epochs=160,batch_size=32,members=16,annual_calendar=0,weight_decay=0.0001,covariate_encoder=summary,covariate_set=outbreak,input_normalization=b0,log_loss_weight=1.0,forecast_view=raw",
+    "r021_child07": "lookback=6,count_transform=log1p,geography=0,encoder=conv,decoder=residual2,noise=local,width=128,epochs=160,batch_size=4,members=32,lr=0.0003,annual_calendar=0,log_loss_weight=1.0,forecast_view=raw",
+    "r021_child08": "growth_anchor=1,lookback=6,count_transform=sqrt,geography=0,dynamics=0,spatial=gated_pool,decoder=residual2,noise=local,latent=4,epochs=160,batch_size=32,members=64,lr=0.002,annual_calendar=0,weight_decay=0.0001,covariate_encoder=summary,covariate_set=outbreak,log_loss_weight=1.0,forecast_view=raw",
+    "r021_child09": "lookback=6,count_transform=sqrt,geography=0,spatial=pooled,decoder=residual2,noise=local,latent=4,epochs=160,batch_size=32,members=16,annual_calendar=0,weight_decay=0.0001,covariate_encoder=summary,covariate_set=outbreak,log_loss_weight=0.5,forecast_view=raw",
+    "r021_child10": "growth_anchor=1,lookback=4,count_transform=sqrt,geography=0,spatial=pooled,decoder=residual2,noise=local,latent=4,epochs=160,batch_size=32,members=64,annual_calendar=0,weight_decay=0.0001,covariate_encoder=growth,covariate_set=parent+outbreak,log_loss_weight=1.0,forecast_view=raw",
+    "r021_child11": "growth_anchor=1,lookback=10,count_transform=sqrt,geography=0,decoder=residual2,noise=local,latent=4,epochs=160,batch_size=32,members=64,annual_calendar=0,weight_decay=0.001,covariate_encoder=growth,covariate_set=outbreak,log_loss_weight=1.0,forecast_view=raw",
+    "r021_child12": "growth_anchor=1,lookback=6,count_transform=sqrt,geography=0,dynamics=0,spatial=pooled,decoder=residual2,noise=local,latent=4,epochs=160,batch_size=32,members=64,lr=0.0005,annual_calendar=0,weight_decay=0.0001,covariate_encoder=summary,covariate_set=outbreak,log_loss_weight=0.25,forecast_view=raw",
+    "r021_child13": "growth_anchor=1,lookback=26,count_transform=sqrt,geography=0,spatial=pooled,decoder=residual2,noise=local,latent=4,epochs=160,batch_size=32,members=16,annual_calendar=0,weight_decay=0.0001,covariate_encoder=summary,covariate_set=outbreak,log_loss_weight=1.0,forecast_view=raw",
+    "r021_child14": "growth_anchor=1,lookback=6,count_transform=sqrt,geography=0,spatial=pooled,decoder=residual2,noise=local,latent=4,epochs=320,batch_size=32,members=64,annual_calendar=0,weight_decay=0.0001,covariate_encoder=growth,log_loss_weight=1.0,forecast_view=raw",
+    "r021_child15": "lookback=10,count_transform=sqrt,geography=0,encoder=multiscale_conv,spatial=gated_pool,decoder=residual2,noise=local,latent=4,epochs=160,batch_size=32,members=16,annual_calendar=0,weight_decay=0.0001,covariate_encoder=growth,covariate_set=outbreak,log_loss_weight=1.0,covariate_dropout=0.25,forecast_view=raw",
+    "r021_child16": "lookback=6,count_transform=log1p,geography=0,encoder=conv,decoder=residual2,noise=local,width=128,epochs=160,batch_size=4,members=16,lr=0.002,annual_calendar=0,log_loss_weight=1.0,forecast_view=raw",
+    "r021_child17": "growth_anchor=1,lookback=6,count_transform=sqrt,geography=0,dynamics=0,spatial=pooled,decoder=residual2,noise=local,width=192,epochs=160,batch_size=32,members=64,annual_calendar=0,weight_decay=0.0001,covariate_encoder=summary,covariate_set=outbreak,log_loss_weight=1.0,forecast_view=raw",
+    "r021_child18": "growth_anchor=1,lookback=6,count_transform=sqrt,geography=0,decoder=residual2,noise=local,latent=4,epochs=160,batch_size=32,members=16,annual_calendar=0,weight_decay=0.0001,covariate_encoder=summary,covariate_set=outbreak,log_loss_weight=1.0,forecast_view=raw",
+    "r021_child19": "growth_anchor=1,lookback=6,count_transform=sqrt,geography=0,spatial=pooled,decoder=residual2,latent=4,epochs=160,batch_size=32,members=64,annual_calendar=0,location_embedding=8,weight_decay=0.01,covariate_encoder=growth,covariate_set=outbreak,log_loss_weight=1.0,forecast_view=raw",
+    "r021_child20": "growth_anchor=1,lookback=20,count_transform=sqrt,geography=0,spatial=pooled,decoder=residual2,noise=local,latent=4,epochs=160,batch_size=32,members=16,annual_calendar=0,weight_decay=0.0001,covariate_encoder=growth,covariate_set=outbreak,log_loss_weight=1.0,forecast_view=raw",
+    "r021_child21": "growth_anchor=1,count_transform=sqrt,geography=0,decoder=residual2,noise=local,latent=4,epochs=160,batch_size=32,members=16,annual_calendar=0,weight_decay=0.0001,covariate_encoder=summary,covariate_set=outbreak,log_loss_weight=1.0,forecast_view=raw",
+    "r021_child22": "lookback=6,count_transform=log1p,geography=0,dynamics=0,encoder=conv,decoder=residual2,noise=local,width=128,epochs=160,batch_size=4,members=16,lr=0.0003,annual_calendar=0,log_loss_weight=1.0,forecast_view=raw",
+    "r021_child23": "growth_anchor=1,lookback=6,count_transform=sqrt,geography=0,spatial=pooled,decoder=residual2,noise=local,latent=4,width=256,epochs=240,batch_size=32,members=64,annual_calendar=0,weight_decay=0.0001,covariate_encoder=summary,covariate_set=outbreak,log_loss_weight=1.0,forecast_view=raw"
+  },
+  "parents": {
+    "r021_child00": {
+      "parent": "r016_child18",
+      "scenario": "growth_anchor=1,lookback=10,count_transform=sqrt,geography=0,decoder=residual2,noise=local,latent=4,epochs=160,batch_size=32,members=16,annual_calendar=0,weight_decay=0.0001,covariate_encoder=growth,covariate_set=outbreak,log_loss_weight=1.0,forecast_view=raw",
+      "development_wis": 2.6945181612318843,
+      "changes": {
+        "lr": 0.001,
+        "noise": "local",
+        "decoder_blocks": 0,
+        "encoder": "multiscale_conv",
+        "growth_anchor": false
+      },
+      "stalled": false
+    },
+    "r021_child01": {
+      "parent": "r016_child09",
+      "scenario": "lookback=6,count_transform=log1p,geography=0,encoder=conv,decoder=residual2,noise=local,width=128,epochs=160,batch_size=4,members=16,lr=0.0003,annual_calendar=0,log_loss_weight=1.0,forecast_view=raw",
+      "development_wis": 2.882248460144927,
+      "changes": {
+        "weight_decay": 0.001
+      },
+      "stalled": false
+    },
+    "r021_child02": {
+      "parent": "r020_child11",
+      "scenario": "growth_anchor=1,lookback=6,count_transform=sqrt,geography=0,dynamics=0,spatial=pooled,decoder=residual2,noise=local,latent=4,epochs=160,batch_size=32,members=64,annual_calendar=0,weight_decay=0.0001,covariate_encoder=summary,covariate_set=outbreak,log_loss_weight=1.0,forecast_view=raw",
+      "development_wis": 2.60847178442029,
+      "changes": {
+        "covariate_encoder": "raw",
+        "dynamics": false,
+        "count_transform": "fourth_root"
+      },
+      "stalled": false
+    },
+    "r021_child03": {
+      "parent": "r019_child06",
+      "scenario": "growth_anchor=1,lookback=6,count_transform=sqrt,geography=0,spatial=pooled,decoder=residual2,noise=local,latent=4,epochs=160,batch_size=32,members=16,annual_calendar=0,weight_decay=0.0001,covariate_encoder=summary,covariate_set=outbreak,log_loss_weight=1.0,forecast_view=raw",
+      "development_wis": 2.6263091032608696,
+      "changes": {
+        "covariate_encoder": "raw"
+      },
+      "stalled": false
+    },
+    "r021_child04": {
+      "parent": "r020_child02",
+      "scenario": "growth_anchor=1,lookback=6,count_transform=sqrt,geography=0,spatial=pooled,decoder=residual2,noise=local,latent=4,epochs=160,batch_size=32,members=64,annual_calendar=0,weight_decay=0.0001,covariate_encoder=growth,covariate_set=outbreak,log_loss_weight=1.0,forecast_view=raw",
+      "development_wis": 2.6300704710144927,
+      "changes": {
+        "log_loss_weight": 0.5,
+        "signal_features": "none",
+        "input_normalization": "b0"
+      },
+      "stalled": false
+    },
+    "r021_child05": {
+      "parent": "r018_child07",
+      "scenario": "growth_anchor=1,lookback=6,count_transform=sqrt,geography=0,spatial=pooled,decoder=residual2,noise=local,latent=4,epochs=160,batch_size=32,members=16,annual_calendar=0,weight_decay=0.0001,covariate_encoder=growth,covariate_set=outbreak,log_loss_weight=1.0,forecast_view=raw",
+      "development_wis": 2.633783106884058,
+      "changes": {
+        "epochs": 80
+      },
+      "stalled": false
+    },
+    "r021_child06": {
+      "parent": "r016_child18",
+      "scenario": "growth_anchor=1,lookback=10,count_transform=sqrt,geography=0,decoder=residual2,noise=local,latent=4,epochs=160,batch_size=32,members=16,annual_calendar=0,weight_decay=0.0001,covariate_encoder=growth,covariate_set=outbreak,log_loss_weight=1.0,forecast_view=raw",
+      "development_wis": 2.6945181612318843,
+      "changes": {
+        "input_normalization": "b0",
+        "covariate_encoder": "summary",
+        "noise": "local"
+      },
+      "stalled": false
+    },
+    "r021_child07": {
+      "parent": "r016_child09",
+      "scenario": "lookback=6,count_transform=log1p,geography=0,encoder=conv,decoder=residual2,noise=local,width=128,epochs=160,batch_size=4,members=16,lr=0.0003,annual_calendar=0,log_loss_weight=1.0,forecast_view=raw",
+      "development_wis": 2.882248460144927,
+      "changes": {
+        "members": 32
+      },
+      "stalled": false
+    },
+    "r021_child08": {
+      "parent": "r020_child11",
+      "scenario": "growth_anchor=1,lookback=6,count_transform=sqrt,geography=0,dynamics=0,spatial=pooled,decoder=residual2,noise=local,latent=4,epochs=160,batch_size=32,members=64,annual_calendar=0,weight_decay=0.0001,covariate_encoder=summary,covariate_set=outbreak,log_loss_weight=1.0,forecast_view=raw",
+      "development_wis": 2.60847178442029,
+      "changes": {
+        "spatial": "gated_pool",
+        "lr": 0.002,
+        "covariate_dropout": 0.0
+      },
+      "stalled": false
+    },
+    "r021_child09": {
+      "parent": "r019_child06",
+      "scenario": "growth_anchor=1,lookback=6,count_transform=sqrt,geography=0,spatial=pooled,decoder=residual2,noise=local,latent=4,epochs=160,batch_size=32,members=16,annual_calendar=0,weight_decay=0.0001,covariate_encoder=summary,covariate_set=outbreak,log_loss_weight=1.0,forecast_view=raw",
+      "development_wis": 2.6263091032608696,
+      "changes": {
+        "log_loss_weight": 0.5,
+        "encoder": "mlp",
+        "decoder_blocks": 0,
+        "growth_anchor": false
+      },
+      "stalled": false
+    },
+    "r021_child10": {
+      "parent": "r020_child02",
+      "scenario": "growth_anchor=1,lookback=6,count_transform=sqrt,geography=0,spatial=pooled,decoder=residual2,noise=local,latent=4,epochs=160,batch_size=32,members=64,annual_calendar=0,weight_decay=0.0001,covariate_encoder=growth,covariate_set=outbreak,log_loss_weight=1.0,forecast_view=raw",
+      "development_wis": 2.6300704710144927,
+      "changes": {
+        "covariate_encoder": "growth",
+        "covariate_set": "parent+outbreak",
+        "lookback": 4
+      },
+      "stalled": false
+    },
+    "r021_child11": {
+      "parent": "r016_child18",
+      "scenario": "growth_anchor=1,lookback=10,count_transform=sqrt,geography=0,decoder=residual2,noise=local,latent=4,epochs=160,batch_size=32,members=16,annual_calendar=0,weight_decay=0.0001,covariate_encoder=growth,covariate_set=outbreak,log_loss_weight=1.0,forecast_view=raw",
+      "development_wis": 2.6945181612318843,
+      "changes": {
+        "weight_decay": 0.001,
+        "members": 64,
+        "noise": "local"
+      },
+      "stalled": false
+    },
+    "r021_child12": {
+      "parent": "r020_child11",
+      "scenario": "growth_anchor=1,lookback=6,count_transform=sqrt,geography=0,dynamics=0,spatial=pooled,decoder=residual2,noise=local,latent=4,epochs=160,batch_size=32,members=64,annual_calendar=0,weight_decay=0.0001,covariate_encoder=summary,covariate_set=outbreak,log_loss_weight=1.0,forecast_view=raw",
+      "development_wis": 2.60847178442029,
+      "changes": {
+        "lr": 0.0005,
+        "log_loss_weight": 0.25,
+        "dynamics": false
+      },
+      "stalled": false
+    },
+    "r021_child13": {
+      "parent": "r019_child06",
+      "scenario": "growth_anchor=1,lookback=6,count_transform=sqrt,geography=0,spatial=pooled,decoder=residual2,noise=local,latent=4,epochs=160,batch_size=32,members=16,annual_calendar=0,weight_decay=0.0001,covariate_encoder=summary,covariate_set=outbreak,log_loss_weight=1.0,forecast_view=raw",
+      "development_wis": 2.6263091032608696,
+      "changes": {
+        "lookback": 26
+      },
+      "stalled": false
+    },
+    "r021_child14": {
+      "parent": "r020_child02",
+      "scenario": "growth_anchor=1,lookback=6,count_transform=sqrt,geography=0,spatial=pooled,decoder=residual2,noise=local,latent=4,epochs=160,batch_size=32,members=64,annual_calendar=0,weight_decay=0.0001,covariate_encoder=growth,covariate_set=outbreak,log_loss_weight=1.0,forecast_view=raw",
+      "development_wis": 2.6300704710144927,
+      "changes": {
+        "noise": "local",
+        "covariate_set": "none",
+        "epochs": 320
+      },
+      "stalled": false
+    },
+    "r021_child15": {
+      "parent": "r016_child18",
+      "scenario": "growth_anchor=1,lookback=10,count_transform=sqrt,geography=0,decoder=residual2,noise=local,latent=4,epochs=160,batch_size=32,members=16,annual_calendar=0,weight_decay=0.0001,covariate_encoder=growth,covariate_set=outbreak,log_loss_weight=1.0,forecast_view=raw",
+      "development_wis": 2.6945181612318843,
+      "changes": {
+        "covariate_dropout": 0.25,
+        "signal_features": "none",
+        "spatial": "gated_pool",
+        "encoder": "multiscale_conv",
+        "decoder_blocks": 0,
+        "growth_anchor": false
+      },
+      "stalled": false
+    },
+    "r021_child16": {
+      "parent": "r016_child09",
+      "scenario": "lookback=6,count_transform=log1p,geography=0,encoder=conv,decoder=residual2,noise=local,width=128,epochs=160,batch_size=4,members=16,lr=0.0003,annual_calendar=0,log_loss_weight=1.0,forecast_view=raw",
+      "development_wis": 2.882248460144927,
+      "changes": {
+        "lr": 0.002
+      },
+      "stalled": false
+    },
+    "r021_child17": {
+      "parent": "r020_child11",
+      "scenario": "growth_anchor=1,lookback=6,count_transform=sqrt,geography=0,dynamics=0,spatial=pooled,decoder=residual2,noise=local,latent=4,epochs=160,batch_size=32,members=64,annual_calendar=0,weight_decay=0.0001,covariate_encoder=summary,covariate_set=outbreak,log_loss_weight=1.0,forecast_view=raw",
+      "development_wis": 2.60847178442029,
+      "changes": {
+        "width": 192,
+        "input_normalization": "none",
+        "latent": 16
+      },
+      "stalled": false
+    },
+    "r021_child18": {
+      "parent": "r019_child06",
+      "scenario": "growth_anchor=1,lookback=6,count_transform=sqrt,geography=0,spatial=pooled,decoder=residual2,noise=local,latent=4,epochs=160,batch_size=32,members=16,annual_calendar=0,weight_decay=0.0001,covariate_encoder=summary,covariate_set=outbreak,log_loss_weight=1.0,forecast_view=raw",
+      "development_wis": 2.6263091032608696,
+      "changes": {
+        "spatial": "none"
+      },
+      "stalled": false
+    },
+    "r021_child19": {
+      "parent": "r020_child02",
+      "scenario": "growth_anchor=1,lookback=6,count_transform=sqrt,geography=0,spatial=pooled,decoder=residual2,noise=local,latent=4,epochs=160,batch_size=32,members=64,annual_calendar=0,weight_decay=0.0001,covariate_encoder=growth,covariate_set=outbreak,log_loss_weight=1.0,forecast_view=raw",
+      "development_wis": 2.6300704710144927,
+      "changes": {
+        "location_embedding": 8,
+        "noise": "global",
+        "weight_decay": 0.01
+      },
+      "stalled": false
+    },
+    "r021_child20": {
+      "parent": "r018_child07",
+      "scenario": "growth_anchor=1,lookback=6,count_transform=sqrt,geography=0,spatial=pooled,decoder=residual2,noise=local,latent=4,epochs=160,batch_size=32,members=16,annual_calendar=0,weight_decay=0.0001,covariate_encoder=growth,covariate_set=outbreak,log_loss_weight=1.0,forecast_view=raw",
+      "development_wis": 2.633783106884058,
+      "changes": {
+        "lookback": 20
+      },
+      "stalled": false
+    },
+    "r021_child21": {
+      "parent": "r016_child18",
+      "scenario": "growth_anchor=1,lookback=10,count_transform=sqrt,geography=0,decoder=residual2,noise=local,latent=4,epochs=160,batch_size=32,members=16,annual_calendar=0,weight_decay=0.0001,covariate_encoder=growth,covariate_set=outbreak,log_loss_weight=1.0,forecast_view=raw",
+      "development_wis": 2.6945181612318843,
+      "changes": {
+        "covariate_encoder": "summary",
+        "lookback": 12,
+        "lr": 0.001
+      },
+      "stalled": false
+    },
+    "r021_child22": {
+      "parent": "r016_child09",
+      "scenario": "lookback=6,count_transform=log1p,geography=0,encoder=conv,decoder=residual2,noise=local,width=128,epochs=160,batch_size=4,members=16,lr=0.0003,annual_calendar=0,log_loss_weight=1.0,forecast_view=raw",
+      "development_wis": 2.882248460144927,
+      "changes": {
+        "dynamics": false
+      },
+      "stalled": false
+    },
+    "r021_child23": {
+      "parent": "r020_child11",
+      "scenario": "growth_anchor=1,lookback=6,count_transform=sqrt,geography=0,dynamics=0,spatial=pooled,decoder=residual2,noise=local,latent=4,epochs=160,batch_size=32,members=64,annual_calendar=0,weight_decay=0.0001,covariate_encoder=summary,covariate_set=outbreak,log_loss_weight=1.0,forecast_view=raw",
+      "development_wis": 2.60847178442029,
+      "changes": {
+        "dynamics": true,
+        "epochs": 240,
+        "width": 256
+      },
+      "stalled": false
+    }
+  },
+  "training": "weekly cases, West Africa 2014-15 districts/countries/total, Kivu 2018-20 health zones/provinces/total, and BDBV 2026 weeks before the scoring window; latest values",
+  "evaluation": "BDBV 2026 6 Jun-18 Jul and 25 Jul-29 Aug; inputs are latest (finalized) values; horizons 1-4 weeks",
+  "selection": "task-weighted mean WIS over BDBV locations, natural scale; lower is better; the confirmation window never enters the search"
+}

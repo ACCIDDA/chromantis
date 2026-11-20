@@ -1,0 +1,117 @@
+{
+  "seeds": [
+    42,
+    43,
+    44,
+    45
+  ],
+  "candidates": {
+    "attention_none_lag0_path0": "lookback=52,spatial=attention,decoder=residual2,decoder_blocks=2,noise=local,epochs=320,batch_size=2,members=16,lr=0.002,covariate_encoder=growth,signal_features=smooth_multiscale,input_normalization=b0,covariate_dropout=0.1,forecast_view=raw",
+    "attention_none_lag0_path0.25": "lookback=52,spatial=attention,decoder=residual2,decoder_blocks=2,noise=local,epochs=320,batch_size=2,members=16,lr=0.002,covariate_encoder=growth,signal_features=smooth_multiscale,input_normalization=b0,path_loss_weight=0.25,covariate_dropout=0.1,forecast_view=raw",
+    "attention_none_lag1_path0": "lookback=52,spatial=attention,decoder=residual2,decoder_blocks=2,noise=local,epochs=320,batch_size=2,members=16,lr=0.002,covariate_encoder=growth,signal_features=smooth_multiscale,input_normalization=b0,training_target_lag=1,covariate_dropout=0.1,forecast_view=raw",
+    "attention_none_lag1_path0.25": "lookback=52,spatial=attention,decoder=residual2,decoder_blocks=2,noise=local,epochs=320,batch_size=2,members=16,lr=0.002,covariate_encoder=growth,signal_features=smooth_multiscale,input_normalization=b0,training_target_lag=1,path_loss_weight=0.25,covariate_dropout=0.1,forecast_view=raw",
+    "attention_state_lag0_path0": "lookback=52,spatial=attention,decoder=residual2,decoder_blocks=2,noise=local,epochs=320,batch_size=2,members=16,lr=0.002,covariate_encoder=growth,signal_features=smooth_multiscale,covariate_set=state,input_normalization=b0,covariate_dropout=0.1,forecast_view=raw",
+    "attention_state_lag0_path0.25": "lookback=52,spatial=attention,decoder=residual2,decoder_blocks=2,noise=local,epochs=320,batch_size=2,members=16,lr=0.002,covariate_encoder=growth,signal_features=smooth_multiscale,covariate_set=state,input_normalization=b0,path_loss_weight=0.25,covariate_dropout=0.1,forecast_view=raw",
+    "attention_state_lag1_path0": "lookback=52,spatial=attention,decoder=residual2,decoder_blocks=2,noise=local,epochs=320,batch_size=2,members=16,lr=0.002,covariate_encoder=growth,signal_features=smooth_multiscale,covariate_set=state,input_normalization=b0,training_target_lag=1,covariate_dropout=0.1,forecast_view=raw",
+    "attention_state_lag1_path0.25": "lookback=52,spatial=attention,decoder=residual2,decoder_blocks=2,noise=local,epochs=320,batch_size=2,members=16,lr=0.002,covariate_encoder=growth,signal_features=smooth_multiscale,covariate_set=state,input_normalization=b0,training_target_lag=1,path_loss_weight=0.25,covariate_dropout=0.1,forecast_view=raw"
+  },
+  "parents": {
+    "attention_none_lag0_path0": {
+      "parent_experiment": "metrocast-full-season-memory-r057",
+      "parent_scenario": "lookback=52,decoder=residual2,decoder_blocks=2,noise=local,epochs=320,batch_size=2,members=16,lr=0.002,covariate_encoder=growth,signal_features=smooth_multiscale,covariate_set=state,input_normalization=b0,covariate_dropout=0.1,forecast_view=raw",
+      "changes": {
+        "spatial": "attention",
+        "covariate_set": "none",
+        "training_target_lag": 0,
+        "path_loss_weight": 0.0
+      },
+      "reason": "Test cross-location attention after its improvement on 2024-25 four-week development; full-season gain remains unestablished."
+    },
+    "attention_none_lag0_path0.25": {
+      "parent_experiment": "metrocast-full-season-memory-r057",
+      "parent_scenario": "lookback=52,decoder=residual2,decoder_blocks=2,noise=local,epochs=320,batch_size=2,members=16,lr=0.002,covariate_encoder=growth,signal_features=smooth_multiscale,covariate_set=state,input_normalization=b0,covariate_dropout=0.1,forecast_view=raw",
+      "changes": {
+        "spatial": "attention",
+        "covariate_set": "none",
+        "training_target_lag": 0,
+        "path_loss_weight": 0.25
+      },
+      "reason": "Test cross-location attention after its improvement on 2024-25 four-week development; full-season gain remains unestablished."
+    },
+    "attention_none_lag1_path0": {
+      "parent_experiment": "metrocast-full-season-memory-r057",
+      "parent_scenario": "lookback=52,decoder=residual2,decoder_blocks=2,noise=local,epochs=320,batch_size=2,members=16,lr=0.002,covariate_encoder=growth,signal_features=smooth_multiscale,covariate_set=state,input_normalization=b0,covariate_dropout=0.1,forecast_view=raw",
+      "changes": {
+        "spatial": "attention",
+        "covariate_set": "none",
+        "training_target_lag": 1,
+        "path_loss_weight": 0.0
+      },
+      "reason": "Test cross-location attention after its improvement on 2024-25 four-week development; full-season gain remains unestablished."
+    },
+    "attention_none_lag1_path0.25": {
+      "parent_experiment": "metrocast-full-season-memory-r057",
+      "parent_scenario": "lookback=52,decoder=residual2,decoder_blocks=2,noise=local,epochs=320,batch_size=2,members=16,lr=0.002,covariate_encoder=growth,signal_features=smooth_multiscale,covariate_set=state,input_normalization=b0,covariate_dropout=0.1,forecast_view=raw",
+      "changes": {
+        "spatial": "attention",
+        "covariate_set": "none",
+        "training_target_lag": 1,
+        "path_loss_weight": 0.25
+      },
+      "reason": "Test cross-location attention after its improvement on 2024-25 four-week development; full-season gain remains unestablished."
+    },
+    "attention_state_lag0_path0": {
+      "parent_experiment": "metrocast-full-season-memory-r057",
+      "parent_scenario": "lookback=52,decoder=residual2,decoder_blocks=2,noise=local,epochs=320,batch_size=2,members=16,lr=0.002,covariate_encoder=growth,signal_features=smooth_multiscale,covariate_set=state,input_normalization=b0,covariate_dropout=0.1,forecast_view=raw",
+      "changes": {
+        "spatial": "attention",
+        "covariate_set": "state",
+        "training_target_lag": 0,
+        "path_loss_weight": 0.0
+      },
+      "reason": "Test cross-location attention after its improvement on 2024-25 four-week development; full-season gain remains unestablished."
+    },
+    "attention_state_lag0_path0.25": {
+      "parent_experiment": "metrocast-full-season-memory-r057",
+      "parent_scenario": "lookback=52,decoder=residual2,decoder_blocks=2,noise=local,epochs=320,batch_size=2,members=16,lr=0.002,covariate_encoder=growth,signal_features=smooth_multiscale,covariate_set=state,input_normalization=b0,covariate_dropout=0.1,forecast_view=raw",
+      "changes": {
+        "spatial": "attention",
+        "covariate_set": "state",
+        "training_target_lag": 0,
+        "path_loss_weight": 0.25
+      },
+      "reason": "Test cross-location attention after its improvement on 2024-25 four-week development; full-season gain remains unestablished."
+    },
+    "attention_state_lag1_path0": {
+      "parent_experiment": "metrocast-full-season-memory-r057",
+      "parent_scenario": "lookback=52,decoder=residual2,decoder_blocks=2,noise=local,epochs=320,batch_size=2,members=16,lr=0.002,covariate_encoder=growth,signal_features=smooth_multiscale,covariate_set=state,input_normalization=b0,covariate_dropout=0.1,forecast_view=raw",
+      "changes": {
+        "spatial": "attention",
+        "covariate_set": "state",
+        "training_target_lag": 1,
+        "path_loss_weight": 0.0
+      },
+      "reason": "Test cross-location attention after its improvement on 2024-25 four-week development; full-season gain remains unestablished."
+    },
+    "attention_state_lag1_path0.25": {
+      "parent_experiment": "metrocast-full-season-memory-r057",
+      "parent_scenario": "lookback=52,decoder=residual2,decoder_blocks=2,noise=local,epochs=320,batch_size=2,members=16,lr=0.002,covariate_encoder=growth,signal_features=smooth_multiscale,covariate_set=state,input_normalization=b0,covariate_dropout=0.1,forecast_view=raw",
+      "changes": {
+        "spatial": "attention",
+        "covariate_set": "state",
+        "training_target_lag": 1,
+        "path_loss_weight": 0.25
+      },
+      "reason": "Test cross-location attention after its improvement on 2024-25 four-week development; full-season gain remains unestablished."
+    }
+  },
+  "training_seasons": [
+    "2022-2023",
+    "2023-2024"
+  ],
+  "evaluation_season": "2024-2025",
+  "inputs": "Revised local histories; latest target week hidden during fitting/inner validation only when lag1. Covariates none or original own-state Hub flu-ED history, not the new NSSP context panel.",
+  "labels": "Unchanged future local flu ED proportions.",
+  "selection": "Four early-season 2024-25 origins, all34 horizons and intact-path energy; 2025-26 excluded.",
+  "evaluation_inputs": "Revised 2024-25 histories; no claim of ensemble-relative or archived-input performance."
+}

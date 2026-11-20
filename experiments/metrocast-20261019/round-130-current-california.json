@@ -1,0 +1,22 @@
+{
+  "seeds": [
+    42,
+    43,
+    44,
+    45,
+    46
+  ],
+  "candidates": {
+    "california_finalist_1": "ili_units=flu_scaled,ili_steps=600,ili_training=pretrain,ili_path=data/metrocast-california/historical_ili.npz,geography=0,decoder=residual2,noise=local,epochs=160,batch_size=2,members=16,training_target_lag=1,forecast_view=raw",
+    "california_finalist_2": "geography=0,decoder=residual2,noise=local,epochs=160,batch_size=2,members=16,training_target_lag=1,path_loss_weight=0.25,forecast_view=raw"
+  },
+  "parents": {},
+  "training_seasons": [
+    "2024-07-06 through 2026-07-25"
+  ],
+  "evaluation_season": "2026-2027; current partial-season diagnostics, never used for recipe selection",
+  "inputs": "Revised training histories, with the selected recipe target-history gap; source covariates unchanged.",
+  "labels": "Published California partial admission sums",
+  "selection": "Recipes copied from development-only frozen selections; confirmation outcomes are not read.",
+  "export": "2026-10-24 reference, equal five-seed mixture, 100 intact trajectories; no publication."
+}

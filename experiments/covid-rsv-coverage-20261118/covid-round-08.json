@@ -1,0 +1,28 @@
+{
+ "description": "COVID round 8 (2026-11-19 02:45): sampled-decoder recipes, which a release needs to draw the 200 sample trajectories (the leading GRU recipe is direct-quantile): Ah with the US-only summary, GRU encoder and real-pair trees, and the RSV live leaders A4c0.national / A4.no_kinsa.calendar fitted to COVID.",
+ "round": 8,
+ "seeds": [
+  44,
+  45,
+  46,
+  47
+ ],
+ "parents": {
+  "S.Ah.national.real": "ref.Ah",
+  "S.Ah.gru_national.real": "ref.Ah",
+  "S.Ah.national.real.errors_quarter": "ref.Ah",
+  "S.A4c0.national": "(RSV recipe)",
+  "S.A4c0.national.real": "S.A4c0.national",
+  "S.A4.national.no_kinsa.calendar": "(RSV recipe)",
+  "S.A4.national.no_kinsa.calendar.real": "S.A4.national.no_kinsa.calendar"
+ },
+ "candidates": {
+  "S.Ah.national.real": "history_source=artificial,history_correction=1,error_signals=all,input_set=target,correction_weeks=2,correction_ed=1,reporting_probability=0.5,joint_weight=0.05,correction_penalty=30.0,reporting_missingness=0,reporting_method=synchronous_phase_log,ed_transform=logit,width=192,epochs=160,patience=25,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=1.0,error_reference=2025-2026,spatial=national_broadcast,corrector_examples=real",
+  "S.Ah.gru_national.real": "history_source=artificial,history_correction=1,error_signals=all,input_set=target,correction_weeks=2,correction_ed=1,reporting_probability=0.5,joint_weight=0.05,correction_penalty=30.0,reporting_missingness=0,reporting_method=synchronous_phase_log,ed_transform=logit,width=192,epochs=160,patience=25,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=1.0,error_reference=2025-2026,spatial=national_broadcast,encoder=gru,corrector_examples=real",
+  "S.Ah.national.real.errors_quarter": "history_source=artificial,history_correction=1,error_signals=all,input_set=target,correction_weeks=2,correction_ed=1,reporting_probability=0.25,joint_weight=0.05,correction_penalty=30.0,reporting_missingness=0,reporting_method=synchronous_phase_log,ed_transform=logit,width=192,epochs=160,patience=25,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=1.0,error_reference=2025-2026,spatial=national_broadcast,corrector_examples=real",
+  "S.A4c0.national": "history_source=artificial,history_correction=1,error_signals=targets,input_set=target,correction_weeks=2,correction_ed=1,joint_weight=0.05,correction_penalty=30.0,reporting_missingness=0,reporting_method=synchronous_phase_log,ed_transform=logit,width=192,epochs=160,patience=25,fit_partition=pathogen,covariate_encoder=summary,covariate_set=kinsa,input_normalization=b0,log_loss_weight=1.0,error_reference=2025-2026,annual_calendar=0,spatial=national_broadcast",
+  "S.A4c0.national.real": "history_source=artificial,history_correction=1,error_signals=targets,input_set=target,correction_weeks=2,correction_ed=1,joint_weight=0.05,correction_penalty=30.0,reporting_missingness=0,reporting_method=synchronous_phase_log,ed_transform=logit,width=192,epochs=160,patience=25,fit_partition=pathogen,covariate_encoder=summary,covariate_set=kinsa,input_normalization=b0,log_loss_weight=1.0,error_reference=2025-2026,annual_calendar=0,spatial=national_broadcast,corrector_examples=real",
+  "S.A4.national.no_kinsa.calendar": "history_source=artificial,history_correction=1,error_signals=targets,input_set=target,correction_weeks=2,correction_ed=1,joint_weight=0.05,correction_penalty=30.0,reporting_missingness=0,reporting_method=synchronous_phase_log,ed_transform=logit,width=192,epochs=160,patience=25,fit_partition=pathogen,covariate_encoder=summary,covariate_set=none,input_normalization=b0,log_loss_weight=1.0,error_reference=2025-2026,spatial=national_broadcast",
+  "S.A4.national.no_kinsa.calendar.real": "history_source=artificial,history_correction=1,error_signals=targets,input_set=target,correction_weeks=2,correction_ed=1,joint_weight=0.05,correction_penalty=30.0,reporting_missingness=0,reporting_method=synchronous_phase_log,ed_transform=logit,width=192,epochs=160,patience=25,fit_partition=pathogen,covariate_encoder=summary,covariate_set=none,input_normalization=b0,log_loss_weight=1.0,error_reference=2025-2026,spatial=national_broadcast,corrector_examples=real"
+ }
+}

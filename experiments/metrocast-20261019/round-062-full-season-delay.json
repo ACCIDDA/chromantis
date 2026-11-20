@@ -1,0 +1,75 @@
+{
+  "seeds": [
+    42,
+    43,
+    44,
+    45
+  ],
+  "candidates": {
+    "direct_local_training_weekly_loss_lag1": "lookback=52,decoder=residual2,decoder_blocks=2,noise=local,epochs=320,batch_size=2,members=16,lr=0.002,covariate_encoder=growth,signal_features=smooth_multiscale,covariate_set=state,input_normalization=b0,training_target_lag=1,covariate_dropout=0.1,forecast_view=raw",
+    "direct_local_training_weekly_and_path_loss_lag1": "lookback=52,decoder=residual2,decoder_blocks=2,noise=local,epochs=320,batch_size=2,members=16,lr=0.002,covariate_encoder=growth,signal_features=smooth_multiscale,covariate_set=state,input_normalization=b0,training_target_lag=1,path_loss_weight=0.25,covariate_dropout=0.1,forecast_view=raw",
+    "state_ED_transfer_weekly_loss_lag1": "state_pretrain_steps=800,lookback=36,dynamics=0,decoder=residual2,decoder_blocks=4,noise=local,latent=32,width=384,epochs=160,batch_size=2,members=16,lr=0.0005,annual_calendar=0,location_embedding=8,covariate_encoder=summary,signal_features=multiscale,covariate_set=state,training_target_lag=1,covariate_dropout=0.25,forecast_view=raw",
+    "state_ED_transfer_weekly_and_path_loss_lag1": "state_pretrain_steps=800,lookback=36,dynamics=0,decoder=residual2,decoder_blocks=4,noise=local,latent=32,width=384,epochs=160,batch_size=2,members=16,lr=0.0005,annual_calendar=0,location_embedding=8,covariate_encoder=summary,signal_features=multiscale,covariate_set=state,training_target_lag=1,path_loss_weight=0.25,covariate_dropout=0.25,forecast_view=raw",
+    "ILI_pretraining_weekly_loss_lag1": "ili_units=flu_scaled,ili_steps=800,ili_training=pretrain,ili_path=data/metrocast/historical_ili.npz,ed_transform=logit,decoder=residual2,noise=local,width=128,epochs=160,batch_size=2,members=16,covariate_set=state,training_target_lag=1,covariate_dropout=0.25,forecast_view=raw",
+    "ILI_pretraining_weekly_and_path_loss_lag1": "ili_units=flu_scaled,ili_steps=800,ili_training=pretrain,ili_path=data/metrocast/historical_ili.npz,ed_transform=logit,decoder=residual2,noise=local,width=128,epochs=160,batch_size=2,members=16,covariate_set=state,training_target_lag=1,path_loss_weight=0.25,covariate_dropout=0.25,forecast_view=raw"
+  },
+  "parents": {
+    "direct_local_training_weekly_loss_lag1": {
+      "parent_experiment": "metrocast-full-season-memory-r057",
+      "parent_scenario": "lookback=52,decoder=residual2,decoder_blocks=2,noise=local,epochs=320,batch_size=2,members=16,lr=0.002,covariate_encoder=growth,signal_features=smooth_multiscale,covariate_set=state,input_normalization=b0,covariate_dropout=0.1,forecast_view=raw",
+      "changes": {
+        "training_target_lag": 1
+      },
+      "reason": "Test one-week missing target history during fitting and inner validation for full-season trajectories. Future labels and evaluation inputs unchanged; hypothesis transferred from archived county development benchmark, not assumed to match all main-panel releases."
+    },
+    "direct_local_training_weekly_and_path_loss_lag1": {
+      "parent_experiment": "metrocast-full-season-memory-r057",
+      "parent_scenario": "lookback=52,decoder=residual2,decoder_blocks=2,noise=local,epochs=320,batch_size=2,members=16,lr=0.002,covariate_encoder=growth,signal_features=smooth_multiscale,covariate_set=state,input_normalization=b0,path_loss_weight=0.25,covariate_dropout=0.1,forecast_view=raw",
+      "changes": {
+        "training_target_lag": 1
+      },
+      "reason": "Test one-week missing target history during fitting and inner validation for full-season trajectories. Future labels and evaluation inputs unchanged; hypothesis transferred from archived county development benchmark, not assumed to match all main-panel releases."
+    },
+    "state_ED_transfer_weekly_loss_lag1": {
+      "parent_experiment": "metrocast-full-season-memory-r057",
+      "parent_scenario": "state_pretrain_steps=800,lookback=36,dynamics=0,decoder=residual2,decoder_blocks=4,noise=local,latent=32,width=384,epochs=160,batch_size=2,members=16,lr=0.0005,annual_calendar=0,location_embedding=8,covariate_encoder=summary,signal_features=multiscale,covariate_set=state,covariate_dropout=0.25,forecast_view=raw",
+      "changes": {
+        "training_target_lag": 1
+      },
+      "reason": "Test one-week missing target history during fitting and inner validation for full-season trajectories. Future labels and evaluation inputs unchanged; hypothesis transferred from archived county development benchmark, not assumed to match all main-panel releases."
+    },
+    "state_ED_transfer_weekly_and_path_loss_lag1": {
+      "parent_experiment": "metrocast-full-season-memory-r057",
+      "parent_scenario": "state_pretrain_steps=800,lookback=36,dynamics=0,decoder=residual2,decoder_blocks=4,noise=local,latent=32,width=384,epochs=160,batch_size=2,members=16,lr=0.0005,annual_calendar=0,location_embedding=8,covariate_encoder=summary,signal_features=multiscale,covariate_set=state,path_loss_weight=0.25,covariate_dropout=0.25,forecast_view=raw",
+      "changes": {
+        "training_target_lag": 1
+      },
+      "reason": "Test one-week missing target history during fitting and inner validation for full-season trajectories. Future labels and evaluation inputs unchanged; hypothesis transferred from archived county development benchmark, not assumed to match all main-panel releases."
+    },
+    "ILI_pretraining_weekly_loss_lag1": {
+      "parent_experiment": "metrocast-full-season-memory-r057",
+      "parent_scenario": "ili_units=flu_scaled,ili_steps=800,ili_training=pretrain,ili_path=data/metrocast/historical_ili.npz,ed_transform=logit,decoder=residual2,noise=local,width=128,epochs=160,batch_size=2,members=16,covariate_set=state,covariate_dropout=0.25,forecast_view=raw",
+      "changes": {
+        "training_target_lag": 1
+      },
+      "reason": "Test one-week missing target history during fitting and inner validation for full-season trajectories. Future labels and evaluation inputs unchanged; hypothesis transferred from archived county development benchmark, not assumed to match all main-panel releases."
+    },
+    "ILI_pretraining_weekly_and_path_loss_lag1": {
+      "parent_experiment": "metrocast-full-season-memory-r057",
+      "parent_scenario": "ili_units=flu_scaled,ili_steps=800,ili_training=pretrain,ili_path=data/metrocast/historical_ili.npz,ed_transform=logit,decoder=residual2,noise=local,width=128,epochs=160,batch_size=2,members=16,covariate_set=state,path_loss_weight=0.25,covariate_dropout=0.25,forecast_view=raw",
+      "changes": {
+        "training_target_lag": 1
+      },
+      "reason": "Test one-week missing target history during fitting and inner validation for full-season trajectories. Future labels and evaluation inputs unchanged; hypothesis transferred from archived county development benchmark, not assumed to match all main-panel releases."
+    }
+  },
+  "training_seasons": [
+    "2022-2023",
+    "2023-2024"
+  ],
+  "evaluation_season": "2024-2025",
+  "inputs": "Latest revised local histories with latest target-history week hidden during fitting and inner validation; existing state covariate release treatment unchanged.",
+  "labels": "Future local flu ED proportions, unchanged; ILI/state ED pretraining as specified by scenario.",
+  "selection": "Four early-season 2024-25 origins, horizon bands through 33 and intact joint-path energy. No 2025-26 selection.",
+  "evaluation_inputs": "Latest revised histories for 2024-25 long-horizon evaluation; this alone is not an operational ensemble benchmark."
+}

@@ -1,0 +1,32 @@
+{
+ "description": "RSV round 15 (2026-11-19 15:00): training options not yet tried on the live leader A4c0.national.rsvnet.calendar.weeks1: separate admissions and ED fits, per-target heads, B0 validation calendar, no input normalization, half of episodes from actual archived reports, growth and shared covariate encoders, covariate dropout 0.2, a quarter of episodes uncorrected. Main, forward, live.",
+ "round": 15,
+ "seeds": [
+  44,
+  45,
+  46,
+  47
+ ],
+ "parents": {
+  "A4c0.national.rsvnet.calendar.weeks1.fit_target": "A4c0.national.rsvnet.calendar.weeks1",
+  "A4c0.national.rsvnet.calendar.weeks1.heads_target": "A4c0.national.rsvnet.calendar.weeks1",
+  "A4c0.national.rsvnet.calendar.weeks1.val_b0": "A4c0.national.rsvnet.calendar.weeks1",
+  "A4c0.national.rsvnet.calendar.weeks1.no_norm": "A4c0.national.rsvnet.calendar.weeks1",
+  "A4c0.national.rsvnet.calendar.weeks1.actual_half": "A4c0.national.rsvnet.calendar.weeks1",
+  "A4c0.national.rsvnet.calendar.weeks1.cov_growth": "A4c0.national.rsvnet.calendar.weeks1",
+  "A4c0.national.rsvnet.calendar.weeks1.cov_shared": "A4c0.national.rsvnet.calendar.weeks1",
+  "A4c0.national.rsvnet.calendar.weeks1.cov_dropout": "A4c0.national.rsvnet.calendar.weeks1",
+  "A4c0.national.rsvnet.calendar.weeks1.uncorrected0.25": "A4c0.national.rsvnet.calendar.weeks1"
+ },
+ "candidates": {
+  "A4c0.national.rsvnet.calendar.weeks1.fit_target": "history_source=artificial,history_correction=1,error_signals=all,input_set=target,correction_weeks=1,correction_ed=1,joint_weight=0.05,correction_penalty=30.0,reporting_missingness=0,reporting_method=synchronous_phase_log,ed_transform=logit,width=192,epochs=160,patience=25,fit_partition=target,covariate_encoder=summary,covariate_set=kinsa+rsvnet,input_normalization=b0,log_loss_weight=1.0,error_reference=2025-2026,spatial=national_broadcast",
+  "A4c0.national.rsvnet.calendar.weeks1.heads_target": "history_source=artificial,history_correction=1,error_signals=all,input_set=target,correction_weeks=1,correction_ed=1,joint_weight=0.05,correction_penalty=30.0,reporting_missingness=0,reporting_method=synchronous_phase_log,ed_transform=logit,width=192,epochs=160,patience=25,fit_partition=pathogen,covariate_encoder=summary,covariate_set=kinsa+rsvnet,input_normalization=b0,log_loss_weight=1.0,error_reference=2025-2026,spatial=national_broadcast,head_sharing=target",
+  "A4c0.national.rsvnet.calendar.weeks1.val_b0": "history_source=artificial,history_correction=1,error_signals=all,input_set=target,correction_weeks=1,correction_ed=1,joint_weight=0.05,correction_penalty=30.0,reporting_missingness=0,reporting_method=synchronous_phase_log,ed_transform=logit,width=192,epochs=160,patience=25,fit_partition=pathogen,covariate_encoder=summary,covariate_set=kinsa+rsvnet,input_normalization=b0,log_loss_weight=1.0,error_reference=2025-2026,spatial=national_broadcast,validation_calendar=b0",
+  "A4c0.national.rsvnet.calendar.weeks1.no_norm": "history_source=artificial,history_correction=1,error_signals=all,input_set=target,correction_weeks=1,correction_ed=1,joint_weight=0.05,correction_penalty=30.0,reporting_missingness=0,reporting_method=synchronous_phase_log,ed_transform=logit,width=192,epochs=160,patience=25,fit_partition=pathogen,covariate_encoder=summary,covariate_set=kinsa+rsvnet,input_normalization=none,log_loss_weight=1.0,error_reference=2025-2026,spatial=national_broadcast",
+  "A4c0.national.rsvnet.calendar.weeks1.actual_half": "history_source=artificial,history_correction=1,error_signals=all,input_set=target,correction_weeks=1,correction_ed=1,joint_weight=0.05,correction_penalty=30.0,reporting_missingness=0,reporting_method=synchronous_phase_log,ed_transform=logit,width=192,epochs=160,patience=25,fit_partition=pathogen,covariate_encoder=summary,covariate_set=kinsa+rsvnet,input_normalization=b0,log_loss_weight=1.0,error_reference=2025-2026,spatial=national_broadcast,actual_share=0.5",
+  "A4c0.national.rsvnet.calendar.weeks1.cov_growth": "history_source=artificial,history_correction=1,error_signals=all,input_set=target,correction_weeks=1,correction_ed=1,joint_weight=0.05,correction_penalty=30.0,reporting_missingness=0,reporting_method=synchronous_phase_log,ed_transform=logit,width=192,epochs=160,patience=25,fit_partition=pathogen,covariate_encoder=growth,covariate_set=kinsa+rsvnet,input_normalization=b0,log_loss_weight=1.0,error_reference=2025-2026,spatial=national_broadcast",
+  "A4c0.national.rsvnet.calendar.weeks1.cov_shared": "history_source=artificial,history_correction=1,error_signals=all,input_set=target,correction_weeks=1,correction_ed=1,joint_weight=0.05,correction_penalty=30.0,reporting_missingness=0,reporting_method=synchronous_phase_log,ed_transform=logit,width=192,epochs=160,patience=25,fit_partition=pathogen,covariate_encoder=shared,covariate_set=kinsa+rsvnet,input_normalization=b0,log_loss_weight=1.0,error_reference=2025-2026,spatial=national_broadcast",
+  "A4c0.national.rsvnet.calendar.weeks1.cov_dropout": "history_source=artificial,history_correction=1,error_signals=all,input_set=target,correction_weeks=1,correction_ed=1,joint_weight=0.05,correction_penalty=30.0,reporting_missingness=0,reporting_method=synchronous_phase_log,ed_transform=logit,width=192,epochs=160,patience=25,fit_partition=pathogen,covariate_encoder=summary,covariate_set=kinsa+rsvnet,input_normalization=b0,log_loss_weight=1.0,error_reference=2025-2026,spatial=national_broadcast,covariate_dropout=0.2",
+  "A4c0.national.rsvnet.calendar.weeks1.uncorrected0.25": "history_source=artificial,history_correction=1,error_signals=all,input_set=target,correction_weeks=1,correction_ed=1,joint_weight=0.05,correction_penalty=30.0,reporting_missingness=0,reporting_method=synchronous_phase_log,ed_transform=logit,width=192,epochs=160,patience=25,fit_partition=pathogen,covariate_encoder=summary,covariate_set=kinsa+rsvnet,input_normalization=b0,log_loss_weight=1.0,error_reference=2025-2026,spatial=national_broadcast,uncorrected_share=0.25"
+ }
+}

@@ -1,0 +1,285 @@
+{
+  "seeds": [
+    42,
+    43,
+    44,
+    45
+  ],
+  "candidates": {
+    "r004_child00": "ed_transform=logit,encoder=gru,decoder=residual2,noise=local,width=256,epochs=160,members=32,lr=0.0002,location_embedding=8,covariate_set=state,covariate_dropout=0.25,forecast_view=raw",
+    "r004_child01": "ili_units=flu_scaled,ili_steps=800,ili_training=pretrain,ili_path=data/metrocast/historical_ili.npz,ed_transform=fourth_root,decoder=residual2,noise=local,width=128,epochs=160,members=32,location_embedding=4,covariate_set=state,covariate_dropout=0.25,forecast_view=raw",
+    "r004_child02": "state_pretrain_steps=800,lookback=6,ed_transform=fourth_root,decoder=residual2,noise=local,width=128,epochs=160,members=32,annual_calendar=0,signal_features=multiscale,forecast_view=raw",
+    "r004_child03": "decoder=residual2,noise=local,width=128,epochs=160,members=32,location_embedding=4,covariate_encoder=growth,covariate_set=state,covariate_dropout=0.25,forecast_view=raw",
+    "r004_child04": "decoder=residual2,noise=local,width=192,epochs=160,members=16,annual_calendar=0,location_embedding=8,covariate_encoder=growth,covariate_set=state,covariate_dropout=0.25,forecast_view=raw",
+    "r004_child05": "ed_transform=logit,decoder=residual2,noise=local,epochs=240,members=32,location_embedding=8,forecast_view=raw",
+    "r004_child06": "ed_transform=logit,decoder=residual2,noise=local,latent=32,epochs=160,members=64,location_embedding=8,forecast_view=raw",
+    "r004_child07": "ili_units=flu_scaled,ili_steps=800,ili_training=pretrain,ili_path=data/metrocast/historical_ili.npz,ed_transform=fourth_root,decoder=residual2,noise=local,width=128,epochs=160,members=32,covariate_encoder=growth,covariate_set=state,covariate_dropout=0.1,forecast_view=raw",
+    "r004_child08": "state_pretrain_steps=800,ed_transform=fourth_root,spatial=gated_pool,decoder=residual2,noise=local,width=192,epochs=160,members=32,annual_calendar=0,signal_features=multiscale,forecast_view=raw",
+    "r004_child09": "decoder=residual2,noise=local,width=128,epochs=160,members=32,location_embedding=8,covariate_encoder=growth,signal_features=multiscale,covariate_set=state,covariate_dropout=0.25,forecast_view=raw",
+    "r004_child10": "ed_transform=logit,encoder=conv,decoder=residual2,epochs=240,members=32,location_embedding=4,forecast_view=raw",
+    "r004_child11": "growth_anchor=1,ed_transform=logit,spatial=gated_pool,decoder=residual2,noise=local,epochs=160,members=32,lr=0.0002,location_embedding=8,forecast_view=raw",
+    "r004_child12": "ili_units=flu_scaled,ili_steps=800,ili_training=pretrain,ili_path=data/metrocast/historical_ili.npz,ed_transform=logit,decoder=residual2,noise=local,width=128,epochs=160,members=32,covariate_set=state,covariate_dropout=0.25,forecast_view=raw",
+    "r004_child13": "state_pretrain_steps=800,ed_transform=logit,spatial=pooled,decoder=residual2,noise=local,width=128,epochs=160,members=32,annual_calendar=0,signal_features=multiscale,covariate_set=state,covariate_dropout=0.25,forecast_view=raw",
+    "r004_child14": "lookback=20,decoder=residual2,noise=local,width=192,epochs=160,members=32,lr=0.004,location_embedding=8,covariate_encoder=growth,signal_features=multiscale,covariate_set=state,covariate_dropout=0.25,forecast_view=raw",
+    "r004_child15": "ed_transform=logit,decoder=residual2,noise=local,epochs=240,members=32,location_embedding=4,weight_decay=0.0001,forecast_view=raw",
+    "r004_child16": "ed_transform=logit,decoder=residual2,decoder_blocks=3,noise=local,epochs=160,members=32,location_embedding=16,forecast_view=raw",
+    "r004_child17": "ili_units=flu_scaled,ili_steps=800,ili_training=pretrain,ili_path=data/metrocast/historical_ili.npz,ed_transform=fourth_root,decoder=residual2,noise=local,latent=4,width=128,epochs=160,members=32,covariate_set=state,covariate_dropout=0.25,forecast_view=raw",
+    "r004_child18": "state_pretrain_steps=800,ed_transform=logit,decoder=residual2,noise=local,width=128,epochs=160,members=64,annual_calendar=0,weight_decay=0.01,signal_features=multiscale,forecast_view=raw",
+    "r004_child19": "encoder=conv,decoder=residual2,noise=local,width=192,epochs=160,members=32,annual_calendar=0,location_embedding=8,covariate_encoder=growth,covariate_set=state,covariate_dropout=0.25,forecast_view=raw",
+    "r004_child20": "decoder=residual2,decoder_blocks=2,noise=local,epochs=160,members=32,lr=0.0002,location_embedding=8,forecast_view=raw",
+    "r004_child21": "state_pretrain_steps=800,ed_transform=fourth_root,decoder=residual2,noise=local,width=192,epochs=160,members=32,lr=0.0005,annual_calendar=0,signal_features=multiscale,forecast_view=raw",
+    "r004_child22": "dynamics=0,decoder=residual2,noise=local,width=192,epochs=160,members=32,location_embedding=16,covariate_encoder=summary,covariate_set=state,covariate_dropout=0.25,forecast_view=raw",
+    "r004_child23": "ed_transform=logit,decoder=residual2,noise=local,epochs=160,members=32,lr=0.004,location_embedding=8,forecast_view=raw"
+  },
+  "parents": {
+    "r004_child00": {
+      "parent": "r002_child09",
+      "scenario": "ed_transform=logit,decoder=residual2,noise=local,epochs=160,members=32,location_embedding=8,forecast_view=raw",
+      "development_wis": 0.005586265385617875,
+      "changes": {
+        "lr": 0.0002,
+        "decoder_blocks": 0,
+        "width": 256,
+        "covariate_set": "state",
+        "covariate_encoder": "raw",
+        "covariate_dropout": 0.25,
+        "encoder": "gru",
+        "growth_anchor": false
+      }
+    },
+    "r004_child01": {
+      "parent": "r002_child19",
+      "scenario": "ili_units=flu_scaled,ili_steps=800,ili_training=pretrain,ili_path=data/metrocast/historical_ili.npz,ed_transform=fourth_root,decoder=residual2,noise=local,width=128,epochs=160,members=32,covariate_set=state,covariate_dropout=0.25,forecast_view=raw",
+      "development_wis": 0.0059234373845971754,
+      "changes": {
+        "location_embedding": 4
+      }
+    },
+    "r004_child02": {
+      "parent": "r001_child08",
+      "scenario": "state_pretrain_steps=800,ed_transform=fourth_root,decoder=residual2,noise=local,width=128,epochs=160,members=32,annual_calendar=0,signal_features=multiscale,forecast_view=raw",
+      "development_wis": 0.00595704104257005,
+      "changes": {
+        "growth_anchor": false,
+        "decoder_blocks": 0,
+        "lookback": 6
+      }
+    },
+    "r004_child03": {
+      "parent": "r001_child19",
+      "scenario": "decoder=residual2,noise=local,width=128,epochs=160,members=32,location_embedding=8,covariate_encoder=growth,covariate_set=state,covariate_dropout=0.25,forecast_view=raw",
+      "development_wis": 0.005649997009829575,
+      "changes": {
+        "location_embedding": 4
+      }
+    },
+    "r004_child04": {
+      "parent": "r003_child08",
+      "scenario": "decoder=residual2,noise=local,width=192,epochs=160,members=32,location_embedding=8,covariate_encoder=growth,covariate_set=state,covariate_dropout=0.25,forecast_view=raw",
+      "development_wis": 0.00568043496894705,
+      "changes": {
+        "members": 16,
+        "latent": 16,
+        "annual_calendar": false
+      }
+    },
+    "r004_child05": {
+      "parent": "r001_child16",
+      "scenario": "ed_transform=logit,decoder=residual2,noise=local,epochs=240,members=32,location_embedding=4,forecast_view=raw",
+      "development_wis": 0.00573471639595685,
+      "changes": {
+        "location_embedding": 8
+      }
+    },
+    "r004_child06": {
+      "parent": "r002_child09",
+      "scenario": "ed_transform=logit,decoder=residual2,noise=local,epochs=160,members=32,location_embedding=8,forecast_view=raw",
+      "development_wis": 0.005586265385617875,
+      "changes": {
+        "noise": "local",
+        "latent": 32,
+        "members": 64
+      }
+    },
+    "r004_child07": {
+      "parent": "r002_child19",
+      "scenario": "ili_units=flu_scaled,ili_steps=800,ili_training=pretrain,ili_path=data/metrocast/historical_ili.npz,ed_transform=fourth_root,decoder=residual2,noise=local,width=128,epochs=160,members=32,covariate_set=state,covariate_dropout=0.25,forecast_view=raw",
+      "development_wis": 0.0059234373845971754,
+      "changes": {
+        "noise": "local",
+        "covariate_set": "state",
+        "covariate_encoder": "growth",
+        "covariate_dropout": 0.1
+      }
+    },
+    "r004_child08": {
+      "parent": "r001_child08",
+      "scenario": "state_pretrain_steps=800,ed_transform=fourth_root,decoder=residual2,noise=local,width=128,epochs=160,members=32,annual_calendar=0,signal_features=multiscale,forecast_view=raw",
+      "development_wis": 0.00595704104257005,
+      "changes": {
+        "spatial": "gated_pool",
+        "geography": true,
+        "width": 192
+      }
+    },
+    "r004_child09": {
+      "parent": "r001_child19",
+      "scenario": "decoder=residual2,noise=local,width=128,epochs=160,members=32,location_embedding=8,covariate_encoder=growth,covariate_set=state,covariate_dropout=0.25,forecast_view=raw",
+      "development_wis": 0.005649997009829575,
+      "changes": {
+        "signal_features": "multiscale"
+      }
+    },
+    "r004_child10": {
+      "parent": "r001_child16",
+      "scenario": "ed_transform=logit,decoder=residual2,noise=local,epochs=240,members=32,location_embedding=4,forecast_view=raw",
+      "development_wis": 0.00573471639595685,
+      "changes": {
+        "noise": "global",
+        "encoder": "conv",
+        "decoder_blocks": 0,
+        "growth_anchor": false
+      }
+    },
+    "r004_child11": {
+      "parent": "r002_child09",
+      "scenario": "ed_transform=logit,decoder=residual2,noise=local,epochs=160,members=32,location_embedding=8,forecast_view=raw",
+      "development_wis": 0.005586265385617875,
+      "changes": {
+        "spatial": "gated_pool",
+        "lr": 0.0002,
+        "growth_anchor": true
+      }
+    },
+    "r004_child12": {
+      "parent": "r002_child19",
+      "scenario": "ili_units=flu_scaled,ili_steps=800,ili_training=pretrain,ili_path=data/metrocast/historical_ili.npz,ed_transform=fourth_root,decoder=residual2,noise=local,width=128,epochs=160,members=32,covariate_set=state,covariate_dropout=0.25,forecast_view=raw",
+      "development_wis": 0.0059234373845971754,
+      "changes": {
+        "ed_transform": "logit"
+      }
+    },
+    "r004_child13": {
+      "parent": "r001_child08",
+      "scenario": "state_pretrain_steps=800,ed_transform=fourth_root,decoder=residual2,noise=local,width=128,epochs=160,members=32,annual_calendar=0,signal_features=multiscale,forecast_view=raw",
+      "development_wis": 0.00595704104257005,
+      "changes": {
+        "growth_anchor": false,
+        "spatial": "pooled",
+        "ed_transform": "logit",
+        "covariate_set": "state",
+        "covariate_encoder": "raw",
+        "covariate_dropout": 0.25
+      }
+    },
+    "r004_child14": {
+      "parent": "r003_child08",
+      "scenario": "decoder=residual2,noise=local,width=192,epochs=160,members=32,location_embedding=8,covariate_encoder=growth,covariate_set=state,covariate_dropout=0.25,forecast_view=raw",
+      "development_wis": 0.00568043496894705,
+      "changes": {
+        "lookback": 20,
+        "signal_features": "multiscale",
+        "lr": 0.004
+      }
+    },
+    "r004_child15": {
+      "parent": "r001_child16",
+      "scenario": "ed_transform=logit,decoder=residual2,noise=local,epochs=240,members=32,location_embedding=4,forecast_view=raw",
+      "development_wis": 0.00573471639595685,
+      "changes": {
+        "weight_decay": 0.0001
+      }
+    },
+    "r004_child16": {
+      "parent": "r002_child09",
+      "scenario": "ed_transform=logit,decoder=residual2,noise=local,epochs=160,members=32,location_embedding=8,forecast_view=raw",
+      "development_wis": 0.005586265385617875,
+      "changes": {
+        "decoder_blocks": 3,
+        "growth_anchor": false,
+        "location_embedding": 16
+      }
+    },
+    "r004_child17": {
+      "parent": "r002_child19",
+      "scenario": "ili_units=flu_scaled,ili_steps=800,ili_training=pretrain,ili_path=data/metrocast/historical_ili.npz,ed_transform=fourth_root,decoder=residual2,noise=local,width=128,epochs=160,members=32,covariate_set=state,covariate_dropout=0.25,forecast_view=raw",
+      "development_wis": 0.0059234373845971754,
+      "changes": {
+        "latent": 4
+      }
+    },
+    "r004_child18": {
+      "parent": "r001_child08",
+      "scenario": "state_pretrain_steps=800,ed_transform=fourth_root,decoder=residual2,noise=local,width=128,epochs=160,members=32,annual_calendar=0,signal_features=multiscale,forecast_view=raw",
+      "development_wis": 0.00595704104257005,
+      "changes": {
+        "members": 64,
+        "weight_decay": 0.01,
+        "ed_transform": "logit"
+      }
+    },
+    "r004_child19": {
+      "parent": "r003_child08",
+      "scenario": "decoder=residual2,noise=local,width=192,epochs=160,members=32,location_embedding=8,covariate_encoder=growth,covariate_set=state,covariate_dropout=0.25,forecast_view=raw",
+      "development_wis": 0.00568043496894705,
+      "changes": {
+        "width": 192,
+        "annual_calendar": false,
+        "growth_anchor": false,
+        "encoder": "conv",
+        "decoder_blocks": 0
+      }
+    },
+    "r004_child20": {
+      "parent": "r002_child09",
+      "scenario": "ed_transform=logit,decoder=residual2,noise=local,epochs=160,members=32,location_embedding=8,forecast_view=raw",
+      "development_wis": 0.005586265385617875,
+      "changes": {
+        "decoder_blocks": 2,
+        "lr": 0.0002,
+        "ed_transform": "linear"
+      }
+    },
+    "r004_child21": {
+      "parent": "r001_child08",
+      "scenario": "state_pretrain_steps=800,ed_transform=fourth_root,decoder=residual2,noise=local,width=128,epochs=160,members=32,annual_calendar=0,signal_features=multiscale,forecast_view=raw",
+      "development_wis": 0.00595704104257005,
+      "changes": {
+        "width": 192,
+        "lr": 0.0005,
+        "noise": "local"
+      }
+    },
+    "r004_child22": {
+      "parent": "r003_child08",
+      "scenario": "decoder=residual2,noise=local,width=192,epochs=160,members=32,location_embedding=8,covariate_encoder=growth,covariate_set=state,covariate_dropout=0.25,forecast_view=raw",
+      "development_wis": 0.00568043496894705,
+      "changes": {
+        "ed_transform": "linear",
+        "dynamics": false,
+        "location_embedding": 16,
+        "covariate_set": "state",
+        "covariate_encoder": "summary",
+        "covariate_dropout": 0.25
+      }
+    },
+    "r004_child23": {
+      "parent": "r002_child09",
+      "scenario": "ed_transform=logit,decoder=residual2,noise=local,epochs=160,members=32,location_embedding=8,forecast_view=raw",
+      "development_wis": 0.005586265385617875,
+      "changes": {
+        "lr": 0.004,
+        "growth_anchor": false,
+        "location_embedding": 8
+      }
+    }
+  },
+  "training_seasons": [
+    "2022-2023",
+    "2023-2024"
+  ],
+  "evaluation_season": "2024-2025",
+  "inputs": "latest revised local flu ED histories; optional own-state ED history",
+  "labels": "future observed local flu ED proportions; pretraining labels stated by each scenario",
+  "selection": "WIS on 2024-25 only; lower is better; confirmation outcomes never enter search"
+}

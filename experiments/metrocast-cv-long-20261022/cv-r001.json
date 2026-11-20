@@ -1,0 +1,140 @@
+{
+ "seeds": [
+  42,
+  43,
+  44
+ ],
+ "candidates": {
+  "r001_c00": "lookback=52,geography=0,decoder=residual2,decoder_blocks=2,noise=local,width=256,epochs=320,batch_size=2,members=16,lr=0.002,covariate_encoder=growth,signal_features=smooth_multiscale,covariate_set=state,input_normalization=b0,path_loss_weight=1.0,covariate_dropout=0.1,forecast_view=raw",
+  "r001_c01": "lookback=52,decoder=residual2,decoder_blocks=2,noise=local,epochs=320,batch_size=2,members=16,lr=0.002,covariate_encoder=growth,signal_features=smooth_multiscale,covariate_set=state,input_normalization=b0,path_loss_weight=0.5,covariate_dropout=0.1,forecast_view=raw",
+  "r001_c02": "lookback=52,ed_transform=logit,decoder=residual2,decoder_blocks=2,noise=local,latent=32,width=128,epochs=160,members=32,location_embedding=8,weight_decay=0.001,covariate_encoder=growth,covariate_set=state,input_normalization=b0,covariate_dropout=0.25,forecast_view=raw",
+  "r001_c03": "lookback=26,ed_transform=logit,decoder=residual2,decoder_blocks=2,noise=local,latent=32,width=128,epochs=160,members=32,weight_decay=0.001,covariate_encoder=growth,covariate_set=state,input_normalization=b0,path_loss_weight=1.0,covariate_dropout=0.25,forecast_view=raw",
+  "r001_c04": "lookback=52,geography=0,decoder=residual2,decoder_blocks=2,noise=local,epochs=80,batch_size=16,members=16,lr=0.002,covariate_encoder=growth,signal_features=smooth_multiscale,covariate_set=state,input_normalization=b0,path_loss_weight=1.0,covariate_dropout=0.1,forecast_view=raw",
+  "r001_c05": "lookback=26,ed_transform=logit,decoder=residual2,noise=local,latent=32,width=128,epochs=160,members=32,weight_decay=0.001,covariate_encoder=growth,covariate_set=state,path_loss_weight=1.0,covariate_dropout=0.25,forecast_view=raw",
+  "r001_c06": "lookback=52,geography=0,decoder=residual2,decoder_blocks=2,noise=local,width=256,epochs=320,batch_size=2,members=16,lr=0.002,signal_features=smooth_multiscale,covariate_set=state,input_normalization=b0,path_loss_weight=1.0,covariate_dropout=0.1,forecast_view=raw",
+  "r001_c07": "lookback=52,ed_transform=logit,decoder=residual2,decoder_blocks=2,noise=local,latent=32,width=128,epochs=160,members=32,weight_decay=0.001,covariate_encoder=growth,covariate_set=state,input_normalization=b0,path_loss_weight=1.0,covariate_dropout=0.25,forecast_view=raw",
+  "r001_c08": "lookback=52,ed_transform=logit,decoder=residual2,decoder_blocks=2,noise=local,latent=8,width=128,epochs=160,members=32,weight_decay=0.001,covariate_encoder=summary,covariate_set=state,input_normalization=b0,covariate_dropout=0.25,forecast_view=raw",
+  "r001_c09": "lookback=52,geography=0,decoder=residual2,decoder_blocks=2,noise=local,epochs=320,members=32,lr=0.002,covariate_encoder=growth,signal_features=smooth_multiscale,covariate_set=state,input_normalization=b0,path_loss_weight=1.0,covariate_dropout=0.1,forecast_view=raw",
+  "r001_c10": "lookback=26,ed_transform=logit,decoder=residual2,decoder_blocks=2,noise=local,latent=32,width=128,epochs=320,members=32,weight_decay=0.001,covariate_encoder=growth,covariate_set=state,input_normalization=b0,covariate_dropout=0.25,forecast_view=raw",
+  "r001_c11": "state_pretrain_steps=1600,lookback=52,geography=0,decoder=residual2,decoder_blocks=2,noise=local,width=256,epochs=80,batch_size=2,members=16,lr=0.002,covariate_encoder=growth,signal_features=smooth_multiscale,covariate_set=state,input_normalization=b0,path_loss_weight=1.0,covariate_dropout=0.1,forecast_view=raw",
+  "r001_c12": "lookback=52,geography=0,decoder=residual2,decoder_blocks=2,noise=local,epochs=320,batch_size=2,members=16,lr=0.002,covariate_encoder=growth,signal_features=smooth_multiscale,covariate_set=state,input_normalization=b0,training_target_lag=2,path_loss_weight=0.5,covariate_dropout=0.1,forecast_view=raw",
+  "r001_c13": "lookback=52,ed_transform=fourth_root,decoder=residual2,decoder_blocks=2,noise=local,latent=32,width=128,epochs=160,members=32,weight_decay=0.001,covariate_encoder=growth,covariate_set=state,input_normalization=b0,covariate_dropout=0.25,forecast_view=raw",
+  "r001_c14": "lookback=26,ed_transform=logit,decoder=residual2,decoder_blocks=2,noise=local,latent=32,width=128,epochs=160,members=32,lr=0.002,weight_decay=0.001,covariate_encoder=growth,covariate_set=state,input_normalization=b0,path_loss_weight=1.0,covariate_dropout=0.25,forecast_view=raw",
+  "r001_ref": "lookback=52,geography=0,decoder=residual2,decoder_blocks=2,noise=local,epochs=320,batch_size=2,members=16,lr=0.002,covariate_encoder=growth,signal_features=smooth_multiscale,covariate_set=state,input_normalization=b0,path_loss_weight=1.0,covariate_dropout=0.1,forecast_view=raw"
+ },
+ "parents": {
+  "r001_c00": {
+   "parent": "width256",
+   "parent_cv_log_ratio": -0.107188228253378,
+   "changes": {
+    "lr": "0.002"
+   }
+  },
+  "r001_c01": {
+   "parent": "path05",
+   "parent_cv_log_ratio": -0.0468497948613665,
+   "changes": {
+    "geography": "True"
+   }
+  },
+  "r001_c02": {
+   "parent": "winner_recipe_nopath",
+   "parent_cv_log_ratio": -0.0431943843411959,
+   "changes": {
+    "lookback": "52",
+    "location_embedding": "8"
+   }
+  },
+  "r001_c03": {
+   "parent": "winner_recipe_path1_lb26",
+   "parent_cv_log_ratio": -0.1834046279386161,
+   "changes": {
+    "decoder_blocks": "2"
+   }
+  },
+  "r001_c04": {
+   "parent": "batch16_epochs160",
+   "parent_cv_log_ratio": -0.0188232019130318,
+   "changes": {
+    "epochs": "80"
+   }
+  },
+  "r001_c05": {
+   "parent": "winner_recipe_path1_lb26",
+   "parent_cv_log_ratio": -0.1834046279386161,
+   "changes": {
+    "decoder_blocks": "0",
+    "input_normalization": "none"
+   }
+  },
+  "r001_c06": {
+   "parent": "width256",
+   "parent_cv_log_ratio": -0.107188228253378,
+   "changes": {
+    "covariate_encoder": "raw"
+   }
+  },
+  "r001_c07": {
+   "parent": "winner_recipe_path1_lb26",
+   "parent_cv_log_ratio": -0.1834046279386161,
+   "changes": {
+    "lookback": "52"
+   }
+  },
+  "r001_c08": {
+   "parent": "winner_recipe_nopath",
+   "parent_cv_log_ratio": -0.0431943843411959,
+   "changes": {
+    "latent": "8",
+    "covariate_encoder": "summary",
+    "covariate_set": "state"
+   }
+  },
+  "r001_c09": {
+   "parent": "members32",
+   "parent_cv_log_ratio": -0.0306282274370156,
+   "changes": {
+    "batch_size": "8"
+   }
+  },
+  "r001_c10": {
+   "parent": "winner_recipe_path1_lb26",
+   "parent_cv_log_ratio": -0.1834046279386161,
+   "changes": {
+    "path_loss_weight": "0.0",
+    "epochs": "320"
+   }
+  },
+  "r001_c11": {
+   "parent": "width256",
+   "parent_cv_log_ratio": -0.107188228253378,
+   "changes": {
+    "epochs": "80",
+    "state_pretrain_steps": "1600"
+   }
+  },
+  "r001_c12": {
+   "parent": "path05",
+   "parent_cv_log_ratio": -0.0468497948613665,
+   "changes": {
+    "training_target_lag": "2"
+   }
+  },
+  "r001_c13": {
+   "parent": "winner_recipe_nopath",
+   "parent_cv_log_ratio": -0.0431943843411959,
+   "changes": {
+    "ed_transform": "fourth_root",
+    "spatial": "none"
+   }
+  },
+  "r001_c14": {
+   "parent": "winner_recipe_path1_lb26",
+   "parent_cv_log_ratio": -0.1834046279386161,
+   "changes": {
+    "lr": "0.002"
+   }
+  }
+ },
+ "selection": "mean over four folds of log(WIS / reference WIS); lower is better"
+}

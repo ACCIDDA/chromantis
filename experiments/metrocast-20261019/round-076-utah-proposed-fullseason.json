@@ -1,0 +1,37 @@
+{
+  "seeds": [
+    42,
+    43,
+    44,
+    45
+  ],
+  "candidates": {
+    "utah_path1_lag0": "lookback=52,geography=0,decoder=residual2,decoder_blocks=2,noise=local,epochs=320,batch_size=2,members=16,lr=0.002,covariate_encoder=growth,signal_features=smooth_multiscale,input_normalization=b0,path_loss_weight=1.0,covariate_dropout=0.1,forecast_view=raw",
+    "utah_path1_lag1": "lookback=52,geography=0,decoder=residual2,decoder_blocks=2,noise=local,epochs=320,batch_size=2,members=16,lr=0.002,covariate_encoder=growth,signal_features=smooth_multiscale,input_normalization=b0,training_target_lag=1,path_loss_weight=1.0,covariate_dropout=0.1,forecast_view=raw",
+    "utah_global_noise_lag0": "lookback=52,geography=0,decoder=residual2,decoder_blocks=2,epochs=320,batch_size=2,members=16,lr=0.002,covariate_encoder=growth,signal_features=smooth_multiscale,input_normalization=b0,path_loss_weight=0.25,covariate_dropout=0.1,forecast_view=raw",
+    "utah_global_noise_lag1": "lookback=52,geography=0,decoder=residual2,decoder_blocks=2,epochs=320,batch_size=2,members=16,lr=0.002,covariate_encoder=growth,signal_features=smooth_multiscale,input_normalization=b0,training_target_lag=1,path_loss_weight=0.25,covariate_dropout=0.1,forecast_view=raw",
+    "utah_pooled_context_lag0": "lookback=52,geography=0,spatial=pooled,decoder=residual2,decoder_blocks=2,noise=local,epochs=320,batch_size=2,members=16,lr=0.002,covariate_encoder=growth,signal_features=smooth_multiscale,input_normalization=b0,path_loss_weight=0.25,covariate_dropout=0.1,forecast_view=raw",
+    "utah_pooled_context_lag1": "lookback=52,geography=0,spatial=pooled,decoder=residual2,decoder_blocks=2,noise=local,epochs=320,batch_size=2,members=16,lr=0.002,covariate_encoder=growth,signal_features=smooth_multiscale,input_normalization=b0,training_target_lag=1,path_loss_weight=0.25,covariate_dropout=0.1,forecast_view=raw",
+    "utah_history26_lag0": "lookback=26,geography=0,decoder=residual2,decoder_blocks=2,noise=local,epochs=320,batch_size=2,members=16,lr=0.002,covariate_encoder=growth,signal_features=smooth_multiscale,input_normalization=b0,path_loss_weight=0.25,covariate_dropout=0.1,forecast_view=raw",
+    "utah_history26_lag1": "lookback=26,geography=0,decoder=residual2,decoder_blocks=2,noise=local,epochs=320,batch_size=2,members=16,lr=0.002,covariate_encoder=growth,signal_features=smooth_multiscale,input_normalization=b0,training_target_lag=1,path_loss_weight=0.25,covariate_dropout=0.1,forecast_view=raw"
+  },
+  "parents": {
+    "utah_path1_lag0": "metrocast-utah-proposed-fullseason-r074:mlp52_linear_320epochs_none_lag0",
+    "utah_path1_lag1": "metrocast-utah-proposed-fullseason-r074:mlp52_linear_320epochs_none_lag0",
+    "utah_global_noise_lag0": "metrocast-utah-proposed-fullseason-r074:mlp52_linear_320epochs_none_lag0",
+    "utah_global_noise_lag1": "metrocast-utah-proposed-fullseason-r074:mlp52_linear_320epochs_none_lag0",
+    "utah_pooled_context_lag0": "metrocast-utah-proposed-fullseason-r074:mlp52_linear_320epochs_none_lag0",
+    "utah_pooled_context_lag1": "metrocast-utah-proposed-fullseason-r074:mlp52_linear_320epochs_none_lag0",
+    "utah_history26_lag0": "metrocast-utah-proposed-fullseason-r074:mlp52_linear_320epochs_none_lag0",
+    "utah_history26_lag1": "metrocast-utah-proposed-fullseason-r074:mlp52_linear_320epochs_none_lag0"
+  },
+  "training_seasons": [
+    "2022-2023",
+    "2023-2024"
+  ],
+  "evaluation_season": "2024-2025",
+  "inputs": "Provisional revised PR587 weekly Utah histories, no external covariates. Base52week linear width64 MLP320epochs,batch2,members16,geography0,pathloss.25. One-factor pathloss1, global noise, pooled district/state context, or26week lookback; each paired with fitting target-history lag0/1.",
+  "labels": "Unchanged future weekly local flu ED proportions for13 Utah districts plus overlapping state; name-mapped proposed targets, no dashboard averages.",
+  "selection": "Utah-only development WIS and intact-path energy; keep2025-26 reserved; source remains unmerged/provisional.",
+  "evaluation_inputs": "Revised four early2024-25 origins,34 future weeks throughJune14; same histories for all models. Equal14location weights. No archived-input or actual-ensemble claim."
+}

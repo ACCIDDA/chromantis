@@ -1,0 +1,29 @@
+{
+  "seeds": [
+    42,
+    43,
+    44,
+    45
+  ],
+  "candidates": {
+    "mlp52_linear_320epochs_none_lag0": "lookback=52,geography=0,decoder=residual2,decoder_blocks=2,noise=local,epochs=320,batch_size=2,members=16,lr=0.002,covariate_encoder=growth,signal_features=smooth_multiscale,input_normalization=b0,path_loss_weight=0.25,covariate_dropout=0.1,forecast_view=raw",
+    "mlp52_linear_320epochs_none_lag1": "lookback=52,geography=0,decoder=residual2,decoder_blocks=2,noise=local,epochs=320,batch_size=2,members=16,lr=0.002,covariate_encoder=growth,signal_features=smooth_multiscale,input_normalization=b0,training_target_lag=1,path_loss_weight=0.25,covariate_dropout=0.1,forecast_view=raw",
+    "mlp52_linear_320epochs_attention_lag0": "lookback=52,geography=0,spatial=attention,decoder=residual2,decoder_blocks=2,noise=local,epochs=320,batch_size=2,members=16,lr=0.002,covariate_encoder=growth,signal_features=smooth_multiscale,input_normalization=b0,path_loss_weight=0.25,covariate_dropout=0.1,forecast_view=raw",
+    "mlp52_linear_320epochs_attention_lag1": "lookback=52,geography=0,spatial=attention,decoder=residual2,decoder_blocks=2,noise=local,epochs=320,batch_size=2,members=16,lr=0.002,covariate_encoder=growth,signal_features=smooth_multiscale,input_normalization=b0,training_target_lag=1,path_loss_weight=0.25,covariate_dropout=0.1,forecast_view=raw",
+    "mlp12_logit_80epochs_none_lag0": "ed_transform=logit,geography=0,decoder=residual2,decoder_blocks=2,noise=local,width=128,epochs=80,batch_size=2,members=16,lr=0.002,covariate_encoder=growth,signal_features=smooth_multiscale,input_normalization=b0,path_loss_weight=0.25,covariate_dropout=0.1,forecast_view=raw",
+    "mlp12_logit_80epochs_none_lag1": "ed_transform=logit,geography=0,decoder=residual2,decoder_blocks=2,noise=local,width=128,epochs=80,batch_size=2,members=16,lr=0.002,covariate_encoder=growth,signal_features=smooth_multiscale,input_normalization=b0,training_target_lag=1,path_loss_weight=0.25,covariate_dropout=0.1,forecast_view=raw",
+    "mlp12_logit_80epochs_attention_lag0": "ed_transform=logit,geography=0,spatial=attention,decoder=residual2,decoder_blocks=2,noise=local,width=128,epochs=80,batch_size=2,members=16,lr=0.002,covariate_encoder=growth,signal_features=smooth_multiscale,input_normalization=b0,path_loss_weight=0.25,covariate_dropout=0.1,forecast_view=raw",
+    "mlp12_logit_80epochs_attention_lag1": "ed_transform=logit,geography=0,spatial=attention,decoder=residual2,decoder_blocks=2,noise=local,width=128,epochs=80,batch_size=2,members=16,lr=0.002,covariate_encoder=growth,signal_features=smooth_multiscale,input_normalization=b0,training_target_lag=1,path_loss_weight=0.25,covariate_dropout=0.1,forecast_view=raw"
+  },
+  "parents": {},
+  "training_seasons": [
+    "2022-2023",
+    "2023-2024"
+  ],
+  "evaluation_season": "2024-2025",
+  "inputs": "Provisional revised weekly Utah histories from UNMERGED PR587 head747e9104202f44ad90778c3e0903e326b737525f; no dashboard averages. Shared model weights across13districts+state, explicit cross-location attention versus none, no separate covariates. Target training lag0/1 leaves latest week visible or hides it in fitting/inner validation only.",
+  "labels": "Future proposed weekly local influenza ED percentages divided by100; names verified against all5866 proposed target rows, not numeric raw region codes.",
+  "selection": "Separate14location provisional Utah study; never pooled into main90 development ranking. 2025-26 reserved. Source PR open/unmerged; no production or publication authorization inferred.",
+  "evaluation_inputs": "Revised2024-25; 34futureweeks at four early origins, common WIS/path/peak diagnostics, no actual ensemble or archived-operational claim.",
+  "weighting": "Equal locations, including statewide series overlapping the13districts."
+}

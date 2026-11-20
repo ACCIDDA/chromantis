@@ -1,0 +1,26 @@
+{
+  "seeds": [
+    42,
+    43,
+    44,
+    45,
+    46
+  ],
+  "candidates": {
+    "utah_finalist_1": "lookback=52,geography=0,decoder=residual2,decoder_blocks=2,epochs=320,batch_size=2,members=16,lr=0.002,covariate_encoder=growth,signal_features=smooth_multiscale,input_normalization=b0,path_loss_weight=0.25,covariate_dropout=0.1,forecast_view=raw",
+    "utah_direct_reference": "lookback=52,geography=0,decoder=residual2,decoder_blocks=2,noise=local,epochs=320,batch_size=2,members=16,lr=0.002,covariate_encoder=growth,signal_features=smooth_multiscale,input_normalization=b0,path_loss_weight=0.25,covariate_dropout=0.1,forecast_view=raw",
+    "utah_finalist_1_paired_history_gap": "lookback=52,geography=0,decoder=residual2,decoder_blocks=2,epochs=320,batch_size=2,members=16,lr=0.002,covariate_encoder=growth,signal_features=smooth_multiscale,input_normalization=b0,training_target_lag=1,path_loss_weight=0.25,covariate_dropout=0.1,forecast_view=raw",
+    "utah_direct_reference_paired_history_gap": "lookback=52,geography=0,decoder=residual2,decoder_blocks=2,noise=local,epochs=320,batch_size=2,members=16,lr=0.002,covariate_encoder=growth,signal_features=smooth_multiscale,input_normalization=b0,training_target_lag=1,path_loss_weight=0.25,covariate_dropout=0.1,forecast_view=raw"
+  },
+  "parents": {},
+  "training_seasons": [
+    "2022-2023",
+    "2023-2024",
+    "2024-2025"
+  ],
+  "evaluation_season": "2025-2026",
+  "inputs": "Provisional revised weekly PR587 source; selected target-history gap applies only during fitting and inner validation.",
+  "labels": "Future local influenza ED proportions for13 Utah districts and overlapping state, explicit name mapping.",
+  "selection": "Utah-only 2024-25 development WIS/path energy, frozen before holdout; unmerged source remains provisional.",
+  "evaluation_inputs": "Revised proposed weekly source only; no archived-release or actual-ensemble claim."
+}

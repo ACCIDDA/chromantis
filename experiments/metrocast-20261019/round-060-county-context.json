@@ -1,0 +1,152 @@
+{
+  "seeds": [
+    42,
+    43,
+    44,
+    45
+  ],
+  "candidates": {
+    "county_direct_52week_none_state": "lookback=52,geography=0,decoder=residual2,decoder_blocks=2,noise=local,epochs=320,batch_size=32,members=64,lr=0.002,covariate_encoder=growth,signal_features=smooth_multiscale,covariate_set=state,input_normalization=b0,training_target_lag=1,forecast_view=raw",
+    "county_direct_52week_none_state_regional": "lookback=52,geography=0,decoder=residual2,decoder_blocks=2,noise=local,epochs=320,batch_size=32,members=64,lr=0.002,covariate_encoder=growth,signal_features=smooth_multiscale,covariate_set=state_regional,input_normalization=b0,training_target_lag=1,forecast_view=raw",
+    "county_direct_52week_pooled_state": "lookback=52,geography=0,spatial=pooled,decoder=residual2,decoder_blocks=2,noise=local,epochs=320,batch_size=32,members=64,lr=0.002,covariate_encoder=growth,signal_features=smooth_multiscale,covariate_set=state,input_normalization=b0,training_target_lag=1,forecast_view=raw",
+    "county_direct_52week_pooled_state_regional": "lookback=52,geography=0,spatial=pooled,decoder=residual2,decoder_blocks=2,noise=local,epochs=320,batch_size=32,members=64,lr=0.002,covariate_encoder=growth,signal_features=smooth_multiscale,covariate_set=state_regional,input_normalization=b0,training_target_lag=1,forecast_view=raw",
+    "county_direct_52week_attention_state": "lookback=52,geography=0,spatial=attention,decoder=residual2,decoder_blocks=2,noise=local,epochs=320,batch_size=32,members=64,lr=0.002,covariate_encoder=growth,signal_features=smooth_multiscale,covariate_set=state,input_normalization=b0,training_target_lag=1,forecast_view=raw",
+    "county_direct_52week_attention_state_regional": "lookback=52,geography=0,spatial=attention,decoder=residual2,decoder_blocks=2,noise=local,epochs=320,batch_size=32,members=64,lr=0.002,covariate_encoder=growth,signal_features=smooth_multiscale,covariate_set=state_regional,input_normalization=b0,training_target_lag=1,forecast_view=raw",
+    "county_initial_12week_none_state": "ed_transform=logit,geography=0,decoder=residual2,noise=local,width=128,epochs=160,members=32,covariate_set=state,training_target_lag=1,forecast_view=raw",
+    "county_initial_12week_none_state_regional": "ed_transform=logit,geography=0,decoder=residual2,noise=local,width=128,epochs=160,members=32,covariate_set=state_regional,training_target_lag=1,forecast_view=raw",
+    "county_initial_12week_pooled_state": "ed_transform=logit,geography=0,spatial=pooled,decoder=residual2,noise=local,width=128,epochs=160,members=32,covariate_set=state,training_target_lag=1,forecast_view=raw",
+    "county_initial_12week_pooled_state_regional": "ed_transform=logit,geography=0,spatial=pooled,decoder=residual2,noise=local,width=128,epochs=160,members=32,covariate_set=state_regional,training_target_lag=1,forecast_view=raw",
+    "county_initial_12week_attention_state": "ed_transform=logit,geography=0,spatial=attention,decoder=residual2,noise=local,width=128,epochs=160,members=32,covariate_set=state,training_target_lag=1,forecast_view=raw",
+    "county_initial_12week_attention_state_regional": "ed_transform=logit,geography=0,spatial=attention,decoder=residual2,noise=local,width=128,epochs=160,members=32,covariate_set=state_regional,training_target_lag=1,forecast_view=raw"
+  },
+  "parents": {
+    "county_direct_52week_none_state": {
+      "parent_experiment": "metrocast-county-benchmark-r054",
+      "parent_scenario": "lookback=52,geography=0,decoder=residual2,decoder_blocks=2,noise=local,epochs=320,batch_size=32,members=64,lr=0.002,covariate_encoder=growth,signal_features=smooth_multiscale,input_normalization=b0,forecast_view=raw",
+      "changes": {
+        "spatial": "none",
+        "training_target_lag": 1,
+        "covariate_set": "state"
+      },
+      "reason": "Compare own-state context with own-state plus mean AR/LA/NM/OK flu ED history; county histories hide newest week in fitting, future county labels unchanged. Compare no explicit exchange, pooled context, and attention among counties."
+    },
+    "county_direct_52week_none_state_regional": {
+      "parent_experiment": "metrocast-county-benchmark-r054",
+      "parent_scenario": "lookback=52,geography=0,decoder=residual2,decoder_blocks=2,noise=local,epochs=320,batch_size=32,members=64,lr=0.002,covariate_encoder=growth,signal_features=smooth_multiscale,input_normalization=b0,forecast_view=raw",
+      "changes": {
+        "spatial": "none",
+        "training_target_lag": 1,
+        "covariate_set": "state_regional"
+      },
+      "reason": "Compare own-state context with own-state plus mean AR/LA/NM/OK flu ED history; county histories hide newest week in fitting, future county labels unchanged. Compare no explicit exchange, pooled context, and attention among counties."
+    },
+    "county_direct_52week_pooled_state": {
+      "parent_experiment": "metrocast-county-benchmark-r054",
+      "parent_scenario": "lookback=52,geography=0,decoder=residual2,decoder_blocks=2,noise=local,epochs=320,batch_size=32,members=64,lr=0.002,covariate_encoder=growth,signal_features=smooth_multiscale,input_normalization=b0,forecast_view=raw",
+      "changes": {
+        "spatial": "pooled",
+        "training_target_lag": 1,
+        "covariate_set": "state"
+      },
+      "reason": "Compare own-state context with own-state plus mean AR/LA/NM/OK flu ED history; county histories hide newest week in fitting, future county labels unchanged. Compare no explicit exchange, pooled context, and attention among counties."
+    },
+    "county_direct_52week_pooled_state_regional": {
+      "parent_experiment": "metrocast-county-benchmark-r054",
+      "parent_scenario": "lookback=52,geography=0,decoder=residual2,decoder_blocks=2,noise=local,epochs=320,batch_size=32,members=64,lr=0.002,covariate_encoder=growth,signal_features=smooth_multiscale,input_normalization=b0,forecast_view=raw",
+      "changes": {
+        "spatial": "pooled",
+        "training_target_lag": 1,
+        "covariate_set": "state_regional"
+      },
+      "reason": "Compare own-state context with own-state plus mean AR/LA/NM/OK flu ED history; county histories hide newest week in fitting, future county labels unchanged. Compare no explicit exchange, pooled context, and attention among counties."
+    },
+    "county_direct_52week_attention_state": {
+      "parent_experiment": "metrocast-county-benchmark-r054",
+      "parent_scenario": "lookback=52,geography=0,decoder=residual2,decoder_blocks=2,noise=local,epochs=320,batch_size=32,members=64,lr=0.002,covariate_encoder=growth,signal_features=smooth_multiscale,input_normalization=b0,forecast_view=raw",
+      "changes": {
+        "spatial": "attention",
+        "training_target_lag": 1,
+        "covariate_set": "state"
+      },
+      "reason": "Compare own-state context with own-state plus mean AR/LA/NM/OK flu ED history; county histories hide newest week in fitting, future county labels unchanged. Compare no explicit exchange, pooled context, and attention among counties."
+    },
+    "county_direct_52week_attention_state_regional": {
+      "parent_experiment": "metrocast-county-benchmark-r054",
+      "parent_scenario": "lookback=52,geography=0,decoder=residual2,decoder_blocks=2,noise=local,epochs=320,batch_size=32,members=64,lr=0.002,covariate_encoder=growth,signal_features=smooth_multiscale,input_normalization=b0,forecast_view=raw",
+      "changes": {
+        "spatial": "attention",
+        "training_target_lag": 1,
+        "covariate_set": "state_regional"
+      },
+      "reason": "Compare own-state context with own-state plus mean AR/LA/NM/OK flu ED history; county histories hide newest week in fitting, future county labels unchanged. Compare no explicit exchange, pooled context, and attention among counties."
+    },
+    "county_initial_12week_none_state": {
+      "parent_experiment": "metrocast-county-benchmark-r054",
+      "parent_scenario": "ed_transform=logit,geography=0,decoder=residual2,noise=local,width=128,epochs=160,members=32,forecast_view=raw",
+      "changes": {
+        "spatial": "none",
+        "training_target_lag": 1,
+        "covariate_set": "state"
+      },
+      "reason": "Compare own-state context with own-state plus mean AR/LA/NM/OK flu ED history; county histories hide newest week in fitting, future county labels unchanged. Compare no explicit exchange, pooled context, and attention among counties."
+    },
+    "county_initial_12week_none_state_regional": {
+      "parent_experiment": "metrocast-county-benchmark-r054",
+      "parent_scenario": "ed_transform=logit,geography=0,decoder=residual2,noise=local,width=128,epochs=160,members=32,forecast_view=raw",
+      "changes": {
+        "spatial": "none",
+        "training_target_lag": 1,
+        "covariate_set": "state_regional"
+      },
+      "reason": "Compare own-state context with own-state plus mean AR/LA/NM/OK flu ED history; county histories hide newest week in fitting, future county labels unchanged. Compare no explicit exchange, pooled context, and attention among counties."
+    },
+    "county_initial_12week_pooled_state": {
+      "parent_experiment": "metrocast-county-benchmark-r054",
+      "parent_scenario": "ed_transform=logit,geography=0,decoder=residual2,noise=local,width=128,epochs=160,members=32,forecast_view=raw",
+      "changes": {
+        "spatial": "pooled",
+        "training_target_lag": 1,
+        "covariate_set": "state"
+      },
+      "reason": "Compare own-state context with own-state plus mean AR/LA/NM/OK flu ED history; county histories hide newest week in fitting, future county labels unchanged. Compare no explicit exchange, pooled context, and attention among counties."
+    },
+    "county_initial_12week_pooled_state_regional": {
+      "parent_experiment": "metrocast-county-benchmark-r054",
+      "parent_scenario": "ed_transform=logit,geography=0,decoder=residual2,noise=local,width=128,epochs=160,members=32,forecast_view=raw",
+      "changes": {
+        "spatial": "pooled",
+        "training_target_lag": 1,
+        "covariate_set": "state_regional"
+      },
+      "reason": "Compare own-state context with own-state plus mean AR/LA/NM/OK flu ED history; county histories hide newest week in fitting, future county labels unchanged. Compare no explicit exchange, pooled context, and attention among counties."
+    },
+    "county_initial_12week_attention_state": {
+      "parent_experiment": "metrocast-county-benchmark-r054",
+      "parent_scenario": "ed_transform=logit,geography=0,decoder=residual2,noise=local,width=128,epochs=160,members=32,forecast_view=raw",
+      "changes": {
+        "spatial": "attention",
+        "training_target_lag": 1,
+        "covariate_set": "state"
+      },
+      "reason": "Compare own-state context with own-state plus mean AR/LA/NM/OK flu ED history; county histories hide newest week in fitting, future county labels unchanged. Compare no explicit exchange, pooled context, and attention among counties."
+    },
+    "county_initial_12week_attention_state_regional": {
+      "parent_experiment": "metrocast-county-benchmark-r054",
+      "parent_scenario": "ed_transform=logit,geography=0,decoder=residual2,noise=local,width=128,epochs=160,members=32,forecast_view=raw",
+      "changes": {
+        "spatial": "attention",
+        "training_target_lag": 1,
+        "covariate_set": "state_regional"
+      },
+      "reason": "Compare own-state context with own-state plus mean AR/LA/NM/OK flu ED history; county histories hide newest week in fitting, future county labels unchanged. Compare no explicit exchange, pooled context, and attention among counties."
+    }
+  },
+  "training_seasons": [
+    "2022-2023",
+    "2023-2024"
+  ],
+  "evaluation_season": "2024-2025",
+  "inputs": "Revised 2022-23/2023-24 county histories with latest target-history week hidden during fitting. Revised Texas flu ED and optional mean AR/LA/NM/OK flu ED covariates, each with latest history week hidden by source schedule.",
+  "labels": "Unchanged future observed county flu ED proportions; no pretraining in this round.",
+  "selection": "2024-25 archived-input WIS against actual MetroCast ensemble. County vintages by Wednesday; covariates from latest recorded UTC source cutoff no later than Wednesday 20:00 America/New_York, often previous-week snapshot. Missing values remain unavailable; no 2025-26 selection."
+}

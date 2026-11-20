@@ -1,0 +1,26 @@
+{
+ "description": "COVID round 17 (2026-11-19 16:30): representation options not yet tried: pretraining on extra series (other pathogens, pre-2022 ILI) for forecasting/reconstruction, an input-reconstruction side loss, a 16-wide bottleneck, a conditional-VAE latent (sampled recipes); for COVID also an MLP-encoder version of the leader (pretraining needs an MLP encoder) and the sampled member that gives trajectories. Main, forward, live.",
+ "round": 17,
+ "seeds": [
+  44,
+  45,
+  46,
+  47
+ ],
+ "parents": {
+  "T.pN_gru.real.log_loss1.ae_weight0.1": "T.pN_gru.real.log_loss1",
+  "T.pN_gru.real.log_loss1.bottleneck16": "T.pN_gru.real.log_loss1",
+  "T.pN_gru.real.log_loss1.mlp_encoder": "T.pN_gru.real.log_loss1",
+  "T.pN_gru.real.log_loss1.mlp_encoder.ae_pathogens_forecast": "T.pN_gru.real.log_loss1.mlp_encoder",
+  "S.Ah.national.real.cvae": "S.Ah.national.real",
+  "S.Ah.national.real.ae_pathogens_forecast": "S.Ah.national.real"
+ },
+ "candidates": {
+  "T.pN_gru.real.log_loss1.ae_weight0.1": "history_source=artificial,reconstruction_labels=1,error_signals=all,input_set=target,correction_weeks=2,correction_ed=1,reporting_probability=0.25,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,spatial=national_broadcast,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=1.0,error_reference=2025-2026,encoder=gru,corrector_examples=real,autoencoder_weight=0.1",
+  "T.pN_gru.real.log_loss1.bottleneck16": "history_source=artificial,reconstruction_labels=1,error_signals=all,input_set=target,correction_weeks=2,correction_ed=1,reporting_probability=0.25,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,spatial=national_broadcast,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=1.0,error_reference=2025-2026,encoder=gru,corrector_examples=real,bottleneck=16",
+  "T.pN_gru.real.log_loss1.mlp_encoder": "history_source=artificial,reconstruction_labels=1,error_signals=all,input_set=target,correction_weeks=2,correction_ed=1,reporting_probability=0.25,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,spatial=national_broadcast,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=1.0,error_reference=2025-2026,encoder=mlp,corrector_examples=real",
+  "T.pN_gru.real.log_loss1.mlp_encoder.ae_pathogens_forecast": "history_source=artificial,reconstruction_labels=1,error_signals=all,input_set=target,correction_weeks=2,correction_ed=1,reporting_probability=0.25,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,spatial=national_broadcast,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=1.0,error_reference=2025-2026,encoder=mlp,corrector_examples=real,autoencoder_pretrain_steps=1000,autoencoder_corpus=pathogens,autoencoder_pretrain_task=forecast",
+  "S.Ah.national.real.cvae": "history_source=artificial,history_correction=1,error_signals=all,input_set=target,correction_weeks=2,correction_ed=1,reporting_probability=0.5,joint_weight=0.05,correction_penalty=30.0,reporting_missingness=0,reporting_method=synchronous_phase_log,ed_transform=logit,width=192,epochs=160,patience=25,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=1.0,error_reference=2025-2026,spatial=national_broadcast,corrector_examples=real,latent_model=cvae,cvae_weight=1.0",
+  "S.Ah.national.real.ae_pathogens_forecast": "history_source=artificial,history_correction=1,error_signals=all,input_set=target,correction_weeks=2,correction_ed=1,reporting_probability=0.5,joint_weight=0.05,correction_penalty=30.0,reporting_missingness=0,reporting_method=synchronous_phase_log,ed_transform=logit,width=192,epochs=160,patience=25,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=1.0,error_reference=2025-2026,spatial=national_broadcast,corrector_examples=real,autoencoder_pretrain_steps=1000,autoencoder_corpus=pathogens,autoencoder_pretrain_task=forecast"
+ }
+}

@@ -1,0 +1,11 @@
+{
+  "candidates": {
+    "county_development_recipe_fit_on_main_panel": "ed_transform=logit,geography=0,decoder=residual2,noise=local,width=128,epochs=80,members=32,training_target_lag=1,forecast_view=raw",
+    "r111_child13": "lookback=52,geography=0,decoder=residual2,noise=local,latent=32,width=192,epochs=320,batch_size=16,members=64,lr=0.002,covariate_encoder=growth,signal_features=multiscale,covariate_set=state,input_normalization=b0,covariate_dropout=0.1,forecast_view=raw",
+    "r111_child13_fit_lag1": "lookback=52,geography=0,decoder=residual2,noise=local,latent=32,width=192,epochs=320,batch_size=16,members=64,lr=0.002,covariate_encoder=growth,signal_features=multiscale,covariate_set=state,input_normalization=b0,training_target_lag=1,covariate_dropout=0.1,forecast_view=raw"
+  },
+  "experiment": "metrocast-current-fourweek-r128",
+  "frozen_at": "2026-10-21T05:41:09.857004+00:00",
+  "reference_date": "2026-10-24",
+  "selection": "Development-only frozen recipes; confirmation outcomes not consulted."
+}

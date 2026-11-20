@@ -1,0 +1,24 @@
+{
+ "description": "RSV round 24 (2026-11-20 01:25): training ideas not yet tried, on 8 seeds: hide the newest target week during fitting (the week still unreported at forecast time), train on the actual archived reports instead of artificial errors, three artificial-error draws per episode, artificial errors at 1.25x strength. Main, forward, live. RSV: reported histories removed (would drop the corrected-history training that removes the double counting).",
+ "round": 24,
+ "seeds": [
+  44,
+  45,
+  46,
+  47,
+  48,
+  49,
+  50,
+  51
+ ],
+ "parents": {
+  "A4c0.national.rsvnet.calendar.weeks1.target_lag1": "A4c0.national.rsvnet.calendar.weeks1",
+  "A4c0.national.rsvnet.calendar.weeks1.realizations3": "A4c0.national.rsvnet.calendar.weeks1",
+  "A4c0.national.rsvnet.calendar.weeks1.strength1.25": "A4c0.national.rsvnet.calendar.weeks1"
+ },
+ "candidates": {
+  "A4c0.national.rsvnet.calendar.weeks1.target_lag1": "history_source=artificial,history_correction=1,error_signals=all,input_set=target,correction_weeks=1,correction_ed=1,joint_weight=0.05,correction_penalty=30.0,reporting_missingness=0,reporting_method=synchronous_phase_log,ed_transform=logit,width=192,epochs=160,patience=25,fit_partition=pathogen,covariate_encoder=summary,covariate_set=kinsa+rsvnet,input_normalization=b0,log_loss_weight=1.0,error_reference=2025-2026,spatial=national_broadcast,training_target_lag=1",
+  "A4c0.national.rsvnet.calendar.weeks1.realizations3": "history_source=artificial,history_correction=1,error_signals=all,input_set=target,correction_weeks=1,correction_ed=1,joint_weight=0.05,correction_penalty=30.0,reporting_missingness=0,reporting_method=synchronous_phase_log,ed_transform=logit,width=192,epochs=160,patience=25,fit_partition=pathogen,covariate_encoder=summary,covariate_set=kinsa+rsvnet,input_normalization=b0,log_loss_weight=1.0,error_reference=2025-2026,spatial=national_broadcast,correction_realizations=3",
+  "A4c0.national.rsvnet.calendar.weeks1.strength1.25": "history_source=artificial,history_correction=1,error_signals=all,input_set=target,correction_weeks=1,correction_ed=1,joint_weight=0.05,correction_penalty=30.0,reporting_missingness=0,reporting_method=synchronous_phase_log,ed_transform=logit,width=192,epochs=160,patience=25,fit_partition=pathogen,covariate_encoder=summary,covariate_set=kinsa+rsvnet,input_normalization=b0,log_loss_weight=1.0,error_reference=2025-2026,spatial=national_broadcast,reporting_strength=1.25"
+ }
+}

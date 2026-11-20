@@ -1,0 +1,26 @@
+{
+  "seeds": [
+    42,
+    43,
+    44,
+    45,
+    46
+  ],
+  "candidates": {
+    "r111_child13": "lookback=52,geography=0,decoder=residual2,noise=local,latent=32,width=192,epochs=320,batch_size=16,members=64,lr=0.002,covariate_encoder=growth,signal_features=multiscale,covariate_set=state,input_normalization=b0,covariate_dropout=0.1,forecast_view=raw",
+    "r111_child13_fit_lag1": "lookback=52,geography=0,decoder=residual2,noise=local,latent=32,width=192,epochs=320,batch_size=16,members=64,lr=0.002,covariate_encoder=growth,signal_features=multiscale,covariate_set=state,input_normalization=b0,training_target_lag=1,covariate_dropout=0.1,forecast_view=raw",
+    "county_development_recipe_fit_on_main_panel": "ed_transform=logit,geography=0,decoder=residual2,noise=local,width=128,epochs=80,members=32,training_target_lag=1,forecast_view=raw"
+  },
+  "parents": {},
+  "training_seasons": [
+    "2022-2023",
+    "2023-2024",
+    "2024-2025",
+    "2025-2026"
+  ],
+  "evaluation_season": "2026-2027; current partial-season diagnostics, never used for recipe selection",
+  "inputs": "Revised training histories, with the selected recipe target-history gap; source covariates unchanged.",
+  "labels": "Future local flu ED proportions",
+  "selection": "Recipes copied from development-only frozen selections; confirmation outcomes are not read.",
+  "export": "2026-10-24 reference, equal five-seed mixture, 100 intact trajectories; no publication."
+}

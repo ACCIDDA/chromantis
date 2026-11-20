@@ -1,0 +1,23 @@
+{
+  "seeds": [
+    42,
+    43,
+    44,
+    45,
+    46
+  ],
+  "candidates": {
+    "california_finalist_1": "ili_units=flu_scaled,ili_steps=600,ili_training=pretrain,ili_path=data/metrocast-california/historical_ili.npz,geography=0,decoder=residual2,noise=local,epochs=160,batch_size=2,members=16,training_target_lag=1,forecast_view=raw",
+    "california_finalist_2": "geography=0,decoder=residual2,noise=local,epochs=160,batch_size=2,members=16,training_target_lag=1,path_loss_weight=0.25,forecast_view=raw",
+    "california_direct_reference": "geography=0,decoder=residual2,noise=local,epochs=160,batch_size=2,members=16,forecast_view=raw"
+  },
+  "parents": {},
+  "training_seasons": [
+    "2024-07-06 through 2025-07-26"
+  ],
+  "evaluation_season": "2025-08-02 through 2026-06-13",
+  "inputs": "Revised published regional admission sums; per-scenario latest target-history week hidden during fitting/validation only.",
+  "labels": "Future published sums over nonmissing age groups, not unsuppressed admission totals; duplicate region/weeks masked.",
+  "selection": "Frozen using only 2024-25 winter pilot results; no 2025-26 tuning.",
+  "evaluation_inputs": "Revised source only; archived release histories and comparable hospitalization ensemble unavailable."
+}

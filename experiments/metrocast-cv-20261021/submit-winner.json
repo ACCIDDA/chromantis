@@ -1,0 +1,13 @@
+{
+ "seeds": [
+  42,
+  43,
+  44,
+  45,
+  46
+ ],
+ "candidates": {
+  "cv_winner_r010_c08": "ed_transform=logit,decoder=residual2,decoder_blocks=2,noise=local,latent=32,width=128,epochs=160,members=32,weight_decay=0.001,covariate_encoder=growth,covariate_set=state,input_normalization=b0,covariate_dropout=0.25,forecast_view=raw"
+ },
+ "purpose": "current-season refit of the season-CV winner on the 103-location panel; training 2022-23..2025-26"
+}

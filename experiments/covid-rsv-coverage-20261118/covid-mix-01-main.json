@@ -1,0 +1,149 @@
+{
+ "description": "COVID mixtures on the main problem (2026-11-19 01:40), seeds 44-47; experiment names from the round each recipe was fitted in.",
+ "recipes": {
+  "Gru": {
+   "experiment": "covid-cov-r02",
+   "scenario": "history_source=artificial,reconstruction_labels=1,error_signals=all,input_set=target,correction_weeks=2,correction_ed=1,reporting_probability=0.25,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,spatial=national_broadcast,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=0.5,error_reference=2025-2026,encoder=gru,corrector_examples=real",
+   "seeds": [
+    44,
+    45,
+    46,
+    47
+   ]
+  },
+  "GruL1": {
+   "experiment": "covid-cov-r04",
+   "scenario": "history_source=artificial,reconstruction_labels=1,error_signals=all,input_set=target,correction_weeks=2,correction_ed=1,reporting_probability=0.25,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,spatial=national_broadcast,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=1.0,error_reference=2025-2026,encoder=gru,corrector_examples=real",
+   "seeds": [
+    44,
+    45,
+    46,
+    47
+   ]
+  },
+  "GruAll": {
+   "experiment": "covid-cov-r04",
+   "scenario": "history_source=artificial,reconstruction_labels=1,error_signals=all,input_set=target,correction_weeks=2,correction_ed=1,reporting_probability=0.25,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,spatial=national_broadcast,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=0.5,error_reference=2025-2026,encoder=gru,corrector_examples=real,error_seasons=all",
+   "seeds": [
+    44,
+    45,
+    46,
+    47
+   ]
+  },
+  "Bh": {
+   "experiment": "covid-cov-r01",
+   "scenario": "history_source=artificial,reconstruction_labels=1,error_signals=all,input_set=target,correction_weeks=2,correction_ed=1,reporting_probability=0.5,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,spatial=neighbors,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=0.5,error_reference=2025-2026,weight_decay=0.0001",
+   "seeds": [
+    44,
+    45,
+    46,
+    47
+   ]
+  },
+  "BhN": {
+   "experiment": "covid-cov-r02",
+   "scenario": "history_source=artificial,reconstruction_labels=1,error_signals=all,input_set=target,correction_weeks=2,correction_ed=1,reporting_probability=0.5,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,spatial=national_broadcast,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=0.5,error_reference=2025-2026,weight_decay=0.0001,corrector_examples=real,covariate_set=hosprep_covid",
+   "seeds": [
+    44,
+    45,
+    46,
+    47
+   ]
+  },
+  "BhMlp": {
+   "experiment": "covid-cov-r01",
+   "scenario": "history_source=artificial,reconstruction_labels=1,error_signals=all,input_set=target,correction_weeks=2,correction_ed=1,reporting_probability=0.5,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,spatial=neighbors,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=0.5,error_reference=2025-2026,weight_decay=0.0001,corrector_examples=synthetic_then_real,corrector_model=mlp,covariate_set=hosprep_covid",
+   "seeds": [
+    44,
+    45,
+    46,
+    47
+   ]
+  },
+  "Ah": {
+   "experiment": "covid-cov-r01",
+   "scenario": "history_source=artificial,history_correction=1,error_signals=all,input_set=target,correction_weeks=2,correction_ed=1,reporting_probability=0.5,joint_weight=0.05,correction_penalty=30.0,reporting_missingness=0,reporting_method=synchronous_phase_log,ed_transform=logit,width=192,epochs=160,patience=25,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=1.0,error_reference=2025-2026,spatial=neighbors",
+   "seeds": [
+    44,
+    45,
+    46,
+    47
+   ]
+  },
+  "pN": {
+   "experiment": "covid-cov-r01",
+   "scenario": "history_source=artificial,reconstruction_labels=1,error_signals=all,input_set=target,correction_weeks=2,correction_ed=1,reporting_probability=0.25,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,spatial=national_broadcast,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=0.5,error_reference=2025-2026,encoder=gru",
+   "seeds": [
+    44,
+    45,
+    46,
+    47
+   ]
+  },
+  "NMs": {
+   "experiment": "covid-cov-r01",
+   "scenario": "error_signals=all,input_set=target,correction_weeks=2,correction_ed=1,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,spatial=national_broadcast,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=0.5,error_reference=2025-2026,signal_features=multiscale",
+   "seeds": [
+    44,
+    45,
+    46,
+    47
+   ]
+  },
+  "NMsR": {
+   "experiment": "covid-cov-r04",
+   "scenario": "error_signals=all,input_set=target,correction_weeks=2,correction_ed=1,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,spatial=national_broadcast,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=0.5,error_reference=2025-2026,signal_features=multiscale,corrector_examples=real",
+   "seeds": [
+    44,
+    45,
+    46,
+    47
+   ]
+  }
+ },
+ "groups": {
+  "Gru alone": [
+   "Gru"
+  ],
+  "GruL1 alone": [
+   "GruL1"
+  ],
+  "GruL1+Gru": [
+   "GruL1",
+   "Gru"
+  ],
+  "GruL1+Bh": [
+   "GruL1",
+   "Bh"
+  ],
+  "GruL1+BhMlp": [
+   "GruL1",
+   "BhMlp"
+  ],
+  "GruL1+GruAll+Bh": [
+   "GruL1",
+   "GruAll",
+   "Bh"
+  ],
+  "GruL1+NMsR": [
+   "GruL1",
+   "NMsR"
+  ],
+  "GruL1+Gru+NMsR": [
+   "GruL1",
+   "Gru",
+   "NMsR"
+  ],
+  "Submitted-like": [
+   "Ah",
+   "pN",
+   "NMs",
+   "Bh"
+  ]
+ },
+ "rules": [
+  "mixture"
+ ],
+ "forecast_view": "corrected"
+}

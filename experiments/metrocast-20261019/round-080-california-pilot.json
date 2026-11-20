@@ -1,0 +1,37 @@
+{
+  "seeds": [
+    42,
+    43,
+    44,
+    45
+  ],
+  "candidates": {
+    "california_direct_attention_lag0": "geography=0,spatial=attention,decoder=residual2,noise=local,epochs=160,batch_size=2,members=16,forecast_view=raw",
+    "california_direct_pooled_lag0": "geography=0,spatial=pooled,decoder=residual2,noise=local,epochs=160,batch_size=2,members=16,forecast_view=raw",
+    "california_direct_attention_lag1": "geography=0,spatial=attention,decoder=residual2,noise=local,epochs=160,batch_size=2,members=16,training_target_lag=1,forecast_view=raw",
+    "california_direct_pooled_lag1": "geography=0,spatial=pooled,decoder=residual2,noise=local,epochs=160,batch_size=2,members=16,training_target_lag=1,forecast_view=raw",
+    "california_ILI_pretraining_attention_lag0": "ili_units=flu_scaled,ili_steps=600,ili_training=pretrain,ili_path=data/metrocast-california/historical_ili.npz,geography=0,spatial=attention,decoder=residual2,noise=local,epochs=160,batch_size=2,members=16,forecast_view=raw",
+    "california_ILI_pretraining_pooled_lag0": "ili_units=flu_scaled,ili_steps=600,ili_training=pretrain,ili_path=data/metrocast-california/historical_ili.npz,geography=0,spatial=pooled,decoder=residual2,noise=local,epochs=160,batch_size=2,members=16,forecast_view=raw",
+    "california_ILI_pretraining_attention_lag1": "ili_units=flu_scaled,ili_steps=600,ili_training=pretrain,ili_path=data/metrocast-california/historical_ili.npz,geography=0,spatial=attention,decoder=residual2,noise=local,epochs=160,batch_size=2,members=16,training_target_lag=1,forecast_view=raw",
+    "california_ILI_pretraining_pooled_lag1": "ili_units=flu_scaled,ili_steps=600,ili_training=pretrain,ili_path=data/metrocast-california/historical_ili.npz,geography=0,spatial=pooled,decoder=residual2,noise=local,epochs=160,batch_size=2,members=16,training_target_lag=1,forecast_view=raw"
+  },
+  "parents": {
+    "california_direct_attention_lag0": "geography=0,decoder=residual2,noise=local,epochs=160,batch_size=2,members=16,forecast_view=raw",
+    "california_direct_pooled_lag0": "geography=0,decoder=residual2,noise=local,epochs=160,batch_size=2,members=16,forecast_view=raw",
+    "california_direct_attention_lag1": "geography=0,decoder=residual2,noise=local,epochs=160,batch_size=2,members=16,training_target_lag=1,forecast_view=raw",
+    "california_direct_pooled_lag1": "geography=0,decoder=residual2,noise=local,epochs=160,batch_size=2,members=16,training_target_lag=1,forecast_view=raw",
+    "california_ILI_pretraining_attention_lag0": "ili_units=flu_scaled,ili_steps=600,ili_training=pretrain,ili_path=data/metrocast-california/historical_ili.npz,geography=0,decoder=residual2,noise=local,epochs=160,batch_size=2,members=16,forecast_view=raw",
+    "california_ILI_pretraining_pooled_lag0": "ili_units=flu_scaled,ili_steps=600,ili_training=pretrain,ili_path=data/metrocast-california/historical_ili.npz,geography=0,decoder=residual2,noise=local,epochs=160,batch_size=2,members=16,forecast_view=raw",
+    "california_ILI_pretraining_attention_lag1": "ili_units=flu_scaled,ili_steps=600,ili_training=pretrain,ili_path=data/metrocast-california/historical_ili.npz,geography=0,decoder=residual2,noise=local,epochs=160,batch_size=2,members=16,training_target_lag=1,forecast_view=raw",
+    "california_ILI_pretraining_pooled_lag1": "ili_units=flu_scaled,ili_steps=600,ili_training=pretrain,ili_path=data/metrocast-california/historical_ili.npz,geography=0,decoder=residual2,noise=local,epochs=160,batch_size=2,members=16,training_target_lag=1,forecast_view=raw"
+  },
+  "training_seasons": [
+    "2024-07-06 through 2025-01-25"
+  ],
+  "evaluation_season": "2025-02-01 through 2025-06-14 (within 2024-25)",
+  "inputs": "Revised published California admission sums, with latest training target week hidden only for lag1 scenarios; no covariates; common weights across seven overlapping state/region locations. New attention or pooled messages expose observed histories across the six regions and overlapping statewide location. No new external covariates; all model weights remain shared. Matched no-message fits already exist in r065.",
+  "labels": "Future counts: sum nonmissing admissions for four nonoverlapping age groups, matching Hub rule. Not unsuppressed totals. All duplicate location/weeks masked.",
+  "selection": "2024-25 winter pilot only. 34-output models but the evaluation window cannot validate all34 future weeks from these origins; report available horizon bands and path scores. 2025-26 reserved.",
+  "evaluation_inputs": "Revised source; no historical publication replay available.",
+  "pretraining": "Optional 600 updates on pre-August2022 California state ILI broadcast to regions, scaled using fitting-only regional count Q95; pseudo-counts, not historical regional hospitalizations."
+}

@@ -1,0 +1,15 @@
+{
+ "description": "RSV live gate 16: round-18 recipes refit on all of 2022-23..2025-26.",
+ "seeds": [
+  42,
+  43,
+  44,
+  45
+ ],
+ "candidates": {
+  "A4c0.national.rsvnet.calendar.real_cov_trees.all_seasons": "history_source=artificial,history_correction=1,error_signals=all,input_set=target,correction_weeks=2,correction_ed=1,joint_weight=0.05,correction_penalty=30.0,reporting_missingness=0,reporting_method=synchronous_phase_log,ed_transform=logit,width=192,epochs=160,patience=25,fit_partition=pathogen,covariate_encoder=summary,covariate_set=kinsa+rsvnet+hosprep_rsv,input_normalization=b0,log_loss_weight=1.0,error_reference=2025-2026,spatial=national_broadcast,corrector_examples=real,network_coverage=0,error_seasons=all",
+  "A4c0.national.rsvnet.calendar.real_cov_trees.mlp": "history_source=artificial,history_correction=1,error_signals=all,input_set=target,correction_weeks=2,correction_ed=1,joint_weight=0.05,correction_penalty=30.0,reporting_missingness=0,reporting_method=synchronous_phase_log,ed_transform=logit,width=192,epochs=160,patience=25,fit_partition=pathogen,covariate_encoder=summary,covariate_set=kinsa+rsvnet+hosprep_rsv,input_normalization=b0,log_loss_weight=1.0,error_reference=2025-2026,spatial=national_broadcast,corrector_examples=synthetic_then_real,network_coverage=0,corrector_model=mlp",
+  "Bw.national.hc.real_cov_trees": "history_source=artificial,error_signals=all,input_set=all,correction_weeks=2,correction_ed=1,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,ed_transform=logit,spatial=national_broadcast,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=0.5,error_reference=2025-2026,history_correction=1,corrector_examples=real,covariate_set=hosprep_rsv,network_coverage=0",
+  "A4c0.national.real_cov_trees": "history_source=artificial,history_correction=1,error_signals=all,input_set=target,correction_weeks=2,correction_ed=1,joint_weight=0.05,correction_penalty=30.0,reporting_missingness=0,reporting_method=synchronous_phase_log,ed_transform=logit,width=192,epochs=160,patience=25,fit_partition=pathogen,covariate_encoder=summary,covariate_set=kinsa+hosprep_rsv,input_normalization=b0,log_loss_weight=1.0,error_reference=2025-2026,annual_calendar=0,spatial=national_broadcast,corrector_examples=real,network_coverage=0"
+ }
+}
