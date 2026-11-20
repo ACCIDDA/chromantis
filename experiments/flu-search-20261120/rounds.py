@@ -123,6 +123,34 @@ ROUNDS[1] = dict(description='Flu search round 1 (2026-11-20): B7 references and
                  build=lambda: [round1_children(r) for r in ('Bq', 'Bh', 'Ar')])
 
 
+def round2():
+    # Sampled (trajectory) recipes only, aimed at the peak weakness (every model is far too low near the peak).
+    put('B5r', derive(B5, corrector_examples='real'), 'ref.B5')                 # second sampled root: B5 with real-pair trees
+    for root in ('Ar', 'B5r'):
+        r = R[root]
+        put(f'{root}.path', derive(r, path_loss_weight=1.0), root)           # energy score of each location's whole path
+        put(f'{root}.peak', derive(r, peak_loss_weight=1.0), root)           # CRPS of the path peak size and soft peak week
+        put(f'{root}.sum', derive(r, sum_wis_weight=0.25), root)             # WIS of the four-week sum
+        put(f'{root}.local', derive(r, noise='local'), root)                 # per-location latent noise
+        put(f'{root}.anchor', derive(r, growth_anchor=1), root)              # damped recent growth added to the level anchor
+
+
+ROUNDS[2] = dict(description='Flu search round 2 (2026-11-20): trajectory (sampled) recipes aimed at the peak weakness: path, '
+                             'peak, four-week-sum losses, per-location noise and growth anchor on Ar and on B5 with real-pair trees.',
+                 build=round2)
+RESEED = {'rs01': (['ref.A', 'ref.B5', 'ref.B', 'ref.Bes', 'Bq', 'Bh', 'Ar'], list(range(52, 60)))}
+
+
+def write_reseed(tag):
+    for n in sorted(ROUNDS):
+        ROUNDS[n]['build']()
+    names, seeds = RESEED[tag]
+    study = dict(description=f'Flu search reseed {tag}: {", ".join(names)} on seeds {seeds[0]}-{seeds[-1]}.', round=tag,
+                 parents={}, candidates={k: R[k] for k in names}, seeds=seeds)
+    (HERE / f'reseed-{tag}.json').write_text(json.dumps(study, indent=1) + '\n')
+    print(f'reseed {tag}: {len(names)} recipes x {len(seeds)} seeds')
+
+
 def write(n):
     before = set(R)
     ROUNDS[n]['build']()
@@ -136,6 +164,9 @@ def write(n):
 
 
 if __name__ == '__main__':
+    if sys.argv[1] in RESEED:
+        write_reseed(sys.argv[1])
+        sys.exit()
     target = int(sys.argv[1])
     for n in sorted(ROUNDS):
         if n < target:

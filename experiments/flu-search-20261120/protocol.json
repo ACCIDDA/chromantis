@@ -24,11 +24,32 @@
   "A child beats its parent only if its primary is lower by more than max(2 x standard error of the difference, 1% of the parent), it is lower in both 2024-25 and 2025-26, and its 2023-24 guard is not worse by more than that margin. Smaller differences are 'level' and are not pursued.",
   "Prefer changes with a mechanism (nowcast, double counting, data, structure) over continuous tuning; no random hyperparameter searches before the structural axes are closed.",
   "An axis is closed after two rounds without a 'better' child. Combinations only of children that were 'better' on their own.",
-  "The release candidate is chosen on seed mixtures (each recipe's seeds pooled) of a few recipes, compared with the B7 mixture refit leak-free on the same seeds; mixture weights are equal, never tuned."
+  "The release candidate is chosen on seed mixtures (each recipe's seeds pooled) of a few recipes, compared with the B7 mixture refit leak-free on the same seeds; mixture weights are equal, never tuned.",
+  "Added 20 Nov 17:25 (user concern about peaks): WIS in each state's peak window (target weeks within 2 weeks of its finalized season maximum, 14% of tasks) is reported for every finalist and mixture (scripts/flu_phase_check.py); a candidate may not be worse there by more than the margin, because season-average WIS is dominated by the more numerous falling and rising weeks."
  ],
  "decisions": [
-  {"date": "2026-11-20 16:30 EST", "what": "Pulled origin/main (781efed); the local modifications and untracked files were byte-identical to origin, so nothing needed a 'progress' commit (local copies kept in git stash). Study set up: protocol, rounds.py, the 2023-24 guard problem, scripts/flu_search.sbatch, flu_search_score.sbatch, flu_search_table.py, flu_first_week_signal.py."},
-  {"date": "2026-11-20", "round": 1, "what": "Round 1: 4 references + 3 roots + 50 one-factor children = 57 recipes x seeds 44-51, main problem (flu-s-r01) then guard (flu-s-g01), one Slurm array over the free lab GPUs."}
+  {
+   "date": "2026-11-20 16:30 EST",
+   "what": "Pulled origin/main (781efed); the local modifications and untracked files were byte-identical to origin, so nothing needed a 'progress' commit (local copies kept in git stash). Study set up: protocol, rounds.py, the 2023-24 guard problem, scripts/flu_search.sbatch, flu_search_score.sbatch, flu_search_table.py, flu_first_week_signal.py."
+  },
+  {
+   "date": "2026-11-20",
+   "round": 1,
+   "what": "Round 1: 4 references + 3 roots + 50 one-factor children = 57 recipes x seeds 44-51, main problem (flu-s-r01) then guard (flu-s-g01), one Slurm array over the free lab GPUs."
+  },
+  {
+   "date": "2026-11-20 16:50 EST",
+   "what": "GBQR member test (scripts/flu_gbqr.py, first version, untuned: sklearn quantile gradient boosting per Hub level, pooled over locations and horizons, trained on finalized 2022-23..2025-26 histories of each fold, inputs = the paired run's tree-corrected Wednesday reports). Paired with T.real of nowcast-tree-20261113-r01 (B_width256 + real-pair trees, error_reference=2025-2026, i.e. the old leaky errors; seeds 44-47). States/DC WIS of log(1 + admissions), 2024-25 / 2025-26 / mean / October-only, lower is better, each a 4-seed equal mixture: network 0.2883 / 0.2846 / 0.2865 / 0.454; GBQR 0.2969 / 0.2713 / 0.2841 / 0.376; equal network+GBQR mixture 0.2755 / 0.2635 / 0.2695 / 0.394 (-6% against the network, lower in both seasons). GBQR intervals are too narrow (50% intervals cover 43%, 90% cover 81-82%); the mixture's cover 50-53% and 88-91%. ED share WIS (natural, states/DC) 0.00502 / 0.00444 network, 0.00494 / 0.00413 mixture. Decision: mixtures with a structurally different learner are the first large, season-consistent gain; GBQR is kept untuned apart from principled variants (pre-2022 ILI augmentation, bagging), paired with the round-1 leaders."
+  },
+  {
+   "date": "2026-11-20 17:25 EST",
+   "what": "User (20 Nov): does not much like GBQR, prefers trajectories, asks whether it could favour non-peak weeks. Checked by epidemic phase (scripts/flu_phase_check.py; same 4-seed mixtures as the 16:50 entry: network T.real of nowcast-tree-20261113-r01 trained on 2022-23..2025-26 minus the held-out season, GBQR paired with it, and their equal mixture; held-out 2024-25 and 2025-26 archived reports, states/DC, horizons 0-3; phase of the target week from the state's finalized season curve: peak = within 2 weeks of its maximum, 14% of tasks; rising 31%; falling 55%). WIS of log(1 + admissions), network / GBQR / mixture: rising 0.320 / 0.309 / 0.291, peak 0.299 / 0.333 / 0.299, falling 0.255 / 0.251 / 0.242. Near the peak GBQR is worse, lower (bias log(median/truth) -0.36 against -0.30) and overconfident (50% intervals cover 23% against 34%); in 2024-25's sharp peak 0.391 against 0.313, and the mixture 0.331 is worse than the network alone. Every model is far too low near the peak (bias -0.57 to -0.66 at horizon 3). So GBQR's gain is off-peak, where most tasks lie, which is why season-average WIS (and Hub rankings) favour it. GBQR with pre-2022 ILI rows (weight 0.5) is worse alone (0.2922 against 0.2841). Decisions: GBQR is not a release candidate (marginal quantiles, no trajectories, poor at peaks); the gain from structural diversity is pursued among sampled (trajectory) networks instead; peak-window WIS is added as a guard: a child or mixture may not be worse near the peak by more than the margin."
+  },
+  {
+   "date": "2026-11-20 16:50 EST",
+   "round": "1, 2, rs01",
+   "what": "Round 1 runs slower than estimated (about 40 fits per 20 minutes on five GPUs, so about 3.5 hours for the 456 main fits). The 2023-24 guard of round 1 (not started) was cut to the 7 references and roots; children get a guard only after passing the main problem. The pending sixth array element (waiting for a GPU used by another lab member) was cancelled so that chained arrays do not wait on it. Chained after round 1 (array 9989288): round 2 (flu-s-r02: B5 with real-pair trees as a second sampled root; on it and on Ar the trajectory-oriented options path loss 1, peak loss 1, four-week-sum WIS 0.25, per-location noise, growth anchor; seeds 44-51, main problem) and reseed rs01 (references and roots on seeds 52-59)."
+  }
  ],
  "execution": {
   "host": "chadi@longleaf.unc.edu, jlessler patron partition (4 L40 + 2 H100; one L40 used by another lab member on 20 Nov)",

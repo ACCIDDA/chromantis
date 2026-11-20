@@ -20,7 +20,8 @@ Writes run folders data/experiments/OUT/gbqr/s<seed>/attempt-001/eval_<season>/c
 run's file with its quantiles replaced, so tasks, truth and masks are identical. Score with evaluation.ensembles
 (groups listing these run folders), alone or mixed with network recipes.
 
-    PYTHONPATH=src .venv/bin/python scripts/flu_gbqr.py EXPERIMENT RECIPE OUT [--bag] [--workers 8]
+  --ili W        also train on pre-2022 state ILI rescaled to admission/ED units (training.historical_panel), rows weighted W
+    PYTHONPATH=src .venv/bin/python scripts/flu_gbqr.py EXPERIMENT RECIPE OUT [--bag] [--ili 0.5] [--tag gbqr] [--workers 8]
 """
 import argparse
 import csv
@@ -85,7 +86,7 @@ def rows(eps, pops, us_index, units, horizons):
 
 
 def fit_fold(task):
-    fold_dir, out_dir, bag, seed = task
+    fold_dir, out_dir, bag, seed, ili = task
     import sys
     sys.path.insert(0, 'src')
     from chromantis.dataset import cv
@@ -108,6 +109,17 @@ def fit_fold(task):
     units = train[0]['target_units']
     horizons = list(problem.horizons)
     X, Y = rows(train, pops, us_index, units, horizons)
+    weight = np.ones(len(X))
+    if ili:
+        # Pre-2022 state ILI rescaled per location to the fold's admission and ED units (training.historical_panel,
+        # fit-only Q95 ratios), as the CMU and UMass Hub models augment NHSN with ILINet; no US series.
+        from chromantis.experiment.training import historical_panel
+        extra = historical_panel(scen.ili_path, train, problem, scen)
+        if bag:
+            extra = [extra[i] for i in rng.integers(len(extra), size=len(extra))]
+        Xi, Yi = rows(extra, pops, us_index, units, horizons)
+        X, Y = np.concatenate([X, Xi]), [np.concatenate([a, b]) for a, b in zip(Y, Yi)]
+        weight = np.concatenate([weight, np.full(len(Xi), ili)])
     score = cv.score_episodes(panel, problem, scen, held_out, 'flusight')
     with (fold_dir / 'nowcaster.pkl').open('rb') as f:
         corrector = pickle.load(f)
@@ -122,7 +134,7 @@ def fit_fold(task):
         for level in LEVELS:
             m = HistGradientBoostingRegressor(loss='quantile', quantile=level, max_iter=200, learning_rate=.05,
                                               max_leaf_nodes=15, min_samples_leaf=40, random_state=seed)
-            m.fit(X[ok], Y[c][ok])
+            m.fit(X[ok], Y[c][ok], sample_weight=weight[ok])
             preds.append(m)
         for e in score:
             i = index.get(e['context_dates'][-1])
@@ -153,6 +165,7 @@ def main():
     ap.add_argument('--bag', action='store_true')
     ap.add_argument('--workers', type=int, default=8)
     ap.add_argument('--tag', default='gbqr')
+    ap.add_argument('--ili', type=float, default=0., help='weight of pre-2022 ILI pseudo-admission rows (0 = off)')
     a = ap.parse_args()
     root = Path('data/experiments') / a.experiment
     runs = [r for r in csv.DictReader(open(root / 'runs.csv')) if r['name'] == a.recipe and r['status'] == 'complete']
@@ -162,11 +175,11 @@ def main():
         out = Path('data/experiments') / a.out / a.tag / f's{r["seed"]}' / 'attempt-001'
         out.mkdir(parents=True, exist_ok=True)
         manifest = json.loads((run / 'manifest.json').read_text())
-        manifest.update(gbqr=dict(paired_run=str(run), bag=a.bag, definition=__doc__))
+        manifest.update(gbqr=dict(paired_run=str(run), bag=a.bag, ili_weight=a.ili, definition=__doc__))
         (out / 'manifest.json').write_text(json.dumps(manifest, indent=1))
         made.append(str(out))
         for season in manifest['folds']:
-            tasks.append((run / f'eval_{season}', out, a.bag, int(r['seed'])))
+            tasks.append((run / f'eval_{season}', out, a.bag, int(r['seed']), a.ili))
     with ProcessPoolExecutor(a.workers) as pool:
         for t in pool.map(fit_fold, tasks):
             print('wrote', t, flush=True)
