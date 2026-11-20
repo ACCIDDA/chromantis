@@ -32,6 +32,20 @@ When running on longleaf, we have two choices:
   - g1803jles01.ll.unc.edu:  512GB ram 56 physical CPU cores Quantity 4 of Nvidia L40, 48GB
   - g1803jles02.ll.unc.edu: 64 physical CPU cores 2Tb RAM 2x Nvidia H100, 96 GB
 
+The lab volume moved from `/proj/jlessler` to `/hickory/proj/jlessler` in November 2026;
+the project root is `/hickory/proj/jlessler/projects/tapestry-all/`.
+
+## Laptop and Longleaf stay in sync
+
+Nothing may exist only on a laptop: collaborators work from GitHub and Longleaf alone.
+- Code, docs, release files and submitted forecasts: commit on `main`, push to GitHub,
+  then fast-forward the Longleaf checkout `tapestry-all/tapestry` to the same commit.
+- Git-ignored data and outputs (`data/`, `production/output/`, `output/`, `sandbox/`,
+  `references/`): after each data pull, weekly submission or local run, copy them to the
+  same relative path in `tapestry-all/tapestry` with
+  `rsync -a --update <path>/ longleaf:/hickory/proj/jlessler/projects/tapestry-all/tapestry/<path>/`.
+- Work done in a Longleaf campaign folder gets committed and pushed the same way.
+
 When told to work until a given time, keep every GPU busy until then: chain the next round in Slurm before the current one ends (never rely on a local watcher to resume you), and when the search stalls, launch new outside-the-box experiments yourself instead of waiting.
 
 ## Launching training and scoring jobs

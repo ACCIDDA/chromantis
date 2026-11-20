@@ -375,7 +375,7 @@ in [the B6 saved-ensemble report](b6-saved-ensembles-20261007/index.md).
 A 15-minute heartbeat continues monitoring and authorized analysis/production
 work in this chat, quiet when there is no meaningful change.
 
-Active manager commands (run in `/proj/jlessler/projects/tapestry-all/tapestry-b6-20261007`):
+Active manager commands (run in `/hickory/proj/jlessler/projects/tapestry-all/tapestry-b6-20261007`):
 
 ```bash
 export PYTHONPATH=src

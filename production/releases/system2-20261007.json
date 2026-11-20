@@ -7,7 +7,7 @@
   "view": "corrected",
   "description": "System2: the on-time submission for reference date 2026-10-10 (pushed 7 October 22:47 EDT, replaced by B7 after the deadline; see docs/submissions.md). Eight-recipe mixture without the FluSurv recipe, ten seeds per recipe (42-51), each retrained on 2022-23 through 2025-26 with its B6 training treatment; equal weight per recipe and per seed; predictive distributions mixed; corrected forecast view.",
   "training_design": "docs/experiments/b6-system2-nine-1605/index.md",
-  "checkpoints_from": "longleaf:/proj/jlessler/projects/tapestry-all/tapestry-b6-20261007/data/experiments/b6-production-system2-20261007",
+  "checkpoints_from": "longleaf:/hickory/proj/jlessler/projects/tapestry-all/tapestry-b6-20261007/data/experiments/b6-production-system2-20261007",
   "recipes": {
     "A_blocks3": [
       {

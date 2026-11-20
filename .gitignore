@@ -50,3 +50,6 @@ docs/experiments/b4-flu-600-20261005/provisional-analysis/
 # Production hub clones (upstream read-only + personal fork for submission PRs)
 /production/hubs/
 /production/output/
+
+# Local scratch runs (checkpoints); synced to Longleaf with rsync, not git
+/sandbox/

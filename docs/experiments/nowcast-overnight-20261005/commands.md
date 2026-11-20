@@ -1,6 +1,6 @@
 # Manager commands for this study
 
-Run from `/proj/jlessler/projects/tapestry-all/tapestry-nowcast-overnight-20261005`
+Run from `/hickory/proj/jlessler/projects/tapestry-all/tapestry-nowcast-overnight-20261005`
 on Longleaf. These commands reproduce the actual narrowed allocations. Do not
 replan an experiment whose dispatcher is running: each experiment pins its source.
 Use new experiment names for fresh reproductions, and update dependent source

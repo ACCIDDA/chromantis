@@ -108,7 +108,7 @@ A better trajectory score alone does not establish better forecasting.
 
 ## Manager commands
 
-Remote working directory: `/proj/jlessler/projects/tapestry-all/nowcaster-20261001`.
+Remote working directory: `/hickory/proj/jlessler/projects/tapestry-all/nowcaster-20261001`.
 This source staging directory shares the existing data and environment but does
 not overwrite the main remote checkout. The manager pins each experiment's code.
 

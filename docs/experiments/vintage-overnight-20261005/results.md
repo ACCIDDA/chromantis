@@ -123,7 +123,7 @@ recorded; it completed on its second attempt. No research GPU allocation remains
 
 The shared source tree was not modified. Private source is in
 `/tmp/chromantis-vintage-overnight-20261005` locally and
-`/proj/jlessler/projects/tapestry-all/tapestry-vintage-overnight-20261005` remotely.
+`/hickory/proj/jlessler/projects/tapestry-all/tapestry-vintage-overnight-20261005` remotely.
 The patch contains the learned generator, scenario options and dated research scripts;
 pinned experiment snapshots preserve the exact fitted versions. Focused scientific
 checks passed for donor-season isolation, unchanged labels/availability and input scope.

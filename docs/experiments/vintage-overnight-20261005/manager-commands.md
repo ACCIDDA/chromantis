@@ -4,7 +4,7 @@ Run from the private remote project:
 
 ```bash
 ssh longleaf
-cd /proj/jlessler/projects/tapestry-all/tapestry-vintage-overnight-20261005
+cd /hickory/proj/jlessler/projects/tapestry-all/tapestry-vintage-overnight-20261005
 ```
 
 All three research experiments are complete; no resubmission is needed. Inspect

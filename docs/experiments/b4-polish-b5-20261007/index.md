@@ -179,13 +179,13 @@ Findings:
 
 - Two B5 launches failed validation (a window rule that found no 2023–24 reporting errors; out-of-memory from historical-ILI pretraining batches); both were fixed before the main run. Out-of-memory failures on the 44 GB L40s were fixed mid-run by gradient accumulation (identical gradients).
 - The Slurm controller was unreachable on 7 October ~07:00–08:30. Production fits and part of the confirmation ran by starting the queue manager directly inside existing allocations; the confirmation was resubmitted when Slurm returned.
-- Everything ran from `/proj/jlessler/projects/tapestry-all/tapestry-b5b4polish-20261006`; job IDs are in `data/experiments/launch-20261006.json` there. Nothing is committed to Git yet.
+- Everything ran from `/hickory/proj/jlessler/projects/tapestry-all/tapestry-b5b4polish-20261006`; job IDs are in `data/experiments/launch-20261006.json` there. Nothing is committed to Git yet.
 
 ## 4. B4.polish — new seeds, training windows, stress views, ensembles
 
 Record folder: `docs/experiments/b4-polish-20261006/`.
 
-Launched 6 October 2026. Merges the two production plans of 6 October (A+B as default; test whether it tolerates A's weaknesses; confirm on new seeds; test shorter training windows) before a final fit on all four seasons. Manager experiment `b4-polish-20261006`; ensemble stress test `data/experiments/b4-polish-ensembles` (remote checkout `/proj/jlessler/projects/tapestry-all/tapestry-b5b4polish-20261006`).
+Launched 6 October 2026. Merges the two production plans of 6 October (A+B as default; test whether it tolerates A's weaknesses; confirm on new seeds; test shorter training windows) before a final fit on all four seasons. Manager experiment `b4-polish-20261006`; ensemble stress test `data/experiments/b4-polish-ensembles` (remote checkout `/hickory/proj/jlessler/projects/tapestry-all/tapestry-b5b4polish-20261006`).
 
 ### Recipes (unchanged B4 scenarios)
 
@@ -320,7 +320,7 @@ Not yet done: an operational forecast script that loads these ten checkpoints an
 
 Record folder: `docs/experiments/b5-covariates-20261006/`.
 
-Launched 6 October 2026 (user request: test smoothed / slope / downstream-transformed covariates). Manager experiment `b5-covariates-20261006`: 26 configurations × seeds 42, 43, 44 = 78 runs, on the second H100 before it returns to B5. Remote checkout `/proj/jlessler/projects/tapestry-all/tapestry-b5b4polish-20261006`.
+Launched 6 October 2026 (user request: test smoothed / slope / downstream-transformed covariates). Manager experiment `b5-covariates-20261006`: 26 configurations × seeds 42, 43, 44 = 78 runs, on the second H100 before it returns to B5. Remote checkout `/hickory/proj/jlessler/projects/tapestry-all/tapestry-b5b4polish-20261006`.
 
 ### What is compared
 
@@ -431,7 +431,7 @@ Design seed 20261007; exact strings in `b5-explore-20261006/design.json` / `b5-e
 
 ### Execution
 
-Remote checkout `/proj/jlessler/projects/tapestry-all/tapestry-b5b4polish-20261006`. Validation `b5-explore-check-20261006` (24 configurations, seed 42, 2 epochs; excluded) Slurm 4046723. Main: H100 array 4046725 (8 workers), L40 array 4046727 (4 × 4 workers), second H100 array 4046728 after B4.polish finishes (8 workers); about 32 concurrent runs, roughly 18–20 hours. Rank 4046730.
+Remote checkout `/hickory/proj/jlessler/projects/tapestry-all/tapestry-b5b4polish-20261006`. Validation `b5-explore-check-20261006` (24 configurations, seed 42, 2 epochs; excluded) Slurm 4046723. Main: H100 array 4046725 (8 workers), L40 array 4046727 (4 × 4 workers), second H100 array 4046728 after B4.polish finishes (8 workers); about 32 concurrent runs, roughly 18–20 hours. Rank 4046730.
 
 ```bash
 export PYTHONPATH=src
@@ -547,4 +547,4 @@ Conclusions (two seeds; differences under ~0.05 are within seed noise):
 
 ## Repository records
 
-Each experiment folder keeps `design.json`, `scenarios.txt` and its analysis tables. Not committed (regenerable from the run folders under `/proj/jlessler/projects/tapestry-all/tapestry-b5b4polish-20261006/data/experiments/<experiment>/` with `planner rank`): per-location distribution diagnostics (`distribution-scores.csv`) and per-run raw-WIS tables (`pilot-raw-wis.csv`). Scripts: `scripts/plan_b4_polish.py`, `plan_b4_production.py`, `plan_b5_covariates.py`, `plan_b5_explore.py`, `plan_b5_confirm.py`, `ensemble_b4.py`, `summarize_b4_ensembles.py`, `analyze_b5.py`. Planning notes: [B5 plan](../b5-plan-20261006.md).
+Each experiment folder keeps `design.json`, `scenarios.txt` and its analysis tables. Not committed (regenerable from the run folders under `/hickory/proj/jlessler/projects/tapestry-all/tapestry-b5b4polish-20261006/data/experiments/<experiment>/` with `planner rank`): per-location distribution diagnostics (`distribution-scores.csv`) and per-run raw-WIS tables (`pilot-raw-wis.csv`). Scripts: `scripts/plan_b4_polish.py`, `plan_b4_production.py`, `plan_b5_covariates.py`, `plan_b5_explore.py`, `plan_b5_confirm.py`, `ensemble_b4.py`, `summarize_b4_ensembles.py`, `analyze_b5.py`. Planning notes: [B5 plan](../b5-plan-20261006.md).

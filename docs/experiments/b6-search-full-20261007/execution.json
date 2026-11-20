@@ -1,5 +1,5 @@
 {
-  "remote_checkout": "/proj/jlessler/projects/tapestry-all/tapestry-b6-20261007",
+  "remote_checkout": "/hickory/proj/jlessler/projects/tapestry-all/tapestry-b6-20261007",
   "experiment": "b6-search-full-20261007",
   "validation": {
     "job": 4128386,

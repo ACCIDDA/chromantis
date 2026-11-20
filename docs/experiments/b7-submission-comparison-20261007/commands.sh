@@ -1,4 +1,4 @@
-cd /proj/jlessler/projects/tapestry-all/tapestry-b7-revisions-20261007
+cd /hickory/proj/jlessler/projects/tapestry-all/tapestry-b7-revisions-20261007
 export PYTHONPATH=data/experiments/b7-folds-20261007/code-resume/src
 .venv/bin/python scripts/compare_b6_b7.py plan
 sbatch scripts/b7_compare.sbatch

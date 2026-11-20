@@ -8,10 +8,10 @@ Both anchors learn finalized next-four-week flu admissions and flu ED labels. Th
 
 The completed main-run leaders' raw ED WIS (mean of two seeds) confirms a season tradeoff: the native leader has 2024–25 states/DC 0.006035 and US 0.005162 versus the log leader 0.005722 and 0.004964; in 2025–26 the native leader has 0.005070 and 0.004069 versus the log leader 0.005713 and 0.005056. Lower is better. Preserve both anchors rather than selecting solely on the composite.
 
-Remote directory: `/proj/jlessler/projects/tapestry-all/tapestry-b4-flu-600-20261005`. The new plan snapshots the existing remote source; no model code was changed. Main sweep completed before refinement planning. Submission is guarded against duplicates by requiring the new experiment directory to be absent and against late launches by checking the 09:00 EDT epoch immediately before sbatch. Four L40 allocations with four workers each are used, following the main sweep's successful memory recovery.
+Remote directory: `/hickory/proj/jlessler/projects/tapestry-all/tapestry-b4-flu-600-20261005`. The new plan snapshots the existing remote source; no model code was changed. Main sweep completed before refinement planning. Submission is guarded against duplicates by requiring the new experiment directory to be absent and against late launches by checking the 09:00 EDT epoch immediately before sbatch. Four L40 allocations with four workers each are used, following the main sweep's successful memory recovery.
 
 ```bash
-cd /proj/jlessler/projects/tapestry-all/tapestry-b4-flu-600-20261005
+cd /hickory/proj/jlessler/projects/tapestry-all/tapestry-b4-flu-600-20261005
 export PYTHONPATH=src
 .venv/bin/python -m chromantis.experiment.planner plan -e b4-flu-refine-20261006 \
   -s $(cat docs/experiments/b4-flu-refine-20261006/scenarios.txt) --seeds 42 43 --device cuda

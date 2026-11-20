@@ -72,7 +72,7 @@ This is not the official CDC FluSight ranking score. On matched flu submissions,
 
 Fitted models, predictions, scores, source snapshots and reproduction commands are retained on Longleaf. Experimental mechanisms remain in private research copies; no production forecasting default was changed. The shared joint-loss wiring repair is separate from this documentation commit.
 
-Private research directories under `/proj/jlessler/projects/tapestry-all/`:
+Private research directories under `/hickory/proj/jlessler/projects/tapestry-all/`:
 
 - `chromantis-vintage-overnight-20261005`
 - `chromantis-nowcast-overnight-20261005`

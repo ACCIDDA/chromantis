@@ -7,7 +7,7 @@
   "view": "raw",
   "description": "Season-peak model for FluSight's peak inc flu hosp and peak week inc flu hosp. Recipe artificial_lookback8 (season-peak-short-reporting), the best peak-week recipe of the season-peak search (experiments/season-peak-ensemble-tree/protocol.json): sampled MLP, square-root admission counts, logit ED, local noise, neighbouring-state exchange, multiscale shape features, 8-week history, weekly + path + peak losses; training admission and ED histories perturbed with synchronous_phase_log reporting errors. Labels: 36 future finalized weekly flu admissions and ED share (September 2026 panel). Trained on 2022-23 through 2025-26 (no held-out season), seeds 42-47 (seeds 48-49 failed with GPU out-of-memory on 14 October and were not used). Operational inputs: raw Wednesday reports with no finalized fallback; reported in-window weeks kept as reported; 6000 joint paths pooled equally over seeds (1000 per seed); each path's maximum and its week give one peak draw. Development scores (each season held out, archived Wednesday reports, 862 matched state/DC tasks 2024-25 and 2025-26, lower is better): peak-week log score 2.81 vs FluSight-ensemble 2.58; peak-size WIS on log admissions 0.306 vs 0.523.",
   "training_design": "experiments/peak-production-20261014.json",
-  "checkpoints_from": "longleaf:/proj/jlessler/projects/tapestry-all/tapestry-season-peak-ensemble/data/experiments/peak-production-20261014",
+  "checkpoints_from": "longleaf:/hickory/proj/jlessler/projects/tapestry-all/tapestry-season-peak-ensemble/data/experiments/peak-production-20261014",
   "code": "chromantis.production.season_peak",
   "recipes": {
     "Peak8": [

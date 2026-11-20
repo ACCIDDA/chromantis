@@ -219,7 +219,7 @@ use the explicit settings or the `balanced` planner preset for this candidate.
 
 All **27 nowcaster runs and 102 forecast replays** completed on patron node 2
 (54 and 204 fold evaluations). Work used the isolated checkout
-`/proj/jlessler/projects/tapestry-all/nowcaster-20261001`, with shared frozen data
+`/hickory/proj/jlessler/projects/tapestry-all/nowcaster-20261001`, with shared frozen data
 and experiment outputs. The complete chronology and all original plan/launch/
 status/rank commands are in the [research log](research-log.md).
 

@@ -39,7 +39,7 @@ Cumulative distribution scores are available only for the sampled variants. Dire
 
 ## Execution
 
-Remote checkout: `/proj/jlessler/projects/tapestry-all/tapestry-b4-flu-heads-20261006`. It shares only processed data, metadata, frozen support and environment with the prior pilot. Source is copied separately and pinned by each manager plan; running overnight refinement code is unchanged.
+Remote checkout: `/hickory/proj/jlessler/projects/tapestry-all/tapestry-b4-flu-heads-20261006`. It shares only processed data, metadata, frozen support and environment with the prior pilot. Source is copied separately and pinned by each manager plan; running overnight refinement code is unchanged.
 
 Validation experiment `b4-flu-heads-check-20261006`: all eight variants, seed 42, two epochs, one-epoch patience. Slurm **4006033**, one H100 with four workers. These scores are excluded from research comparisons. Scientific checks cover monotone compact quantiles, sum WIS mathematics and intact member alignment, exclusion of reconstruction horizons, missing-window handling, equal seasons/geography weighting, and saved diagnostic array alignment.
 

@@ -6,7 +6,7 @@
     "policy": "Stop launching experiments before the deadline; reserve the last 30 minutes for scoring and final synthesis. Preserve already-running fits and disclose unfinished work."
   },
   "branch": "codex/season-peak-ensemble",
-  "remote": "/proj/jlessler/projects/tapestry-all/tapestry-season-peak-ensemble",
+  "remote": "/hickory/proj/jlessler/projects/tapestry-all/tapestry-season-peak-ensemble",
   "comparison": {
     "training": "For each held-out season, retrain the sampled MLP on the other three seasons among 2022-23 through 2025-26. Current training inputs are finalized admissions and flu-ED histories; prediction labels are 36 future weekly values of both series.",
     "evaluation": "Replay archived Wednesday reports with no finalized fallback, including observed weeks of the peak window. Final NHSN admissions supply peak labels over epiweeks 40-21. Match location/reference-date cells to FluSight-ensemble in 2024-25 and 2025-26; require observed past-window reports.",

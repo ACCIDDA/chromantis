@@ -228,7 +228,7 @@ Run on Longleaf in the isolated checkout. Plans below are **already complete**;
 use status to resume rather than re-plan or repeat a completed launch.
 
 ```bash
-cd /proj/jlessler/projects/tapestry-all/tapestry-reporting-augmentation-20261001
+cd /hickory/proj/jlessler/projects/tapestry-all/tapestry-reporting-augmentation-20261001
 export PYTHONPATH="$PWD/src"
 
 .venv/bin/python scripts/plan_b2_augmentation.py -e b2-reporting-augmentation-20261001
@@ -267,7 +267,7 @@ snapshots and checkpoints remain intact. The isolated code directory prevents
 interference with the second-node experiment. To retrieve reports from the Mac:
 
 ```bash
-rsync -a longleaf:/proj/jlessler/projects/tapestry-all/tapestry-reporting-augmentation-20261001/docs/experiments/b2-reporting-augmentation-20261001/ docs/experiments/b2-reporting-augmentation-20261001/
+rsync -a longleaf:/hickory/proj/jlessler/projects/tapestry-all/tapestry-reporting-augmentation-20261001/docs/experiments/b2-reporting-augmentation-20261001/ docs/experiments/b2-reporting-augmentation-20261001/
 ```
 
 Regenerate training-data diagnostic plots locally with

@@ -1,5 +1,5 @@
 # Longleaf checkout. These are the plan and launch commands used for this screen.
-cd /proj/jlessler/projects/tapestry-all/tapestry-b7-revisions-20261007
+cd /hickory/proj/jlessler/projects/tapestry-all/tapestry-b7-revisions-20261007
 export PYTHONPATH=src
 .venv/bin/python scripts/plan_b7.py --experiment b7-folds-20261007 --seeds 44 45 --plan
 LANES=4 GPUS=6 sbatch --job-name=b7-fast-h100 --array=0-1 --nodelist=g1803jles02 --cpus-per-task=4 --mem=160G --time=00:28:00 scripts/jlessler.sbatch b7-folds-20261007

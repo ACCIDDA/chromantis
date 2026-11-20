@@ -2,8 +2,11 @@
 
 For local work, run `uv sync` in the checkout and use `.venv/bin/python` for
 package commands. The sections below describe the Longleaf installation at
-`/proj/jlessler/projects/tapestry-all/tapestry`, with uv-managed Python 3.11.
-Substitute your checkout path if it differs. The [research workflow](workflow.md)
+`/hickory/proj/jlessler/projects/tapestry-all/tapestry`, with uv-managed Python 3.11.
+Substitute your checkout path if it differs. Research Computing moved the lab
+volume from `/proj/jlessler` to `/hickory/proj/jlessler` in November 2026; the old
+path no longer exists, and virtual environments created before the move point to
+the old Python location and must be recreated. The [research workflow](workflow.md)
 covers planning and launching jobs once the environment is ready.
 
 ## Clone and install uv
@@ -11,11 +14,11 @@ covers planning and launching jobs once the environment is ready.
 Clone the repository once. Skip the installer if uv is already available.
 
 ```bash
-cd /proj/jlessler/projects/tapestry-all
+cd /hickory/proj/jlessler/projects/tapestry-all
 git clone https://github.com/ACCIDDA/chromantis.git tapestry
 
 curl -LsSf https://astral.sh/uv/install.sh -o /tmp/chromantis-uv-install.sh
-env UV_INSTALL_DIR=/proj/jlessler/projects/tapestry-all/.local/bin \
+env UV_INSTALL_DIR=/hickory/proj/jlessler/projects/tapestry-all/.local/bin \
     UV_NO_MODIFY_PATH=1 sh /tmp/chromantis-uv-install.sh
 ```
 
@@ -24,10 +27,10 @@ env UV_INSTALL_DIR=/proj/jlessler/projects/tapestry-all/.local/bin \
 Set the workspace paths in each new shell:
 
 ```bash
-export PATH=/proj/jlessler/projects/tapestry-all/.local/bin:$PATH
-export UV_CACHE_DIR=/proj/jlessler/projects/tapestry-all/.cache/uv
-export UV_PYTHON_INSTALL_DIR=/proj/jlessler/projects/tapestry-all/.local/share/uv/python
-cd /proj/jlessler/projects/tapestry-all/tapestry
+export PATH=/hickory/proj/jlessler/projects/tapestry-all/.local/bin:$PATH
+export UV_CACHE_DIR=/hickory/proj/jlessler/projects/tapestry-all/.cache/uv
+export UV_PYTHON_INSTALL_DIR=/hickory/proj/jlessler/projects/tapestry-all/.local/share/uv/python
+cd /hickory/proj/jlessler/projects/tapestry-all/tapestry
 ```
 
 Install the research environment:
@@ -66,9 +69,9 @@ ignore rule, so the panel can travel with the code. Push to a side branch on
 the cluster, then fast-forward its checkout:
 
 ```bash
-git remote add longleaf chadi@longleaf.unc.edu:/proj/jlessler/projects/tapestry-all/tapestry
+git remote add longleaf chadi@longleaf.unc.edu:/hickory/proj/jlessler/projects/tapestry-all/tapestry
 git push longleaf HEAD:refs/heads/incoming
-ssh chadi@longleaf.unc.edu 'cd /proj/jlessler/projects/tapestry-all/tapestry && git merge --ff-only incoming'
+ssh chadi@longleaf.unc.edu 'cd /hickory/proj/jlessler/projects/tapestry-all/tapestry && git merge --ff-only incoming'
 ```
 
 Sources are usually acquired and built on the Mac, so a synced panel needs no

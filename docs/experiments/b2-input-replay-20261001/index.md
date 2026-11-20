@@ -96,7 +96,7 @@ identical label masks; finalized replay also checks exact original output suppor
 
 ## Manager commands
 
-Run on Longleaf from `/proj/jlessler/projects/tapestry-all/tapestry`:
+Run on Longleaf from `/hickory/proj/jlessler/projects/tapestry-all/tapestry`:
 
 ```bash
 .venv/bin/python scripts/plan_b2_replay.py -e b2-input-replay-20261001

@@ -1,5 +1,5 @@
 {
-  "remote_directory": "/proj/jlessler/projects/tapestry-all/tapestry-season-peak-ensemble",
+  "remote_directory": "/hickory/proj/jlessler/projects/tapestry-all/tapestry-season-peak-ensemble",
   "environment": "export PYTHONPATH=src OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 MKL_NUM_THREADS=1",
   "note": "All runs complete. Commands are for inspection and reproducibility, not additional automatic launches. Plan on these existing caches reuses completed runs. Rank is weekly WIS; peak results are in seasonal. Scoring command regenerates the existing peak comparison.",
   "experiments": {

@@ -1,6 +1,6 @@
 {
   "experiment": "b4-flu-heads-20261006",
-  "remote": "/proj/jlessler/projects/tapestry-all/tapestry-b4-flu-heads-20261006",
+  "remote": "/hickory/proj/jlessler/projects/tapestry-all/tapestry-b4-flu-heads-20261006",
   "validation_job": "4006033",
   "main_job": "4006081",
   "configurations": 8,

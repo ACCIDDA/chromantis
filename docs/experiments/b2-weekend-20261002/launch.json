@@ -1,6 +1,6 @@
 {
   "experiment": "b2-weekend-20261002",
-  "remote_directory": "/proj/jlessler/projects/tapestry-all/tapestry-weekend-20261002",
+  "remote_directory": "/hickory/proj/jlessler/projects/tapestry-all/tapestry-weekend-20261002",
   "configurations": 1440,
   "seeds": [
     42,

@@ -190,11 +190,11 @@ Nine focused scientific checks passed. Full-budget research results are pending.
 
 ## Running and resuming on Longleaf
 
-Working directory: `/proj/jlessler/projects/tapestry-all/tapestry-weekend-20261002`.
+Working directory: `/hickory/proj/jlessler/projects/tapestry-all/tapestry-weekend-20261002`.
 The planner writes the exact 1,440-row design to `data/experiments/b2-weekend-20261002/design.csv`.
 
 ```bash
-cd /proj/jlessler/projects/tapestry-all/tapestry-weekend-20261002
+cd /hickory/proj/jlessler/projects/tapestry-all/tapestry-weekend-20261002
 export PYTHONPATH="$PWD/src"
 
 # Plan once; do not rerun against an existing experiment.

@@ -178,14 +178,14 @@ may change; transfer assumes useful shared dynamics, not identical measurement.
 ## Launch and follow-up
 
 The cluster source lives in
-`/proj/jlessler/projects/tapestry-all/tapestry-b3-pilot-20261005`, separate from
+`/hickory/proj/jlessler/projects/tapestry-all/tapestry-b3-pilot-20261005`, separate from
 the shared checkout. Source is copied into each experiment's manager snapshot.
 Use only L40 GPUs for this pilot, four processes per GPU and four GPUs. The
 research allocation stops after four hours; incomplete runs are not silently
 extended. Notifications use the standard launcher's completion summary.
 
 ```bash
-cd /proj/jlessler/projects/tapestry-all/tapestry-b3-pilot-20261005
+cd /hickory/proj/jlessler/projects/tapestry-all/tapestry-b3-pilot-20261005
 export PYTHONPATH=src
 # Helper calls the manager plan once with every exact Scenario string and seeds 42 43:
 .venv/bin/python scripts/plan_b3_pilot.py --plan

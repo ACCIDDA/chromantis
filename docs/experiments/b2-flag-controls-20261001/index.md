@@ -91,7 +91,7 @@ reused development CV seasons, not a new-season validation.
 
 ## Manager commands
 
-Run once on Longleaf from `/proj/jlessler/projects/tapestry-all/tapestry`:
+Run once on Longleaf from `/hickory/proj/jlessler/projects/tapestry-all/tapestry`:
 
 ```bash
 .venv/bin/python scripts/plan_b2_replay.py -e b2-flag-controls-20261001 --flag-controls

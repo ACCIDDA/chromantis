@@ -7,7 +7,7 @@
   "view": "corrected",
   "description": "Bes: one recipe, B_width256 (width-256 MLP, neighbouring-state exchange, 23 direct quantiles), trained on 2022-23 through 2025-26 (no held-out season), seeds 42-51. Training admission and ED histories made preliminary with artificial errors from the prescribed 2025-26 reporting process at 1.5x strength, plus reconstruction labels for the last 4 history weeks. No covariates. Labels: latest finalized future flu admissions and ED (September 2026 panel). Loss: native quantile loss plus 0.5 x log-admission loss. Operational inputs: reported Wednesday data with the newest two admission/ED weeks corrected by each fit's saved trees. Equal weight per seed; predictive distributions mixed. Selected by tree search tree-20261010 (experiments/tree-20261010/protocol.json).",
   "training_design": "experiments/bes-production-20261010.json",
-  "checkpoints_from": "longleaf:/proj/jlessler/projects/tapestry-all/tapestry/data/experiments/bes-production-20261010",
+  "checkpoints_from": "longleaf:/hickory/proj/jlessler/projects/tapestry-all/tapestry/data/experiments/bes-production-20261010",
   "recipes": {
     "Bes": [
       {

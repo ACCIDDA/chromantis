@@ -1,5 +1,5 @@
 {
-  "remote_checkout": "/proj/jlessler/projects/tapestry-all/tapestry-b7-revisions-20261007",
+  "remote_checkout": "/hickory/proj/jlessler/projects/tapestry-all/tapestry-b7-revisions-20261007",
   "experiment": "b7-folds-20261007",
   "smoke_job": "4211393",
   "smoke_status": "Both configurations completed fitting and all scoring; manager rank succeeded",

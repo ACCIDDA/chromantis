@@ -37,7 +37,7 @@
   ],
   "execution": {
     "host": "chadi@longleaf.unc.edu",
-    "directory": "/proj/jlessler/projects/tapestry-all/covid-20261014",
+    "directory": "/hickory/proj/jlessler/projects/tapestry-all/covid-20261014",
     "slurm_jobs": [
       4936352,
       4936353

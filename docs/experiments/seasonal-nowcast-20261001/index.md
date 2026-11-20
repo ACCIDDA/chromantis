@@ -143,7 +143,7 @@ Target scores and coverage (`stable-target-scores.csv`, removed 9 October 2026: 
 
 ## Manager commands
 
-Run from `/proj/jlessler/projects/tapestry-all/tapestry` on Longleaf:
+Run from `/hickory/proj/jlessler/projects/tapestry-all/tapestry` on Longleaf:
 
 ```bash
 bash scripts/plan_seasonal_nowcast.sh seasonal-nowcast-v1-20261001

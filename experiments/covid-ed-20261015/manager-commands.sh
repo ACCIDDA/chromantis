@@ -1,4 +1,4 @@
-# Run in chadi@longleaf.unc.edu:/proj/jlessler/projects/tapestry-all/covid-20261014
+# Run in chadi@longleaf.unc.edu:/hickory/proj/jlessler/projects/tapestry-all/covid-20261014
 export PYTHONPATH=src
 .venv/bin/python -m chromantis.experiment.planner plan -e covid-ed-forward --problem problems/us-covid-forward-2025-26-reported.json --study experiments/covid-ed-20261015/forward.json --device cuda
 .venv/bin/python -m chromantis.experiment.planner plan -e covid-ed-screen --problem problems/us-covid-short-term-prescribed.json --study experiments/covid-ed-20261015/screen.json --device cuda

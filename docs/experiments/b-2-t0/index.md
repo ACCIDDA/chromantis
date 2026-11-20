@@ -119,7 +119,7 @@ Read the seasons separately as well as their equal-weight combined score.
 
 #### Run and resume on Longleaf
 
-From `/proj/jlessler/projects/tapestry-all/tapestry`:
+From `/hickory/proj/jlessler/projects/tapestry-all/tapestry`:
 
 ```bash
 .venv/bin/python experiments/b-2.py --plan

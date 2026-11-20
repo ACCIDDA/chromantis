@@ -34,14 +34,14 @@ This study actually uses separately normalized future and reconstruction weights
 
 ## Initial batch and commands
 
-Remote project: `/proj/jlessler/projects/tapestry-all/tapestry-nowcast-overnight-20261005`. Code was copied from the current uncommitted workspace into a private folder, not restored from Git HEAD. The shared virtual environment and immutable data are symlinked. Every planner command must set `PYTHONPATH=src` because the virtual environment's editable installation points to an older central checkout. Slurm sets the pinned experiment snapshot automatically.
+Remote project: `/hickory/proj/jlessler/projects/tapestry-all/tapestry-nowcast-overnight-20261005`. Code was copied from the current uncommitted workspace into a private folder, not restored from Git HEAD. The shared virtual environment and immutable data are symlinked. Every planner command must set `PYTHONPATH=src` because the virtual environment's editable installation points to an older central checkout. Slurm sets the pinned experiment snapshot automatically.
 
 The initial array 3800097 was restarted after four minutes because three controls were appended after its dispatchers had read the task list. No complete results were lost. The replacement reads all 18 configurations.
 
 18 configurations: three architectures × unchanged final training inputs, half-strength reporting errors, full-strength reporting errors, and three repaired joint weights. Three training seeds 42, 43 and 44; two evaluated seasons each. Slurm array 3800217 uses both H100 GPUs on patron node 2 with six simultaneous fits per GPU.
 
 ```bash
-cd /proj/jlessler/projects/tapestry-all/tapestry-nowcast-overnight-20261005
+cd /hickory/proj/jlessler/projects/tapestry-all/tapestry-nowcast-overnight-20261005
 PYTHONPATH=src .venv/bin/python scripts/nowcast_overnight_plan.py -e nowcast-overnight-joint-pilot-20261005 --seeds 42 43 44
 # This calls the common planner plan -e NAME -s SCENARIOS --seeds 42 43 44 --device cuda.
 # Its exact expanded command is recorded in output/nowcast-joint-plan.log.
@@ -95,7 +95,7 @@ The nonlinear nowcaster uses squared error on log-revision labels, matching the 
 The second cohort is queued as array **3803457**, after the first array. It contains 12 seed-42 recipes: C2 has phase/location ridge, two nonlinear correction strengths and restored B2 training dropout; C3 has those four plus four paired joint variants. The C3 joint variants are plain half-strength errors, t0-anchored half-strength errors, t0-anchored full-strength errors, and t0-anchored half-strength errors with only t0 reconstruction. All use auxiliary weight 0.05. The first cohort's plain full-strength joint model supplies the matched full-strength comparison.
 
 ```bash
-cd /proj/jlessler/projects/tapestry-all/tapestry-nowcast-overnight-20261005
+cd /hickory/proj/jlessler/projects/tapestry-all/tapestry-nowcast-overnight-20261005
 PYTHONPATH=src .venv/bin/python scripts/nowcast_overnight_plan_next.py -e nowcast-overnight-trajectory-pilot-20261005 --seeds 42 --backbones C2 C3
 LANES=6 GPUS=2 sbatch --job-name=nowcast-trajectory-pilot --array=0-1 --nodelist=g1803jles02 --time=04:00:00 --dependency=afterany:3800217 scripts/jlessler.sbatch nowcast-overnight-trajectory-pilot-20261005
 PYTHONPATH=src .venv/bin/python -m chromantis.experiment.planner status -e nowcast-overnight-trajectory-pilot-20261005
@@ -666,7 +666,7 @@ CPU job3818442 decomposes the completed2,048-draw matched C1 scores by frozen Hu
 
 ```bash
 PYTHONPATH=src .venv/bin/python scripts/nowcast_overnight_time_contributions.py plan
-sbatch --job-name=nowcast-time-audit --partition=jlessler --nodelist=g1803jles02 --cpus-per-task=2 --mem=16G --time=00:30:00 --output=logs/nowcast-time-audit-%j.out --wrap="cd /proj/jlessler/projects/tapestry-all/tapestry-nowcast-overnight-20261005 && PYTHONPATH=src .venv/bin/python scripts/nowcast_overnight_time_contributions.py score && PYTHONPATH=src .venv/bin/python scripts/nowcast_overnight_time_contributions.py rank"
+sbatch --job-name=nowcast-time-audit --partition=jlessler --nodelist=g1803jles02 --cpus-per-task=2 --mem=16G --time=00:30:00 --output=logs/nowcast-time-audit-%j.out --wrap="cd /hickory/proj/jlessler/projects/tapestry-all/tapestry-nowcast-overnight-20261005 && PYTHONPATH=src .venv/bin/python scripts/nowcast_overnight_time_contributions.py score && PYTHONPATH=src .venv/bin/python scripts/nowcast_overnight_time_contributions.py rank"
 PYTHONPATH=src .venv/bin/python scripts/nowcast_overnight_time_contributions.py status
 PYTHONPATH=src .venv/bin/python scripts/nowcast_overnight_time_contributions.py rank
 ```

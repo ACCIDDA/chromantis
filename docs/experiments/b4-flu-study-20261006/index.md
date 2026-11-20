@@ -434,7 +434,7 @@ The readable subsection labels map to the existing immutable experiment records 
 
 The main sweep initially exceeded L40 memory at ten workers per GPU. It was resumed with four workers per L40, preserving completed runs and retrying interrupted/failed runs without changing scientific configurations. The H100 workers continued. All final comparisons use completed seed runs, not failed attempts or a partial completion subset. The first focused refinement started before the 9am cutoff. The later output-head experiment was separately requested and authorized by the user after that cutoff.
 
-The main sweep and covariate refinement use the isolated Longleaf checkout `/proj/jlessler/projects/tapestry-all/tapestry-b4-flu-600-20261005`. The output-head comparison uses `/proj/jlessler/projects/tapestry-all/tapestry-b4-flu-heads-20261006`. Each manager plan pins source code. All use the common plan, launch, status and rank workflow; no training is launched by opening this analysis.
+The main sweep and covariate refinement use the isolated Longleaf checkout `/hickory/proj/jlessler/projects/tapestry-all/tapestry-b4-flu-600-20261005`. The output-head comparison uses `/hickory/proj/jlessler/projects/tapestry-all/tapestry-b4-flu-heads-20261006`. Each manager plan pins source code. All use the common plan, launch, status and rank workflow; no training is launched by opening this analysis.
 
 Repository records:
 

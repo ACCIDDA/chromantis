@@ -194,7 +194,7 @@ retrospective score equals C1 because no RSV tasks are scored in that season.
 
 ## Reproduction and scientific checks
 
-The private project is `/proj/jlessler/projects/tapestry-all/tapestry-nowcast-overnight-20261005`
+The private project is `/hickory/proj/jlessler/projects/tapestry-all/tapestry-nowcast-overnight-20261005`
 on Longleaf, node `g1803jles02`. Code snapshots are pinned per experiment. The
 [canonical manager commands](commands.md) and [chronological protocol](protocol.md) include each exact manager
 plan, launch, status and rank command. Use `PYTHONPATH=src` for ad hoc commands;

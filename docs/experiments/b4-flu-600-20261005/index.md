@@ -44,7 +44,7 @@ Each heading links to its explanation in [Model choices A–F](../../reference/m
 ## Execution state
 
 - Main experiment: `b4-flu-600-20261005`; **600 unique configurations × seeds 42/43 = 1,200 manager runs**, each with two seasonal folds.
-- Intended isolated remote checkout: `/proj/jlessler/projects/tapestry-all/tapestry-b4-flu-600-20261005`.
+- Intended isolated remote checkout: `/hickory/proj/jlessler/projects/tapestry-all/tapestry-b4-flu-600-20261005`.
 - **RUNNING on all six GPUs.** Submitted at 23:53:51 EDT. All 20 GPU validation runs passed: job `3977476` completed with exit 0 in 7m51s. Replacement L40 array `3981509` has four running allocations on `g1803jles01`, four workers each (original `3977477` cancelled after GPU-memory failures); H100 array `3977478` has two running allocations on `g1803jles02`. CPU ranking job `3977479` waits for both arrays. No network blocker remains.
 - Hourly thread heartbeat `flu-sweep-hourly-review` is ACTIVE. It reads this document, checks jobs, handles routine failures, scores completed results and may launch the authorized focused refinement. It remains quiet for unchanged status.
 - Do not start a duplicate launch while the original chat turn is still preparing it. Inspect both this execution log and cluster queue first.
@@ -157,7 +157,7 @@ Intervention: cancelled only L40 array `3977477`, preserving the H100 array `397
 No replan or new scientific configuration was needed. Original plan command remains the one above. Recovery launch and follow-up commands:
 
 ```bash
-cd /proj/jlessler/projects/tapestry-all/tapestry-b4-flu-600-20261005
+cd /hickory/proj/jlessler/projects/tapestry-all/tapestry-b4-flu-600-20261005
 export PYTHONPATH=src
 LANES=4 GPUS=6 sbatch --job-name=b4-flu-l40-recovery --array=0-3 \
   --cpus-per-task=8 --mem=95G --time=12:00:00 \
@@ -217,7 +217,7 @@ One bounded refinement was submitted before the cutoff: **24 configurations × t
 
 ## Additional user-authorized output-head comparison
 
-After the cutoff, the user explicitly requested four output variants and approved cumulative admission WIS as an auxiliary training loss with coverage diagnostics only. This is new user authorization, distinct from the one bounded autonomous refinement. Experiment **b4-flu-heads-20261006** uses an isolated remote checkout `/proj/jlessler/projects/tapestry-all/tapestry-b4-flu-heads-20261006`, eight configurations × seeds 42/43 (16 runs). Main Slurm array **4006081** waits on validation **4006033**. [Protocol and exact manager commands](../b4-flu-heads-20261006/index.md). The hourly monitor should inspect both this new comparison and ILINet refinement `4005335`, score completed batches with their respective pinned source/common manager and analyze them. No additional autonomous configuration batches should be created. Deactivate only when all launched comparisons and analysis are complete.
+After the cutoff, the user explicitly requested four output variants and approved cumulative admission WIS as an auxiliary training loss with coverage diagnostics only. This is new user authorization, distinct from the one bounded autonomous refinement. Experiment **b4-flu-heads-20261006** uses an isolated remote checkout `/hickory/proj/jlessler/projects/tapestry-all/tapestry-b4-flu-heads-20261006`, eight configurations × seeds 42/43 (16 runs). Main Slurm array **4006081** waits on validation **4006033**. [Protocol and exact manager commands](../b4-flu-heads-20261006/index.md). The hourly monitor should inspect both this new comparison and ILINet refinement `4005335`, score completed batches with their respective pinned source/common manager and analyze them. No additional autonomous configuration batches should be created. Deactivate only when all launched comparisons and analysis are complete.
 
 ## All launched work analyzed
 

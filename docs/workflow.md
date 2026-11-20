@@ -168,7 +168,7 @@ keeps raw score dumps out of the repository.
 Copy completed reports back from Longleaf with:
 
 ```bash
-rsync -a chadi@longleaf.unc.edu:/proj/jlessler/projects/tapestry-all/tapestry/docs/experiments/ docs/experiments/
+rsync -a chadi@longleaf.unc.edu:/hickory/proj/jlessler/projects/tapestry-all/tapestry/docs/experiments/ docs/experiments/
 ```
 
 ## Ensembles of saved forecasts

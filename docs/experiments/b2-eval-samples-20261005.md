@@ -51,7 +51,7 @@ percentage change. The score weights and scoring support remain unchanged.
 
 ## Manager commands
 
-Run from `/proj/jlessler/projects/tapestry-all/tapestry` on Longleaf.
+Run from `/hickory/proj/jlessler/projects/tapestry-all/tapestry` on Longleaf.
 The helper validates and pins the four original checkpoints, then prints and
 executes the exact `chromantis.experiment.planner plan` command for each sample
 count. Do not re-plan after launch; use `status` to resume unfinished work.

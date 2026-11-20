@@ -1,6 +1,6 @@
 # Run on Longleaf. Existing experiments are already planned; do not re-plan
 # while running. Use status to obtain the exact retry command for stopped fits.
-cd /proj/jlessler/projects/tapestry-all/covid-20261014
+cd /hickory/proj/jlessler/projects/tapestry-all/covid-20261014
 export PYTHONPATH="$PWD/src"
 .venv/bin/python -m chromantis.experiment.planner plan -e covid-r01 --problem problems/us-covid-short-term-prescribed.json --study experiments/covid-tree-20261014/round-01.json --device cuda
 .venv/bin/python -m chromantis.experiment.planner plan -e covid-production-baselines --problem problems/us-covid-production.json --study experiments/covid-tree-20261014/production-baselines.json --device cuda

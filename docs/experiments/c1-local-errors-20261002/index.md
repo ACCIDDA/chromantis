@@ -104,7 +104,7 @@ a winner among four methods on these reused folds is exploratory.
 
 ## Manager commands
 
-Run on Longleaf in `/proj/jlessler/projects/tapestry-all/tapestry-c1-error-cv-20261002`.
+Run on Longleaf in `/hickory/proj/jlessler/projects/tapestry-all/tapestry-c1-error-cv-20261002`.
 The planning script calls the shared planner with four explicit scenarios and
 pins the dataset, evaluation support, seeds, and code snapshot.
 

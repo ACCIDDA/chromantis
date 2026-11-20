@@ -127,7 +127,7 @@ models and predictions. It does not replace or modify the official objective.
 
 Private local source: `/tmp/chromantis-vintage-overnight-20261005`.
 Private remote project:
-`/proj/jlessler/projects/tapestry-all/tapestry-vintage-overnight-20261005`.
+`/hickory/proj/jlessler/projects/tapestry-all/tapestry-vintage-overnight-20261005`.
 The shared source tree is not edited. Inputs and the environment link to the
 existing reporting-augmentation project; experiment names are unique.
 
@@ -135,7 +135,7 @@ The plan wrapper calls the common manager's `plan` command and saves the exact
 expanded invocation in each experiment's `manager-plan.txt`.
 
 ```bash
-cd /proj/jlessler/projects/tapestry-all/tapestry-vintage-overnight-20261005
+cd /hickory/proj/jlessler/projects/tapestry-all/tapestry-vintage-overnight-20261005
 PYTHONPATH=src .venv/bin/python scripts/plan_vintage_overnight.py -e vintage-overnight-smoke-20261005 --smoke
 LANES=3 GPUS=1 sbatch --job-name=vintage-overnight-smoke-20261005 --array=0 --time=00:20:00 scripts/jlessler.sbatch vintage-overnight-smoke-20261005
 PYTHONPATH=src .venv/bin/python -m chromantis.experiment.planner status -e vintage-overnight-smoke-20261005

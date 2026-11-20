@@ -126,7 +126,7 @@ Design: `design.json` (rows carry recipe, treatment, weight and role), `scenario
 
 ## Execution
 
-Remote checkout `/proj/jlessler/projects/tapestry-all/tapestry-b4-refinetop2-20261006` (data, frozen support and environment linked to the B3 pilot checkout; panel md5 `b5a04751…` identical to local). Validation experiment `b4-refinetop2-check-20261006` (all 21 configurations, seed 42, 2 epochs; excluded from results). Slurm: validation 4029583; main H100 array 4029584 (2 × 6 workers) and L40 array 4029585 (4 × 4 workers), both after successful validation; rank 4029586; ensembles 4029587 (failed: output folder not created; fixed and resubmitted as 4030035).
+Remote checkout `/hickory/proj/jlessler/projects/tapestry-all/tapestry-b4-refinetop2-20261006` (data, frozen support and environment linked to the B3 pilot checkout; panel md5 `b5a04751…` identical to local). Validation experiment `b4-refinetop2-check-20261006` (all 21 configurations, seed 42, 2 epochs; excluded from results). Slurm: validation 4029583; main H100 array 4029584 (2 × 6 workers) and L40 array 4029585 (4 × 4 workers), both after successful validation; rank 4029586; ensembles 4029587 (failed: output folder not created; fixed and resubmitted as 4030035).
 
 ```bash
 export PYTHONPATH=src

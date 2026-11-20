@@ -56,7 +56,7 @@ The winning WIS recipe is still under-covering. Future development should tune u
 - [Coverage on frozen tasks](coverage-summary.csv), [target/season coverage](coverage-target-season.csv).
 - [Nowcaster diagnostics](nowcast-diagnostics.csv), [fitting time and selected epochs](fitting-summary.csv).
 
-The score exports are in `ranking/`. Rebuild comparison tables and figures with `.venv/bin/python docs/experiments/b3-pilot-20261005/analysis/analyze.py`. Coverage extraction uses the downloaded per-run `totals.csv` and manifests under `/tmp/b3-pilot-analysis/artifacts`; `coverage.py` documents its weighting. Source forecasts and complete run artifacts remain on Longleaf under `/proj/jlessler/projects/tapestry-all/tapestry-b3-pilot-20261005/data/experiments/b3-pilot-20261005`.
+The score exports are in `ranking/`. Rebuild comparison tables and figures with `.venv/bin/python docs/experiments/b3-pilot-20261005/analysis/analyze.py`. Coverage extraction uses the downloaded per-run `totals.csv` and manifests under `/tmp/b3-pilot-analysis/artifacts`; `coverage.py` documents its weighting. Source forecasts and complete run artifacts remain on Longleaf under `/hickory/proj/jlessler/projects/tapestry-all/tapestry-b3-pilot-20261005/data/experiments/b3-pilot-20261005`.
 
 ## Where the leading training treatment improves
 
@@ -122,7 +122,7 @@ CPU scoring job **3959160** runs on `g1803jles01` in the same isolated project d
 The original manager plan and GPU launch, plus status/rank commands, are reproduced in the [protocol](../index.md#launch-and-follow-up). This analysis used:
 
 ```bash
-cd /proj/jlessler/projects/tapestry-all/tapestry-b3-pilot-20261005
+cd /hickory/proj/jlessler/projects/tapestry-all/tapestry-b3-pilot-20261005
 export PYTHONPATH=src
 .venv/bin/python -m chromantis.experiment.planner status -e b3-pilot-20261005
 sbatch --partition=jlessler --nodelist=g1803jles01 \
