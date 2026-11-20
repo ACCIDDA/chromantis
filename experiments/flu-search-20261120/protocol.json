@@ -49,6 +49,10 @@
    "date": "2026-11-20 16:50 EST",
    "round": "1, 2, rs01",
    "what": "Round 1 runs slower than estimated (about 40 fits per 20 minutes on five GPUs, so about 3.5 hours for the 456 main fits). The 2023-24 guard of round 1 (not started) was cut to the 7 references and roots; children get a guard only after passing the main problem. The pending sixth array element (waiting for a GPU used by another lab member) was cancelled so that chained arrays do not wait on it. Chained after round 1 (array 9989288): round 2 (flu-s-r02: B5 with real-pair trees as a second sampled root; on it and on Ar the trajectory-oriented options path loss 1, peak loss 1, four-week-sum WIS 0.25, per-location noise, growth anchor; seeds 44-51, main problem) and reseed rs01 (references and roots on seeds 52-59)."
+  },
+  {
+   "date": "2026-11-20 17:05 EST",
+   "what": "User decision: quantile-only networks (no trajectories, e.g. B_width256 and the Bq/Bh roots) stay allowed in the release, but sampled (trajectory) networks are preferred: between candidates level under the verdict rules, the sampled one is chosen, and the release should contain sampled members."
   }
  ],
  "execution": {
