@@ -53,6 +53,11 @@
   {
    "date": "2026-11-20 17:05 EST",
    "what": "User decision: quantile-only networks (no trajectories, e.g. B_width256 and the Bq/Bh roots) stay allowed in the release, but sampled (trajectory) networks are preferred: between candidates level under the verdict rules, the sampled one is chosen, and the release should contain sampled members."
+  },
+  {
+   "date": "2026-11-20 17:50 EST",
+   "round": "1, 2",
+   "what": "Round 1 at 119/456 main fits. The cw1 children (trees correct the newest week only) fail: in the 2025-26 fold the trees learn from 2024-25 archived reports, which hold no ED-share pairs at that age, so the ED tree has 0 examples (ValueError). Fix: cw1a = newest week only, admissions only (correction_ed=0; the ED newest week is revised only about x1.03 and then ~0.5%). Round 2 (not started) was re-planned with Bq.cw1a, Bh.cw1a, Ar.cw1a added (14 recipes, 112 fits). Partial ranking not used for decisions (most B-family recipes had 1 seed)."
   }
  ],
  "execution": {

@@ -125,6 +125,10 @@ ROUNDS[1] = dict(description='Flu search round 1 (2026-11-20): B7 references and
 
 def round2():
     # Sampled (trajectory) recipes only, aimed at the peak weakness (every model is far too low near the peak).
+    # Round-1 cw1 failed (20 Nov 17:40): with only the newest week corrected, the 2025-26 fold's donor season 2024-25 has
+    # no archived ED pairs at that age, so the ED tree had none. cw1a corrects admissions only (correction_ed=0).
+    for root in ('Bq', 'Bh', 'Ar'):
+        put(f'{root}.cw1a', derive(R[root], correction_weeks=1, correction_ed=0), root)
     put('B5r', derive(B5, corrector_examples='real'), 'ref.B5')                 # second sampled root: B5 with real-pair trees
     for root in ('Ar', 'B5r'):
         r = R[root]

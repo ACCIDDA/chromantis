@@ -2,6 +2,9 @@
  "description": "Flu search round 2 (2026-11-20): trajectory (sampled) recipes aimed at the peak weakness: path, peak, four-week-sum losses, per-location noise and growth anchor on Ar and on B5 with real-pair trees.",
  "round": 2,
  "parents": {
+  "Bq.cw1a": "Bq",
+  "Bh.cw1a": "Bh",
+  "Ar.cw1a": "Ar",
   "B5r": "ref.B5",
   "Ar.path": "Ar",
   "Ar.peak": "Ar",
@@ -15,6 +18,9 @@
   "B5r.anchor": "B5r"
  },
  "candidates": {
+  "Bq.cw1a": "history_source=artificial,reconstruction_labels=1,error_signals=targets,input_set=target,correction_weeks=1,correction_ed=0,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,loss_weights=objective,spatial=neighbors,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=0.5,corrector_examples=real",
+  "Bh.cw1a": "history_source=artificial,error_signals=all,input_set=target,correction_weeks=1,correction_ed=0,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,ed_transform=logit,loss_weights=objective,spatial=neighbors,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=0.5,history_correction=1,corrector_examples=real,covariate_set=hosprep",
+  "Ar.cw1a": "history_source=artificial,history_correction=1,error_signals=targets,input_set=target,correction_weeks=1,correction_ed=0,joint_weight=0.05,correction_penalty=30.0,reporting_missingness=0,reporting_method=synchronous_phase_log,count_transform=sqrt,ed_transform=logit,loss_weights=objective,decoder_blocks=3,width=96,epochs=160,patience=25,lr=0.002,fit_partition=pathogen,covariate_encoder=summary,covariate_set=kinsa,input_normalization=b0,log_loss_weight=0.5,corrector_examples=real",
   "B5r": "history_source=artificial,history_correction=1,error_signals=targets,input_set=target,ili_units=flu_scaled,ili_steps=1200,correction_weeks=2,correction_ed=1,ili_training=pretrain,joint_weight=0.05,correction_penalty=30.0,reporting_missingness=0,reporting_method=synchronous_phase_log,lookback=10,count_transform=sqrt,ed_transform=logit,loss_weights=objective,width=96,epochs=160,patience=25,batch_size=16,fit_partition=pathogen,covariate_encoder=summary,signal_features=multiscale,covariate_set=kinsa,input_normalization=b0,correction_realizations=2,uncorrected_share=0.1,log_loss_weight=0.5,corrector_examples=real",
   "Ar.path": "history_source=artificial,history_correction=1,error_signals=targets,input_set=target,correction_weeks=2,correction_ed=1,joint_weight=0.05,correction_penalty=30.0,reporting_missingness=0,reporting_method=synchronous_phase_log,count_transform=sqrt,ed_transform=logit,loss_weights=objective,decoder_blocks=3,width=96,epochs=160,patience=25,lr=0.002,fit_partition=pathogen,covariate_encoder=summary,covariate_set=kinsa,input_normalization=b0,log_loss_weight=0.5,corrector_examples=real,path_loss_weight=1.0",
   "Ar.peak": "history_source=artificial,history_correction=1,error_signals=targets,input_set=target,correction_weeks=2,correction_ed=1,joint_weight=0.05,correction_penalty=30.0,reporting_missingness=0,reporting_method=synchronous_phase_log,count_transform=sqrt,ed_transform=logit,loss_weights=objective,decoder_blocks=3,width=96,epochs=160,patience=25,lr=0.002,fit_partition=pathogen,covariate_encoder=summary,covariate_set=kinsa,input_normalization=b0,log_loss_weight=0.5,corrector_examples=real,peak_loss_weight=1.0",
