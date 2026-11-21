@@ -89,3 +89,4 @@ G="--members B7=ref.A,ref.B5,ref.B Bq=Bq Bh=Bh AP=Ar.peak QL=Bq.smp.ll1 HS=Bh.sm
 .venv/bin/python scripts/flu_search_mix.py edg --experiments flu-s-g01 flu-s-gs01 flu-s-g04 flu-s-g05 flu-s-gs02 flu-s-g06 flu-s-gs03 $G
 python3 experiments/flu-search-20261120/rounds.py 10; python3 experiments/flu-search-20261120/rounds.py g10
 LANES=3 sbatch --export=ALL --job-name=flu-s-r10 --array=0-4 --dependency=afterany:10043899 scripts/flu_search.sbatch flu-s-r10 flu-s-g10
+LANES=4 sbatch --export=ALL --job-name=flu-s-rs07 --array=0-4 --dependency=afterany:10044019 scripts/flu_search.sbatch flu-s-rs07 flu-s-gs05   # 32-seed confirmation (seeds 68-75), main + guard

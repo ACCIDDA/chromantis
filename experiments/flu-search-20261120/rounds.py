@@ -259,7 +259,8 @@ RESEED = {'rs01': (['ref.A', 'ref.B5', 'ref.B', 'ref.Bes', 'Bq', 'Bh', 'Ar'], li
           'rs03': (['Bq.smp'], list(range(52, 60))),
           'rs04': (['Bq.hc.smp', 'Bh.smp'], list(range(52, 60))),
           'rs05': (['Bq.smp.ll1'], list(range(52, 60))),
-          'rs06': (['ref.A', 'ref.B5', 'ref.B', 'Bq', 'Bh', 'Ar.peak', 'Bq.smp.ll1', 'Bh.smp'], list(range(60, 68)))}
+          'rs06': (['ref.A', 'ref.B5', 'ref.B', 'Bq', 'Bh', 'Ar.peak', 'Bq.smp.ll1', 'Bh.smp'], list(range(60, 68))),
+          'rs07': (['ref.A', 'ref.B5', 'ref.B', 'Ar.peak', 'Bq.smp.ll1', 'Bh.smp'], list(range(68, 76)))}
 
 
 def write_reseed(tag):
