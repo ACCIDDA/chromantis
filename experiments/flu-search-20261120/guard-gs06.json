@@ -1,0 +1,26 @@
+{
+ "description": "Flu search guard reseed gs06 (2023-24): Ar.peak.nokinsa on seeds 52-67.",
+ "round": "rs08",
+ "parents": {},
+ "candidates": {
+  "Ar.peak.nokinsa": "history_source=artificial,history_correction=1,error_signals=targets,input_set=target,correction_weeks=2,correction_ed=1,joint_weight=0.05,correction_penalty=30.0,reporting_missingness=0,reporting_method=synchronous_phase_log,count_transform=sqrt,ed_transform=logit,loss_weights=objective,decoder_blocks=3,width=96,epochs=160,patience=25,lr=0.002,fit_partition=pathogen,covariate_encoder=summary,covariate_set=none,input_normalization=b0,log_loss_weight=0.5,corrector_examples=real,peak_loss_weight=1.0,error_reference=2025-2026"
+ },
+ "seeds": [
+  52,
+  53,
+  54,
+  55,
+  56,
+  57,
+  58,
+  59,
+  60,
+  61,
+  62,
+  63,
+  64,
+  65,
+  66,
+  67
+ ]
+}
