@@ -60,3 +60,7 @@ python3 experiments/flu-search-20261120/rounds.py 5; python3 experiments/flu-sea
 LANES=4 sbatch --export=ALL --job-name=flu-s-r05 --array=0-4 --dependency=afterany:10022195 scripts/flu_search.sbatch flu-s-r05 flu-s-g05
 python3 experiments/flu-search-20261120/rounds.py 6; python3 experiments/flu-search-20261120/rounds.py g06; python3 experiments/flu-search-20261120/rounds.py rs03   # on the Mac
 LANES=6 sbatch --export=ALL --job-name=flu-s-r06 --array=0-4 --dependency=afterany:10022573 scripts/flu_search.sbatch flu-s-r06 flu-s-rs03 flu-s-g06
+# 2026-11-21 00:30 EST: round 4 + guard re-ranked after the OOM retry; mixtures with Ar.peak (CPU jobs 10033651-2)
+.venv/bin/python scripts/flu_search_table.py -e flu-s-r01 -e flu-s-r02 -e flu-s-r03 -e flu-s-r04 -e flu-s-rs01 -e flu-s-rs02 --guard flu-s-g01 --guard flu-s-g03 --guard flu-s-g04 --out output/flu-search/r04.csv
+.venv/bin/python scripts/flu_search_mix.py r04m --experiments flu-s-r01 flu-s-rs01 flu-s-r02 flu-s-rs02 --members "B7=ref.A,ref.B5,ref.B" Bq=Bq Bh=Bh AP=Ar.peak BP=B5r.peak --groups "B7:B7" "Bq+Bh:Bq,Bh" "Bq+Bh+AP:Bq,Bh,AP" "Bh+AP:Bh,AP" "Bq+AP:Bq,AP" "Bq+Bh+AP+BP:Bq,Bh,AP,BP" "AP:AP"
+.venv/bin/python scripts/flu_search_mix.py g04m --experiments flu-s-g01 flu-s-g04 --members "B7=ref.A,ref.B5,ref.B" Bq=Bq Bh=Bh AP=Ar.peak BP=B5r.peak --groups "B7:B7" "Bq+Bh:Bq,Bh" "Bq+Bh+AP:Bq,Bh,AP" "Bh+AP:Bh,AP" "Bq+AP:Bq,AP" "Bq+Bh+AP+BP:Bq,Bh,AP,BP" "AP:AP"
