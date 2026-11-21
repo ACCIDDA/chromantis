@@ -31,3 +31,11 @@ python3 experiments/flu-search-20261120/rounds.py 2; python3 experiments/flu-sea
 sbatch --job-name=flu-s-r02 --array=0-5 --dependency=afterany:9984420 scripts/flu_search.sbatch flu-s-r02 flu-s-rs01
 .venv/bin/python -m chromantis.experiment.planner status -e flu-s-r02
 .venv/bin/python -m chromantis.experiment.planner rank -e flu-s-r02 --allow-incomplete --no-report
+# 2026-11-20 19:45 EST: round 1 scored; round 3 + guard g03 chained after round 2 (job 10006055); round-1 mixtures (CPU job 10006061)
+.venv/bin/python scripts/flu_search_table.py -e flu-s-r01 --guard flu-s-g01 --out output/flu-search/r01.csv
+python3 experiments/flu-search-20261120/rounds.py 3; python3 experiments/flu-search-20261120/rounds.py g03   # on the Mac
+.venv/bin/python -m chromantis.experiment.planner plan -e flu-s-r03 --problem problems/us-flu-short-term-coverage.json --study $S/round-03.json --device cuda
+.venv/bin/python -m chromantis.experiment.planner plan -e flu-s-g03 --problem problems/us-flu-2023-24-prescribed-coverage.json --study $S/guard-g03.json --device cuda
+sbatch --job-name=flu-s-r03 --array=0-4 --dependency=afterany:9989288 scripts/flu_search.sbatch flu-s-r03 flu-s-g03
+.venv/bin/python scripts/flu_search_mix.py r01 --experiments flu-s-r01 --members "B7=ref.A,ref.B5,ref.B" Bes=ref.Bes G=Bq.gru L=Bq.ll1 Ar=Ar Bh=Bh Bq=Bq --groups "B7:B7" "Bes:Bes" "Bq.gru:G" "Ar:Ar" "Bh:Bh" "G+Ar:G,Ar" "G+Bh:G,Bh" "G+Bh+Ar:G,Bh,Ar" "G+L+Ar:G,L,Ar" "Ar+Bh:Ar,Bh" "Bq+Ar:Bq,Ar"
+sbatch --job-name=flu-mix-r01 scripts/covid_tree_mix.sbatch experiments/flu-search-20261120/mix-r01.json data/experiments/flu-mix-r01

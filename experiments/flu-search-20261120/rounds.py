@@ -142,6 +142,37 @@ def round2():
 ROUNDS[2] = dict(description='Flu search round 2 (2026-11-20): trajectory (sampled) recipes aimed at the peak weakness: path, '
                              'peak, four-week-sum losses, per-location noise and growth anchor on Ar and on B5 with real-pair trees.',
                  build=round2)
+def round3():
+    # Round 1 winners (20 Nov 19:40): Bq.gru and Bq.ll1 beat Bq; Ar beats ref.A. Combine and extend.
+    g = R['Bq.gru']
+    put('Bq.gru.ll1', derive(g, log_loss_weight=1.0), 'Bq.gru')
+    put('Bq.gru.lb8', derive(g, lookback=8), 'Bq.gru')                       # Bq.lb8 was -1.6% (level)
+    put('Bq.gru.nat', derive(g, spatial='national_broadcast'), 'Bq.gru')      # the COVID leader's pairing (GRU + US summary)
+    put('Bq.gru.bes', derive(g, reporting_strength=1.5), 'Bq.gru')            # Bes's stronger errors (ref.Bes -3.5%, level)
+    put('Bh.gru.ll1', derive(R['Bh.gru'], log_loss_weight=1.0), 'Bh.gru')     # Bh: best October scores; does ll1 help it with GRU?
+    # Sampled GRU: the GRU encoder needs the plain decoder (decoder_blocks only exists for the MLP), so a control without it.
+    put('Ar.flat', derive(R['Ar'], drop=('decoder_blocks',)), 'Ar')
+    put('Ar.flat.gru', derive(R['Ar.flat'], encoder='gru'), 'Ar.flat')
+    put('Ar.flat.gru.w192', derive(R['Ar.flat.gru'], width=192), 'Ar.flat.gru')
+
+
+ROUNDS[3] = dict(description='Flu search round 3 (2026-11-20): combinations of the round-1 winners (Bq.gru, Bq.ll1) and a '
+                             'sampled GRU on Ar.', build=round3)
+GUARD = {'g03': ['Bq.gru', 'Bq.ll1', 'Bq.gru.ll1', 'Bq.gru.lb8', 'Bq.gru.nat', 'Bq.gru.bes', 'Bh.gru.ll1', 'Ar.flat',
+                 'Ar.flat.gru', 'Ar.flat.gru.w192']}
+
+
+def write_guard(tag):
+    for n in sorted(ROUNDS):
+        ROUNDS[n]['build']()
+    names = GUARD[tag]
+    study = dict(description=f'Flu search guard {tag} (2023-24 held out, artificial reports): {", ".join(names)}.', round=tag,
+                 parents={k: PARENT[k] for k in names if k in PARENT},
+                 candidates={k: derive(R[k], error_reference='2025-2026') for k in names}, seeds=SEEDS)
+    (HERE / f'guard-{tag}.json').write_text(json.dumps(study, indent=1) + '\n')
+    print(f'guard {tag}: {len(names)} recipes x {len(SEEDS)} seeds')
+
+
 RESEED = {'rs01': (['ref.A', 'ref.B5', 'ref.B', 'ref.Bes', 'Bq', 'Bh', 'Ar'], list(range(52, 60)))}
 
 
@@ -168,6 +199,9 @@ def write(n):
 
 
 if __name__ == '__main__':
+    if sys.argv[1] in GUARD:
+        write_guard(sys.argv[1])
+        sys.exit()
     if sys.argv[1] in RESEED:
         write_reseed(sys.argv[1])
         sys.exit()
