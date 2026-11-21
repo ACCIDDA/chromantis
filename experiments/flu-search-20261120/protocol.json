@@ -163,6 +163,11 @@
    "date": "2026-11-21 15:05 EST",
    "round": 14,
    "what": "The queue ran empty at about 14:30 (Bh.smp release seeds done). Round 14 launched (flu-s-r14 + guard flu-s-g14, array 10083784, 256 fits): a random search with rng seed 20261121, 8 recipes around each of Bq.smp.ll1 and Ar.peak.nokinsa, each changing three settings drawn from width, learning rate, epochs, patience, log-loss weight, batch size, weight decay, lookback, reporting-error strength, tree penalty, trajectories per episode, latent size (and peak weight for Ar); the last stage of the COVID search, here to confirm the plateau; any 'better' recipe must survive reseeding. Quantile-member swap in candidate A without Kinsa (flu-mix-swap main, flu-mix-swapg guard, 16 seeds, equal weights; states/DC log WIS 2024-25 / 2025-26 / 2023-24 / mean, ED x 1e4 2025-26): Bq.smp.ll1 + ref.B + Ar.peak.nokinsa 0.2948 / 0.2727 / 0.2729 / 0.2802, 44.39; with Bes instead of ref.B 0.2790, 44.09; with Bq 0.2807; with ref.B and Bq 0.2810; with ref.B and Bh 0.2788, 44.76. All within 0.8%: level; ref.B stays (already a B7 member, smallest change to the release)."
+  },
+  {
+   "date": "2026-11-21 18:50 EST",
+   "round": 14,
+   "what": "Round 14 (random search, rng seed 20261121; 8 recipes around each of Bq.smp.ll1 and Ar.peak.nokinsa, three settings changed at once; 8 seeds; main = 2024-25 and 2025-26 held out in turn, trained on the other seasons of 2022-23..2025-26, leak-free errors, archived reports; guard = 2023-24 held out, artificial reports; states/DC WIS of log(1 + admissions), lower is better; table output/flu-search/r14.csv on Longleaf). Against Bq.smp.ll1 (32 seeds, 0.2990, guard 0.2961): changes from -2.5% (RS0: log-loss 1.5, patience 40; guard 0.2992) to +2.7%, all level. Against Ar.peak.nokinsa (24 seeds, 0.3089, guard 0.2908): -0.6% to +4.7%, all level except RS5 (worse). The random search confirms the plateau; no recipe is pursued. Queued overnight (chained after round 15): seeds 76-91 of ref.A, ref.B5, ref.B, Bq.smp.ll1 and Ar.peak.nokinsa on the main problem (rs11) and the guard (gs09), for 48-seed final comparisons."
   }
  ],
  "execution": {

@@ -125,3 +125,4 @@ LANES=4 sbatch --export=ALL --job-name=flu-s-release3 --array=0-4 scripts/flu_se
 python3 experiments/flu-search-20261120/rounds.py 14; python3 experiments/flu-search-20261120/rounds.py g14
 LANES=3 sbatch --export=ALL --job-name=flu-s-r14 --array=0-4 scripts/flu_search.sbatch flu-s-r14 flu-s-g14
 LANES=3 sbatch --export=ALL --job-name=flu-s-r15 --array=0-4 --dependency=afterany:10083784 scripts/flu_search.sbatch flu-s-r15 flu-s-g15   # ED handling
+LANES=4 sbatch --export=ALL --job-name=flu-s-rs11 --array=0-4 --dependency=afterany:10106015 scripts/flu_search.sbatch flu-s-rs11 flu-s-gs09   # seeds 76-91 for final 48-seed comparisons
