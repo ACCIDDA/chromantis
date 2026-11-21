@@ -51,3 +51,12 @@ sbatch --job-name=flu-s-r04 --array=0-4 --dependency=afterany:10006055 scripts/f
 .venv/bin/python scripts/flu_search_table.py -e flu-s-r01 -e flu-s-rs01 --guard flu-s-g01
 LANES=3 NTFY=0 sbatch --export=ALL --job-name=flu-s-r04-retry --array=0-4 --dependency=afterany:10012749 scripts/flu_search.sbatch flu-s-r04 flu-s-g04
 .venv/bin/python scripts/flu_search_mix.py g01 --experiments flu-s-g01 flu-s-g03 --members "B7=ref.A,ref.B5,ref.B" Bes=ref.Bes G=Bq.gru L=Bq.ll1 Ar=Ar Bh=Bh Bq=Bq B=ref.B --groups "B7:B7" "Bes:Bes" "Bq.gru:G" "Bh:Bh" "Bq:Bq" "ref.B:B" "Ar:Ar" "G+Bh:G,Bh" "G+L+Ar:G,L,Ar" "Bq+Bh:Bq,Bh" "Bh+Ar:Bh,Ar" "Bq+Bh+Ar:Bq,Bh,Ar"
+# 2026-11-20 22:20-22:50 EST: three-season mixtures; round 5 + g05 (job 10022573, 4 lanes) and round 6 + rs03 + g06 (job 10029431, 6 lanes) chained
+.venv/bin/python scripts/flu_search_mix.py r01s16 --experiments flu-s-r01 flu-s-rs01 --members "B7=ref.A,ref.B5,ref.B" Bes=ref.Bes Ar=Ar Bh=Bh Bq=Bq B=ref.B --groups "B7:B7" "Bes:Bes" "Bh:Bh" "Bq:Bq" "ref.B:B" "Bq+Bh:Bq,Bh" "Bq+Bh+Ar:Bq,Bh,Ar" "B+Bh:B,Bh" "Bh+Ar:Bh,Ar" "Bes+Bh:Bes,Bh"
+.venv/bin/python scripts/flu_phase_check.py data/experiments/flu-mix-r01s16/*-mixture
+python3 experiments/flu-search-20261120/rounds.py 5; python3 experiments/flu-search-20261120/rounds.py g05   # on the Mac
+.venv/bin/python -m chromantis.experiment.planner plan -e flu-s-r05 --problem problems/us-flu-short-term-coverage.json --study $S/round-05.json --device cuda
+.venv/bin/python -m chromantis.experiment.planner plan -e flu-s-g05 --problem problems/us-flu-2023-24-prescribed-coverage.json --study $S/guard-g05.json --device cuda
+LANES=4 sbatch --export=ALL --job-name=flu-s-r05 --array=0-4 --dependency=afterany:10022195 scripts/flu_search.sbatch flu-s-r05 flu-s-g05
+python3 experiments/flu-search-20261120/rounds.py 6; python3 experiments/flu-search-20261120/rounds.py g06; python3 experiments/flu-search-20261120/rounds.py rs03   # on the Mac
+LANES=6 sbatch --export=ALL --job-name=flu-s-r06 --array=0-4 --dependency=afterany:10022573 scripts/flu_search.sbatch flu-s-r06 flu-s-rs03 flu-s-g06
