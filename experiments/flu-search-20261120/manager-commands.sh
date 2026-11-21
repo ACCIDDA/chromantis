@@ -39,3 +39,10 @@ python3 experiments/flu-search-20261120/rounds.py 3; python3 experiments/flu-sea
 sbatch --job-name=flu-s-r03 --array=0-4 --dependency=afterany:9989288 scripts/flu_search.sbatch flu-s-r03 flu-s-g03
 .venv/bin/python scripts/flu_search_mix.py r01 --experiments flu-s-r01 --members "B7=ref.A,ref.B5,ref.B" Bes=ref.Bes G=Bq.gru L=Bq.ll1 Ar=Ar Bh=Bh Bq=Bq --groups "B7:B7" "Bes:Bes" "Bq.gru:G" "Ar:Ar" "Bh:Bh" "G+Ar:G,Ar" "G+Bh:G,Bh" "G+Bh+Ar:G,Bh,Ar" "G+L+Ar:G,L,Ar" "Ar+Bh:Ar,Bh" "Bq+Ar:Bq,Ar"
 sbatch --job-name=flu-mix-r01 scripts/covid_tree_mix.sbatch experiments/flu-search-20261120/mix-r01.json data/experiments/flu-mix-r01
+# 2026-11-20 20:45 EST: round 2 scored; round 4, reseed rs02 and guard g04 chained after round 3 (job 10012749)
+.venv/bin/python scripts/flu_search_table.py -e flu-s-r01 -e flu-s-r02 --guard flu-s-g01 --out output/flu-search/r02.csv
+python3 experiments/flu-search-20261120/rounds.py 4; python3 experiments/flu-search-20261120/rounds.py g04; python3 experiments/flu-search-20261120/rounds.py rs02   # on the Mac
+.venv/bin/python -m chromantis.experiment.planner plan -e flu-s-r04 --problem problems/us-flu-short-term-coverage.json --study $S/round-04.json --device cuda
+.venv/bin/python -m chromantis.experiment.planner plan -e flu-s-rs02 --problem problems/us-flu-short-term-coverage.json --study $S/reseed-rs02.json --device cuda
+.venv/bin/python -m chromantis.experiment.planner plan -e flu-s-g04 --problem problems/us-flu-2023-24-prescribed-coverage.json --study $S/guard-g04.json --device cuda
+sbatch --job-name=flu-s-r04 --array=0-4 --dependency=afterany:10006055 scripts/flu_search.sbatch flu-s-r04 flu-s-rs02 flu-s-g04

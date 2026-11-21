@@ -158,8 +158,22 @@ def round3():
 
 ROUNDS[3] = dict(description='Flu search round 3 (2026-11-20): combinations of the round-1 winners (Bq.gru, Bq.ll1) and a '
                              'sampled GRU on Ar.', build=round3)
+def round4():
+    # Round 2 (20 Nov 20:40): B5r.peak and B5r.local beat B5r; sampled recipes top out near 0.313 against 0.292 for the
+    # quantile Bq.gru. Give the winning recipe a sampled (trajectory) head: same training, decoder legacy (fair CRPS).
+    put('Bq.smp', derive(R['Bq'], drop=('decoder',)), 'Bq')
+    put('Bq.gru.smp', derive(R['Bq.gru'], drop=('decoder',)), 'Bq.gru')
+    put('Bq.gru.smp.peak', derive(R['Bq.gru.smp'], peak_loss_weight=1.0), 'Bq.gru.smp')
+    put('Bq.gru.smp.local', derive(R['Bq.gru.smp'], noise='local'), 'Bq.gru.smp')
+    put('B5r.peak.local', derive(R['B5r.peak'], noise='local'), 'B5r.peak')
+
+
+ROUNDS[4] = dict(description='Flu search round 4 (2026-11-20): sampled (trajectory) head on the winning Bq.gru recipe; '
+                             'B5r peak loss + per-location noise.', build=round4)
 GUARD = {'g03': ['Bq.gru', 'Bq.ll1', 'Bq.gru.ll1', 'Bq.gru.lb8', 'Bq.gru.nat', 'Bq.gru.bes', 'Bh.gru.ll1', 'Ar.flat',
-                 'Ar.flat.gru', 'Ar.flat.gru.w192']}
+                 'Ar.flat.gru', 'Ar.flat.gru.w192'],
+         'g04': ['B5r', 'B5r.peak', 'B5r.local', 'Ar.peak', 'Bq.smp', 'Bq.gru.smp', 'Bq.gru.smp.peak', 'Bq.gru.smp.local',
+                 'B5r.peak.local']}
 
 
 def write_guard(tag):
@@ -173,7 +187,8 @@ def write_guard(tag):
     print(f'guard {tag}: {len(names)} recipes x {len(SEEDS)} seeds')
 
 
-RESEED = {'rs01': (['ref.A', 'ref.B5', 'ref.B', 'ref.Bes', 'Bq', 'Bh', 'Ar'], list(range(52, 60)))}
+RESEED = {'rs01': (['ref.A', 'ref.B5', 'ref.B', 'ref.Bes', 'Bq', 'Bh', 'Ar'], list(range(52, 60))),
+          'rs02': (['Bq.gru', 'Bq.ll1', 'Ar.peak', 'B5r.peak', 'B5r.local'], list(range(52, 60)))}
 
 
 def write_reseed(tag):
