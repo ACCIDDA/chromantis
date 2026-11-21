@@ -1,0 +1,28 @@
+{
+ "description": "Flu search round 9 (2026-11-21): amplitude augmentation (new option amplitude_sd) on the candidate members and on Bq.",
+ "round": 9,
+ "parents": {
+  "Bq.amp3": "Bq",
+  "Bq.hc.smp.amp3": "Bq.hc.smp",
+  "Bh.smp.amp3": "Bh.smp",
+  "Ar.peak.amp3": "Ar.peak",
+  "Ar.peak.amp5": "Ar.peak"
+ },
+ "candidates": {
+  "Bq.amp3": "history_source=artificial,reconstruction_labels=1,error_signals=targets,input_set=target,correction_weeks=2,correction_ed=1,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,loss_weights=objective,spatial=neighbors,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=0.5,corrector_examples=real,amplitude_sd=0.3",
+  "Bq.hc.smp.amp3": "history_source=artificial,error_signals=targets,input_set=target,correction_weeks=2,correction_ed=1,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,ed_transform=logit,loss_weights=objective,spatial=neighbors,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=0.5,corrector_examples=real,history_correction=1,amplitude_sd=0.3",
+  "Bh.smp.amp3": "history_source=artificial,error_signals=all,input_set=target,correction_weeks=2,correction_ed=1,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,ed_transform=logit,loss_weights=objective,spatial=neighbors,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=0.5,history_correction=1,corrector_examples=real,covariate_set=hosprep,amplitude_sd=0.3",
+  "Ar.peak.amp3": "history_source=artificial,history_correction=1,error_signals=targets,input_set=target,correction_weeks=2,correction_ed=1,joint_weight=0.05,correction_penalty=30.0,reporting_missingness=0,reporting_method=synchronous_phase_log,count_transform=sqrt,ed_transform=logit,loss_weights=objective,decoder_blocks=3,width=96,epochs=160,patience=25,lr=0.002,fit_partition=pathogen,covariate_encoder=summary,covariate_set=kinsa,input_normalization=b0,log_loss_weight=0.5,corrector_examples=real,peak_loss_weight=1.0,amplitude_sd=0.3",
+  "Ar.peak.amp5": "history_source=artificial,history_correction=1,error_signals=targets,input_set=target,correction_weeks=2,correction_ed=1,joint_weight=0.05,correction_penalty=30.0,reporting_missingness=0,reporting_method=synchronous_phase_log,count_transform=sqrt,ed_transform=logit,loss_weights=objective,decoder_blocks=3,width=96,epochs=160,patience=25,lr=0.002,fit_partition=pathogen,covariate_encoder=summary,covariate_set=kinsa,input_normalization=b0,log_loss_weight=0.5,corrector_examples=real,peak_loss_weight=1.0,amplitude_sd=0.5"
+ },
+ "seeds": [
+  44,
+  45,
+  46,
+  47,
+  48,
+  49,
+  50,
+  51
+ ]
+}

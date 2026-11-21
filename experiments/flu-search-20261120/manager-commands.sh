@@ -72,3 +72,10 @@ M="--members B7=ref.A,ref.B5,ref.B Bq=Bq Bh=Bh AP=Ar.peak QS=Bq.hc.smp HS=Bh.smp
 LANES=3 NTFY=0 sbatch --export=ALL --job-name=flu-s-r06-retry --array=0-4 --dependency=afterany:10029431 scripts/flu_search.sbatch flu-s-r06 flu-s-rs03 flu-s-g06
 python3 experiments/flu-search-20261120/rounds.py 7; python3 experiments/flu-search-20261120/rounds.py g07; python3 experiments/flu-search-20261120/rounds.py rs04   # on the Mac (+ guard-gs02.json)
 LANES=3 sbatch --export=ALL --job-name=flu-s-r07 --array=0-4 --dependency=afterany:10034275:10038254 scripts/flu_search.sbatch flu-s-r07 flu-s-rs04 flu-s-g07 flu-s-gs02
+# 2026-11-21 02:05 EST: rounds 6-7 scored; round 8 (+rs05, g08, gs03; job 10040511) and round 9 amplitude augmentation (+g09) chained
+python3 experiments/flu-search-20261120/rounds.py 8; python3 experiments/flu-search-20261120/rounds.py g08; python3 experiments/flu-search-20261120/rounds.py rs05   # + guard-gs03.json
+LANES=3 sbatch --export=ALL --job-name=flu-s-r08 --array=0-4 --dependency=afterany:10038284 scripts/flu_search.sbatch flu-s-r08 flu-s-rs05 flu-s-g08 flu-s-gs03
+python3 experiments/flu-search-20261120/rounds.py 9; python3 experiments/flu-search-20261120/rounds.py g09
+.venv/bin/python -m chromantis.experiment.planner plan -e flu-s-r09 --problem problems/us-flu-short-term-coverage.json --study $S/round-09.json --device cuda
+.venv/bin/python -m chromantis.experiment.planner plan -e flu-s-g09 --problem problems/us-flu-2023-24-prescribed-coverage.json --study $S/guard-g09.json --device cuda
+LANES=3 sbatch --export=ALL --job-name=flu-s-r09 --array=0-4 --dependency=afterany:10040511 scripts/flu_search.sbatch flu-s-r09 flu-s-g09

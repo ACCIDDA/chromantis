@@ -287,11 +287,24 @@ def fit_component(train, validation, channels, component, options, problem, scen
                     # Advanced indexing above creates copies; the stored episodes stay intact.
                     batch_values[:, -scenario.training_target_lag:] = 0
                     batch_available[:, -scenario.training_target_lag:] = False
+                yb = y[ids]
+                if scenario.amplitude_sd:
+                    # Amplitude augmentation (2026-11-21, flu search): one factor exp(N(0, sd)) per training episode
+                    # multiplies its admission and ED-share inputs and labels, so the network sees epidemics bigger
+                    # and smaller than the few training seasons; proportions are capped at 1. Training only.
+                    factor = torch.as_tensor(np.exp(scenario.amplitude_sd * rng.standard_normal(len(ids))),
+                                             dtype=batch_values.dtype, device=device)[:, None, None, None]
+                    batch_values = batch_values * factor
+                    yb = yb * factor
+                    proportion_in = [c for c, unit in enumerate(train[0]['input_units']) if unit == 'proportion']
+                    proportion_out = [c for c, unit in enumerate(problem.target_units) if unit == 'proportion']
+                    batch_values[:, :, proportion_in] = batch_values[:, :, proportion_in].clamp_max(1)
+                    yb[:, :, proportion_out] = yb[:, :, proportion_out].clamp_max(1)
                 hide = (torch.rand(batch_values.shape, device=device) < scenario.autoencoder_mask
                         if scenario.autoencoder_mask else None)
                 samples = model(values=batch_values, available=batch_available, calendar=cal[ids], hide=hide,
                                 covariates=batch_cov, locations=list(train[0]['locations']), members=scenario.members)
-                score = prediction_loss(model, samples[:, :, :, channels], y[ids][:, :, channels], y_mask[ids][:, :, channels])
+                score = prediction_loss(model, samples[:, :, :, channels], yb[:, :, channels], y_mask[ids][:, :, channels])
                 loss = (weights[ids] * score / model.scale[channels]).sum() * scale
                 if scenario.autoencoder_weight:
                     loss = loss + scenario.autoencoder_weight * reconstruction_loss(model)
@@ -300,8 +313,8 @@ def fit_component(train, validation, channels, component, options, problem, scen
                     # cell weights); KL ties the posterior to the history-only prior used in forecasting.
                     posterior = model(values=batch_values, available=batch_available, calendar=cal[ids], hide=hide,
                                       covariates=batch_cov, locations=list(train[0]['locations']), members=scenario.members,
-                                      future=(y[ids], y_mask[ids]))
-                    post_score = prediction_loss(model, posterior[:, :, :, channels], y[ids][:, :, channels], y_mask[ids][:, :, channels])
+                                      future=(yb, y_mask[ids]))
+                    post_score = prediction_loss(model, posterior[:, :, :, channels], yb[:, :, channels], y_mask[ids][:, :, channels])
                     loss = loss + scenario.cvae_weight * (weights[ids] * post_score / model.scale[channels]).sum() * scale
                     loss = loss + scenario.kl_weight * model.last_kl.mean()
                 admissions = [i for i, c in enumerate(channels) if problem.target_units[c] == 'count']
@@ -310,11 +323,11 @@ def fit_component(train, validation, channels, component, options, problem, scen
                     # Log-unit CRPS/pinball is already relative, so it is not divided by a level scale.
                     chosen = [channels[i] for i in admissions]
                     log_score = prediction_loss(model, torch.log1p(samples[:, :, :, chosen].clamp_min(0)),
-                                                torch.log1p(y[ids][:, :, chosen].clamp_min(0)), y_mask[ids][:, :, chosen])
+                                                torch.log1p(yb[:, :, chosen].clamp_min(0)), y_mask[ids][:, :, chosen])
                     loss = loss + scenario.log_loss_weight * (weights[ids][:, :, admissions] * log_score).sum() * scale
-                loss = loss + path_peak_loss(samples, y[ids], y_mask[ids], weights[ids], channels, problem, scenario, horizons) * scale
+                loss = loss + path_peak_loss(samples, yb, y_mask[ids], weights[ids], channels, problem, scenario, horizons) * scale
                 if total_weights is not None:
-                    sum_score = four_week_sum_wis(samples, y[ids], y_mask[ids], horizons)
+                    sum_score = four_week_sum_wis(samples, yb, y_mask[ids], horizons)
                     loss = loss + scenario.sum_wis_weight * (total_weights[ids] * sum_score / (4 * model.scale[:1])).sum() * scale
                 if ili is not None and scenario.ili_training == 'joint' and ids is first:
                     loss = loss + scenario.ili_weight * ili.loss(model)

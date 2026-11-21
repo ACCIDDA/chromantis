@@ -201,13 +201,35 @@ def round7():
 
 
 ROUNDS[7] = dict(description='Flu search round 7 (2026-11-21): peak loss on the sampled B-family recipes.', build=round7)
+def round8():
+    # 21 Nov 01:45: Bq.smp.ll1 (sampled Bq, log-loss weight 1) beats Bq.smp on all three seasons and is level with
+    # quantile Bq on 2023-24; the strongest sampled recipe so far. Same option on the other sampled B-family recipes.
+    put('Bq.hc.smp.ll1', derive(R['Bq.hc.smp'], log_loss_weight=1.0), 'Bq.hc.smp')
+    put('Bh.smp.ll1', derive(R['Bh.smp'], log_loss_weight=1.0), 'Bh.smp')
+    put('Bq.smp.ll1.local', derive(R['Bq.smp.ll1'], noise='local'), 'Bq.smp.ll1')
+
+
+ROUNDS[8] = dict(description='Flu search round 8 (2026-11-21): log-loss weight 1 on the sampled B-family recipes.', build=round8)
+def round9():
+    # 21 Nov 02:00: every model and mixture is far too low near the peak (bias about -0.38 on the log scale). With four
+    # training seasons the networks may learn a typical epidemic size; amplitude augmentation (training/amplitude_sd)
+    # rescales each training episode's inputs and labels by exp(N(0, sd)).
+    for root in ('Bq', 'Bq.hc.smp', 'Bh.smp', 'Ar.peak'):
+        put(f'{root}.amp3', derive(R[root], amplitude_sd=0.3), root)
+    put('Ar.peak.amp5', derive(R['Ar.peak'], amplitude_sd=0.5), 'Ar.peak')
+
+
+ROUNDS[9] = dict(description='Flu search round 9 (2026-11-21): amplitude augmentation (new option amplitude_sd) on the '
+                             'candidate members and on Bq.', build=round9)
 GUARD = {'g03': ['Bq.gru', 'Bq.ll1', 'Bq.gru.ll1', 'Bq.gru.lb8', 'Bq.gru.nat', 'Bq.gru.bes', 'Bh.gru.ll1', 'Ar.flat',
                  'Ar.flat.gru', 'Ar.flat.gru.w192'],
          'g04': ['B5r', 'B5r.peak', 'B5r.local', 'Ar.peak', 'Bq.smp', 'Bq.gru.smp', 'Bq.gru.smp.peak', 'Bq.gru.smp.local',
                  'B5r.peak.local'],
          'g05': ['Bh.smp', 'Bh.smp.peak', 'Bh.smp.local', 'Bq.hc', 'Bq.hc.smp'],
          'g06': ['Bq.smp.peak', 'Bq.smp.local', 'Bq.smp.ll1'],
-         'g07': ['Bq.hc.smp.peak', 'Bh.smp.peak.x']}
+         'g07': ['Bq.hc.smp.peak', 'Bh.smp.peak.x'],
+         'g08': ['Bq.hc.smp.ll1', 'Bh.smp.ll1', 'Bq.smp.ll1.local'],
+         'g09': ['Bq.amp3', 'Bq.hc.smp.amp3', 'Bh.smp.amp3', 'Ar.peak.amp3', 'Ar.peak.amp5']}
 
 
 def write_guard(tag):
@@ -224,7 +246,8 @@ def write_guard(tag):
 RESEED = {'rs01': (['ref.A', 'ref.B5', 'ref.B', 'ref.Bes', 'Bq', 'Bh', 'Ar'], list(range(52, 60))),
           'rs02': (['Bq.gru', 'Bq.ll1', 'Ar.peak', 'B5r.peak', 'B5r.local'], list(range(52, 60))),
           'rs03': (['Bq.smp'], list(range(52, 60))),
-          'rs04': (['Bq.hc.smp', 'Bh.smp'], list(range(52, 60)))}
+          'rs04': (['Bq.hc.smp', 'Bh.smp'], list(range(52, 60))),
+          'rs05': (['Bq.smp.ll1'], list(range(52, 60)))}
 
 
 def write_reseed(tag):
