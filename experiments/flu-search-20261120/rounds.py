@@ -288,6 +288,17 @@ def round14():
 
 ROUNDS[14] = dict(description='Flu search round 14 (2026-11-21): random search, 8 recipes around each of Bq.smp.ll1 and '
                               'Ar.peak.nokinsa, three settings changed at once (rng seed 20261121).', build=round14)
+def round15():
+    # 21 Nov 16:45: ED share, the one target the search has not worked on (level with B7 in backtests; behind the Hub
+    # ensemble in the November 2026 evaluation). Judged on ED WIS, admissions not worse.
+    for root in ('Bq.smp.ll1', 'Ar.peak.nokinsa'):
+        put(f'{root}.ed4', derive(R[root], ed_transform='fourth_root'), root)
+        put(f'{root}.edlin', derive(R[root], ed_transform='linear'), root)
+        put(f'{root}.edraw', derive(R[root], correction_ed=0), root)
+
+
+ROUNDS[15] = dict(description='Flu search round 15 (2026-11-21): ED-share handling on candidate A\'s sampled members '
+                              '(fourth-root or linear ED transform instead of logit; no tree correction of ED).', build=round15)
 GUARD = {'g03': ['Bq.gru', 'Bq.ll1', 'Bq.gru.ll1', 'Bq.gru.lb8', 'Bq.gru.nat', 'Bq.gru.bes', 'Bh.gru.ll1', 'Ar.flat',
                  'Ar.flat.gru', 'Ar.flat.gru.w192'],
          'g04': ['B5r', 'B5r.peak', 'B5r.local', 'Ar.peak', 'Bq.smp', 'Bq.gru.smp', 'Bq.gru.smp.peak', 'Bq.gru.smp.local',
@@ -301,7 +312,8 @@ GUARD = {'g03': ['Bq.gru', 'Bq.ll1', 'Bq.gru.ll1', 'Bq.gru.lb8', 'Bq.gru.nat', '
          'g11': ['Bq.smp.ll1.ili'],
          'g12': ['Bq.smp.ll2', 'Bq.smp.ll1.log1p', 'Bq.gru.smp.ll1', 'Ar.peak.nokinsa.pk2'],
          'g13': ['Bq.smp.ll1.w128', 'Bq.smp.ll1.w384', 'Ar.peak.nokinsa.w192', 'Ar.peak.nokinsa.flat'],
-         'g14': [f'{r}.RS{i}' for r in ('Bq.smp.ll1', 'Ar.peak.nokinsa') for i in range(8)]}
+         'g14': [f'{r}.RS{i}' for r in ('Bq.smp.ll1', 'Ar.peak.nokinsa') for i in range(8)],
+         'g15': [f'{r}.{v}' for r in ('Bq.smp.ll1', 'Ar.peak.nokinsa') for v in ('ed4', 'edlin', 'edraw')]}
 
 
 def write_guard(tag):

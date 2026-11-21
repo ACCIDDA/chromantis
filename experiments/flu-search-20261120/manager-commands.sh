@@ -124,3 +124,4 @@ LANES=4 sbatch --export=ALL --job-name=flu-s-release3 --array=0-4 scripts/flu_se
 # 2026-11-21 14:45-15:05 EST: round 14 random search (job 10083784, 3 lanes); quantile-member swap mixtures swap/swapg
 python3 experiments/flu-search-20261120/rounds.py 14; python3 experiments/flu-search-20261120/rounds.py g14
 LANES=3 sbatch --export=ALL --job-name=flu-s-r14 --array=0-4 scripts/flu_search.sbatch flu-s-r14 flu-s-g14
+LANES=3 sbatch --export=ALL --job-name=flu-s-r15 --array=0-4 --dependency=afterany:10083784 scripts/flu_search.sbatch flu-s-r15 flu-s-g15   # ED handling
