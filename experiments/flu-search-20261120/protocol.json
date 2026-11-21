@@ -145,6 +145,10 @@
   {
    "date": "2026-11-21 11:10 EST",
    "what": "The queue ran empty at about 10:30. In-season retraining test (B_width256 network on finalized histories, no reporting errors or trees, evaluated on finalized 2025-26 histories, states/DC log WIS, seeds 44-51). The rolling-origin windows score fewer tasks than the season fold (a window drops target weeks beyond its end), so the arms were compared on exactly the same tasks (scripts/flu_common_tasks.py; 4080 state-horizon-reference tasks per seed): frozen (trained on 2022-23..2024-25) 0.2912, in-season (refit before each month on every earlier week) 0.2879, -1.1%; 5 of 8 seeds lower; by month -11% (January) to +5% (December) with alternating signs. Below the margin even with ideal inputs: in-season retraining dropped, the reporting stage is not extended. Robustness to the reporting regime, 16 seeds (flu-mix-ge16; 2023-24 held out, trained on 2022-23, 2024-25, 2025-26, artificial errors from 2024-25 in training and evaluation): B7 0.2862, A 0.2782 (-2.8%), A without Kinsa 0.2759 (-3.6%); ED share x 1e4 33.85 / 33.93 / 33.37 (level). Bq.smp.ll2 on 16 seeds 0.2932 vs Bq.smp.ll1 0.2990 on 32 (level; guard 0.3005 vs 0.2961). Queued: release seeds 62-81 for candidate A's members (flu-s-release2, unscored, array 10058624), then round 13 (widths of the candidate A sampled members, array 10058714)."
+  },
+  {
+   "date": "2026-11-21 11:50 EST",
+   "what": "Release seeds 62-81 (flu-s-release2) complete, unscored. Queued after round 13 (array 10063968): (1) h8 test: candidate A's members (Bq.smp.ll1, ref.B, Ar.peak.nokinsa) trained on 8 future weeks (new problem problems/us-flu-short-term-coverage-h8.json, otherwise identical to the main problem) and scored on their first 4 weeks against the same recipes trained on 4 weeks, on common tasks: does supervision further ahead improve the growth forecast at horizons 2-3 (where B7 was 17-18% low this season)? (2) Ar.peak.nokinsa on seeds 68-75, main and guard, so the recommended member has 32 seeds."
   }
  ],
  "execution": {

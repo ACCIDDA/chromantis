@@ -115,3 +115,6 @@ sbatch --job-name=flu-s-inseason --array=0-4 --dependency=afterany:10051407 scri
 .venv/bin/python -m chromantis.experiment.planner plan -e flu-s-release2 --problem problems/us-flu-production-coverage.json --study $S/release-seeds-2.json --device cuda; mkdir -p data/experiments/flu-s-release2/scoring.lock
 LANES=4 sbatch --export=ALL --job-name=flu-s-release2 --array=0-4 scripts/flu_search.sbatch flu-s-release2
 LANES=3 sbatch --export=ALL --job-name=flu-s-r13 --array=0-4 --dependency=afterany:10058624 scripts/flu_search.sbatch flu-s-r13 flu-s-g13
+# 2026-11-21 11:50 EST: 8-week training test and Ar.peak.nokinsa seeds 68-75 (job 10063968)
+.venv/bin/python -m chromantis.experiment.planner plan -e flu-s-h8 --problem problems/us-flu-short-term-coverage-h8.json --study $S/h8.json --device cuda
+LANES=3 sbatch --export=ALL --job-name=flu-s-h8 --array=0-4 --dependency=afterany:10058714 scripts/flu_search.sbatch flu-s-h8 flu-s-rs10 flu-s-gs08

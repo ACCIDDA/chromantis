@@ -1,12 +1,13 @@
 """Compare two experiments on exactly the same scored tasks (seed, reference date, horizon, state): states/DC WIS of
 log(1 + admissions) by reference month. Used on 21 Nov 2026 for the in-season retraining test, whose rolling-origin
-windows score fewer tasks than a season fold. Run in the Longleaf campaign folder.
+windows score fewer tasks than a season fold. Run in the Longleaf campaign folder:
+    .venv/bin/python scripts/flu_common_tasks.py EXP_A EXP_B [VIEW]   (VIEW: corrected, half, ...; default the raw files)
 """
 import glob, numpy as np, pandas as pd, sys
 LEV=np.array([.01,.025,.05,.1,.15,.2,.25,.3,.35,.4,.45,.5,.55,.6,.65,.7,.75,.8,.85,.9,.95,.975,.99])
-def load(exp):
+def load(exp, view=sys.argv[3] if len(sys.argv) > 3 else ''):
     rows=[]
-    for f in glob.glob(f'data/experiments/{exp}/*/s*/attempt-001/eval_*/forecasts.npz'):
+    for f in glob.glob(f'data/experiments/{exp}/*/s*/attempt-001/eval_*/' + (view + '/' if view else '') + 'forecasts.npz'):
         seed=f.split('/s')[1].split('/')[0]
         d=np.load(f); q=d['quantiles'][...,0,:]; t=d['truth'][...,0,:]; m=d['mask'][...,0,:]; locs=[str(l) for l in d['locations']]
         lq=np.log1p(np.maximum(q,0)); lt=np.log1p(np.maximum(t,0))
