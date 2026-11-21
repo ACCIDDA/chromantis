@@ -1,0 +1,185 @@
+{
+ "description": "flu search mixtures swapg",
+ "recipes": {
+  "Bq.smp.ll1@16s44": {
+   "runs": [
+    "data/experiments/flu-s-g06/mlp-pathogen-scheduled_final-c1c905476bc4/s44/attempt-001",
+    "data/experiments/flu-s-g06/mlp-pathogen-scheduled_final-c1c905476bc4/s45/attempt-001",
+    "data/experiments/flu-s-g06/mlp-pathogen-scheduled_final-c1c905476bc4/s46/attempt-001",
+    "data/experiments/flu-s-g06/mlp-pathogen-scheduled_final-c1c905476bc4/s47/attempt-002",
+    "data/experiments/flu-s-g06/mlp-pathogen-scheduled_final-c1c905476bc4/s48/attempt-002",
+    "data/experiments/flu-s-g06/mlp-pathogen-scheduled_final-c1c905476bc4/s49/attempt-003",
+    "data/experiments/flu-s-g06/mlp-pathogen-scheduled_final-c1c905476bc4/s50/attempt-004",
+    "data/experiments/flu-s-g06/mlp-pathogen-scheduled_final-c1c905476bc4/s51/attempt-004",
+    "data/experiments/flu-s-gs03/mlp-pathogen-scheduled_final-c1c905476bc4/s52/attempt-001",
+    "data/experiments/flu-s-gs03/mlp-pathogen-scheduled_final-c1c905476bc4/s53/attempt-001",
+    "data/experiments/flu-s-gs03/mlp-pathogen-scheduled_final-c1c905476bc4/s54/attempt-001",
+    "data/experiments/flu-s-gs03/mlp-pathogen-scheduled_final-c1c905476bc4/s55/attempt-001",
+    "data/experiments/flu-s-gs03/mlp-pathogen-scheduled_final-c1c905476bc4/s56/attempt-001",
+    "data/experiments/flu-s-gs03/mlp-pathogen-scheduled_final-c1c905476bc4/s57/attempt-001",
+    "data/experiments/flu-s-gs03/mlp-pathogen-scheduled_final-c1c905476bc4/s58/attempt-001",
+    "data/experiments/flu-s-gs03/mlp-pathogen-scheduled_final-c1c905476bc4/s59/attempt-001"
+   ],
+   "scenario": "history_source=artificial,reconstruction_labels=1,error_signals=targets,corrector_examples=real,input_set=target,correction_weeks=2,correction_ed=1,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,spatial=neighbors,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=1.0,error_reference=2025-2026"
+  },
+  "ref.B@16s44": {
+   "runs": [
+    "data/experiments/flu-s-g01/mlp-pathogen-scheduled_final-58e7c7f796bc/s44/attempt-001",
+    "data/experiments/flu-s-g01/mlp-pathogen-scheduled_final-58e7c7f796bc/s45/attempt-001",
+    "data/experiments/flu-s-g01/mlp-pathogen-scheduled_final-58e7c7f796bc/s46/attempt-001",
+    "data/experiments/flu-s-g01/mlp-pathogen-scheduled_final-58e7c7f796bc/s47/attempt-001",
+    "data/experiments/flu-s-g01/mlp-pathogen-scheduled_final-58e7c7f796bc/s48/attempt-001",
+    "data/experiments/flu-s-g01/mlp-pathogen-scheduled_final-58e7c7f796bc/s49/attempt-001",
+    "data/experiments/flu-s-g01/mlp-pathogen-scheduled_final-58e7c7f796bc/s50/attempt-001",
+    "data/experiments/flu-s-g01/mlp-pathogen-scheduled_final-58e7c7f796bc/s51/attempt-001",
+    "data/experiments/flu-s-gs01/mlp-pathogen-scheduled_final-58e7c7f796bc/s52/attempt-001",
+    "data/experiments/flu-s-gs01/mlp-pathogen-scheduled_final-58e7c7f796bc/s53/attempt-001",
+    "data/experiments/flu-s-gs01/mlp-pathogen-scheduled_final-58e7c7f796bc/s54/attempt-001",
+    "data/experiments/flu-s-gs01/mlp-pathogen-scheduled_final-58e7c7f796bc/s55/attempt-001",
+    "data/experiments/flu-s-gs01/mlp-pathogen-scheduled_final-58e7c7f796bc/s56/attempt-001",
+    "data/experiments/flu-s-gs01/mlp-pathogen-scheduled_final-58e7c7f796bc/s57/attempt-001",
+    "data/experiments/flu-s-gs01/mlp-pathogen-scheduled_final-58e7c7f796bc/s58/attempt-001",
+    "data/experiments/flu-s-gs01/mlp-pathogen-scheduled_final-58e7c7f796bc/s59/attempt-001"
+   ],
+   "scenario": "history_source=artificial,reconstruction_labels=1,error_signals=targets,input_set=target,correction_weeks=2,correction_ed=1,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,spatial=neighbors,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=0.5,error_reference=2025-2026"
+  },
+  "Ar.peak.nokinsa@16s44": {
+   "runs": [
+    "data/experiments/flu-s-g10/mlp-pathogen-scheduled_final-0d8913193601/s44/attempt-001",
+    "data/experiments/flu-s-g10/mlp-pathogen-scheduled_final-0d8913193601/s45/attempt-001",
+    "data/experiments/flu-s-g10/mlp-pathogen-scheduled_final-0d8913193601/s46/attempt-001",
+    "data/experiments/flu-s-g10/mlp-pathogen-scheduled_final-0d8913193601/s47/attempt-001",
+    "data/experiments/flu-s-g10/mlp-pathogen-scheduled_final-0d8913193601/s48/attempt-001",
+    "data/experiments/flu-s-g10/mlp-pathogen-scheduled_final-0d8913193601/s49/attempt-001",
+    "data/experiments/flu-s-g10/mlp-pathogen-scheduled_final-0d8913193601/s50/attempt-001",
+    "data/experiments/flu-s-g10/mlp-pathogen-scheduled_final-0d8913193601/s51/attempt-001",
+    "data/experiments/flu-s-gs06/mlp-pathogen-scheduled_final-0d8913193601/s52/attempt-001",
+    "data/experiments/flu-s-gs06/mlp-pathogen-scheduled_final-0d8913193601/s53/attempt-001",
+    "data/experiments/flu-s-gs06/mlp-pathogen-scheduled_final-0d8913193601/s54/attempt-001",
+    "data/experiments/flu-s-gs06/mlp-pathogen-scheduled_final-0d8913193601/s55/attempt-001",
+    "data/experiments/flu-s-gs06/mlp-pathogen-scheduled_final-0d8913193601/s56/attempt-001",
+    "data/experiments/flu-s-gs06/mlp-pathogen-scheduled_final-0d8913193601/s57/attempt-001",
+    "data/experiments/flu-s-gs06/mlp-pathogen-scheduled_final-0d8913193601/s58/attempt-001",
+    "data/experiments/flu-s-gs06/mlp-pathogen-scheduled_final-0d8913193601/s59/attempt-001"
+   ],
+   "scenario": "history_source=artificial,history_correction=1,error_signals=targets,corrector_examples=real,input_set=target,correction_weeks=2,correction_ed=1,joint_weight=0.05,correction_penalty=30.0,reporting_missingness=0,reporting_method=synchronous_phase_log,count_transform=sqrt,ed_transform=logit,decoder_blocks=3,width=96,epochs=160,patience=25,lr=0.002,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=0.5,peak_loss_weight=1.0,error_reference=2025-2026"
+  },
+  "Bq@16s44": {
+   "runs": [
+    "data/experiments/flu-s-g01/mlp-pathogen-scheduled_final-d87e26fca9b5/s44/attempt-001",
+    "data/experiments/flu-s-g01/mlp-pathogen-scheduled_final-d87e26fca9b5/s45/attempt-001",
+    "data/experiments/flu-s-g01/mlp-pathogen-scheduled_final-d87e26fca9b5/s46/attempt-001",
+    "data/experiments/flu-s-g01/mlp-pathogen-scheduled_final-d87e26fca9b5/s47/attempt-001",
+    "data/experiments/flu-s-g01/mlp-pathogen-scheduled_final-d87e26fca9b5/s48/attempt-001",
+    "data/experiments/flu-s-g01/mlp-pathogen-scheduled_final-d87e26fca9b5/s49/attempt-001",
+    "data/experiments/flu-s-g01/mlp-pathogen-scheduled_final-d87e26fca9b5/s50/attempt-001",
+    "data/experiments/flu-s-g01/mlp-pathogen-scheduled_final-d87e26fca9b5/s51/attempt-001",
+    "data/experiments/flu-s-gs01/mlp-pathogen-scheduled_final-d87e26fca9b5/s52/attempt-001",
+    "data/experiments/flu-s-gs01/mlp-pathogen-scheduled_final-d87e26fca9b5/s53/attempt-001",
+    "data/experiments/flu-s-gs01/mlp-pathogen-scheduled_final-d87e26fca9b5/s54/attempt-001",
+    "data/experiments/flu-s-gs01/mlp-pathogen-scheduled_final-d87e26fca9b5/s55/attempt-001",
+    "data/experiments/flu-s-gs01/mlp-pathogen-scheduled_final-d87e26fca9b5/s56/attempt-001",
+    "data/experiments/flu-s-gs01/mlp-pathogen-scheduled_final-d87e26fca9b5/s57/attempt-001",
+    "data/experiments/flu-s-gs01/mlp-pathogen-scheduled_final-d87e26fca9b5/s58/attempt-001",
+    "data/experiments/flu-s-gs01/mlp-pathogen-scheduled_final-d87e26fca9b5/s59/attempt-001"
+   ],
+   "scenario": "history_source=artificial,reconstruction_labels=1,error_signals=targets,corrector_examples=real,input_set=target,correction_weeks=2,correction_ed=1,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,spatial=neighbors,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=0.5,error_reference=2025-2026"
+  },
+  "Bq.smp.ll1@8s44": {
+   "runs": [
+    "data/experiments/flu-s-g06/mlp-pathogen-scheduled_final-c1c905476bc4/s44/attempt-001",
+    "data/experiments/flu-s-g06/mlp-pathogen-scheduled_final-c1c905476bc4/s45/attempt-001",
+    "data/experiments/flu-s-g06/mlp-pathogen-scheduled_final-c1c905476bc4/s46/attempt-001",
+    "data/experiments/flu-s-g06/mlp-pathogen-scheduled_final-c1c905476bc4/s47/attempt-002",
+    "data/experiments/flu-s-g06/mlp-pathogen-scheduled_final-c1c905476bc4/s48/attempt-002",
+    "data/experiments/flu-s-g06/mlp-pathogen-scheduled_final-c1c905476bc4/s49/attempt-003",
+    "data/experiments/flu-s-g06/mlp-pathogen-scheduled_final-c1c905476bc4/s50/attempt-004",
+    "data/experiments/flu-s-g06/mlp-pathogen-scheduled_final-c1c905476bc4/s51/attempt-004"
+   ],
+   "scenario": "history_source=artificial,reconstruction_labels=1,error_signals=targets,corrector_examples=real,input_set=target,correction_weeks=2,correction_ed=1,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,spatial=neighbors,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=1.0,error_reference=2025-2026"
+  },
+  "ref.Bes@8s44": {
+   "runs": [
+    "data/experiments/flu-s-g01/mlp-pathogen-scheduled_final-b76d286a54c3/s44/attempt-001",
+    "data/experiments/flu-s-g01/mlp-pathogen-scheduled_final-b76d286a54c3/s45/attempt-001",
+    "data/experiments/flu-s-g01/mlp-pathogen-scheduled_final-b76d286a54c3/s46/attempt-001",
+    "data/experiments/flu-s-g01/mlp-pathogen-scheduled_final-b76d286a54c3/s47/attempt-001",
+    "data/experiments/flu-s-g01/mlp-pathogen-scheduled_final-b76d286a54c3/s48/attempt-001",
+    "data/experiments/flu-s-g01/mlp-pathogen-scheduled_final-b76d286a54c3/s49/attempt-001",
+    "data/experiments/flu-s-g01/mlp-pathogen-scheduled_final-b76d286a54c3/s50/attempt-001",
+    "data/experiments/flu-s-g01/mlp-pathogen-scheduled_final-b76d286a54c3/s51/attempt-001"
+   ],
+   "scenario": "history_source=artificial,reconstruction_labels=1,error_signals=targets,input_set=target,correction_weeks=2,correction_ed=1,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reporting_strength=1.5,reconstruction_weeks=4,ed_transform=logit,spatial=neighbors,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=0.5,error_reference=2025-2026"
+  },
+  "Ar.peak.nokinsa@8s44": {
+   "runs": [
+    "data/experiments/flu-s-g10/mlp-pathogen-scheduled_final-0d8913193601/s44/attempt-001",
+    "data/experiments/flu-s-g10/mlp-pathogen-scheduled_final-0d8913193601/s45/attempt-001",
+    "data/experiments/flu-s-g10/mlp-pathogen-scheduled_final-0d8913193601/s46/attempt-001",
+    "data/experiments/flu-s-g10/mlp-pathogen-scheduled_final-0d8913193601/s47/attempt-001",
+    "data/experiments/flu-s-g10/mlp-pathogen-scheduled_final-0d8913193601/s48/attempt-001",
+    "data/experiments/flu-s-g10/mlp-pathogen-scheduled_final-0d8913193601/s49/attempt-001",
+    "data/experiments/flu-s-g10/mlp-pathogen-scheduled_final-0d8913193601/s50/attempt-001",
+    "data/experiments/flu-s-g10/mlp-pathogen-scheduled_final-0d8913193601/s51/attempt-001"
+   ],
+   "scenario": "history_source=artificial,history_correction=1,error_signals=targets,corrector_examples=real,input_set=target,correction_weeks=2,correction_ed=1,joint_weight=0.05,correction_penalty=30.0,reporting_missingness=0,reporting_method=synchronous_phase_log,count_transform=sqrt,ed_transform=logit,decoder_blocks=3,width=96,epochs=160,patience=25,lr=0.002,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=0.5,peak_loss_weight=1.0,error_reference=2025-2026"
+  },
+  "Bh@16s44": {
+   "runs": [
+    "data/experiments/flu-s-g01/mlp-pathogen-scheduled_final-f632eab0ae19/s44/attempt-001",
+    "data/experiments/flu-s-g01/mlp-pathogen-scheduled_final-f632eab0ae19/s45/attempt-001",
+    "data/experiments/flu-s-g01/mlp-pathogen-scheduled_final-f632eab0ae19/s46/attempt-001",
+    "data/experiments/flu-s-g01/mlp-pathogen-scheduled_final-f632eab0ae19/s47/attempt-001",
+    "data/experiments/flu-s-g01/mlp-pathogen-scheduled_final-f632eab0ae19/s48/attempt-001",
+    "data/experiments/flu-s-g01/mlp-pathogen-scheduled_final-f632eab0ae19/s49/attempt-001",
+    "data/experiments/flu-s-g01/mlp-pathogen-scheduled_final-f632eab0ae19/s50/attempt-001",
+    "data/experiments/flu-s-g01/mlp-pathogen-scheduled_final-f632eab0ae19/s51/attempt-001",
+    "data/experiments/flu-s-gs01/mlp-pathogen-scheduled_final-f632eab0ae19/s52/attempt-001",
+    "data/experiments/flu-s-gs01/mlp-pathogen-scheduled_final-f632eab0ae19/s53/attempt-001",
+    "data/experiments/flu-s-gs01/mlp-pathogen-scheduled_final-f632eab0ae19/s54/attempt-001",
+    "data/experiments/flu-s-gs01/mlp-pathogen-scheduled_final-f632eab0ae19/s55/attempt-001",
+    "data/experiments/flu-s-gs01/mlp-pathogen-scheduled_final-f632eab0ae19/s56/attempt-001",
+    "data/experiments/flu-s-gs01/mlp-pathogen-scheduled_final-f632eab0ae19/s57/attempt-001",
+    "data/experiments/flu-s-gs01/mlp-pathogen-scheduled_final-f632eab0ae19/s58/attempt-001",
+    "data/experiments/flu-s-gs01/mlp-pathogen-scheduled_final-f632eab0ae19/s59/attempt-001"
+   ],
+   "scenario": "history_source=artificial,history_correction=1,error_signals=all,corrector_examples=real,input_set=target,correction_weeks=2,correction_ed=1,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,ed_transform=logit,spatial=neighbors,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,covariate_set=hosprep,input_normalization=b0,log_loss_weight=0.5,error_reference=2025-2026"
+  }
+ },
+ "groups": {
+  "QL+B+NK [16 seeds]": [
+   "Bq.smp.ll1@16s44",
+   "ref.B@16s44",
+   "Ar.peak.nokinsa@16s44"
+  ],
+  "QL+Bq+NK [16 seeds]": [
+   "Bq.smp.ll1@16s44",
+   "Bq@16s44",
+   "Ar.peak.nokinsa@16s44"
+  ],
+  "QL+Bes+NK [8 seeds]": [
+   "Bq.smp.ll1@8s44",
+   "ref.Bes@8s44",
+   "Ar.peak.nokinsa@8s44"
+  ],
+  "QL+B+Bq+NK [16 seeds]": [
+   "Bq.smp.ll1@16s44",
+   "ref.B@16s44",
+   "Bq@16s44",
+   "Ar.peak.nokinsa@16s44"
+  ],
+  "QL+B+Bh+NK [16 seeds]": [
+   "Bq.smp.ll1@16s44",
+   "ref.B@16s44",
+   "Bh@16s44",
+   "Ar.peak.nokinsa@16s44"
+  ]
+ },
+ "rules": [
+  "mixture"
+ ],
+ "views": [
+  "corrected"
+ ],
+ "forecast_view": "corrected"
+}

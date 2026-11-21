@@ -256,6 +256,38 @@ def round13():
 
 
 ROUNDS[13] = dict(description='Flu search round 13 (2026-11-21): width of the candidate A sampled members.', build=round13)
+def round14():
+    # 21 Nov 14:45: every principled axis is closed; random search (seed 20261121) around candidate A's sampled members,
+    # three settings changed at once, as the COVID search's last stage. A 'better' recipe must survive reseeding.
+    import random
+    rng = random.Random(20261121)
+    menu = {'width': lambda d: str(int(int(d.get('width', 64)) * rng.choice([0.75, 1.25]))),
+            'lr': lambda d: str(float(d.get('lr', 0.001)) * rng.choice([0.5, 2.0])),
+            'epochs': lambda d: str(rng.choice([160, 320])),
+            'patience': lambda d: str(rng.choice([15, 40])),
+            'log_loss_weight': lambda d: str(rng.choice([0.75, 1.5])),
+            'batch_size': lambda d: str(rng.choice([4, 16])),
+            'weight_decay': lambda d: str(rng.choice([1e-5, 1e-4])),
+            'lookback': lambda d: str(rng.choice([10, 14])),
+            'reporting_strength': lambda d: str(rng.choice([0.75, 1.25])),
+            'correction_penalty': lambda d: str(rng.choice([1.0, 10.0])),
+            'members': lambda d: str(rng.choice([64, 256])),
+            'latent': lambda d: str(rng.choice([8, 32]))}
+    for root, extra in (('Bq.smp.ll1', {}), ('Ar.peak.nokinsa', {'peak_loss_weight': lambda d: str(rng.choice([0.5, 1.5]))})):
+        options = dict(menu, **extra)
+        for i in range(8):
+            d = parse(R[root])
+            keys = rng.sample(sorted(options), 3)
+            changes = {k: options[k](d) for k in keys}
+            if 'width' in changes and int(changes['width']) % 4:
+                changes['width'] = str(int(changes['width']) // 4 * 4)
+            if 'patience' in changes and int(changes['patience']) >= int(changes.get('epochs', d.get('epochs', 50))):
+                changes['patience'] = '25'
+            put(f'{root}.RS{i}', derive(R[root], **changes), root)
+
+
+ROUNDS[14] = dict(description='Flu search round 14 (2026-11-21): random search, 8 recipes around each of Bq.smp.ll1 and '
+                              'Ar.peak.nokinsa, three settings changed at once (rng seed 20261121).', build=round14)
 GUARD = {'g03': ['Bq.gru', 'Bq.ll1', 'Bq.gru.ll1', 'Bq.gru.lb8', 'Bq.gru.nat', 'Bq.gru.bes', 'Bh.gru.ll1', 'Ar.flat',
                  'Ar.flat.gru', 'Ar.flat.gru.w192'],
          'g04': ['B5r', 'B5r.peak', 'B5r.local', 'Ar.peak', 'Bq.smp', 'Bq.gru.smp', 'Bq.gru.smp.peak', 'Bq.gru.smp.local',
@@ -268,7 +300,8 @@ GUARD = {'g03': ['Bq.gru', 'Bq.ll1', 'Bq.gru.ll1', 'Bq.gru.lb8', 'Bq.gru.nat', '
          'g10': ['Bq.smp.ll1.lb8', 'Bq.smp.ll1.lb16', 'Ar.peak.nokinsa'],
          'g11': ['Bq.smp.ll1.ili'],
          'g12': ['Bq.smp.ll2', 'Bq.smp.ll1.log1p', 'Bq.gru.smp.ll1', 'Ar.peak.nokinsa.pk2'],
-         'g13': ['Bq.smp.ll1.w128', 'Bq.smp.ll1.w384', 'Ar.peak.nokinsa.w192', 'Ar.peak.nokinsa.flat']}
+         'g13': ['Bq.smp.ll1.w128', 'Bq.smp.ll1.w384', 'Ar.peak.nokinsa.w192', 'Ar.peak.nokinsa.flat'],
+         'g14': [f'{r}.RS{i}' for r in ('Bq.smp.ll1', 'Ar.peak.nokinsa') for i in range(8)]}
 
 
 def write_guard(tag):

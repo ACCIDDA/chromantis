@@ -121,3 +121,6 @@ LANES=3 sbatch --export=ALL --job-name=flu-s-h8 --array=0-4 --dependency=afteran
 LANES=3 sbatch --export=ALL --job-name=flu-s-h8g --array=0-4 --dependency=afterany:10063968 scripts/flu_search.sbatch flu-s-h8g   # 8-week test guard
 .venv/bin/python scripts/flu_h8_compare.py main; .venv/bin/python scripts/flu_h8_compare.py guard
 LANES=4 sbatch --export=ALL --job-name=flu-s-release3 --array=0-4 scripts/flu_search.sbatch flu-s-release3   # Bh.smp release seeds 62-81, unscored
+# 2026-11-21 14:45-15:05 EST: round 14 random search (job 10083784, 3 lanes); quantile-member swap mixtures swap/swapg
+python3 experiments/flu-search-20261120/rounds.py 14; python3 experiments/flu-search-20261120/rounds.py g14
+LANES=3 sbatch --export=ALL --job-name=flu-s-r14 --array=0-4 scripts/flu_search.sbatch flu-s-r14 flu-s-g14
