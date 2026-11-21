@@ -154,6 +154,10 @@
    "date": "2026-11-21 12:50 EST",
    "round": 13,
    "what": "Round 13 (network width of candidate A's sampled members; 8 seeds; main = 2024-25 and 2025-26 held out in turn, trained on the other seasons of 2022-23..2025-26, leak-free errors, archived reports; guard = 2023-24 held out, artificial reports; states/DC WIS of log(1 + admissions), lower is better): Bq.smp.ll1 (width 256, 32 seeds) 0.2990, guard 0.2961; width 128 0.3000, guard 0.3013; width 384 0.3040, guard 0.3035; Ar.peak.nokinsa (width 96, three-block decoder, 24 seeds) 0.3089, guard 0.2917; width 192 0.3119, guard 0.2924; without the three-block decoder 0.3095, guard 0.2986. All level: the members sit on a plateau of capacity. Queued the 2023-24 guard of the 8-week training test (flu-s-h8g, new problem problems/us-flu-2023-24-prescribed-coverage-h8.json), chained after the h8 array."
+  },
+  {
+   "date": "2026-11-21 13:50 EST",
+   "what": "The queue ran empty at about 13:30. 8-week training test (scripts/flu_h8_compare.py; candidate A's members trained on 8 future weeks instead of 4 and scored on their first 4, on the same tasks as the 4-week fits, seeds 44-51, corrected view, states/DC WIS of log(1 + admissions), lower is better). Main problem 2024-25 / 2025-26, 4-week vs 8-week: Bq.smp.ll1 0.2875 / 0.2871 vs 0.3000 / 0.2918 (+4.4% / +1.7%); ref.B 0.3229 / 0.2845 vs 0.3213 / 0.2893 (-0.5% / +1.7%); Ar.peak.nokinsa 0.3155 / 0.2876 vs 0.3180 / 0.2953 (+0.8% / +2.7%). Guard 2023-24: +7.0%, +6.9%, +6.0%. Worse, mostly at horizons 0-1: dropped. Every axis tried is now closed (nowcast handling, coverage, covariates, encoders and spatial exchange, losses, amplitude augmentation, network width, in-season retraining, 8-week supervision); the only robust gains are the mixture composition and the peak loss on A. Queued: Bh.smp release seeds 62-81 (flu-s-release3, unscored) so candidate B can also be released with 40 seeds."
   }
  ],
  "execution": {

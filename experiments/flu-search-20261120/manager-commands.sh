@@ -119,3 +119,5 @@ LANES=3 sbatch --export=ALL --job-name=flu-s-r13 --array=0-4 --dependency=aftera
 .venv/bin/python -m chromantis.experiment.planner plan -e flu-s-h8 --problem problems/us-flu-short-term-coverage-h8.json --study $S/h8.json --device cuda
 LANES=3 sbatch --export=ALL --job-name=flu-s-h8 --array=0-4 --dependency=afterany:10058714 scripts/flu_search.sbatch flu-s-h8 flu-s-rs10 flu-s-gs08
 LANES=3 sbatch --export=ALL --job-name=flu-s-h8g --array=0-4 --dependency=afterany:10063968 scripts/flu_search.sbatch flu-s-h8g   # 8-week test guard
+.venv/bin/python scripts/flu_h8_compare.py main; .venv/bin/python scripts/flu_h8_compare.py guard
+LANES=4 sbatch --export=ALL --job-name=flu-s-release3 --array=0-4 scripts/flu_search.sbatch flu-s-release3   # Bh.smp release seeds 62-81, unscored
