@@ -1,0 +1,18 @@
+{
+ "description": "In-season retraining test (2026-11-21): B_width256 network trained on finalized histories, no reporting errors or trees, evaluated on finalized 2025-26 histories; (a) frozen: trained on 2022-23..2024-25 (us-flu-2025-26-finalized-coverage); (b) in-season: refit before each month of 2025-26 on every earlier week (us-flu-2025-26-inseason-finalized-coverage). Measures what the current season's own earlier weeks add, under ideal inputs.",
+ "round": "inseason",
+ "parents": {},
+ "candidates": {
+  "Bf": "input_set=target,ed_transform=logit,loss_weights=objective,spatial=neighbors,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=0.5,forecast_view=raw"
+ },
+ "seeds": [
+  44,
+  45,
+  46,
+  47,
+  48,
+  49,
+  50,
+  51
+ ]
+}

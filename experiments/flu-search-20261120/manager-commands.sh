@@ -106,3 +106,7 @@ M="--members B7=ref.A,ref.B5,ref.B AP=Ar.peak NK=Ar.peak.nokinsa QL=Bq.smp.ll1 H
 mkdir -p data/experiments/flu-s-release/scoring.lock   # block automatic ranking on 2026-27
 LANES=4 sbatch --export=ALL --job-name=flu-s-release --array=0-4 scripts/flu_search.sbatch flu-s-release
 LANES=4 sbatch --export=ALL --job-name=flu-s-ge02 --array=0-4 --dependency=afterany:10051356 scripts/flu_search.sbatch flu-s-ge02 flu-s-rs09 flu-s-gs07
+# 2026-11-21 09:55 EST: in-season retraining test on finalized inputs (frozen vs rolling origin, 2025-26), job 10054265
+.venv/bin/python -m chromantis.experiment.planner plan -e flu-s-frozen --problem problems/us-flu-2025-26-finalized-coverage.json --study $S/inseason.json --device cuda
+.venv/bin/python -m chromantis.experiment.planner plan -e flu-s-inseason --problem problems/us-flu-2025-26-inseason-finalized-coverage.json --study $S/inseason.json --device cuda
+sbatch --job-name=flu-s-inseason --array=0-4 --dependency=afterany:10051407 scripts/flu_search.sbatch flu-s-frozen flu-s-inseason
