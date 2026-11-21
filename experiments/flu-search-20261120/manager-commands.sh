@@ -79,3 +79,4 @@ python3 experiments/flu-search-20261120/rounds.py 9; python3 experiments/flu-sea
 .venv/bin/python -m chromantis.experiment.planner plan -e flu-s-r09 --problem problems/us-flu-short-term-coverage.json --study $S/round-09.json --device cuda
 .venv/bin/python -m chromantis.experiment.planner plan -e flu-s-g09 --problem problems/us-flu-2023-24-prescribed-coverage.json --study $S/guard-g09.json --device cuda
 LANES=3 sbatch --export=ALL --job-name=flu-s-r09 --array=0-4 --dependency=afterany:10040511 scripts/flu_search.sbatch flu-s-r09 flu-s-g09
+.venv/bin/python scripts/flu_search_mix.py r08m --experiments flu-s-r01 flu-s-rs01 flu-s-r02 flu-s-rs02 flu-s-r04 flu-s-r05 flu-s-rs03 flu-s-rs04 flu-s-r06 flu-s-rs05 --members "B7=ref.A,ref.B5,ref.B" Bq=Bq Bh=Bh AP=Ar.peak QL=Bq.smp.ll1 QS=Bq.hc.smp HS=Bh.smp SQ=Bq.smp --groups "B7:B7" "Bq+Bh+AP:Bq,Bh,AP" "QL+HS+AP:QL,HS,AP" "QS+HS+AP:QS,HS,AP" "QL+Bh+AP:QL,Bh,AP" "QL+QS+HS+AP:QL,QS,HS,AP" "SQ+HS+AP:SQ,HS,AP" "QL+HS:QL,HS"
