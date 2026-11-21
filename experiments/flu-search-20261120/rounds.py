@@ -247,6 +247,15 @@ def round12():
 
 ROUNDS[12] = dict(description='Flu search round 12 (2026-11-21): log-loss 2 and log1p counts on sampled Bq, sampled GRU with '
                               'log-loss 1, peak weight 2 on Ar.peak without Kinsa.', build=round12)
+def round13():
+    # 21 Nov 11:05: capacity check of candidate A's sampled members (never varied for these recipes).
+    put('Bq.smp.ll1.w128', derive(R['Bq.smp.ll1'], width=128), 'Bq.smp.ll1')
+    put('Bq.smp.ll1.w384', derive(R['Bq.smp.ll1'], width=384), 'Bq.smp.ll1')
+    put('Ar.peak.nokinsa.w192', derive(R['Ar.peak.nokinsa'], width=192), 'Ar.peak.nokinsa')
+    put('Ar.peak.nokinsa.flat', derive(R['Ar.peak.nokinsa'], drop=('decoder_blocks',)), 'Ar.peak.nokinsa')
+
+
+ROUNDS[13] = dict(description='Flu search round 13 (2026-11-21): width of the candidate A sampled members.', build=round13)
 GUARD = {'g03': ['Bq.gru', 'Bq.ll1', 'Bq.gru.ll1', 'Bq.gru.lb8', 'Bq.gru.nat', 'Bq.gru.bes', 'Bh.gru.ll1', 'Ar.flat',
                  'Ar.flat.gru', 'Ar.flat.gru.w192'],
          'g04': ['B5r', 'B5r.peak', 'B5r.local', 'Ar.peak', 'Bq.smp', 'Bq.gru.smp', 'Bq.gru.smp.peak', 'Bq.gru.smp.local',
@@ -258,7 +267,8 @@ GUARD = {'g03': ['Bq.gru', 'Bq.ll1', 'Bq.gru.ll1', 'Bq.gru.lb8', 'Bq.gru.nat', '
          'g09': ['Bq.amp3', 'Bq.hc.smp.amp3', 'Bh.smp.amp3', 'Ar.peak.amp3', 'Ar.peak.amp5'],
          'g10': ['Bq.smp.ll1.lb8', 'Bq.smp.ll1.lb16', 'Ar.peak.nokinsa'],
          'g11': ['Bq.smp.ll1.ili'],
-         'g12': ['Bq.smp.ll2', 'Bq.smp.ll1.log1p', 'Bq.gru.smp.ll1', 'Ar.peak.nokinsa.pk2']}
+         'g12': ['Bq.smp.ll2', 'Bq.smp.ll1.log1p', 'Bq.gru.smp.ll1', 'Ar.peak.nokinsa.pk2'],
+         'g13': ['Bq.smp.ll1.w128', 'Bq.smp.ll1.w384', 'Ar.peak.nokinsa.w192', 'Ar.peak.nokinsa.flat']}
 
 
 def write_guard(tag):

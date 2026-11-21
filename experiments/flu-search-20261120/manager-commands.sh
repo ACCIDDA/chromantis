@@ -110,3 +110,8 @@ LANES=4 sbatch --export=ALL --job-name=flu-s-ge02 --array=0-4 --dependency=after
 .venv/bin/python -m chromantis.experiment.planner plan -e flu-s-frozen --problem problems/us-flu-2025-26-finalized-coverage.json --study $S/inseason.json --device cuda
 .venv/bin/python -m chromantis.experiment.planner plan -e flu-s-inseason --problem problems/us-flu-2025-26-inseason-finalized-coverage.json --study $S/inseason.json --device cuda
 sbatch --job-name=flu-s-inseason --array=0-4 --dependency=afterany:10051407 scripts/flu_search.sbatch flu-s-frozen flu-s-inseason
+# 2026-11-21 10:40-11:10 EST: in-season test scored on common tasks; release seeds 62-81 (unscored); round 13 widths
+.venv/bin/python scripts/flu_common_tasks.py flu-s-frozen flu-s-inseason
+.venv/bin/python -m chromantis.experiment.planner plan -e flu-s-release2 --problem problems/us-flu-production-coverage.json --study $S/release-seeds-2.json --device cuda; mkdir -p data/experiments/flu-s-release2/scoring.lock
+LANES=4 sbatch --export=ALL --job-name=flu-s-release2 --array=0-4 scripts/flu_search.sbatch flu-s-release2
+LANES=3 sbatch --export=ALL --job-name=flu-s-r13 --array=0-4 --dependency=afterany:10058624 scripts/flu_search.sbatch flu-s-r13 flu-s-g13

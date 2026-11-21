@@ -1,0 +1,26 @@
+{
+ "description": "Flu search round 13 (2026-11-21): width of the candidate A sampled members.",
+ "round": 13,
+ "parents": {
+  "Bq.smp.ll1.w128": "Bq.smp.ll1",
+  "Bq.smp.ll1.w384": "Bq.smp.ll1",
+  "Ar.peak.nokinsa.w192": "Ar.peak.nokinsa",
+  "Ar.peak.nokinsa.flat": "Ar.peak.nokinsa"
+ },
+ "candidates": {
+  "Bq.smp.ll1.w128": "history_source=artificial,reconstruction_labels=1,error_signals=targets,input_set=target,correction_weeks=2,correction_ed=1,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,loss_weights=objective,spatial=neighbors,width=128,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=1.0,corrector_examples=real",
+  "Bq.smp.ll1.w384": "history_source=artificial,reconstruction_labels=1,error_signals=targets,input_set=target,correction_weeks=2,correction_ed=1,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,loss_weights=objective,spatial=neighbors,width=384,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=1.0,corrector_examples=real",
+  "Ar.peak.nokinsa.w192": "history_source=artificial,history_correction=1,error_signals=targets,input_set=target,correction_weeks=2,correction_ed=1,joint_weight=0.05,correction_penalty=30.0,reporting_missingness=0,reporting_method=synchronous_phase_log,count_transform=sqrt,ed_transform=logit,loss_weights=objective,decoder_blocks=3,width=192,epochs=160,patience=25,lr=0.002,fit_partition=pathogen,covariate_encoder=summary,covariate_set=none,input_normalization=b0,log_loss_weight=0.5,corrector_examples=real,peak_loss_weight=1.0",
+  "Ar.peak.nokinsa.flat": "history_source=artificial,history_correction=1,error_signals=targets,input_set=target,correction_weeks=2,correction_ed=1,joint_weight=0.05,correction_penalty=30.0,reporting_missingness=0,reporting_method=synchronous_phase_log,count_transform=sqrt,ed_transform=logit,loss_weights=objective,width=96,epochs=160,patience=25,lr=0.002,fit_partition=pathogen,covariate_encoder=summary,covariate_set=none,input_normalization=b0,log_loss_weight=0.5,corrector_examples=real,peak_loss_weight=1.0"
+ },
+ "seeds": [
+  44,
+  45,
+  46,
+  47,
+  48,
+  49,
+  50,
+  51
+ ]
+}
