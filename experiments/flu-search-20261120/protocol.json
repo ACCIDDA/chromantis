@@ -149,6 +149,11 @@
   {
    "date": "2026-11-21 11:50 EST",
    "what": "Release seeds 62-81 (flu-s-release2) complete, unscored. Queued after round 13 (array 10063968): (1) h8 test: candidate A's members (Bq.smp.ll1, ref.B, Ar.peak.nokinsa) trained on 8 future weeks (new problem problems/us-flu-short-term-coverage-h8.json, otherwise identical to the main problem) and scored on their first 4 weeks against the same recipes trained on 4 weeks, on common tasks: does supervision further ahead improve the growth forecast at horizons 2-3 (where B7 was 17-18% low this season)? (2) Ar.peak.nokinsa on seeds 68-75, main and guard, so the recommended member has 32 seeds."
+  },
+  {
+   "date": "2026-11-21 12:50 EST",
+   "round": 13,
+   "what": "Round 13 (network width of candidate A's sampled members; 8 seeds; main = 2024-25 and 2025-26 held out in turn, trained on the other seasons of 2022-23..2025-26, leak-free errors, archived reports; guard = 2023-24 held out, artificial reports; states/DC WIS of log(1 + admissions), lower is better): Bq.smp.ll1 (width 256, 32 seeds) 0.2990, guard 0.2961; width 128 0.3000, guard 0.3013; width 384 0.3040, guard 0.3035; Ar.peak.nokinsa (width 96, three-block decoder, 24 seeds) 0.3089, guard 0.2917; width 192 0.3119, guard 0.2924; without the three-block decoder 0.3095, guard 0.2986. All level: the members sit on a plateau of capacity. Queued the 2023-24 guard of the 8-week training test (flu-s-h8g, new problem problems/us-flu-2023-24-prescribed-coverage-h8.json), chained after the h8 array."
   }
  ],
  "execution": {
