@@ -101,3 +101,8 @@ LANES=3 sbatch --export=ALL --job-name=flu-s-r12 --array=0-4 scripts/flu_search.
 M="--members B7=ref.A,ref.B5,ref.B AP=Ar.peak NK=Ar.peak.nokinsa QL=Bq.smp.ll1 HS=Bh.smp B=ref.B --groups B7:B7 A:QL,B,AP A_nokinsa:QL,B,NK B:QL,HS,AP B_nokinsa:QL,HS,NK --max-seeds 32"
 .venv/bin/python scripts/flu_search_mix.py m32 --experiments flu-s-r01 flu-s-rs01 flu-s-r02 flu-s-rs02 flu-s-r05 flu-s-rs04 flu-s-r06 flu-s-rs05 flu-s-rs06 flu-s-rs07 flu-s-r10 flu-s-rs08 $M
 .venv/bin/python scripts/flu_search_mix.py g32 --experiments flu-s-g01 flu-s-gs01 flu-s-g04 flu-s-g05 flu-s-gs02 flu-s-g06 flu-s-gs03 flu-s-gs04 flu-s-gs05 flu-s-g10 flu-s-gs06 $M
+# 2026-11-21 08:55 EST: release fits (all four seasons, seeds 42-61; NOT scored: scoring.lock created by hand), then ge02 + rs09 + gs07
+.venv/bin/python -m chromantis.experiment.planner plan -e flu-s-release --problem problems/us-flu-production-coverage.json --study $S/release-seeds.json --device cuda
+mkdir -p data/experiments/flu-s-release/scoring.lock   # block automatic ranking on 2026-27
+LANES=4 sbatch --export=ALL --job-name=flu-s-release --array=0-4 scripts/flu_search.sbatch flu-s-release
+LANES=4 sbatch --export=ALL --job-name=flu-s-ge02 --array=0-4 --dependency=afterany:10051356 scripts/flu_search.sbatch flu-s-ge02 flu-s-rs09 flu-s-gs07
