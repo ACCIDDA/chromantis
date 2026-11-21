@@ -46,3 +46,8 @@ python3 experiments/flu-search-20261120/rounds.py 4; python3 experiments/flu-sea
 .venv/bin/python -m chromantis.experiment.planner plan -e flu-s-rs02 --problem problems/us-flu-short-term-coverage.json --study $S/reseed-rs02.json --device cuda
 .venv/bin/python -m chromantis.experiment.planner plan -e flu-s-g04 --problem problems/us-flu-2023-24-prescribed-coverage.json --study $S/guard-g04.json --device cuda
 sbatch --job-name=flu-s-r04 --array=0-4 --dependency=afterany:10006055 scripts/flu_search.sbatch flu-s-r04 flu-s-rs02 flu-s-g04
+# 2026-11-20 21:55 EST: round 3 + guards scored; OOM retry for round 4 (3 lanes per GPU, job 10022195); guard mixtures (CPU job 10022208)
+.venv/bin/python scripts/flu_search_table.py -e flu-s-r01 -e flu-s-r02 -e flu-s-r03 --guard flu-s-g01 --guard flu-s-g03 --out output/flu-search/r03.csv
+.venv/bin/python scripts/flu_search_table.py -e flu-s-r01 -e flu-s-rs01 --guard flu-s-g01
+LANES=3 NTFY=0 sbatch --export=ALL --job-name=flu-s-r04-retry --array=0-4 --dependency=afterany:10012749 scripts/flu_search.sbatch flu-s-r04 flu-s-g04
+.venv/bin/python scripts/flu_search_mix.py g01 --experiments flu-s-g01 flu-s-g03 --members "B7=ref.A,ref.B5,ref.B" Bes=ref.Bes G=Bq.gru L=Bq.ll1 Ar=Ar Bh=Bh Bq=Bq B=ref.B --groups "B7:B7" "Bes:Bes" "Bq.gru:G" "Bh:Bh" "Bq:Bq" "ref.B:B" "Ar:Ar" "G+Bh:G,Bh" "G+L+Ar:G,L,Ar" "Bq+Bh:Bq,Bh" "Bh+Ar:Bh,Ar" "Bq+Bh+Ar:Bq,Bh,Ar"

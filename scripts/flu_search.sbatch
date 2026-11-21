@@ -13,7 +13,7 @@
 # Flu search (flu-search-20261120): fit several experiments in order on one array spanning the lab GPUs,
 # as scripts/covid_tree.sbatch. The worker that finds an experiment finished queues its CPU scoring
 # (scripts/flu_search_score.sbatch); element 0 queues an ntfy summary for the whole array (NTFY=0 disables).
-#   sbatch --array=0-5 scripts/flu_search.sbatch EXPERIMENT [EXPERIMENT ...]
+#   [LANES=3] sbatch --array=0-5 scripts/flu_search.sbatch EXPERIMENT [EXPERIMENT ...]   (fewer lanes for memory-heavy recipes)
 set -uo pipefail
 export OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 CHROMANTIS_TORCH_THREADS=1 PYTHONUNBUFFERED=1
 export PYTORCH_ALLOC_CONF=expandable_segments:True
@@ -24,7 +24,7 @@ fi
 for experiment in "$@"; do
     export PYTHONPATH="$PWD/data/experiments/$experiment/code/src"
     echo "Starting $experiment at $(date -Is)"
-    .venv/bin/python -m chromantis.experiment.dispatch -e "$experiment" --lanes 8 --gpu-count 6 --retry-failed
+    .venv/bin/python -m chromantis.experiment.dispatch -e "$experiment" --lanes "${LANES:-8}" --gpu-count 6 --retry-failed
     if .venv/bin/python -m chromantis.experiment.planner status -e "$experiment" \
             | awk -F'\t' 'NF>=5 && $1!="complete" && $1!="failed" {left++} END {exit left>0}' \
             && mkdir "data/experiments/$experiment/scoring.lock" 2>/dev/null; then
