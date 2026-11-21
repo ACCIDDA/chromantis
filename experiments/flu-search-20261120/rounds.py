@@ -231,6 +231,12 @@ def round10():
 
 ROUNDS[10] = dict(description='Flu search round 10 (2026-11-21): lookback variants of Bq.smp.ll1 for mixtures; Ar.peak without Kinsa.',
                   build=round10)
+def round11():
+    # 21 Nov 06:45: pre-2022 ILI pretraining on the sampled B recipe (it is part of B5's design).
+    put('Bq.smp.ll1.ili', derive(R['Bq.smp.ll1'], ili_training='pretrain', ili_units='flu_scaled', ili_steps=1200), 'Bq.smp.ll1')
+
+
+ROUNDS[11] = dict(description='Flu search round 11 (2026-11-21): ILI pretraining on Bq.smp.ll1.', build=round11)
 GUARD = {'g03': ['Bq.gru', 'Bq.ll1', 'Bq.gru.ll1', 'Bq.gru.lb8', 'Bq.gru.nat', 'Bq.gru.bes', 'Bh.gru.ll1', 'Ar.flat',
                  'Ar.flat.gru', 'Ar.flat.gru.w192'],
          'g04': ['B5r', 'B5r.peak', 'B5r.local', 'Ar.peak', 'Bq.smp', 'Bq.gru.smp', 'Bq.gru.smp.peak', 'Bq.gru.smp.local',
@@ -240,7 +246,8 @@ GUARD = {'g03': ['Bq.gru', 'Bq.ll1', 'Bq.gru.ll1', 'Bq.gru.lb8', 'Bq.gru.nat', '
          'g07': ['Bq.hc.smp.peak', 'Bh.smp.peak.x'],
          'g08': ['Bq.hc.smp.ll1', 'Bh.smp.ll1', 'Bq.smp.ll1.local'],
          'g09': ['Bq.amp3', 'Bq.hc.smp.amp3', 'Bh.smp.amp3', 'Ar.peak.amp3', 'Ar.peak.amp5'],
-         'g10': ['Bq.smp.ll1.lb8', 'Bq.smp.ll1.lb16', 'Ar.peak.nokinsa']}
+         'g10': ['Bq.smp.ll1.lb8', 'Bq.smp.ll1.lb16', 'Ar.peak.nokinsa'],
+         'g11': ['Bq.smp.ll1.ili']}
 
 
 def write_guard(tag):

@@ -95,3 +95,4 @@ sbatch --job-name=flu-s-rs08 --array=0-4 --dependency=afterany:10044792 scripts/
 M="--members B7=ref.A,ref.B5,ref.B Bq=Bq Bh=Bh AP=Ar.peak QL=Bq.smp.ll1 HS=Bh.smp B=ref.B --groups B7:B7 A_QL+B+AP:QL,B,AP B_QL+HS+AP:QL,HS,AP Bq+Bh+AP:Bq,Bh,AP --max-seeds 24"
 .venv/bin/python scripts/flu_search_mix.py m24 --experiments flu-s-r01 flu-s-rs01 flu-s-r02 flu-s-rs02 flu-s-r05 flu-s-rs04 flu-s-r06 flu-s-rs05 flu-s-rs06 $M
 .venv/bin/python scripts/flu_search_mix.py g24 --experiments flu-s-g01 flu-s-gs01 flu-s-g04 flu-s-g05 flu-s-gs02 flu-s-g06 flu-s-gs03 flu-s-gs04 $M
+LANES=4 sbatch --export=ALL --job-name=flu-s-ge01 --array=0-4 --dependency=afterany:10045848 scripts/flu_search.sbatch flu-s-ge01 flu-s-r11 flu-s-g11   # guard with 2024-25 errors; ILI on Bq.smp.ll1
