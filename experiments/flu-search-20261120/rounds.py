@@ -170,10 +170,24 @@ def round4():
 
 ROUNDS[4] = dict(description='Flu search round 4 (2026-11-20): sampled (trajectory) head on the winning Bq.gru recipe; '
                              'B5r peak loss + per-location noise.', build=round4)
+def round5():
+    # 20 Nov 22:10: single-recipe gains vanish with the 2023-24 guard and 16 seeds; the robust core is the B family and
+    # Bh (best guard, ~20% better in October of both seasons). Sampled (trajectory) heads on it, and a mechanism check:
+    # Bq.hc = Bq's network trained on tree-corrected histories (no final-value labels) without coverage.
+    put('Bh.smp', derive(R['Bh'], drop=('decoder',)), 'Bh')
+    put('Bh.smp.peak', derive(R['Bh.smp'], peak_loss_weight=1.0), 'Bh.smp')
+    put('Bh.smp.local', derive(R['Bh.smp'], noise='local'), 'Bh.smp')
+    put('Bq.hc', derive(R['Bq'], drop=('reconstruction_labels', 'reconstruction_weeks'), history_correction=1), 'Bq')
+    put('Bq.hc.smp', derive(R['Bq.hc'], drop=('decoder',)), 'Bq.hc')
+
+
+ROUNDS[5] = dict(description='Flu search round 5 (2026-11-20): sampled heads on Bh; Bq trained on corrected histories '
+                             'without coverage (where does Bh\'s October gain come from?).', build=round5)
 GUARD = {'g03': ['Bq.gru', 'Bq.ll1', 'Bq.gru.ll1', 'Bq.gru.lb8', 'Bq.gru.nat', 'Bq.gru.bes', 'Bh.gru.ll1', 'Ar.flat',
                  'Ar.flat.gru', 'Ar.flat.gru.w192'],
          'g04': ['B5r', 'B5r.peak', 'B5r.local', 'Ar.peak', 'Bq.smp', 'Bq.gru.smp', 'Bq.gru.smp.peak', 'Bq.gru.smp.local',
-                 'B5r.peak.local']}
+                 'B5r.peak.local'],
+         'g05': ['Bh.smp', 'Bh.smp.peak', 'Bh.smp.local', 'Bq.hc', 'Bq.hc.smp']}
 
 
 def write_guard(tag):
