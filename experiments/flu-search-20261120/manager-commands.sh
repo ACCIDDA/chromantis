@@ -96,3 +96,8 @@ M="--members B7=ref.A,ref.B5,ref.B Bq=Bq Bh=Bh AP=Ar.peak QL=Bq.smp.ll1 HS=Bh.sm
 .venv/bin/python scripts/flu_search_mix.py m24 --experiments flu-s-r01 flu-s-rs01 flu-s-r02 flu-s-rs02 flu-s-r05 flu-s-rs04 flu-s-r06 flu-s-rs05 flu-s-rs06 $M
 .venv/bin/python scripts/flu_search_mix.py g24 --experiments flu-s-g01 flu-s-gs01 flu-s-g04 flu-s-g05 flu-s-gs02 flu-s-g06 flu-s-gs03 flu-s-gs04 $M
 LANES=4 sbatch --export=ALL --job-name=flu-s-ge01 --array=0-4 --dependency=afterany:10045848 scripts/flu_search.sbatch flu-s-ge01 flu-s-r11 flu-s-g11   # guard with 2024-25 errors; ILI on Bq.smp.ll1
+# 2026-11-21 07:45-08:15 EST: round 12 + g12 (job 10047844, 3 lanes); 32-seed mixtures m32/g32 and reporting-regime guard mixtures ge01
+LANES=3 sbatch --export=ALL --job-name=flu-s-r12 --array=0-4 scripts/flu_search.sbatch flu-s-r12 flu-s-g12
+M="--members B7=ref.A,ref.B5,ref.B AP=Ar.peak NK=Ar.peak.nokinsa QL=Bq.smp.ll1 HS=Bh.smp B=ref.B --groups B7:B7 A:QL,B,AP A_nokinsa:QL,B,NK B:QL,HS,AP B_nokinsa:QL,HS,NK --max-seeds 32"
+.venv/bin/python scripts/flu_search_mix.py m32 --experiments flu-s-r01 flu-s-rs01 flu-s-r02 flu-s-rs02 flu-s-r05 flu-s-rs04 flu-s-r06 flu-s-rs05 flu-s-rs06 flu-s-rs07 flu-s-r10 flu-s-rs08 $M
+.venv/bin/python scripts/flu_search_mix.py g32 --experiments flu-s-g01 flu-s-gs01 flu-s-g04 flu-s-g05 flu-s-gs02 flu-s-g06 flu-s-gs03 flu-s-gs04 flu-s-gs05 flu-s-g10 flu-s-gs06 $M

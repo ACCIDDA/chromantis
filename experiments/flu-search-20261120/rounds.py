@@ -237,6 +237,16 @@ def round11():
 
 
 ROUNDS[11] = dict(description='Flu search round 11 (2026-11-21): ILI pretraining on Bq.smp.ll1.', build=round11)
+def round12():
+    # 21 Nov 07:45: continue the loss axes that helped sampled recipes (log-loss 1 on Bq.smp, peak loss on Ar).
+    put('Bq.smp.ll2', derive(R['Bq.smp'], log_loss_weight=2.0), 'Bq.smp.ll1')
+    put('Bq.smp.ll1.log1p', derive(R['Bq.smp.ll1'], count_transform='log1p'), 'Bq.smp.ll1')
+    put('Bq.gru.smp.ll1', derive(R['Bq.gru.smp'], log_loss_weight=1.0), 'Bq.gru.smp')
+    put('Ar.peak.nokinsa.pk2', derive(R['Ar.peak.nokinsa'], peak_loss_weight=2.0), 'Ar.peak.nokinsa')
+
+
+ROUNDS[12] = dict(description='Flu search round 12 (2026-11-21): log-loss 2 and log1p counts on sampled Bq, sampled GRU with '
+                              'log-loss 1, peak weight 2 on Ar.peak without Kinsa.', build=round12)
 GUARD = {'g03': ['Bq.gru', 'Bq.ll1', 'Bq.gru.ll1', 'Bq.gru.lb8', 'Bq.gru.nat', 'Bq.gru.bes', 'Bh.gru.ll1', 'Ar.flat',
                  'Ar.flat.gru', 'Ar.flat.gru.w192'],
          'g04': ['B5r', 'B5r.peak', 'B5r.local', 'Ar.peak', 'Bq.smp', 'Bq.gru.smp', 'Bq.gru.smp.peak', 'Bq.gru.smp.local',
@@ -247,7 +257,8 @@ GUARD = {'g03': ['Bq.gru', 'Bq.ll1', 'Bq.gru.ll1', 'Bq.gru.lb8', 'Bq.gru.nat', '
          'g08': ['Bq.hc.smp.ll1', 'Bh.smp.ll1', 'Bq.smp.ll1.local'],
          'g09': ['Bq.amp3', 'Bq.hc.smp.amp3', 'Bh.smp.amp3', 'Ar.peak.amp3', 'Ar.peak.amp5'],
          'g10': ['Bq.smp.ll1.lb8', 'Bq.smp.ll1.lb16', 'Ar.peak.nokinsa'],
-         'g11': ['Bq.smp.ll1.ili']}
+         'g11': ['Bq.smp.ll1.ili'],
+         'g12': ['Bq.smp.ll2', 'Bq.smp.ll1.log1p', 'Bq.gru.smp.ll1', 'Ar.peak.nokinsa.pk2']}
 
 
 def write_guard(tag):

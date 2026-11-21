@@ -1,0 +1,26 @@
+{
+ "description": "Flu search guard g12 (2023-24 held out, artificial reports): Bq.smp.ll2, Bq.smp.ll1.log1p, Bq.gru.smp.ll1, Ar.peak.nokinsa.pk2.",
+ "round": "g12",
+ "parents": {
+  "Bq.smp.ll2": "Bq.smp.ll1",
+  "Bq.smp.ll1.log1p": "Bq.smp.ll1",
+  "Bq.gru.smp.ll1": "Bq.gru.smp",
+  "Ar.peak.nokinsa.pk2": "Ar.peak.nokinsa"
+ },
+ "candidates": {
+  "Bq.smp.ll2": "history_source=artificial,reconstruction_labels=1,error_signals=targets,input_set=target,correction_weeks=2,correction_ed=1,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,loss_weights=objective,spatial=neighbors,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=2.0,corrector_examples=real,error_reference=2025-2026",
+  "Bq.smp.ll1.log1p": "history_source=artificial,reconstruction_labels=1,error_signals=targets,input_set=target,correction_weeks=2,correction_ed=1,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,loss_weights=objective,spatial=neighbors,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=1.0,corrector_examples=real,count_transform=log1p,error_reference=2025-2026",
+  "Bq.gru.smp.ll1": "history_source=artificial,reconstruction_labels=1,error_signals=targets,input_set=target,correction_weeks=2,correction_ed=1,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,loss_weights=objective,spatial=neighbors,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=1.0,corrector_examples=real,encoder=gru,error_reference=2025-2026",
+  "Ar.peak.nokinsa.pk2": "history_source=artificial,history_correction=1,error_signals=targets,input_set=target,correction_weeks=2,correction_ed=1,joint_weight=0.05,correction_penalty=30.0,reporting_missingness=0,reporting_method=synchronous_phase_log,count_transform=sqrt,ed_transform=logit,loss_weights=objective,decoder_blocks=3,width=96,epochs=160,patience=25,lr=0.002,fit_partition=pathogen,covariate_encoder=summary,covariate_set=none,input_normalization=b0,log_loss_weight=0.5,corrector_examples=real,peak_loss_weight=2.0,error_reference=2025-2026"
+ },
+ "seeds": [
+  44,
+  45,
+  46,
+  47,
+  48,
+  49,
+  50,
+  51
+ ]
+}
