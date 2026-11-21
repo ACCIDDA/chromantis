@@ -221,6 +221,16 @@ def round9():
 
 ROUNDS[9] = dict(description='Flu search round 9 (2026-11-21): amplitude augmentation (new option amplitude_sd) on the '
                              'candidate members and on Bq.', build=round9)
+def round10():
+    # 21 Nov 04:35: candidates Bq.smp.ll1 + Bh.smp + Ar.peak and Bq.smp.ll1 + ref.B + Ar.peak. Lookback diversity for the
+    # sampled members (OHT_JHU averages lookback windows), and Ar.peak without Kinsa (a risky national feed).
+    put('Bq.smp.ll1.lb8', derive(R['Bq.smp.ll1'], lookback=8), 'Bq.smp.ll1')
+    put('Bq.smp.ll1.lb16', derive(R['Bq.smp.ll1'], lookback=16), 'Bq.smp.ll1')
+    put('Ar.peak.nokinsa', derive(R['Ar.peak'], covariate_set='none'), 'Ar.peak')
+
+
+ROUNDS[10] = dict(description='Flu search round 10 (2026-11-21): lookback variants of Bq.smp.ll1 for mixtures; Ar.peak without Kinsa.',
+                  build=round10)
 GUARD = {'g03': ['Bq.gru', 'Bq.ll1', 'Bq.gru.ll1', 'Bq.gru.lb8', 'Bq.gru.nat', 'Bq.gru.bes', 'Bh.gru.ll1', 'Ar.flat',
                  'Ar.flat.gru', 'Ar.flat.gru.w192'],
          'g04': ['B5r', 'B5r.peak', 'B5r.local', 'Ar.peak', 'Bq.smp', 'Bq.gru.smp', 'Bq.gru.smp.peak', 'Bq.gru.smp.local',
@@ -229,7 +239,8 @@ GUARD = {'g03': ['Bq.gru', 'Bq.ll1', 'Bq.gru.ll1', 'Bq.gru.lb8', 'Bq.gru.nat', '
          'g06': ['Bq.smp.peak', 'Bq.smp.local', 'Bq.smp.ll1'],
          'g07': ['Bq.hc.smp.peak', 'Bh.smp.peak.x'],
          'g08': ['Bq.hc.smp.ll1', 'Bh.smp.ll1', 'Bq.smp.ll1.local'],
-         'g09': ['Bq.amp3', 'Bq.hc.smp.amp3', 'Bh.smp.amp3', 'Ar.peak.amp3', 'Ar.peak.amp5']}
+         'g09': ['Bq.amp3', 'Bq.hc.smp.amp3', 'Bh.smp.amp3', 'Ar.peak.amp3', 'Ar.peak.amp5'],
+         'g10': ['Bq.smp.ll1.lb8', 'Bq.smp.ll1.lb16', 'Ar.peak.nokinsa']}
 
 
 def write_guard(tag):

@@ -84,3 +84,8 @@ LANES=3 sbatch --export=ALL --job-name=flu-s-r09 --array=0-4 --dependency=aftera
 python3 experiments/flu-search-20261120/rounds.py rs06   # + guard-gs04.json
 LANES=4 sbatch --export=ALL --job-name=flu-s-rs06 --array=0-4 scripts/flu_search.sbatch flu-s-rs06 flu-s-gs04
 .venv/bin/python scripts/flu_search_mix.py g08m --experiments flu-s-g01 flu-s-gs01 flu-s-g04 flu-s-g05 flu-s-gs02 flu-s-g06 flu-s-gs03 --members "B7=ref.A,ref.B5,ref.B" Bq=Bq Bh=Bh AP=Ar.peak QL=Bq.smp.ll1 HS=Bh.smp SQ=Bq.smp --groups "B7:B7" "Bq+Bh+AP:Bq,Bh,AP" "QL+HS+AP:QL,HS,AP" "QL+Bh+AP:QL,Bh,AP" "SQ+HS+AP:SQ,HS,AP"
+G="--members B7=ref.A,ref.B5,ref.B Bq=Bq Bh=Bh AP=Ar.peak QL=Bq.smp.ll1 HS=Bh.smp B5=ref.B5 B=ref.B --groups Bq+AP:Bq,AP QL+AP:QL,AP Bq+QL+AP:Bq,QL,AP Bq+B5+AP:Bq,B5,AP QL+B+AP:QL,B,AP QL+HS+AP:QL,HS,AP B7:B7"
+.venv/bin/python scripts/flu_search_mix.py edm --experiments flu-s-r01 flu-s-rs01 flu-s-r02 flu-s-rs02 flu-s-r05 flu-s-rs04 flu-s-r06 flu-s-rs05 $G
+.venv/bin/python scripts/flu_search_mix.py edg --experiments flu-s-g01 flu-s-gs01 flu-s-g04 flu-s-g05 flu-s-gs02 flu-s-g06 flu-s-gs03 $G
+python3 experiments/flu-search-20261120/rounds.py 10; python3 experiments/flu-search-20261120/rounds.py g10
+LANES=3 sbatch --export=ALL --job-name=flu-s-r10 --array=0-4 --dependency=afterany:10043899 scripts/flu_search.sbatch flu-s-r10 flu-s-g10
