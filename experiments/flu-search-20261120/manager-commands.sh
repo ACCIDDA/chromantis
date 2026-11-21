@@ -65,3 +65,10 @@ LANES=6 sbatch --export=ALL --job-name=flu-s-r06 --array=0-4 --dependency=aftera
 .venv/bin/python scripts/flu_search_mix.py r04m --experiments flu-s-r01 flu-s-rs01 flu-s-r02 flu-s-rs02 --members "B7=ref.A,ref.B5,ref.B" Bq=Bq Bh=Bh AP=Ar.peak BP=B5r.peak --groups "B7:B7" "Bq+Bh:Bq,Bh" "Bq+Bh+AP:Bq,Bh,AP" "Bh+AP:Bh,AP" "Bq+AP:Bq,AP" "Bq+Bh+AP+BP:Bq,Bh,AP,BP" "AP:AP"
 .venv/bin/python scripts/flu_search_mix.py g04m --experiments flu-s-g01 flu-s-g04 --members "B7=ref.A,ref.B5,ref.B" Bq=Bq Bh=Bh AP=Ar.peak BP=B5r.peak --groups "B7:B7" "Bq+Bh:Bq,Bh" "Bq+Bh+AP:Bq,Bh,AP" "Bh+AP:Bh,AP" "Bq+AP:Bq,AP" "Bq+Bh+AP+BP:Bq,Bh,AP,BP" "AP:AP"
 .venv/bin/python -m chromantis.experiment.planner plan -e flu-s-gs01 --problem problems/us-flu-2023-24-prescribed-coverage.json --study $S/guard-gs01.json --device cuda; sbatch --job-name=flu-s-gs01 --array=0-4 --dependency=afterany:10029431 scripts/flu_search.sbatch flu-s-gs01
+# 2026-11-21 00:45-01:15 EST: round 5 scored; trajectory mixtures (CPU 10038265-6); round 6 OOM retry (job 10038254, 3 lanes); round 7 + rs04 + g07 + gs02 (job 10038284, 3 lanes)
+M="--members B7=ref.A,ref.B5,ref.B Bq=Bq Bh=Bh AP=Ar.peak QS=Bq.hc.smp HS=Bh.smp --groups B7:B7 Bq+Bh+AP:Bq,Bh,AP QS+Bh+AP:QS,Bh,AP QS+HS+AP:QS,HS,AP Bq+HS+AP:Bq,HS,AP QS+HS:QS,HS QS+Bh:QS,Bh --max-seeds 8"
+.venv/bin/python scripts/flu_search_mix.py r05m --experiments flu-s-r01 flu-s-r02 flu-s-r05 $M
+.venv/bin/python scripts/flu_search_mix.py g05m --experiments flu-s-g01 flu-s-g04 flu-s-g05 $M
+LANES=3 NTFY=0 sbatch --export=ALL --job-name=flu-s-r06-retry --array=0-4 --dependency=afterany:10029431 scripts/flu_search.sbatch flu-s-r06 flu-s-rs03 flu-s-g06
+python3 experiments/flu-search-20261120/rounds.py 7; python3 experiments/flu-search-20261120/rounds.py g07; python3 experiments/flu-search-20261120/rounds.py rs04   # on the Mac (+ guard-gs02.json)
+LANES=3 sbatch --export=ALL --job-name=flu-s-r07 --array=0-4 --dependency=afterany:10034275:10038254 scripts/flu_search.sbatch flu-s-r07 flu-s-rs04 flu-s-g07 flu-s-gs02

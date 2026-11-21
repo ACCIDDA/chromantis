@@ -1,0 +1,19 @@
+{
+ "description": "Flu search guard reseed gs02 (2023-24): Bq.hc.smp, Bh.smp on seeds 52-59.",
+ "round": "rs04",
+ "parents": {},
+ "candidates": {
+  "Bq.hc.smp": "history_source=artificial,error_signals=targets,input_set=target,correction_weeks=2,correction_ed=1,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,ed_transform=logit,loss_weights=objective,spatial=neighbors,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=0.5,corrector_examples=real,history_correction=1,error_reference=2025-2026",
+  "Bh.smp": "history_source=artificial,error_signals=all,input_set=target,correction_weeks=2,correction_ed=1,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,ed_transform=logit,loss_weights=objective,spatial=neighbors,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=0.5,history_correction=1,corrector_examples=real,covariate_set=hosprep,error_reference=2025-2026"
+ },
+ "seeds": [
+  52,
+  53,
+  54,
+  55,
+  56,
+  57,
+  58,
+  59
+ ]
+}

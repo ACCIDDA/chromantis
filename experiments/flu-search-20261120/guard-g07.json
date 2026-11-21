@@ -1,0 +1,22 @@
+{
+ "description": "Flu search guard g07 (2023-24 held out, artificial reports): Bq.hc.smp.peak, Bh.smp.peak.x.",
+ "round": "g07",
+ "parents": {
+  "Bq.hc.smp.peak": "Bq.hc.smp",
+  "Bh.smp.peak.x": "Bh.smp"
+ },
+ "candidates": {
+  "Bq.hc.smp.peak": "history_source=artificial,error_signals=targets,input_set=target,correction_weeks=2,correction_ed=1,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,ed_transform=logit,loss_weights=objective,spatial=neighbors,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=0.5,corrector_examples=real,history_correction=1,peak_loss_weight=1.0,error_reference=2025-2026",
+  "Bh.smp.peak.x": "history_source=artificial,error_signals=all,input_set=target,correction_weeks=2,correction_ed=1,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,ed_transform=logit,loss_weights=objective,spatial=neighbors,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=0.5,history_correction=1,corrector_examples=real,covariate_set=hosprep,peak_loss_weight=0.5,error_reference=2025-2026"
+ },
+ "seeds": [
+  44,
+  45,
+  46,
+  47,
+  48,
+  49,
+  50,
+  51
+ ]
+}

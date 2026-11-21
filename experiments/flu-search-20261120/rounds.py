@@ -193,12 +193,21 @@ def round6():
 
 ROUNDS[6] = dict(description='Flu search round 6 (2026-11-20): peak loss, per-location noise and log-loss 1 on the sampled '
                              'B-family recipe Bq.smp.', build=round6)
+def round7():
+    # 21 Nov 00:45: Bq.hc.smp (sampled, network on corrected histories, no coverage) is level with Bq on all three seasons;
+    # peak loss helped every sampled recipe so far.
+    put('Bq.hc.smp.peak', derive(R['Bq.hc.smp'], peak_loss_weight=1.0), 'Bq.hc.smp')
+    put('Bh.smp.peak.x', derive(R['Bh.smp'], peak_loss_weight=0.5), 'Bh.smp')     # half-weight peak loss on sampled Bh
+
+
+ROUNDS[7] = dict(description='Flu search round 7 (2026-11-21): peak loss on the sampled B-family recipes.', build=round7)
 GUARD = {'g03': ['Bq.gru', 'Bq.ll1', 'Bq.gru.ll1', 'Bq.gru.lb8', 'Bq.gru.nat', 'Bq.gru.bes', 'Bh.gru.ll1', 'Ar.flat',
                  'Ar.flat.gru', 'Ar.flat.gru.w192'],
          'g04': ['B5r', 'B5r.peak', 'B5r.local', 'Ar.peak', 'Bq.smp', 'Bq.gru.smp', 'Bq.gru.smp.peak', 'Bq.gru.smp.local',
                  'B5r.peak.local'],
          'g05': ['Bh.smp', 'Bh.smp.peak', 'Bh.smp.local', 'Bq.hc', 'Bq.hc.smp'],
-         'g06': ['Bq.smp.peak', 'Bq.smp.local', 'Bq.smp.ll1']}
+         'g06': ['Bq.smp.peak', 'Bq.smp.local', 'Bq.smp.ll1'],
+         'g07': ['Bq.hc.smp.peak', 'Bh.smp.peak.x']}
 
 
 def write_guard(tag):
@@ -214,7 +223,8 @@ def write_guard(tag):
 
 RESEED = {'rs01': (['ref.A', 'ref.B5', 'ref.B', 'ref.Bes', 'Bq', 'Bh', 'Ar'], list(range(52, 60))),
           'rs02': (['Bq.gru', 'Bq.ll1', 'Ar.peak', 'B5r.peak', 'B5r.local'], list(range(52, 60))),
-          'rs03': (['Bq.smp'], list(range(52, 60)))}
+          'rs03': (['Bq.smp'], list(range(52, 60))),
+          'rs04': (['Bq.hc.smp', 'Bh.smp'], list(range(52, 60)))}
 
 
 def write_reseed(tag):
