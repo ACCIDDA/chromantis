@@ -1,0 +1,26 @@
+{
+ "description": "Flu search guard reseed gs10 (2023-24): Bq.smp.ll1.nosp on seeds 60-75.",
+ "round": "rs12",
+ "parents": {},
+ "candidates": {
+  "Bq.smp.ll1.nosp": "history_source=artificial,reconstruction_labels=1,error_signals=targets,input_set=target,correction_weeks=2,correction_ed=1,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,loss_weights=objective,spatial=none,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=1.0,corrector_examples=real,error_reference=2025-2026"
+ },
+ "seeds": [
+  60,
+  61,
+  62,
+  63,
+  64,
+  65,
+  66,
+  67,
+  68,
+  69,
+  70,
+  71,
+  72,
+  73,
+  74,
+  75
+ ]
+}

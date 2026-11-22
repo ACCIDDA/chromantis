@@ -128,3 +128,4 @@ LANES=3 sbatch --export=ALL --job-name=flu-s-r15 --array=0-4 --dependency=aftera
 LANES=4 sbatch --export=ALL --job-name=flu-s-rs11 --array=0-4 --dependency=afterany:10106015 scripts/flu_search.sbatch flu-s-rs11 flu-s-gs09   # seeds 76-91 for final 48-seed comparisons
 LANES=3 sbatch --export=ALL --job-name=flu-s-r16 --array=0-4 --dependency=afterany:10120397 scripts/flu_search.sbatch flu-s-r16 flu-s-g16   # spatial axis on A members, 16 seeds
 LANES=4 sbatch --export=ALL --job-name=flu-s-rl01 --array=0-4 --dependency=afterany:10135701 scripts/flu_search.sbatch flu-s-rl01   # old (leaky) error_reference protocol for B7 and A members
+LANES=3 sbatch --export=ALL --job-name=flu-s-rs12 --array=0-4 --dependency=afterany:10148043 scripts/flu_search.sbatch flu-s-rs12 flu-s-gs10   # Bq.smp.ll1.nosp seeds 60-75
