@@ -299,6 +299,15 @@ def round15():
 
 ROUNDS[15] = dict(description='Flu search round 15 (2026-11-21): ED-share handling on candidate A\'s sampled members '
                               '(fourth-root or linear ED transform instead of logit; no tree correction of ED).', build=round15)
+def round16():
+    # 21 Nov 20:45: the spatial axis was never crossed for candidate A's members (B family exchanges with neighbouring
+    # states, A does not).
+    put('Ar.peak.nokinsa.nbr', derive(R['Ar.peak.nokinsa'], spatial='neighbors'), 'Ar.peak.nokinsa')
+    put('Bq.smp.ll1.nosp', derive(R['Bq.smp.ll1'], spatial='none'), 'Bq.smp.ll1')
+
+
+ROUNDS[16] = dict(description='Flu search round 16 (2026-11-21): neighbouring-state exchange crossed for candidate A members.',
+                  build=round16)
 GUARD = {'g03': ['Bq.gru', 'Bq.ll1', 'Bq.gru.ll1', 'Bq.gru.lb8', 'Bq.gru.nat', 'Bq.gru.bes', 'Bh.gru.ll1', 'Ar.flat',
                  'Ar.flat.gru', 'Ar.flat.gru.w192'],
          'g04': ['B5r', 'B5r.peak', 'B5r.local', 'Ar.peak', 'Bq.smp', 'Bq.gru.smp', 'Bq.gru.smp.peak', 'Bq.gru.smp.local',
@@ -313,7 +322,8 @@ GUARD = {'g03': ['Bq.gru', 'Bq.ll1', 'Bq.gru.ll1', 'Bq.gru.lb8', 'Bq.gru.nat', '
          'g12': ['Bq.smp.ll2', 'Bq.smp.ll1.log1p', 'Bq.gru.smp.ll1', 'Ar.peak.nokinsa.pk2'],
          'g13': ['Bq.smp.ll1.w128', 'Bq.smp.ll1.w384', 'Ar.peak.nokinsa.w192', 'Ar.peak.nokinsa.flat'],
          'g14': [f'{r}.RS{i}' for r in ('Bq.smp.ll1', 'Ar.peak.nokinsa') for i in range(8)],
-         'g15': [f'{r}.{v}' for r in ('Bq.smp.ll1', 'Ar.peak.nokinsa') for v in ('ed4', 'edlin', 'edraw')]}
+         'g15': [f'{r}.{v}' for r in ('Bq.smp.ll1', 'Ar.peak.nokinsa') for v in ('ed4', 'edlin', 'edraw')],
+         'g16': ['Ar.peak.nokinsa.nbr', 'Bq.smp.ll1.nosp']}
 
 
 def write_guard(tag):
