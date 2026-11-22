@@ -224,6 +224,10 @@
    "date": "2026-11-22 09:50 EST",
    "round": "release4, 20, rs16, st03, gs13",
    "what": "Release fits of masked candidate A complete (flu-s-release4: Bq.smp.ll1.nm10, ref.B.nm10, Ar.peak.nokinsa.nm10 without stress views, seeds 42-81, all of 2022-23..2025-26; unscored on 2026-27). The queue was empty at 09:39. Launched (array 10236738): masked members on seeds 60-75 with stress views (rs16) and on the guard (gs13), B7's ref.A and ref.B5 with stress views on seeds 52-59 (st03; for 16-seed missing-week mixtures), and round 20: newest_mask 0.05 and 0.2 on Bq.smp.ll1 and ref.B (8 seeds) to check that 0.1 is not a knife edge."
+  },
+  {
+   "date": "2026-11-22 10:55 EST",
+   "what": "Missing-newest-week check at 16 seeds (flu-mix-st04; seeds 44-59 of the stress-view fits; equal weights; main problem, 2024-25 and 2025-26 held out in turn, archived reports; states/DC log WIS, lower is better), normal inputs (corrected view) / every location's newest admission week missing (delayed view), mean of the two seasons: B7 0.2986 / 0.3615; candidate A unmasked (Bq.smp.ll1 + ref.B + Ar.peak.nokinsa) 0.2843 / 0.3881; A masked (their newest_mask 0.1 versions) 0.2827 / 0.3450. The masked candidate is 5.3% better than B7 with normal inputs and 4.6% better with a missing newest week (unmasked A: 7.4% worse). Queued after the running array: masked members on seeds 76-91, main and guard (array 10240159)."
   }
  ],
  "execution": {
