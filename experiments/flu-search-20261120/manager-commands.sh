@@ -150,3 +150,4 @@ LANES=4 sbatch --export=ALL --job-name=flu-s-rs17 --array=0-4 --dependency=after
 PYTHONPATH=src .venv/bin/python scripts/flu_search_release.py flu-masked-a-candidate-20261122 output/flu-search/flu-masked-a-candidate-20261122.json flu-s-release4:Bq.smp.ll1.nm10=Bq.smp.ll1.nm10 flu-s-release4:ref.B.nm10=ref.B.nm10 flu-s-release4:Ar.peak.nokinsa.nm10=Ar.peak.nokinsa.nm10 --description "..."   # draft manifest
 LANES=6 sbatch --export=ALL --job-name=flu-s-st05 --array=0-4 scripts/flu_search.sbatch flu-s-st05   # B7 stress controls seeds 60-91
 LANES=4 sbatch --export=ALL --job-name=flu-s-r21 --array=0-4 --dependency=afterany:10247367 scripts/flu_search.sbatch flu-s-r21 flu-s-g21   # masked B7 members
+LANES=4 sbatch --export=ALL --job-name=flu-s-ge04 --array=0-4 scripts/flu_search.sbatch flu-s-ge04   # masked A, 2024-25 errors guard
