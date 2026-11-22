@@ -148,3 +148,4 @@ mkdir -p data/experiments/flu-s-release4/scoring.lock; LANES=4 sbatch --export=A
 LANES=4 sbatch --export=ALL --job-name=flu-s-rs16 --array=0-4 scripts/flu_search.sbatch flu-s-rs16 flu-s-st03 flu-s-r20 flu-s-gs13   # masked members to 32 seeds; B7 stress controls; masking rates
 LANES=4 sbatch --export=ALL --job-name=flu-s-rs17 --array=0-4 --dependency=afterany:10236738 scripts/flu_search.sbatch flu-s-rs17 flu-s-gs14   # masked members seeds 76-91
 PYTHONPATH=src .venv/bin/python scripts/flu_search_release.py flu-masked-a-candidate-20261122 output/flu-search/flu-masked-a-candidate-20261122.json flu-s-release4:Bq.smp.ll1.nm10=Bq.smp.ll1.nm10 flu-s-release4:ref.B.nm10=ref.B.nm10 flu-s-release4:Ar.peak.nokinsa.nm10=Ar.peak.nokinsa.nm10 --description "..."   # draft manifest
+LANES=6 sbatch --export=ALL --job-name=flu-s-st05 --array=0-4 scripts/flu_search.sbatch flu-s-st05   # B7 stress controls seeds 60-91

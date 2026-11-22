@@ -233,6 +233,10 @@
    "date": "2026-11-22 11:55 EST",
    "round": "20, gs13",
    "what": "Round 20 (newest_mask rate; 8 seeds 44-51, stress views; main problem, states/DC log WIS, mean of 2024-25 and 2025-26, lower is better), normal inputs / newest week missing: Bq.smp.ll1 0.2928 / 0.4250, masking 0.05 0.2991 / 0.3797, 0.1 0.2971 / 0.3698, 0.2 0.2991 / 0.3725; ref.B 0.3088 / 0.4249, 0.05 0.3020 / 0.3807, 0.1 0.2946 / 0.3639, 0.2 0.3030 / 0.3681. A plateau from 0.05 to 0.2 with 0.1 best or tied: 0.1 kept. Guard at 32 seeds (gs13; 2023-24 held out, artificial reports): ref.B.nm10 0.2990 vs ref.B 0.2940 (16), Bq.smp.ll1.nm10 0.2969 vs 0.2953 (16), Ar.peak.nokinsa.nm10 0.2980 vs 0.2937 (24): within the margin. A draft release manifest for masked candidate A was written (experiments/flu-search-20261120/draft-release-masked-a.json, scripts/flu_search_release.py): the 40 release fits per recipe of flu-s-release4 with the SHA-256 of each model.pt, problem us-flu-production.json, rule mixture, corrected view; it is not placed in production/releases and nothing is submitted until the user decides."
+  },
+  {
+   "date": "2026-11-22 12:55 EST",
+   "what": "Final 48-seed comparison of the recommended release (flu-mix-fm48 main, flu-mix-fgm48 guard; seeds 44-91 per recipe; equal weights; WIS over the 50 states and DC unless noted, lower is better). Log admissions 2024-25 / 2025-26 / 2023-24 / mean: B7 refit leak-free 0.3138 / 0.2767 / 0.2835 / 0.2913; masked candidate A (Bq.smp.ll1.nm10 + ref.B.nm10 + Ar.peak.nokinsa.nm10) 0.2923 / 0.2719 / 0.2768 / 0.2803 (-3.8%; by season -6.9%, -1.7%, -2.4%). ED share x 1e4: 48.83 / 43.02 / 34.57 vs 49.49 / 44.28 / 34.69 (+1% to +3%). US log WIS: 0.165 / 0.152 / 0.160 vs 0.156 / 0.156 / 0.157. Rising / peak window / falling: 0.339 / 0.319 / 0.256 vs 0.315 / 0.312 / 0.247; October 0.500 vs 0.459. Hub pairwise relative WIS 2024-25 / 2025-26: 0.469 / 0.504 vs 0.442 / 0.500. Queued (array 10247367): B7 members with stress views on seeds 60-91 for a 48-seed missing-week comparison."
   }
  ],
  "execution": {
