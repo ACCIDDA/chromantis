@@ -342,6 +342,17 @@ def round18():
 
 ROUNDS[18] = dict(description='Flu search round 18 (2026-11-22): robustness to a missing newest week (input masking, donor '
                               'missingness) on candidate A members, with stress views.', build=round18)
+def round19():
+    # 22 Nov 05:50: 10% random masking makes A's members much more robust to a missing newest week (-7 to -13%) but costs
+    # 2-5% on normal inputs. Targeted newest-week masking (new option newest_mask) and a lighter random mask.
+    for root in ('Bq.smp.ll1', 'ref.B', 'Ar.peak.nokinsa'):
+        put(f'{root}.nm10', derive(R[root], newest_mask=0.1, stress_views=1), root)
+    for root in ('Bq.smp.ll1', 'ref.B'):
+        put(f'{root}.mask03', derive(R[root], autoencoder_mask=0.03, stress_views=1), root)
+
+
+ROUNDS[19] = dict(description='Flu search round 19 (2026-11-22): newest-week masking (new option newest_mask) and 3% random '
+                              'masking on candidate A members, with stress views.', build=round19)
 GUARD = {'g03': ['Bq.gru', 'Bq.ll1', 'Bq.gru.ll1', 'Bq.gru.lb8', 'Bq.gru.nat', 'Bq.gru.bes', 'Bh.gru.ll1', 'Ar.flat',
                  'Ar.flat.gru', 'Ar.flat.gru.w192'],
          'g04': ['B5r', 'B5r.peak', 'B5r.local', 'Ar.peak', 'Bq.smp', 'Bq.gru.smp', 'Bq.gru.smp.peak', 'Bq.gru.smp.local',

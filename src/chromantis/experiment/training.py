@@ -302,6 +302,13 @@ def fit_component(train, validation, channels, component, options, problem, scen
                     yb[:, :, proportion_out] = yb[:, :, proportion_out].clamp_max(1)
                 hide = (torch.rand(batch_values.shape, device=device) < scenario.autoencoder_mask
                         if scenario.autoencoder_mask else None)
+                if scenario.newest_mask:
+                    # Newest-week masking (2026-11-22, flu search): each location's newest week (all input histories)
+                    # is hidden with this probability, as when a state's report is missing at the deadline.
+                    newest = torch.zeros(batch_values.shape, dtype=torch.bool, device=device)
+                    newest[:, -1] = (torch.rand(batch_values.shape[0], 1, batch_values.shape[-1], device=device)
+                                     < scenario.newest_mask).expand(-1, batch_values.shape[2], -1)
+                    hide = newest if hide is None else hide | newest
                 samples = model(values=batch_values, available=batch_available, calendar=cal[ids], hide=hide,
                                 covariates=batch_cov, locations=list(train[0]['locations']), members=scenario.members)
                 score = prediction_loss(model, samples[:, :, :, channels], yb[:, :, channels], y_mask[ids][:, :, channels])

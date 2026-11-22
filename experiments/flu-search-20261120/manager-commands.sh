@@ -139,3 +139,7 @@ LANES=4 sbatch --export=ALL --job-name=flu-s-st01 --array=0-4 --dependency=after
 python3 experiments/flu-search-20261120/rounds.py 18
 .venv/bin/python -m chromantis.experiment.planner plan -e flu-s-r18 --problem problems/us-flu-short-term-coverage.json --study $S/round-18.json --device cuda
 LANES=4 sbatch --export=ALL --job-name=flu-s-r18 --array=0-4 scripts/flu_search.sbatch flu-s-r18
+# 2026-11-22 05:55 EST: round 18 scored; new option newest_mask; round 19 (job 10210126)
+python3 experiments/flu-search-20261120/rounds.py 19
+.venv/bin/python -m chromantis.experiment.planner plan -e flu-s-r19 --problem problems/us-flu-short-term-coverage.json --study $S/round-19.json --device cuda
+LANES=4 sbatch --export=ALL --job-name=flu-s-r19 --array=0-4 scripts/flu_search.sbatch flu-s-r19

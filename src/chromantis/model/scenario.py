@@ -190,6 +190,8 @@ MEANING = {
     'amplitude_sd': 'Training-only amplitude augmentation: each episode\'s admission and ED-share inputs and labels are multiplied by '
                     'one factor exp(N(0, amplitude_sd)) (proportions capped at 1), so the network sees larger and smaller '
                     'epidemics than the training seasons (2026-11-21, flu search: every model is far too low near peaks).',
+    'newest_mask': 'Training-only: probability that each location\'s newest input week (every input history) is hidden from '
+                   'the network, as when a state\'s report is missing at the deadline (2026-11-22, flu search).',
     'validation_offset': 'patience > 0 only: week of each training season where the first block starts '
                          "(0-based, counted from the season's first epiweek, CDC week 31).",
 }
@@ -327,6 +329,8 @@ class Scenario:
     kl_weight: float = .01
     # Amplitude augmentation (2026-11-21): SD of the log factor rescaling each training episode's counts/proportions.
     amplitude_sd: float = 0.
+    # Newest-week masking (2026-11-22): probability each location's newest input week is hidden during training.
+    newest_mask: float = 0.
 
     def __post_init__(self):
         for key in CODES:
@@ -418,6 +422,8 @@ class Scenario:
             raise ValueError('Autoencoder pretraining needs an MLP encoder and no other pretraining')
         if self.latent_model == 'cvae' and (self.decoder not in ('legacy', 'residual2') or self.encoder != 'mlp'):
             raise ValueError('A conditional-VAE latent needs a sampled MLP model')
+        if not 0 <= self.newest_mask < 1:
+            raise ValueError('newest_mask must be in [0, 1)')
         if not 0 <= self.amplitude_sd <= 1:
             raise ValueError('amplitude_sd must be in [0, 1]')
         if not self.input_set or not self.covariate_set:
