@@ -255,6 +255,10 @@
   {
    "date": "2026-11-22 16:45 EST",
    "what": "Queue note: round 22 waited on the whole previous array (afterany) while its last element ran alone, leaving four GPUs idle for up to an hour; the dependency was removed (scontrol update) and round 22 started on the free GPUs. Chaining on a whole array wastes GPUs during its tail; later rounds are released as soon as most of the previous array has finished."
+  },
+  {
+   "date": "2026-11-22 17:55 EST",
+   "what": "Final 64-seed comparison of the recommended release (flu-mix-fm64 main, flu-mix-fgm64 guard; seeds 44-107; equal weights; states/DC WIS, lower is better). Log admissions 2024-25 / 2025-26 / 2023-24 / mean: B7 refit leak-free 0.3140 / 0.2766 / 0.2838 / 0.2915; masked candidate A 0.2916 / 0.2713 / 0.2760 / 0.2796 (-4.1%; -7.1%, -1.9%, -2.7% by season). ED share x 1e4: 48.87 / 42.92 / 34.76 vs 49.38 / 44.28 / 34.58 (+1.0%, +3.2%, -0.5%). The estimate has not moved from 16 to 64 seeds (-3.8% to -4.7%)."
   }
  ],
  "execution": {
