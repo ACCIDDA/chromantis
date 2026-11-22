@@ -353,6 +353,15 @@ def round19():
 
 ROUNDS[19] = dict(description='Flu search round 19 (2026-11-22): newest-week masking (new option newest_mask) and 3% random '
                               'masking on candidate A members, with stress views.', build=round19)
+def round20():
+    # 22 Nov 09:45: newest-week masking adopted at 0.1; is 0.1 on a plateau? 0.05 and 0.2 on the B-family members.
+    for root in ('Bq.smp.ll1', 'ref.B'):
+        for v, tag in ((0.05, 'nm05'), (0.2, 'nm20')):
+            put(f'{root}.{tag}', derive(R[root], newest_mask=v, stress_views=1), root)
+
+
+ROUNDS[20] = dict(description='Flu search round 20 (2026-11-22): newest-week masking rate 0.05 and 0.2 on the B-family members.',
+                  build=round20)
 GUARD = {'g03': ['Bq.gru', 'Bq.ll1', 'Bq.gru.ll1', 'Bq.gru.lb8', 'Bq.gru.nat', 'Bq.gru.bes', 'Bh.gru.ll1', 'Ar.flat',
                  'Ar.flat.gru', 'Ar.flat.gru.w192'],
          'g04': ['B5r', 'B5r.peak', 'B5r.local', 'Ar.peak', 'Bq.smp', 'Bq.gru.smp', 'Bq.gru.smp.peak', 'Bq.gru.smp.local',

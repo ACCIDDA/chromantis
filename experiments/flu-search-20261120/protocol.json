@@ -219,6 +219,11 @@
   {
    "date": "2026-11-22 09:00 EST",
    "what": "Guard g20 (2023-24 held out, artificial reports, 16 seeds; states/DC log WIS, lower is better): ref.B.nm10 0.2993 vs ref.B 0.2940 (+1.8%, inside the 2 SE margin of about 2.9%), Bq.smp.ll1.nm10 0.2945 vs 0.2953, Ar.peak.nokinsa.nm10 0.2972 vs 0.2937 (24 seeds): within the margin. Mixtures, 16 seeds (flu-mix-masm main, flu-mix-masg guard; equal weights): log admissions 2024-25 / 2025-26 / 2023-24 / mean, peak window, October, ED x 1e4 2025-26: B7 0.3186 / 0.2781 / 0.2851 / 0.2939, 0.327, 0.500, 43.44; A without Kinsa 0.2948 / 0.2727 / 0.2729 / 0.2802, 0.320, 0.452, 44.39; A masked (Bq.smp.ll1.nm10 + ref.B.nm10 + Ar.peak.nokinsa.nm10) 0.2925 / 0.2728 / 0.2753 / 0.2802, 0.305, 0.462, 44.07. With every location's newest admission week missing at the deadline (flu-mix-st02, 8 seeds, views corrected / delayed, mean of 2024-25 and 2025-26): B7 0.3020 / 0.3631, A without Kinsa 0.2847 / 0.3867, A masked 0.2802 / 0.3476. Decision: the recommended release becomes A masked: level with unmasked A on normal inputs (-4.7% vs B7 over three seasons), better at the peak, and now 4% better than B7 when the newest week is missing instead of 6.5% worse. Its release fits (flu-s-release4, 40 seeds each, all four seasons) are running."
+  },
+  {
+   "date": "2026-11-22 09:50 EST",
+   "round": "release4, 20, rs16, st03, gs13",
+   "what": "Release fits of masked candidate A complete (flu-s-release4: Bq.smp.ll1.nm10, ref.B.nm10, Ar.peak.nokinsa.nm10 without stress views, seeds 42-81, all of 2022-23..2025-26; unscored on 2026-27). The queue was empty at 09:39. Launched (array 10236738): masked members on seeds 60-75 with stress views (rs16) and on the guard (gs13), B7's ref.A and ref.B5 with stress views on seeds 52-59 (st03; for 16-seed missing-week mixtures), and round 20: newest_mask 0.05 and 0.2 on Bq.smp.ll1 and ref.B (8 seeds) to check that 0.1 is not a knife edge."
   }
  ],
  "execution": {
