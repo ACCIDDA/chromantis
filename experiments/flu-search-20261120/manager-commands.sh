@@ -146,3 +146,4 @@ LANES=4 sbatch --export=ALL --job-name=flu-s-r19 --array=0-4 scripts/flu_search.
 LANES=4 sbatch --export=ALL --job-name=flu-s-rs15 --array=0-4 scripts/flu_search.sbatch flu-s-rs15 flu-s-g20   # masking recipes: 16 seeds + guard
 mkdir -p data/experiments/flu-s-release4/scoring.lock; LANES=4 sbatch --export=ALL --job-name=flu-s-release4 --array=0-4 --dependency=afterany:10213344 scripts/flu_search.sbatch flu-s-release4   # masked candidate A release fits, unscored
 LANES=4 sbatch --export=ALL --job-name=flu-s-rs16 --array=0-4 scripts/flu_search.sbatch flu-s-rs16 flu-s-st03 flu-s-r20 flu-s-gs13   # masked members to 32 seeds; B7 stress controls; masking rates
+LANES=4 sbatch --export=ALL --job-name=flu-s-rs17 --array=0-4 --dependency=afterany:10236738 scripts/flu_search.sbatch flu-s-rs17 flu-s-gs14   # masked members seeds 76-91
