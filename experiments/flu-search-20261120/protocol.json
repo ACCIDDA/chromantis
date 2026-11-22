@@ -228,6 +228,11 @@
   {
    "date": "2026-11-22 10:55 EST",
    "what": "Missing-newest-week check at 16 seeds (flu-mix-st04; seeds 44-59 of the stress-view fits; equal weights; main problem, 2024-25 and 2025-26 held out in turn, archived reports; states/DC log WIS, lower is better), normal inputs (corrected view) / every location's newest admission week missing (delayed view), mean of the two seasons: B7 0.2986 / 0.3615; candidate A unmasked (Bq.smp.ll1 + ref.B + Ar.peak.nokinsa) 0.2843 / 0.3881; A masked (their newest_mask 0.1 versions) 0.2827 / 0.3450. The masked candidate is 5.3% better than B7 with normal inputs and 4.6% better with a missing newest week (unmasked A: 7.4% worse). Queued after the running array: masked members on seeds 76-91, main and guard (array 10240159)."
+  },
+  {
+   "date": "2026-11-22 11:55 EST",
+   "round": "20, gs13",
+   "what": "Round 20 (newest_mask rate; 8 seeds 44-51, stress views; main problem, states/DC log WIS, mean of 2024-25 and 2025-26, lower is better), normal inputs / newest week missing: Bq.smp.ll1 0.2928 / 0.4250, masking 0.05 0.2991 / 0.3797, 0.1 0.2971 / 0.3698, 0.2 0.2991 / 0.3725; ref.B 0.3088 / 0.4249, 0.05 0.3020 / 0.3807, 0.1 0.2946 / 0.3639, 0.2 0.3030 / 0.3681. A plateau from 0.05 to 0.2 with 0.1 best or tied: 0.1 kept. Guard at 32 seeds (gs13; 2023-24 held out, artificial reports): ref.B.nm10 0.2990 vs ref.B 0.2940 (16), Bq.smp.ll1.nm10 0.2969 vs 0.2953 (16), Ar.peak.nokinsa.nm10 0.2980 vs 0.2937 (24): within the margin. A draft release manifest for masked candidate A was written (experiments/flu-search-20261120/draft-release-masked-a.json, scripts/flu_search_release.py): the 40 release fits per recipe of flu-s-release4 with the SHA-256 of each model.pt, problem us-flu-production.json, rule mixture, corrected view; it is not placed in production/releases and nothing is submitted until the user decides."
   }
  ],
  "execution": {
