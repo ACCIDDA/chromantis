@@ -362,6 +362,15 @@ def round20():
 
 ROUNDS[20] = dict(description='Flu search round 20 (2026-11-22): newest-week masking rate 0.05 and 0.2 on the B-family members.',
                   build=round20)
+def round21():
+    # 22 Nov 13:45: is the gain from masking, from the new members, or both? Masked B7 (its other two members masked;
+    # ref.B.nm10 exists) as the minimal-change alternative to masked candidate A.
+    for root in ('ref.A', 'ref.B5'):
+        put(f'{root}.nm10', derive(R[root], newest_mask=0.1, stress_views=1), root)
+
+
+ROUNDS[21] = dict(description='Flu search round 21 (2026-11-22): newest-week masking on B7\'s A_blocks3 and B5 (masked B7).',
+                  build=round21)
 GUARD = {'g03': ['Bq.gru', 'Bq.ll1', 'Bq.gru.ll1', 'Bq.gru.lb8', 'Bq.gru.nat', 'Bq.gru.bes', 'Bh.gru.ll1', 'Ar.flat',
                  'Ar.flat.gru', 'Ar.flat.gru.w192'],
          'g04': ['B5r', 'B5r.peak', 'B5r.local', 'Ar.peak', 'Bq.smp', 'Bq.gru.smp', 'Bq.gru.smp.peak', 'Bq.gru.smp.local',
@@ -378,7 +387,8 @@ GUARD = {'g03': ['Bq.gru', 'Bq.ll1', 'Bq.gru.ll1', 'Bq.gru.lb8', 'Bq.gru.nat', '
          'g14': [f'{r}.RS{i}' for r in ('Bq.smp.ll1', 'Ar.peak.nokinsa') for i in range(8)],
          'g15': [f'{r}.{v}' for r in ('Bq.smp.ll1', 'Ar.peak.nokinsa') for v in ('ed4', 'edlin', 'edraw')],
          'g16': ['Ar.peak.nokinsa.nbr', 'Bq.smp.ll1.nosp'],
-         'g17': [f'ref.B.RS{i}' for i in range(8)]}
+         'g17': [f'ref.B.RS{i}' for i in range(8)],
+         'g21': ['ref.A.nm10', 'ref.B5.nm10']}
 
 
 def write_guard(tag):

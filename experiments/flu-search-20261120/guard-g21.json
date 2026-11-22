@@ -1,0 +1,30 @@
+{
+ "description": "Flu search guard g21 (2023-24 held out, artificial reports): ref.A.nm10, ref.B5.nm10.",
+ "round": "g21",
+ "parents": {
+  "ref.A.nm10": "ref.A",
+  "ref.B5.nm10": "ref.B5"
+ },
+ "candidates": {
+  "ref.A.nm10": "history_source=artificial,history_correction=1,error_signals=targets,input_set=target,correction_weeks=2,correction_ed=1,joint_weight=0.05,correction_penalty=30.0,reporting_missingness=0,reporting_method=synchronous_phase_log,count_transform=sqrt,ed_transform=logit,loss_weights=objective,decoder_blocks=3,width=96,epochs=160,patience=25,lr=0.002,fit_partition=pathogen,covariate_encoder=summary,covariate_set=kinsa,input_normalization=b0,log_loss_weight=0.5,newest_mask=0.1,error_reference=2025-2026",
+  "ref.B5.nm10": "history_source=artificial,history_correction=1,error_signals=targets,input_set=target,ili_units=flu_scaled,ili_steps=1200,correction_weeks=2,correction_ed=1,ili_training=pretrain,joint_weight=0.05,correction_penalty=30.0,reporting_missingness=0,reporting_method=synchronous_phase_log,lookback=10,count_transform=sqrt,ed_transform=logit,loss_weights=objective,width=96,epochs=160,patience=25,batch_size=16,fit_partition=pathogen,covariate_encoder=summary,signal_features=multiscale,covariate_set=kinsa,input_normalization=b0,correction_realizations=2,uncorrected_share=0.1,log_loss_weight=0.5,newest_mask=0.1,error_reference=2025-2026"
+ },
+ "seeds": [
+  44,
+  45,
+  46,
+  47,
+  48,
+  49,
+  50,
+  51,
+  52,
+  53,
+  54,
+  55,
+  56,
+  57,
+  58,
+  59
+ ]
+}
