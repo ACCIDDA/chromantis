@@ -168,6 +168,11 @@
    "date": "2026-11-21 18:50 EST",
    "round": 14,
    "what": "Round 14 (random search, rng seed 20261121; 8 recipes around each of Bq.smp.ll1 and Ar.peak.nokinsa, three settings changed at once; 8 seeds; main = 2024-25 and 2025-26 held out in turn, trained on the other seasons of 2022-23..2025-26, leak-free errors, archived reports; guard = 2023-24 held out, artificial reports; states/DC WIS of log(1 + admissions), lower is better; table output/flu-search/r14.csv on Longleaf). Against Bq.smp.ll1 (32 seeds, 0.2990, guard 0.2961): changes from -2.5% (RS0: log-loss 1.5, patience 40; guard 0.2992) to +2.7%, all level. Against Ar.peak.nokinsa (24 seeds, 0.3089, guard 0.2908): -0.6% to +4.7%, all level except RS5 (worse). The random search confirms the plateau; no recipe is pursued. Queued overnight (chained after round 15): seeds 76-91 of ref.A, ref.B5, ref.B, Bq.smp.ll1 and Ar.peak.nokinsa on the main problem (rs11) and the guard (gs09), for 48-seed final comparisons."
+  },
+  {
+   "date": "2026-11-21 19:50 EST",
+   "round": 15,
+   "what": "Round 15 (ED-share handling on candidate A's sampled members; 8 seeds; main = 2024-25 and 2025-26 held out in turn, trained on the other seasons of 2022-23..2025-26, leak-free errors, archived reports; guard = 2023-24 held out, artificial reports; ED = natural-scale WIS x 1e4 of the ED share, states/DC; admissions = log WIS, states/DC; lower is better). ED 2025-26 and admissions verdict, against the parent (logit ED transform, trees correct the two newest ED weeks): Bq.smp.ll1 48.01; linear ED 46.91 (-2.3%), admissions level; fourth-root ED 50.44, admissions worse (+3.5%); no ED tree correction 47.94, admissions level (0.2925 vs 0.2990). Ar.peak.nokinsa 47.98 (2024-25 55.86, 2023-24 39.93); linear 47.57 (56.57, 44.24); fourth-root 52.19 (64.10, 45.12); no ED correction 49.31 (55.20, 38.61); admissions all level. No ED change is better beyond about 2% in a consistent direction: the ED axis is closed; logit with tree correction stays."
   }
  ],
  "execution": {
