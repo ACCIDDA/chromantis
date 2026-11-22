@@ -133,3 +133,4 @@ LANES=4 sbatch --export=ALL --job-name=flu-s-rs13 --array=0-4 scripts/flu_search
 sbatch --job-name=flu-s-r17 --array=0-4 --dependency=afterany:10169515 scripts/flu_search.sbatch flu-s-r17 flu-s-g17   # random search around ref.B
 LANES=4 sbatch --export=ALL --job-name=flu-s-ge03 --array=0-4 --dependency=afterany:10178852 scripts/flu_search.sbatch flu-s-ge03   # 2024-25-errors guard, seeds 60-75
 LANES=3 sbatch --export=ALL --job-name=flu-s-rs14 --array=0-4 scripts/flu_search.sbatch flu-s-rs14 flu-s-gs12   # Ar.peak, Bh.smp seeds 76-107
+LANES=4 sbatch --export=ALL --job-name=flu-s-st01 --array=0-4 --dependency=afterany:10194523 scripts/flu_search.sbatch flu-s-st01   # missing-newest-week stress view, B7 vs A members
