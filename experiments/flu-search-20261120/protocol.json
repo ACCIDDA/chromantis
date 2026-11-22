@@ -251,6 +251,10 @@
    "date": "2026-11-22 16:10 EST",
    "round": 22,
    "what": "User (22 Nov): keep looking; are covariates, the hospital-reporting percentage, MetroCast or other data streams such as wastewater worth retrying? Evidence so far: round 1 (old roots Bq, Bh, Ar) found every covariate level or worse (wastewater, ILINet, lab positivity 5-6% worse on Bh and Ar); hospital coverage explains 24-40% of the newest week's revision and the real-pair trees already use it, while the network reading it (Bh) buys October and costs ED and peak accuracy; MetroCast's metro-level ED is a sub-state slice of the NSSP ED share the models already read and is not in this panel. Round 22 (flu-s-r22 + guard flu-s-g22, array chained after the final masked seeds): on each final masked member (Bq.smp.ll1.nm10, ref.B.nm10, Ar.peak.nokinsa.nm10), coverage read by trees and network, coverage for the trees only, wastewater level, wastewater percentile rank, NREVSS lab positivity, FluSurv-NET, ILINet, outpatient claims, Kinsa; 8 seeds 44-51, stress views (missing newest week also scored), 2023-24 guard. Reason to retry: the masked networks tolerate missing inputs, which may change how short or patchy covariates (wastewater) behave."
+  },
+  {
+   "date": "2026-11-22 16:45 EST",
+   "what": "Queue note: round 22 waited on the whole previous array (afterany) while its last element ran alone, leaving four GPUs idle for up to an hour; the dependency was removed (scontrol update) and round 22 started on the free GPUs. Chaining on a whole array wastes GPUs during its tail; later rounds are released as soon as most of the previous array has finished."
   }
  ],
  "execution": {
