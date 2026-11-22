@@ -134,3 +134,8 @@ sbatch --job-name=flu-s-r17 --array=0-4 --dependency=afterany:10169515 scripts/f
 LANES=4 sbatch --export=ALL --job-name=flu-s-ge03 --array=0-4 --dependency=afterany:10178852 scripts/flu_search.sbatch flu-s-ge03   # 2024-25-errors guard, seeds 60-75
 LANES=3 sbatch --export=ALL --job-name=flu-s-rs14 --array=0-4 scripts/flu_search.sbatch flu-s-rs14 flu-s-gs12   # Ar.peak, Bh.smp seeds 76-107
 LANES=4 sbatch --export=ALL --job-name=flu-s-st01 --array=0-4 --dependency=afterany:10194523 scripts/flu_search.sbatch flu-s-st01   # missing-newest-week stress view, B7 vs A members
+# 2026-11-22 04:40-05:05 EST: 64-seed mixtures f64/fg64; stress mixtures st01 (views corrected + delayed); round 18 robustness training
+.venv/bin/python -m chromantis.experiment.planner plan -e flu-s-st01 --problem problems/us-flu-short-term-coverage.json --study $S/stress-st01.json --device cuda
+python3 experiments/flu-search-20261120/rounds.py 18
+.venv/bin/python -m chromantis.experiment.planner plan -e flu-s-r18 --problem problems/us-flu-short-term-coverage.json --study $S/round-18.json --device cuda
+LANES=4 sbatch --export=ALL --job-name=flu-s-r18 --array=0-4 scripts/flu_search.sbatch flu-s-r18

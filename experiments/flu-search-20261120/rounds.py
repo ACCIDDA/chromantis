@@ -330,6 +330,18 @@ def round17():
 
 
 ROUNDS[17] = dict(description='Flu search round 17 (2026-11-22): random search around ref.B (rng seed 20261122).', build=round17)
+def round18():
+    # 22 Nov 05:00: with the newest admission week missing at the deadline (stress view 'delayed'), candidate A degrades
+    # more than B7 (8 seeds: 0.387 vs 0.363). Teach robustness in training: random input-cell masking (autoencoder_mask,
+    # acts in the network without the reconstruction loss) or transported donor missingness masks. All with stress views;
+    # controls are the stress-view fits of flu-s-st01 (same seeds).
+    for root in ('Bq.smp.ll1', 'ref.B', 'Ar.peak.nokinsa'):
+        put(f'{root}.mask10', derive(R[root], autoencoder_mask=0.1, stress_views=1), root)
+        put(f'{root}.miss', derive(R[root], reporting_missingness=1, stress_views=1), root)
+
+
+ROUNDS[18] = dict(description='Flu search round 18 (2026-11-22): robustness to a missing newest week (input masking, donor '
+                              'missingness) on candidate A members, with stress views.', build=round18)
 GUARD = {'g03': ['Bq.gru', 'Bq.ll1', 'Bq.gru.ll1', 'Bq.gru.lb8', 'Bq.gru.nat', 'Bq.gru.bes', 'Bh.gru.ll1', 'Ar.flat',
                  'Ar.flat.gru', 'Ar.flat.gru.w192'],
          'g04': ['B5r', 'B5r.peak', 'B5r.local', 'Ar.peak', 'Bq.smp', 'Bq.gru.smp', 'Bq.gru.smp.peak', 'Bq.gru.smp.local',
