@@ -151,3 +151,4 @@ PYTHONPATH=src .venv/bin/python scripts/flu_search_release.py flu-masked-a-candi
 LANES=6 sbatch --export=ALL --job-name=flu-s-st05 --array=0-4 scripts/flu_search.sbatch flu-s-st05   # B7 stress controls seeds 60-91
 LANES=4 sbatch --export=ALL --job-name=flu-s-r21 --array=0-4 --dependency=afterany:10247367 scripts/flu_search.sbatch flu-s-r21 flu-s-g21   # masked B7 members
 LANES=4 sbatch --export=ALL --job-name=flu-s-ge04 --array=0-4 scripts/flu_search.sbatch flu-s-ge04   # masked A, 2024-25 errors guard
+LANES=4 sbatch --export=ALL --job-name=flu-s-rs18 --array=0-4 scripts/flu_search.sbatch flu-s-rs18 flu-s-gs15   # masked A seeds 92-107

@@ -242,6 +242,10 @@
    "date": "2026-11-22 15:05 EST",
    "round": "st05, 21",
    "what": "(1) Missing-newest-week comparison at 48 seeds (flu-mix-st48; main problem, 2024-25 and 2025-26 held out in turn, archived reports; states/DC log WIS, mean of the two seasons, lower is better), normal inputs / every location's newest admission week missing: B7 0.2967 / 0.3621; masked candidate A 0.2821 / 0.3438 (-4.9% / -5.1%). (2) Masked B7 (round 21: A_blocks3 and B5 with newest_mask 0.1, plus ref.B.nm10; 16 seeds; flu-mix-b7m main, flu-mix-b7mg guard): normal / missing / 2023-24 guard / peak window / October: B7 0.2986 / 0.3615 / 0.2851 / 0.323 / 0.503; masked B7 0.2964 / 0.3462 / 0.2880 / 0.317 / 0.500; masked A 0.2827 / 0.3450 / 0.2753 / 0.305 / 0.462. Masking gives B7 the same robustness to a missing newest week but almost none of the normal-week gain (-0.7%, and +1% on 2023-24); the ~5% gain comes from candidate A's members. Masked candidate A remains the recommendation. Queued: guard ge04 (masked A on 2023-24 with 2024-25 reporting errors, seeds 44-75)."
+  },
+  {
+   "date": "2026-11-22 15:55 EST",
+   "what": "Reporting-regime robustness of the recommended release at 32 seeds (flu-mix-ge04m; 2023-24 held out, trained on 2022-23, 2024-25, 2025-26 with artificial reporting errors drawn from 2024-25 in training and evaluation; equal weights; states/DC WIS, lower is better): B7 0.2855, masked candidate A 0.2772 (-2.9%); ED share x 1e4 33.75 vs 34.04 (+0.9%). Queued (array 10288087): masked members on seeds 92-107, main and guard, for 64-seed final numbers."
   }
  ],
  "execution": {
