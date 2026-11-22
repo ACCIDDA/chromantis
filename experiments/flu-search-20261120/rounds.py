@@ -308,6 +308,28 @@ def round16():
 
 ROUNDS[16] = dict(description='Flu search round 16 (2026-11-21): neighbouring-state exchange crossed for candidate A members.',
                   build=round16)
+def round17():
+    # 22 Nov 00:45: random search around candidate A's quantile member ref.B (B_width256 as in B7), never searched here.
+    import random
+    rng = random.Random(20261122)
+    menu = {'width': lambda d: str(int(int(d.get('width', 64)) * rng.choice([0.75, 1.25])) // 4 * 4),
+            'lr': lambda d: str(float(d.get('lr', 0.001)) * rng.choice([0.5, 2.0])),
+            'epochs': lambda d: str(rng.choice([160, 320])),
+            'log_loss_weight': lambda d: str(rng.choice([0.25, 1.0])),
+            'batch_size': lambda d: str(rng.choice([4, 16])),
+            'weight_decay': lambda d: str(rng.choice([1e-5, 1e-4])),
+            'lookback': lambda d: str(rng.choice([10, 14])),
+            'reporting_strength': lambda d: str(rng.choice([0.75, 1.25])),
+            'correction_penalty': lambda d: str(rng.choice([1.0, 10.0])),
+            'joint_weight': lambda d: str(rng.choice([0.05, 0.2])),
+            'reconstruction_weeks': lambda d: str(rng.choice([2, 6]))}
+    for i in range(8):
+        d = parse(R['ref.B'])
+        changes = {k: menu[k](d) for k in rng.sample(sorted(menu), 3)}
+        put(f'ref.B.RS{i}', derive(R['ref.B'], **changes), 'ref.B')
+
+
+ROUNDS[17] = dict(description='Flu search round 17 (2026-11-22): random search around ref.B (rng seed 20261122).', build=round17)
 GUARD = {'g03': ['Bq.gru', 'Bq.ll1', 'Bq.gru.ll1', 'Bq.gru.lb8', 'Bq.gru.nat', 'Bq.gru.bes', 'Bh.gru.ll1', 'Ar.flat',
                  'Ar.flat.gru', 'Ar.flat.gru.w192'],
          'g04': ['B5r', 'B5r.peak', 'B5r.local', 'Ar.peak', 'Bq.smp', 'Bq.gru.smp', 'Bq.gru.smp.peak', 'Bq.gru.smp.local',
@@ -323,7 +345,8 @@ GUARD = {'g03': ['Bq.gru', 'Bq.ll1', 'Bq.gru.ll1', 'Bq.gru.lb8', 'Bq.gru.nat', '
          'g13': ['Bq.smp.ll1.w128', 'Bq.smp.ll1.w384', 'Ar.peak.nokinsa.w192', 'Ar.peak.nokinsa.flat'],
          'g14': [f'{r}.RS{i}' for r in ('Bq.smp.ll1', 'Ar.peak.nokinsa') for i in range(8)],
          'g15': [f'{r}.{v}' for r in ('Bq.smp.ll1', 'Ar.peak.nokinsa') for v in ('ed4', 'edlin', 'edraw')],
-         'g16': ['Ar.peak.nokinsa.nbr', 'Bq.smp.ll1.nosp']}
+         'g16': ['Ar.peak.nokinsa.nbr', 'Bq.smp.ll1.nosp'],
+         'g17': [f'ref.B.RS{i}' for i in range(8)]}
 
 
 def write_guard(tag):

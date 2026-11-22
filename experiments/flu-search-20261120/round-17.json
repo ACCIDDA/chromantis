@@ -1,0 +1,34 @@
+{
+ "description": "Flu search round 17 (2026-11-22): random search around ref.B (rng seed 20261122).",
+ "round": 17,
+ "parents": {
+  "ref.B.RS0": "ref.B",
+  "ref.B.RS1": "ref.B",
+  "ref.B.RS2": "ref.B",
+  "ref.B.RS3": "ref.B",
+  "ref.B.RS4": "ref.B",
+  "ref.B.RS5": "ref.B",
+  "ref.B.RS6": "ref.B",
+  "ref.B.RS7": "ref.B"
+ },
+ "candidates": {
+  "ref.B.RS0": "history_source=artificial,reconstruction_labels=1,error_signals=targets,input_set=target,correction_weeks=2,correction_ed=1,joint_weight=0.05,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,loss_weights=objective,spatial=neighbors,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=0.5,weight_decay=0.0001,reporting_strength=0.75",
+  "ref.B.RS1": "history_source=artificial,reconstruction_labels=1,error_signals=targets,input_set=target,correction_weeks=2,correction_ed=1,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,loss_weights=objective,spatial=neighbors,decoder=quantile,width=192,epochs=240,patience=25,lr=0.001,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=0.5,batch_size=16",
+  "ref.B.RS2": "history_source=artificial,reconstruction_labels=1,error_signals=targets,input_set=target,correction_weeks=2,correction_ed=1,joint_weight=0.2,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=6,ed_transform=logit,loss_weights=objective,spatial=neighbors,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=0.5,lookback=14",
+  "ref.B.RS3": "history_source=artificial,reconstruction_labels=1,error_signals=targets,input_set=target,correction_weeks=2,correction_ed=1,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=2,ed_transform=logit,loss_weights=objective,spatial=neighbors,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=1.0,reporting_strength=1.25",
+  "ref.B.RS4": "history_source=artificial,reconstruction_labels=1,error_signals=targets,input_set=target,correction_weeks=2,correction_ed=1,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,loss_weights=objective,spatial=neighbors,decoder=quantile,width=256,epochs=240,patience=25,lr=0.00025,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=0.5,reporting_strength=0.75,lookback=14",
+  "ref.B.RS5": "history_source=artificial,reconstruction_labels=1,error_signals=targets,input_set=target,correction_weeks=2,correction_ed=1,joint_weight=0.05,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=6,ed_transform=logit,loss_weights=objective,spatial=neighbors,decoder=quantile,width=256,epochs=240,patience=25,lr=0.00025,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=0.5",
+  "ref.B.RS6": "history_source=artificial,reconstruction_labels=1,error_signals=targets,input_set=target,correction_weeks=2,correction_ed=1,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=2,ed_transform=logit,loss_weights=objective,spatial=neighbors,decoder=quantile,width=320,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=0.5,lookback=10",
+  "ref.B.RS7": "history_source=artificial,reconstruction_labels=1,error_signals=targets,input_set=target,correction_weeks=2,correction_ed=1,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,loss_weights=objective,spatial=neighbors,decoder=quantile,width=192,epochs=240,patience=25,lr=0.00025,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=1.0"
+ },
+ "seeds": [
+  44,
+  45,
+  46,
+  47,
+  48,
+  49,
+  50,
+  51
+ ]
+}
