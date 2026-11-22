@@ -143,3 +143,4 @@ LANES=4 sbatch --export=ALL --job-name=flu-s-r18 --array=0-4 scripts/flu_search.
 python3 experiments/flu-search-20261120/rounds.py 19
 .venv/bin/python -m chromantis.experiment.planner plan -e flu-s-r19 --problem problems/us-flu-short-term-coverage.json --study $S/round-19.json --device cuda
 LANES=4 sbatch --export=ALL --job-name=flu-s-r19 --array=0-4 scripts/flu_search.sbatch flu-s-r19
+LANES=4 sbatch --export=ALL --job-name=flu-s-rs15 --array=0-4 scripts/flu_search.sbatch flu-s-rs15 flu-s-g20   # masking recipes: 16 seeds + guard
