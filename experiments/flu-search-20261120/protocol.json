@@ -246,6 +246,11 @@
   {
    "date": "2026-11-22 15:55 EST",
    "what": "Reporting-regime robustness of the recommended release at 32 seeds (flu-mix-ge04m; 2023-24 held out, trained on 2022-23, 2024-25, 2025-26 with artificial reporting errors drawn from 2024-25 in training and evaluation; equal weights; states/DC WIS, lower is better): B7 0.2855, masked candidate A 0.2772 (-2.9%); ED share x 1e4 33.75 vs 34.04 (+0.9%). Queued (array 10288087): masked members on seeds 92-107, main and guard, for 64-seed final numbers."
+  },
+  {
+   "date": "2026-11-22 16:10 EST",
+   "round": 22,
+   "what": "User (22 Nov): keep looking; are covariates, the hospital-reporting percentage, MetroCast or other data streams such as wastewater worth retrying? Evidence so far: round 1 (old roots Bq, Bh, Ar) found every covariate level or worse (wastewater, ILINet, lab positivity 5-6% worse on Bh and Ar); hospital coverage explains 24-40% of the newest week's revision and the real-pair trees already use it, while the network reading it (Bh) buys October and costs ED and peak accuracy; MetroCast's metro-level ED is a sub-state slice of the NSSP ED share the models already read and is not in this panel. Round 22 (flu-s-r22 + guard flu-s-g22, array chained after the final masked seeds): on each final masked member (Bq.smp.ll1.nm10, ref.B.nm10, Ar.peak.nokinsa.nm10), coverage read by trees and network, coverage for the trees only, wastewater level, wastewater percentile rank, NREVSS lab positivity, FluSurv-NET, ILINet, outpatient claims, Kinsa; 8 seeds 44-51, stress views (missing newest week also scored), 2023-24 guard. Reason to retry: the masked networks tolerate missing inputs, which may change how short or patchy covariates (wastewater) behave."
   }
  ],
  "execution": {

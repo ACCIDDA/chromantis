@@ -371,6 +371,21 @@ def round21():
 
 ROUNDS[21] = dict(description='Flu search round 21 (2026-11-22): newest-week masking on B7\'s A_blocks3 and B5 (masked B7).',
                   build=round21)
+def round22():
+    # 22 Nov 16:05, user: are covariates, hospital-reporting coverage or other data streams worth retrying? Round 1
+    # tested them on the old roots (all level or worse). Retried on the final masked members, which now tolerate missing
+    # inputs; with stress views (missing newest week) and the 2023-24 guard.
+    for root in ('Bq.smp.ll1.nm10', 'ref.B.nm10', 'Ar.peak.nokinsa.nm10'):
+        r = R[root]
+        put(f'{root}.cov', derive(add_covariates(r, 'hosprep'), error_signals='all'), root)       # coverage: trees and network
+        put(f'{root}.covtrees', derive(add_covariates(r, 'hosprep'), error_signals='all', network_coverage=0), root)
+        for tag, cs in (('ww', 'ww_flu'), ('wwrank', 'ww_flu_pct_rank'), ('clab', 'clinical_lab'), ('fsurv', 'flusurv'),
+                        ('ilinet', 'ilinet'), ('outp', 'outpatient_flu'), ('kinsa', 'kinsa')):
+            put(f'{root}.{tag}', add_covariates(r, cs), root)
+
+
+ROUNDS[22] = dict(description='Flu search round 22 (2026-11-22, user request): covariates and hospital-reporting coverage '
+                              'retried on the final masked members, with stress views.', build=round22)
 GUARD = {'g03': ['Bq.gru', 'Bq.ll1', 'Bq.gru.ll1', 'Bq.gru.lb8', 'Bq.gru.nat', 'Bq.gru.bes', 'Bh.gru.ll1', 'Ar.flat',
                  'Ar.flat.gru', 'Ar.flat.gru.w192'],
          'g04': ['B5r', 'B5r.peak', 'B5r.local', 'Ar.peak', 'Bq.smp', 'Bq.gru.smp', 'Bq.gru.smp.peak', 'Bq.gru.smp.local',
@@ -388,7 +403,9 @@ GUARD = {'g03': ['Bq.gru', 'Bq.ll1', 'Bq.gru.ll1', 'Bq.gru.lb8', 'Bq.gru.nat', '
          'g15': [f'{r}.{v}' for r in ('Bq.smp.ll1', 'Ar.peak.nokinsa') for v in ('ed4', 'edlin', 'edraw')],
          'g16': ['Ar.peak.nokinsa.nbr', 'Bq.smp.ll1.nosp'],
          'g17': [f'ref.B.RS{i}' for i in range(8)],
-         'g21': ['ref.A.nm10', 'ref.B5.nm10']}
+         'g21': ['ref.A.nm10', 'ref.B5.nm10'],
+         'g22': [f'{r}.{t}' for r in ('Bq.smp.ll1.nm10', 'ref.B.nm10', 'Ar.peak.nokinsa.nm10')
+                 for t in ('cov', 'covtrees', 'ww', 'wwrank', 'clab', 'fsurv', 'ilinet', 'outp', 'kinsa')]}
 
 
 def write_guard(tag):

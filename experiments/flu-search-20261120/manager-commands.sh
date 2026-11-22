@@ -152,3 +152,8 @@ LANES=6 sbatch --export=ALL --job-name=flu-s-st05 --array=0-4 scripts/flu_search
 LANES=4 sbatch --export=ALL --job-name=flu-s-r21 --array=0-4 --dependency=afterany:10247367 scripts/flu_search.sbatch flu-s-r21 flu-s-g21   # masked B7 members
 LANES=4 sbatch --export=ALL --job-name=flu-s-ge04 --array=0-4 scripts/flu_search.sbatch flu-s-ge04   # masked A, 2024-25 errors guard
 LANES=4 sbatch --export=ALL --job-name=flu-s-rs18 --array=0-4 scripts/flu_search.sbatch flu-s-rs18 flu-s-gs15   # masked A seeds 92-107
+# 2026-11-22 16:10 EST: round 22 (user request) - covariates and coverage on the masked members, with guard
+python3 experiments/flu-search-20261120/rounds.py 22; python3 experiments/flu-search-20261120/rounds.py g22
+.venv/bin/python -m chromantis.experiment.planner plan -e flu-s-r22 --problem problems/us-flu-short-term-coverage.json --study $S/round-22.json --device cuda
+.venv/bin/python -m chromantis.experiment.planner plan -e flu-s-g22 --problem problems/us-flu-2023-24-prescribed-coverage.json --study $S/guard-g22.json --device cuda
+LANES=4 sbatch --export=ALL --job-name=flu-s-r22 --array=0-4 --dependency=afterany:10288087 scripts/flu_search.sbatch flu-s-r22 flu-s-g22
