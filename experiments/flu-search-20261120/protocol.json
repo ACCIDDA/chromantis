@@ -187,6 +187,11 @@
   {
    "date": "2026-11-21 23:55 EST",
    "what": "The queue ran empty at about 23:30. (1) Bq.smp.ll1.nosp on 32 seeds (44-75; main problem, leak-free errors, archived reports; states/DC log WIS, lower is better): 0.2957 (2024-25 0.2964, 2025-26 0.2950), guard 0.2938, against Bq.smp.ll1 0.2993 (0.3059 / 0.2927), guard 0.2955: now higher in 2025-26, so 'level' (the 16-seed gain of 2.4% halved, as earlier gains did). In the mixture (32 seeds; flu-mix-nosp, nospg): A without Kinsa 0.2923 / 0.2723 / 0.2739 against the same with Bq.smp.ll1.nosp 0.2910 / 0.2733 / 0.2738: level; not adopted. (2) Old (leaky) protocol, flu-s-rl01 and flu-mix-leaky (error_reference=2025-2026 for every recipe, so the 2025-26 fold trains on 2025-26 reporting errors; 16 seeds): B7 0.3129 / 0.2808, A without Kinsa 0.2978 / 0.2742 (-4.8% / -2.4%); ED x 1e4 49.01 / 43.32 vs 49.65 / 44.72. The A-vs-B7 ranking does not depend on the leak-free design. Queued overnight: seeds 92-107 of ref.A, ref.B5, ref.B, Bq.smp.ll1 and Ar.peak.nokinsa on the main problem (rs13) and the guard (gs11), for 64-seed final numbers."
+  },
+  {
+   "date": "2026-11-22 02:05 EST",
+   "round": "17, rs13, gs11",
+   "what": "Round 17 (random search around ref.B = B_width256, rng seed 20261122, three settings changed at once, 8 seeds; main problem as before; states/DC log WIS, lower is better): against ref.B on 64 seeds (0.3015; 2024-25 0.3151, 2025-26 0.2879), the best draw RS3 0.2943 is higher in 2025-26 (0.2905), so level; the others 0.2995-0.3247, level or worse. All three members of candidate A now sit on a plateau. Final 64-seed mixtures (flu-mix-m64 main, flu-mix-g64 guard; seeds 44-107; equal weights): log admissions 2024-25 / 2025-26 / 2023-24 / mean: B7 refit leak-free 0.3140 / 0.2766 / 0.2838 / 0.2915; candidate A without Kinsa (Bq.smp.ll1 + ref.B + Ar.peak.nokinsa) 0.2929 / 0.2714 / 0.2735 / 0.2793 (-4.2%); ED share x 1e4 48.87 / 42.92 / 34.76 vs 48.52 / 44.42 / 34.33. The gain over B7 has stayed between -4.2% and -4.7% from 16 to 64 seeds. Queued overnight: the 2024-25-errors guard on seeds 60-75 (ge03) for B7's and A's members."
   }
  ],
  "execution": {
