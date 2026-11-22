@@ -211,6 +211,10 @@
    "date": "2026-11-22 06:50 EST",
    "round": "19, rs15, g20",
    "what": "The queue ran empty at about 06:35. Round 19 (8 seeds 44-51, stress views; main problem; states/DC log WIS, mean of 2024-25 and 2025-26, lower is better; controls = flu-s-st01 fits of the same recipes and seeds). Normal inputs / newest week missing / ED share x 1e4 2025-26: ref.B 0.3088 / 0.4249 / 45.26; ref.B.nm10 (each location's newest week hidden with probability 0.1 in training) 0.2946 / 0.3639 / 45.80 (-4.6% / -14%); ref.B.mask03 (3% random cells) 0.3018 / 0.3626 / 46.84. Bq.smp.ll1 0.2928 / 0.4250 / 47.49; .nm10 0.2971 / 0.3698 / 46.90 (+1.5% / -13%); .mask03 0.2964 / 0.3601 / 47.35. Ar.peak.nokinsa 0.3054 / 0.4096 / 48.02; .nm10 0.3117 / 0.3880 / 46.99 (+2.1% / -5%). Newest-week masking keeps normal-input skill within the margin (or improves it, B_width256) while removing most of the loss from a missing newest week. Queued (array 10213344): seeds 52-59 of the five masking recipes with stress-view controls of the three members (rs15), and their 2023-24 guard on seeds 44-59 (g20), then mixtures."
+  },
+  {
+   "date": "2026-11-22 07:55 EST",
+   "what": "Newest-week masking on 16 seeds (44-59; seed means over 2024-25 and 2025-26 held out in turn, archived reports, states/DC log WIS, lower is better; stress-view fits): normal inputs / newest week missing: ref.B 0.3045 / 0.4509, ref.B.nm10 0.3014 / 0.3662; Bq.smp.ll1 0.2990 / 0.4278, .nm10 0.2980 / 0.3684; Ar.peak.nokinsa 0.3147 / 0.4079, .nm10 0.3177 / 0.3868. Normal-input skill level for all three members (-1.0%, -0.3%, +1.0%), missing-week loss cut by 19%, 14% and 5%, and smaller seed spread. 3% random masking: similar on the B family but slightly worse on normal inputs. Provisional decision, pending the 2023-24 guard (g20): candidate A's members become their nm10 versions. Release fits of the masked members queued behind the guard (flu-s-release4: seeds 42-81, all of 2022-23..2025-26, no stress views, unscored on 2026-27)."
   }
  ],
  "execution": {

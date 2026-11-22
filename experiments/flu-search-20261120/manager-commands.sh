@@ -144,3 +144,4 @@ python3 experiments/flu-search-20261120/rounds.py 19
 .venv/bin/python -m chromantis.experiment.planner plan -e flu-s-r19 --problem problems/us-flu-short-term-coverage.json --study $S/round-19.json --device cuda
 LANES=4 sbatch --export=ALL --job-name=flu-s-r19 --array=0-4 scripts/flu_search.sbatch flu-s-r19
 LANES=4 sbatch --export=ALL --job-name=flu-s-rs15 --array=0-4 scripts/flu_search.sbatch flu-s-rs15 flu-s-g20   # masking recipes: 16 seeds + guard
+mkdir -p data/experiments/flu-s-release4/scoring.lock; LANES=4 sbatch --export=ALL --job-name=flu-s-release4 --array=0-4 --dependency=afterany:10213344 scripts/flu_search.sbatch flu-s-release4   # masked candidate A release fits, unscored
