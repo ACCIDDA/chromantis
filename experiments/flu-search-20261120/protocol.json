@@ -300,6 +300,10 @@
   {
    "date": "2026-11-23 06:55 EST",
    "what": "Masked candidate A with the shared-national-factor sampled members (flu-mix-usf; 24 seeds 44-67; main problem, archived reports; states/DC WIS, lower is better): log admissions 2024-25 / 2025-26 0.2939 / 0.2722 -> 0.2908 / 0.2704 (-0.8%), newest week missing 0.3446 -> 0.3430, rising / peak / falling 0.317 / 0.311 / 0.248 -> 0.310 / 0.307 / 0.249, US log WIS 0.158 / 0.156 -> 0.154 / 0.155, ED share x 1e4 49.76 / 44.17 -> 49.33 / 44.00. Small and in the same direction nearly everywhere, but below the 1% margin: 'level' under the pre-registered rule, so not adopted (the user's concern about small differences). Recorded as a no-cost option; 2023-24 guard pending."
+  },
+  {
+   "date": "2026-11-23 07:50 EST",
+   "what": "Guard of the shared-factor variant (flu-mix-usfg; 2023-24 held out, artificial reports, 16 seeds; states/DC log WIS, lower is better): masked A 0.2753, with shared-factor members 0.2759; ED share x 1e4 34.65 vs 34.97. Level to slightly worse: confirms not adopting it. The queue is empty; every axis tried has been closed or confirmed, and the remaining GPU time until the 12:00 end would only add precision. Final recommendation: masked candidate A (Bq.smp.ll1.nm10 + ref.B.nm10 + Ar.peak.nokinsa.nm10, equal weights), draft release experiments/flu-search-20261120/draft-release-masked-a.json (80 all-season fits per recipe), pending the user's decision."
   }
  ],
  "execution": {
