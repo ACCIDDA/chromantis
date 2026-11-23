@@ -278,6 +278,10 @@
   {
    "date": "2026-11-23 00:00 EST",
    "what": "64-seed robustness of the recommended release (equal weights; states/DC WIS, lower is better). (1) 2023-24 held out, trained on 2022-23, 2024-25, 2025-26 with artificial reporting errors drawn from 2024-25 in training and evaluation (flu-mix-ge64): B7 0.2851, masked candidate A 0.2785 (-2.3%); ED share x 1e4 33.89 vs 34.16 (+0.8%). (2) Main problem (2024-25 and 2025-26 held out in turn, archived reports), normal inputs / every location's newest admission week missing at the deadline (flu-mix-st64; stress-view fits, seeds 44-107): B7 0.2964 / 0.3622, masked A 0.2814 / 0.3440 (-5.1% / -5.0%). Queued overnight (array 10401983): masked members on seeds 108-139, main and guard, for precision only."
+  },
+  {
+   "date": "2026-11-23 01:55 EST",
+   "what": "A fourth masked member for candidate A (16 seeds; flu-mix-b5m main with views corrected / delayed, flu-mix-b5mg guard; states/DC log WIS, lower is better): masked A 0.2827 / 0.3450, guard 0.2753; + masked B5 0.2866 / 0.3428, guard 0.2769; + masked A_blocks3 0.2870 / 0.3443, guard 0.2795. Worse with normal inputs and on 2023-24, level with a missing week: not adopted. Precision seeds 108-139 of the masked members are complete; queued: B7 members on seeds 108-139, main (stress views) and guard, so the final comparison has 96 seeds on both sides."
   }
  ],
  "execution": {
