@@ -193,3 +193,4 @@ LANES=4 sbatch --export=ALL --job-name=flu-s-r25 --array=0-4 scripts/flu_search.
 .venv/bin/python -m chromantis.experiment.planner status -e flu-s-r25
 .venv/bin/python -m chromantis.experiment.planner rank -e flu-s-r25 --allow-incomplete --no-report
 .venv/bin/python scripts/flu_search_table.py -e flu-s-r25 --guard flu-s-g25 --out output/flu-search/r25.csv
+# 2026-11-23 17:30 EST: Trends pull done; gt panel built; round 25 launched as job 10533063 (two earlier submissions cancelled: study/problem files not yet synced)
