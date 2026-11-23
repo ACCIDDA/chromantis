@@ -159,3 +159,4 @@ python3 experiments/flu-search-20261120/rounds.py 22; python3 experiments/flu-se
 LANES=4 sbatch --export=ALL --job-name=flu-s-r22 --array=0-4 --dependency=afterany:10288087 scripts/flu_search.sbatch flu-s-r22 flu-s-g22
 LANES=4 sbatch --export=ALL --job-name=flu-s-rs19 --array=0-4 scripts/flu_search.sbatch flu-s-rs19 flu-s-gs16   # FluSurv-NET masked members, seeds 52-67
 mkdir -p data/experiments/flu-s-release5/scoring.lock; LANES=4 sbatch --export=ALL --job-name=flu-s-release5 --array=0-4 scripts/flu_search.sbatch flu-s-release5   # masked A release seeds 82-121, unscored
+LANES=4 sbatch --export=ALL --job-name=flu-s-ge05 --array=0-4 scripts/flu_search.sbatch flu-s-ge05   # 64-seed reporting-regime guard, masked A and B7

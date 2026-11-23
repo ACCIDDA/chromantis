@@ -269,6 +269,11 @@
    "date": "2026-11-22 20:05 EST",
    "round": 22,
    "what": "Data check of the round-22 covariates (scripts check on panel-coverage.npz: share of evaluation context cells whose Wednesday report was not archived and is filled with the finalized value): FluSurv-NET 100% filled in 2024-25 and 45% in 2025-26 (newest archived week typically far behind); wastewater level 100% / 65%; hospital coverage 29% / 7% (archive starts 11 Dec 2024); NREVSS lab positivity and ILINet 9% / 20%. Filled values are finalized and on time, i.e. hindsight the models would not have at a deadline. FluSurv-NET's gain (Bq.smp.ll1.nm10.fsurv -2.3%) sits in January-February 2025 (e.g. Jan 0.320 -> 0.281), exactly the unarchived weeks: not credible, not adopted; its reseed (array 10338467) was cancelled. An honest test needs a FluSurv-NET report archive (Delphi issues), a data task left for later. Hospital coverage read by the network (masked members): October better in both seasons including the archived 2025 (Bq 0.606 -> 0.556 and 0.361 -> 0.306; Ar 0.638 -> 0.561 and 0.300 -> 0.286) but December and late season worse (Bq Dec 2024 0.223 -> 0.256, Mar 2026 0.338 -> 0.440; Ar Dec 2025 0.323 -> 0.412): an early-season helper, level over the season, not adopted (as Bh). Queued: masked candidate A release seeds 82-121 (flu-s-release5, unscored), so a release can use 80 seeds per recipe."
+  },
+  {
+   "date": "2026-11-22 21:50 EST",
+   "round": "22 guard",
+   "what": "Round 22 guard (2023-24 held out, artificial reports, 8 seeds 44-51, against the masked parents on 64 seeds: Bq.smp.ll1.nm10 0.2974, ref.B.nm10 0.3020, Ar.peak.nokinsa.nm10 0.2993; states/DC log WIS, lower is better). Changes range from -3.8% to +6.2% with no consistent sign across members: Kinsa worse on all three (+4.6, +2.9, +4.1%), outpatient claims worse on two (+3.4, +6.2%), ILINet better on two (-3.5, -3.8%) but level on the main problem and +1.3% on ref.B, FluSurv-NET -2.7 / -0.9 / +1.0% (its main-problem gain is hindsight, see 20:05), coverage +4.5 / +0.5 / -0.9%. The covariate axis is closed: none adopted. Queued overnight (ge05): masked A and B7 members on 2023-24 with 2024-25 reporting errors, seeds 76-107, for a 64-seed reporting-regime comparison."
   }
  ],
  "execution": {
