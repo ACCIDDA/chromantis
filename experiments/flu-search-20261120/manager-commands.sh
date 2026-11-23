@@ -161,3 +161,4 @@ LANES=4 sbatch --export=ALL --job-name=flu-s-rs19 --array=0-4 scripts/flu_search
 mkdir -p data/experiments/flu-s-release5/scoring.lock; LANES=4 sbatch --export=ALL --job-name=flu-s-release5 --array=0-4 scripts/flu_search.sbatch flu-s-release5   # masked A release seeds 82-121, unscored
 LANES=4 sbatch --export=ALL --job-name=flu-s-ge05 --array=0-4 scripts/flu_search.sbatch flu-s-ge05   # 64-seed reporting-regime guard, masked A and B7
 LANES=6 sbatch --export=ALL --job-name=flu-s-st06 --array=0-4 scripts/flu_search.sbatch flu-s-st06   # B7 stress seeds 92-107
+LANES=4 sbatch --export=ALL --job-name=flu-s-rs20 --array=0-4 scripts/flu_search.sbatch flu-s-rs20 flu-s-gs17   # masked A seeds 108-139 (overnight precision)
