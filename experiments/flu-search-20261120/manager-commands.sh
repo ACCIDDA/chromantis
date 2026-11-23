@@ -169,3 +169,4 @@ M="--members B7=ref.A,ref.B5,ref.B NKm=Ar.peak.nokinsa.nm10 QLm=Bq.smp.ll1.nm10 
 .venv/bin/python scripts/flu_search_mix.py fgm96 --experiments flu-s-g01 flu-s-gs01 flu-s-gs04 flu-s-gs05 flu-s-gs09 flu-s-gs11 flu-s-gs18 flu-s-g20 flu-s-gs13 flu-s-gs14 flu-s-gs15 flu-s-gs17 $M
 LANES=3 sbatch --export=ALL --job-name=flu-s-r23 --array=0-4 scripts/flu_search.sbatch flu-s-r23 flu-s-g23   # cvae / shared factor on masked sampled members
 LANES=3 sbatch --export=ALL --job-name=flu-s-rs22 --array=0-4 scripts/flu_search.sbatch flu-s-rs22 flu-s-gs19   # shared-factor members seeds 52-67
+PYTHONPATH=src .venv/bin/python scripts/flu_live_rank.py --hub production/hubs/FluSight-forecast-hub --target hosp --candidate "Masked A=flu-s-release4+flu-s-release5:Bq.smp.ll1.nm10,ref.B.nm10,Ar.peak.nokinsa.nm10" --candidate "A unmasked=flu-s-release+flu-s-release2:Bq.smp.ll1,ref.B,Ar.peak.nokinsa"   # post-selection live ranking (user request 23 Nov)
