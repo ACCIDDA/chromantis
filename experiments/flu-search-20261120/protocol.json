@@ -286,6 +286,11 @@
   {
    "date": "2026-11-23 04:10 EST",
    "what": "Final 96-seed comparison (seeds 44-139 per recipe; equal weights; flu-mix-fm96 main = 2024-25 and 2025-26 held out in turn, trained on the other seasons of 2022-23..2025-26, leak-free errors, archived Wednesday reports; flu-mix-fgm96 guard = 2023-24 held out, artificial reports; flu-mix-st96 = main problem with every location's newest admission week missing; WIS over the 50 states and DC unless noted, lower is better). Log admissions 2024-25 / 2025-26 / 2023-24 / mean: B7 refit leak-free 0.3141 / 0.2766 / 0.2843 / 0.2917; masked candidate A 0.2907 / 0.2711 / 0.2765 / 0.2794 (-4.2%; -7.4%, -2.0%, -2.7%). Newest week missing: 0.3622 vs 0.3429 (-5.3%). Rising / peak window / falling: 0.339 / 0.317 / 0.256 vs 0.313 / 0.310 / 0.247; October 0.501 vs 0.455. ED share x 1e4: 48.80 / 42.87 / 34.73 vs 49.04 / 44.27 / 34.70 (+0.5%, +3.3%, level). US log WIS: 0.165 / 0.153 / 0.162 vs 0.154 / 0.156 / 0.156. Hub pairwise relative WIS (log admissions): 2024-25 0.469 vs 0.439, 2025-26 0.504 vs 0.499. The search ends here on the GPU side: further seeds only add precision. Recommendation unchanged: masked candidate A (draft release experiments/flu-search-20261120/draft-release-masked-a.json, 80 all-season fits per recipe), pending the user's decision."
+  },
+  {
+   "date": "2026-11-23 04:50 EST",
+   "round": 23,
+   "what": "Queue empty at 03:40; the user asked to keep looking. Round 23 (flu-s-r23 + guard flu-s-g23, array 10446738; 8 seeds, stress views): on the masked sampled members Bq.smp.ll1.nm10 and Ar.peak.nokinsa.nm10, a conditional-VAE latent (latent_model=cvae: a prior learned from the history, posterior seeing the future in training; improved peak-week scores in autoenc-20261024) and a shared national noise factor (us_error=shared_factor: one common draw moves all states together). Both aim at the peak, where every mixture is about 0.36 (log) too low."
   }
  ],
  "execution": {

@@ -167,3 +167,4 @@ LANES=6 sbatch --export=ALL --job-name=flu-s-rs21 --array=0-4 scripts/flu_search
 M="--members B7=ref.A,ref.B5,ref.B NKm=Ar.peak.nokinsa.nm10 QLm=Bq.smp.ll1.nm10 Bm=ref.B.nm10 --groups B7:B7 A_masked:QLm,Bm,NKm --max-seeds 96"
 .venv/bin/python scripts/flu_search_mix.py fm96 --experiments flu-s-r01 flu-s-rs01 flu-s-rs06 flu-s-rs07 flu-s-rs11 flu-s-rs13 flu-s-rs21 flu-s-r19 flu-s-rs15 flu-s-rs16 flu-s-rs17 flu-s-rs18 flu-s-rs20 $M
 .venv/bin/python scripts/flu_search_mix.py fgm96 --experiments flu-s-g01 flu-s-gs01 flu-s-gs04 flu-s-gs05 flu-s-gs09 flu-s-gs11 flu-s-gs18 flu-s-g20 flu-s-gs13 flu-s-gs14 flu-s-gs15 flu-s-gs17 $M
+LANES=3 sbatch --export=ALL --job-name=flu-s-r23 --array=0-4 scripts/flu_search.sbatch flu-s-r23 flu-s-g23   # cvae / shared factor on masked sampled members

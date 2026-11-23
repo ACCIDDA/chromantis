@@ -386,6 +386,17 @@ def round22():
 
 ROUNDS[22] = dict(description='Flu search round 22 (2026-11-22, user request): covariates and hospital-reporting coverage '
                               'retried on the final masked members, with stress views.', build=round22)
+def round23():
+    # 23 Nov 04:45: two options never tried here on the sampled members, aimed at the peak (every model ~0.36 log low
+    # near the peak): a learned latent prior (conditional VAE, improved peak-week scores in autoenc-20261024) and a
+    # shared national noise factor (coherent state trajectories, US total).
+    for root in ('Bq.smp.ll1.nm10', 'Ar.peak.nokinsa.nm10'):
+        put(f'{root}.cvae', derive(R[root], latent_model='cvae'), root)
+        put(f'{root}.usf', derive(R[root], us_error='shared_factor'), root)
+
+
+ROUNDS[23] = dict(description='Flu search round 23 (2026-11-23): conditional-VAE latent and shared national noise factor on '
+                              'the masked sampled members.', build=round23)
 GUARD = {'g03': ['Bq.gru', 'Bq.ll1', 'Bq.gru.ll1', 'Bq.gru.lb8', 'Bq.gru.nat', 'Bq.gru.bes', 'Bh.gru.ll1', 'Ar.flat',
                  'Ar.flat.gru', 'Ar.flat.gru.w192'],
          'g04': ['B5r', 'B5r.peak', 'B5r.local', 'Ar.peak', 'Bq.smp', 'Bq.gru.smp', 'Bq.gru.smp.peak', 'Bq.gru.smp.local',
@@ -405,7 +416,8 @@ GUARD = {'g03': ['Bq.gru', 'Bq.ll1', 'Bq.gru.ll1', 'Bq.gru.lb8', 'Bq.gru.nat', '
          'g17': [f'ref.B.RS{i}' for i in range(8)],
          'g21': ['ref.A.nm10', 'ref.B5.nm10'],
          'g22': [f'{r}.{t}' for r in ('Bq.smp.ll1.nm10', 'ref.B.nm10', 'Ar.peak.nokinsa.nm10')
-                 for t in ('cov', 'covtrees', 'ww', 'wwrank', 'clab', 'fsurv', 'ilinet', 'outp', 'kinsa')]}
+                 for t in ('cov', 'covtrees', 'ww', 'wwrank', 'clab', 'fsurv', 'ilinet', 'outp', 'kinsa')],
+         'g23': [f'{r}.{t}' for r in ('Bq.smp.ll1.nm10', 'Ar.peak.nokinsa.nm10') for t in ('cvae', 'usf')]}
 
 
 def write_guard(tag):
