@@ -397,6 +397,52 @@ def round23():
 
 ROUNDS[23] = dict(description='Flu search round 23 (2026-11-23): conditional-VAE latent and shared national noise factor on '
                               'the masked sampled members.', build=round23)
+def round24():
+    # 23 Nov 12:30, user: smaller designs that generalize better and are less prone to overfitting, and new nowcasting
+    # approaches. Hub leaders this season include small models (DMAPRIME-HYB: 10-week window, inputs relative to the last
+    # week, outputs log change; LUcompUncertLab-puca: reduced-rank regression; NU-EMBERS: a nowcast likelihood instead of a
+    # point correction). Small: width 64/32 (round 13 tried 128 only), no hand-made dynamics block, growth anchor (forecast
+    # relative to recent growth), stronger weight decay, and a 'tiny' combination. Nowcast: correction trees at 0.5 and
+    # 0.75 strength (production halved Bes's trees on 4 Nov after they over-corrected 2025-26 and 2026-27 first reports;
+    # never tested on past seasons) and sampled correction residuals in training and forecasting (nowcast uncertainty
+    # carried into the trajectories) on the sampled members. All on the masked members, with stress views.
+    tiny = dict(width=32, lookback=8, dynamics=0, weight_decay=1e-4)
+    for root, small in (('Bq.smp.ll1.nm10', {'w64': dict(width=64), 'w32': dict(width=32)}),
+                        ('Ar.peak.nokinsa.nm10', {'w48': dict(width=48)}),
+                        ('ref.B.nm10', {'w64': dict(width=64)})):
+        r = R[root]
+        for tag, ch in small.items():
+            put(f'{root}.{tag}', derive(r, **ch), root)
+        put(f'{root}.tiny', derive(r, drop=('decoder_blocks',), **tiny), root)
+        put(f'{root}.nodyn', derive(r, dynamics=0), root)
+        if root != 'ref.B.nm10':
+            put(f'{root}.ga', derive(r, growth_anchor=1), root)
+            put(f'{root}.wd3', derive(r, weight_decay=1e-3), root)
+            # residuals also in training only where the network trains on corrected histories (as round 1's 'noise')
+            noise = dict(correction_noise=0.5, correction_noise_train=1) if parse(r).get('history_correction') == '1' \
+                else dict(correction_noise=0.5)
+            put(f'{root}.cnoise', derive(r, **noise), root)
+        put(f'{root}.cs05', derive(r, correction_strength=0.5), root)
+        put(f'{root}.cs075', derive(r, correction_strength=0.75), root)
+
+
+ROUNDS[24] = dict(description='Flu search round 24 (2026-11-23, user request): smaller, more general designs (width, tiny, no '
+                              'dynamics block, growth anchor, weight decay) and nowcast handling (tree strength 0.5/0.75, '
+                              'sampled correction residuals) on the masked members, with stress views.', build=round24)
+def round25():
+    # 23 Nov 13:00, user: Google search data. GaTech's ARGO ensemble (first of 57 FluSight models on 10 Oct-7 Nov 2026
+    # forecasts) and MIGHTE read Google Trends; Delphi's Google symptom-search feed ended Oct 2025. New covariates from
+    # scripts/pull_google_trends.py + add_google_trends.py (panel-coverage-gt.npz, problems *-gt.json): per-state weekly
+    # search interest in the influenza topic, 'flu symptoms' and 'tamiflu', each as log ratio to the state's own trailing
+    # 52-week median (scale-free; not revised, available the day after the week ends). Parents: the masked members'
+    # existing fits on the original panel (same seeds; the added columns change nothing else).
+    for root in ('Bq.smp.ll1.nm10', 'ref.B.nm10', 'Ar.peak.nokinsa.nm10'):
+        put(f'{root}.gt', add_covariates(R[root], 'gtrends'), root)
+        put(f'{root}.gtflu', add_covariates(R[root], 'gt_flu'), root)
+
+
+ROUNDS[25] = dict(description='Flu search round 25 (2026-11-23, user request): Google Trends flu-search covariates on the '
+                              'masked members, with stress views (gt panel).', build=round25)
 GUARD = {'g03': ['Bq.gru', 'Bq.ll1', 'Bq.gru.ll1', 'Bq.gru.lb8', 'Bq.gru.nat', 'Bq.gru.bes', 'Bh.gru.ll1', 'Ar.flat',
                  'Ar.flat.gru', 'Ar.flat.gru.w192'],
          'g04': ['B5r', 'B5r.peak', 'B5r.local', 'Ar.peak', 'Bq.smp', 'Bq.gru.smp', 'Bq.gru.smp.peak', 'Bq.gru.smp.local',

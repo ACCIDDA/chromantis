@@ -170,3 +170,26 @@ M="--members B7=ref.A,ref.B5,ref.B NKm=Ar.peak.nokinsa.nm10 QLm=Bq.smp.ll1.nm10 
 LANES=3 sbatch --export=ALL --job-name=flu-s-r23 --array=0-4 scripts/flu_search.sbatch flu-s-r23 flu-s-g23   # cvae / shared factor on masked sampled members
 LANES=3 sbatch --export=ALL --job-name=flu-s-rs22 --array=0-4 scripts/flu_search.sbatch flu-s-rs22 flu-s-gs19   # shared-factor members seeds 52-67
 PYTHONPATH=src .venv/bin/python scripts/flu_live_rank.py --hub production/hubs/FluSight-forecast-hub --target hosp --candidate "Masked A=flu-s-release4+flu-s-release5:Bq.smp.ll1.nm10,ref.B.nm10,Ar.peak.nokinsa.nm10" --candidate "A unmasked=flu-s-release+flu-s-release2:Bq.smp.ll1,ref.B,Ar.peak.nokinsa"   # post-selection live ranking (user request 23 Nov)
+# 2026-11-23 16:50 EST (user: be first at FluSight; Google search data, smaller designs, new nowcasting)
+python3 experiments/flu-search-20261120/rounds.py 24   # on the Mac: small designs + nowcast variants on the masked members
+.venv/bin/python -m chromantis.experiment.planner plan -e flu-s-r24 --problem problems/us-flu-short-term-coverage.json --study $S/round-24.json --device cuda
+.venv/bin/python -m chromantis.experiment.planner plan -e flu-s-g24 --problem problems/us-flu-2023-24-prescribed-coverage.json --study $S/guard-24.json --device cuda
+LANES=4 sbatch --export=ALL --job-name=flu-s-r24 --array=0-4 scripts/flu_search.sbatch flu-s-r24 flu-s-g24   # job 10529799
+.venv/bin/python -m chromantis.experiment.planner status -e flu-s-r24
+.venv/bin/python -m chromantis.experiment.planner status -e flu-s-g24
+.venv/bin/python -m chromantis.experiment.planner rank -e flu-s-r24 --allow-incomplete --no-report
+.venv/bin/python -m chromantis.experiment.planner rank -e flu-s-g24 --allow-incomplete --no-report
+.venv/bin/python scripts/flu_search_table.py -e flu-s-r24 --guard flu-s-g24 --out output/flu-search/r24.csv
+# nowcast views without training: st96 members scored on corrected / half / calibrated / delayed (mix-nv96.json = mix-st96.json with views)
+sbatch --job-name=flu-mix-nv96 scripts/covid_tree_mix.sbatch experiments/flu-search-20261120/mix-nv96.json data/experiments/flu-mix-nv96   # job 10529833
+# Google Trends (round 25). On the Mac: pull (pytrends in a scratch venv), then send the CSVs
+python scripts/pull_google_trends.py --end 2026-11-22
+rsync -a data/raw/google_trends chadi@longleaf.unc.edu:/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/raw/
+# On Longleaf: panel with the Trends covariates, then round 25
+.venv/bin/python scripts/add_google_trends.py data/processed/panel-coverage.npz data/raw/google_trends data/processed/panel-coverage-gt.npz
+.venv/bin/python -m chromantis.experiment.planner plan -e flu-s-r25 --problem problems/us-flu-short-term-coverage-gt.json --study $S/round-25.json --device cuda
+.venv/bin/python -m chromantis.experiment.planner plan -e flu-s-g25 --problem problems/us-flu-2023-24-prescribed-coverage-gt.json --study $S/guard-25.json --device cuda
+LANES=4 sbatch --export=ALL --job-name=flu-s-r25 --array=0-4 scripts/flu_search.sbatch flu-s-r25 flu-s-g25
+.venv/bin/python -m chromantis.experiment.planner status -e flu-s-r25
+.venv/bin/python -m chromantis.experiment.planner rank -e flu-s-r25 --allow-incomplete --no-report
+.venv/bin/python scripts/flu_search_table.py -e flu-s-r25 --guard flu-s-g25 --out output/flu-search/r25.csv
