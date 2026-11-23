@@ -259,6 +259,11 @@
   {
    "date": "2026-11-22 17:55 EST",
    "what": "Final 64-seed comparison of the recommended release (flu-mix-fm64 main, flu-mix-fgm64 guard; seeds 44-107; equal weights; states/DC WIS, lower is better). Log admissions 2024-25 / 2025-26 / 2023-24 / mean: B7 refit leak-free 0.3140 / 0.2766 / 0.2838 / 0.2915; masked candidate A 0.2916 / 0.2713 / 0.2760 / 0.2796 (-4.1%; -7.1%, -1.9%, -2.7% by season). ED share x 1e4: 48.87 / 42.92 / 34.76 vs 49.38 / 44.28 / 34.58 (+1.0%, +3.2%, -0.5%). The estimate has not moved from 16 to 64 seeds (-3.8% to -4.7%)."
+  },
+  {
+   "date": "2026-11-22 19:50 EST",
+   "round": 22,
+   "what": "Round 22 main problem scored (8 seeds 44-51; 2024-25 and 2025-26 held out in turn, trained on the other seasons of 2022-23..2025-26, leak-free errors, archived reports; states/DC log WIS, lower is better; parents = masked members on 64 seeds: Bq.smp.ll1.nm10 0.2980, ref.B.nm10 0.3013, Ar.peak.nokinsa.nm10 0.3137). FluSurv-NET (flusurv_flu_rate) improves all three in the same direction: Bq 0.2911 (-2.3%, lower in both seasons: 'better' pending the guard), ref.B 0.2965 (-1.6%, level), Ar 0.3071 (-2.1%, level). Hospital coverage read by the network again improves October (Bq 0.480 -> 0.431, Ar 0.475 -> 0.424) with level season scores; coverage for the trees only level. Wastewater level and rank, NREVSS lab positivity, ILINet, Kinsa: level on all three; outpatient claims worse on Ar (+3.8%). With the newest week missing, the covariates change little (Bq 0.364-0.390 against 0.368 for the parent). Queued: FluSurv-NET versions on seeds 52-67, main (rs19) and guard (gs16), released as GPUs free (no whole-array dependency)."
   }
  ],
  "execution": {

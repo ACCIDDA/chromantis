@@ -157,3 +157,4 @@ python3 experiments/flu-search-20261120/rounds.py 22; python3 experiments/flu-se
 .venv/bin/python -m chromantis.experiment.planner plan -e flu-s-r22 --problem problems/us-flu-short-term-coverage.json --study $S/round-22.json --device cuda
 .venv/bin/python -m chromantis.experiment.planner plan -e flu-s-g22 --problem problems/us-flu-2023-24-prescribed-coverage.json --study $S/guard-g22.json --device cuda
 LANES=4 sbatch --export=ALL --job-name=flu-s-r22 --array=0-4 --dependency=afterany:10288087 scripts/flu_search.sbatch flu-s-r22 flu-s-g22
+LANES=4 sbatch --export=ALL --job-name=flu-s-rs19 --array=0-4 scripts/flu_search.sbatch flu-s-rs19 flu-s-gs16   # FluSurv-NET masked members, seeds 52-67
