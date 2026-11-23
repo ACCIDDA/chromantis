@@ -291,6 +291,11 @@
    "date": "2026-11-23 04:50 EST",
    "round": 23,
    "what": "Queue empty at 03:40; the user asked to keep looking. Round 23 (flu-s-r23 + guard flu-s-g23, array 10446738; 8 seeds, stress views): on the masked sampled members Bq.smp.ll1.nm10 and Ar.peak.nokinsa.nm10, a conditional-VAE latent (latent_model=cvae: a prior learned from the history, posterior seeing the future in training; improved peak-week scores in autoenc-20261024) and a shared national noise factor (us_error=shared_factor: one common draw moves all states together). Both aim at the peak, where every mixture is about 0.36 (log) too low."
+  },
+  {
+   "date": "2026-11-23 05:55 EST",
+   "round": 23,
+   "what": "Round 23 main problem (8 seeds 44-51, stress views; 2024-25 and 2025-26 held out in turn, archived reports; states/DC log WIS, lower is better; parents = same seeds of round 19). Normal inputs / newest week missing: Bq.smp.ll1.nm10 0.2971 / 0.3698; conditional-VAE latent 0.3111 / 0.3765 (worse); shared national noise factor 0.2951 / 0.3705 (level). Ar.peak.nokinsa.nm10 0.3117 / 0.3880; cVAE 0.3213 / 0.3919 (worse); shared factor 0.3125 / 0.3819 (level). The shared factor is slightly better in the peak months of both seasons (Bq Jan 2025 0.320 -> 0.276, Dec 2025 0.334 -> 0.321; Ar Dec 2024 0.291 -> 0.271, Dec 2025 0.323 -> 0.304). cVAE closed. Queued: the shared-factor members on seeds 52-67, main and guard (rs22, gs19), for a mixture-level peak-window comparison."
   }
  ],
  "execution": {
