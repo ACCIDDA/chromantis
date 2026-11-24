@@ -443,6 +443,18 @@ def round25():
 
 ROUNDS[25] = dict(description='Flu search round 25 (2026-11-23, user request): Google Trends flu-search covariates on the '
                               'masked members, with stress views (gt panel).', build=round25)
+def round26():
+    # 23 Nov 21:20: other pathogens never tried in this search (every member reads flu admissions and flu ED share only).
+    # COVID and RSV admissions and ED shares come from the same hospitals and EDs, are revised by the same reporting
+    # process (the synchronous artificial errors perturb them together), and share respiratory-season timing. RSV
+    # admissions before mandatory reporting (Nov 2024) are blank in the panel.
+    for root in ('Bq.smp.ll1.nm10', 'ref.B.nm10', 'Ar.peak.nokinsa.nm10'):
+        for tag in ('flu_covid', 'flu_rsv', 'all'):
+            put(f'{root}.in_{tag}', derive(R[root], input_set=tag), root)
+
+
+ROUNDS[26] = dict(description='Flu search round 26 (2026-11-23): COVID and/or RSV admission and ED histories as extra inputs '
+                              'on the masked members, with stress views.', build=round26)
 GUARD = {'g03': ['Bq.gru', 'Bq.ll1', 'Bq.gru.ll1', 'Bq.gru.lb8', 'Bq.gru.nat', 'Bq.gru.bes', 'Bh.gru.ll1', 'Ar.flat',
                  'Ar.flat.gru', 'Ar.flat.gru.w192'],
          'g04': ['B5r', 'B5r.peak', 'B5r.local', 'Ar.peak', 'Bq.smp', 'Bq.gru.smp', 'Bq.gru.smp.peak', 'Bq.gru.smp.local',

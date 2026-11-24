@@ -203,3 +203,14 @@ LANES=4 sbatch --export=ALL --job-name=flu-s-rs23 --array=0-4 scripts/flu_search
 .venv/bin/python scripts/flu_search_table.py -e flu-s-r25 -e flu-s-rs23 -e flu-s-r19 -e flu-s-rs15 --guard flu-s-g25 --out output/flu-search/r25.csv
 # 2026-11-23 20:35 EST: round 25 main scored; seed-paired ED/admission check
 PYTHONPATH=src .venv/bin/python scripts/flu_paired_check.py flu-s-r25,flu-s-r19 $(for r in Bq.smp.ll1.nm10 ref.B.nm10 Ar.peak.nokinsa.nm10; do echo $r.gt:$r $r.gtflu:$r; done)
+# 2026-11-23 21:40 EST: Trends verdict (16-seed main + guard) and round 26 (other-pathogen inputs)
+P=$(for r in Bq.smp.ll1.nm10 ref.B.nm10 Ar.peak.nokinsa.nm10; do echo $r.gt:$r $r.gtflu:$r; done)
+PYTHONPATH=src .venv/bin/python scripts/flu_paired_check.py flu-s-r25,flu-s-rs23,flu-s-r19,flu-s-rs15 $P
+PYTHONPATH=src .venv/bin/python scripts/flu_paired_check.py flu-s-g25,flu-s-g20,flu-s-gs13 $P
+python3 experiments/flu-search-20261120/rounds.py 26   # on the Mac
+.venv/bin/python -m chromantis.experiment.planner plan -e flu-s-r26 --problem problems/us-flu-short-term-coverage.json --study $S/round-26.json --device cuda
+.venv/bin/python -m chromantis.experiment.planner plan -e flu-s-g26 --problem problems/us-flu-2023-24-prescribed-coverage.json --study $S/guard-26.json --device cuda
+LANES=4 sbatch --export=ALL --job-name=flu-s-r26 --array=0-4 scripts/flu_search.sbatch flu-s-r26 flu-s-g26   # job 10580687
+.venv/bin/python -m chromantis.experiment.planner status -e flu-s-r26
+.venv/bin/python -m chromantis.experiment.planner rank -e flu-s-r26 --allow-incomplete --no-report
+.venv/bin/python scripts/flu_search_table.py -e flu-s-r26 -e flu-s-r19 --guard flu-s-g26 --out output/flu-search/r26.csv
