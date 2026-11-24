@@ -455,6 +455,15 @@ def round26():
 
 ROUNDS[26] = dict(description='Flu search round 26 (2026-11-23): COVID and/or RSV admission and ED histories as extra inputs '
                               'on the masked members, with stress views.', build=round26)
+def round27():
+    # 23 Nov 22:25: round 26 (COVID/RSV inputs) worse by 5-14%. Last structural axis not tried here: one network per
+    # target (fit_partition=target: admissions and ED share fitted separately) instead of one network for both flu targets.
+    for root in ('Bq.smp.ll1.nm10', 'ref.B.nm10', 'Ar.peak.nokinsa.nm10'):
+        put(f'{root}.pertarget', derive(R[root], fit_partition='target'), root)
+
+
+ROUNDS[27] = dict(description='Flu search round 27 (2026-11-23): one network per target (admissions, ED share) on the masked '
+                              'members, with stress views.', build=round27)
 GUARD = {'g03': ['Bq.gru', 'Bq.ll1', 'Bq.gru.ll1', 'Bq.gru.lb8', 'Bq.gru.nat', 'Bq.gru.bes', 'Bh.gru.ll1', 'Ar.flat',
                  'Ar.flat.gru', 'Ar.flat.gru.w192'],
          'g04': ['B5r', 'B5r.peak', 'B5r.local', 'Ar.peak', 'Bq.smp', 'Bq.gru.smp', 'Bq.gru.smp.peak', 'Bq.gru.smp.local',

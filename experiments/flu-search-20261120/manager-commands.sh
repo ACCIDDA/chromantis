@@ -214,3 +214,11 @@ LANES=4 sbatch --export=ALL --job-name=flu-s-r26 --array=0-4 scripts/flu_search.
 .venv/bin/python -m chromantis.experiment.planner status -e flu-s-r26
 .venv/bin/python -m chromantis.experiment.planner rank -e flu-s-r26 --allow-incomplete --no-report
 .venv/bin/python scripts/flu_search_table.py -e flu-s-r26 -e flu-s-r19 --guard flu-s-g26 --out output/flu-search/r26.csv
+# 2026-11-23 22:30 EST: round 26 scored (worse), guard cancelled; round 27 (one network per target)
+PYTHONPATH=src .venv/bin/python scripts/flu_paired_check.py flu-s-r26,flu-s-r19 $(for r in Bq.smp.ll1.nm10 ref.B.nm10 Ar.peak.nokinsa.nm10; do for t in flu_covid flu_rsv all; do echo $r.in_$t:$r; done; done)
+python3 experiments/flu-search-20261120/rounds.py 27   # on the Mac
+.venv/bin/python -m chromantis.experiment.planner plan -e flu-s-r27 --problem problems/us-flu-short-term-coverage.json --study $S/round-27.json --device cuda
+.venv/bin/python -m chromantis.experiment.planner plan -e flu-s-g27 --problem problems/us-flu-2023-24-prescribed-coverage.json --study $S/guard-27.json --device cuda
+LANES=4 sbatch --export=ALL --job-name=flu-s-r27 --array=0-4 scripts/flu_search.sbatch flu-s-r27 flu-s-g27   # job 10585747
+.venv/bin/python -m chromantis.experiment.planner status -e flu-s-r27
+PYTHONPATH=src .venv/bin/python scripts/flu_paired_check.py flu-s-r27,flu-s-r19 $(for r in Bq.smp.ll1.nm10 ref.B.nm10 Ar.peak.nokinsa.nm10; do echo $r.pertarget:$r; done)
