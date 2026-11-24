@@ -222,3 +222,6 @@ python3 experiments/flu-search-20261120/rounds.py 27   # on the Mac
 LANES=4 sbatch --export=ALL --job-name=flu-s-r27 --array=0-4 scripts/flu_search.sbatch flu-s-r27 flu-s-g27   # job 10585747
 .venv/bin/python -m chromantis.experiment.planner status -e flu-s-r27
 PYTHONPATH=src .venv/bin/python scripts/flu_paired_check.py flu-s-r27,flu-s-r19 $(for r in Bq.smp.ll1.nm10 ref.B.nm10 Ar.peak.nokinsa.nm10; do echo $r.pertarget:$r; done)
+# 2026-11-23 23:25 EST: round 27 scored (level); exploration closed, nothing queued
+PYTHONPATH=src .venv/bin/python scripts/flu_paired_check.py flu-s-r27,flu-s-r19 Bq.smp.ll1.nm10.pertarget:Bq.smp.ll1.nm10 ref.B.nm10.pertarget:ref.B.nm10
+PYTHONPATH=src .venv/bin/python scripts/flu_paired_check.py flu-s-g27,flu-s-g20,flu-s-gs13 Bq.smp.ll1.nm10.pertarget:Bq.smp.ll1.nm10 ref.B.nm10.pertarget:ref.B.nm10

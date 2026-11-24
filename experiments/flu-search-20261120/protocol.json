@@ -338,6 +338,11 @@
    "date": "2026-11-23 22:30 EST",
    "round": "26, 27",
    "what": "Round 26 main problem scored (flu-s-r26, 8 seeds 44-51, stress views; 2024-25 and 2025-26 held out in turn, archived Wednesday reports; seed-paired vs the masked members' round-19 fits; lower is better). Adding COVID and/or RSV admission and ED histories as inputs is worse for every member: log admissions, states/DC, Bq +8.0% (COVID) / +14.3% (RSV) / +10.9% (both); ref.B +11.4% / +9.9% / +12.2%; Ar +9.1% / +4.6% / +13.0% (2 SE 3-7%), mostly from 2025-26; ED share +2% to +6%. Not adopted; guard flu-s-g26 cancelled (job 10580687) under the guard rule. Round 27 launched (flu-s-r27 + flu-s-g27, job 10585747, 3 recipes x 8 seeds): one network per target (fit_partition=target: admissions and ED share fitted separately) on the masked members."
+  },
+  {
+   "date": "2026-11-23 23:25 EST",
+   "round": 27,
+   "what": "Round 27 scored (flu-s-r27 main, flu-s-g27 guard; 8 seeds 44-51, stress views; seed-paired vs the masked members' round-19 / g20-gs13 fits; lower is better). One network per target (fit_partition=target): Bq.smp.ll1.nm10 log admissions -0.1% (2 SE 4.0%), ED share -1.2%, 2023-24 guard +0.4%; ref.B.nm10 -0.9% (2 SE 3.0%), ED +4.0% (worse in 2024-25), guard -1.6%: level, not adopted. Ar.peak.nokinsa.nm10.pertarget cannot be fitted (its peak-size loss is defined for counts, and the per-target split gives the ED share its own network). End of the 23 Nov exploration (user: be first at FluSight): smaller designs (round 24), nowcast variants (round 24, nv96 views), Google Trends (round 25, rs23, g25), COVID/RSV inputs (round 26) and per-target networks (round 27) are all level or worse than the masked members on 2024-25 and 2025-26 or fail the 2023-24 guard. Recommendation unchanged: masked candidate A (draft-release-masked-a.json), pending the user's decision. The hourly check was stopped; no jobs queued."
   }
  ],
  "execution": {
