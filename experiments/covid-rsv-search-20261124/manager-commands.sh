@@ -69,3 +69,13 @@ sbatch --job-name=crs-mix-c03 scripts/covid_tree_mix.sbatch $S/mix-c03.json data
 .venv/bin/python scripts/flu_search_mix.py c01g --study $S --prefix crs-mix --experiments cv-s-g01 --max-seeds 8 --members P=ref.Ah,ref.pN,ref.N,ref.Bh L=T,Tl,S T=T N=ref.N S=S --groups 'prod4:P' 'nov20:L' 'T+N:T,N' 'T+N+S:T,N,S' 'N+S:N,S'
 sbatch --job-name=crs-mix-c01g scripts/covid_tree_mix.sbatch $S/mix-c01g.json data/experiments/crs-mix-c01g
 .venv/bin/python scripts/crs_mix_table.py data/experiments/crs-mix-c02/ranking/headline-season-scores.csv   # mixture table (scratch helper)
+# 2026-11-24 17:50 EST: RSV round 5 + guard g05 + reseed rs03 (job 10709697); RSV mixtures r01 (10709698), guard mixtures r01g (10709699)
+python3 $S/rounds.py rsv 5; python3 $S/rounds.py rsv g05; python3 $S/rounds.py rsv rs03   # on the Mac
+.venv/bin/python -m chromantis.experiment.planner plan -e rv-s-r05 --problem problems/us-rsv-short-term-coverage.json --study $S/rsv-round-05.json --device cuda
+.venv/bin/python -m chromantis.experiment.planner plan -e rv-s-g05 --problem problems/us-rsv-2023-24-prescribed-coverage.json --study $S/rsv-guard-g05.json --device cuda
+.venv/bin/python -m chromantis.experiment.planner plan -e rv-s-rs03 --problem problems/us-rsv-short-term-coverage.json --study $S/rsv-reseed-rs03.json --device cuda
+sbatch --job-name=crs-r05 --array=0-5 scripts/flu_search.sbatch rv-s-r05:6 rv-s-g05:6 rv-s-rs03:6
+.venv/bin/python scripts/flu_search_mix.py r01 --study $S --prefix crs-mix --experiments rv-s-r01 rv-s-r03 --max-seeds 8 --members P=ref.Ball,ref.Bw,ref.A4c0,ref.A4i L=Rc,R1 Q=Bwq QS=Bwq.smp Rc=Rc RR=Rc.real A=ref.A4c0 --groups 'prod4:P' 'nov20:L' 'QS:QS' 'Q+Rc:Q,Rc' 'QS+Rc:QS,Rc' 'Q+QS+Rc:Q,QS,Rc' 'QS+RR:QS,RR' 'Q+QS+RR:Q,QS,RR' 'Q+QS+Rc+A:Q,QS,Rc,A'
+sbatch --job-name=crs-mix-r01 scripts/covid_tree_mix.sbatch $S/mix-r01.json data/experiments/crs-mix-r01
+.venv/bin/python scripts/flu_search_mix.py r01g --study $S --prefix crs-mix --experiments rv-s-g01 rv-s-g03 --max-seeds 8 --members P=ref.Ball,ref.Bw,ref.A4c0,ref.A4i L=Rc,R1 Q=Bwq QS=Bwq.smp Rc=Rc --groups 'prod4:P' 'nov20:L' 'Q+Rc:Q,Rc' 'QS+Rc:QS,Rc' 'Q+QS+Rc:Q,QS,Rc'
+sbatch --job-name=crs-mix-r01g scripts/covid_tree_mix.sbatch $S/mix-r01g.json data/experiments/crs-mix-r01g

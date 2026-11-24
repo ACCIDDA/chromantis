@@ -208,16 +208,32 @@ def rsv4():
 ROUNDS['rsv'][4] = dict(description='RSV search round 4 (2026-11-24): Google Trends ("rsv", "rsv symptoms") on Bwq and Bwq.smp, '
                                     'gt panel.', build=rsv4)
 
+def rsv5():
+    # 24 Nov 17:45, round 3: Bwq's gain is the US-only summary (Bw.nat -6.8% vs ref.Bw, lower in both seasons), not the
+    # real-pair trees (Bw.real -0.5%). Same exchange on the other production members (Ball uses neighbouring states, the
+    # A4 recipes no exchange); quantile Bwq with newest-week masking (flu's ref.B.nm10 member).
+    r = R['rsv']
+    put('rsv', 'Ball.nat', derive(r['ref.Ball'], spatial='national_broadcast'), 'ref.Ball')
+    put('rsv', 'A4c0.nat', derive(r['ref.A4c0'], spatial='national_broadcast'), 'ref.A4c0')
+    put('rsv', 'A4i.nat', derive(r['ref.A4i'], spatial='national_broadcast'), 'ref.A4i')
+    put('rsv', 'Bwq.nm10', derive(r['Bwq'], newest_mask=0.1), 'Bwq')
+
+
+ROUNDS['rsv'][5] = dict(description='RSV search round 5 (2026-11-24): US-only summary on the other production members; '
+                                    'newest-week masking on quantile Bwq.', build=rsv5)
+
 # Guard-only files: recipes guarded after they pass the main problem (children are not guarded otherwise).
 GUARD = {'covid': {'g01': ['ref.Ah', 'ref.pN', 'ref.N', 'ref.Bh', 'T', 'Tl', 'S'],
                    'g02': (['ref.Ah', 'ref.pN', 'ref.N', 'ref.Bh', 'T', 'S'], list(range(52, 60)))},  # guard seeds for mixtures
          'rsv': {'g01': ['ref.Ball', 'ref.Bw', 'ref.A4c0', 'ref.A4i', 'Rc', 'R1'],
                  'g03': ['Bwq', 'Bwq.smp'],
-                 'g04': ['ref.Bw.gt', 'Bwq.gt', 'Bwq.smp.gt']}}  # gt guard problem (us-rsv-2023-24-prescribed-coverage-gt)
+                 'g04': ['ref.Bw.gt', 'Bwq.gt', 'Bwq.smp.gt'],
+                 'g05': ['Bw.nat']}}  # gt guard problem (us-rsv-2023-24-prescribed-coverage-gt)
 RESEED = {'covid': {'rs01': (['ref.Ah', 'ref.pN', 'ref.N', 'ref.Bh', 'T', 'Tl', 'S'], list(range(52, 60))),
                     'rs02': (['ref.Ah', 'ref.pN', 'ref.N', 'ref.Bh', 'T', 'S', 'N.smp'], list(range(60, 68)))},
           'rsv': {'rs01': (['ref.Ball', 'ref.Bw', 'ref.A4c0', 'ref.A4i', 'Rc', 'R1'], list(range(52, 60))),
-                  'rs02': (['Bwq', 'Bwq.smp'], list(range(52, 60)))}}
+                  'rs02': (['Bwq', 'Bwq.smp'], list(range(52, 60))),
+                  'rs03': (['Rc.real', 'Bw.nat'], list(range(52, 60)))}}
 
 
 def build_all(p, upto=None):
