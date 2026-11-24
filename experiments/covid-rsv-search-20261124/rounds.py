@@ -197,11 +197,25 @@ def rsv3():
 ROUNDS['rsv'][3] = dict(description='RSV search round 3 (2026-11-24): decomposition of the round-1 winner Bwq (real-pair trees, '
                                     'US summary) and children of its sampled version Bwq.smp; real-pair trees on Rc.', build=rsv3)
 
+def rsv4():
+    # 24 Nov 16:50: Google Trends helped ref.Bw on the main problem (ref.Bw.gt -5.4%, lower in both seasons; level on R1).
+    # Same covariates on the round-1 winner Bwq and its sampled version (gt panel; parents on the plain panel).
+    r = R['rsv']
+    put('rsv', 'Bwq.gt', add_covariates(r['Bwq'], 'gt_rsv'), 'Bwq')
+    put('rsv', 'Bwq.smp.gt', add_covariates(r['Bwq.smp'], 'gt_rsv'), 'Bwq.smp')
+
+
+ROUNDS['rsv'][4] = dict(description='RSV search round 4 (2026-11-24): Google Trends ("rsv", "rsv symptoms") on Bwq and Bwq.smp, '
+                                    'gt panel.', build=rsv4)
+
 # Guard-only files: recipes guarded after they pass the main problem (children are not guarded otherwise).
-GUARD = {'covid': {'g01': ['ref.Ah', 'ref.pN', 'ref.N', 'ref.Bh', 'T', 'Tl', 'S']},
+GUARD = {'covid': {'g01': ['ref.Ah', 'ref.pN', 'ref.N', 'ref.Bh', 'T', 'Tl', 'S'],
+                   'g02': (['ref.Ah', 'ref.pN', 'ref.N', 'ref.Bh', 'T', 'S'], list(range(52, 60)))},  # guard seeds for mixtures
          'rsv': {'g01': ['ref.Ball', 'ref.Bw', 'ref.A4c0', 'ref.A4i', 'Rc', 'R1'],
-                 'g03': ['Bwq', 'Bwq.smp']}}
-RESEED = {'covid': {'rs01': (['ref.Ah', 'ref.pN', 'ref.N', 'ref.Bh', 'T', 'Tl', 'S'], list(range(52, 60)))},
+                 'g03': ['Bwq', 'Bwq.smp'],
+                 'g04': ['ref.Bw.gt', 'Bwq.gt', 'Bwq.smp.gt']}}  # gt guard problem (us-rsv-2023-24-prescribed-coverage-gt)
+RESEED = {'covid': {'rs01': (['ref.Ah', 'ref.pN', 'ref.N', 'ref.Bh', 'T', 'Tl', 'S'], list(range(52, 60))),
+                    'rs02': (['ref.Ah', 'ref.pN', 'ref.N', 'ref.Bh', 'T', 'S', 'N.smp'], list(range(60, 68)))},
           'rsv': {'rs01': (['ref.Ball', 'ref.Bw', 'ref.A4c0', 'ref.A4i', 'Rc', 'R1'], list(range(52, 60))),
                   'rs02': (['Bwq', 'Bwq.smp'], list(range(52, 60)))}}
 
@@ -214,12 +228,12 @@ def build_all(p, upto=None):
 
 def write_guard(p, tag):
     build_all(p)
-    names = GUARD[p][tag]
+    names, seeds = GUARD[p][tag] if isinstance(GUARD[p][tag], tuple) else (GUARD[p][tag], SEEDS)
     study = dict(description=f'{p} search guard {tag} (2023-24 held out, artificial reports): {", ".join(names)}.', round=tag,
                  parents={k: PARENT[p][k] for k in names if k in PARENT[p]},
-                 candidates={k: derive(R[p][k], error_reference='2025-2026') for k in names}, seeds=SEEDS)
+                 candidates={k: derive(R[p][k], error_reference='2025-2026') for k in names}, seeds=seeds)
     (HERE / f'{p}-guard-{tag}.json').write_text(json.dumps(study, indent=1) + '\n')
-    print(f'{p} guard {tag}: {len(names)} recipes x {len(SEEDS)} seeds')
+    print(f'{p} guard {tag}: {len(names)} recipes x {len(seeds)} seeds')
 
 
 def write_reseed(p, tag):

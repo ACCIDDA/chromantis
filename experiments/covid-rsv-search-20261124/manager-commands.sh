@@ -55,3 +55,17 @@ python3 experiments/covid-rsv-search-20261124/rounds.py rsv rs02   # on the Mac
 sbatch --job-name=crs-rs02 --array=0-5 scripts/flu_search.sbatch rv-s-rs02:8
 .venv/bin/python scripts/flu_search_mix.py c02 --study $S --prefix crs-mix --experiments cv-s-r01 cv-s-rs01 --max-seeds 16 --members P=ref.Ah,ref.pN,ref.N,ref.Bh L=T,Tl,S T=T N=ref.N S=S --groups 'prod4:P' 'nov20:L' 'T+N:T,N' 'T+N+S:T,N,S'
 sbatch --job-name=crs-mix-c02 scripts/covid_tree_mix.sbatch $S/mix-c02.json data/experiments/crs-mix-c02
+# 2026-11-24 16:55 EST: RSV sampled runs requeued at 4 lanes (job 10703999, 10694722 cancelled); RSV round 4 + gt guard g04,
+# COVID guard seeds g02, COVID reseed rs02 (job 10704128); mixtures c03 (10704131) and guard mixtures c01g (10704133)
+sbatch --job-name=crs-rs02b --array=0-5 scripts/flu_search.sbatch rv-s-g03:8 rv-s-r03:4 rv-s-rs02:4
+python3 $S/rounds.py rsv 4; python3 $S/rounds.py rsv g04; python3 $S/rounds.py covid g02; python3 $S/rounds.py covid rs02   # on the Mac
+.venv/bin/python -m chromantis.experiment.planner plan -e rv-s-r04 --problem problems/us-rsv-short-term-coverage-gt.json --study $S/rsv-round-04.json --device cuda
+.venv/bin/python -m chromantis.experiment.planner plan -e rv-s-g04 --problem problems/us-rsv-2023-24-prescribed-coverage-gt.json --study $S/rsv-guard-g04.json --device cuda
+.venv/bin/python -m chromantis.experiment.planner plan -e cv-s-g02 --problem problems/us-covid-2023-24-prescribed-coverage.json --study $S/covid-guard-g02.json --device cuda
+.venv/bin/python -m chromantis.experiment.planner plan -e cv-s-rs02 --problem problems/us-covid-short-term-coverage.json --study $S/covid-reseed-rs02.json --device cuda
+sbatch --job-name=crs-r04 --array=0-5 scripts/flu_search.sbatch rv-s-r04:4 rv-s-g04:4 cv-s-g02:4 cv-s-rs02:4
+.venv/bin/python scripts/flu_search_mix.py c03 --study $S --prefix crs-mix --experiments cv-s-r01 cv-s-r03 --max-seeds 8 --members P=ref.Ah,ref.pN,ref.N,ref.Bh T=T N=ref.N S=S NS=N.smp NR=N.real --groups 'prod4:P' 'T+N+S:T,N,S' 'N:N' 'N+S:N,S' 'N+NS:N,NS' 'T+N+NS:T,N,NS' 'T+NR+S:T,NR,S' 'T+N+NR+S:T,N,NR,S'
+sbatch --job-name=crs-mix-c03 scripts/covid_tree_mix.sbatch $S/mix-c03.json data/experiments/crs-mix-c03
+.venv/bin/python scripts/flu_search_mix.py c01g --study $S --prefix crs-mix --experiments cv-s-g01 --max-seeds 8 --members P=ref.Ah,ref.pN,ref.N,ref.Bh L=T,Tl,S T=T N=ref.N S=S --groups 'prod4:P' 'nov20:L' 'T+N:T,N' 'T+N+S:T,N,S' 'N+S:N,S'
+sbatch --job-name=crs-mix-c01g scripts/covid_tree_mix.sbatch $S/mix-c01g.json data/experiments/crs-mix-c01g
+.venv/bin/python scripts/crs_mix_table.py data/experiments/crs-mix-c02/ranking/headline-season-scores.csv   # mixture table (scratch helper)
