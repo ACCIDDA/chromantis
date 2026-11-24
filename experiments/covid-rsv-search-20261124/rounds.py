@@ -132,6 +132,28 @@ ROUNDS['rsv'][1] = dict(description='RSV search round 1 (2026-11-24): production
                                     'real-pair trees, sampled B-family head) and data streams (wastewater, NREVSS, coverage).',
                         build=rsv1)
 
+def covid2():
+    # 24 Nov 13:30: Google Trends (pulled 24 Nov; gt_* = log of the week's search interest over the state's trailing 52-week
+    # median). Run on the gt panel (problems/*-gt.json), same panel otherwise; parents are the round-1 fits on the plain panel.
+    # The flu search found Trends level on 2024-25/2025-26 and worse on its 2023-24 guard.
+    r = R['covid']
+    put('covid', 'Tl.gt', add_covariates(r['Tl'], 'gt_covid'), 'Tl')
+    put('covid', 'Tl.gtsym', add_covariates(r['Tl'], 'gt_covid_sym'), 'Tl')
+    put('covid', 'S.gt', add_covariates(r['S'], 'gt_covid'), 'S')
+
+
+def rsv2():
+    r = R['rsv']
+    put('rsv', 'R1.gt', add_covariates(r['R1'], 'gt_rsv'), 'R1')
+    put('rsv', 'R1.gtterm', add_covariates(r['R1'], 'gt_rsv_term'), 'R1')
+    put('rsv', 'ref.Bw.gt', add_covariates(r['ref.Bw'], 'gt_rsv'), 'ref.Bw')
+
+
+ROUNDS['covid'][2] = dict(description='COVID search round 2 (2026-11-24): Google Trends covariates ("covid symptoms", "covid test"), '
+                                      'gt panel.', build=covid2)
+ROUNDS['rsv'][2] = dict(description='RSV search round 2 (2026-11-24): Google Trends covariates ("rsv", "rsv symptoms"), gt panel.',
+                        build=rsv2)
+
 # Guard-only files: recipes guarded after they pass the main problem (children are not guarded otherwise).
 GUARD = {'covid': {'g01': ['ref.Ah', 'ref.pN', 'ref.N', 'ref.Bh', 'T', 'Tl', 'S']},
          'rsv': {'g01': ['ref.Ball', 'ref.Bw', 'ref.A4c0', 'ref.A4i', 'Rc', 'R1']}}

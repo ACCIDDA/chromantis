@@ -27,3 +27,12 @@ squeue -u chadi
 .venv/bin/python -m chromantis.experiment.planner rank -e rv-s-r01 --allow-incomplete --no-report
 .venv/bin/python scripts/flu_search_table.py --pathogen covid --parents "$S/covid-round-*.json" -e cv-s-r01 -e cv-s-rs01 --guard cv-s-g01 --out output/crs-search/covid-r01.csv
 .venv/bin/python scripts/flu_search_table.py --pathogen rsv --parents "$S/rsv-round-*.json" -e rv-s-r01 -e rv-s-rs01 --guard rv-s-g01 --out output/crs-search/rsv-r01.csv
+# 2026-11-24 13:35 EST: Google Trends for COVID/RSV (Mac pull, then panels on Longleaf), round 2 queued as job 10674043
+#   (on the Mac) .../gt/bin/python scripts/pull_google_trends.py --terms covid rsv --out data/raw/google_trends
+rsync -a data/raw/google_trends/ chadi@longleaf.unc.edu:/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/raw/google_trends/
+.venv/bin/python scripts/add_google_trends.py data/processed/panel-coverage.npz data/raw/google_trends data/processed/panel-coverage-cgt.npz covid_symptoms covid_test
+.venv/bin/python scripts/add_google_trends.py data/processed/panel-coverage-rsv.npz data/raw/google_trends data/processed/panel-coverage-rsv-gt.npz rsv rsv_symptoms
+.venv/bin/python -m chromantis.experiment.planner plan -e cv-s-r02 --problem problems/us-covid-short-term-coverage-gt.json --study $S/covid-round-02.json --device cuda
+.venv/bin/python -m chromantis.experiment.planner plan -e rv-s-r02 --problem problems/us-rsv-short-term-coverage-gt.json --study $S/rsv-round-02.json --device cuda
+sbatch --job-name=crs-r02 --array=0-5 scripts/flu_search.sbatch cv-s-r02:4 rv-s-r02:8
+.venv/bin/python scripts/flu_search_table.py --pathogen covid --parents "$S/covid-round-*.json" -e cv-s-r01 -e cv-s-r02 --guard cv-s-g01

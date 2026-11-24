@@ -8,6 +8,8 @@ available the next day, so every as-of array equals the truth up to each issuanc
 
     python scripts/add_google_trends.py data/processed/panel-coverage.npz data/raw/google_trends \
         data/processed/panel-coverage-gt.npz
+    python scripts/add_google_trends.py data/processed/panel-coverage.npz data/raw/google_trends \
+        data/processed/panel-coverage-cgt.npz covid_symptoms covid_test        (COVID/RSV search, 24 Nov 2026)
 """
 import json
 import sys
@@ -19,7 +21,6 @@ import pandas as pd
 
 from chromantis.dataset.build import HUBS, load, save, visible_weeks
 
-TERMS = ('flu_topic', 'flu_symptoms', 'tamiflu')
 
 
 def ratio(series):
@@ -28,7 +29,8 @@ def ratio(series):
     return np.log(v / base)
 
 
-def main(panel_path, trends_dir, out_path):
+def main(panel_path, trends_dir, out_path, *terms):
+    TERMS = terms or ('flu_topic', 'flu_symptoms', 'tamiflu')
     arrays = load(panel_path)
     dates = pd.to_datetime([str(d) for d in arrays['dates']]).strftime('%Y-%m-%d')
     locations = [str(l) for l in arrays['locations']]

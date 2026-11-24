@@ -34,6 +34,15 @@
   "experiments": "cv-s-rNN / rv-s-rNN main rounds, cv-s-gNN / rv-s-gNN guards, cv-s-rsNN / rv-s-rsNN reseeds, crs-mix-* mixtures"
  },
  "decisions": [
-  {"date": "2026-11-24 11:55 EST", "round": 1, "what": "Round 1 launched (array 10666606, 5 GPUs running, element 5 waits for the GPU of another lab member): cv-s-r01 (17 COVID recipes x 8 seeds 44-51), rv-s-r01 (18 RSV recipes), guards cv-s-g01 (7 references and 20 Nov leaders) and rv-s-g01 (6). Reseed rs01 of the same references and leaders on seeds 52-59 queued behind it without a dependency (array 10666698), so freed GPUs pick it up during round 1's tail."}
+  {
+   "date": "2026-11-24 11:55 EST",
+   "round": 1,
+   "what": "Round 1 launched (array 10666606, 5 GPUs running, element 5 waits for the GPU of another lab member): cv-s-r01 (17 COVID recipes x 8 seeds 44-51), rv-s-r01 (18 RSV recipes), guards cv-s-g01 (7 references and 20 Nov leaders) and rv-s-g01 (6). Reseed rs01 of the same references and leaders on seeds 52-59 queued behind it without a dependency (array 10666698), so freed GPUs pick it up during round 1's tail."
+  },
+  {
+   "date": "2026-11-24 13:35 EST",
+   "round": 2,
+   "what": "Google Trends pulled on the Mac (scripts/pull_google_trends.py --terms covid rsv, 11:57-13:20 EST, weeks ending 6 Aug 2022 to 21 Nov 2026, 50 states, DC and US): 'covid symptoms', 'covid test', 'rsv', 'rsv symptoms'. Panels with gt_<term> = log of the week's search interest over the state's trailing 52-week median (scripts/add_google_trends.py; finite on 92% of week-locations, the first 6 weeks lack a median): data/processed/panel-coverage-cgt.npz (COVID) and panel-coverage-rsv-gt.npz (RSV), dataset datasets/respiratory-us-weekly-coverage-cr-gt.json, problems us-{covid,rsv}-{short-term,2023-24-prescribed}-coverage-gt.json. Round 2 queued (array 10674043, behind round 1 and reseed rs01): COVID Tl.gt (both COVID terms), Tl.gtsym ('covid symptoms' only), S.gt; RSV R1.gt (both RSV terms), R1.gtterm ('rsv' only), ref.Bw.gt; 8 seeds 44-51, same main problem otherwise (2024-25 and 2025-26 held out in turn, archived Wednesday reports). Parents are the round-1 fits on the plain panel. Prior from the flu search: Trends level on the main problem, worse on the 2023-24 guard."
+  }
  ]
 }
