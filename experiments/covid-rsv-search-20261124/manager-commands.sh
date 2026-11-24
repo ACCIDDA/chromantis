@@ -48,3 +48,10 @@ python3 experiments/covid-rsv-search-20261124/rounds.py rsv 3; python3 experimen
 .venv/bin/python -m chromantis.experiment.planner plan -e rv-s-g03 --problem problems/us-rsv-2023-24-prescribed-coverage.json --study $S/rsv-guard-g03.json --device cuda
 sbatch --job-name=crs-r03b --array=0-5 scripts/flu_search.sbatch rv-s-r03:8 cv-s-g01:4 rv-s-g01:8 rv-s-g03:8
 .venv/bin/python scripts/flu_search_table.py --pathogen rsv --parents "$S/rsv-round-*.json" -e rv-s-r01 -e rv-s-r03 --guard rv-s-g01 --guard rv-s-g03
+# 2026-11-24 15:45 EST: guard rescoring, RSV reseed rs02 (job 10694722), COVID 16-seed mixtures c02 (CPU job 10694723)
+sbatch --job-name=cv-s-g01-score scripts/flu_search_score.sbatch cv-s-g01
+python3 experiments/covid-rsv-search-20261124/rounds.py rsv rs02   # on the Mac
+.venv/bin/python -m chromantis.experiment.planner plan -e rv-s-rs02 --problem problems/us-rsv-short-term-coverage.json --study $S/rsv-reseed-rs02.json --device cuda
+sbatch --job-name=crs-rs02 --array=0-5 scripts/flu_search.sbatch rv-s-rs02:8
+.venv/bin/python scripts/flu_search_mix.py c02 --study $S --prefix crs-mix --experiments cv-s-r01 cv-s-rs01 --max-seeds 16 --members P=ref.Ah,ref.pN,ref.N,ref.Bh L=T,Tl,S T=T N=ref.N S=S --groups 'prod4:P' 'nov20:L' 'T+N:T,N' 'T+N+S:T,N,S'
+sbatch --job-name=crs-mix-c02 scripts/covid_tree_mix.sbatch $S/mix-c02.json data/experiments/crs-mix-c02
