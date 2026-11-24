@@ -79,3 +79,14 @@ sbatch --job-name=crs-r05 --array=0-5 scripts/flu_search.sbatch rv-s-r05:6 rv-s-
 sbatch --job-name=crs-mix-r01 scripts/covid_tree_mix.sbatch $S/mix-r01.json data/experiments/crs-mix-r01
 .venv/bin/python scripts/flu_search_mix.py r01g --study $S --prefix crs-mix --experiments rv-s-g01 rv-s-g03 --max-seeds 8 --members P=ref.Ball,ref.Bw,ref.A4c0,ref.A4i L=Rc,R1 Q=Bwq QS=Bwq.smp Rc=Rc --groups 'prod4:P' 'nov20:L' 'Q+Rc:Q,Rc' 'QS+Rc:QS,Rc' 'Q+QS+Rc:Q,QS,Rc'
 sbatch --job-name=crs-mix-r01g scripts/covid_tree_mix.sbatch $S/mix-r01g.json data/experiments/crs-mix-r01g
+# 2026-11-24 18:45 EST: finalist seeds (COVID rs03 + g03, RSV rs04 + g06; job 10718486); COVID 16-seed mixtures main c04 (10718488), guard c02g (10718487)
+for a in "covid rs03" "covid g03" "rsv rs04" "rsv g06"; do python3 $S/rounds.py $a; done   # on the Mac (bash)
+.venv/bin/python -m chromantis.experiment.planner plan -e cv-s-rs03 --problem problems/us-covid-short-term-coverage.json --study $S/covid-reseed-rs03.json --device cuda
+.venv/bin/python -m chromantis.experiment.planner plan -e cv-s-g03 --problem problems/us-covid-2023-24-prescribed-coverage.json --study $S/covid-guard-g03.json --device cuda
+.venv/bin/python -m chromantis.experiment.planner plan -e rv-s-rs04 --problem problems/us-rsv-short-term-coverage.json --study $S/rsv-reseed-rs04.json --device cuda
+.venv/bin/python -m chromantis.experiment.planner plan -e rv-s-g06 --problem problems/us-rsv-2023-24-prescribed-coverage.json --study $S/rsv-guard-g06.json --device cuda
+sbatch --job-name=crs-rs03 --array=0-5 scripts/flu_search.sbatch rv-s-rs04:4 rv-s-g06:4 cv-s-rs03:4 cv-s-g03:4
+.venv/bin/python scripts/flu_search_mix.py c04 --study $S --prefix crs-mix --experiments cv-s-r01 cv-s-rs01 --max-seeds 16 --members P=ref.Ah,ref.pN,ref.N,ref.Bh PT=ref.Ah,T,ref.N,ref.Bh T=T N=ref.N S=S pN=ref.pN --groups 'prod4:P' 'prod4T:PT' 'prod4+T:P,T' 'T+N+S:T,N,S' 'T+N:T,N' 'N+pN+S:N,pN,S' 'T+N+pN:T,N,pN' 'T+N+S+pN:T,N,S,pN'
+sbatch --job-name=crs-mix-c04 scripts/covid_tree_mix.sbatch $S/mix-c04.json data/experiments/crs-mix-c04
+# guard version: same groups with --experiments cv-s-g01 cv-s-g02, name c02g
+sbatch --job-name=crs-mix-c02g scripts/covid_tree_mix.sbatch $S/mix-c02g.json data/experiments/crs-mix-c02g

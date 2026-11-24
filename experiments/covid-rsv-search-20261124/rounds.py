@@ -224,16 +224,21 @@ ROUNDS['rsv'][5] = dict(description='RSV search round 5 (2026-11-24): US-only su
 
 # Guard-only files: recipes guarded after they pass the main problem (children are not guarded otherwise).
 GUARD = {'covid': {'g01': ['ref.Ah', 'ref.pN', 'ref.N', 'ref.Bh', 'T', 'Tl', 'S'],
-                   'g02': (['ref.Ah', 'ref.pN', 'ref.N', 'ref.Bh', 'T', 'S'], list(range(52, 60)))},  # guard seeds for mixtures
+                   'g02': (['ref.Ah', 'ref.pN', 'ref.N', 'ref.Bh', 'T', 'S'], list(range(52, 60))),  # guard seeds for mixtures
+                   'g03': (['ref.Ah', 'ref.pN', 'ref.N', 'ref.Bh', 'T', 'S'], list(range(60, 68)))},
          'rsv': {'g01': ['ref.Ball', 'ref.Bw', 'ref.A4c0', 'ref.A4i', 'Rc', 'R1'],
                  'g03': ['Bwq', 'Bwq.smp'],
                  'g04': ['ref.Bw.gt', 'Bwq.gt', 'Bwq.smp.gt'],
-                 'g05': ['Bw.nat']}}  # gt guard problem (us-rsv-2023-24-prescribed-coverage-gt)
+                 'g05': ['Bw.nat'],
+                 'g06': (['ref.Ball', 'ref.Bw', 'ref.A4c0', 'ref.A4i', 'Bwq', 'Bwq.smp', 'Rc', 'Rc.real'], list(range(52, 60)))}}  # gt guard problem (us-rsv-2023-24-prescribed-coverage-gt)
 RESEED = {'covid': {'rs01': (['ref.Ah', 'ref.pN', 'ref.N', 'ref.Bh', 'T', 'Tl', 'S'], list(range(52, 60))),
-                    'rs02': (['ref.Ah', 'ref.pN', 'ref.N', 'ref.Bh', 'T', 'S', 'N.smp'], list(range(60, 68)))},
+                    'rs02': (['ref.Ah', 'ref.pN', 'ref.N', 'ref.Bh', 'T', 'S', 'N.smp'], list(range(60, 68))),
+                    # 24 Nov 18:40: mixture decisions are noise-limited; 32 main seeds for the finalists and production
+                    'rs03': (['ref.Ah', 'ref.pN', 'ref.N', 'ref.Bh', 'T', 'S'], list(range(68, 76)))},
           'rsv': {'rs01': (['ref.Ball', 'ref.Bw', 'ref.A4c0', 'ref.A4i', 'Rc', 'R1'], list(range(52, 60))),
                   'rs02': (['Bwq', 'Bwq.smp'], list(range(52, 60))),
-                  'rs03': (['Rc.real', 'Bw.nat'], list(range(52, 60)))}}
+                  'rs03': (['Rc.real', 'Bw.nat'], list(range(52, 60))),
+                  'rs04': (['ref.Ball', 'ref.Bw', 'ref.A4c0', 'ref.A4i', 'Bwq', 'Bwq.smp', 'Rc', 'Rc.real'], list(range(60, 68)))}}
 
 
 def build_all(p, upto=None):
