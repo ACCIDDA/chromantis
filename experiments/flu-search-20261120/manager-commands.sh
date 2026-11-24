@@ -201,3 +201,5 @@ python3 experiments/flu-search-20261120/rounds.py rs23   # on the Mac
 LANES=4 sbatch --export=ALL --job-name=flu-s-rs23 --array=0-4 scripts/flu_search.sbatch flu-s-rs23   # job 10554865
 .venv/bin/python -m chromantis.experiment.planner status -e flu-s-rs23
 .venv/bin/python scripts/flu_search_table.py -e flu-s-r25 -e flu-s-rs23 -e flu-s-r19 -e flu-s-rs15 --guard flu-s-g25 --out output/flu-search/r25.csv
+# 2026-11-23 20:35 EST: round 25 main scored; seed-paired ED/admission check
+PYTHONPATH=src .venv/bin/python scripts/flu_paired_check.py flu-s-r25,flu-s-r19 $(for r in Bq.smp.ll1.nm10 ref.B.nm10 Ar.peak.nokinsa.nm10; do echo $r.gt:$r $r.gtflu:$r; done)
