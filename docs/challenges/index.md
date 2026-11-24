@@ -19,8 +19,10 @@ recipe is settled, as decided on 8 October 2026.
 
 ## Hub clones
 
-Every local Hub clone is git-ignored and not copied to Longleaf by `scripts/sync_longleaf.sh`;
-on a new machine clone them again from GitHub at these paths, which the code reads by default.
+Every Hub clone is git-ignored and not copied by `scripts/sync_longleaf.sh`; on a new machine
+clone them again from GitHub at these paths, which the code reads by default. From 24 November
+2026 the FluSight and BDBV clones also exist at the same paths in the Longleaf checkout
+`tapestry-all/tapestry`; update them there with `git pull` like the laptop's.
 
 | Hub | Read-only clone (Hub data, other teams) | Clone used to submit (remote `origin` = our fork, `upstream` = the Hub) | Read by |
 |---|---|---|---|
@@ -30,8 +32,9 @@ on a new machine clone them again from GitHub at these paths, which the code rea
 | Flu MetroCast | `production/hubs/flu-metrocast` (`reichlab/flu-metrocast`, `--filter=blob:none`, sparse: `target-data`, `hub-config`, `auxiliary-data`, the rounds' `model-output`) | `production/hubs/flu-metrocast-fork` (`jcblemai/flu-metrocast`, `--filter=blob:none`, sparse: `model-metadata`, `model-output/ACCIDDA-Chromantis`) | by hand (submission, peers); the data builds read GitHub directly |
 | BDBV (Ebola) | `production/hubs/BDBV-Modeling-Hub` (until 24 November 2026 `../hubs/BDBV-Modeling-Hub`), one clone with `origin` = `InsightNet-US/BDBV-Modeling-Hub` and `fork` = `jcblemai/BDBV-Modeling-Hub` | the same clone | `scripts/*ebola*.py`; see [Running a round](ebola.md#running-a-round) |
 
-Submission branches are pushed to the fork and the PR opened against the Hub's `main`. On
-Longleaf, Ebola round folders carry a copy of the Hub's `target-data/` and `auxiliary-data/` instead of a clone.
+Submission branches are pushed to the fork and the PR opened against the Hub's `main`. Ebola
+round folders on Longleaf (until 28 November 2026) carry a copy of the Hub's `target-data/` and
+`auxiliary-data/`.
 
 ## All submissions
 

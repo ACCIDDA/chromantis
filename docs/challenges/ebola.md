@@ -112,8 +112,10 @@ git clone https://github.com/InsightNet-US/BDBV-Modeling-Hub.git production/hubs
 git -C production/hubs/BDBV-Modeling-Hub remote add fork https://github.com/jcblemai/BDBV-Modeling-Hub.git
 ```
 
-Longleaf has no clone: each round's folder there (`tapestry-all/ebola-<date>/hub/`) holds a copy of
-the Hub's `target-data/` and `auxiliary-data/`, passed with `--hub hub`.
+Longleaf has the same clone in its checkout (`tapestry-all/tapestry/production/hubs/BDBV-Modeling-Hub`,
+from 24 November 2026). Round folders until 28 November (`tapestry-all/ebola-<date>/hub/`) hold a
+copy of the Hub's `target-data/` and `auxiliary-data/`, passed with `--hub hub`; step 4 still does this
+so a round folder keeps the release it was run on.
 
 **Steps.** The Hub posts a release on Sunday or Monday; files are accepted Sunday to Tuesday.
 

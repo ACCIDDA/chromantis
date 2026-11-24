@@ -37,7 +37,8 @@ dev = ["chromantis[model,explorer,evaluation]", "pytest>=8"]
 
 [tool.uv.sources]
 # Without this mapping torch resolves from PyPI, which now ships CUDA 13 only.
-torch = { index = "pytorch-cu126" }
+# Linux only (Longleaf); macOS laptops take PyPI's torch 2.9.1 for CPU replay (added 24 Nov 2026).
+torch = { index = "pytorch-cu126", marker = "sys_platform == 'linux'" }
 
 [[tool.uv.index]]
 name = "pytorch-cu126"
