@@ -34,6 +34,8 @@ def main():
     ap.add_argument('--gbqr', nargs='*', default=[])
     ap.add_argument('--groups', nargs='+', required=True)
     ap.add_argument('--max-seeds', type=int, default=16)
+    ap.add_argument('--study', default='experiments/flu-search-20261120', help='folder that receives mix-NAME.json')
+    ap.add_argument('--prefix', default='flu-mix', help='experiment and job name prefix of the scoring')
     a = ap.parse_args()
     members = {}
     for m in a.members:
@@ -58,13 +60,13 @@ def main():
             recipes[key] = dict(runs=[found[s][0] for s in seeds], scenario=found[seeds[0]][1])
             keys.append(key)
         groups[f'{gname} [{len(seeds)} seeds]'] = keys
-    spec = dict(description=f'flu search mixtures {a.name}', recipes=recipes, groups=groups, rules=['mixture'],
+    spec = dict(description=f'{Path(a.study).name} mixtures {a.name}', recipes=recipes, groups=groups, rules=['mixture'],
                 views=['corrected'], forecast_view='corrected')
-    path = Path('experiments/flu-search-20261120') / f'mix-{a.name}.json'
+    path = Path(a.study) / f'mix-{a.name}.json'
     path.write_text(json.dumps(spec, indent=1) + '\n')
     for k, v in groups.items():
         print(k, '=', v)
-    print(f'sbatch --job-name=flu-mix-{a.name} scripts/covid_tree_mix.sbatch {path} data/experiments/flu-mix-{a.name}')
+    print(f'sbatch --job-name={a.prefix}-{a.name} scripts/covid_tree_mix.sbatch {path} data/experiments/{a.prefix}-{a.name}')
 
 
 if __name__ == '__main__':

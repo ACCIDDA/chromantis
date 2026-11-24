@@ -1,4 +1,7 @@
 """Round table of the flu search (experiments/flu-search-20261120), with the verdict of each child against its parent.
+Also used by the COVID/RSV search (experiments/covid-rsv-search-20261124): --pathogen covid|rsv --parents '<glob of round files>'.
+For RSV the 2023-24 guard has no admissions (NHSN RSV unobserved before Nov 2024), so its guard score is ED share
+(column ged, natural WIS x 1e4) and the guard rule compares it relatively (child not worse by more than the margin in %).
 
 Scores: mean WIS of log(1 + flu admissions) over the 50 states and DC, Hub horizons 0-3, October-May reference dates,
 each recipe's deployed view; lower is better; averaged over seeds.
@@ -25,7 +28,6 @@ import numpy as np
 import pandas as pd
 
 HOSP, ED = 'wk inc flu hosp', 'wk inc flu prop ed visits'
-STUDY = Path('experiments/flu-search-20261120')
 
 
 def ranking(experiment):
@@ -59,7 +61,11 @@ def main():
     ap.add_argument('--guard', action='append', default=[])
     ap.add_argument('--out', type=Path)
     ap.add_argument('--only', nargs='*', help='restrict to these recipe names')
+    ap.add_argument('--pathogen', default='flu', choices=('flu', 'covid', 'rsv'))
+    ap.add_argument('--parents', default='experiments/flu-search-20261120/round-*.json', help='glob of study files with parents')
     a = ap.parse_args()
+    global HOSP, ED
+    HOSP, ED = f'wk inc {a.pathogen} hosp', f'wk inc {a.pathogen} prop ed visits'
     seasons, seeds, ranks, hub = load(a.experiment)
     s = sel(seasons).pivot_table(index='name', columns='season', values='mean_wis')
     rows = pd.DataFrame({'s2425': s.get('2024-2025'), 's2526': s.get('2025-2026')})
@@ -72,10 +78,12 @@ def main():
             rows['g2324'] = sel(gs).groupby('name').mean_wis.mean()
             g = sel(gseeds).groupby('name').score.agg(['std', 'count'])
             rows['gsd'], rows['gn'] = g['std'], g['count']
+            rows['ged'] = sel(gs, ED, 'natural').groupby('name').mean_wis.mean() * 1e4
     rows['oct'] = sel(ranks).groupby('name').october.mean()
     rows['us'] = sel(seasons, geography='US').groupby('name').mean_wis.mean()
     ed = sel(seasons, ED, 'natural')
     rows['ed'] = ed[ed.season == '2025-2026'].groupby('name').mean_wis.mean() * 1e4
+    rows['edm'] = ed.groupby('name').mean_wis.mean() * 1e4  # both seasons, equal
     cov = sel(seasons)
     rows['cov50'] = cov.groupby('name').covered_50.mean()
     rows['cov90'] = cov.groupby('name').covered_90.mean()
@@ -84,7 +92,7 @@ def main():
         hp = h.pivot_table(index='name', columns='season', values='relative_wis')
         rows['hub2425'], rows['hub2526'] = hp.get('2024-2025'), hp.get('2025-2026')
     parents = {}
-    for f in glob.glob(str(STUDY / 'round-*.json')):
+    for f in glob.glob(a.parents):
         parents.update(json.load(open(f)).get('parents', {}))
     rows['parent'] = [parents.get(n, '') for n in rows.index]
     verdict, delta = [], []
@@ -98,7 +106,12 @@ def main():
         d = q.primary - r.primary
         delta.append(-d / q.primary * 100)
         both = r.s2425 < q.s2425 and r.s2526 < q.s2526
-        guard_ok = 'g2324' not in rows or pd.isna(r.get('g2324')) or pd.isna(q.get('g2324')) or r.g2324 - q.g2324 <= margin
+        if 'g2324' in rows and not pd.isna(r.get('g2324')) and not pd.isna(q.get('g2324')):
+            guard_ok = r.g2324 - q.g2324 <= margin
+        elif 'ged' in rows and not pd.isna(r.get('ged')) and not pd.isna(q.get('ged')):
+            guard_ok = (r.ged - q.ged) / q.ged <= margin / q.primary
+        else:
+            guard_ok = True
         verdict.append('better' if d > margin and both and guard_ok else 'worse' if d < -margin else 'level')
     rows['vs_parent_%'] = delta
     rows['verdict'] = verdict
@@ -108,7 +121,7 @@ def main():
     if a.out:
         rows.to_csv(a.out, float_format='%.5g')
     pd.set_option('display.width', 250, 'display.max_columns', 40, 'display.max_rows', 400)
-    show = [c for c in ('primary', 's2425', 's2526', 'g2324', 'oct', 'us', 'ed', 'cov50', 'cov90', 'hub2425', 'hub2526',
+    show = [c for c in ('primary', 's2425', 's2526', 'g2324', 'ged', 'oct', 'us', 'ed', 'edm', 'cov50', 'cov90', 'hub2425', 'hub2526',
                         'sd', 'n', 'parent', 'vs_parent_%', 'verdict') if c in rows]
     print(rows[show].round(4).to_string())
 
