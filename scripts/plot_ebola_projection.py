@@ -18,7 +18,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 
-HUB = Path('../hubs/BDBV-Modeling-Hub')
+HUB = Path('production/hubs/BDBV-Modeling-Hub')
 BLUE, BAND, INK, MUTED, GRID = '#2a78d6', '#86b6ef', '#0b0b0b', '#52514e', '#e4e3df'
 # Other submissions for the same round, drawn as dashed medians where they cover a location: every
 # model's file on the hub's main branch except the hub baseline. Until 3 Nov this was a hand-written

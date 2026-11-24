@@ -28,7 +28,7 @@ on a new machine clone them again from GitHub at these paths, which the code rea
 | COVID-19 | `production/hubs/covid19-forecast-hub` (`CDCgov/covid19-forecast-hub`) | `production/hubs/covid19-forecast-hub-fork` (`jcblemai/covid19-forecast-hub`, `--filter=blob:none`) | `src/chromantis/production/hubs.py` |
 | RSV | `production/hubs/rsv-forecast-hub` (`CDCgov/rsv-forecast-hub`) | `production/hubs/rsv-forecast-hub-fork` (`jcblemai/rsv-forecast-hub`) | `src/chromantis/production/hubs.py` |
 | Flu MetroCast | `production/hubs/flu-metrocast` (`reichlab/flu-metrocast`, `--filter=blob:none`, sparse: `target-data`, `hub-config`, `auxiliary-data`, the rounds' `model-output`) | `production/hubs/flu-metrocast-fork` (`jcblemai/flu-metrocast`, `--filter=blob:none`, sparse: `model-metadata`, `model-output/ACCIDDA-Chromantis`) | by hand (submission, peers); the data builds read GitHub directly |
-| BDBV (Ebola) | `../hubs/BDBV-Modeling-Hub`, a sibling of this repository, one clone with `origin` = `InsightNet-US/BDBV-Modeling-Hub` and `fork` = `jcblemai/BDBV-Modeling-Hub` | the same clone | `scripts/*ebola*.py`; see [Running a round](ebola.md#running-a-round) |
+| BDBV (Ebola) | `production/hubs/BDBV-Modeling-Hub` (until 24 November 2026 `../hubs/BDBV-Modeling-Hub`), one clone with `origin` = `InsightNet-US/BDBV-Modeling-Hub` and `fork` = `jcblemai/BDBV-Modeling-Hub` | the same clone | `scripts/*ebola*.py`; see [Running a round](ebola.md#running-a-round) |
 
 Submission branches are pushed to the fork and the PR opened against the Hub's `main`. On
 Longleaf, Ebola round folders carry a copy of the Hub's `target-data/` and `auxiliary-data/` instead of a clone.

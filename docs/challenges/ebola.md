@@ -101,15 +101,15 @@ ensemble. There is no report page for this search yet.
 
 ## Running a round
 
-**Hub clone.** The Ebola scripts read the Hub from `../hubs/BDBV-Modeling-Hub`, a sibling of
-this repository, not from `production/hubs/` like the other Hubs. It is one full clone with two
-remotes: `origin` = `InsightNet-US/BDBV-Modeling-Hub` (target data, other teams' files) and `fork`
+**Hub clone.** The Ebola scripts read the Hub from `production/hubs/BDBV-Modeling-Hub` (until
+24 November 2026 it was `../hubs/BDBV-Modeling-Hub`, outside this repository). Unlike the other
+Hubs it is one full clone with two remotes: `origin` = `InsightNet-US/BDBV-Modeling-Hub` (target data, other teams' files) and `fork`
 = `jcblemai/BDBV-Modeling-Hub` (our submission branches `ACCIDDA-Chromantis-<reference date>`).
 On a new machine:
 
 ```bash
-git clone https://github.com/InsightNet-US/BDBV-Modeling-Hub.git ../hubs/BDBV-Modeling-Hub
-git -C ../hubs/BDBV-Modeling-Hub remote add fork https://github.com/jcblemai/BDBV-Modeling-Hub.git
+git clone https://github.com/InsightNet-US/BDBV-Modeling-Hub.git production/hubs/BDBV-Modeling-Hub
+git -C production/hubs/BDBV-Modeling-Hub remote add fork https://github.com/jcblemai/BDBV-Modeling-Hub.git
 ```
 
 Longleaf has no clone: each round's folder there (`tapestry-all/ebola-<date>/hub/`) holds a copy of
@@ -117,7 +117,7 @@ the Hub's `target-data/` and `auxiliary-data/`, passed with `--hub hub`.
 
 **Steps.** The Hub posts a release on Sunday or Monday; files are accepted Sunday to Tuesday.
 
-1. `git -C ../hubs/BDBV-Modeling-Hub pull` on `main`.
+1. `git -C production/hubs/BDBV-Modeling-Hub pull` on `main`.
 2. In `scripts/ebola_project.py` set `REFERENCE_DATE` (the coming Saturday), `FORECAST_DATE` (the
    day the PR will be opened, checked by the Hub), `RELEASE` (the release's `as_of`), `LAST` (its
    last onset week) and `TRAIN_UNTIL` (five weeks before `LAST`); in `scripts/build_ebola.py` set
@@ -357,7 +357,7 @@ against the date of the PR in Africa/Kinshasa. Hub validation passed; merged on 
 was opened on 27 October 2026 at 18:49 EDT from branch `ACCIDDA-Chromantis-2026-10-31` of the
 fork `jcblemai/BDBV-Modeling-Hub`, based on the Hub's `main` at `07b9844d`. It adds the model
 metadata (commit `db483a2`) and the forecast (commit `84c4705`). Merged at 19:43 EDT the same
-evening. The local Hub clone is `../hubs/BDBV-Modeling-Hub`.
+evening. The local Hub clone was `../hubs/BDBV-Modeling-Hub` (moved to `production/hubs/BDBV-Modeling-Hub` on 24 November).
 
 - **Model:** as described above, 12 fits, trained through 19 September 2026.
 - **Operational inputs:** Hub target data release of 24 October (Hub commit `07b9844d`),

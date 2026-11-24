@@ -217,7 +217,7 @@ def main():
     parser.add_argument('--recipe', choices=list(RECIPES))
     parser.add_argument('--seeds', type=int, nargs='+', default=[42, 43, 44, 45])
     parser.add_argument('--out', required=True)
-    parser.add_argument('--hub', default='../hubs/BDBV-Modeling-Hub')
+    parser.add_argument('--hub', default='production/hubs/BDBV-Modeling-Hub')
     parser.add_argument('--device', default='cpu')
     parser.add_argument('--model-id', default='ACCIDDA-Chromantis')
     parser.add_argument('--nowcast', choices=['mix', 'pairs'], default='mix', help='mix: half daily-delay (trend days), half release-pair draws; pairs: release-pair only (until the 21 Nov round)')

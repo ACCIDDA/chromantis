@@ -43,7 +43,7 @@ import pandas as pd
 from scipy.optimize import minimize
 from scipy.special import gammaln
 
-HUB = Path('../hubs/BDBV-Modeling-Hub')
+HUB = Path('production/hubs/BDBV-Modeling-Hub')
 LAGS = range(5)          # lags (weeks since the onset week ended) that still grow
 FIRST_RELEASE = '2026-10-09'   # consecutive releases from here on are compared; 18 Aug is too far back
 MIN_SIGMA, NO_REPLICATE_MARGIN = .2, .15

@@ -16,7 +16,7 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
-HUB = Path('../hubs/BDBV-Modeling-Hub')
+HUB = Path('production/hubs/BDBV-Modeling-Hub')
 Q = np.array([.01, .025] + list(np.round(np.arange(.05, .951, .05), 2)) + [.975, .99])
 
 

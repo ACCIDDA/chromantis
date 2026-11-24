@@ -19,7 +19,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 
-HUB = Path('../hubs/BDBV-Modeling-Hub')
+HUB = Path('production/hubs/BDBV-Modeling-Hub')
 INK, MUTED, GRID, OTHER = '#0b0b0b', '#52514e', '#e4e3df', '#a3a29d'
 COLORS = ['#2a78d6', '#eb6834', '#1baf7a', '#6250d6']
 
