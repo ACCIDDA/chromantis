@@ -36,3 +36,9 @@ rsync -a data/raw/google_trends/ chadi@longleaf.unc.edu:/hickory/proj/jlessler/p
 .venv/bin/python -m chromantis.experiment.planner plan -e rv-s-r02 --problem problems/us-rsv-short-term-coverage-gt.json --study $S/rsv-round-02.json --device cuda
 sbatch --job-name=crs-r02 --array=0-5 scripts/flu_search.sbatch cv-s-r02:4 rv-s-r02:8
 .venv/bin/python scripts/flu_search_table.py --pathogen covid --parents "$S/covid-round-*.json" -e cv-s-r01 -e cv-s-r02 --guard cv-s-g01
+# 2026-11-24 14:00 EST: COVID round 1 scored; round 3 queued (job 10677721); mixtures c01 (CPU job 10677723)
+python3 experiments/covid-rsv-search-20261124/rounds.py covid 3   # on the Mac
+.venv/bin/python -m chromantis.experiment.planner plan -e cv-s-r03 --problem problems/us-covid-short-term-coverage.json --study $S/covid-round-03.json --device cuda
+sbatch --job-name=crs-r03 --array=0-5 scripts/flu_search.sbatch cv-s-r03:4
+.venv/bin/python scripts/flu_search_mix.py c01 --study $S --prefix crs-mix --experiments cv-s-r01 --max-seeds 8 --members P=ref.Ah,ref.pN,ref.N,ref.Bh L=T,Tl,S T=T N=ref.N S=S E=Tl.esall B=ref.Bh --groups 'prod4:P' 'nov20:L' 'T:T' 'T+N:T,N' 'T+N+S:T,N,S' 'T+N+E:T,N,E' 'T+N+B:T,N,B' 'T+S:T,S'
+sbatch --job-name=crs-mix-c01 scripts/covid_tree_mix.sbatch $S/mix-c01.json data/experiments/crs-mix-c01

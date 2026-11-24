@@ -154,6 +154,27 @@ ROUNDS['covid'][2] = dict(description='COVID search round 2 (2026-11-24): Google
 ROUNDS['rsv'][2] = dict(description='RSV search round 2 (2026-11-24): Google Trends covariates ("rsv", "rsv symptoms"), gt panel.',
                         build=rsv2)
 
+def covid3():
+    # 24 Nov 13:50, round 1 (8 seeds, leak-free): nothing 'better'. T (0.2417) is the best single recipe; log-loss 1 (Tl)
+    # no longer helps once errors are leak-free (+2.0%, level); newest-week masking, sampled head, coverage and wastewater
+    # are level to slightly worse on Tl. ref.N (network on finalized histories, no artificial errors; 0.2439) is second
+    # and best on ED share: the trees do the whole nowcast and nothing is counted twice. Expand T and N.
+    r = R['covid']
+    put('covid', 'T.esall', derive(r['T'], error_seasons='all'), 'T')        # Tl.esall was -2.1% vs Tl
+    put('covid', 'N.gru', derive(r['ref.N'], encoder='gru'), 'ref.N')        # GRU helped pN over the MLP B family
+    put('covid', 'N.real', derive(r['ref.N'], corrector_examples='real'), 'ref.N')  # N's trees from real report pairs
+    put('covid', 'N.smp', derive(r['ref.N'], drop=('decoder',)), 'ref.N')     # sampled (trajectory) N
+    put('covid', 'N.ll1', derive(r['ref.N'], log_loss_weight=1.0), 'ref.N')
+    # S trained on finalized histories (no artificial errors, no corrected training histories): a sampled GRU 'N'.
+    put('covid', 'S.fin', derive(r['S'], drop=('history_source', 'history_correction', 'reporting_probability')), 'S')
+    put('covid', 'T.ms', derive(r['T'], signal_features='multiscale'), 'T')
+
+
+ROUNDS['covid'][3] = dict(description='COVID search round 3 (2026-11-24): children of the two best leak-free recipes, T (GRU '
+                                      'quantile, real-pair trees) and ref.N (finalized training histories): GRU, real-pair trees, '
+                                      'sampled head, log-loss 1, all-season pairs, multiscale; S on finalized histories.',
+                          build=covid3)
+
 # Guard-only files: recipes guarded after they pass the main problem (children are not guarded otherwise).
 GUARD = {'covid': {'g01': ['ref.Ah', 'ref.pN', 'ref.N', 'ref.Bh', 'T', 'Tl', 'S']},
          'rsv': {'g01': ['ref.Ball', 'ref.Bw', 'ref.A4c0', 'ref.A4i', 'Rc', 'R1']}}

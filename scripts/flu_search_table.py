@@ -50,8 +50,9 @@ def load(experiments):
     return cat(seasons), cat(seeds), cat(ranks), cat(hub)
 
 
-def sel(t, target=HOSP, scale='log', geography='states_dc'):
+def sel(t, target=None, scale='log', geography='states_dc'):
     t = t[t.deployed]
+    target = target or HOSP
     return t[(t.target == target) & (t.scale == scale) & (t.geography == geography)]
 
 
