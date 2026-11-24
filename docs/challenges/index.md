@@ -10,12 +10,28 @@ Hub's rules, the model currently submitted, how it was chosen and its submission
 | [RSV Forecast Hub](rsv.md) | RSV admissions and ED share, states/DC/US, horizons 0–3 | Submitting | 21 November 2026, four-recipe mixture with half-strength correction trees, PR 738 merged |
 | [Flu MetroCast](metrocast.md) | Local flu ED percentage, 103 locations, horizons 0–3 plus full season | Submitting | 7 November 2026, spliced 4-week and full-season models, PR 645 open |
 | [COVID-19 Forecast Hub](covid.md) | COVID admissions and ED share, states/DC/US, horizons 0–3 | Submitting | 21 November 2026, four-recipe mixture, PR 2068 merged |
-| [BDBV Modeling Hub (Ebola)](ebola.md) | DRC confirmed Ebola cases by onset week, country/provinces/health zones | Submitting | 14 November 2026, nowcast + 12-fit ensemble, PR 117 open |
+| [BDBV Modeling Hub (Ebola)](ebola.md) | DRC confirmed Ebola cases by onset week, country/provinces/health zones | Submitting | 28 November 2026, daily-delay + release-pair nowcast and 12-fit ensemble, PR 150 open |
 
 The public model name is **ACCIDDA-Chromantis** on every Hub. It was submitted as
 ACCIDDA-EpiLoom for the 10 October 2026 FluSight round and renamed on the Hub on 8 October
 2026 (PR 3774); the file contents did not change. Hub metadata changes are deferred until the
 recipe is settled, as decided on 8 October 2026.
+
+## Hub clones
+
+Every local Hub clone is git-ignored and not copied to Longleaf by `scripts/sync_longleaf.sh`;
+on a new machine clone them again from GitHub at these paths, which the code reads by default.
+
+| Hub | Read-only clone (Hub data, other teams) | Clone used to submit (remote `origin` = our fork, `upstream` = the Hub) | Read by |
+|---|---|---|---|
+| FluSight | `production/hubs/FluSight-forecast-hub` (`cdcepi/FluSight-forecast-hub`) | `production/hubs/FluSight-forecast-hub-fork` (`jcblemai/FluSight-forecast-hub`) | `src/chromantis/production/hubs.py`, `season_peak.py` |
+| COVID-19 | `production/hubs/covid19-forecast-hub` (`CDCgov/covid19-forecast-hub`) | `production/hubs/covid19-forecast-hub-fork` (`jcblemai/covid19-forecast-hub`, `--filter=blob:none`) | `src/chromantis/production/hubs.py` |
+| RSV | `production/hubs/rsv-forecast-hub` (`CDCgov/rsv-forecast-hub`) | `production/hubs/rsv-forecast-hub-fork` (`jcblemai/rsv-forecast-hub`) | `src/chromantis/production/hubs.py` |
+| Flu MetroCast | `production/hubs/flu-metrocast` (`reichlab/flu-metrocast`, `--filter=blob:none`, sparse: `target-data`, `hub-config`, `auxiliary-data`, the rounds' `model-output`) | `production/hubs/flu-metrocast-fork` (`jcblemai/flu-metrocast`, `--filter=blob:none`, sparse: `model-metadata`, `model-output/ACCIDDA-Chromantis`) | by hand (submission, peers); the data builds read GitHub directly |
+| BDBV (Ebola) | `../hubs/BDBV-Modeling-Hub`, a sibling of this repository, one clone with `origin` = `InsightNet-US/BDBV-Modeling-Hub` and `fork` = `jcblemai/BDBV-Modeling-Hub` | the same clone | `scripts/*ebola*.py`; see [Running a round](ebola.md#running-a-round) |
+
+Submission branches are pushed to the fork and the PR opened against the Hub's `main`. On
+Longleaf, Ebola round folders carry a copy of the Hub's `target-data/` and `auxiliary-data/` instead of a clone.
 
 ## All submissions
 
@@ -35,7 +51,10 @@ recipe is settled, as decided on 8 October 2026.
 | RSV | 31 October 2026 | Four-recipe mixture rsv-four-20261014, 40 fits | PR 673 merged 28 October |
 | RSV | 24 October 2026 | Four-recipe mixture rsv-four-20261014, 40 fits | PR 657 merged 21 October |
 | RSV | 17 October 2026 | Four-recipe mixture rsv-four-20261014, 40 fits | First RSV submission; PR 641 merged 15 October |
-| BDBV (Ebola) | 14 November 2026 | Same nowcast code and three recipes × four seeds, trained through 3 October, 8 November release | PR 117 opened 10 November, validation passed |
+| BDBV (Ebola) | 28 November 2026 | Nowcast half daily-delay, half release-pair; three recipes × four seeds with nowcast noise 0.5, trained through 17 October, 22 November release | PR 150 opened 24 November, validation passed |
+| BDBV (Ebola) | 21 November 2026 | Release-pair nowcast on the two latest pairs; three recipes × four seeds with nowcast noise 0.5, trained through 10 October, 15 November release | PR 134 merged 17 November |
+| BDBV (Ebola) | 14 November 2026, resubmission | Same nowcast; the 12 fits retrained with nowcast noise 0.5 | PR 122 merged 11 November (validation failed only on the closed window) |
+| BDBV (Ebola) | 14 November 2026 | Same nowcast code and three recipes × four seeds, trained through 3 October, 8 November release | PR 117 merged 10 November |
 | BDBV (Ebola) | 7 November 2026 | Observed-onset nowcast + the same three recipes × four seeds, trained through 26 September | PR 96 merged 4 November |
 | BDBV (Ebola) | 31 October 2026 | Negative-binomial nowcast + three recipes × four seeds (12 fits) | First submission; PR 71 merged 27 October |
 | COVID-19 | 21 November 2026 | Four-recipe mixture covid-gru-four-candidate-20261103, 40 fits | PR 2068 merged 18 November |
