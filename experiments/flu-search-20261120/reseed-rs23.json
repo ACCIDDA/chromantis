@@ -1,0 +1,23 @@
+{
+ "description": "Flu search reseed rs23: Bq.smp.ll1.nm10.gt, Bq.smp.ll1.nm10.gtflu, ref.B.nm10.gt, ref.B.nm10.gtflu, Ar.peak.nokinsa.nm10.gt, Ar.peak.nokinsa.nm10.gtflu on seeds 52-59.",
+ "round": "rs23",
+ "parents": {},
+ "candidates": {
+  "Bq.smp.ll1.nm10.gt": "history_source=artificial,reconstruction_labels=1,error_signals=targets,input_set=target,correction_weeks=2,correction_ed=1,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,loss_weights=objective,spatial=neighbors,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=1.0,corrector_examples=real,newest_mask=0.1,stress_views=1,covariate_set=gtrends",
+  "Bq.smp.ll1.nm10.gtflu": "history_source=artificial,reconstruction_labels=1,error_signals=targets,input_set=target,correction_weeks=2,correction_ed=1,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,loss_weights=objective,spatial=neighbors,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=1.0,corrector_examples=real,newest_mask=0.1,stress_views=1,covariate_set=gt_flu",
+  "ref.B.nm10.gt": "history_source=artificial,reconstruction_labels=1,error_signals=targets,input_set=target,correction_weeks=2,correction_ed=1,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,loss_weights=objective,spatial=neighbors,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=0.5,newest_mask=0.1,stress_views=1,covariate_set=gtrends",
+  "ref.B.nm10.gtflu": "history_source=artificial,reconstruction_labels=1,error_signals=targets,input_set=target,correction_weeks=2,correction_ed=1,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,loss_weights=objective,spatial=neighbors,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=0.5,newest_mask=0.1,stress_views=1,covariate_set=gt_flu",
+  "Ar.peak.nokinsa.nm10.gt": "history_source=artificial,history_correction=1,error_signals=targets,input_set=target,correction_weeks=2,correction_ed=1,joint_weight=0.05,correction_penalty=30.0,reporting_missingness=0,reporting_method=synchronous_phase_log,count_transform=sqrt,ed_transform=logit,loss_weights=objective,decoder_blocks=3,width=96,epochs=160,patience=25,lr=0.002,fit_partition=pathogen,covariate_encoder=summary,covariate_set=gtrends,input_normalization=b0,log_loss_weight=0.5,corrector_examples=real,peak_loss_weight=1.0,newest_mask=0.1,stress_views=1",
+  "Ar.peak.nokinsa.nm10.gtflu": "history_source=artificial,history_correction=1,error_signals=targets,input_set=target,correction_weeks=2,correction_ed=1,joint_weight=0.05,correction_penalty=30.0,reporting_missingness=0,reporting_method=synchronous_phase_log,count_transform=sqrt,ed_transform=logit,loss_weights=objective,decoder_blocks=3,width=96,epochs=160,patience=25,lr=0.002,fit_partition=pathogen,covariate_encoder=summary,covariate_set=gt_flu,input_normalization=b0,log_loss_weight=0.5,corrector_examples=real,peak_loss_weight=1.0,newest_mask=0.1,stress_views=1"
+ },
+ "seeds": [
+  52,
+  53,
+  54,
+  55,
+  56,
+  57,
+  58,
+  59
+ ]
+}

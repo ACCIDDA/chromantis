@@ -484,7 +484,10 @@ RESEED = {'rs01': (['ref.A', 'ref.B5', 'ref.B', 'ref.Bes', 'Bq', 'Bh', 'Ar'], li
           'rs05': (['Bq.smp.ll1'], list(range(52, 60))),
           'rs06': (['ref.A', 'ref.B5', 'ref.B', 'Bq', 'Bh', 'Ar.peak', 'Bq.smp.ll1', 'Bh.smp'], list(range(60, 68))),
           'rs07': (['ref.A', 'ref.B5', 'ref.B', 'Ar.peak', 'Bq.smp.ll1', 'Bh.smp'], list(range(68, 76))),
-          'rs08': (['Ar.peak.nokinsa'], list(range(52, 68)))}
+          'rs08': (['Ar.peak.nokinsa'], list(range(52, 68))),
+          # 23 Nov 19:20: round 25 (Google Trends, gt panel) on seeds 52-59, queued before its first scores so GPUs stay busy
+          'rs23': ([f'{r}.{t}' for r in ('Bq.smp.ll1.nm10', 'ref.B.nm10', 'Ar.peak.nokinsa.nm10') for t in ('gt', 'gtflu')],
+                   list(range(52, 60)))}
 
 
 def write_reseed(tag):

@@ -194,3 +194,10 @@ LANES=4 sbatch --export=ALL --job-name=flu-s-r25 --array=0-4 scripts/flu_search.
 .venv/bin/python -m chromantis.experiment.planner rank -e flu-s-r25 --allow-incomplete --no-report
 .venv/bin/python scripts/flu_search_table.py -e flu-s-r25 --guard flu-s-g25 --out output/flu-search/r25.csv
 # 2026-11-23 17:30 EST: Trends pull done; gt panel built; round 25 launched as job 10533063 (two earlier submissions cancelled: study/problem files not yet synced)
+# 2026-11-23 19:20 EST: round 24 main scored (nothing better); guard g24 cancelled (job 10529799); Trends reseed rs23 queued
+.venv/bin/python scripts/flu_search_table.py -e flu-s-r24 -e flu-s-r19 --out output/flu-search/r24.csv   # parents = round-19 fits, same seeds
+python3 experiments/flu-search-20261120/rounds.py rs23   # on the Mac
+.venv/bin/python -m chromantis.experiment.planner plan -e flu-s-rs23 --problem problems/us-flu-short-term-coverage-gt.json --study $S/reseed-rs23.json --device cuda
+LANES=4 sbatch --export=ALL --job-name=flu-s-rs23 --array=0-4 scripts/flu_search.sbatch flu-s-rs23   # job 10554865
+.venv/bin/python -m chromantis.experiment.planner status -e flu-s-rs23
+.venv/bin/python scripts/flu_search_table.py -e flu-s-r25 -e flu-s-rs23 -e flu-s-r19 -e flu-s-rs15 --guard flu-s-g25 --out output/flu-search/r25.csv
