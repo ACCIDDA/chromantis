@@ -42,3 +42,9 @@ python3 experiments/covid-rsv-search-20261124/rounds.py covid 3   # on the Mac
 sbatch --job-name=crs-r03 --array=0-5 scripts/flu_search.sbatch cv-s-r03:4
 .venv/bin/python scripts/flu_search_mix.py c01 --study $S --prefix crs-mix --experiments cv-s-r01 --max-seeds 8 --members P=ref.Ah,ref.pN,ref.N,ref.Bh L=T,Tl,S T=T N=ref.N S=S E=Tl.esall B=ref.Bh --groups 'prod4:P' 'nov20:L' 'T:T' 'T+N:T,N' 'T+N+S:T,N,S' 'T+N+E:T,N,E' 'T+N+B:T,N,B' 'T+S:T,S'
 sbatch --job-name=crs-mix-c01 scripts/covid_tree_mix.sbatch $S/mix-c01.json data/experiments/crs-mix-c01
+# 2026-11-24 15:00 EST: RSV round 1 scored; guard fix (ranking.py) and retries; RSV round 3 + guard g03 queued (job 10688103)
+python3 experiments/covid-rsv-search-20261124/rounds.py rsv 3; python3 experiments/covid-rsv-search-20261124/rounds.py rsv g03   # on the Mac
+.venv/bin/python -m chromantis.experiment.planner plan -e rv-s-r03 --problem problems/us-rsv-short-term-coverage.json --study $S/rsv-round-03.json --device cuda
+.venv/bin/python -m chromantis.experiment.planner plan -e rv-s-g03 --problem problems/us-rsv-2023-24-prescribed-coverage.json --study $S/rsv-guard-g03.json --device cuda
+sbatch --job-name=crs-r03b --array=0-5 scripts/flu_search.sbatch rv-s-r03:8 cv-s-g01:4 rv-s-g01:8 rv-s-g03:8
+.venv/bin/python scripts/flu_search_table.py --pathogen rsv --parents "$S/rsv-round-*.json" -e rv-s-r01 -e rv-s-r03 --guard rv-s-g01 --guard rv-s-g03

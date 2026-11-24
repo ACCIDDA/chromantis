@@ -116,8 +116,10 @@ def cache_scores(run, frozen):
         history = label.split('_', 1)[1] if label.startswith('draw') else label
         tag = dict(history=history, revision_draw=draw)
         tables['scores-raw.csv'].append(raw_wis(path, frozen).assign(**tag))
-        if compared:
-            relative = hub_relative(path, frozen)
+        relative = hub_relative(path, frozen) if compared else None
+        if relative is not None and 'geography' not in relative:  # no Hub forecasts for the season (COVID/RSV 2023-24)
+            relative = None
+        if relative is not None:
             tables['scores-hub-relative.csv'].append(relative[relative.geography != 'all'].assign(**tag))
             table = pairwise(path, frozen)
             # Every Hub model's value in this run's pool, for the own view only (the figure's background).

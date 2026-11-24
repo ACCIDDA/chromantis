@@ -175,9 +175,32 @@ ROUNDS['covid'][3] = dict(description='COVID search round 3 (2026-11-24): childr
                                       'sampled head, log-loss 1, all-season pairs, multiscale; S on finalized histories.',
                           build=covid3)
 
+def rsv3():
+    # 24 Nov 14:50, round 1 (8 seeds, leak-free): Bwq (ref.Bw with real-pair trees and a US-only summary instead of
+    # neighbouring states) 0.3278 vs ref.Bw 0.3521, -6.9%, lower in both seasons: 'better' on the main problem (guard
+    # pending). Its sampled head with log-loss 1 (Bwq.smp, 0.3246) is level with it and preferred (trajectories).
+    # Decompose Bwq's two changes, and expand the sampled B-family root. R1.real could not be fitted (newest week only:
+    # no real ED pairs), so real-pair trees are tried on Rc (two weeks corrected).
+    r = R['rsv']
+    put('rsv', 'Bw.real', derive(r['ref.Bw'], corrector_examples='real'), 'ref.Bw')
+    put('rsv', 'Bw.nat', derive(r['ref.Bw'], spatial='national_broadcast'), 'ref.Bw')
+    put('rsv', 'Rc.real', derive(r['Rc'], corrector_examples='real'), 'Rc')
+    b = r['Bwq.smp']
+    put('rsv', 'Bwq.smp.nm10', derive(b, newest_mask=0.1), 'Bwq.smp')
+    put('rsv', 'Bwq.smp.peak', derive(b, peak_loss_weight=1.0), 'Bwq.smp')
+    put('rsv', 'Bwq.smp.tgt', derive(b, input_set='target'), 'Bwq.smp')        # RSV histories only (flu: other pathogens hurt)
+    put('rsv', 'Bwq.smp.gru', derive(b, encoder='gru'), 'Bwq.smp')             # COVID's T/S use a GRU
+    put('rsv', 'Bwq.smp.esall', derive(b, error_seasons='all'), 'Bwq.smp')
+    put('rsv', 'Bwq.smp.hc', derive(b, drop=('reconstruction_labels', 'reconstruction_weeks'), history_correction=1), 'Bwq.smp')
+
+
+ROUNDS['rsv'][3] = dict(description='RSV search round 3 (2026-11-24): decomposition of the round-1 winner Bwq (real-pair trees, '
+                                    'US summary) and children of its sampled version Bwq.smp; real-pair trees on Rc.', build=rsv3)
+
 # Guard-only files: recipes guarded after they pass the main problem (children are not guarded otherwise).
 GUARD = {'covid': {'g01': ['ref.Ah', 'ref.pN', 'ref.N', 'ref.Bh', 'T', 'Tl', 'S']},
-         'rsv': {'g01': ['ref.Ball', 'ref.Bw', 'ref.A4c0', 'ref.A4i', 'Rc', 'R1']}}
+         'rsv': {'g01': ['ref.Ball', 'ref.Bw', 'ref.A4c0', 'ref.A4i', 'Rc', 'R1'],
+                 'g03': ['Bwq', 'Bwq.smp']}}
 RESEED = {'covid': {'rs01': (['ref.Ah', 'ref.pN', 'ref.N', 'ref.Bh', 'T', 'Tl', 'S'], list(range(52, 60)))},
           'rsv': {'rs01': (['ref.Ball', 'ref.Bw', 'ref.A4c0', 'ref.A4i', 'Rc', 'R1'], list(range(52, 60)))}}
 
