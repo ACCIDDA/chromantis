@@ -27,8 +27,8 @@ SRC = ROOT / 'source'
 HUB = Path('../hubs/BDBV-Modeling-Hub')
 # BDBV weeks from this one on are still being reported (lags 0-2 of the latest release; the 10 Oct
 # week grew 34 -> 314 -> 413 -> 465 over four releases), so they are not usable as labels or
-# finalized inputs. Was 10 Oct for the 24 Oct release, 17 Oct for the 1 Nov release.
-BDBV_INCOMPLETE_FROM = '2026-10-31'
+# finalized inputs. Was 10 Oct for the 24 Oct release, 17 Oct for the 1 Nov release, 31 Oct for the 15 Nov release.
+BDBV_INCOMPLETE_FROM = '2026-11-07'
 
 
 def saturday_on_or_before(day):

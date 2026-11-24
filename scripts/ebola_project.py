@@ -1,10 +1,14 @@
 """BDBV projection for one hub round: nowcast of the incomplete weeks, then a Chromantis ensemble.
 
-1. Nowcast (`ebola_nowcast.py`). The five newest onset weeks (3-31 Oct for the 1 Nov release) are
-   still growing between hub releases. Each health zone's final count is drawn release step by
-   release step from a negative-binomial model fitted to the latest release pair, so zones reporting zero can
-   gain cases; provinces and the country are sums of their health zones. The draws are seeded,
-   so every fit job sees the same 100 nowcast draws.
+1. Nowcast. The five newest onset weeks are still growing between hub releases. Half the 100 draws
+   come from the daily-delay nowcast (`ebola_daily_nowcast.py`, trend days: onset-to-report delay in
+   days from the case-level delay file, newest days pulled toward the recent daily trend), half from
+   the release-pair nowcast (`ebola_nowcast.py`: growth per lag between consecutive releases). Health
+   zones get cases negative binomial, so zones reporting zero can gain cases; provinces and the
+   country are sums of their health zones. The draws are seeded, so every fit job sees the same 100
+   nowcast draws. Until the 21 Nov round all draws came from the release-pair nowcast (`--nowcast
+   pairs`); the half-half mix scored national WIS 19.9 against 25.3 and health-zone WIS 0.80 against
+   0.84 on the 24 Oct-15 Nov releases scored on the 22 Nov counts.
 2. Models (`fit`). Each recipe x seed is retrained on West Africa 2014-15, Kivu 2018-20 and BDBV
    weeks through TRAIN_UNTIL (latest values), with no held-out window, and samples the 1-4 weeks
    after the last data week from every nowcast draw.
@@ -37,6 +41,7 @@ from chromantis.experiment import training
 from chromantis.model.scenario import Scenario
 from chromantis.problem import Problem
 from ebola_noise import InputNoise
+from ebola_daily_nowcast import DailyNowcast
 from ebola_nowcast import Nowcast
 
 # Selected by the five-window rescoring (experiments/ebola-20261026/rescore-multi-rank.csv):
@@ -55,18 +60,18 @@ RECIPES = {
                            'noise=local,latent=4,epochs=160,batch_size=32,members=16,annual_calendar=0,weight_decay=0.0001,'
                            'covariate_encoder=growth,covariate_set=outbreak,log_loss_weight=1.0,forecast_view=raw',
 }
-REFERENCE_DATE = '2026-11-21'
-FORECAST_DATE = '2026-11-17'  # the day the model is run; the hub checks it against the PR date
-RELEASE = '2026-11-15'       # latest hub target-data release (`as_of`); the 14 Nov round used 8 Nov
-LAST = '2026-11-14'          # last data week in that release
-TRAIN_UNTIL = '2026-10-10'   # five weeks before LAST: later BDBV weeks are still growing
+REFERENCE_DATE = '2026-11-28'
+FORECAST_DATE = '2026-11-24'  # the day the model is run; the hub checks it against the PR date
+RELEASE = '2026-11-22'       # latest hub target-data release (`as_of`); the 21 Nov round used 15 Nov
+LAST = '2026-11-21'          # last data week in that release
+TRAIN_UNTIL = '2026-10-17'   # five weeks before LAST: later BDBV weeks are still growing
 DRAWS = 100
 
 
 class Setup:
     """Panel, BDBV metadata, latest release and the nowcast draws shared by fit and merge."""
 
-    def __init__(self, hub):
+    def __init__(self, hub, nowcast='mix'):
         self.problem = Problem.load('problems/ebola-bdbv-screen.json')
         with np.load(self.problem.panel) as d:
             self.panel = {k: d[k] for k in d.files}
@@ -84,7 +89,9 @@ class Setup:
         self.kids = {p: [h for h in self.hz if h.rsplit('-', 1)[0] == p] for p in self.provinces}
         if not all(self.kids.values()):
             raise ValueError(f'Provinces without health zones: {[p for p, k in self.kids.items() if not k]}')
-        self.draws = Nowcast(self.hz, hub, until=RELEASE).sample(RELEASE, self.recent, DRAWS)
+        base = Nowcast(self.hz, hub, until=RELEASE)
+        model = base if nowcast == 'pairs' else DailyNowcast(base, hub, days='trend', mix=.5)
+        self.draws = model.sample(RELEASE, self.recent, DRAWS)
 
     def full_panel(self, hz_values):
         """Panel copy with the BDBV incomplete weeks replaced by one draw; parents are sums."""
@@ -107,7 +114,7 @@ class Setup:
 
 
 def fit(args):
-    s = Setup(args.hub)
+    s = Setup(args.hub, args.nowcast)
     problem, scenario = s.problem, Scenario.from_string(RECIPES[args.recipe])
     names = problem.input_names(scenario.input_set), problem.covariate_names(scenario.covariate_set)
     keep = s.dates <= TRAIN_UNTIL
@@ -165,7 +172,7 @@ def reconcile(future, recent, s, idx):
 
 
 def merge(args):
-    s = Setup(args.hub)
+    s = Setup(args.hub, args.nowcast)
     out = Path(args.out)
     files = sorted(out.glob('samples-*.npz'))
     models = [np.load(f) for f in files]
@@ -197,7 +204,7 @@ def merge(args):
     pd.DataFrame(hub, columns=['reference_date', 'forecast_date', 'target', 'target_end_date', 'location', 'output_type', 'output_type_id',
                                'value']).to_csv(sub / f'{REFERENCE_DATE}-{team}.csv', index=False)
     (out / 'settings.json').write_text(json.dumps(dict(models=[f.stem for f in files], recipes=RECIPES,
-                                                       nowcast='ebola_nowcast.py', train_until=TRAIN_UNTIL, release=RELEASE, last=LAST,
+                                                       nowcast=args.nowcast, train_until=TRAIN_UNTIL, release=RELEASE, last=LAST,
                                                        forecast_date=FORECAST_DATE,
                                                        input_noise=float(models[0]['input_noise']) if 'input_noise' in models[0] else 0.,
                                                        reference_date=REFERENCE_DATE, draws=DRAWS), indent=2) + '\n')
@@ -212,7 +219,8 @@ def main():
     parser.add_argument('--out', required=True)
     parser.add_argument('--hub', default='../hubs/BDBV-Modeling-Hub')
     parser.add_argument('--device', default='cpu')
-    parser.add_argument('--model-id', default='UNC-Chromantis')
+    parser.add_argument('--model-id', default='ACCIDDA-Chromantis')
+    parser.add_argument('--nowcast', choices=['mix', 'pairs'], default='mix', help='mix: half daily-delay (trend days), half release-pair draws; pairs: release-pair only (until the 21 Nov round)')
     parser.add_argument('--input-noise', type=float, default=.5, help='strength of artificial nowcast noise in training (ebola_noise.py); 0 = none (the default until the 14 Nov resubmission)')
     args = parser.parse_args()
     Path(args.out).mkdir(parents=True, exist_ok=True)
