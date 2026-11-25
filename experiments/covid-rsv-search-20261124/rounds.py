@@ -307,6 +307,33 @@ def rsv9():
 ROUNDS['rsv'][9] = dict(description='RSV search round 9 (2026-11-25): cross-location exchange (HHS-region attention, gated '
                                     'pooling, distance kernel) in place of the US-only summary on Bw.nat and A4i.nat.', build=rsv9)
 
+def covid6():
+    # 25 Nov 03:40: region attention cannot run (the location table has no state abbreviation). Unrestricted attention, and
+    # half of the training episodes from actual archived reports instead of artificial errors (flu act50 idea).
+    r = R['covid']
+    put('covid', 'T.att', derive(r['T'], spatial='attention'), 'T')
+    put('covid', 'N.att', derive(r['ref.N'], spatial='attention'), 'ref.N')
+    put('covid', 'T.act50', derive(r['T'], actual_share=0.5), 'T')
+    put('covid', 'S.act50', derive(r['S'], actual_share=0.5), 'S')
+
+
+ROUNDS['covid'][6] = dict(description='COVID search round 6 (2026-11-25): attention exchange on T and ref.N; half of the training '
+                                      'episodes from actual archived reports on T and S.', build=covid6)
+
+
+def rsv10():
+    # Ball (production) trains on actual archived reports only; same idea on the national recipes, and attention exchange.
+    r = R['rsv']
+    put('rsv', 'Bw.nat.att', derive(r['Bw.nat'], spatial='attention'), 'Bw.nat')
+    put('rsv', 'A4i.nat.att', derive(r['A4i.nat'], spatial='attention'), 'A4i.nat')
+    put('rsv', 'Bw.nat.act50', derive(r['Bw.nat'], actual_share=0.5), 'Bw.nat')
+    put('rsv', 'Bw.nat.act100', derive(r['Bw.nat'], actual_share=1.0), 'Bw.nat')
+    put('rsv', 'A4i.nat.act50', derive(r['A4i.nat'], actual_share=0.5), 'A4i.nat')
+
+
+ROUNDS['rsv'][10] = dict(description='RSV search round 10 (2026-11-25): attention exchange on Bw.nat and A4i.nat; training '
+                                     'episodes from actual archived reports (half or all) on the national recipes.', build=rsv10)
+
 # Guard-only files: recipes guarded after they pass the main problem (children are not guarded otherwise).
 GUARD = {'covid': {'g01': ['ref.Ah', 'ref.pN', 'ref.N', 'ref.Bh', 'T', 'Tl', 'S'],
                    'g02': (['ref.Ah', 'ref.pN', 'ref.N', 'ref.Bh', 'T', 'S'], list(range(52, 60))),  # guard seeds for mixtures

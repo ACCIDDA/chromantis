@@ -150,3 +150,15 @@ python3 $S/rounds.py covid 5; python3 $S/rounds.py rsv 9   # on the Mac
 .venv/bin/python -m chromantis.experiment.planner plan -e cv-s-r05 --problem problems/us-covid-short-term-coverage.json --study $S/covid-round-05.json --device cuda
 .venv/bin/python -m chromantis.experiment.planner plan -e rv-s-r09 --problem problems/us-rsv-short-term-coverage.json --study $S/rsv-round-09.json --device cuda
 sbatch --job-name=crs-r09 --array=0-5 scripts/flu_search.sbatch rv-s-r09:4 cv-s-r05:4
+# 2026-11-25 03:50 EST: 32-seed final mixtures (c04g 10761392, r04 10761393, r04g 10761394); COVID round 6 + RSV round 10 (job 10761417)
+.venv/bin/python scripts/flu_search_mix.py c04g --study $S --prefix crs-mix --experiments cv-s-g01 cv-s-g02 cv-s-g03 cv-s-g04 --max-seeds 32 --members P=ref.Ah,ref.pN,ref.N,ref.Bh T=T N=ref.N S=S pN=ref.pN --groups "prod4:P" "prod4+T:P,T" "T+N+S:T,N,S" "N+pN+S:N,pN,S"
+sbatch --job-name=crs-mix-c04g scripts/covid_tree_mix.sbatch $S/mix-c04g.json data/experiments/crs-mix-c04g
+M="P=ref.Ball,ref.Bw,ref.A4c0,ref.A4i PB=ref.Ball,Bw.nat,ref.A4c0,ref.A4i PN=ref.Ball,Bw.nat,ref.A4c0,A4i.nat"; GR=("prod4:P" "prodBnat:PB" "prodnat:PN")
+.venv/bin/python scripts/flu_search_mix.py r04 --study $S --prefix crs-mix --experiments rv-s-r01 rv-s-r03 rv-s-r05 rv-s-rs01 rv-s-rs03 rv-s-rs04 rv-s-rs05 rv-s-rs06 rv-s-rs08 --max-seeds 32 --members $M --groups "${GR[@]}"
+sbatch --job-name=crs-mix-r04 scripts/covid_tree_mix.sbatch $S/mix-r04.json data/experiments/crs-mix-r04
+.venv/bin/python scripts/flu_search_mix.py r04g --study $S --prefix crs-mix --experiments rv-s-g01 rv-s-g06 rv-s-g07 rv-s-g08 rv-s-g10 --max-seeds 32 --members $M --groups "${GR[@]}"
+sbatch --job-name=crs-mix-r04g scripts/covid_tree_mix.sbatch $S/mix-r04g.json data/experiments/crs-mix-r04g
+python3 $S/rounds.py covid 6; python3 $S/rounds.py rsv 10   # on the Mac
+.venv/bin/python -m chromantis.experiment.planner plan -e cv-s-r06 --problem problems/us-covid-short-term-coverage.json --study $S/covid-round-06.json --device cuda
+.venv/bin/python -m chromantis.experiment.planner plan -e rv-s-r10 --problem problems/us-rsv-short-term-coverage.json --study $S/rsv-round-10.json --device cuda
+sbatch --job-name=crs-r10 --array=0-5 scripts/flu_search.sbatch rv-s-r10:4 cv-s-r06:4
