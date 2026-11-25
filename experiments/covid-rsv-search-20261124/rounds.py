@@ -299,7 +299,8 @@ RESEED = {'covid': {'rs01': (['ref.Ah', 'ref.pN', 'ref.N', 'ref.Bh', 'T', 'Tl', 
                     'rs02': (['ref.Ah', 'ref.pN', 'ref.N', 'ref.Bh', 'T', 'S', 'N.smp'], list(range(60, 68))),
                     # 24 Nov 18:40: mixture decisions are noise-limited; 32 main seeds for the finalists and production
                     'rs03': (['ref.Ah', 'ref.pN', 'ref.N', 'ref.Bh', 'T', 'S'], list(range(68, 76))),
-                    'rel': (['ref.Ah', 'ref.pN', 'ref.N', 'ref.Bh', 'T', 'S'], list(range(42, 62)))},
+                    'rel': (['ref.Ah', 'ref.pN', 'ref.N', 'ref.Bh', 'T', 'S'], list(range(42, 62))),
+                    'rel2': (['ref.Ah', 'ref.pN', 'ref.N', 'ref.Bh', 'T', 'S'], list(range(62, 82)))},
           'rsv': {'rs01': (['ref.Ball', 'ref.Bw', 'ref.A4c0', 'ref.A4i', 'Rc', 'R1'], list(range(52, 60))),
                   'rs02': (['Bwq', 'Bwq.smp'], list(range(52, 60))),
                   'rs03': (['Rc.real', 'Bw.nat'], list(range(52, 60))),
@@ -308,7 +309,8 @@ RESEED = {'covid': {'rs01': (['ref.Ah', 'ref.pN', 'ref.N', 'ref.Bh', 'T', 'Tl', 
                   'rs06': (['Bw.nat'], list(range(60, 68))),
                   'rs07': (['Bw.nat.smp'], list(range(52, 68))),
                   # 24 Nov 22:45: all-season release fits (production problem, trained on 2022-23..2025-26), seeds 42-61
-                  'rel': (['ref.Ball', 'ref.Bw', 'ref.A4c0', 'ref.A4i', 'Bw.nat', 'Bw.nat.smp', 'A4i.nat'], list(range(42, 62)))}}
+                  'rel': (['ref.Ball', 'ref.Bw', 'ref.A4c0', 'ref.A4i', 'Bw.nat', 'Bw.nat.smp', 'A4i.nat'], list(range(42, 62))),
+                  'rel2': (['ref.Ball', 'ref.A4c0', 'Bw.nat', 'Bw.nat.smp', 'A4i.nat'], list(range(62, 82)))}}
 
 
 def build_all(p, upto=None):

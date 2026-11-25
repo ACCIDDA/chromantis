@@ -130,3 +130,9 @@ GR=("prod4:P" "prodBnat:PB" "prodnat:PN" "prodnat-smp:PS" "BN+AN:BN,AN" "BS+AN:B
 sbatch --job-name=crs-mix-r03 scripts/covid_tree_mix.sbatch $S/mix-r03.json data/experiments/crs-mix-r03
 .venv/bin/python scripts/flu_search_mix.py r03g --study $S --prefix crs-mix --experiments rv-s-g01 rv-s-g06 rv-s-g07 rv-s-g08 rv-s-g09 --max-seeds 24 --members $M --groups "${GR[@]}"
 sbatch --job-name=crs-mix-r03g scripts/covid_tree_mix.sbatch $S/mix-r03g.json data/experiments/crs-mix-r03g
+# 2026-11-25 00:45 EST: release seeds 62-81 (job 10750562); RSV peak-window check (CPU job 10750528)
+python3 $S/rounds.py rsv rel2; python3 $S/rounds.py covid rel2   # on the Mac
+.venv/bin/python -m chromantis.experiment.planner plan -e rv-s-rel2 --problem problems/us-rsv-production-coverage.json --study $S/rsv-reseed-rel2.json --device cuda
+.venv/bin/python -m chromantis.experiment.planner plan -e cv-s-rel2 --problem problems/us-covid-production-coverage.json --study $S/covid-reseed-rel2.json --device cuda
+sbatch --job-name=crs-rel2 --array=0-5 scripts/flu_search.sbatch rv-s-rel2:4 cv-s-rel2:4
+sbatch --job-name=crs-phase-r --partition=jlessler --cpus-per-task=4 --mem=48G --time=02:00:00 --output=output/crs-search/phase-r03.txt --wrap "PYTHONPATH=src .venv/bin/python scripts/flu_phase_check.py data/experiments/crs-mix-r03/*-mixture"
