@@ -469,6 +469,7 @@ RESEED = {'covid': {'rs01': (['ref.Ah', 'ref.pN', 'ref.N', 'ref.Bh', 'T', 'Tl', 
                   'rel': (['ref.Ball', 'ref.Bw', 'ref.A4c0', 'ref.A4i', 'Bw.nat', 'Bw.nat.smp', 'A4i.nat'], list(range(42, 62))),
                   'rel2': (['ref.Ball', 'ref.A4c0', 'Bw.nat', 'Bw.nat.smp', 'A4i.nat'], list(range(62, 82))),
                   'rel3': (['ref.Ball', 'Bw.nat', 'ref.A4c0', 'A4i.nat'], list(range(82, 122))),
+                  'rel4': (['ref.Bw', 'ref.A4i'], list(range(62, 122))),  # 25 Nov 18:40: for a blended release
                   # 25 Nov 01:40: 32 main seeds for the final RSV comparison
                   'rs08': (['ref.Ball', 'ref.Bw', 'ref.A4c0', 'ref.A4i', 'Bw.nat', 'A4i.nat'], list(range(68, 76))),
                   # 25 Nov 05:40: joint networks (joint problem) improve RSV ED share; seeds for a mixture check

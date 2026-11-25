@@ -266,3 +266,10 @@ M="P=ref.Ball,ref.Bw,ref.A4c0,ref.A4i PN=ref.Ball,Bw.nat,ref.A4c0,A4i.nat P6=ref
 python3 $S/rounds.py rsv rs10   # on the Mac
 .venv/bin/python -m chromantis.experiment.planner plan -e rv-s-rs10 --problem problems/us-rsv-short-term-coverage.json --study $S/rsv-reseed-rs10.json --device cuda
 sbatch --job-name=crs-r48 --array=0-5 scripts/flu_search.sbatch rv-s-rs10:6
+# 2026-11-25 18:45 EST: 48-seed RSV mixtures r07 + peak check (afterok); release fits ref.Bw / ref.A4i seeds 62-121 (rel4)
+.venv/bin/python scripts/flu_search_mix.py r07 --study $S --prefix crs-mix --max-seeds 48 --experiments rv-s-r01 rv-s-r03 rv-s-r05 rv-s-rs01 rv-s-rs03 rv-s-rs04 rv-s-rs05 rv-s-rs06 rv-s-rs08 rv-s-rs10 --members P=ref.Ball,ref.Bw,ref.A4c0,ref.A4i PN=ref.Ball,Bw.nat,ref.A4c0,A4i.nat P6=ref.Ball,ref.Bw,Bw.nat,ref.A4c0,ref.A4i,A4i.nat PB6=ref.Ball,ref.Bw,Bw.nat,ref.A4c0,ref.A4i PBN=ref.Ball,Bw.nat,ref.A4c0,ref.A4i --groups "prod4:P" "prodnat:PN" "prod+nat:P6" "prod+Bnat:PB6" "prodBnat:PBN"
+sbatch --job-name=crs-mix-r07 scripts/covid_tree_mix.sbatch $S/mix-r07.json data/experiments/crs-mix-r07
+.venv/bin/python scripts/flu_phase_check.py --out output/crs-search/tasks-r07.csv data/experiments/crs-mix-r07/*-mixture > output/crs-search/phase-r07.txt
+python3 $S/rounds.py rsv rel4   # on the Mac
+.venv/bin/python -m chromantis.experiment.planner plan -e rv-s-rel4 --problem problems/us-rsv-production-coverage.json --study $S/rsv-reseed-rel4.json --device cuda
+sbatch --job-name=crs-rel4 --array=0-5 scripts/flu_search.sbatch rv-s-rel4:6
