@@ -114,3 +114,12 @@ python3 $S/rounds.py rsv 8; python3 $S/rounds.py rsv g08   # on the Mac
 .venv/bin/python -m chromantis.experiment.planner plan -e rv-s-r08 --problem problems/us-rsv-short-term-coverage.json --study $S/rsv-round-08.json --device cuda
 .venv/bin/python -m chromantis.experiment.planner plan -e rv-s-g08 --problem problems/us-rsv-2023-24-prescribed-coverage.json --study $S/rsv-guard-g08.json --device cuda
 sbatch --job-name=crs-r08 --array=0-5 scripts/flu_search.sbatch rv-s-g08:6 rv-s-r08:6
+# 2026-11-24 22:50 EST: Bw.nat.smp guard g09 + reseed rs07, all-season release fits rv-s-rel / cv-s-rel (seeds 42-61), job 10737452
+for a in "rsv rs07" "rsv rel" "covid rel" "rsv g09"; do python3 $S/rounds.py $a; done   # on the Mac (bash)
+.venv/bin/python -m chromantis.experiment.planner plan -e rv-s-g09 --problem problems/us-rsv-2023-24-prescribed-coverage.json --study $S/rsv-guard-g09.json --device cuda
+.venv/bin/python -m chromantis.experiment.planner plan -e rv-s-rs07 --problem problems/us-rsv-short-term-coverage.json --study $S/rsv-reseed-rs07.json --device cuda
+.venv/bin/python -m chromantis.experiment.planner plan -e rv-s-rel --problem problems/us-rsv-production-coverage.json --study $S/rsv-reseed-rel.json --device cuda
+.venv/bin/python -m chromantis.experiment.planner plan -e cv-s-rel --problem problems/us-covid-production-coverage.json --study $S/covid-reseed-rel.json --device cuda
+sbatch --job-name=crs-rel --array=0-5 scripts/flu_search.sbatch rv-s-g09:4 rv-s-rs07:4 rv-s-rel:4 cv-s-rel:4
+# peak-window check of the COVID mixtures (CPU job 10737453)
+sbatch --job-name=crs-phase --partition=jlessler --cpus-per-task=4 --mem=48G --time=02:00:00 --output=output/crs-search/phase-c05.txt --wrap "PYTHONPATH=src .venv/bin/python scripts/flu_phase_check.py data/experiments/crs-mix-c05/*-mixture"
