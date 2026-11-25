@@ -1,0 +1,40 @@
+{
+ "description": "covid search guard g08 (2023-24 held out, artificial reports): T.amp3, ref.N.amp3, S.amp3.",
+ "round": "g08",
+ "parents": {
+  "T.amp3": "T",
+  "ref.N.amp3": "ref.N",
+  "S.amp3": "S"
+ },
+ "candidates": {
+  "T.amp3": "history_source=artificial,reconstruction_labels=1,error_signals=all,input_set=target,correction_weeks=2,correction_ed=1,reporting_probability=0.25,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,spatial=national_broadcast,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=0.5,encoder=gru,corrector_examples=real,stress_views=1,amplitude_sd=0.3,error_reference=2025-2026",
+  "ref.N.amp3": "error_signals=all,input_set=target,correction_weeks=2,correction_ed=1,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,spatial=national_broadcast,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=0.5,signal_features=multiscale,stress_views=1,amplitude_sd=0.3,error_reference=2025-2026",
+  "S.amp3": "history_source=artificial,history_correction=1,error_signals=all,input_set=target,correction_weeks=2,correction_ed=1,reporting_probability=0.5,joint_weight=0.05,correction_penalty=30.0,reporting_missingness=0,reporting_method=synchronous_phase_log,ed_transform=logit,width=192,epochs=160,patience=25,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=1.0,spatial=national_broadcast,encoder=gru,corrector_examples=real,stress_views=1,amplitude_sd=0.3,error_reference=2025-2026"
+ },
+ "seeds": [
+  68,
+  69,
+  70,
+  71,
+  72,
+  73,
+  74,
+  75,
+  76,
+  77,
+  78,
+  79,
+  80,
+  81,
+  82,
+  83,
+  84,
+  85,
+  86,
+  87,
+  88,
+  89,
+  90,
+  91
+ ]
+}

@@ -246,3 +246,9 @@ python3 $S/rounds.py covid 10; python3 $S/rounds.py covid relamp   # on the Mac
 .venv/bin/python -m chromantis.experiment.planner plan -e cv-s-r10 --problem problems/us-covid-short-term-coverage.json --study $S/covid-round-10.json --device cuda
 .venv/bin/python -m chromantis.experiment.planner plan -e cv-s-relamp --problem problems/us-covid-production-coverage.json --study $S/covid-reseed-relamp.json --device cuda
 sbatch --job-name=crs-amp2 --array=0-5 scripts/flu_search.sbatch cv-s-r10:4 cv-s-relamp:4
+# 2026-11-25 15:45 EST: amplitude mixtures scored (python3 output/crs-search/ampblk.py: aligned blocks); amplitude members to 48 seeds (rs07, g08; job 10818964); peak check of ca1
+python3 $S/rounds.py covid rs07; python3 $S/rounds.py covid g08   # on the Mac
+.venv/bin/python -m chromantis.experiment.planner plan -e cv-s-rs07 --problem problems/us-covid-short-term-coverage.json --study $S/covid-reseed-rs07.json --device cuda
+.venv/bin/python -m chromantis.experiment.planner plan -e cv-s-g08 --problem problems/us-covid-2023-24-prescribed-coverage.json --study $S/covid-guard-g08.json --device cuda
+sbatch --job-name=crs-amp48 --array=0-5 scripts/flu_search.sbatch cv-s-rs07:4 cv-s-g08:4
+sbatch --job-name=crs-phase3 --partition=jlessler --cpus-per-task=4 --mem=48G --time=02:00:00 --output=output/crs-search/phase3.log --wrap "PYTHONPATH=src .venv/bin/python scripts/flu_phase_check.py --out output/crs-search/tasks-ca1.csv data/experiments/crs-mix-ca1/*-mixture > output/crs-search/phase-ca1.txt"
