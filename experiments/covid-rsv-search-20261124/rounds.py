@@ -269,6 +269,20 @@ def rsv7():
 ROUNDS['rsv'][7] = dict(description='RSV search round 7 (2026-11-24): sampled Bw.nat, RSV-NET on the national all-history '
                                     'recipes, Rc with all six histories.', build=rsv7)
 
+def rsv8():
+    # 24 Nov 21:40: Bw.nat (production Bw with the US-only summary) passes every rule; A4i.nat is -8.7% on the main problem
+    # but +4.6% on the 2023-24 ED guard (level); none of A4i.nat's children helps. One-change children of Bw.nat.
+    r = R['rsv']
+    b = r['Bw.nat']
+    put('rsv', 'Bw.nat.nm10', derive(b, newest_mask=0.1), 'Bw.nat')
+    put('rsv', 'Bw.nat.esall', derive(b, error_signals='all'), 'Bw.nat')
+    put('rsv', 'Bw.nat.ll1', derive(b, log_loss_weight=1.0), 'Bw.nat')
+    put('rsv', 'Bw.nat.w512', derive(b, width=512), 'Bw.nat')
+
+
+ROUNDS['rsv'][8] = dict(description='RSV search round 8 (2026-11-24): children of Bw.nat (newest-week masking, all error '
+                                    'signals, log-loss 1, width 512).', build=rsv8)
+
 # Guard-only files: recipes guarded after they pass the main problem (children are not guarded otherwise).
 GUARD = {'covid': {'g01': ['ref.Ah', 'ref.pN', 'ref.N', 'ref.Bh', 'T', 'Tl', 'S'],
                    'g02': (['ref.Ah', 'ref.pN', 'ref.N', 'ref.Bh', 'T', 'S'], list(range(52, 60))),  # guard seeds for mixtures
@@ -278,7 +292,8 @@ GUARD = {'covid': {'g01': ['ref.Ah', 'ref.pN', 'ref.N', 'ref.Bh', 'T', 'Tl', 'S'
                  'g04': ['ref.Bw.gt', 'Bwq.gt', 'Bwq.smp.gt'],
                  'g05': ['Bw.nat'],
                  'g06': (['ref.Ball', 'ref.Bw', 'ref.A4c0', 'ref.A4i', 'Bwq', 'Bwq.smp', 'Rc', 'Rc.real'], list(range(52, 60))),
-                 'g07': (['A4i.nat', 'Bw.nat'], list(range(44, 60)))}}  # gt guard problem (us-rsv-2023-24-prescribed-coverage-gt)
+                 'g07': (['A4i.nat', 'Bw.nat'], list(range(44, 60))),
+                 'g08': (['ref.Ball', 'ref.Bw', 'ref.A4c0', 'ref.A4i', 'A4i.nat', 'Bw.nat'], list(range(60, 68)))}}  # gt guard problem (us-rsv-2023-24-prescribed-coverage-gt)
 RESEED = {'covid': {'rs01': (['ref.Ah', 'ref.pN', 'ref.N', 'ref.Bh', 'T', 'Tl', 'S'], list(range(52, 60))),
                     'rs02': (['ref.Ah', 'ref.pN', 'ref.N', 'ref.Bh', 'T', 'S', 'N.smp'], list(range(60, 68))),
                     # 24 Nov 18:40: mixture decisions are noise-limited; 32 main seeds for the finalists and production

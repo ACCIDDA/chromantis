@@ -104,3 +104,13 @@ python3 $S/rounds.py covid 4; python3 $S/rounds.py rsv 7   # on the Mac
 .venv/bin/python -m chromantis.experiment.planner plan -e cv-s-r04 --problem problems/us-covid-short-term-coverage.json --study $S/covid-round-04.json --device cuda
 .venv/bin/python -m chromantis.experiment.planner plan -e rv-s-r07 --problem problems/us-rsv-short-term-coverage.json --study $S/rsv-round-07.json --device cuda
 sbatch --job-name=crs-r07 --array=0-5 scripts/flu_search.sbatch cv-s-r04:4 rv-s-r07:4
+# 2026-11-24 21:45 EST: COVID 32-seed main (c05, CPU job 10733139) and 24-seed guard mixtures (c03g, 10733140); RSV round 8 + guard g08 (job 10733166)
+M="P=ref.Ah,ref.pN,ref.N,ref.Bh T=T N=ref.N S=S pN=ref.pN"
+.venv/bin/python scripts/flu_search_mix.py c05 --study $S --prefix crs-mix --experiments cv-s-r01 cv-s-rs01 cv-s-rs02 cv-s-rs03 --max-seeds 32 --members $M --groups "prod4:P" "prod4+T:P,T" "T+N+S:T,N,S" "T+N:T,N" "N+pN+S:N,pN,S" "T+N+S+pN:T,N,S,pN"
+sbatch --job-name=crs-mix-c05 scripts/covid_tree_mix.sbatch $S/mix-c05.json data/experiments/crs-mix-c05
+.venv/bin/python scripts/flu_search_mix.py c03g --study $S --prefix crs-mix --experiments cv-s-g01 cv-s-g02 cv-s-g03 --max-seeds 24 --members $M --groups "prod4:P" "prod4+T:P,T" "T+N+S:T,N,S" "T+N:T,N" "N+pN+S:N,pN,S" "T+N+S+pN:T,N,S,pN"
+sbatch --job-name=crs-mix-c03g scripts/covid_tree_mix.sbatch $S/mix-c03g.json data/experiments/crs-mix-c03g
+python3 $S/rounds.py rsv 8; python3 $S/rounds.py rsv g08   # on the Mac
+.venv/bin/python -m chromantis.experiment.planner plan -e rv-s-r08 --problem problems/us-rsv-short-term-coverage.json --study $S/rsv-round-08.json --device cuda
+.venv/bin/python -m chromantis.experiment.planner plan -e rv-s-g08 --problem problems/us-rsv-2023-24-prescribed-coverage.json --study $S/rsv-guard-g08.json --device cuda
+sbatch --job-name=crs-r08 --array=0-5 scripts/flu_search.sbatch rv-s-g08:6 rv-s-r08:6
