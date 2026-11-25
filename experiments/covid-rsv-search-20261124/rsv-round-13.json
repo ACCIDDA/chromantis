@@ -1,0 +1,26 @@
+{
+ "description": "RSV search round 13 (2026-11-25): one network per target and 16-week lookback on Bw.nat and A4i.nat.",
+ "round": 13,
+ "parents": {
+  "Bw.nat.pt": "Bw.nat",
+  "Bw.nat.lb16": "Bw.nat",
+  "A4i.nat.pt": "A4i.nat",
+  "A4i.nat.lb16": "A4i.nat"
+ },
+ "candidates": {
+  "Bw.nat.pt": "history_source=artificial,reconstruction_labels=1,error_signals=targets,input_set=all,correction_weeks=2,correction_ed=1,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,spatial=national_broadcast,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=target,covariate_encoder=summary,input_normalization=b0,log_loss_weight=0.5,stress_views=1",
+  "Bw.nat.lb16": "history_source=artificial,reconstruction_labels=1,error_signals=targets,input_set=all,correction_weeks=2,correction_ed=1,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,spatial=national_broadcast,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=0.5,stress_views=1,lookback=16",
+  "A4i.nat.pt": "history_source=artificial,history_correction=1,error_signals=targets,input_set=all,correction_weeks=2,correction_ed=1,joint_weight=0.05,correction_penalty=30.0,reporting_missingness=0,reporting_method=synchronous_phase_log,ed_transform=logit,width=192,epochs=160,patience=25,fit_partition=target,covariate_encoder=summary,covariate_set=kinsa,input_normalization=b0,log_loss_weight=1.0,stress_views=1,spatial=national_broadcast",
+  "A4i.nat.lb16": "history_source=artificial,history_correction=1,error_signals=targets,input_set=all,correction_weeks=2,correction_ed=1,joint_weight=0.05,correction_penalty=30.0,reporting_missingness=0,reporting_method=synchronous_phase_log,ed_transform=logit,width=192,epochs=160,patience=25,fit_partition=pathogen,covariate_encoder=summary,covariate_set=kinsa,input_normalization=b0,log_loss_weight=1.0,stress_views=1,spatial=national_broadcast,lookback=16"
+ },
+ "seeds": [
+  44,
+  45,
+  46,
+  47,
+  48,
+  49,
+  50,
+  51
+ ]
+}

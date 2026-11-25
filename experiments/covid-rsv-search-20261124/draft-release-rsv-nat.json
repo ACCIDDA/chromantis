@@ -5,7 +5,7 @@
  "problem": "problems/us-rsv-production-coverage.json",
  "rule": "mixture",
  "view": "corrected",
- "description": "DRAFT candidate from experiments/covid-rsv-search-20261124 (not installed, for the user to decide). The submitted rsv-four mixture with two members switched from neighbouring-state exchange / no exchange to a US-only summary: Ball_c0w512 (unchanged), Bw.nat (B_width256 with the US-only summary), A4c0 (unchanged), A4i.nat (A4i with the US-only summary). Each refit on all of 2022-23 through 2025-26 (RSV admissions observed from 2024-11-02), labels the finalized future RSV admissions and ED shares as of 12 Nov 2026, artificial reporting errors drawn from 2025-26 (no prescribed error season), 40 seeds (42-81) per recipe, equal weights, on panel-coverage-rsv.npz (the weekly pipeline must build the coverage panel). Held-out seasons: -3.6% log-admission WIS against the submitted mixture refit the same way (32 seeds, both seasons lower), 2023-24 guard ED share -0.4%. Deployment view corrected (trees at full strength); checkpoints in the Longleaf campaign folder nowcast-20261113.",
+ "description": "DRAFT candidate from experiments/covid-rsv-search-20261124 (not installed, for the user to decide). The submitted rsv-four mixture with two members switched from neighbouring-state exchange / no exchange to a US-only summary: Ball_c0w512 (unchanged), Bw.nat (B_width256 with the US-only summary), A4c0 (unchanged), A4i.nat (A4i with the US-only summary). Each refit on all of 2022-23 through 2025-26 (RSV admissions observed from 2024-11-02), labels the finalized future RSV admissions and ED shares as of 12 Nov 2026, artificial reporting errors drawn from 2025-26 (no prescribed error season), 80 seeds (42-121) per recipe, equal weights, on panel-coverage-rsv.npz (the weekly pipeline must build the coverage panel). Held-out seasons: -3.6% log-admission WIS against the submitted mixture refit the same way (32 seeds, both seasons lower), 2023-24 guard ED share -0.4%. Deployment view corrected (trees at full strength); checkpoints in the Longleaf campaign folder nowcast-20261113.",
  "recipes": {
   "Ball_c0w512": [
    {
@@ -167,6 +167,166 @@
    {
     "checkpoint": "/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/experiments/rv-s-rel2/mlp-pathogen-scheduled_final-46684a00fe14/s81/attempt-001/eval_2026-2027",
     "sha256": "1447352f4af1770d37583c12134bf114e5836f15bd55332acb962597ee38df7c"
+   },
+   {
+    "checkpoint": "/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/experiments/rv-s-rel3/mlp-pathogen-scheduled_final-46684a00fe14/s82/attempt-001/eval_2026-2027",
+    "sha256": "7bf937c116818a7711c59cea202751d0d978107c65036cf8424381f4a00f118d"
+   },
+   {
+    "checkpoint": "/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/experiments/rv-s-rel3/mlp-pathogen-scheduled_final-46684a00fe14/s83/attempt-001/eval_2026-2027",
+    "sha256": "7cf53a66a2473905d93a9e52bb073a9979a229741ee9d9cb053e67e833b645a1"
+   },
+   {
+    "checkpoint": "/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/experiments/rv-s-rel3/mlp-pathogen-scheduled_final-46684a00fe14/s84/attempt-001/eval_2026-2027",
+    "sha256": "246fe85bd0d3715b4b3d026cf8171e4b2e19bda398d604ba84060acd27b8519f"
+   },
+   {
+    "checkpoint": "/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/experiments/rv-s-rel3/mlp-pathogen-scheduled_final-46684a00fe14/s85/attempt-001/eval_2026-2027",
+    "sha256": "3dcb48354b5d29c5909b96f7238fe82479867a86d7b0b024ee8674dced220892"
+   },
+   {
+    "checkpoint": "/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/experiments/rv-s-rel3/mlp-pathogen-scheduled_final-46684a00fe14/s86/attempt-001/eval_2026-2027",
+    "sha256": "44f20517b64757b1158d24046a802d28de00c1a69afe8ab7a263c9560a248b2f"
+   },
+   {
+    "checkpoint": "/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/experiments/rv-s-rel3/mlp-pathogen-scheduled_final-46684a00fe14/s87/attempt-001/eval_2026-2027",
+    "sha256": "3907875b1001fe8c4709c8afeb870c9da322d80120b3dcf3f2fb72fe507f2ba2"
+   },
+   {
+    "checkpoint": "/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/experiments/rv-s-rel3/mlp-pathogen-scheduled_final-46684a00fe14/s88/attempt-001/eval_2026-2027",
+    "sha256": "67338311d00c56525d1fcaaf3ccae39cdadedf6dc15122c9d4bea0d42b6b7f59"
+   },
+   {
+    "checkpoint": "/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/experiments/rv-s-rel3/mlp-pathogen-scheduled_final-46684a00fe14/s89/attempt-001/eval_2026-2027",
+    "sha256": "25ffd54898c8cdf94da2e391cd4b009dedf4ec46b6043d9ad8a5b7dbc4b007dc"
+   },
+   {
+    "checkpoint": "/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/experiments/rv-s-rel3/mlp-pathogen-scheduled_final-46684a00fe14/s90/attempt-001/eval_2026-2027",
+    "sha256": "5a2153564eff1ead2ea39a77a3d10354e789d8429b47a6931df2268aa96a700e"
+   },
+   {
+    "checkpoint": "/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/experiments/rv-s-rel3/mlp-pathogen-scheduled_final-46684a00fe14/s91/attempt-001/eval_2026-2027",
+    "sha256": "203af7093742311fe34e868f3b2c3d68d3f8486fd37100dd421f77aa72de9a74"
+   },
+   {
+    "checkpoint": "/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/experiments/rv-s-rel3/mlp-pathogen-scheduled_final-46684a00fe14/s92/attempt-001/eval_2026-2027",
+    "sha256": "160a4e7fc8a29fa5a731d55e68604b68f56fd58978fcbd30c849cc74d01b0d9b"
+   },
+   {
+    "checkpoint": "/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/experiments/rv-s-rel3/mlp-pathogen-scheduled_final-46684a00fe14/s93/attempt-001/eval_2026-2027",
+    "sha256": "99ce8937575aea40a22cd4e8dd91790f038c083ddf7d93f51f47d708ca667c7e"
+   },
+   {
+    "checkpoint": "/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/experiments/rv-s-rel3/mlp-pathogen-scheduled_final-46684a00fe14/s94/attempt-001/eval_2026-2027",
+    "sha256": "89d08a60717d39ceb344f2fe6e0e814e224dd763cab4f5509619407af6be22df"
+   },
+   {
+    "checkpoint": "/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/experiments/rv-s-rel3/mlp-pathogen-scheduled_final-46684a00fe14/s95/attempt-001/eval_2026-2027",
+    "sha256": "adf35ef9b2cde309ade0e1b954374515886168a8d5d5f52b487a055b6ec99a05"
+   },
+   {
+    "checkpoint": "/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/experiments/rv-s-rel3/mlp-pathogen-scheduled_final-46684a00fe14/s96/attempt-001/eval_2026-2027",
+    "sha256": "9118112116c26928caf90623215994af869c4146df220c130d1437dc7788b06a"
+   },
+   {
+    "checkpoint": "/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/experiments/rv-s-rel3/mlp-pathogen-scheduled_final-46684a00fe14/s97/attempt-001/eval_2026-2027",
+    "sha256": "9f8edde1c38dee2edfda2c0b58056be1bbd824eca4ccd8edc31887c85fe0895a"
+   },
+   {
+    "checkpoint": "/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/experiments/rv-s-rel3/mlp-pathogen-scheduled_final-46684a00fe14/s98/attempt-001/eval_2026-2027",
+    "sha256": "cf4a5c482735778ddfb7bee9cf6f6dba08233f3630866d844e3aec9ac707560d"
+   },
+   {
+    "checkpoint": "/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/experiments/rv-s-rel3/mlp-pathogen-scheduled_final-46684a00fe14/s99/attempt-001/eval_2026-2027",
+    "sha256": "cfc99461d761252d456012ac5373a82edaa310998735513dd66452579442098b"
+   },
+   {
+    "checkpoint": "/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/experiments/rv-s-rel3/mlp-pathogen-scheduled_final-46684a00fe14/s100/attempt-001/eval_2026-2027",
+    "sha256": "02902935171d945703a33e8340fde927fa5ba705d920d233681f2da58bca2584"
+   },
+   {
+    "checkpoint": "/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/experiments/rv-s-rel3/mlp-pathogen-scheduled_final-46684a00fe14/s101/attempt-001/eval_2026-2027",
+    "sha256": "f40da562a51b64fc10a44b131bf4fb2b7ddeed8862d32bf9e3332f83c6fd0a90"
+   },
+   {
+    "checkpoint": "/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/experiments/rv-s-rel3/mlp-pathogen-scheduled_final-46684a00fe14/s102/attempt-001/eval_2026-2027",
+    "sha256": "9a631868666e7e42e611ebfacd5317eaa97a7066fba566d3549947213d85eca0"
+   },
+   {
+    "checkpoint": "/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/experiments/rv-s-rel3/mlp-pathogen-scheduled_final-46684a00fe14/s103/attempt-001/eval_2026-2027",
+    "sha256": "29b9b61e10fa9b681d34a8c804e4bfa66d0f9a56be4bd66948815be76371e673"
+   },
+   {
+    "checkpoint": "/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/experiments/rv-s-rel3/mlp-pathogen-scheduled_final-46684a00fe14/s104/attempt-001/eval_2026-2027",
+    "sha256": "25c18cb829e3737cadd91de1528c8c872a37f0bf348ce7ff8c2005a977e02b3e"
+   },
+   {
+    "checkpoint": "/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/experiments/rv-s-rel3/mlp-pathogen-scheduled_final-46684a00fe14/s105/attempt-001/eval_2026-2027",
+    "sha256": "1a8fb775f47d2fd4e101bcb5c4cd70942febf39c20cbcc684a3509ac298980ff"
+   },
+   {
+    "checkpoint": "/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/experiments/rv-s-rel3/mlp-pathogen-scheduled_final-46684a00fe14/s106/attempt-001/eval_2026-2027",
+    "sha256": "4967341d3125a9371bbea900136d7f9f59b721cc61ff9cce89b28400ce47fb3e"
+   },
+   {
+    "checkpoint": "/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/experiments/rv-s-rel3/mlp-pathogen-scheduled_final-46684a00fe14/s107/attempt-001/eval_2026-2027",
+    "sha256": "76af4ff3d9ab14002b9960c051e757052068bea1d642f4e2e88c32254b9d80e1"
+   },
+   {
+    "checkpoint": "/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/experiments/rv-s-rel3/mlp-pathogen-scheduled_final-46684a00fe14/s108/attempt-001/eval_2026-2027",
+    "sha256": "063e496e26f7f621af13fb5fdbda7d95e31cf72daaf0c5a3f2ba9e2bd68c24fd"
+   },
+   {
+    "checkpoint": "/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/experiments/rv-s-rel3/mlp-pathogen-scheduled_final-46684a00fe14/s109/attempt-001/eval_2026-2027",
+    "sha256": "a67b0ab6376761eaf26c038fdf699c510d132fb288e1543a1130d9acca29a5ba"
+   },
+   {
+    "checkpoint": "/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/experiments/rv-s-rel3/mlp-pathogen-scheduled_final-46684a00fe14/s110/attempt-001/eval_2026-2027",
+    "sha256": "43baa528987447db82971bf9668ec972c5c17c1c73eac96b246e3767d3fe6282"
+   },
+   {
+    "checkpoint": "/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/experiments/rv-s-rel3/mlp-pathogen-scheduled_final-46684a00fe14/s111/attempt-001/eval_2026-2027",
+    "sha256": "356663f64f07cb26a060954582c8b7ea59650a6c6f3d2f1b75597e887974b58a"
+   },
+   {
+    "checkpoint": "/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/experiments/rv-s-rel3/mlp-pathogen-scheduled_final-46684a00fe14/s112/attempt-001/eval_2026-2027",
+    "sha256": "f647ab4eeb08fbc1c89059250a6f5d1d8c419002e07ca72d8fe2b7c05776df42"
+   },
+   {
+    "checkpoint": "/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/experiments/rv-s-rel3/mlp-pathogen-scheduled_final-46684a00fe14/s113/attempt-001/eval_2026-2027",
+    "sha256": "dfc91556fa7d6ebb67586821ee3bd773df49b02764db9ea2df2ce6059fe0abcc"
+   },
+   {
+    "checkpoint": "/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/experiments/rv-s-rel3/mlp-pathogen-scheduled_final-46684a00fe14/s114/attempt-001/eval_2026-2027",
+    "sha256": "d0d0638f144435699adfd7e505da27cdc96198c55636e94017631a38173d7242"
+   },
+   {
+    "checkpoint": "/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/experiments/rv-s-rel3/mlp-pathogen-scheduled_final-46684a00fe14/s115/attempt-001/eval_2026-2027",
+    "sha256": "3b46c318d521d9036838dcf677d7b57fcf9af0e893d85651fc0d2922f39cdcf0"
+   },
+   {
+    "checkpoint": "/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/experiments/rv-s-rel3/mlp-pathogen-scheduled_final-46684a00fe14/s116/attempt-001/eval_2026-2027",
+    "sha256": "fc0b6789a288aafe1f452d8041d3445c0bef82e945d3068b9ade66b1711f36bb"
+   },
+   {
+    "checkpoint": "/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/experiments/rv-s-rel3/mlp-pathogen-scheduled_final-46684a00fe14/s117/attempt-001/eval_2026-2027",
+    "sha256": "b7052657cd7e15b644995a1ae19b6c50135c4e99e5b729df50b4d57c31d79b31"
+   },
+   {
+    "checkpoint": "/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/experiments/rv-s-rel3/mlp-pathogen-scheduled_final-46684a00fe14/s118/attempt-001/eval_2026-2027",
+    "sha256": "2c08e81db2fca5bc9edfa99b9f9d2a6ab322cd48cae9b34633b185704d24832a"
+   },
+   {
+    "checkpoint": "/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/experiments/rv-s-rel3/mlp-pathogen-scheduled_final-46684a00fe14/s119/attempt-001/eval_2026-2027",
+    "sha256": "6dc8fd52c88bce650d889798fefa5ff632a3a2c4ee5cb9b411dcf9b96812f5b8"
+   },
+   {
+    "checkpoint": "/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/experiments/rv-s-rel3/mlp-pathogen-scheduled_final-46684a00fe14/s120/attempt-001/eval_2026-2027",
+    "sha256": "e94e45bf81144d115a042910cd7e2ba2cce71848852e38bfd5d26a0017ade2ae"
+   },
+   {
+    "checkpoint": "/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/experiments/rv-s-rel3/mlp-pathogen-scheduled_final-46684a00fe14/s121/attempt-001/eval_2026-2027",
+    "sha256": "2a2000d8f74f6a9ead309300d1dca3aef74fee0b4757f1a68102785a9a3e4a71"
    }
   ],
   "Bw.nat": [
@@ -329,6 +489,166 @@
    {
     "checkpoint": "/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/experiments/rv-s-rel2/mlp-pathogen-scheduled_final-8038043be56a/s81/attempt-001/eval_2026-2027",
     "sha256": "12ec3c82944c653800cda6972dabf8c7b7f645348a308b58a2c2d663749019e1"
+   },
+   {
+    "checkpoint": "/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/experiments/rv-s-rel3/mlp-pathogen-scheduled_final-8038043be56a/s82/attempt-001/eval_2026-2027",
+    "sha256": "ca916a2e93e7b19aa81f287a4ade89fc503619ce69cdf09c24e30ef4f975243f"
+   },
+   {
+    "checkpoint": "/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/experiments/rv-s-rel3/mlp-pathogen-scheduled_final-8038043be56a/s83/attempt-001/eval_2026-2027",
+    "sha256": "c437b08d8cc82444e5c5ea057cc191e357930f551d7a8813fa5856c9f3ce3af1"
+   },
+   {
+    "checkpoint": "/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/experiments/rv-s-rel3/mlp-pathogen-scheduled_final-8038043be56a/s84/attempt-001/eval_2026-2027",
+    "sha256": "51a85bed1938d600306159f2bbaca65a87fd7b862a9c0b1021364fa51674eabb"
+   },
+   {
+    "checkpoint": "/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/experiments/rv-s-rel3/mlp-pathogen-scheduled_final-8038043be56a/s85/attempt-001/eval_2026-2027",
+    "sha256": "4fb8ce12f8525d7c6dc46e4fbed5109eac62176bf718fa47d9cd6082cc62e629"
+   },
+   {
+    "checkpoint": "/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/experiments/rv-s-rel3/mlp-pathogen-scheduled_final-8038043be56a/s86/attempt-001/eval_2026-2027",
+    "sha256": "7f263e3a0e110d08b1924009cefeb01c054373979ec4da8994cf5edc9711a50a"
+   },
+   {
+    "checkpoint": "/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/experiments/rv-s-rel3/mlp-pathogen-scheduled_final-8038043be56a/s87/attempt-001/eval_2026-2027",
+    "sha256": "27afe5cc24b2d65624529f1d779f9383012b3af047a686fa6655efbef68f04ad"
+   },
+   {
+    "checkpoint": "/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/experiments/rv-s-rel3/mlp-pathogen-scheduled_final-8038043be56a/s88/attempt-001/eval_2026-2027",
+    "sha256": "62e11f80fa22c89234543d3ba74dadfcfa7172be92c4832a826c44e3ef702f28"
+   },
+   {
+    "checkpoint": "/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/experiments/rv-s-rel3/mlp-pathogen-scheduled_final-8038043be56a/s89/attempt-001/eval_2026-2027",
+    "sha256": "37dc5411388e5ab05af634723eb6cfa16d30bc37fa37dfe96698645b34bd4799"
+   },
+   {
+    "checkpoint": "/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/experiments/rv-s-rel3/mlp-pathogen-scheduled_final-8038043be56a/s90/attempt-001/eval_2026-2027",
+    "sha256": "d8469699eed650fd2094a38d4b86135df1ae2675060e4661d477918186344465"
+   },
+   {
+    "checkpoint": "/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/experiments/rv-s-rel3/mlp-pathogen-scheduled_final-8038043be56a/s91/attempt-001/eval_2026-2027",
+    "sha256": "86ca2061ad4ce889bef1a3d068db0252ae4b3372ab4c9003422eda91e5fab988"
+   },
+   {
+    "checkpoint": "/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/experiments/rv-s-rel3/mlp-pathogen-scheduled_final-8038043be56a/s92/attempt-001/eval_2026-2027",
+    "sha256": "4fe2de97abb35e9c734b3c113c068efc219fc08dc91625709669147459c44298"
+   },
+   {
+    "checkpoint": "/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/experiments/rv-s-rel3/mlp-pathogen-scheduled_final-8038043be56a/s93/attempt-001/eval_2026-2027",
+    "sha256": "0ffccd47794a3632734e14870608fd807b46fc4aee9912da7f0ffd96270a2365"
+   },
+   {
+    "checkpoint": "/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/experiments/rv-s-rel3/mlp-pathogen-scheduled_final-8038043be56a/s94/attempt-001/eval_2026-2027",
+    "sha256": "76d39e6d61add9d89dde2e9ea8272355e6671b4a5b898e38bd4d425b0e0a0aee"
+   },
+   {
+    "checkpoint": "/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/experiments/rv-s-rel3/mlp-pathogen-scheduled_final-8038043be56a/s95/attempt-001/eval_2026-2027",
+    "sha256": "15e41552898352e9469847529b5a2144f604be452e8a6b7d234aca7d565acb34"
+   },
+   {
+    "checkpoint": "/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/experiments/rv-s-rel3/mlp-pathogen-scheduled_final-8038043be56a/s96/attempt-001/eval_2026-2027",
+    "sha256": "6eded82d26ac00a4662a49fa18e242096d3cc5e7db742a8a3a4b1f2d3a5e9de8"
+   },
+   {
+    "checkpoint": "/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/experiments/rv-s-rel3/mlp-pathogen-scheduled_final-8038043be56a/s97/attempt-001/eval_2026-2027",
+    "sha256": "3eceba09af3cef49e767d4e78570880af397fb26d29f1d15d2e2a33c970869c1"
+   },
+   {
+    "checkpoint": "/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/experiments/rv-s-rel3/mlp-pathogen-scheduled_final-8038043be56a/s98/attempt-001/eval_2026-2027",
+    "sha256": "b940e6b391b5d414a9f86e736c8221fd7af559ffbb0db5c48444605830594984"
+   },
+   {
+    "checkpoint": "/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/experiments/rv-s-rel3/mlp-pathogen-scheduled_final-8038043be56a/s99/attempt-001/eval_2026-2027",
+    "sha256": "6b7640e83bf2bd05f0e85787db7308dc8fdef182adfdf06e47821f38a72743fd"
+   },
+   {
+    "checkpoint": "/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/experiments/rv-s-rel3/mlp-pathogen-scheduled_final-8038043be56a/s100/attempt-001/eval_2026-2027",
+    "sha256": "699d4ab39ae3fc3781ed7640de5189daa47586b9ea8cc0884a349c13f10843a6"
+   },
+   {
+    "checkpoint": "/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/experiments/rv-s-rel3/mlp-pathogen-scheduled_final-8038043be56a/s101/attempt-001/eval_2026-2027",
+    "sha256": "0229406602b7d7b8c31dea3fe891812d11032773a1cefcd55df10d86cde8f89a"
+   },
+   {
+    "checkpoint": "/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/experiments/rv-s-rel3/mlp-pathogen-scheduled_final-8038043be56a/s102/attempt-001/eval_2026-2027",
+    "sha256": "1817207e2d985597782bd5dabe246e4ac2a2255077c2c003377dddf5faa6601e"
+   },
+   {
+    "checkpoint": "/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/experiments/rv-s-rel3/mlp-pathogen-scheduled_final-8038043be56a/s103/attempt-001/eval_2026-2027",
+    "sha256": "01d598d096f9e13023d2bbaf24df4aa656ca62bf271ac5213db6326e4384c901"
+   },
+   {
+    "checkpoint": "/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/experiments/rv-s-rel3/mlp-pathogen-scheduled_final-8038043be56a/s104/attempt-001/eval_2026-2027",
+    "sha256": "26338e8911743c1f5d3ec19e2298a7bea9a3758cef4c0a8d04739d8517f941e0"
+   },
+   {
+    "checkpoint": "/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/experiments/rv-s-rel3/mlp-pathogen-scheduled_final-8038043be56a/s105/attempt-001/eval_2026-2027",
+    "sha256": "b8dfd73ae9fb95febb2720bc84df1660b519a50b480f919bb077eee0b1a79f73"
+   },
+   {
+    "checkpoint": "/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/experiments/rv-s-rel3/mlp-pathogen-scheduled_final-8038043be56a/s106/attempt-001/eval_2026-2027",
+    "sha256": "d11794b3018545105b4afefc90a8cc9377b2d0d83f5192779946c409862bcf7d"
+   },
+   {
+    "checkpoint": "/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/experiments/rv-s-rel3/mlp-pathogen-scheduled_final-8038043be56a/s107/attempt-001/eval_2026-2027",
+    "sha256": "445ec28a53c066c3e61567ddc52b29279c69e25419fdce45ac66f9fb69100395"
+   },
+   {
+    "checkpoint": "/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/experiments/rv-s-rel3/mlp-pathogen-scheduled_final-8038043be56a/s108/attempt-001/eval_2026-2027",
+    "sha256": "99529fdfe2e3906d6fe0530357ed7960b399c08ba787c0d95140ebda3bff39e3"
+   },
+   {
+    "checkpoint": "/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/experiments/rv-s-rel3/mlp-pathogen-scheduled_final-8038043be56a/s109/attempt-001/eval_2026-2027",
+    "sha256": "f1fbb5134dab1367d3b478a0b61102b8d260009591e7309758d25296c4e9e7e6"
+   },
+   {
+    "checkpoint": "/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/experiments/rv-s-rel3/mlp-pathogen-scheduled_final-8038043be56a/s110/attempt-001/eval_2026-2027",
+    "sha256": "78cf875102a79d6a2a4aac04b45b9caf4cf84a3dc8df2f5771b1939d47492413"
+   },
+   {
+    "checkpoint": "/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/experiments/rv-s-rel3/mlp-pathogen-scheduled_final-8038043be56a/s111/attempt-001/eval_2026-2027",
+    "sha256": "07cc3499295279a02802cdf650f0ab5b76b4e90f13d92e0653e800a5fbec0afb"
+   },
+   {
+    "checkpoint": "/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/experiments/rv-s-rel3/mlp-pathogen-scheduled_final-8038043be56a/s112/attempt-001/eval_2026-2027",
+    "sha256": "9190fd48dd16831d0aa362e8dd1e4470c586846dc4215e804f3e02cd6cb51c46"
+   },
+   {
+    "checkpoint": "/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/experiments/rv-s-rel3/mlp-pathogen-scheduled_final-8038043be56a/s113/attempt-001/eval_2026-2027",
+    "sha256": "d4b3c0277f5168fe98de2817f499773af34a5ab0ae5419b8913280b58e23448a"
+   },
+   {
+    "checkpoint": "/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/experiments/rv-s-rel3/mlp-pathogen-scheduled_final-8038043be56a/s114/attempt-001/eval_2026-2027",
+    "sha256": "77486c6818efea580dc6b68e28a9bdcb81d2bea5c9b1c52b8fc53cb59eb5eeb1"
+   },
+   {
+    "checkpoint": "/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/experiments/rv-s-rel3/mlp-pathogen-scheduled_final-8038043be56a/s115/attempt-001/eval_2026-2027",
+    "sha256": "7f9e066ad7d743a380ef0e001ca100c72cd64221739db35c0d814069c4fb4065"
+   },
+   {
+    "checkpoint": "/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/experiments/rv-s-rel3/mlp-pathogen-scheduled_final-8038043be56a/s116/attempt-001/eval_2026-2027",
+    "sha256": "536e4a7748eb52b93115f724615b9753f1d939d0617618b4005037250865fc85"
+   },
+   {
+    "checkpoint": "/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/experiments/rv-s-rel3/mlp-pathogen-scheduled_final-8038043be56a/s117/attempt-001/eval_2026-2027",
+    "sha256": "0668d532edb8aaf20c3dca5943f8b10ee943fed56c4229f663a538738e95c34e"
+   },
+   {
+    "checkpoint": "/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/experiments/rv-s-rel3/mlp-pathogen-scheduled_final-8038043be56a/s118/attempt-001/eval_2026-2027",
+    "sha256": "d0af3ec46636c6465a9c5f492a1c2731d643cf6b5a2edec869f0edff81070f0e"
+   },
+   {
+    "checkpoint": "/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/experiments/rv-s-rel3/mlp-pathogen-scheduled_final-8038043be56a/s119/attempt-001/eval_2026-2027",
+    "sha256": "f2b563d71aba89b45636c4347f93165112cc34c92a174cb73642588f45ed98e8"
+   },
+   {
+    "checkpoint": "/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/experiments/rv-s-rel3/mlp-pathogen-scheduled_final-8038043be56a/s120/attempt-001/eval_2026-2027",
+    "sha256": "67f5c051efbd16012ecaf5d5450da3dd1c44fcbf630d3060bc6a80387ec2ccbc"
+   },
+   {
+    "checkpoint": "/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/experiments/rv-s-rel3/mlp-pathogen-scheduled_final-8038043be56a/s121/attempt-001/eval_2026-2027",
+    "sha256": "65d426cc32c99685d92c737ec7c36d3aad07ee75c98720b3a7549f7dea8f1f86"
    }
   ],
   "A4c0": [
@@ -491,6 +811,166 @@
    {
     "checkpoint": "/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/experiments/rv-s-rel2/mlp-pathogen-scheduled_final-393987810d2d/s81/attempt-001/eval_2026-2027",
     "sha256": "7469efc19c655c51b4b28807003322c525ced9d2fb7379d3735fd3ecf2346ec3"
+   },
+   {
+    "checkpoint": "/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/experiments/rv-s-rel3/mlp-pathogen-scheduled_final-393987810d2d/s82/attempt-001/eval_2026-2027",
+    "sha256": "26d7a9ede30595da11211758232834e4495579ff3b2ea9fd8072ee7f6f16d2e2"
+   },
+   {
+    "checkpoint": "/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/experiments/rv-s-rel3/mlp-pathogen-scheduled_final-393987810d2d/s83/attempt-001/eval_2026-2027",
+    "sha256": "515ba1c17e3c352a44d461534293b58309c23e66f1fb5da68e47daf9ce2124c5"
+   },
+   {
+    "checkpoint": "/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/experiments/rv-s-rel3/mlp-pathogen-scheduled_final-393987810d2d/s84/attempt-001/eval_2026-2027",
+    "sha256": "89ce0e3da16854be724b815d4a0e58d354027c1addcde6e03b232892a24401bd"
+   },
+   {
+    "checkpoint": "/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/experiments/rv-s-rel3/mlp-pathogen-scheduled_final-393987810d2d/s85/attempt-001/eval_2026-2027",
+    "sha256": "28492deed2536e68a8ab9c38b923a984a6202a9fb6b388c88faaf623a802b6e3"
+   },
+   {
+    "checkpoint": "/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/experiments/rv-s-rel3/mlp-pathogen-scheduled_final-393987810d2d/s86/attempt-001/eval_2026-2027",
+    "sha256": "65bc5f88129aa50c7a143d54780d80ebf4048eabc247ec029a12ddafa0edd3bd"
+   },
+   {
+    "checkpoint": "/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/experiments/rv-s-rel3/mlp-pathogen-scheduled_final-393987810d2d/s87/attempt-001/eval_2026-2027",
+    "sha256": "3190bcd196d79d97886499f6bfc19b49138771e93007f9468b9182afff63e011"
+   },
+   {
+    "checkpoint": "/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/experiments/rv-s-rel3/mlp-pathogen-scheduled_final-393987810d2d/s88/attempt-001/eval_2026-2027",
+    "sha256": "3d70dcd43ce4eb2f395c6f6d15fa19356e12e2a5f612ae35248f5e89b1a867f0"
+   },
+   {
+    "checkpoint": "/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/experiments/rv-s-rel3/mlp-pathogen-scheduled_final-393987810d2d/s89/attempt-001/eval_2026-2027",
+    "sha256": "0eaaa87147203757c1ed62ef8123472f1b6019757a96647706dded7c2d253770"
+   },
+   {
+    "checkpoint": "/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/experiments/rv-s-rel3/mlp-pathogen-scheduled_final-393987810d2d/s90/attempt-001/eval_2026-2027",
+    "sha256": "0c963de034ac4432495da52b399931d0c64a7e9cf8244c56a7fa21e5d93d2594"
+   },
+   {
+    "checkpoint": "/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/experiments/rv-s-rel3/mlp-pathogen-scheduled_final-393987810d2d/s91/attempt-001/eval_2026-2027",
+    "sha256": "de7a039566daa478ab85cd2154bbd76b399b0b6b560d7c6238ecbb3d8728dc70"
+   },
+   {
+    "checkpoint": "/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/experiments/rv-s-rel3/mlp-pathogen-scheduled_final-393987810d2d/s92/attempt-001/eval_2026-2027",
+    "sha256": "b74a6159aef9f75dd836b84c24c8a7a852456b9ff4e1ff556d7583bfb2162ccf"
+   },
+   {
+    "checkpoint": "/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/experiments/rv-s-rel3/mlp-pathogen-scheduled_final-393987810d2d/s93/attempt-001/eval_2026-2027",
+    "sha256": "de7fc97a2617446fe168e377d53d148270bd8d57d359733d433ac180e3246c9e"
+   },
+   {
+    "checkpoint": "/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/experiments/rv-s-rel3/mlp-pathogen-scheduled_final-393987810d2d/s94/attempt-001/eval_2026-2027",
+    "sha256": "ff9ab6cedc9a8b97a61a5b8a99d55fe08e6e2bcd8464445f0fec191d7ababe88"
+   },
+   {
+    "checkpoint": "/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/experiments/rv-s-rel3/mlp-pathogen-scheduled_final-393987810d2d/s95/attempt-001/eval_2026-2027",
+    "sha256": "dacab901efbc038a8811f66a6bfe5a092c3d0e8470b40028ecd0c043064b1bd5"
+   },
+   {
+    "checkpoint": "/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/experiments/rv-s-rel3/mlp-pathogen-scheduled_final-393987810d2d/s96/attempt-001/eval_2026-2027",
+    "sha256": "8cbdde2e6e7c61bbd0ffe17ed470cb568024b43bd41ace7cd4e155a97db9ef64"
+   },
+   {
+    "checkpoint": "/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/experiments/rv-s-rel3/mlp-pathogen-scheduled_final-393987810d2d/s97/attempt-001/eval_2026-2027",
+    "sha256": "23bcb782fb57632445e4e8be681382a46838f08a8e40236f260b17e3366f0873"
+   },
+   {
+    "checkpoint": "/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/experiments/rv-s-rel3/mlp-pathogen-scheduled_final-393987810d2d/s98/attempt-001/eval_2026-2027",
+    "sha256": "5a9e619268c756eb5bc0cd0487d43ea0546533a6d76933ddb8540b090f6cfc28"
+   },
+   {
+    "checkpoint": "/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/experiments/rv-s-rel3/mlp-pathogen-scheduled_final-393987810d2d/s99/attempt-001/eval_2026-2027",
+    "sha256": "d85f1742c3565fd5e6715f3343f005b66d350589218b42fffb94b5ef59586e4d"
+   },
+   {
+    "checkpoint": "/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/experiments/rv-s-rel3/mlp-pathogen-scheduled_final-393987810d2d/s100/attempt-001/eval_2026-2027",
+    "sha256": "c87dcf627715d48cb1c2938554f34512787c0746640740ad19875ec895cce146"
+   },
+   {
+    "checkpoint": "/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/experiments/rv-s-rel3/mlp-pathogen-scheduled_final-393987810d2d/s101/attempt-001/eval_2026-2027",
+    "sha256": "139c5890c89a981aa65fe04e813f60472e6ae522e7f9b1535d1998986af0edb5"
+   },
+   {
+    "checkpoint": "/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/experiments/rv-s-rel3/mlp-pathogen-scheduled_final-393987810d2d/s102/attempt-001/eval_2026-2027",
+    "sha256": "c5e7c14f5494c20c2aa2cf8b21dfb046338b9a77d5e893291696cac4c45e604e"
+   },
+   {
+    "checkpoint": "/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/experiments/rv-s-rel3/mlp-pathogen-scheduled_final-393987810d2d/s103/attempt-001/eval_2026-2027",
+    "sha256": "13d3321a3c1526505a6a7f36b0e33929e40d4b6de6b8e64a9ba4ece0e9a1ee84"
+   },
+   {
+    "checkpoint": "/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/experiments/rv-s-rel3/mlp-pathogen-scheduled_final-393987810d2d/s104/attempt-001/eval_2026-2027",
+    "sha256": "7e287e91540a7432f0242c58a4037fec22134b3a8755a6bcc71b7bf894c35a80"
+   },
+   {
+    "checkpoint": "/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/experiments/rv-s-rel3/mlp-pathogen-scheduled_final-393987810d2d/s105/attempt-001/eval_2026-2027",
+    "sha256": "ba98c87606bcb10dcfa283d56e2333dec78fcb70359b54f87e59ad474e8a98ef"
+   },
+   {
+    "checkpoint": "/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/experiments/rv-s-rel3/mlp-pathogen-scheduled_final-393987810d2d/s106/attempt-001/eval_2026-2027",
+    "sha256": "0ac67af3acb803d18002f78cb0ce79ef44b881009475634d65168bdb4d29e220"
+   },
+   {
+    "checkpoint": "/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/experiments/rv-s-rel3/mlp-pathogen-scheduled_final-393987810d2d/s107/attempt-001/eval_2026-2027",
+    "sha256": "ecfe7fc930a73ee5ab50db02636d511e06f7e51f216f674d3858e18fef5eae09"
+   },
+   {
+    "checkpoint": "/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/experiments/rv-s-rel3/mlp-pathogen-scheduled_final-393987810d2d/s108/attempt-001/eval_2026-2027",
+    "sha256": "5df3d2d8d78e55cbc83ac68c97170d2d1893db67223567f6c7e23b0ef69d04e3"
+   },
+   {
+    "checkpoint": "/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/experiments/rv-s-rel3/mlp-pathogen-scheduled_final-393987810d2d/s109/attempt-001/eval_2026-2027",
+    "sha256": "1a253d8739d47df2f02a58bc0874a36972acb5c6228241f63c0673e6d273c157"
+   },
+   {
+    "checkpoint": "/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/experiments/rv-s-rel3/mlp-pathogen-scheduled_final-393987810d2d/s110/attempt-001/eval_2026-2027",
+    "sha256": "2f21138cdb7e66a33de51606b10cb48830837f76f98c205cb9ae56d6b47229b9"
+   },
+   {
+    "checkpoint": "/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/experiments/rv-s-rel3/mlp-pathogen-scheduled_final-393987810d2d/s111/attempt-001/eval_2026-2027",
+    "sha256": "955d18b5bef6ce12670de5cbc8e3f2761ac47eb600a453e7bc86891aeaee4989"
+   },
+   {
+    "checkpoint": "/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/experiments/rv-s-rel3/mlp-pathogen-scheduled_final-393987810d2d/s112/attempt-001/eval_2026-2027",
+    "sha256": "c9eadb9c59d58762b54eaeb858c38e31d6248b08f38a58b00d1c2167e9c294b9"
+   },
+   {
+    "checkpoint": "/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/experiments/rv-s-rel3/mlp-pathogen-scheduled_final-393987810d2d/s113/attempt-001/eval_2026-2027",
+    "sha256": "7a42c2f2ed21d835da536f5448ce52bb3ddf4e08b39ee9b297a177d11973e4d3"
+   },
+   {
+    "checkpoint": "/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/experiments/rv-s-rel3/mlp-pathogen-scheduled_final-393987810d2d/s114/attempt-001/eval_2026-2027",
+    "sha256": "b0e5a8ee517beafcfabfac09adcfd4bc299602d39bef4148841ed455112c157b"
+   },
+   {
+    "checkpoint": "/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/experiments/rv-s-rel3/mlp-pathogen-scheduled_final-393987810d2d/s115/attempt-001/eval_2026-2027",
+    "sha256": "dae10498eb188ea7758fc434b0caf63383d82a076ccc7f06be37cf0fad956ef0"
+   },
+   {
+    "checkpoint": "/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/experiments/rv-s-rel3/mlp-pathogen-scheduled_final-393987810d2d/s116/attempt-001/eval_2026-2027",
+    "sha256": "2697ce8fc9f3a1c37ae785fd92e39c2635ce49759a86d34172ed25ff7a6d7173"
+   },
+   {
+    "checkpoint": "/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/experiments/rv-s-rel3/mlp-pathogen-scheduled_final-393987810d2d/s117/attempt-001/eval_2026-2027",
+    "sha256": "67b94397188e3047348df5d64ec29cedb76298444d6927733ccbe8e045ffe04a"
+   },
+   {
+    "checkpoint": "/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/experiments/rv-s-rel3/mlp-pathogen-scheduled_final-393987810d2d/s118/attempt-001/eval_2026-2027",
+    "sha256": "958fd5caa4c631e4e88cab1938a4979e89aee0e878e00f0956291174dff8e03a"
+   },
+   {
+    "checkpoint": "/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/experiments/rv-s-rel3/mlp-pathogen-scheduled_final-393987810d2d/s119/attempt-001/eval_2026-2027",
+    "sha256": "9cf02e32fe7288846aa38c134733ed7671edc075f29e37fde5845907817d63cf"
+   },
+   {
+    "checkpoint": "/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/experiments/rv-s-rel3/mlp-pathogen-scheduled_final-393987810d2d/s120/attempt-001/eval_2026-2027",
+    "sha256": "ca10b8779034fcb263ed9bdc6ccb8a83d26b56f6c0c2873a1c983872b1eeb0f0"
+   },
+   {
+    "checkpoint": "/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/experiments/rv-s-rel3/mlp-pathogen-scheduled_final-393987810d2d/s121/attempt-001/eval_2026-2027",
+    "sha256": "d99fff24c630591a181362843e9722beac2f7c5b81330d913dad2869ec529a6a"
    }
   ],
   "A4i.nat": [
@@ -653,6 +1133,166 @@
    {
     "checkpoint": "/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/experiments/rv-s-rel2/mlp-pathogen-scheduled_final-0f894428656b/s81/attempt-001/eval_2026-2027",
     "sha256": "8e5534af06273478712ff0c122c0be1a09ec20c1b593ef3b9a4548067626ee53"
+   },
+   {
+    "checkpoint": "/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/experiments/rv-s-rel3/mlp-pathogen-scheduled_final-0f894428656b/s82/attempt-001/eval_2026-2027",
+    "sha256": "b5b76b8bb134daf4f9f0a742ffba48644d857f73f9641f4a0a6cb9ca5b9d5438"
+   },
+   {
+    "checkpoint": "/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/experiments/rv-s-rel3/mlp-pathogen-scheduled_final-0f894428656b/s83/attempt-001/eval_2026-2027",
+    "sha256": "b1afa40fe812188eb1437c20244072142fe053d7401ae1fe334b5c420a9f39d3"
+   },
+   {
+    "checkpoint": "/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/experiments/rv-s-rel3/mlp-pathogen-scheduled_final-0f894428656b/s84/attempt-001/eval_2026-2027",
+    "sha256": "1d5640c0c798773a62910d886b2e97ae13ffac8be95247531b4c468385b5c5ec"
+   },
+   {
+    "checkpoint": "/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/experiments/rv-s-rel3/mlp-pathogen-scheduled_final-0f894428656b/s85/attempt-001/eval_2026-2027",
+    "sha256": "59c754c27e20d580076f8799fdb094dfb1d79e0aaa97cb12638d37b98c8c1794"
+   },
+   {
+    "checkpoint": "/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/experiments/rv-s-rel3/mlp-pathogen-scheduled_final-0f894428656b/s86/attempt-001/eval_2026-2027",
+    "sha256": "a04dcc8e99634532e6c1028090c6fd13be11f43d40b13e1fab3b5125aade3eb7"
+   },
+   {
+    "checkpoint": "/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/experiments/rv-s-rel3/mlp-pathogen-scheduled_final-0f894428656b/s87/attempt-001/eval_2026-2027",
+    "sha256": "08a13c937c9facad9415576aa5ddfd315208c9df83442e361411dd503301a1ea"
+   },
+   {
+    "checkpoint": "/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/experiments/rv-s-rel3/mlp-pathogen-scheduled_final-0f894428656b/s88/attempt-001/eval_2026-2027",
+    "sha256": "95c87b06006e0d6a0cc1bde93e5764e8c06897c3af768c6c814450667ba03272"
+   },
+   {
+    "checkpoint": "/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/experiments/rv-s-rel3/mlp-pathogen-scheduled_final-0f894428656b/s89/attempt-001/eval_2026-2027",
+    "sha256": "cf2543d96185f111da7cadc2a23c113d73799af0f8ed28ce43d9ee530625dcf3"
+   },
+   {
+    "checkpoint": "/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/experiments/rv-s-rel3/mlp-pathogen-scheduled_final-0f894428656b/s90/attempt-001/eval_2026-2027",
+    "sha256": "265c2e29d7c3e348e4cd985da743cf209d8cc7f1c0e96f01fda0009126a30dc5"
+   },
+   {
+    "checkpoint": "/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/experiments/rv-s-rel3/mlp-pathogen-scheduled_final-0f894428656b/s91/attempt-001/eval_2026-2027",
+    "sha256": "6a8b355ee043c0811a5cd1d7e1a7243c0a88d7f7dcb764c2352a2e091ac24be9"
+   },
+   {
+    "checkpoint": "/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/experiments/rv-s-rel3/mlp-pathogen-scheduled_final-0f894428656b/s92/attempt-001/eval_2026-2027",
+    "sha256": "702c48252211008b9f811554e38cdb25e3b39e683aa3461159747fb338043ddf"
+   },
+   {
+    "checkpoint": "/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/experiments/rv-s-rel3/mlp-pathogen-scheduled_final-0f894428656b/s93/attempt-001/eval_2026-2027",
+    "sha256": "fa54d15c321dfaec3ae09eda34ee437cf77de146ff8421aee2d811c07ade3495"
+   },
+   {
+    "checkpoint": "/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/experiments/rv-s-rel3/mlp-pathogen-scheduled_final-0f894428656b/s94/attempt-001/eval_2026-2027",
+    "sha256": "9fc061e5afa4e989ecd02e7ac16fcbb6c12433f0f9279e4939673deee2844f64"
+   },
+   {
+    "checkpoint": "/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/experiments/rv-s-rel3/mlp-pathogen-scheduled_final-0f894428656b/s95/attempt-001/eval_2026-2027",
+    "sha256": "62540e328cfe655bb446fd24254f014b7e0dcde88483e4ea52caa46aff72f684"
+   },
+   {
+    "checkpoint": "/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/experiments/rv-s-rel3/mlp-pathogen-scheduled_final-0f894428656b/s96/attempt-001/eval_2026-2027",
+    "sha256": "4781b9a8cbfcf5611a8712f790be38a45af955b2bdd52ae342d954d24035169b"
+   },
+   {
+    "checkpoint": "/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/experiments/rv-s-rel3/mlp-pathogen-scheduled_final-0f894428656b/s97/attempt-001/eval_2026-2027",
+    "sha256": "66c32aaedd9a6aa3f87d168630e463088222ad800a3be1800515ac69dd367135"
+   },
+   {
+    "checkpoint": "/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/experiments/rv-s-rel3/mlp-pathogen-scheduled_final-0f894428656b/s98/attempt-001/eval_2026-2027",
+    "sha256": "30072c9c3192e97f59d02e81e6520a32613f76571dd9fe9aa466617579a39f28"
+   },
+   {
+    "checkpoint": "/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/experiments/rv-s-rel3/mlp-pathogen-scheduled_final-0f894428656b/s99/attempt-001/eval_2026-2027",
+    "sha256": "bf6ddd41452def28797d82f18137881f84e1cf948f7df5dbc712702f1a5ff153"
+   },
+   {
+    "checkpoint": "/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/experiments/rv-s-rel3/mlp-pathogen-scheduled_final-0f894428656b/s100/attempt-001/eval_2026-2027",
+    "sha256": "96282178702d1aba19bebd8100e867c7e56a8c585c3be8ae7b7faa1da4ff80f5"
+   },
+   {
+    "checkpoint": "/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/experiments/rv-s-rel3/mlp-pathogen-scheduled_final-0f894428656b/s101/attempt-001/eval_2026-2027",
+    "sha256": "99c1cb06f3a7d1e1f6767cf2407729becfa64333841af034236b67fae9c35a67"
+   },
+   {
+    "checkpoint": "/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/experiments/rv-s-rel3/mlp-pathogen-scheduled_final-0f894428656b/s102/attempt-001/eval_2026-2027",
+    "sha256": "4b5b3d0889308c8073ea224e8d6a89366818cd0cdf237098b68182ed6604727f"
+   },
+   {
+    "checkpoint": "/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/experiments/rv-s-rel3/mlp-pathogen-scheduled_final-0f894428656b/s103/attempt-001/eval_2026-2027",
+    "sha256": "8a9504415f30654994e8599366b82542091e65e202dcc6acf0f6723a88871fcf"
+   },
+   {
+    "checkpoint": "/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/experiments/rv-s-rel3/mlp-pathogen-scheduled_final-0f894428656b/s104/attempt-001/eval_2026-2027",
+    "sha256": "e524e52fc99897deaefbea893dea6f2f893451b08fa9d2ea83efb0d5868af6be"
+   },
+   {
+    "checkpoint": "/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/experiments/rv-s-rel3/mlp-pathogen-scheduled_final-0f894428656b/s105/attempt-001/eval_2026-2027",
+    "sha256": "a0fa1bf723305fe5fb672a86a8bcf6d952e10ea510e09c1082c6b556e31319c6"
+   },
+   {
+    "checkpoint": "/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/experiments/rv-s-rel3/mlp-pathogen-scheduled_final-0f894428656b/s106/attempt-001/eval_2026-2027",
+    "sha256": "913d3d87028ead525bee32cbca770797427274b682c4b381f917259562522bff"
+   },
+   {
+    "checkpoint": "/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/experiments/rv-s-rel3/mlp-pathogen-scheduled_final-0f894428656b/s107/attempt-001/eval_2026-2027",
+    "sha256": "232337a593c8bea1a9c4877b484173cfdc03d3e517b1943cb5bca8f381ae2484"
+   },
+   {
+    "checkpoint": "/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/experiments/rv-s-rel3/mlp-pathogen-scheduled_final-0f894428656b/s108/attempt-001/eval_2026-2027",
+    "sha256": "438f3f127665f30ea42956a7d97b0d0b84a33aa12d11d204bab724cf23031b14"
+   },
+   {
+    "checkpoint": "/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/experiments/rv-s-rel3/mlp-pathogen-scheduled_final-0f894428656b/s109/attempt-001/eval_2026-2027",
+    "sha256": "695543a25cf3e94b24491824b07e49868ecf16db824523af96ba732bdef64bff"
+   },
+   {
+    "checkpoint": "/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/experiments/rv-s-rel3/mlp-pathogen-scheduled_final-0f894428656b/s110/attempt-001/eval_2026-2027",
+    "sha256": "d64a74d99da273664c0b8bec3b03ef86bd7df06ddf16032b7ba2b1dd8479f372"
+   },
+   {
+    "checkpoint": "/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/experiments/rv-s-rel3/mlp-pathogen-scheduled_final-0f894428656b/s111/attempt-001/eval_2026-2027",
+    "sha256": "4dcf71260222431a04a6ca31d448dd950857c8164ec700b2b862d53c8497e19f"
+   },
+   {
+    "checkpoint": "/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/experiments/rv-s-rel3/mlp-pathogen-scheduled_final-0f894428656b/s112/attempt-001/eval_2026-2027",
+    "sha256": "9b866e5b1c4c34a7bbabb756307d003a8f4bf027a0cea98a2029186702c0dc0f"
+   },
+   {
+    "checkpoint": "/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/experiments/rv-s-rel3/mlp-pathogen-scheduled_final-0f894428656b/s113/attempt-001/eval_2026-2027",
+    "sha256": "94438c9368bc75654772cf58aa77897025dbc088f8870b93659e209e78045067"
+   },
+   {
+    "checkpoint": "/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/experiments/rv-s-rel3/mlp-pathogen-scheduled_final-0f894428656b/s114/attempt-001/eval_2026-2027",
+    "sha256": "ff974c70b712658f0d10535fbabbecf3ed8f05a91c0b5268c70165118f9beaa5"
+   },
+   {
+    "checkpoint": "/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/experiments/rv-s-rel3/mlp-pathogen-scheduled_final-0f894428656b/s115/attempt-001/eval_2026-2027",
+    "sha256": "1e0f4679682516b63c60d50dbfdad7674031d00d733046c1609a250f11d4fb05"
+   },
+   {
+    "checkpoint": "/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/experiments/rv-s-rel3/mlp-pathogen-scheduled_final-0f894428656b/s116/attempt-001/eval_2026-2027",
+    "sha256": "488958a8ab76e9b62d63b6971aceeb08d58a2024115df75f463823f6c1502c8e"
+   },
+   {
+    "checkpoint": "/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/experiments/rv-s-rel3/mlp-pathogen-scheduled_final-0f894428656b/s117/attempt-001/eval_2026-2027",
+    "sha256": "abfa11bab8e3d6cc8aa22881f0f875dac4f8113f2f1790af3f10333b99ad0f6a"
+   },
+   {
+    "checkpoint": "/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/experiments/rv-s-rel3/mlp-pathogen-scheduled_final-0f894428656b/s118/attempt-001/eval_2026-2027",
+    "sha256": "b97eb08950fc4ee7cd1d13adf126d9c9e90f05ed142f3f10194e4f5199ba1f38"
+   },
+   {
+    "checkpoint": "/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/experiments/rv-s-rel3/mlp-pathogen-scheduled_final-0f894428656b/s119/attempt-001/eval_2026-2027",
+    "sha256": "cf42aa8910bd2a87c8f3f1b60740e6bc5fd6320c339e45c36c1a504f3c08427c"
+   },
+   {
+    "checkpoint": "/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/experiments/rv-s-rel3/mlp-pathogen-scheduled_final-0f894428656b/s120/attempt-001/eval_2026-2027",
+    "sha256": "13994603e1f0daa632820a94c06bbc2580dc12521a806330fdaee98cb056ea1d"
+   },
+   {
+    "checkpoint": "/hickory/proj/jlessler/projects/tapestry-all/nowcast-20261113/data/experiments/rv-s-rel3/mlp-pathogen-scheduled_final-0f894428656b/s121/attempt-001/eval_2026-2027",
+    "sha256": "bf70febba5bc55ef8f2a14960b3187584e47d1e3a906e6b58d3abd8d554e8b98"
    }
   ]
  }

@@ -367,6 +367,27 @@ ROUNDS['rsv'][12] = dict(description='RSV search round 12 (2026-11-25): joint (f
 ROUNDS['rsv'][11] = dict(description='RSV search round 11 (2026-11-25): one network trained on flu, COVID and RSV (joint problem).',
                          build=rsv11)
 
+def covid8():
+    # 25 Nov 11:40: the joint network helped RSV ED share; the opposite direction, one network per target (admissions and
+    # ED share fitted separately), on the candidate members.
+    r = R['covid']
+    for root in ('T', 'ref.N', 'S'):
+        put('covid', f'{root}.pt', derive(r[root], fit_partition='target'), root)
+
+
+ROUNDS['covid'][8] = dict(description='COVID search round 8 (2026-11-25): one network per target on T, ref.N and S.', build=covid8)
+
+
+def rsv13():
+    r = R['rsv']
+    for root in ('Bw.nat', 'A4i.nat'):
+        put('rsv', f'{root}.pt', derive(r[root], fit_partition='target'), root)
+        put('rsv', f'{root}.lb16', derive(r[root], lookback=16), root)
+
+
+ROUNDS['rsv'][13] = dict(description='RSV search round 13 (2026-11-25): one network per target and 16-week lookback on Bw.nat and '
+                                     'A4i.nat.', build=rsv13)
+
 # Guard-only files: recipes guarded after they pass the main problem (children are not guarded otherwise).
 GUARD = {'covid': {'g01': ['ref.Ah', 'ref.pN', 'ref.N', 'ref.Bh', 'T', 'Tl', 'S'],
                    'g02': (['ref.Ah', 'ref.pN', 'ref.N', 'ref.Bh', 'T', 'S'], list(range(52, 60))),  # guard seeds for mixtures

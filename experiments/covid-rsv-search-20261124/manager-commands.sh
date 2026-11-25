@@ -217,3 +217,9 @@ python3 $S/rounds.py covid rel3; python3 $S/rounds.py rsv rel3   # on the Mac
 .venv/bin/python -m chromantis.experiment.planner plan -e rv-s-rel3 --problem problems/us-rsv-production-coverage.json --study $S/rsv-reseed-rel3.json --device cuda
 .venv/bin/python -m chromantis.experiment.planner plan -e cv-s-rel3 --problem problems/us-covid-production-coverage.json --study $S/covid-reseed-rel3.json --device cuda
 sbatch --job-name=crs-rel3 --array=0-5 scripts/flu_search.sbatch rv-s-rel3:4 cv-s-rel3:4
+# 2026-11-25 11:45 EST: RSV draft release refreshed to 80 seeds (rv-s-rel+rel2+rel3); round covid 8 / rsv 13 (job 10787049)
+.venv/bin/python scripts/flu_search_release.py rsv-nat-candidate-20261125 $S/draft-release-rsv-nat.json rv-s-rel+rv-s-rel2+rv-s-rel3:ref.Ball=Ball_c0w512 rv-s-rel+rv-s-rel2+rv-s-rel3:Bw.nat=Bw.nat rv-s-rel+rv-s-rel2+rv-s-rel3:ref.A4c0=A4c0 rv-s-rel+rv-s-rel2+rv-s-rel3:A4i.nat=A4i.nat --hub rsv --problem problems/us-rsv-production-coverage.json --description "..."
+python3 $S/rounds.py covid 8; python3 $S/rounds.py rsv 13   # on the Mac
+.venv/bin/python -m chromantis.experiment.planner plan -e cv-s-r08 --problem problems/us-covid-short-term-coverage.json --study $S/covid-round-08.json --device cuda
+.venv/bin/python -m chromantis.experiment.planner plan -e rv-s-r13 --problem problems/us-rsv-short-term-coverage.json --study $S/rsv-round-13.json --device cuda
+sbatch --job-name=crs-r13 --array=0-5 scripts/flu_search.sbatch rv-s-r13:4 cv-s-r08:4

@@ -153,6 +153,11 @@
    "date": "2026-11-25 10:40 EST",
    "round": "COVID 48 seeds; release seeds 82-121",
    "what": "COVID seeds 84-91 complete on both checks; 48-seed mixtures (crs-mix-c07 main, c06g guard) and a sixth seed block (cb6, cgb6) queued to settle the narrow T+N+S verdict. Queued (array 10781142): all-season release fits on seeds 82-121 for the candidate members (RSV ref.Ball, Bw.nat, ref.A4c0, A4i.nat; COVID T, ref.N, S), giving 80 fits per recipe as in the flu draft release."
+  },
+  {
+   "date": "2026-11-25 11:45 EST",
+   "round": "COVID at 48 seeds; RSV release 80 seeds; round covid 8 / rsv 13",
+   "what": "COVID mixtures at 48 seeds (44-91; main problem = 2024-25 and 2025-26 held out in turn, trained on the other seasons of 2022-23..2025-26, archived reports; guard = 2023-24, artificial reports; states/DC log-admission WIS; six 8-seed blocks for the seed error; lower is better): production 4 0.2518 / 0.2196 / 0.2357, guard 0.1795, guard ED 21.11; T+N+S 0.2446 / 0.2172 / 0.2309 (-1.97%, 2 SE 0.59%, lower in both seasons), guard 0.1807 (+0.71%, 2 SE 0.70%, inside the 1% margin), guard ED 20.03 (-5.0%): passes every rule; its guard difference shrank with seeds (+1.02% at 32, +0.88% at 40, +0.71% at 48). Production + T -0.90% (level), guard -0.38%; ref.N+ref.pN+S -0.78% (level), guard -0.55%. COVID recommendation: T+N+S (draft-release-covid-tns.json). RSV release fits on seeds 82-121 complete: draft-release-rsv-nat.json now holds 80 all-season fits per recipe (42-121). Last mechanism round (array 10787049): one network per target (fit_partition=target) on COVID T, ref.N, S and RSV Bw.nat, A4i.nat (the joint network helped RSV ED share; this tests the opposite direction), and a 16-week lookback on the RSV national recipes."
   }
  ]
 }
