@@ -223,3 +223,12 @@ python3 $S/rounds.py covid 8; python3 $S/rounds.py rsv 13   # on the Mac
 .venv/bin/python -m chromantis.experiment.planner plan -e cv-s-r08 --problem problems/us-covid-short-term-coverage.json --study $S/covid-round-08.json --device cuda
 .venv/bin/python -m chromantis.experiment.planner plan -e rv-s-r13 --problem problems/us-rsv-short-term-coverage.json --study $S/rsv-round-13.json --device cuda
 sbatch --job-name=crs-r13 --array=0-5 scripts/flu_search.sbatch rv-s-r13:4 cv-s-r08:4
+# 2026-11-25 12:45 EST: COVID release refreshed to 80 seeds; delayed-view mixtures c07d / r04d; round covid 9 / rsv 14 (job 10797081)
+.venv/bin/python scripts/flu_search_release.py covid-tns-candidate-20261125 $S/draft-release-covid-tns.json cv-s-rel+cv-s-rel2+cv-s-rel3:T=T cv-s-rel+cv-s-rel2+cv-s-rel3:ref.N=N.multiscale cv-s-rel+cv-s-rel2+cv-s-rel3:S=S --hub covid --problem problems/us-covid-production-coverage.json --description "..."
+#   mix-c07d.json / mix-r04d.json = mix-c07.json / mix-r04.json with "views": ["corrected", "delayed"]
+sbatch --job-name=crs-mix-c07d scripts/covid_tree_mix.sbatch $S/mix-c07d.json data/experiments/crs-mix-c07d
+sbatch --job-name=crs-mix-r04d scripts/covid_tree_mix.sbatch $S/mix-r04d.json data/experiments/crs-mix-r04d
+python3 $S/rounds.py covid 9; python3 $S/rounds.py rsv 14   # on the Mac
+.venv/bin/python -m chromantis.experiment.planner plan -e cv-s-r09 --problem problems/us-covid-short-term-coverage.json --study $S/covid-round-09.json --device cuda
+.venv/bin/python -m chromantis.experiment.planner plan -e rv-s-r14 --problem problems/us-rsv-short-term-coverage.json --study $S/rsv-round-14.json --device cuda
+sbatch --job-name=crs-r14 --array=0-5 scripts/flu_search.sbatch cv-s-r09:4 rv-s-r14:4

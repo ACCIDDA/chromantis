@@ -388,6 +388,29 @@ def rsv13():
 ROUNDS['rsv'][13] = dict(description='RSV search round 13 (2026-11-25): one network per target and 16-week lookback on Bw.nat and '
                                      'A4i.nat.', build=rsv13)
 
+def covid9():
+    # 25 Nov 12:40: structural search exhausted. Amplitude augmentation (each training episode's inputs and labels rescaled
+    # by exp(N(0, 0.3))): COVID seasons differ in size and the mixtures are too low at peaks; per-location noise on S.
+    r = R['covid']
+    for root in ('T', 'S', 'ref.N'):
+        put('covid', f'{root}.amp3', derive(r[root], amplitude_sd=0.3), root)
+    put('covid', 'S.local', derive(r['S'], noise='local'), 'S')
+
+
+ROUNDS['covid'][9] = dict(description='COVID search round 9 (2026-11-25): amplitude augmentation on T, S, ref.N; per-location noise '
+                                      'on S.', build=covid9)
+
+
+def rsv14():
+    r = R['rsv']
+    for root in ('Bw.nat', 'A4i.nat'):
+        put('rsv', f'{root}.amp3', derive(r[root], amplitude_sd=0.3), root)
+    put('rsv', 'A4i.nat.local', derive(r['A4i.nat'], noise='local'), 'A4i.nat')
+
+
+ROUNDS['rsv'][14] = dict(description='RSV search round 14 (2026-11-25): amplitude augmentation on Bw.nat and A4i.nat; per-location '
+                                     'noise on A4i.nat.', build=rsv14)
+
 # Guard-only files: recipes guarded after they pass the main problem (children are not guarded otherwise).
 GUARD = {'covid': {'g01': ['ref.Ah', 'ref.pN', 'ref.N', 'ref.Bh', 'T', 'Tl', 'S'],
                    'g02': (['ref.Ah', 'ref.pN', 'ref.N', 'ref.Bh', 'T', 'S'], list(range(52, 60))),  # guard seeds for mixtures
