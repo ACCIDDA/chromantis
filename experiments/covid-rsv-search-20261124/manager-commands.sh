@@ -169,3 +169,11 @@ python3 $S/rounds.py covid 7; python3 $S/rounds.py rsv 11   # on the Mac
 .venv/bin/python -m chromantis.experiment.planner plan -e cv-s-r07 --problem problems/us-respiratory-joint-short-term-coverage.json --study $S/covid-round-07.json --device cuda
 .venv/bin/python -m chromantis.experiment.planner plan -e rv-s-r11 --problem problems/us-respiratory-joint-short-term-coverage.json --study $S/rsv-round-11.json --device cuda
 sbatch --job-name=crs-joint --array=0-5 scripts/flu_search.sbatch rv-s-r11:4 cv-s-r07:4
+# 2026-11-25 05:45 EST: block seed errors (scripts/crs_block_se.py); joint RSV seeds rs09 + joint guard g11 (job 10767854); joint mix test rj1 (CPU 10767856)
+python3 scripts/crs_block_se.py
+python3 $S/rounds.py rsv rs09; python3 $S/rounds.py rsv g11   # on the Mac
+.venv/bin/python -m chromantis.experiment.planner plan -e rv-s-rs09 --problem problems/us-respiratory-joint-short-term-coverage.json --study $S/rsv-reseed-rs09.json --device cuda
+.venv/bin/python -m chromantis.experiment.planner plan -e rv-s-g11 --problem problems/us-respiratory-joint-2023-24-prescribed-coverage.json --study $S/rsv-guard-g11.json --device cuda
+sbatch --job-name=crs-joint2 --array=0-5 scripts/flu_search.sbatch rv-s-rs09:4 rv-s-g11:4
+.venv/bin/python scripts/flu_search_mix.py rj1 --study $S --prefix crs-mix --max-seeds 8 --experiments rv-s-r01 rv-s-r03 rv-s-r05 rv-s-r11 --members P=ref.Ball,ref.Bw,ref.A4c0,ref.A4i PN=ref.Ball,Bw.nat,ref.A4c0,A4i.nat PJ=ref.Ball,Bw.nat.joint,ref.A4c0,A4i.nat.joint PJB=ref.Ball,Bw.nat.joint,ref.A4c0,A4i.nat --groups "prod4:P" "prodnat:PN" "prodnat-joint:PJ" "prodnat-jointB:PJB"
+sbatch --job-name=crs-mix-rj1 scripts/covid_tree_mix.sbatch $S/mix-rj1.json data/experiments/crs-mix-rj1
