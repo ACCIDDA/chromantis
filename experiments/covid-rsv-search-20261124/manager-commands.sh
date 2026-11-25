@@ -123,3 +123,10 @@ for a in "rsv rs07" "rsv rel" "covid rel" "rsv g09"; do python3 $S/rounds.py $a;
 sbatch --job-name=crs-rel --array=0-5 scripts/flu_search.sbatch rv-s-g09:4 rv-s-rs07:4 rv-s-rel:4 cv-s-rel:4
 # peak-window check of the COVID mixtures (CPU job 10737453)
 sbatch --job-name=crs-phase --partition=jlessler --cpus-per-task=4 --mem=48G --time=02:00:00 --output=output/crs-search/phase-c05.txt --wrap "PYTHONPATH=src .venv/bin/python scripts/flu_phase_check.py data/experiments/crs-mix-c05/*-mixture"
+# 2026-11-24 23:45 EST: RSV 24-seed mixtures main r03 (CPU job 10744647) and guard r03g (10744648)
+M="P=ref.Ball,ref.Bw,ref.A4c0,ref.A4i PB=ref.Ball,Bw.nat,ref.A4c0,ref.A4i PN=ref.Ball,Bw.nat,ref.A4c0,A4i.nat PS=ref.Ball,Bw.nat.smp,ref.A4c0,A4i.nat BN=Bw.nat AN=A4i.nat BS=Bw.nat.smp"
+GR=("prod4:P" "prodBnat:PB" "prodnat:PN" "prodnat-smp:PS" "BN+AN:BN,AN" "BS+AN:BS,AN")
+.venv/bin/python scripts/flu_search_mix.py r03 --study $S --prefix crs-mix --experiments rv-s-r01 rv-s-r03 rv-s-r05 rv-s-r07 rv-s-rs01 rv-s-rs03 rv-s-rs04 rv-s-rs05 rv-s-rs06 rv-s-rs07 --max-seeds 24 --members $M --groups "${GR[@]}"
+sbatch --job-name=crs-mix-r03 scripts/covid_tree_mix.sbatch $S/mix-r03.json data/experiments/crs-mix-r03
+.venv/bin/python scripts/flu_search_mix.py r03g --study $S --prefix crs-mix --experiments rv-s-g01 rv-s-g06 rv-s-g07 rv-s-g08 rv-s-g09 --max-seeds 24 --members $M --groups "${GR[@]}"
+sbatch --job-name=crs-mix-r03g scripts/covid_tree_mix.sbatch $S/mix-r03g.json data/experiments/crs-mix-r03g
