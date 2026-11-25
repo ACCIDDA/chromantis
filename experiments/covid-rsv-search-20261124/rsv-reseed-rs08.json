@@ -1,0 +1,23 @@
+{
+ "description": "rsv search reseed rs08: ref.Ball, ref.Bw, ref.A4c0, ref.A4i, Bw.nat, A4i.nat on seeds 68-75.",
+ "round": "rs08",
+ "parents": {},
+ "candidates": {
+  "ref.Ball": "history_source=artificial,reconstruction_labels=1,error_signals=targets,input_set=all,correction_weeks=2,correction_ed=1,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,spatial=neighbors,decoder=quantile,width=512,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,actual_share=1.0,log_loss_weight=0.75,annual_calendar=0,stress_views=1",
+  "ref.Bw": "history_source=artificial,reconstruction_labels=1,error_signals=targets,input_set=all,correction_weeks=2,correction_ed=1,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,spatial=neighbors,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=0.5,stress_views=1",
+  "ref.A4c0": "history_source=artificial,history_correction=1,error_signals=targets,input_set=target,correction_weeks=2,correction_ed=1,joint_weight=0.05,correction_penalty=30.0,reporting_missingness=0,reporting_method=synchronous_phase_log,ed_transform=logit,width=192,epochs=160,patience=25,fit_partition=pathogen,covariate_encoder=summary,covariate_set=kinsa,input_normalization=b0,log_loss_weight=1.0,annual_calendar=0,stress_views=1",
+  "ref.A4i": "history_source=artificial,history_correction=1,error_signals=targets,input_set=all,correction_weeks=2,correction_ed=1,joint_weight=0.05,correction_penalty=30.0,reporting_missingness=0,reporting_method=synchronous_phase_log,ed_transform=logit,width=192,epochs=160,patience=25,fit_partition=pathogen,covariate_encoder=summary,covariate_set=kinsa,input_normalization=b0,log_loss_weight=1.0,stress_views=1",
+  "Bw.nat": "history_source=artificial,reconstruction_labels=1,error_signals=targets,input_set=all,correction_weeks=2,correction_ed=1,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,spatial=national_broadcast,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=0.5,stress_views=1",
+  "A4i.nat": "history_source=artificial,history_correction=1,error_signals=targets,input_set=all,correction_weeks=2,correction_ed=1,joint_weight=0.05,correction_penalty=30.0,reporting_missingness=0,reporting_method=synchronous_phase_log,ed_transform=logit,width=192,epochs=160,patience=25,fit_partition=pathogen,covariate_encoder=summary,covariate_set=kinsa,input_normalization=b0,log_loss_weight=1.0,stress_views=1,spatial=national_broadcast"
+ },
+ "seeds": [
+  68,
+  69,
+  70,
+  71,
+  72,
+  73,
+  74,
+  75
+ ]
+}

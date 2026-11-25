@@ -286,7 +286,8 @@ ROUNDS['rsv'][8] = dict(description='RSV search round 8 (2026-11-24): children o
 # Guard-only files: recipes guarded after they pass the main problem (children are not guarded otherwise).
 GUARD = {'covid': {'g01': ['ref.Ah', 'ref.pN', 'ref.N', 'ref.Bh', 'T', 'Tl', 'S'],
                    'g02': (['ref.Ah', 'ref.pN', 'ref.N', 'ref.Bh', 'T', 'S'], list(range(52, 60))),  # guard seeds for mixtures
-                   'g03': (['ref.Ah', 'ref.pN', 'ref.N', 'ref.Bh', 'T', 'S'], list(range(60, 68)))},
+                   'g03': (['ref.Ah', 'ref.pN', 'ref.N', 'ref.Bh', 'T', 'S'], list(range(60, 68))),
+                   'g04': (['ref.Ah', 'ref.pN', 'ref.N', 'ref.Bh', 'T', 'S'], list(range(68, 76)))},
          'rsv': {'g01': ['ref.Ball', 'ref.Bw', 'ref.A4c0', 'ref.A4i', 'Rc', 'R1'],
                  'g03': ['Bwq', 'Bwq.smp'],
                  'g04': ['ref.Bw.gt', 'Bwq.gt', 'Bwq.smp.gt'],
@@ -294,7 +295,8 @@ GUARD = {'covid': {'g01': ['ref.Ah', 'ref.pN', 'ref.N', 'ref.Bh', 'T', 'Tl', 'S'
                  'g06': (['ref.Ball', 'ref.Bw', 'ref.A4c0', 'ref.A4i', 'Bwq', 'Bwq.smp', 'Rc', 'Rc.real'], list(range(52, 60))),
                  'g07': (['A4i.nat', 'Bw.nat'], list(range(44, 60))),
                  'g08': (['ref.Ball', 'ref.Bw', 'ref.A4c0', 'ref.A4i', 'A4i.nat', 'Bw.nat'], list(range(60, 68))),
-                 'g09': (['Bw.nat.smp'], list(range(44, 68)))}}  # gt guard problem (us-rsv-2023-24-prescribed-coverage-gt)
+                 'g09': (['Bw.nat.smp'], list(range(44, 68))),
+                 'g10': (['ref.Ball', 'ref.Bw', 'ref.A4c0', 'ref.A4i', 'Bw.nat', 'A4i.nat'], list(range(68, 76)))}}  # gt guard problem (us-rsv-2023-24-prescribed-coverage-gt)
 RESEED = {'covid': {'rs01': (['ref.Ah', 'ref.pN', 'ref.N', 'ref.Bh', 'T', 'Tl', 'S'], list(range(52, 60))),
                     'rs02': (['ref.Ah', 'ref.pN', 'ref.N', 'ref.Bh', 'T', 'S', 'N.smp'], list(range(60, 68))),
                     # 24 Nov 18:40: mixture decisions are noise-limited; 32 main seeds for the finalists and production
@@ -310,7 +312,9 @@ RESEED = {'covid': {'rs01': (['ref.Ah', 'ref.pN', 'ref.N', 'ref.Bh', 'T', 'Tl', 
                   'rs07': (['Bw.nat.smp'], list(range(52, 68))),
                   # 24 Nov 22:45: all-season release fits (production problem, trained on 2022-23..2025-26), seeds 42-61
                   'rel': (['ref.Ball', 'ref.Bw', 'ref.A4c0', 'ref.A4i', 'Bw.nat', 'Bw.nat.smp', 'A4i.nat'], list(range(42, 62))),
-                  'rel2': (['ref.Ball', 'ref.A4c0', 'Bw.nat', 'Bw.nat.smp', 'A4i.nat'], list(range(62, 82)))}}
+                  'rel2': (['ref.Ball', 'ref.A4c0', 'Bw.nat', 'Bw.nat.smp', 'A4i.nat'], list(range(62, 82))),
+                  # 25 Nov 01:40: 32 main seeds for the final RSV comparison
+                  'rs08': (['ref.Ball', 'ref.Bw', 'ref.A4c0', 'ref.A4i', 'Bw.nat', 'A4i.nat'], list(range(68, 76)))}}
 
 
 def build_all(p, upto=None):

@@ -136,3 +136,11 @@ python3 $S/rounds.py rsv rel2; python3 $S/rounds.py covid rel2   # on the Mac
 .venv/bin/python -m chromantis.experiment.planner plan -e cv-s-rel2 --problem problems/us-covid-production-coverage.json --study $S/covid-reseed-rel2.json --device cuda
 sbatch --job-name=crs-rel2 --array=0-5 scripts/flu_search.sbatch rv-s-rel2:4 cv-s-rel2:4
 sbatch --job-name=crs-phase-r --partition=jlessler --cpus-per-task=4 --mem=48G --time=02:00:00 --output=output/crs-search/phase-r03.txt --wrap "PYTHONPATH=src .venv/bin/python scripts/flu_phase_check.py data/experiments/crs-mix-r03/*-mixture"
+# 2026-11-25 01:45 EST: per-task phase tables + bootstrap (CPU job 10754918); 32-seed checks rs08/g10/g04 (job 10754932)
+sbatch --job-name=crs-phase2 --partition=jlessler --cpus-per-task=4 --mem=48G --time=02:00:00 --output=output/crs-search/phase2.log --wrap 'PYTHONPATH=src .venv/bin/python scripts/flu_phase_check.py --out output/crs-search/tasks-r03.csv data/experiments/crs-mix-r03/*-mixture >/dev/null && PYTHONPATH=src .venv/bin/python scripts/flu_phase_check.py --out output/crs-search/tasks-c05.csv data/experiments/crs-mix-c05/*-mixture >/dev/null'
+.venv/bin/python scripts/crs_phase_diff.py output/crs-search/tasks-r03.csv "prod4 [24 seeds]-mixture" "prodnat [24 seeds]-mixture"
+python3 $S/rounds.py rsv rs08; python3 $S/rounds.py rsv g10; python3 $S/rounds.py covid g04   # on the Mac
+.venv/bin/python -m chromantis.experiment.planner plan -e rv-s-rs08 --problem problems/us-rsv-short-term-coverage.json --study $S/rsv-reseed-rs08.json --device cuda
+.venv/bin/python -m chromantis.experiment.planner plan -e rv-s-g10 --problem problems/us-rsv-2023-24-prescribed-coverage.json --study $S/rsv-guard-g10.json --device cuda
+.venv/bin/python -m chromantis.experiment.planner plan -e cv-s-g04 --problem problems/us-covid-2023-24-prescribed-coverage.json --study $S/covid-guard-g04.json --device cuda
+sbatch --job-name=crs-s32 --array=0-5 scripts/flu_search.sbatch rv-s-rs08:4 rv-s-g10:4 cv-s-g04:4
