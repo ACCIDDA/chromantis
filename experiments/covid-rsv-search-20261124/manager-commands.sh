@@ -183,3 +183,11 @@ python3 $S/rounds.py rsv 12   # on the Mac
 sbatch --job-name=crs-joint3 --array=0-5 scripts/flu_search.sbatch rv-s-r12:4
 .venv/bin/python scripts/flu_search_mix.py rj2 --study $S --prefix crs-mix --max-seeds 24 --experiments rv-s-r11 rv-s-rs09 --members J=Bw.nat.joint,A4i.nat.joint BJ=Bw.nat.joint AJ=A4i.nat.joint --groups 'BJ+AJ:J' 'BJ:BJ' 'AJ:AJ'
 sbatch --job-name=crs-mix-rj2 scripts/covid_tree_mix.sbatch $S/mix-rj2.json data/experiments/crs-mix-rj2
+# 2026-11-25 07:45 EST: all-joint mixture rj3 (CPU 10772189); COVID 40-seed checks rs04/g05 + joint release fits reljoint (job 10772207)
+.venv/bin/python scripts/flu_search_mix.py rj3 --study $S --prefix crs-mix --max-seeds 8 --experiments rv-s-r11 rv-s-r12 --members PJ=ref.Ball.joint,Bw.nat.joint,ref.A4c0.joint,A4i.nat.joint --groups "prodnat-alljoint:PJ"
+sbatch --job-name=crs-mix-rj3 scripts/covid_tree_mix.sbatch $S/mix-rj3.json data/experiments/crs-mix-rj3
+for a in "covid rs04" "covid g05" "rsv reljoint"; do python3 $S/rounds.py $a; done   # on the Mac (bash)
+.venv/bin/python -m chromantis.experiment.planner plan -e cv-s-rs04 --problem problems/us-covid-short-term-coverage.json --study $S/covid-reseed-rs04.json --device cuda
+.venv/bin/python -m chromantis.experiment.planner plan -e cv-s-g05 --problem problems/us-covid-2023-24-prescribed-coverage.json --study $S/covid-guard-g05.json --device cuda
+.venv/bin/python -m chromantis.experiment.planner plan -e rv-s-reljoint --problem problems/us-respiratory-joint-production-coverage.json --study $S/rsv-reseed-reljoint.json --device cuda
+sbatch --job-name=crs-s40 --array=0-5 scripts/flu_search.sbatch cv-s-rs04:4 cv-s-g05:4 rv-s-reljoint:4

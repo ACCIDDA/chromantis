@@ -371,7 +371,8 @@ ROUNDS['rsv'][11] = dict(description='RSV search round 11 (2026-11-25): one netw
 GUARD = {'covid': {'g01': ['ref.Ah', 'ref.pN', 'ref.N', 'ref.Bh', 'T', 'Tl', 'S'],
                    'g02': (['ref.Ah', 'ref.pN', 'ref.N', 'ref.Bh', 'T', 'S'], list(range(52, 60))),  # guard seeds for mixtures
                    'g03': (['ref.Ah', 'ref.pN', 'ref.N', 'ref.Bh', 'T', 'S'], list(range(60, 68))),
-                   'g04': (['ref.Ah', 'ref.pN', 'ref.N', 'ref.Bh', 'T', 'S'], list(range(68, 76)))},
+                   'g04': (['ref.Ah', 'ref.pN', 'ref.N', 'ref.Bh', 'T', 'S'], list(range(68, 76))),
+                   'g05': (['ref.Ah', 'ref.pN', 'ref.N', 'ref.Bh', 'T', 'S'], list(range(76, 84)))},
          'rsv': {'g01': ['ref.Ball', 'ref.Bw', 'ref.A4c0', 'ref.A4i', 'Rc', 'R1'],
                  'g03': ['Bwq', 'Bwq.smp'],
                  'g04': ['ref.Bw.gt', 'Bwq.gt', 'Bwq.smp.gt'],
@@ -387,7 +388,9 @@ RESEED = {'covid': {'rs01': (['ref.Ah', 'ref.pN', 'ref.N', 'ref.Bh', 'T', 'Tl', 
                     # 24 Nov 18:40: mixture decisions are noise-limited; 32 main seeds for the finalists and production
                     'rs03': (['ref.Ah', 'ref.pN', 'ref.N', 'ref.Bh', 'T', 'S'], list(range(68, 76))),
                     'rel': (['ref.Ah', 'ref.pN', 'ref.N', 'ref.Bh', 'T', 'S'], list(range(42, 62))),
-                    'rel2': (['ref.Ah', 'ref.pN', 'ref.N', 'ref.Bh', 'T', 'S'], list(range(62, 82)))},
+                    'rel2': (['ref.Ah', 'ref.pN', 'ref.N', 'ref.Bh', 'T', 'S'], list(range(62, 82))),
+                    # 25 Nov 07:40: 40 seeds for the borderline COVID mixtures (production + T at -0.96%, T+N+S guard +1.02%)
+                    'rs04': (['ref.Ah', 'ref.pN', 'ref.N', 'ref.Bh', 'T', 'S'], list(range(76, 84)))},
           'rsv': {'rs01': (['ref.Ball', 'ref.Bw', 'ref.A4c0', 'ref.A4i', 'Rc', 'R1'], list(range(52, 60))),
                   'rs02': (['Bwq', 'Bwq.smp'], list(range(52, 60))),
                   'rs03': (['Rc.real', 'Bw.nat'], list(range(52, 60))),
@@ -401,7 +404,9 @@ RESEED = {'covid': {'rs01': (['ref.Ah', 'ref.pN', 'ref.N', 'ref.Bh', 'T', 'Tl', 
                   # 25 Nov 01:40: 32 main seeds for the final RSV comparison
                   'rs08': (['ref.Ball', 'ref.Bw', 'ref.A4c0', 'ref.A4i', 'Bw.nat', 'A4i.nat'], list(range(68, 76))),
                   # 25 Nov 05:40: joint networks (joint problem) improve RSV ED share; seeds for a mixture check
-                  'rs09': (['Bw.nat.joint', 'A4i.nat.joint'], list(range(52, 68)))}}
+                  'rs09': (['Bw.nat.joint', 'A4i.nat.joint'], list(range(52, 68))),
+                  # all-season joint release fits (problems/us-respiratory-joint-production-coverage.json), the ED-share option
+                  'reljoint': (['ref.Ball.joint', 'Bw.nat.joint', 'ref.A4c0.joint', 'A4i.nat.joint'], list(range(42, 62)))}}
 
 
 def build_all(p, upto=None):
