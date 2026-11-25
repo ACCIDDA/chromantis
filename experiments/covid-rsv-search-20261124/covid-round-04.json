@@ -1,0 +1,30 @@
+{
+ "description": "COVID search round 4 (2026-11-24): all-pathogen inputs on T and N, US-only summary on Ah, T on corrected histories, lookback 8/16 on N.",
+ "round": 4,
+ "parents": {
+  "T.all": "T",
+  "N.all": "ref.N",
+  "Ah.nat": "ref.Ah",
+  "T.hc": "T",
+  "N.lb8": "ref.N",
+  "N.lb16": "ref.N"
+ },
+ "candidates": {
+  "T.all": "history_source=artificial,reconstruction_labels=1,error_signals=all,input_set=all,correction_weeks=2,correction_ed=1,reporting_probability=0.25,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,spatial=national_broadcast,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=0.5,encoder=gru,corrector_examples=real,stress_views=1",
+  "N.all": "error_signals=all,input_set=all,correction_weeks=2,correction_ed=1,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,spatial=national_broadcast,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=0.5,signal_features=multiscale,stress_views=1",
+  "Ah.nat": "history_source=artificial,history_correction=1,error_signals=all,input_set=target,correction_weeks=2,correction_ed=1,reporting_probability=0.5,joint_weight=0.05,correction_penalty=30.0,reporting_missingness=0,reporting_method=synchronous_phase_log,ed_transform=logit,width=192,epochs=160,patience=25,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=1.0,spatial=national_broadcast,stress_views=1",
+  "T.hc": "history_source=artificial,error_signals=all,input_set=target,correction_weeks=2,correction_ed=1,reporting_probability=0.25,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,ed_transform=logit,spatial=national_broadcast,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=0.5,encoder=gru,corrector_examples=real,stress_views=1,history_correction=1",
+  "N.lb8": "error_signals=all,input_set=target,correction_weeks=2,correction_ed=1,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,spatial=national_broadcast,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=0.5,signal_features=multiscale,stress_views=1,lookback=8",
+  "N.lb16": "error_signals=all,input_set=target,correction_weeks=2,correction_ed=1,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,spatial=national_broadcast,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=0.5,signal_features=multiscale,stress_views=1,lookback=16"
+ },
+ "seeds": [
+  44,
+  45,
+  46,
+  47,
+  48,
+  49,
+  50,
+  51
+ ]
+}

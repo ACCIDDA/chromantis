@@ -238,6 +238,37 @@ ROUNDS['rsv'][6] = dict(description='RSV search round 6 (2026-11-24): children o
                                     'summary): no Kinsa, real-pair trees, newest-week masking, peak loss, all error signals.',
                         build=rsv6)
 
+def covid4():
+    # 24 Nov 20:40: COVID mixtures stall within about 2.5% of production. Structural ideas not tried on COVID yet:
+    # every pathogen's admission/ED histories as inputs (helps RSV recipes with the US-only summary), the US-only summary on
+    # the MLP Ah (S has GRU + summary + real trees together), T's network on tree-corrected histories (no double count),
+    # lookback 8 and 16 on N.
+    r = R['covid']
+    put('covid', 'T.all', derive(r['T'], input_set='all'), 'T')
+    put('covid', 'N.all', derive(r['ref.N'], input_set='all'), 'ref.N')
+    put('covid', 'Ah.nat', derive(r['ref.Ah'], spatial='national_broadcast'), 'ref.Ah')
+    put('covid', 'T.hc', derive(r['T'], drop=('reconstruction_labels', 'reconstruction_weeks'), history_correction=1), 'T')
+    put('covid', 'N.lb8', derive(r['ref.N'], lookback=8), 'ref.N')
+    put('covid', 'N.lb16', derive(r['ref.N'], lookback=16), 'ref.N')
+
+
+ROUNDS['covid'][4] = dict(description='COVID search round 4 (2026-11-24): all-pathogen inputs on T and N, US-only summary on Ah, '
+                                      'T on corrected histories, lookback 8/16 on N.', build=covid4)
+
+
+def rsv7():
+    # 24 Nov 20:40: the US-only summary helps the all-history recipes (Bw.nat, A4i.nat). Sampled Bw.nat (Bwq.smp without the
+    # real-pair trees), RSV-NET rates on the national recipes (Rc reads them), and Rc with all six histories.
+    r = R['rsv']
+    put('rsv', 'Bw.nat.smp', derive(r['Bw.nat'], drop=('decoder',), log_loss_weight=1.0), 'Bw.nat')
+    put('rsv', 'Bw.nat.rsvnet', add_covariates(r['Bw.nat'], 'rsvnet'), 'Bw.nat')
+    put('rsv', 'A4i.nat.rsvnet', add_covariates(r['A4i.nat'], 'rsvnet'), 'A4i.nat')
+    put('rsv', 'Rc.all', derive(r['Rc'], input_set='all'), 'Rc')
+
+
+ROUNDS['rsv'][7] = dict(description='RSV search round 7 (2026-11-24): sampled Bw.nat, RSV-NET on the national all-history '
+                                    'recipes, Rc with all six histories.', build=rsv7)
+
 # Guard-only files: recipes guarded after they pass the main problem (children are not guarded otherwise).
 GUARD = {'covid': {'g01': ['ref.Ah', 'ref.pN', 'ref.N', 'ref.Bh', 'T', 'Tl', 'S'],
                    'g02': (['ref.Ah', 'ref.pN', 'ref.N', 'ref.Bh', 'T', 'S'], list(range(52, 60))),  # guard seeds for mixtures

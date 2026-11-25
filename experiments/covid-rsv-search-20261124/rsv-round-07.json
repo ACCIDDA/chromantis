@@ -1,0 +1,26 @@
+{
+ "description": "RSV search round 7 (2026-11-24): sampled Bw.nat, RSV-NET on the national all-history recipes, Rc with all six histories.",
+ "round": 7,
+ "parents": {
+  "Bw.nat.smp": "Bw.nat",
+  "Bw.nat.rsvnet": "Bw.nat",
+  "A4i.nat.rsvnet": "A4i.nat",
+  "Rc.all": "Rc"
+ },
+ "candidates": {
+  "Bw.nat.smp": "history_source=artificial,reconstruction_labels=1,error_signals=targets,input_set=all,correction_weeks=2,correction_ed=1,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,spatial=national_broadcast,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=1.0,stress_views=1",
+  "Bw.nat.rsvnet": "history_source=artificial,reconstruction_labels=1,error_signals=targets,input_set=all,correction_weeks=2,correction_ed=1,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,spatial=national_broadcast,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=0.5,stress_views=1,covariate_set=rsvnet",
+  "A4i.nat.rsvnet": "history_source=artificial,history_correction=1,error_signals=targets,input_set=all,correction_weeks=2,correction_ed=1,joint_weight=0.05,correction_penalty=30.0,reporting_missingness=0,reporting_method=synchronous_phase_log,ed_transform=logit,width=192,epochs=160,patience=25,fit_partition=pathogen,covariate_encoder=summary,covariate_set=kinsa+rsvnet,input_normalization=b0,log_loss_weight=1.0,stress_views=1,spatial=national_broadcast",
+  "Rc.all": "history_source=artificial,history_correction=1,error_signals=all,input_set=all,correction_weeks=2,correction_ed=1,joint_weight=0.05,correction_penalty=30.0,reporting_missingness=0,reporting_method=synchronous_phase_log,ed_transform=logit,width=192,epochs=160,patience=25,fit_partition=pathogen,covariate_encoder=summary,covariate_set=kinsa+rsvnet,input_normalization=b0,log_loss_weight=1.0,spatial=national_broadcast,stress_views=1"
+ },
+ "seeds": [
+  44,
+  45,
+  46,
+  47,
+  48,
+  49,
+  50,
+  51
+ ]
+}

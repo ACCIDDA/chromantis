@@ -99,3 +99,8 @@ for a in "rsv 6" "rsv rs05" "rsv rs06" "rsv g07"; do python3 $S/rounds.py $a; do
 sbatch --job-name=crs-r06 --array=0-5 scripts/flu_search.sbatch rv-s-g07:6 rv-s-r06:6 rv-s-rs05:6 rv-s-rs06:6
 .venv/bin/python scripts/flu_search_mix.py r02 --study $S --prefix crs-mix --experiments rv-s-r01 rv-s-r03 rv-s-r05 --max-seeds 8 --members P=ref.Ball,ref.Bw,ref.A4c0,ref.A4i PN=ref.Ball,Bw.nat,ref.A4c0,A4i.nat BN=Bw.nat AN=A4i.nat QS=Bwq.smp Rc=Rc A=ref.A4c0 Q=Bwq --groups "prod4:P" "prodnat:PN" "BN+AN:BN,AN" "BN+AN+Rc:BN,AN,Rc" "QS+AN:QS,AN" "QS+AN+Rc:QS,AN,Rc" "BN+QS+AN+Rc:BN,QS,AN,Rc" "Q+QS+Rc+A:Q,QS,Rc,A"
 sbatch --job-name=crs-mix-r02 scripts/covid_tree_mix.sbatch $S/mix-r02.json data/experiments/crs-mix-r02
+# 2026-11-24 20:45 EST: COVID round 4 and RSV round 7 queued (job 10729461)
+python3 $S/rounds.py covid 4; python3 $S/rounds.py rsv 7   # on the Mac
+.venv/bin/python -m chromantis.experiment.planner plan -e cv-s-r04 --problem problems/us-covid-short-term-coverage.json --study $S/covid-round-04.json --device cuda
+.venv/bin/python -m chromantis.experiment.planner plan -e rv-s-r07 --problem problems/us-rsv-short-term-coverage.json --study $S/rsv-round-07.json --device cuda
+sbatch --job-name=crs-r07 --array=0-5 scripts/flu_search.sbatch cv-s-r04:4 rv-s-r07:4
