@@ -390,6 +390,8 @@ RESEED = {'covid': {'rs01': (['ref.Ah', 'ref.pN', 'ref.N', 'ref.Bh', 'T', 'Tl', 
                     'rs03': (['ref.Ah', 'ref.pN', 'ref.N', 'ref.Bh', 'T', 'S'], list(range(68, 76))),
                     'rel': (['ref.Ah', 'ref.pN', 'ref.N', 'ref.Bh', 'T', 'S'], list(range(42, 62))),
                     'rel2': (['ref.Ah', 'ref.pN', 'ref.N', 'ref.Bh', 'T', 'S'], list(range(62, 82))),
+                    # 25 Nov 10:40: 80 all-season fits per member of the candidates (as the flu draft release)
+                    'rel3': (['T', 'ref.N', 'S'], list(range(82, 122))),
                     # 25 Nov 07:40: 40 seeds for the borderline COVID mixtures (production + T at -0.96%, T+N+S guard +1.02%)
                     'rs04': (['ref.Ah', 'ref.pN', 'ref.N', 'ref.Bh', 'T', 'S'], list(range(76, 84))),
                     # 25 Nov 09:40: T+N+S passes at 40 seeds by a narrow guard margin (+0.88%); 48 seeds on both checks
@@ -404,6 +406,7 @@ RESEED = {'covid': {'rs01': (['ref.Ah', 'ref.pN', 'ref.N', 'ref.Bh', 'T', 'Tl', 
                   # 24 Nov 22:45: all-season release fits (production problem, trained on 2022-23..2025-26), seeds 42-61
                   'rel': (['ref.Ball', 'ref.Bw', 'ref.A4c0', 'ref.A4i', 'Bw.nat', 'Bw.nat.smp', 'A4i.nat'], list(range(42, 62))),
                   'rel2': (['ref.Ball', 'ref.A4c0', 'Bw.nat', 'Bw.nat.smp', 'A4i.nat'], list(range(62, 82))),
+                  'rel3': (['ref.Ball', 'Bw.nat', 'ref.A4c0', 'A4i.nat'], list(range(82, 122))),
                   # 25 Nov 01:40: 32 main seeds for the final RSV comparison
                   'rs08': (['ref.Ball', 'ref.Bw', 'ref.A4c0', 'ref.A4i', 'Bw.nat', 'A4i.nat'], list(range(68, 76))),
                   # 25 Nov 05:40: joint networks (joint problem) improve RSV ED share; seeds for a mixture check

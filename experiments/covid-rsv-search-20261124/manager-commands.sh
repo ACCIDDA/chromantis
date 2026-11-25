@@ -210,3 +210,10 @@ sbatch --job-name=crs-s48 --array=0-5 scripts/flu_search.sbatch cv-s-rs05:4 cv-s
 .venv/bin/python scripts/flu_search_release.py rsv-nat-candidate-20261125 $S/draft-release-rsv-nat.json rv-s-rel+rv-s-rel2:ref.Ball=Ball_c0w512 rv-s-rel+rv-s-rel2:Bw.nat=Bw.nat rv-s-rel+rv-s-rel2:ref.A4c0=A4c0 rv-s-rel+rv-s-rel2:A4i.nat=A4i.nat --hub rsv --problem problems/us-rsv-production-coverage.json --description "..."
 .venv/bin/python scripts/flu_search_release.py covid-tns-candidate-20261125 $S/draft-release-covid-tns.json cv-s-rel+cv-s-rel2:T=T cv-s-rel+cv-s-rel2:ref.N=N.multiscale cv-s-rel+cv-s-rel2:S=S --hub covid --problem problems/us-covid-production-coverage.json --description "..."
 .venv/bin/python scripts/flu_search_release.py covid-prod-refit-20261125 $S/draft-release-covid-prod-refit.json cv-s-rel+cv-s-rel2:ref.Ah=Ah.neighbors cv-s-rel+cv-s-rel2:ref.pN=pN.enc_gru cv-s-rel+cv-s-rel2:ref.N=N.multiscale cv-s-rel+cv-s-rel2:ref.Bh=Bh.wd cv-s-rel+cv-s-rel2:T=T --hub covid --problem problems/us-covid-production-coverage.json --description "..."
+# 2026-11-25 10:40 EST: 48-seed COVID mixtures c07 / c06g + blocks cb6 / cgb6; release seeds 82-121 (job 10781142)
+.venv/bin/python scripts/flu_search_mix.py c07 --study $S --prefix crs-mix --max-seeds 48 --experiments cv-s-r01 cv-s-rs01 cv-s-rs02 cv-s-rs03 cv-s-rs04 cv-s-rs05 --members $CM --groups "${CG[@]}"
+.venv/bin/python scripts/flu_search_mix.py c06g --study $S --prefix crs-mix --max-seeds 48 --experiments cv-s-g01 cv-s-g02 cv-s-g03 cv-s-g04 cv-s-g05 cv-s-g06 --members $CM --groups "${CG[@]}"
+python3 $S/rounds.py covid rel3; python3 $S/rounds.py rsv rel3   # on the Mac
+.venv/bin/python -m chromantis.experiment.planner plan -e rv-s-rel3 --problem problems/us-rsv-production-coverage.json --study $S/rsv-reseed-rel3.json --device cuda
+.venv/bin/python -m chromantis.experiment.planner plan -e cv-s-rel3 --problem problems/us-covid-production-coverage.json --study $S/covid-reseed-rel3.json --device cuda
+sbatch --job-name=crs-rel3 --array=0-5 scripts/flu_search.sbatch rv-s-rel3:4 cv-s-rel3:4

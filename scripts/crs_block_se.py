@@ -19,7 +19,7 @@ def score(tag, ed=False):
 for label, tags, ed, base in (('COVID main log adm', 'cb', False, 'prod4'), ('COVID guard log adm', 'cgb', False, 'prod4'),
                               ('COVID guard ED', 'cgb', True, 'prod4'), ('RSV main log adm', 'rb', False, 'prod4'),
                               ('RSV guard ED', 'rgb', True, 'prod4')):
-    blocks = [b for b in (score(f"{tags}{i}", ed) for i in range(1, 6)) if b is not None]
+    blocks = [b for b in (score(f"{tags}{i}", ed) for i in range(1, 9)) if b is not None]
     if len(blocks) < 2: print(label, "missing"); continue
     print('==', label)
     for m in blocks[0]:
