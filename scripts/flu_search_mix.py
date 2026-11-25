@@ -36,6 +36,7 @@ def main():
     ap.add_argument('--max-seeds', type=int, default=16)
     ap.add_argument('--study', default='experiments/flu-search-20261120', help='folder that receives mix-NAME.json')
     ap.add_argument('--prefix', default='flu-mix', help='experiment and job name prefix of the scoring')
+    ap.add_argument('--seeds', help='restrict to seeds FIRST-LAST, so every group of a block uses the same seeds')
     a = ap.parse_args()
     members = {}
     for m in a.members:
@@ -51,7 +52,11 @@ def main():
     for g in a.groups:
         gname, labels = g.split(':')
         parts = [(label, n, found) for label in labels.split(',') for n, found in members[label].items()]
-        seeds = sorted(set.intersection(*(set(found) for _, _, found in parts)))[:a.max_seeds]
+        seeds = sorted(set.intersection(*(set(found) for _, _, found in parts)))
+        if a.seeds:
+            lo, hi = map(int, a.seeds.split('-'))
+            seeds = [s for s in seeds if lo <= s <= hi]
+        seeds = seeds[:a.max_seeds]
         if not seeds:
             raise SystemExit(f'{gname}: no common seeds')
         keys = []

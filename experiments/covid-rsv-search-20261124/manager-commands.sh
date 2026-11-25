@@ -237,3 +237,12 @@ python3 $S/rounds.py covid rs06; python3 $S/rounds.py covid g07   # on the Mac
 .venv/bin/python -m chromantis.experiment.planner plan -e cv-s-rs06 --problem problems/us-covid-short-term-coverage.json --study $S/covid-reseed-rs06.json --device cuda
 .venv/bin/python -m chromantis.experiment.planner plan -e cv-s-g07 --problem problems/us-covid-2023-24-prescribed-coverage.json --study $S/covid-guard-g07.json --device cuda
 sbatch --job-name=crs-amp --array=0-5 scripts/flu_search.sbatch cv-s-rs06:4 cv-s-g07:4
+# 2026-11-25 14:50 EST: amplitude mixtures ca1 / cag and aligned blocks ab1-3 / agb1-3 (--seeds); round covid 10 + amplitude release fits (job 10811226)
+CM="P=ref.Ah,ref.pN,ref.N,ref.Bh TNS=T,ref.N,S AMP=T.amp3,ref.N.amp3,S.amp3 AM2=T.amp3,ref.N.amp3,S"; CG=("prod4:P" "T+N+S:TNS" "amp-T+N+S:AMP" "amp-T+N+S-S:AM2")
+.venv/bin/python scripts/flu_search_mix.py ca1 --study $S --prefix crs-mix --max-seeds 24 --experiments cv-s-r01 cv-s-rs01 cv-s-rs02 cv-s-r09 cv-s-rs06 --members $CM --groups "${CG[@]}"
+.venv/bin/python scripts/flu_search_mix.py cag --study $S --prefix crs-mix --max-seeds 24 --experiments cv-s-g01 cv-s-g02 cv-s-g03 cv-s-g07 --members $CM --groups "${CG[@]}"
+.venv/bin/python scripts/flu_search_mix.py ab1 --study $S --prefix crs-mix --max-seeds 8 --seeds 44-51 --experiments cv-s-r01 cv-s-rs01 cv-s-rs02 cv-s-r09 cv-s-rs06 --members $CM --groups "${CG[@]}"   # ab2 52-59, ab3 60-67; agb1-3 with the guard experiments
+python3 $S/rounds.py covid 10; python3 $S/rounds.py covid relamp   # on the Mac
+.venv/bin/python -m chromantis.experiment.planner plan -e cv-s-r10 --problem problems/us-covid-short-term-coverage.json --study $S/covid-round-10.json --device cuda
+.venv/bin/python -m chromantis.experiment.planner plan -e cv-s-relamp --problem problems/us-covid-production-coverage.json --study $S/covid-reseed-relamp.json --device cuda
+sbatch --job-name=crs-amp2 --array=0-5 scripts/flu_search.sbatch cv-s-r10:4 cv-s-relamp:4

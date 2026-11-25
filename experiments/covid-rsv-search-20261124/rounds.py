@@ -411,6 +411,15 @@ def rsv14():
 ROUNDS['rsv'][14] = dict(description='RSV search round 14 (2026-11-25): amplitude augmentation on Bw.nat and A4i.nat; per-location '
                                      'noise on A4i.nat.', build=rsv14)
 
+def covid10():
+    # 25 Nov 14:45: stronger amplitude augmentation on the two members it helped.
+    r = R['covid']
+    for root in ('T', 'ref.N'):
+        put('covid', f'{root}.amp5', derive(r[root], amplitude_sd=0.5), root)
+
+
+ROUNDS['covid'][10] = dict(description='COVID search round 10 (2026-11-25): amplitude augmentation 0.5 on T and ref.N.', build=covid10)
+
 # Guard-only files: recipes guarded after they pass the main problem (children are not guarded otherwise).
 GUARD = {'covid': {'g01': ['ref.Ah', 'ref.pN', 'ref.N', 'ref.Bh', 'T', 'Tl', 'S'],
                    'g02': (['ref.Ah', 'ref.pN', 'ref.N', 'ref.Bh', 'T', 'S'], list(range(52, 60))),  # guard seeds for mixtures
@@ -437,6 +446,7 @@ RESEED = {'covid': {'rs01': (['ref.Ah', 'ref.pN', 'ref.N', 'ref.Bh', 'T', 'Tl', 
                     'rel2': (['ref.Ah', 'ref.pN', 'ref.N', 'ref.Bh', 'T', 'S'], list(range(62, 82))),
                     # 25 Nov 10:40: 80 all-season fits per member of the candidates (as the flu draft release)
                     'rel3': (['T', 'ref.N', 'S'], list(range(82, 122))),
+                    'relamp': (['T.amp3', 'ref.N.amp3', 'S.amp3'], list(range(42, 82))),
                     # 25 Nov 07:40: 40 seeds for the borderline COVID mixtures (production + T at -0.96%, T+N+S guard +1.02%)
                     'rs04': (['ref.Ah', 'ref.pN', 'ref.N', 'ref.Bh', 'T', 'S'], list(range(76, 84))),
                     # 25 Nov 09:40: T+N+S passes at 40 seeds by a narrow guard margin (+0.88%); 48 seeds on both checks

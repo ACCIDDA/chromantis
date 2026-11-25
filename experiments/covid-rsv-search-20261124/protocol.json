@@ -168,6 +168,11 @@
    "date": "2026-11-25 13:45 EST",
    "round": "delayed view; round covid 9 / rsv 14",
    "what": "Robustness with every location's newest admission week missing ('delayed' view of the same fits; main problem, states/DC log-admission WIS 2024-25 / 2025-26; lower is better). COVID, 48 seeds: production 4 0.3691 / 0.3695; T+N+S 0.3375 / 0.3270 (-10%); ref.N+ref.pN+S 0.3393 / 0.3250; production + T 0.3738 / 0.3738 (+1.2%). RSV, 32 seeds: production 4 0.8022 / 0.4169; candidate 0.7291 / 0.3384 (-12%); only Bw switched 0.7889 / 0.3726. Both candidates are much more robust to a missing newest week. Round covid 9 / rsv 14 (8 seeds, main problem): amplitude augmentation (amplitude_sd 0.3) on COVID T -2.1% (2024-25 higher: level), ref.N -1.6% (both seasons lower, within 2 SE: level), S -0.3%; ED share x 1e4 both seasons 9.80 / 9.81 / 10.15 against 10.93 / 10.16 / 10.72; US log WIS 0.135 / 0.140 / 0.157 against 0.153 / 0.156 / 0.166. Per-location noise on S +3.6% (level). RSV: amplitude on Bw.nat +9.6%, A4i.nat +7.1%, per-location noise on A4i.nat +3.6% (worse). Decision: amplitude-augmented COVID members on seeds 52-67 (rs06) and their 2023-24 guard on seeds 44-67 (g07), array 10805040, to compare an amplitude-augmented T+N+S mixture with T+N+S on the same seeds."
+  },
+  {
+   "date": "2026-11-25 14:50 EST",
+   "round": "amplitude COVID mixtures queued; amp5; amplitude release fits",
+   "what": "Amplitude-augmented COVID members complete (main seeds 44-67, guard seeds 44-67). Mixtures queued at 24 seeds, main (crs-mix-ca1) and guard (cag): production 4, T+N+S, T+N+S with all three members amplitude-augmented, and with T and N augmented only; seed blocks 44-51 / 52-59 / 60-67 (ab1-3, agb1-3). scripts/flu_search_mix.py gained --seeds FIRST-LAST so every group of a block uses the same seeds (the first block files paired different seeds across groups; cancelled and rebuilt). GPU work queued (array 10811226): amplitude 0.5 on T and ref.N (round covid 10), and all-season release fits of the amplitude-augmented members (seeds 42-81) so that option is trained if it wins."
   }
  ]
 }
