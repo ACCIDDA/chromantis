@@ -428,7 +428,9 @@ GUARD = {'covid': {'g01': ['ref.Ah', 'ref.pN', 'ref.N', 'ref.Bh', 'T', 'Tl', 'S'
                    'g05': (['ref.Ah', 'ref.pN', 'ref.N', 'ref.Bh', 'T', 'S'], list(range(76, 84))),
                    'g06': (['ref.Ah', 'ref.pN', 'ref.N', 'ref.Bh', 'T', 'S'], list(range(84, 92))),
                    'g07': (['T.amp3', 'ref.N.amp3', 'S.amp3'], list(range(44, 68))),
-                   'g08': (['T.amp3', 'ref.N.amp3', 'S.amp3'], list(range(68, 92)))},
+                   'g08': (['T.amp3', 'ref.N.amp3', 'S.amp3'], list(range(68, 92))),
+                   # 25 Nov 16:40: T+N+S guard margin is narrow (+0.71%, 2 SE 0.70% at 48 seeds); 64 guard seeds
+                   'g09': (['ref.Ah', 'ref.pN', 'ref.N', 'ref.Bh', 'T', 'S'], list(range(92, 108)))},
          'rsv': {'g01': ['ref.Ball', 'ref.Bw', 'ref.A4c0', 'ref.A4i', 'Rc', 'R1'],
                  'g03': ['Bwq', 'Bwq.smp'],
                  'g04': ['ref.Bw.gt', 'Bwq.gt', 'Bwq.smp.gt'],

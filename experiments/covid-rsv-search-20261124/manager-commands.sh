@@ -252,3 +252,9 @@ python3 $S/rounds.py covid rs07; python3 $S/rounds.py covid g08   # on the Mac
 .venv/bin/python -m chromantis.experiment.planner plan -e cv-s-g08 --problem problems/us-covid-2023-24-prescribed-coverage.json --study $S/covid-guard-g08.json --device cuda
 sbatch --job-name=crs-amp48 --array=0-5 scripts/flu_search.sbatch cv-s-rs07:4 cv-s-g08:4
 sbatch --job-name=crs-phase3 --partition=jlessler --cpus-per-task=4 --mem=48G --time=02:00:00 --output=output/crs-search/phase3.log --wrap "PYTHONPATH=src .venv/bin/python scripts/flu_phase_check.py --out output/crs-search/tasks-ca1.csv data/experiments/crs-mix-ca1/*-mixture > output/crs-search/phase-ca1.txt"
+# 2026-11-25 16:45 EST: amplitude mixture fails the peak window (not adopted); 64-seed COVID guard (g09, job 10825626); RSV peak check r04
+.venv/bin/python scripts/crs_phase_diff.py output/crs-search/tasks-ca1.csv "prod4 [24 seeds]-mixture" "amp-T+N+S [24 seeds]-mixture"
+python3 $S/rounds.py covid g09   # on the Mac
+.venv/bin/python -m chromantis.experiment.planner plan -e cv-s-g09 --problem problems/us-covid-2023-24-prescribed-coverage.json --study $S/covid-guard-g09.json --device cuda
+sbatch --job-name=crs-g64 --array=0-5 scripts/flu_search.sbatch cv-s-g09:4
+sbatch --job-name=crs-phase4 --partition=jlessler --cpus-per-task=4 --mem=48G --time=02:00:00 --output=output/crs-search/phase4.log --wrap 'PYTHONPATH=src .venv/bin/python scripts/flu_phase_check.py --out output/crs-search/tasks-r04.csv data/experiments/crs-mix-r04/*-mixture > output/crs-search/phase-r04.txt'
