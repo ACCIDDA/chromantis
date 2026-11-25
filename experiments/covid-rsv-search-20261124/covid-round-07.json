@@ -1,0 +1,22 @@
+{
+ "description": "COVID search round 7 (2026-11-25): one network trained on flu, COVID and RSV (joint problem).",
+ "round": 7,
+ "parents": {
+  "T.joint": "T",
+  "ref.N.joint": "ref.N"
+ },
+ "candidates": {
+  "T.joint": "history_source=artificial,reconstruction_labels=1,error_signals=all,input_set=target,correction_weeks=2,correction_ed=1,reporting_probability=0.25,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,spatial=national_broadcast,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=all,covariate_encoder=summary,input_normalization=b0,log_loss_weight=0.5,encoder=gru,corrector_examples=real,stress_views=1",
+  "ref.N.joint": "error_signals=all,input_set=target,correction_weeks=2,correction_ed=1,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,spatial=national_broadcast,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=all,covariate_encoder=summary,input_normalization=b0,log_loss_weight=0.5,signal_features=multiscale,stress_views=1"
+ },
+ "seeds": [
+  44,
+  45,
+  46,
+  47,
+  48,
+  49,
+  50,
+  51
+ ]
+}

@@ -162,3 +162,10 @@ python3 $S/rounds.py covid 6; python3 $S/rounds.py rsv 10   # on the Mac
 .venv/bin/python -m chromantis.experiment.planner plan -e cv-s-r06 --problem problems/us-covid-short-term-coverage.json --study $S/covid-round-06.json --device cuda
 .venv/bin/python -m chromantis.experiment.planner plan -e rv-s-r10 --problem problems/us-rsv-short-term-coverage.json --study $S/rsv-round-10.json --device cuda
 sbatch --job-name=crs-r10 --array=0-5 scripts/flu_search.sbatch rv-s-r10:4 cv-s-r06:4
+# 2026-11-25 04:50 EST: disjoint 8-seed block mixtures (seed SE of mixture differences; 16 CPU jobs, see protocol); joint-network rounds (job 10764153)
+#   e.g. .venv/bin/python scripts/flu_search_mix.py cb2 --study $S --prefix crs-mix --max-seeds 8 --experiments cv-s-rs01 --members P=ref.Ah,ref.pN,ref.N,ref.Bh T=T N=ref.N S=S pN=ref.pN --groups "prod4:P" "prod4+T:P,T" "T+N+S:T,N,S" "N+pN+S:N,pN,S"
+#   blocks: COVID main cv-s-r01 | cv-s-rs01 | cv-s-rs02 | cv-s-rs03; guard cv-s-g01..g04; RSV main r01+r03+r05 | rs01+rs03+rs05 | rs04+rs06+rs05 | rs08; guard g01+g07 | g06+g07 | g08 | g10
+python3 $S/rounds.py covid 7; python3 $S/rounds.py rsv 11   # on the Mac
+.venv/bin/python -m chromantis.experiment.planner plan -e cv-s-r07 --problem problems/us-respiratory-joint-short-term-coverage.json --study $S/covid-round-07.json --device cuda
+.venv/bin/python -m chromantis.experiment.planner plan -e rv-s-r11 --problem problems/us-respiratory-joint-short-term-coverage.json --study $S/rsv-round-11.json --device cuda
+sbatch --job-name=crs-joint --array=0-5 scripts/flu_search.sbatch rv-s-r11:4 cv-s-r07:4

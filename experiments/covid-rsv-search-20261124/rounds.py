@@ -334,6 +334,29 @@ def rsv10():
 ROUNDS['rsv'][10] = dict(description='RSV search round 10 (2026-11-25): attention exchange on Bw.nat and A4i.nat; training '
                                      'episodes from actual archived reports (half or all) on the national recipes.', build=rsv10)
 
+def covid7():
+    # 25 Nov 04:45: one network for flu, COVID and RSV together (fit_partition=all on the joint problem
+    # us-respiratory-joint-short-term-coverage: same folds, panel with RSV admissions unobserved before Nov 2024, all six
+    # targets as labels); scored on its COVID rows. Mechanism: more epidemics per network.
+    r = R['covid']
+    for root in ('T', 'ref.N'):
+        put('covid', f'{root}.joint', derive(r[root], fit_partition='all'), root)
+
+
+ROUNDS['covid'][7] = dict(description='COVID search round 7 (2026-11-25): one network trained on flu, COVID and RSV (joint problem).',
+                          build=covid7)
+
+
+def rsv11():
+    # Same joint network for RSV, which has only two seasons of admissions (2024-25, 2025-26) to learn from.
+    r = R['rsv']
+    for root in ('Bw.nat', 'A4i.nat'):
+        put('rsv', f'{root}.joint', derive(r[root], fit_partition='all'), root)
+
+
+ROUNDS['rsv'][11] = dict(description='RSV search round 11 (2026-11-25): one network trained on flu, COVID and RSV (joint problem).',
+                         build=rsv11)
+
 # Guard-only files: recipes guarded after they pass the main problem (children are not guarded otherwise).
 GUARD = {'covid': {'g01': ['ref.Ah', 'ref.pN', 'ref.N', 'ref.Bh', 'T', 'Tl', 'S'],
                    'g02': (['ref.Ah', 'ref.pN', 'ref.N', 'ref.Bh', 'T', 'S'], list(range(52, 60))),  # guard seeds for mixtures
