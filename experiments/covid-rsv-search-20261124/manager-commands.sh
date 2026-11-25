@@ -232,3 +232,8 @@ python3 $S/rounds.py covid 9; python3 $S/rounds.py rsv 14   # on the Mac
 .venv/bin/python -m chromantis.experiment.planner plan -e cv-s-r09 --problem problems/us-covid-short-term-coverage.json --study $S/covid-round-09.json --device cuda
 .venv/bin/python -m chromantis.experiment.planner plan -e rv-s-r14 --problem problems/us-rsv-short-term-coverage.json --study $S/rsv-round-14.json --device cuda
 sbatch --job-name=crs-r14 --array=0-5 scripts/flu_search.sbatch cv-s-r09:4 rv-s-r14:4
+# 2026-11-25 13:45 EST: delayed-view results recorded; amplitude COVID members rs06 + guard g07 (job 10805040)
+python3 $S/rounds.py covid rs06; python3 $S/rounds.py covid g07   # on the Mac
+.venv/bin/python -m chromantis.experiment.planner plan -e cv-s-rs06 --problem problems/us-covid-short-term-coverage.json --study $S/covid-reseed-rs06.json --device cuda
+.venv/bin/python -m chromantis.experiment.planner plan -e cv-s-g07 --problem problems/us-covid-2023-24-prescribed-coverage.json --study $S/covid-guard-g07.json --device cuda
+sbatch --job-name=crs-amp --array=0-5 scripts/flu_search.sbatch cv-s-rs06:4 cv-s-g07:4
