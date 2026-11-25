@@ -191,3 +191,14 @@ for a in "covid rs04" "covid g05" "rsv reljoint"; do python3 $S/rounds.py $a; do
 .venv/bin/python -m chromantis.experiment.planner plan -e cv-s-g05 --problem problems/us-covid-2023-24-prescribed-coverage.json --study $S/covid-guard-g05.json --device cuda
 .venv/bin/python -m chromantis.experiment.planner plan -e rv-s-reljoint --problem problems/us-respiratory-joint-production-coverage.json --study $S/rsv-reseed-reljoint.json --device cuda
 sbatch --job-name=crs-s40 --array=0-5 scripts/flu_search.sbatch cv-s-rs04:4 cv-s-g05:4 rv-s-reljoint:4
+# 2026-11-25 08:45 EST: cancelled hung element 10704128_1; 40-seed COVID mixtures c06 / c05g + blocks cb5 / cgb5; RSV composition mixtures r05 / r05g
+scancel 10704128_1
+CM="P=ref.Ah,ref.pN,ref.N,ref.Bh T=T N=ref.N S=S pN=ref.pN"; CG=("prod4:P" "prod4+T:P,T" "T+N+S:T,N,S" "N+pN+S:N,pN,S")
+.venv/bin/python scripts/flu_search_mix.py c06 --study $S --prefix crs-mix --max-seeds 40 --experiments cv-s-r01 cv-s-rs01 cv-s-rs02 cv-s-rs03 cv-s-rs04 --members $CM --groups "${CG[@]}"
+.venv/bin/python scripts/flu_search_mix.py c05g --study $S --prefix crs-mix --max-seeds 40 --experiments cv-s-g01 cv-s-g02 cv-s-g03 cv-s-g04 cv-s-g05 --members $CM --groups "${CG[@]}"
+#   (same with cb5: --experiments cv-s-rs04 --max-seeds 8; cgb5: cv-s-g05), each followed by
+sbatch --job-name=crs-mix-c06 scripts/covid_tree_mix.sbatch $S/mix-c06.json data/experiments/crs-mix-c06
+M="PN=ref.Ball,Bw.nat,ref.A4c0,A4i.nat PR=ref.Ball,Bw.nat,Rc,A4i.nat P3=ref.Ball,Bw.nat,A4i.nat P5=ref.Ball,Bw.nat,ref.A4c0,A4i.nat,Rc"
+.venv/bin/python scripts/flu_search_mix.py r05 --study $S --prefix crs-mix --max-seeds 24 --experiments rv-s-r01 rv-s-r03 rv-s-r05 rv-s-rs01 rv-s-rs03 rv-s-rs04 rv-s-rs05 rv-s-rs06 --members $M --groups "prodnat:PN" "prodnat-Rc:PR" "prodnat-noA4c0:P3" "prodnat+Rc:P5"
+.venv/bin/python scripts/flu_search_mix.py r05g --study $S --prefix crs-mix --max-seeds 24 --experiments rv-s-g01 rv-s-g06 rv-s-g07 rv-s-g08 --members $M --groups "prodnat:PN" "prodnat-Rc:PR" "prodnat-noA4c0:P3" "prodnat+Rc:P5"
+python3 scripts/crs_block_se.py
