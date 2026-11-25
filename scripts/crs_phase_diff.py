@@ -16,7 +16,7 @@ a, b = sys.argv[2], sys.argv[3]
 key = ['season', 'location', 'phase', 'horizon']
 w = d[d.model.isin([a, b])].pivot_table(index=key, columns='model', values='wis').dropna().reset_index()
 rng = np.random.default_rng(20261125)
-for phase, g in w.groupby('phase'):
+for phase, g in [*w.groupby('phase'), ('all', w)]:
     per = g.groupby('location')[[a, b]].agg(['sum', 'count'])
     locs = per.index.to_numpy()
     sa, sb, n = per[(a, 'sum')].to_numpy(), per[(b, 'sum')].to_numpy(), per[(a, 'count')].to_numpy()

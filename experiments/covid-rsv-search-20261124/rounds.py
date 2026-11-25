@@ -283,6 +283,30 @@ def rsv8():
 ROUNDS['rsv'][8] = dict(description='RSV search round 8 (2026-11-24): children of Bw.nat (newest-week masking, all error '
                                     'signals, log-loss 1, width 512).', build=rsv8)
 
+def covid5():
+    # 25 Nov 02:40: the cross-location exchange is the axis that moved RSV most (US-only summary). Other exchanges on the
+    # two best COVID recipes (both use the US-only summary): HHS-region attention, gated pooling, distance kernel.
+    r = R['covid']
+    for root in ('T', 'ref.N'):
+        for tag, sp in (('region', 'region_attention'), ('gated', 'gated_pool'), ('dist', 'distance')):
+            put('covid', f'{root}.{tag}', derive(r[root], spatial=sp), root)
+
+
+ROUNDS['covid'][5] = dict(description='COVID search round 5 (2026-11-25): cross-location exchange (HHS-region attention, gated '
+                                      'pooling, distance kernel) on T and ref.N.', build=covid5)
+
+
+def rsv9():
+    # Same exchanges on the RSV recipes whose gain came from the US-only summary.
+    r = R['rsv']
+    for root in ('Bw.nat', 'A4i.nat'):
+        for tag, sp in (('region', 'region_attention'), ('gated', 'gated_pool'), ('dist', 'distance')):
+            put('rsv', f'{root}.{tag}', derive(r[root], spatial=sp), root)
+
+
+ROUNDS['rsv'][9] = dict(description='RSV search round 9 (2026-11-25): cross-location exchange (HHS-region attention, gated '
+                                    'pooling, distance kernel) in place of the US-only summary on Bw.nat and A4i.nat.', build=rsv9)
+
 # Guard-only files: recipes guarded after they pass the main problem (children are not guarded otherwise).
 GUARD = {'covid': {'g01': ['ref.Ah', 'ref.pN', 'ref.N', 'ref.Bh', 'T', 'Tl', 'S'],
                    'g02': (['ref.Ah', 'ref.pN', 'ref.N', 'ref.Bh', 'T', 'S'], list(range(52, 60))),  # guard seeds for mixtures

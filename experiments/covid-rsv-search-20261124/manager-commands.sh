@@ -144,3 +144,9 @@ python3 $S/rounds.py rsv rs08; python3 $S/rounds.py rsv g10; python3 $S/rounds.p
 .venv/bin/python -m chromantis.experiment.planner plan -e rv-s-g10 --problem problems/us-rsv-2023-24-prescribed-coverage.json --study $S/rsv-guard-g10.json --device cuda
 .venv/bin/python -m chromantis.experiment.planner plan -e cv-s-g04 --problem problems/us-covid-2023-24-prescribed-coverage.json --study $S/covid-guard-g04.json --device cuda
 sbatch --job-name=crs-s32 --array=0-5 scripts/flu_search.sbatch rv-s-rs08:4 rv-s-g10:4 cv-s-g04:4
+# 2026-11-25 02:50 EST: phase bootstrap (all phases added); COVID round 5 + RSV round 9 queued (job 10758357)
+.venv/bin/python scripts/crs_phase_diff.py output/crs-search/tasks-c05.csv "prod4 [32 seeds]-mixture" "prod4+T [32 seeds]-mixture"
+python3 $S/rounds.py covid 5; python3 $S/rounds.py rsv 9   # on the Mac
+.venv/bin/python -m chromantis.experiment.planner plan -e cv-s-r05 --problem problems/us-covid-short-term-coverage.json --study $S/covid-round-05.json --device cuda
+.venv/bin/python -m chromantis.experiment.planner plan -e rv-s-r09 --problem problems/us-rsv-short-term-coverage.json --study $S/rsv-round-09.json --device cuda
+sbatch --job-name=crs-r09 --array=0-5 scripts/flu_search.sbatch rv-s-r09:4 cv-s-r05:4
