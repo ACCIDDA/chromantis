@@ -354,6 +354,16 @@ def rsv11():
         put('rsv', f'{root}.joint', derive(r[root], fit_partition='all'), root)
 
 
+def rsv12():
+    # 25 Nov 06:40: a mixture cannot combine members of different problems, so an all-joint RSV mixture needs joint versions
+    # of the other production members too.
+    r = R['rsv']
+    for root in ('ref.Ball', 'ref.A4c0'):
+        put('rsv', f'{root}.joint', derive(r[root], fit_partition='all'), root)
+
+
+ROUNDS['rsv'][12] = dict(description='RSV search round 12 (2026-11-25): joint (flu+COVID+RSV) versions of ref.Ball and ref.A4c0.',
+                         build=rsv12)
 ROUNDS['rsv'][11] = dict(description='RSV search round 11 (2026-11-25): one network trained on flu, COVID and RSV (joint problem).',
                          build=rsv11)
 

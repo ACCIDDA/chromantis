@@ -177,3 +177,9 @@ python3 $S/rounds.py rsv rs09; python3 $S/rounds.py rsv g11   # on the Mac
 sbatch --job-name=crs-joint2 --array=0-5 scripts/flu_search.sbatch rv-s-rs09:4 rv-s-g11:4
 .venv/bin/python scripts/flu_search_mix.py rj1 --study $S --prefix crs-mix --max-seeds 8 --experiments rv-s-r01 rv-s-r03 rv-s-r05 rv-s-r11 --members P=ref.Ball,ref.Bw,ref.A4c0,ref.A4i PN=ref.Ball,Bw.nat,ref.A4c0,A4i.nat PJ=ref.Ball,Bw.nat.joint,ref.A4c0,A4i.nat.joint PJB=ref.Ball,Bw.nat.joint,ref.A4c0,A4i.nat --groups "prod4:P" "prodnat:PN" "prodnat-joint:PJ" "prodnat-jointB:PJB"
 sbatch --job-name=crs-mix-rj1 scripts/covid_tree_mix.sbatch $S/mix-rj1.json data/experiments/crs-mix-rj1
+# 2026-11-25 06:45 EST: joint Ball/A4c0 (rv-s-r12, job 10770646); all-joint mixture rj2 (CPU 10770647). Mixing joint and RSV-only members is not possible.
+python3 $S/rounds.py rsv 12   # on the Mac
+.venv/bin/python -m chromantis.experiment.planner plan -e rv-s-r12 --problem problems/us-respiratory-joint-short-term-coverage.json --study $S/rsv-round-12.json --device cuda
+sbatch --job-name=crs-joint3 --array=0-5 scripts/flu_search.sbatch rv-s-r12:4
+.venv/bin/python scripts/flu_search_mix.py rj2 --study $S --prefix crs-mix --max-seeds 24 --experiments rv-s-r11 rv-s-rs09 --members J=Bw.nat.joint,A4i.nat.joint BJ=Bw.nat.joint AJ=A4i.nat.joint --groups 'BJ+AJ:J' 'BJ:BJ' 'AJ:AJ'
+sbatch --job-name=crs-mix-rj2 scripts/covid_tree_mix.sbatch $S/mix-rj2.json data/experiments/crs-mix-rj2
