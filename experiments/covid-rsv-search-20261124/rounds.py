@@ -222,6 +222,22 @@ def rsv5():
 ROUNDS['rsv'][5] = dict(description='RSV search round 5 (2026-11-24): US-only summary on the other production members; '
                                     'newest-week masking on quantile Bwq.', build=rsv5)
 
+def rsv6():
+    # 24 Nov 19:45, round 5: the US-only summary helps the recipes that read all six histories (A4i.nat -9.2%, Bw.nat -4.4%
+    # at 16 seeds and better on the 2023-24 guard), not Ball (+3.2%) or A4c0 (+0.9%). Children of the sampled A4i.nat.
+    r = R['rsv']
+    a = r['A4i.nat']
+    put('rsv', 'A4i.nat.nokinsa', derive(a, covariate_set='none'), 'A4i.nat')
+    put('rsv', 'A4i.nat.real', derive(a, corrector_examples='real'), 'A4i.nat')
+    put('rsv', 'A4i.nat.nm10', derive(a, newest_mask=0.1), 'A4i.nat')
+    put('rsv', 'A4i.nat.peak', derive(a, peak_loss_weight=1.0), 'A4i.nat')
+    put('rsv', 'A4i.nat.esall', derive(a, error_signals='all'), 'A4i.nat')   # coverage signals in the error model, as Rc
+
+
+ROUNDS['rsv'][6] = dict(description='RSV search round 6 (2026-11-24): children of A4i.nat (production A4i with the US-only '
+                                    'summary): no Kinsa, real-pair trees, newest-week masking, peak loss, all error signals.',
+                        build=rsv6)
+
 # Guard-only files: recipes guarded after they pass the main problem (children are not guarded otherwise).
 GUARD = {'covid': {'g01': ['ref.Ah', 'ref.pN', 'ref.N', 'ref.Bh', 'T', 'Tl', 'S'],
                    'g02': (['ref.Ah', 'ref.pN', 'ref.N', 'ref.Bh', 'T', 'S'], list(range(52, 60))),  # guard seeds for mixtures
@@ -230,7 +246,8 @@ GUARD = {'covid': {'g01': ['ref.Ah', 'ref.pN', 'ref.N', 'ref.Bh', 'T', 'Tl', 'S'
                  'g03': ['Bwq', 'Bwq.smp'],
                  'g04': ['ref.Bw.gt', 'Bwq.gt', 'Bwq.smp.gt'],
                  'g05': ['Bw.nat'],
-                 'g06': (['ref.Ball', 'ref.Bw', 'ref.A4c0', 'ref.A4i', 'Bwq', 'Bwq.smp', 'Rc', 'Rc.real'], list(range(52, 60)))}}  # gt guard problem (us-rsv-2023-24-prescribed-coverage-gt)
+                 'g06': (['ref.Ball', 'ref.Bw', 'ref.A4c0', 'ref.A4i', 'Bwq', 'Bwq.smp', 'Rc', 'Rc.real'], list(range(52, 60))),
+                 'g07': (['A4i.nat', 'Bw.nat'], list(range(44, 60)))}}  # gt guard problem (us-rsv-2023-24-prescribed-coverage-gt)
 RESEED = {'covid': {'rs01': (['ref.Ah', 'ref.pN', 'ref.N', 'ref.Bh', 'T', 'Tl', 'S'], list(range(52, 60))),
                     'rs02': (['ref.Ah', 'ref.pN', 'ref.N', 'ref.Bh', 'T', 'S', 'N.smp'], list(range(60, 68))),
                     # 24 Nov 18:40: mixture decisions are noise-limited; 32 main seeds for the finalists and production
@@ -238,7 +255,9 @@ RESEED = {'covid': {'rs01': (['ref.Ah', 'ref.pN', 'ref.N', 'ref.Bh', 'T', 'Tl', 
           'rsv': {'rs01': (['ref.Ball', 'ref.Bw', 'ref.A4c0', 'ref.A4i', 'Rc', 'R1'], list(range(52, 60))),
                   'rs02': (['Bwq', 'Bwq.smp'], list(range(52, 60))),
                   'rs03': (['Rc.real', 'Bw.nat'], list(range(52, 60))),
-                  'rs04': (['ref.Ball', 'ref.Bw', 'ref.A4c0', 'ref.A4i', 'Bwq', 'Bwq.smp', 'Rc', 'Rc.real'], list(range(60, 68)))}}
+                  'rs04': (['ref.Ball', 'ref.Bw', 'ref.A4c0', 'ref.A4i', 'Bwq', 'Bwq.smp', 'Rc', 'Rc.real'], list(range(60, 68))),
+                  'rs05': (['A4i.nat'], list(range(52, 68))),
+                  'rs06': (['Bw.nat'], list(range(60, 68)))}}
 
 
 def build_all(p, upto=None):

@@ -1,0 +1,18 @@
+{
+ "description": "rsv search reseed rs06: Bw.nat on seeds 60-67.",
+ "round": "rs06",
+ "parents": {},
+ "candidates": {
+  "Bw.nat": "history_source=artificial,reconstruction_labels=1,error_signals=targets,input_set=all,correction_weeks=2,correction_ed=1,joint_weight=0.1,correction_penalty=3.0,reporting_missingness=0,reporting_method=synchronous_phase_log,reconstruction_weeks=4,ed_transform=logit,spatial=national_broadcast,decoder=quantile,width=256,epochs=240,patience=25,lr=0.0005,fit_partition=pathogen,covariate_encoder=summary,input_normalization=b0,log_loss_weight=0.5,stress_views=1"
+ },
+ "seeds": [
+  60,
+  61,
+  62,
+  63,
+  64,
+  65,
+  66,
+  67
+ ]
+}

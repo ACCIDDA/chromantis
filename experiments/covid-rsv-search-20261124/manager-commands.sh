@@ -90,3 +90,12 @@ sbatch --job-name=crs-rs03 --array=0-5 scripts/flu_search.sbatch rv-s-rs04:4 rv-
 sbatch --job-name=crs-mix-c04 scripts/covid_tree_mix.sbatch $S/mix-c04.json data/experiments/crs-mix-c04
 # guard version: same groups with --experiments cv-s-g01 cv-s-g02, name c02g
 sbatch --job-name=crs-mix-c02g scripts/covid_tree_mix.sbatch $S/mix-c02g.json data/experiments/crs-mix-c02g
+# 2026-11-24 19:50 EST: RSV round 6, reseeds rs05/rs06, guard g07 (job 10724990); RSV mixtures r02 (CPU job 10724993)
+for a in "rsv 6" "rsv rs05" "rsv rs06" "rsv g07"; do python3 $S/rounds.py $a; done   # on the Mac (bash)
+.venv/bin/python -m chromantis.experiment.planner plan -e rv-s-r06 --problem problems/us-rsv-short-term-coverage.json --study $S/rsv-round-06.json --device cuda
+.venv/bin/python -m chromantis.experiment.planner plan -e rv-s-rs05 --problem problems/us-rsv-short-term-coverage.json --study $S/rsv-reseed-rs05.json --device cuda
+.venv/bin/python -m chromantis.experiment.planner plan -e rv-s-rs06 --problem problems/us-rsv-short-term-coverage.json --study $S/rsv-reseed-rs06.json --device cuda
+.venv/bin/python -m chromantis.experiment.planner plan -e rv-s-g07 --problem problems/us-rsv-2023-24-prescribed-coverage.json --study $S/rsv-guard-g07.json --device cuda
+sbatch --job-name=crs-r06 --array=0-5 scripts/flu_search.sbatch rv-s-g07:6 rv-s-r06:6 rv-s-rs05:6 rv-s-rs06:6
+.venv/bin/python scripts/flu_search_mix.py r02 --study $S --prefix crs-mix --experiments rv-s-r01 rv-s-r03 rv-s-r05 --max-seeds 8 --members P=ref.Ball,ref.Bw,ref.A4c0,ref.A4i PN=ref.Ball,Bw.nat,ref.A4c0,A4i.nat BN=Bw.nat AN=A4i.nat QS=Bwq.smp Rc=Rc A=ref.A4c0 Q=Bwq --groups "prod4:P" "prodnat:PN" "BN+AN:BN,AN" "BN+AN+Rc:BN,AN,Rc" "QS+AN:QS,AN" "QS+AN+Rc:QS,AN,Rc" "BN+QS+AN+Rc:BN,QS,AN,Rc" "Q+QS+Rc+A:Q,QS,Rc,A"
+sbatch --job-name=crs-mix-r02 scripts/covid_tree_mix.sbatch $S/mix-r02.json data/experiments/crs-mix-r02
