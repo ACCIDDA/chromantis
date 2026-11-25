@@ -372,7 +372,8 @@ GUARD = {'covid': {'g01': ['ref.Ah', 'ref.pN', 'ref.N', 'ref.Bh', 'T', 'Tl', 'S'
                    'g02': (['ref.Ah', 'ref.pN', 'ref.N', 'ref.Bh', 'T', 'S'], list(range(52, 60))),  # guard seeds for mixtures
                    'g03': (['ref.Ah', 'ref.pN', 'ref.N', 'ref.Bh', 'T', 'S'], list(range(60, 68))),
                    'g04': (['ref.Ah', 'ref.pN', 'ref.N', 'ref.Bh', 'T', 'S'], list(range(68, 76))),
-                   'g05': (['ref.Ah', 'ref.pN', 'ref.N', 'ref.Bh', 'T', 'S'], list(range(76, 84)))},
+                   'g05': (['ref.Ah', 'ref.pN', 'ref.N', 'ref.Bh', 'T', 'S'], list(range(76, 84))),
+                   'g06': (['ref.Ah', 'ref.pN', 'ref.N', 'ref.Bh', 'T', 'S'], list(range(84, 92)))},
          'rsv': {'g01': ['ref.Ball', 'ref.Bw', 'ref.A4c0', 'ref.A4i', 'Rc', 'R1'],
                  'g03': ['Bwq', 'Bwq.smp'],
                  'g04': ['ref.Bw.gt', 'Bwq.gt', 'Bwq.smp.gt'],
@@ -390,7 +391,9 @@ RESEED = {'covid': {'rs01': (['ref.Ah', 'ref.pN', 'ref.N', 'ref.Bh', 'T', 'Tl', 
                     'rel': (['ref.Ah', 'ref.pN', 'ref.N', 'ref.Bh', 'T', 'S'], list(range(42, 62))),
                     'rel2': (['ref.Ah', 'ref.pN', 'ref.N', 'ref.Bh', 'T', 'S'], list(range(62, 82))),
                     # 25 Nov 07:40: 40 seeds for the borderline COVID mixtures (production + T at -0.96%, T+N+S guard +1.02%)
-                    'rs04': (['ref.Ah', 'ref.pN', 'ref.N', 'ref.Bh', 'T', 'S'], list(range(76, 84)))},
+                    'rs04': (['ref.Ah', 'ref.pN', 'ref.N', 'ref.Bh', 'T', 'S'], list(range(76, 84))),
+                    # 25 Nov 09:40: T+N+S passes at 40 seeds by a narrow guard margin (+0.88%); 48 seeds on both checks
+                    'rs05': (['ref.Ah', 'ref.pN', 'ref.N', 'ref.Bh', 'T', 'S'], list(range(84, 92)))},
           'rsv': {'rs01': (['ref.Ball', 'ref.Bw', 'ref.A4c0', 'ref.A4i', 'Rc', 'R1'], list(range(52, 60))),
                   'rs02': (['Bwq', 'Bwq.smp'], list(range(52, 60))),
                   'rs03': (['Rc.real', 'Bw.nat'], list(range(52, 60))),

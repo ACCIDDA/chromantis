@@ -202,3 +202,11 @@ M="PN=ref.Ball,Bw.nat,ref.A4c0,A4i.nat PR=ref.Ball,Bw.nat,Rc,A4i.nat P3=ref.Ball
 .venv/bin/python scripts/flu_search_mix.py r05 --study $S --prefix crs-mix --max-seeds 24 --experiments rv-s-r01 rv-s-r03 rv-s-r05 rv-s-rs01 rv-s-rs03 rv-s-rs04 rv-s-rs05 rv-s-rs06 --members $M --groups "prodnat:PN" "prodnat-Rc:PR" "prodnat-noA4c0:P3" "prodnat+Rc:P5"
 .venv/bin/python scripts/flu_search_mix.py r05g --study $S --prefix crs-mix --max-seeds 24 --experiments rv-s-g01 rv-s-g06 rv-s-g07 rv-s-g08 --members $M --groups "prodnat:PN" "prodnat-Rc:PR" "prodnat-noA4c0:P3" "prodnat+Rc:P5"
 python3 scripts/crs_block_se.py
+# 2026-11-25 09:40 EST: COVID seeds 84-91 (rs05, g06; job 10776153); draft release manifests (not installed)
+python3 $S/rounds.py covid rs05; python3 $S/rounds.py covid g06   # on the Mac
+.venv/bin/python -m chromantis.experiment.planner plan -e cv-s-rs05 --problem problems/us-covid-short-term-coverage.json --study $S/covid-reseed-rs05.json --device cuda
+.venv/bin/python -m chromantis.experiment.planner plan -e cv-s-g06 --problem problems/us-covid-2023-24-prescribed-coverage.json --study $S/covid-guard-g06.json --device cuda
+sbatch --job-name=crs-s48 --array=0-5 scripts/flu_search.sbatch cv-s-rs05:4 cv-s-g06:4
+.venv/bin/python scripts/flu_search_release.py rsv-nat-candidate-20261125 $S/draft-release-rsv-nat.json rv-s-rel+rv-s-rel2:ref.Ball=Ball_c0w512 rv-s-rel+rv-s-rel2:Bw.nat=Bw.nat rv-s-rel+rv-s-rel2:ref.A4c0=A4c0 rv-s-rel+rv-s-rel2:A4i.nat=A4i.nat --hub rsv --problem problems/us-rsv-production-coverage.json --description "..."
+.venv/bin/python scripts/flu_search_release.py covid-tns-candidate-20261125 $S/draft-release-covid-tns.json cv-s-rel+cv-s-rel2:T=T cv-s-rel+cv-s-rel2:ref.N=N.multiscale cv-s-rel+cv-s-rel2:S=S --hub covid --problem problems/us-covid-production-coverage.json --description "..."
+.venv/bin/python scripts/flu_search_release.py covid-prod-refit-20261125 $S/draft-release-covid-prod-refit.json cv-s-rel+cv-s-rel2:ref.Ah=Ah.neighbors cv-s-rel+cv-s-rel2:ref.pN=pN.enc_gru cv-s-rel+cv-s-rel2:ref.N=N.multiscale cv-s-rel+cv-s-rel2:ref.Bh=Bh.wd cv-s-rel+cv-s-rel2:T=T --hub covid --problem problems/us-covid-production-coverage.json --description "..."
