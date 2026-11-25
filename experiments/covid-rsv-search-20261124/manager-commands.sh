@@ -258,3 +258,11 @@ python3 $S/rounds.py covid g09   # on the Mac
 .venv/bin/python -m chromantis.experiment.planner plan -e cv-s-g09 --problem problems/us-covid-2023-24-prescribed-coverage.json --study $S/covid-guard-g09.json --device cuda
 sbatch --job-name=crs-g64 --array=0-5 scripts/flu_search.sbatch cv-s-g09:4
 sbatch --job-name=crs-phase4 --partition=jlessler --cpus-per-task=4 --mem=48G --time=02:00:00 --output=output/crs-search/phase4.log --wrap 'PYTHONPATH=src .venv/bin/python scripts/flu_phase_check.py --out output/crs-search/tasks-r04.csv data/experiments/crs-mix-r04/*-mixture > output/crs-search/phase-r04.txt'
+# 2026-11-25 17:45 EST: RSV peak check at 32 seeds (fails narrowly); blended RSV mixtures r06 / r06g; 64-seed COVID guard mixtures c07g + blocks; RSV seeds 76-91 (rs10)
+.venv/bin/python scripts/crs_phase_diff.py output/crs-search/tasks-r04.csv "prod4 [32 seeds]-mixture" "prodnat [32 seeds]-mixture"
+M="P=ref.Ball,ref.Bw,ref.A4c0,ref.A4i PN=ref.Ball,Bw.nat,ref.A4c0,A4i.nat P6=ref.Ball,ref.Bw,Bw.nat,ref.A4c0,ref.A4i,A4i.nat PB6=ref.Ball,ref.Bw,Bw.nat,ref.A4c0,ref.A4i"
+.venv/bin/python scripts/flu_search_mix.py r06 --study $S --prefix crs-mix --max-seeds 32 --experiments rv-s-r01 rv-s-r03 rv-s-r05 rv-s-rs01 rv-s-rs03 rv-s-rs04 rv-s-rs05 rv-s-rs06 rv-s-rs08 --members $M --groups "prod4:P" "prodnat:PN" "prod+nat:P6" "prod+Bnat:PB6"
+.venv/bin/python scripts/flu_search_mix.py c07g --study $S --prefix crs-mix --max-seeds 64 --experiments cv-s-g01 cv-s-g02 cv-s-g03 cv-s-g04 cv-s-g05 cv-s-g06 cv-s-g09 --members "P=ref.Ah,ref.pN,ref.N,ref.Bh" "TNS=T,ref.N,S" --groups "prod4:P" "T+N+S:TNS"
+python3 $S/rounds.py rsv rs10   # on the Mac
+.venv/bin/python -m chromantis.experiment.planner plan -e rv-s-rs10 --problem problems/us-rsv-short-term-coverage.json --study $S/rsv-reseed-rs10.json --device cuda
+sbatch --job-name=crs-r48 --array=0-5 scripts/flu_search.sbatch rv-s-rs10:6

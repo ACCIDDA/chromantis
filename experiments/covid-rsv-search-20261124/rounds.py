@@ -473,6 +473,8 @@ RESEED = {'covid': {'rs01': (['ref.Ah', 'ref.pN', 'ref.N', 'ref.Bh', 'T', 'Tl', 
                   'rs08': (['ref.Ball', 'ref.Bw', 'ref.A4c0', 'ref.A4i', 'Bw.nat', 'A4i.nat'], list(range(68, 76))),
                   # 25 Nov 05:40: joint networks (joint problem) improve RSV ED share; seeds for a mixture check
                   'rs09': (['Bw.nat.joint', 'A4i.nat.joint'], list(range(52, 68))),
+                  # 25 Nov 17:40: the candidate's peak-window loss (+3.7% at 32 seeds) is marginal; 48 main seeds
+                  'rs10': (['ref.Ball', 'ref.Bw', 'ref.A4c0', 'ref.A4i', 'Bw.nat', 'A4i.nat'], list(range(76, 92))),
                   # all-season joint release fits (problems/us-respiratory-joint-production-coverage.json), the ED-share option
                   'reljoint': (['ref.Ball.joint', 'Bw.nat.joint', 'ref.A4c0.joint', 'A4i.nat.joint'], list(range(42, 62)))}}
 
