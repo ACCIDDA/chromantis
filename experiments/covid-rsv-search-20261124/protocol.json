@@ -228,6 +228,11 @@
    "date": "2026-11-26 01:45 EST",
    "round": "sampled RSV blend",
    "what": "RSV six-member blend with sampled Bw.nat (Bw.nat.smp: Bw.nat with a sampled trajectory head and log-loss weight 1) in place of Bw.nat, 48 seeds (main problem = 2024-25 and 2025-26 held out in turn, trained on the other seasons of 2022-23..2025-26, archived reports; states/DC log-admission WIS 2024-25 / 2025-26 / mean; lower is better): 0.3919 / 0.2269 / 0.3094, against 0.3913 / 0.2290 / 0.3102 for the quantile blend and 0.3989 / 0.2382 / 0.3186 for production (-2.9%, lower in both seasons); peak window +0.2% (-1.7 to +2.2), rising -2.8%, falling -2.6%; 2023-24 guard ED share x 1e4 5.701 vs 5.663 (quantile blend) and 5.721 (production). Level with the quantile blend on every check; under the user's preference for sampled members the RSV recommendation becomes the blend with Bw.nat.smp (ref.Ball, ref.Bw, Bw.nat.smp, ref.A4c0, ref.A4i, A4i.nat); the quantile blend draft stays as an equivalent option. Queued: Bw.nat.smp all-season release fits on seeds 82-121 (rv-s-rel5) so its draft release has 80 fits per recipe."
+  },
+  {
+   "date": "2026-11-26 02:40 EST",
+   "round": "sampled RSV blend release",
+   "what": "Bw.nat.smp all-season fits on seeds 82-121 complete. Draft release written: experiments/covid-rsv-search-20261124/draft-release-rsv-blend-smp.json (ref.Ball, ref.Bw, Bw.nat.smp, ref.A4c0, ref.A4i, A4i.nat; 80 all-season fits each, seeds 42-121; problems/us-rsv-production-coverage.json; not installed). This is the RSV recommendation; draft-release-rsv-blend.json (quantile Bw.nat) is the level alternative. No GPU work queued: both recommendations are settled and trained (COVID draft-release-covid-blend.json)."
   }
  ]
 }
