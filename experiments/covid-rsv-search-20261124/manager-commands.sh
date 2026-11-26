@@ -291,3 +291,10 @@ sbatch --job-name=crs-crel4 --array=0-5 scripts/flu_search.sbatch cv-s-rel4:4
 python3 $S/rounds.py covid fwd   # on the Mac
 .venv/bin/python -m chromantis.experiment.planner plan -e cv-s-fwd --problem problems/us-covid-forward-2024-25-coverage.json --study $S/covid-reseed-fwd.json --device cuda
 sbatch --job-name=crs-fwd --array=0-5 scripts/flu_search.sbatch cv-s-fwd:4
+# 2026-11-25 23:40 EST: delayed view of the blends (mix-c08d, mix-r07d = views corrected + delayed); sampled Bw.nat seeds 68-91 (rs11, g13)
+sbatch --job-name=crs-mix-c08d scripts/covid_tree_mix.sbatch $S/mix-c08d.json data/experiments/crs-mix-c08d
+sbatch --job-name=crs-mix-r07d scripts/covid_tree_mix.sbatch $S/mix-r07d.json data/experiments/crs-mix-r07d
+python3 $S/rounds.py rsv rs11; python3 $S/rounds.py rsv g13   # on the Mac
+.venv/bin/python -m chromantis.experiment.planner plan -e rv-s-rs11 --problem problems/us-rsv-short-term-coverage.json --study $S/rsv-reseed-rs11.json --device cuda
+.venv/bin/python -m chromantis.experiment.planner plan -e rv-s-g13 --problem problems/us-rsv-2023-24-prescribed-coverage.json --study $S/rsv-guard-g13.json --device cuda
+sbatch --job-name=crs-smp --array=0-5 scripts/flu_search.sbatch rv-s-rs11:4 rv-s-g13:4

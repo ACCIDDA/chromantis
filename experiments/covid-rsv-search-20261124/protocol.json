@@ -213,6 +213,11 @@
    "date": "2026-11-25 22:40 EST",
    "round": "forward 2024-25 check",
    "what": "Forward check (problems/us-covid-forward-2024-25-coverage.json: 2024-25 held out, trained on 2022-23 and 2023-24 only): T and S cannot be fitted (32 runs failed: 'Only 0 real/synthetic admission pairs'): their correction trees learn from real archived report pairs, and the report archive starts in December 2024, so no pairs exist before 2024-25. The production members (artificial-error trees) ran. So the blend cannot be checked forward; in the main problem the 2024-25 fold of T and S learns reporting behaviour from 2025-26 archived pairs (how hospitals revise reports, not the epidemic itself), a limitation recorded here rather than a leak of the evaluated season's reports. No further GPU work is queued for selection: both recommendations are settled (COVID six-member blend production 4 + T + S; RSV six-member blend production 4 + Bw.nat + A4i.nat), each with 80 all-season fits per recipe."
+  },
+  {
+   "date": "2026-11-25 23:40 EST",
+   "round": "delayed view of the blends; sampled Bw.nat",
+   "what": "Queued: the 48-seed COVID (crs-mix-c08) and RSV (r07) mixtures rescored with the 'delayed' view (every location's newest admission week missing), as robustness for the two blends (c08d, r07d); sampled Bw.nat (Bw.nat.smp, the user prefers sampled members) on seeds 68-91 for the main problem (rv-s-rs11) and the 2023-24 guard (rv-s-g13), to compare the RSV blend with Bw.nat.smp in place of Bw.nat on 48 seeds."
   }
  ]
 }

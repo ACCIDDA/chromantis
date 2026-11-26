@@ -442,7 +442,8 @@ GUARD = {'covid': {'g01': ['ref.Ah', 'ref.pN', 'ref.N', 'ref.Bh', 'T', 'Tl', 'S'
                  'g10': (['ref.Ball', 'ref.Bw', 'ref.A4c0', 'ref.A4i', 'Bw.nat', 'A4i.nat'], list(range(68, 76))),
                  'g11': (['Bw.nat.joint', 'A4i.nat.joint'], list(range(44, 68))),  # joint guard problem
                  # 25 Nov 19:40: 48 guard seeds for the six-member blend
-                 'g12': (['ref.Ball', 'ref.Bw', 'ref.A4c0', 'ref.A4i', 'Bw.nat', 'A4i.nat'], list(range(76, 92)))}}  # gt guard problem (us-rsv-2023-24-prescribed-coverage-gt)
+                 'g12': (['ref.Ball', 'ref.Bw', 'ref.A4c0', 'ref.A4i', 'Bw.nat', 'A4i.nat'], list(range(76, 92))),
+                 'g13': (['Bw.nat.smp'], list(range(68, 92)))}}  # gt guard problem (us-rsv-2023-24-prescribed-coverage-gt)
 RESEED = {'covid': {'rs01': (['ref.Ah', 'ref.pN', 'ref.N', 'ref.Bh', 'T', 'Tl', 'S'], list(range(52, 60))),
                     'rs02': (['ref.Ah', 'ref.pN', 'ref.N', 'ref.Bh', 'T', 'S', 'N.smp'], list(range(60, 68))),
                     # 24 Nov 18:40: mixture decisions are noise-limited; 32 main seeds for the finalists and production
@@ -483,6 +484,8 @@ RESEED = {'covid': {'rs01': (['ref.Ah', 'ref.pN', 'ref.N', 'ref.Bh', 'T', 'Tl', 
                   'rs09': (['Bw.nat.joint', 'A4i.nat.joint'], list(range(52, 68))),
                   # 25 Nov 17:40: the candidate's peak-window loss (+3.7% at 32 seeds) is marginal; 48 main seeds
                   'rs10': (['ref.Ball', 'ref.Bw', 'ref.A4c0', 'ref.A4i', 'Bw.nat', 'A4i.nat'], list(range(76, 92))),
+                  # 25 Nov 23:40: sampled Bw.nat (user prefers sampled members) on 48 seeds, to try it in place of Bw.nat
+                  'rs11': (['Bw.nat.smp'], list(range(68, 92))),
                   # all-season joint release fits (problems/us-respiratory-joint-production-coverage.json), the ED-share option
                   'reljoint': (['ref.Ball.joint', 'Bw.nat.joint', 'ref.A4c0.joint', 'A4i.nat.joint'], list(range(42, 62)))}}
 
