@@ -279,3 +279,10 @@ sbatch --job-name=crs-rel4 --array=0-5 scripts/flu_search.sbatch rv-s-rel4:6
 python3 $S/rounds.py rsv g12   # on the Mac
 .venv/bin/python -m chromantis.experiment.planner plan -e rv-s-g12 --problem problems/us-rsv-2023-24-prescribed-coverage.json --study $S/rsv-guard-g12.json --device cuda
 sbatch --job-name=crs-g48 --array=0-5 scripts/flu_search.sbatch rv-s-g12:6
+# 2026-11-25 20:45 EST: RSV blend block errors (python3 output/crs-search/blendblk.py); COVID blend mixtures c08 / c08g + blocks cbb / cgbb + peak check; COVID release fits ref.Ah/pN/Bh seeds 82-121 (cv-s-rel4)
+CM="P=ref.Ah,ref.pN,ref.N,ref.Bh TNS=T,ref.N,S P6=ref.Ah,ref.pN,ref.N,ref.Bh,T,S"; CG=("prod4:P" "T+N+S:TNS" "prod+T+S:P6")
+.venv/bin/python scripts/flu_search_mix.py c08 --study $S --prefix crs-mix --max-seeds 48 --experiments cv-s-r01 cv-s-rs01 cv-s-rs02 cv-s-rs03 cv-s-rs04 cv-s-rs05 --members $CM --groups "${CG[@]}"
+.venv/bin/python scripts/flu_search_mix.py c08g --study $S --prefix crs-mix --max-seeds 64 --experiments cv-s-g01 cv-s-g02 cv-s-g03 cv-s-g04 cv-s-g05 cv-s-g06 cv-s-g09 --members $CM --groups "${CG[@]}"
+python3 $S/rounds.py covid rel4   # on the Mac
+.venv/bin/python -m chromantis.experiment.planner plan -e cv-s-rel4 --problem problems/us-covid-production-coverage.json --study $S/covid-reseed-rel4.json --device cuda
+sbatch --job-name=crs-crel4 --array=0-5 scripts/flu_search.sbatch cv-s-rel4:4
