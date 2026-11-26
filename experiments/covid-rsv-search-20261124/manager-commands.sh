@@ -298,3 +298,7 @@ python3 $S/rounds.py rsv rs11; python3 $S/rounds.py rsv g13   # on the Mac
 .venv/bin/python -m chromantis.experiment.planner plan -e rv-s-rs11 --problem problems/us-rsv-short-term-coverage.json --study $S/rsv-reseed-rs11.json --device cuda
 .venv/bin/python -m chromantis.experiment.planner plan -e rv-s-g13 --problem problems/us-rsv-2023-24-prescribed-coverage.json --study $S/rsv-guard-g13.json --device cuda
 sbatch --job-name=crs-smp --array=0-5 scripts/flu_search.sbatch rv-s-rs11:4 rv-s-g13:4
+# 2026-11-26 00:40 EST: sampled RSV blend at 48 seeds (r08 + peak check, r08g)
+M="P=ref.Ball,ref.Bw,ref.A4c0,ref.A4i P6=ref.Ball,ref.Bw,Bw.nat,ref.A4c0,ref.A4i,A4i.nat P6S=ref.Ball,ref.Bw,Bw.nat.smp,ref.A4c0,ref.A4i,A4i.nat"
+.venv/bin/python scripts/flu_search_mix.py r08 --study $S --prefix crs-mix --max-seeds 48 --experiments rv-s-r01 rv-s-r03 rv-s-r05 rv-s-r07 rv-s-rs01 rv-s-rs03 rv-s-rs04 rv-s-rs05 rv-s-rs06 rv-s-rs07 rv-s-rs08 rv-s-rs10 rv-s-rs11 --members $M --groups "prod4:P" "prod+nat:P6" "prod+nat-smp:P6S"
+.venv/bin/python scripts/flu_search_mix.py r08g --study $S --prefix crs-mix --max-seeds 48 --experiments rv-s-g01 rv-s-g06 rv-s-g07 rv-s-g08 rv-s-g09 rv-s-g10 rv-s-g12 rv-s-g13 --members $M --groups "prod4:P" "prod+nat:P6" "prod+nat-smp:P6S"
