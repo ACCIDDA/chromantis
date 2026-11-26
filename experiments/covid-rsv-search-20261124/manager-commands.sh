@@ -308,3 +308,4 @@ python3 $S/rounds.py rsv rel5   # on the Mac
 sbatch --job-name=crs-rel5 --array=0-5 scripts/flu_search.sbatch rv-s-rel5:4
 # 2026-11-26 02:40 EST: draft-release-rsv-blend-smp.json (RSV recommendation)
 .venv/bin/python scripts/flu_search_release.py rsv-blend-smp-candidate-20261126 $S/draft-release-rsv-blend-smp.json rv-s-rel+rv-s-rel2+rv-s-rel3:ref.Ball=Ball_c0w512 rv-s-rel+rv-s-rel4:ref.Bw=Bw rv-s-rel+rv-s-rel2+rv-s-rel5:Bw.nat.smp=Bw.nat.smp rv-s-rel+rv-s-rel2+rv-s-rel3:ref.A4c0=A4c0 rv-s-rel+rv-s-rel4:ref.A4i=A4i rv-s-rel+rv-s-rel2+rv-s-rel3:A4i.nat=A4i.nat --hub rsv --problem problems/us-rsv-production-coverage.json --description "..."
+# 2026-11-26 11:40 EST: end of the run; hourly check deleted. Recommendations: draft-release-covid-blend.json, draft-release-rsv-blend-smp.json (see protocol.json)
