@@ -273,3 +273,9 @@ sbatch --job-name=crs-mix-r07 scripts/covid_tree_mix.sbatch $S/mix-r07.json data
 python3 $S/rounds.py rsv rel4   # on the Mac
 .venv/bin/python -m chromantis.experiment.planner plan -e rv-s-rel4 --problem problems/us-rsv-production-coverage.json --study $S/rsv-reseed-rel4.json --device cuda
 sbatch --job-name=crs-rel4 --array=0-5 scripts/flu_search.sbatch rv-s-rel4:6
+# 2026-11-25 19:45 EST: RSV six-member blend chosen; aligned blocks rbb1-6 / rgbb1-4 (--seeds); draft-release-rsv-blend.json; guard seeds 76-91 (g12)
+.venv/bin/python scripts/crs_phase_diff.py output/crs-search/tasks-r07.csv "prod4 [48 seeds]-mixture" "prod+nat [48 seeds]-mixture"
+.venv/bin/python scripts/flu_search_release.py rsv-blend-candidate-20261125 $S/draft-release-rsv-blend.json rv-s-rel+rv-s-rel2+rv-s-rel3:ref.Ball=Ball_c0w512 rv-s-rel+rv-s-rel4:ref.Bw=Bw rv-s-rel+rv-s-rel2+rv-s-rel3:Bw.nat=Bw.nat rv-s-rel+rv-s-rel2+rv-s-rel3:ref.A4c0=A4c0 rv-s-rel+rv-s-rel4:ref.A4i=A4i rv-s-rel+rv-s-rel2+rv-s-rel3:A4i.nat=A4i.nat --hub rsv --problem problems/us-rsv-production-coverage.json --description "..."
+python3 $S/rounds.py rsv g12   # on the Mac
+.venv/bin/python -m chromantis.experiment.planner plan -e rv-s-g12 --problem problems/us-rsv-2023-24-prescribed-coverage.json --study $S/rsv-guard-g12.json --device cuda
+sbatch --job-name=crs-g48 --array=0-5 scripts/flu_search.sbatch rv-s-g12:6

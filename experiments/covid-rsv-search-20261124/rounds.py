@@ -440,7 +440,9 @@ GUARD = {'covid': {'g01': ['ref.Ah', 'ref.pN', 'ref.N', 'ref.Bh', 'T', 'Tl', 'S'
                  'g08': (['ref.Ball', 'ref.Bw', 'ref.A4c0', 'ref.A4i', 'A4i.nat', 'Bw.nat'], list(range(60, 68))),
                  'g09': (['Bw.nat.smp'], list(range(44, 68))),
                  'g10': (['ref.Ball', 'ref.Bw', 'ref.A4c0', 'ref.A4i', 'Bw.nat', 'A4i.nat'], list(range(68, 76))),
-                 'g11': (['Bw.nat.joint', 'A4i.nat.joint'], list(range(44, 68)))}}  # joint guard problem  # gt guard problem (us-rsv-2023-24-prescribed-coverage-gt)
+                 'g11': (['Bw.nat.joint', 'A4i.nat.joint'], list(range(44, 68))),  # joint guard problem
+                 # 25 Nov 19:40: 48 guard seeds for the six-member blend
+                 'g12': (['ref.Ball', 'ref.Bw', 'ref.A4c0', 'ref.A4i', 'Bw.nat', 'A4i.nat'], list(range(76, 92)))}}  # gt guard problem (us-rsv-2023-24-prescribed-coverage-gt)
 RESEED = {'covid': {'rs01': (['ref.Ah', 'ref.pN', 'ref.N', 'ref.Bh', 'T', 'Tl', 'S'], list(range(52, 60))),
                     'rs02': (['ref.Ah', 'ref.pN', 'ref.N', 'ref.Bh', 'T', 'S', 'N.smp'], list(range(60, 68))),
                     # 24 Nov 18:40: mixture decisions are noise-limited; 32 main seeds for the finalists and production
