@@ -286,3 +286,8 @@ CM="P=ref.Ah,ref.pN,ref.N,ref.Bh TNS=T,ref.N,S P6=ref.Ah,ref.pN,ref.N,ref.Bh,T,S
 python3 $S/rounds.py covid rel4   # on the Mac
 .venv/bin/python -m chromantis.experiment.planner plan -e cv-s-rel4 --problem problems/us-covid-production-coverage.json --study $S/covid-reseed-rel4.json --device cuda
 sbatch --job-name=crs-crel4 --array=0-5 scripts/flu_search.sbatch cv-s-rel4:4
+# 2026-11-25 21:50 EST: COVID blend scored (python3 output/crs-search/cblendblk.py); draft-release-covid-blend.json; forward COVID 2024-25 check (cv-s-fwd, job 10853791)
+.venv/bin/python scripts/flu_search_release.py covid-blend-candidate-20261125 $S/draft-release-covid-blend.json cv-s-rel+cv-s-rel2+cv-s-rel4:ref.Ah=Ah.neighbors cv-s-rel+cv-s-rel2+cv-s-rel4:ref.pN=pN.enc_gru cv-s-rel+cv-s-rel2+cv-s-rel3:ref.N=N.multiscale cv-s-rel+cv-s-rel2+cv-s-rel4:ref.Bh=Bh.wd cv-s-rel+cv-s-rel2+cv-s-rel3:T=T cv-s-rel+cv-s-rel2+cv-s-rel3:S=S --hub covid --problem problems/us-covid-production-coverage.json --description "..."
+python3 $S/rounds.py covid fwd   # on the Mac
+.venv/bin/python -m chromantis.experiment.planner plan -e cv-s-fwd --problem problems/us-covid-forward-2024-25-coverage.json --study $S/covid-reseed-fwd.json --device cuda
+sbatch --job-name=crs-fwd --array=0-5 scripts/flu_search.sbatch cv-s-fwd:4

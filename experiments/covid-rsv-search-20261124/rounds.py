@@ -452,6 +452,10 @@ RESEED = {'covid': {'rs01': (['ref.Ah', 'ref.pN', 'ref.N', 'ref.Bh', 'T', 'Tl', 
                     # 25 Nov 10:40: 80 all-season fits per member of the candidates (as the flu draft release)
                     'rel3': (['T', 'ref.N', 'S'], list(range(82, 122))),
                     'rel4': (['ref.Ah', 'ref.pN', 'ref.Bh'], list(range(82, 122))),  # 25 Nov 20:40: for a blended release
+                    # 25 Nov 21:40: forward-only check of the blend members on problems/us-covid-forward-2024-25-coverage.json
+                    # (2024-25 held out, trained on 2022-23 and 2023-24 only; the main problem's 2024-25 fold also trains on
+                    # 2025-26). Not possible for RSV: no RSV admissions before Nov 2024.
+                    'fwd': (['ref.Ah', 'ref.pN', 'ref.N', 'ref.Bh', 'T', 'S'], list(range(44, 60))),
                     'relamp': (['T.amp3', 'ref.N.amp3', 'S.amp3'], list(range(42, 82))),
                     # 25 Nov 07:40: 40 seeds for the borderline COVID mixtures (production + T at -0.96%, T+N+S guard +1.02%)
                     'rs04': (['ref.Ah', 'ref.pN', 'ref.N', 'ref.Bh', 'T', 'S'], list(range(76, 84))),
