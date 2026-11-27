@@ -35,7 +35,7 @@ At each location the 4-week trajectory with the k-th largest week-3 value contin
 full-season path that is k-th largest at the same week (`splice.py`). Neither model is
 modified. No nowcast or revision correction is applied; missing weeks stay missing. The
 fits run on Longleaf (`/hickory/proj/jlessler/projects/tapestry-all/metrocast-20261019`) with
-`scripts/metrocast_submit_export.py`.
+`scripts/metrocast_submit_export.py`. Weekly steps: [Running a round](#running-a-round).
 
 ## Inputs and nowcast
 
@@ -66,6 +66,187 @@ ensemble. The 4-week winner's cross-validated WIS was 0.77 times that of the dir
 reference; on 2025–26 it was 0.82 times the ensemble's WIS (location mean, 72 locations;
 lower is better). It was selected as the best of many, so these numbers are optimistic.
 There is no report page for this search yet; details are in the 24 October entry below.
+
+## Running a round
+
+Written 26 November 2026 from the commands of the 21 November round, which a laptop ran over
+ssh. Neither target refits anything each week: the saved fits read that week's data and draw
+trajectories.
+
+**Where each step runs.** The fits exist only on Longleaf, so the forecasts run there, as CPU
+jobs on the `general` partition. They run in two campaign folders under
+`/hickory/proj/jlessler/projects/tapestry-all/`, each with its own `.venv`:
+- `metrocast-20261019`: the ED fits (experiments `metrocast-submit-winner` and
+  `metrocast-submit-fullseason`).
+- `metrocast-ca-20261109`: the California fits (experiment `metrocast-ca-prod`).
+
+Run the scripts in those folders, not in `tapestry-all/tapestry` or in this repository. The
+campaign copy of `scripts/build_metrocast.py` takes `--root` and `--truth-day`; the copy on
+`main` does not. The laptop pulls the Hub data and pushes it to Longleaf. It also does the
+splice, the merge, the scoring, the PDF and the PR, working in
+`production/submissions/<reference date>/metrocast/`.
+
+**New laptop, once.**
+1. Connect to the UNC VPN. Off campus, `ssh longleaf` times out without it.
+2. Add `Host longleaf` (`HostName longleaf.unc.edu`, `ControlMaster auto`, `ControlPersist 4h`)
+   to `~/.ssh/config`. Every command below uses that alias, and the control socket saves
+   repeated logins.
+3. `uv sync` in this checkout (see [Setup](../setup.md)).
+4. `gh auth login` with an account that can push to `jcblemai/flu-metrocast`.
+5. Clone the Hubs (paths from the [Hub clones](index.md#hub-clones) table):
+
+```bash
+git clone --filter=blob:none --sparse https://github.com/reichlab/flu-metrocast.git production/hubs/flu-metrocast
+git -C production/hubs/flu-metrocast sparse-checkout set target-data hub-config auxiliary-data model-output
+git clone --filter=blob:none --sparse https://github.com/jcblemai/flu-metrocast.git production/hubs/flu-metrocast-fork
+git -C production/hubs/flu-metrocast-fork sparse-checkout set model-metadata model-output/ACCIDDA-Chromantis
+git -C production/hubs/flu-metrocast-fork remote add upstream https://github.com/reichlab/flu-metrocast.git
+git clone https://github.com/cdcepi/FluSight-forecast-hub.git production/hubs/FluSight-forecast-hub
+```
+
+The FluSight clone is needed only for NHSN California admissions, which set the California anchor.
+
+**Each week.** Each week has the following release times:
+- The Hub's target-data update merges on Wednesday at about 10 AM ET, and it carries ED through
+  the previous Saturday.
+- The California admissions come from CDPH's Friday publication. On Wednesday they run one
+  week further back, so Hub horizon −1 is not yet observed.
+- FluSight's NHSN data are also updated on Wednesday.
+- Files are due Wednesday at 8 PM ET.
+
+The examples below use the 28 November round. Set these shell variables first:
+
+```bash
+REF=2026-11-28; WED=2026-11-25; D=20261125      # Saturday reference date, Wednesday, Wednesday compact
+LL=/hickory/proj/jlessler/projects/tapestry-all
+```
+
+1. **Hub data, laptop.** Pull both clones. Then copy the MetroCast data to the two campaign
+   folders:
+
+```bash
+git -C production/hubs/flu-metrocast pull --ff-only; git -C production/hubs/FluSight-forecast-hub pull --ff-only
+H=production/hubs/flu-metrocast; S=$(mktemp -d)
+gh api repos/reichlab/flu-metrocast/commits/$(git -C $H rev-parse HEAD) > $S/commit.json
+cp $H/target-data/latest-data.csv $H/target-data/time-series.csv $H/auxiliary-data/locations.csv $H/hub-config/tasks.json $S/
+ssh longleaf "mkdir -p $LL/metrocast-20261019/data/metrocast-$D/source"
+scp -q $S/* longleaf:$LL/metrocast-20261019/data/metrocast-$D/source/
+scp -q $S/latest-data.csv longleaf:$LL/metrocast-ca-20261109/data/metrocast-california/source/hub-latest-data-$D.csv
+```
+
+2. **ED panel, Longleaf.** This builds `data/metrocast-$D/panel.npz`. Before going on, check how
+   many locations reach the previous Saturday:
+
+```bash
+ssh longleaf "cd $LL/metrocast-20261019 && PYTHONPATH=src:scripts .venv/bin/python scripts/build_metrocast.py --root data/metrocast-$D --truth-day $WED && sha256sum data/metrocast-$D/panel.npz"
+```
+
+3. **ED forecasts, Longleaf.** The two saved models run in parallel: `r010_c08` for weeks 0–3
+   and `full_season_finalist_1` for the full season, five seeds each. Set `--weeks` for the
+   full-season run to the number of weeks from `REF` to 12 June 2027 inclusive, plus one. That
+   is 30 for 28 November: last week's 31 minus one. The splice cuts the extra week.
+
+```bash
+O=output/metrocast/submission-$D; A="--reference $REF --tasks data/metrocast-$D/source/tasks.json --panel data/metrocast-$D/panel.npz"
+ssh longleaf "cd $LL/metrocast-20261019 && export PYTHONPATH=src:scripts && mkdir -p $O/winner $O/fullseason && \
+  srun -p general -c 8 --mem=24G -t 1:00:00 bash -c '\
+  .venv/bin/python scripts/metrocast_submit_export.py -e metrocast-submit-winner --name cv_winner_r010_c08 $A --out $O/winner/$REF-ACCIDDA-Chromantis.parquet & \
+  .venv/bin/python scripts/metrocast_submit_export.py -e metrocast-submit-fullseason --name full_season_finalist_1 $A --weeks 30 --out $O/fullseason/$REF-ACCIDDA-Chromantis-fullseason.parquet & wait'"
+```
+
+4. **California panel, Longleaf.** Download the CDPH Respiratory Virus Dashboard. Rename last
+   week's two input files with their date, make this week's files the current ones, and rebuild
+   `data/metrocast-california/panel.npz`. The private CDPH history (`cdphmodeling/flu_metrocast_california_data`)
+   is already in `source/` and does not change week to week. Replace `20261118` below with last
+   week's Wednesday.
+
+```bash
+ssh longleaf "cd $LL/metrocast-ca-20261109 && S=data/metrocast-california/source && mkdir -p \$S/dl-$D && \
+  curl -sSfL -o \$S/dl-$D/rv-dashboard.csv https://data.chhs.ca.gov/dataset/6724b36f-b89e-4fa7-9cbb-290526894511/resource/00a147ba-0410-4699-9e34-fd18bbb7017d/download/rv-dashboard.csv && \
+  mv \$S/hub-latest-data.csv \$S/hub-latest-data-20261118.csv && mv \$S/ca-rv-dashboard.csv \$S/ca-rv-dashboard-20261118.csv && \
+  cp \$S/hub-latest-data-$D.csv \$S/hub-latest-data.csv && cp \$S/dl-$D/rv-dashboard.csv \$S/ca-rv-dashboard.csv && \
+  PYTHONPATH=src .venv/bin/python scripts/build_metrocast_california.py && sha256sum data/metrocast-california/panel.npz"
+```
+
+5. **NHSN growth, laptop.** `G` = NHSN California admissions in the week before `REF`, divided
+   by NHSN in the last week the Hub's California data have, both from FluSight's newest
+   `time-series.csv` vintage. On 18 November it was 1,756 / 1,407 = 1.248; on 25 November,
+   1,710 / 1,854 = 0.922. The newest NHSN week is a first report and is usually revised up. The
+   same command saves the series for the PDF:
+
+```bash
+mkdir -p production/submissions/$REF/metrocast
+.venv/bin/python -I -c "
+import pandas as pd
+d = pd.read_csv('production/hubs/FluSight-forecast-hub/target-data/time-series.csv', dtype={'location': str})
+x = d[(d.location == '06') & (d.target == 'wk inc flu hosp') & (d.as_of == d.as_of.max())].set_index('target_end_date').observation
+h = pd.read_csv('production/hubs/flu-metrocast/target-data/latest-data.csv').query(\"target == 'Flu hosp admits'\").target_end_date.max()
+w = str((pd.Timestamp('$REF') - pd.Timedelta(weeks=1)).date())
+print('last Hub CA week', h, 'NHSN', x[h], '| week -1', w, 'NHSN', x[w], '| G =', round(x[w] / x[h], 4))
+x.rename('value').rename_axis('date').to_csv('production/submissions/$REF/metrocast/nhsn-california.csv')"
+```
+
+6. **California forecasts, Longleaf.** The 9 recipes × 5 seeds of `metrocast-ca-prod`, with the
+   whole trajectories scaled so that each fit's week −1 median equals the last observed week × `G`:
+
+```bash
+G=0.922
+ssh longleaf "cd $LL/metrocast-ca-20261109 && export PYTHONPATH=src:scripts && O=output/submission-$D-nhsn && mkdir -p \$O && \
+  srun -p general -c 16 --mem=32G -t 1:00:00 .venv/bin/python scripts/export_metrocast_california.py -e metrocast-ca-prod \
+  --recipes wide_cov_tp_state_ed_raw ref_wide wide_path ref_log1p ref_path ref_ili log1p_cov_tp_state cov_tp_growth_drop0.25 wide_log1p \
+  --reference $REF --anchor 1 --growth $G --out \$O/$REF-california.parquet"
+```
+
+7. **Copy back, laptop.** Copy the outputs into the round's folder:
+
+```bash
+cd production/submissions/$REF/metrocast && mkdir -p winner fullseason spliced california-nhsn
+scp -q "longleaf:$LL/metrocast-20261019/output/metrocast/submission-$D/winner/$REF-ACCIDDA-Chromantis.*" winner/
+scp -q "longleaf:$LL/metrocast-20261019/output/metrocast/submission-$D/fullseason/$REF-ACCIDDA-Chromantis-fullseason.*" fullseason/
+scp -q longleaf:$LL/metrocast-20261019/data/metrocast-$D/manifest.json panel-manifest.json
+scp -q "longleaf:$LL/metrocast-ca-20261109/output/submission-$D-nhsn/$REF-california.*" california-nhsn/
+cp ../../<last REF>/metrocast/{splice.py,merge.py,score_metrocast.py,plot_forecast_pdf.py} .
+```
+
+8. **Splice, merge, score, PDF, laptop.** All four scripts are per-round copies with the dates
+   written in, so edit them before running:
+   - `splice.py`: the reference date; the join week, `REF` + 3 weeks; the week after it, used
+     for the week-4/week-3 check; and the run length in the docstring and comment.
+   - `merge.py`: the reference date; the previous round's file, which the output's Parquet
+     schema is compared against; and the absolute path to the Hub's `tasks.json`, which is
+     written for the old laptop.
+   - `plot_forecast_pdf.py`: `REF`, the file paths and the first text page, which is rewritten
+     each week. It covers the data, last week's scores, what changed and the forecast's key
+     numbers.
+
+   Then run them:
+
+```bash
+P=../../../../.venv/bin/python
+$P -I splice.py
+$P -I merge.py california-nhsn $REF-ACCIDDA-Chromantis.parquet
+$P -I score_metrocast.py ../../../hubs/flu-metrocast perf 2026-10-24 2026-10-31 2026-11-07 2026-11-14 2026-11-21 | tee perf.txt
+$P -I plot_forecast_pdf.py ../../../hubs/flu-metrocast nhsn-california.csv $REF-ACCIDDA-Chromantis-metrocast-forecasts.pdf
+```
+
+   These run from inside the submission folder, so `P` points at the checkout's virtual
+   environment. `merge.py` checks the file against the Hub's `tasks.json`, so it fails if the
+   targets, locations, dates, sample counts or sample IDs are wrong. The California sample IDs
+   must be S101–S200, apart from ED's S1–S100. Score every past reference date we submitted.
+   Send the PDF for review before submitting.
+
+9. **Submit, laptop, after the PDF is approved.** Ask before opening the PR.
+
+```bash
+cd "$(git rev-parse --show-toplevel)"/production/hubs/flu-metrocast-fork && git fetch upstream && git checkout -B submit-$REF upstream/main
+cp ../../submissions/$REF/metrocast/$REF-ACCIDDA-Chromantis.parquet model-output/ACCIDDA-Chromantis/
+git add model-output/ACCIDDA-Chromantis && git commit -m "ACCIDDA-Chromantis $REF" && git push -u origin submit-$REF
+gh pr create --repo reichlab/flu-metrocast --head jcblemai:submit-$REF --title "ACCIDDA-Chromantis $REF" --body ""
+```
+
+10. **Record.** Add the round to the [submission log](#submission-log) with the models, input
+    data, file SHA256 and scores. Commit the round's folder on `main`, then run
+    `scripts/sync_longleaf.sh`.
 
 ## Submission log
 
