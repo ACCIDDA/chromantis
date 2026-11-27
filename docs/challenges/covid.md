@@ -97,7 +97,7 @@ Newest first. The shared data pulls of each Wednesday are on
 
 ### Reference date 28 November 2026
 
-**Same 40 fits, tree correction at half strength.** [PR 2105](https://github.com/CDCgov/covid19-forecast-hub/pull/2105) was opened at 22:19 EST on Thursday 26 November from branch `submit-2026-11-28` of the fork (commit `1a00391`, "ACCIDDA-Chromantis 2026-11-28", no PR description). The Hub gave this Thanksgiving week its own round in `tasks.json` (Hub change of 24 November), with the window closing Thursday 26 November instead of Wednesday.
+**Same 40 fits, tree correction at half strength.** [PR 2105](https://github.com/CDCgov/covid19-forecast-hub/pull/2105) was opened at 22:19 EST on Thursday 26 November from branch `submit-2026-11-28` of the fork (commit `1a00391`, "ACCIDDA-Chromantis 2026-11-28", no PR description). The Hub gave this Thanksgiving week its own round in `tasks.json` (Hub change of 24 November), with the window closing Thursday 26 November instead of Wednesday. Every check passed, including validation, and the Hub bot merged it at 22:21 EST.
 
 - **Choice of model.** The user kept the submitted fits rather than the drafts of `covid-rsv-search-20261124` (their coverage panel has never been built for a live week) or the earlier `covid-rsv-coverage-20261118` recipes (selected with leaky reporting errors and on live 2026-27 weeks). The full-strength file was made first (US medians 7,158; 8,236; 9,309; 10,090, above all 16 Hub models merged then); the user then chose half strength.
 - **Model:** release `production/releases/covid-gru-four-cs050.json` (the 40 fits of `covid-gru-four-candidate-20261103`, trees at half strength, no retraining), issuance 25 November, view `corrected`.
