@@ -100,6 +100,45 @@ Newest first. Each entry states the fitted checkpoints, training seasons and tre
 prediction labels, operational inputs, file hash and Hub PR record. The shared data pulls
 of each Wednesday are on [Weekly data pulls](weekly-inputs.md).
 
+### Reference date 28 November 2026
+
+**Manually amended.** New model masked A, then a state-by-state manual amendment toward the other Hub models, a day after the deadline. [PR 4244](https://github.com/cdcepi/FluSight-forecast-hub/pull/4244) was opened on Thursday 26 November 2026 at 21:49 EST from branch `submit-2026-11-28` of the fork (commit `0f30d01c`, masked A as run). The amended file replaced it in the same PR at 23:18 EST (commit `a468c0f5`, "ACCIDDA-Chromantis 2026-11-28 (manually amended)"). That commit failed Hub validation: the horizon column was written as `0.0`, since the peak rows have no horizon. Commit `5a924cc1` (23:22 EST) rewrote the horizons as integers, with the same values. The model metadata was not changed.
+
+- **Model (masked A), release `production/releases/masked-a-20261122.json`.** It is an equal mixture of three recipes from the flu search (`experiments/flu-search-20261120`), each with 80 fits (seeds 42-121) and no refit:
+  - `Bq.smp.ll1.nm10`;
+  - `ref.B.nm10`;
+  - `Ar.peak.nokinsa.nm10`.
+
+  Each fit was trained on 2022-23 through 2025-26 with finalized future flu admissions and ED share as labels, with each location's newest input week hidden with probability 0.1. The fits were trained on the coverage problem `us-flu-production-coverage`. Recipes were selected on 2023-24 through 2025-26 only.
+- **Operational inputs:** the 25 November reports, tree-corrected at full strength (root `data/operational-20261125`, coverage panel `panel-coverage.npz`).
+  - Delphi NHSN and NSSP, the Hub target data and Kinsa were pulled on 26 November (21:08-21:24 EST).
+  - The newest admission week, ending 21 November, had 11% fewer hospitals reporting than the week before (14% in California).
+  - Longleaf's environment needed epidatpy 0.7.0 (Delphi's API refuses 0.6).
+- **Why it was amended.**
+  - Masked A's week-3 median was below its week-0 median in 21 states, against 1 state for the median of the 71 other models.
+  - Our other models did the same on these reports: B7 at half and at full correction strength in 15 states, Bes in 21, and each masked A member alone in 16-25.
+  - Signals pulled the same night mostly kept rising: wastewater (NWSS), ILINet and clinical-lab positivity (the last two through 14 November), with ED share and coverage-adjusted admissions.
+  - California showed a plateau (ED share down 7%, wastewater flat). Texas was mixed (wastewater flat since mid-October, lab positivity slowing, ILINet still rising).
+- **Amendment rule (`production/submissions/2026-11-28/amended/build_flusight.py`).** A signal is rising if it grew by more than 5% in the newest week.
+  - A state where masked A fell by week 3 and over 60% of its signals were rising got the median of the other models, quantile by quantile.
+  - A state where that share was 40-60% got the 50/50 average of masked A and that median.
+  - Any location whose median was in the bottom 10% of the other models (FluSight-baseline included) at any horizon then moved one more step. This was the user's request: no forecast where we are lowest.
+
+  Result:
+  - **Median of the other models:** AK, AL, CO, FL, GA, HI, ID, KY, LA, MS, MT, NV, RI, TN, UT, WY.
+  - **50/50:** CA, DE, MA, ME, NE, OR, TX, WA.
+  - **Masked A:** the other 28 locations, the US included.
+  - The peak targets are Peak8 as before, unchanged.
+- **This choice uses 2026-27 data and other teams' forecasts.** It is a one-week production decision, not a model selection.
+- **Forecast (US admissions):** medians 18,841; 20,665; 22,079; 21,242 after 13,668 reported (not amended). For comparison, the median of the other models was 16,642 at week 0 and 23,694 at week 3. Sum of the states at week 3:
+  - 17,880 for masked A;
+  - 21,164 amended;
+  - 22,534 for the other models' median.
+- **File:** `production/submissions/2026-11-28/2026-11-28-ACCIDDA-Chromantis.csv`, SHA256 `ee7e83d30d16b89bcc386938bc38ed41853cfc1d308866d8e623775ffdccde77`, 12,532 rows. Masked A as run is in `superseded/` (SHA256 `702905d1...`).
+- **Record:**
+  - The interval and peer PDFs.
+  - `amended/`: the evidence table, the per-state decisions, the stand-in median of the other models, and `2026-11-28-flusight-amended-vs-not-vs-other-models.pdf` (three lines per location).
+
 ### Reference date 7 November 2026
 
 **Bes with its correction trees at half strength, submitted instead of B7**, on the user's decisions on 4 November. [PR 4011](https://github.com/cdcepi/FluSight-forecast-hub/pull/4011) was opened at 16:58 EST from branch `submit-2026-11-07` of the fork (commit `53ca46d2`, "ACCIDDA-Chromantis 2026-11-07", no PR description), based on the Hub's `main` of that afternoon (`487bc2ae`), with Bes at full tree strength; Hub validation passed. At 17:41 EST a second commit on the same branch (`4a80ae4c`, same message) replaced the file with Bes at half tree strength, before the deadline and before any merge. The full-strength file is in `production/submissions/2026-11-07/superseded/` (SHA256 `42e15293e12ace14afa0cceac31f88f7001ff51f2f89ceaff905e5017ea2e207`).

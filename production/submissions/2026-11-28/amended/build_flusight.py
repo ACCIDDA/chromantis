@@ -68,6 +68,7 @@ t['choice'] = choice
 assert (w.groupby(['location', 'target', 'horizon']).value.diff().dropna() >= 0).all(), 'quantiles not ordered'
 out = pd.concat([w[ours.columns], ours[~weekly]])
 assert len(out) == len(ours)
+out['horizon'] = out.horizon.astype('Int64')  # the peak rows have no horizon; the Hub reads this column as integers
 out.to_csv(f'{O}/amended/2026-11-28-ACCIDDA-Chromantis.csv', index=False)
 print(t.choice.value_counts().to_dict())
 print('models in the peer median (min/median), hosp:', pm.xs('wk inc flu hosp', level=1).models.min(), pm.xs('wk inc flu hosp', level=1).models.median(),

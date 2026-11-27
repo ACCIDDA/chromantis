@@ -7,7 +7,7 @@ import pandas as pd
 H = 'production/hubs/FluSight-forecast-hub'; A = 'production/submissions/2026-11-28/amended'
 loc = pd.read_csv(f'{H}/auxiliary-data/locations.csv', dtype=str).set_index('location')
 files = {'Amended': (f'{A}/2026-11-28-ACCIDDA-Chromantis.csv', 'C3'),
-         'Not amended (masked A)': ('production/submissions/2026-11-28/2026-11-28-ACCIDDA-Chromantis.csv', 'C0'),
+         'Not amended (masked A)': ('production/submissions/2026-11-28/superseded/2026-11-28-ACCIDDA-Chromantis.csv', 'C0'),
          'Median of the 71 other models': (f'{A}/2026-11-28-HubMedian-standin.csv', '0.35')}
 F = {}
 for k, (f, _) in files.items():

@@ -1,5 +1,5 @@
 {
-  "created_at": "2026-11-27T02:54:09.587685+00:00",
+  "created_at": "2026-11-27T04:19:23.388237+00:00",
   "reference_date": "2026-11-28",
   "hub_commit": "e69d757977396603bdfb89f09b86c51d5ccd504f",
   "hub": "/Users/chadi/Research/chromantis/production/hubs/FluSight-forecast-hub",
@@ -38,6 +38,7 @@
     "Cornell_JHU-hierarchSIR",
     "CyberEpi-EAKF",
     "DMAPRIME-HYB",
+    "DMAPRIME-QR (PR #4245)",
     "Emory-EpiRSI",
     "Epistorm-Ensemble_Flu",
     "FluSight-baseline",
@@ -115,6 +116,7 @@
     "Cornell_JHU-hierarchSIR",
     "CyberEpi-EAKF",
     "DMAPRIME-HYB",
+    "DMAPRIME-QR (PR #4245)",
     "Emory-EpiRSI",
     "Epistorm-Ensemble_Flu",
     "FluSight-baseline",
@@ -167,13 +169,11 @@
     "bayvaxbio-CountCast",
     "reasonspire-lagQR"
   ],
-  "warnings": [
-    "ACCIDDA-Chromantis: companion JSON hash does not match; model description not reused."
-  ],
+  "warnings": [],
   "sources": [
     {
       "path": "/Users/chadi/Research/chromantis/production/submissions/2026-11-28/2026-11-28-ACCIDDA-Chromantis.csv",
-      "sha256": "702905d15df16777fae4cc486545009a6a18b9637d37ad5815b841a1f015e1cf",
+      "sha256": "a53c66239144a66ac9808425fdd9eeff027b9a17bb02c2b3e167534d4d91099b",
       "role": "local",
       "model": "ACCIDDA-Chromantis"
     },
@@ -620,6 +620,12 @@
       "sha256": "66613ff6946b5a007cfb83fa7c6c1509b20ad12f57712d9567437f3f078fa319",
       "role": "peer",
       "model": "reasonspire-lagQR"
+    },
+    {
+      "path": "https://raw.githubusercontent.com/Ahammed-Tanvir/FluSight-forecast-hub/1d5f3061f16711bed31ada6dae5774856c0b9801/model-output/DMAPRIME-QR/2026-11-28-DMAPRIME-QR.csv",
+      "sha256": "8f6e14bb36bf6c03e25e5e6859ad5a26921d507a3ebb7416ae6279c553c826d9",
+      "role": "peer",
+      "model": "DMAPRIME-QR (PR #4245)"
     },
     {
       "path": "auxiliary-data/locations.csv",
