@@ -128,14 +128,6 @@
       "hosprep_flu",
       "hosprep_covid",
       "hosprep_rsv"
-    ],
-    "gtrends": [
-      "gt_flu_topic",
-      "gt_flu_symptoms",
-      "gt_tamiflu"
-    ],
-    "gt_flu": [
-      "gt_flu_topic"
     ]
   }
 }
