@@ -122,7 +122,12 @@ def export(release, members, hub, out, samples=False):
     if len(panel_hashes) != 1 or len(issues) != 1 or not np.array_equal(first['quantile_levels'], LEVELS):
         raise ValueError('Inconsistent operational snapshot, issuance or quantile grid')
     reference = date.fromisoformat(str(first['context_end'][0])) + timedelta(days=7)
-    tasks = json.loads((hub / 'hub-config/tasks.json').read_text())['rounds'][0]['model_tasks']
+    # The round that lists this reference date: Hubs split holiday weeks into their own round
+    # (COVID and RSV Hubs, 28 Nov 2026: a separate round whose window closes a day later).
+    rounds = json.loads((hub / 'hub-config/tasks.json').read_text())['rounds']
+    listed = lambda r: any(reference.isoformat() in (t['task_ids']['reference_date'].get('required') or []) +
+                           (t['task_ids']['reference_date'].get('optional') or []) for t in r['model_tasks'])
+    tasks = next((r for r in rounds if listed(r)), rounds[0])['model_tasks']
     locations = pd.read_csv(hub / 'auxiliary-data/locations.csv', dtype={'location': str})
     mapping = dict(zip(locations.abbreviation, locations.location))
     allowed = lambda spec: (spec.get('required') or []) + (spec.get('optional') or [])

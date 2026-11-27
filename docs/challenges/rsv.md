@@ -15,9 +15,9 @@ admissions or log admissions ([Respiratory hub rules](../reference/hub-scoring-2
 | Item | Value |
 |---|---|
 | Public model | ACCIDDA-Chromantis |
-| Submitted | 17, 24 and 31 October, 7, 14 and 21 November 2026 |
+| Submitted | 17, 24 and 31 October, 7, 14, 21 and 28 November 2026 |
 | Current model | The same 40 fits with the tree correction at half strength, release `production/releases/rsv-four-cs050.json` (from 14 November; `rsv-four-20261014.json`, full strength, before) |
-| Latest file | 21 November 2026, [PR 738](https://github.com/CDCgov/rsv-forecast-hub/pull/738), merged 18 November |
+| Latest file | 28 November 2026, [PR 766](https://github.com/CDCgov/rsv-forecast-hub/pull/766), opened 26 November |
 | What we submit | 52 locations (no Puerto Rico), horizons 0–3, both targets, quantiles and 200 samples |
 
 Submissions by `jcblemai`, `emprzy` and `jlessler` merge automatically once Hub validation
@@ -90,6 +90,15 @@ archived 2024–25 and 2025–26 reports. There is no report page for this searc
 
 Newest first. The shared data pulls of each Wednesday are on
 [Weekly data pulls](weekly-inputs.md).
+
+### Reference date 28 November 2026
+
+**Same 40 fits, tree correction at half strength, as on 14 and 21 November.** [PR 766](https://github.com/CDCgov/rsv-forecast-hub/pull/766) was opened at 22:19 EST on Thursday 26 November from branch `submit-2026-11-28` of the fork (commit `497ddd8`, "ACCIDDA-Chromantis 2026-11-28", no PR description). As for COVID, the Hub gave this Thanksgiving week its own round, with the window closing Thursday 26 November.
+
+- **Model:** release `production/releases/rsv-four-cs050.json`, issuance 25 November, view `corrected`. The user kept it rather than the drafts of `covid-rsv-search-20261124` (see the [COVID entry](covid.md#reference-date-28-november-2026)).
+- **Operational inputs:** [25 November root](weekly-inputs.md#operational-inputs-issuance-25-november-2026-reference-date-28-november), RSV panel `panel-rsv.npz` (built 26 November with `datasets/respiratory-us-weekly-rsv.json`, NHSN RSV admissions before 2024-11-02 masked), SHA256 `3c90a9e0bb168805360ec0104bd4adeb786ec26634f1cccfdf08f4bf57377744`.
+- **File:** `production/submissions/2026-11-28/rsv/2026-11-28-ACCIDDA-Chromantis.parquet`, SHA256 `dfbea3f935eb8a9885a6d62e3804ce0c1f2283fcbfcd7ac13ef0575413c4dcdd`; the CSV beside it has the same rows. 9,568 quantile and 83,200 sample rows: 52 locations, horizons 0-3, admissions and ED share. US admissions medians 2,388; 2,849; 3,369; 3,974 after 1,687 reported for the week ending 21 November (1,688 the week before). The 14 Hub models merged when it was run (baseline included) had horizon-0 US medians of 1,687-2,702.
+- **Record:** interval PDFs and the peer comparison (Hub clone `38b43bb`) in `production/submissions/2026-11-28/rsv/`.
 
 ### Reference date 21 November 2026
 

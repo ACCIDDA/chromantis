@@ -1,0 +1,194 @@
+{
+  "created_at": "2026-11-27T03:19:44.053301+00:00",
+  "reference_date": "2026-11-28",
+  "hub_commit": "38b43bb7a9d7a161399e4307feacb65b853d80c5",
+  "hub": "/Users/chadi/Research/Tapestry/production/hubs/rsv-forecast-hub",
+  "local_labels": [
+    "ACCIDDA-Chromantis"
+  ],
+  "locations": [
+    "US",
+    "06",
+    "48",
+    "36",
+    "37",
+    "19"
+  ],
+  "featured_peers": [
+    "ACCIDDA-insightcast",
+    "CEPH-Rtrend_rsv",
+    "CFA-NowcastAutoGP",
+    "CFA-PyRenew_E",
+    "CFA-PyRenew_H",
+    "CFA-PyRenew_HE",
+    "CMU-TimeSeries",
+    "DMAPRIME-HYB",
+    "Emory-EpiRSI",
+    "Google_SAI-RSVEns",
+    "NAU-Copycat",
+    "NAU-epymorph",
+    "NAU-epymorph_strata",
+    "RSVHub-baseline",
+    "UGA_flucast-INFLAenza",
+    "UM-DeepOutbreak",
+    "fonz-wardweather"
+  ],
+  "missing_featured_peers": [],
+  "peer_models": [
+    "ACCIDDA-insightcast",
+    "CEPH-Rtrend_rsv",
+    "CFA-NowcastAutoGP",
+    "CFA-PyRenew_E",
+    "CFA-PyRenew_H",
+    "CFA-PyRenew_HE",
+    "CMU-TimeSeries",
+    "DMAPRIME-HYB",
+    "Emory-EpiRSI",
+    "Google_SAI-RSVEns",
+    "NAU-Copycat",
+    "NAU-epymorph",
+    "NAU-epymorph_strata",
+    "RSVHub-baseline",
+    "UGA_flucast-INFLAenza",
+    "UM-DeepOutbreak",
+    "fonz-wardweather"
+  ],
+  "warnings": [],
+  "sources": [
+    {
+      "path": "/Users/chadi/Research/Tapestry/production/submissions/2026-11-28/rsv/2026-11-28-ACCIDDA-Chromantis.csv",
+      "sha256": "e85f4285079c8c244ed0b47a3fb8d4038867b6227d38c21f5244529ce9b229b8",
+      "role": "local",
+      "model": "ACCIDDA-Chromantis",
+      "definition": {
+        "note": "RSV four-recipe mixture (fixed 2026-10-14 before its score was seen): Ball_c0w512 (Ba_ll: width-512 direct-quantile MLP, neighbouring-state exchange, all actual archived reports, log-loss 0.75, calendar features off), A4c0 (A4: width-192 sampled MLP with corrected histories, Kinsa, log-loss 1, calendar off), A4i (A4 with all six admission/ED input histories) and Bw (B_width256 with all six input histories); Ball_c0w512 also uses all six. Trained on 2022-23 through 2025-26 (no held-out season), seeds 42-51 per recipe, on panel-rsv.npz: NHSN RSV admissions before 2024-11-02 treated as unobserved (voluntary reporting), so admission labels start November 2024; RSV ED from October 2022. Training admission/ED histories made preliminary with artificial errors from the prescribed 2025-26 RSV reporting process. Labels: latest finalized future RSV admissions and ED (September 2026 panel). Equal weight per recipe and per seed; predictive distributions mixed. Selected by tree search rsv-tree-20261013 (experiments/rsv-tree-20261013/protocol.json): held-out states/DC log-admission WIS 0.3105 on artificial preliminary inputs, 0.3114 replayed on archived reports (2024-25, 2025-26). Correction strength 0.5: the saved trees' log-correction of the two newest reported weeks is multiplied by 0.5 at issuance (no retraining; release rsv-four-20261014)."
+      },
+      "operational_panel_sha256": "3c90a9e0bb168805360ec0104bd4adeb786ec26634f1cccfdf08f4bf57377744"
+    },
+    {
+      "path": "model-output/ACCIDDA-insightcast/2026-11-28-ACCIDDA-insightcast.csv",
+      "sha256": "93b3c38d39451246fb8b94ab093d72c012d386134f71efe550da1f6712e3926f",
+      "role": "peer",
+      "model": "ACCIDDA-insightcast"
+    },
+    {
+      "path": "model-output/CEPH-Rtrend_rsv/2026-11-28-CEPH-Rtrend_rsv.csv",
+      "sha256": "7c62cbb180351113177bf07fa2bb790827faa9b90340efc2017ea44a868e62d5",
+      "role": "peer",
+      "model": "CEPH-Rtrend_rsv"
+    },
+    {
+      "path": "model-output/CFA-NowcastAutoGP/2026-11-28-CFA-NowcastAutoGP.csv",
+      "sha256": "7ba1972369d1c4b7980a629bb3a6ea978706c48b27dbcc5af0f943cfefa2b2be",
+      "role": "peer",
+      "model": "CFA-NowcastAutoGP"
+    },
+    {
+      "path": "model-output/CFA-PyRenew_E/2026-11-28-CFA-PyRenew_E.csv",
+      "sha256": "9640afba38a32864827b17a4b349ee31c6f2309d2bec9773fc373171376ee02f",
+      "role": "peer",
+      "model": "CFA-PyRenew_E"
+    },
+    {
+      "path": "model-output/CFA-PyRenew_H/2026-11-28-CFA-PyRenew_H.csv",
+      "sha256": "92858063125b54be810295b6ebee6e88c7c74e4ae616bc148ebbf43a46c00c87",
+      "role": "peer",
+      "model": "CFA-PyRenew_H"
+    },
+    {
+      "path": "model-output/CFA-PyRenew_HE/2026-11-28-CFA-PyRenew_HE.csv",
+      "sha256": "5f2eabf8dc035d68ac49ba75be0f30f4262a26fbe1dde7b95e87ee9ee0740d9d",
+      "role": "peer",
+      "model": "CFA-PyRenew_HE"
+    },
+    {
+      "path": "model-output/CMU-TimeSeries/2026-11-28-CMU-TimeSeries.csv",
+      "sha256": "52928f05b7b7260946a5bf2a4d9bb05727924f747025026cd08abde8ad6c665e",
+      "role": "peer",
+      "model": "CMU-TimeSeries"
+    },
+    {
+      "path": "model-output/DMAPRIME-HYB/2026-11-28-DMAPRIME-HYB.csv",
+      "sha256": "271b47569c28874b2e7eec380f6c305ed12865314d80a472339bd40d017040fb",
+      "role": "peer",
+      "model": "DMAPRIME-HYB"
+    },
+    {
+      "path": "model-output/Emory-EpiRSI/2026-11-28-Emory-EpiRSI.csv",
+      "sha256": "fc5182937a05afa916699084b2730934cfdab5a5cdc4fa1960311fcfa9788517",
+      "role": "peer",
+      "model": "Emory-EpiRSI"
+    },
+    {
+      "path": "model-output/Google_SAI-RSVEns/2026-11-28-Google_SAI-RSVEns.csv",
+      "sha256": "3ec623cff26778b662d4ac320d3d5d9d27a7b9b405cf40f51f2781140a86b196",
+      "role": "peer",
+      "model": "Google_SAI-RSVEns"
+    },
+    {
+      "path": "model-output/NAU-Copycat/2026-11-28-NAU-Copycat.parquet",
+      "sha256": "d26d0295a2844dffcc01938f3b07e490e1df251bf928d8046fda0378ab0c2646",
+      "role": "peer",
+      "model": "NAU-Copycat"
+    },
+    {
+      "path": "model-output/NAU-epymorph/2026-11-28-NAU-epymorph.csv",
+      "sha256": "fd37be1c446587791791988a27c0e54ca32b1c38880ba5c3163c42440082dd72",
+      "role": "peer",
+      "model": "NAU-epymorph"
+    },
+    {
+      "path": "model-output/NAU-epymorph_strata/2026-11-28-NAU-epymorph_strata.csv",
+      "sha256": "ebb132adc7c4098f27c5c8e5ad38cde040c1dd268f174b2c4833f7765f3ca6e2",
+      "role": "peer",
+      "model": "NAU-epymorph_strata"
+    },
+    {
+      "path": "model-output/RSVHub-baseline/2026-11-28-RSVHub-baseline.csv",
+      "sha256": "9033993bcc4ebc9b47c5bb5d04dab31f9d0e00c4ebbcbff8829e323b6883dfea",
+      "role": "peer",
+      "model": "RSVHub-baseline"
+    },
+    {
+      "path": "model-output/UGA_flucast-INFLAenza/2026-11-28-UGA_flucast-INFLAenza.parquet",
+      "sha256": "e5598f339656b0a69d839ace8e32e7d27ec29ed3ca2a1e76d53a0877860378b6",
+      "role": "peer",
+      "model": "UGA_flucast-INFLAenza"
+    },
+    {
+      "path": "model-output/UM-DeepOutbreak/2026-11-28-UM-DeepOutbreak.csv",
+      "sha256": "23e36282c2fa354f99b47308188c0f0c921f97ca9ef3756ee1f25fde692a2d29",
+      "role": "peer",
+      "model": "UM-DeepOutbreak"
+    },
+    {
+      "path": "model-output/fonz-wardweather/2026-11-28-fonz-wardweather.csv",
+      "sha256": "2ecdce52301a3295ba1f60b6d8085f327b151ce941ef8522dead3e486426f9c9",
+      "role": "peer",
+      "model": "fonz-wardweather"
+    },
+    {
+      "path": "auxiliary-data/locations.csv",
+      "sha256": "96b14b7376cd5ba6a4dd44b0cae860fdb1a40ddec776328c1b3c39c8c14b0636",
+      "role": "locations",
+      "model": null
+    },
+    {
+      "path": "target-data/time-series.parquet",
+      "sha256": "ae9a7ef0eb39505467b1f68d405c3fff99ae16de70dbc60265762bf8c2a6cc44",
+      "role": "history",
+      "model": null
+    }
+  ],
+  "history_cutoff": "2026-11-21",
+  "zoom_weeks": 8,
+  "assumptions": [
+    "Descriptive forecast comparison, not accuracy scoring.",
+    "Latest target values at the pinned Hub commit, not reconstructed issuance-time truth.",
+    "No history dated after reference minus seven days is shown as current observations.",
+    "Prior season aligned by CDC week; unmatched week 53 omitted, no value rescaling.",
+    "Peer bands weight each available model median equally; local candidates are excluded.",
+    "Partial peer coverage is retained; no missing forecasts or history are imputed.",
+    "Training details are copied only from matching local export metadata; peer training is not inferred."
+  ]
+}

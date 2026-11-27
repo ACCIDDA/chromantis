@@ -7,6 +7,13 @@ The 14 October 2026 pulls (reference date 17 October) are recorded in the 17 Oct
 [RSV](rsv.md#reference-date-17-october-2026) entries. MetroCast and BDBV read their own Hub
 target data, recorded in their entries.
 
+## Operational inputs, issuance 25 November 2026 (reference date 28 November)
+
+Root `data/operational-20261125/` on the laptop, pulled on Thursday 26 November 2026 from about 21:55 EST (same sources as 18 November); the Hubs' target data had reached the week ending 21 November (as of 25 November). Panels used for COVID and RSV (FluSight read the copy built on Longleaf; see its entry):
+
+- Influenza (also read by COVID): `data/operational-20261125/processed/panel.npz`, built 22:05 EST, SHA256 `71ae17186fb43829cdd0de6c6193f9dec2a6080051f7255930ebe80406624b4d`.
+- RSV: `panel-rsv.npz` in the same folder, NHSN RSV admissions before 2024-11-02 masked, SHA256 `3c90a9e0bb168805360ec0104bd4adeb786ec26634f1cccfdf08f4bf57377744`.
+
 ## Operational inputs, issuance 18 November 2026 (reference date 21 November)
 
 Root `data/operational-20261118/`: a new root sharing the raw snapshot store with the 11 November catalog, and fresh pulls on 18 November 2026 between 20:58 and 21:06 UTC (15:58-16:06 EST) of Delphi NHSN, Delphi NSSP, the FluSight, RSV and COVID Hub target histories, and PopHIVE Kinsa (pulled from the COVID/RSV session). The Hubs' target data had reached the week ending 14 November. Panels (built 16:09 EST):

@@ -1,0 +1,210 @@
+{
+  "created_at": "2026-11-27T03:19:28.719065+00:00",
+  "reference_date": "2026-11-28",
+  "hub_commit": "ac5bae13f99351f6ecba10d645de04bcfb6fcee7",
+  "hub": "/Users/chadi/Research/Tapestry/production/hubs/covid19-forecast-hub",
+  "local_labels": [
+    "ACCIDDA-Chromantis"
+  ],
+  "locations": [
+    "US",
+    "06",
+    "48",
+    "36",
+    "37",
+    "19"
+  ],
+  "featured_peers": [
+    "CADPH-CovidCAT_Ensemble",
+    "CEPH-Rtrend_covid",
+    "CFA-NowcastAutoGP",
+    "CFA-PyRenew_E",
+    "CFA-PyRenew_H",
+    "CFA-PyRenew_HE",
+    "CMU-TimeSeries",
+    "CMU-TimeSeries_Cal",
+    "CovidHub-baseline",
+    "DMAPRIME-HYB",
+    "DMAPRIME-QR",
+    "Emory-EpiRSI",
+    "NEU_ISI-AdaptiveEnsemble",
+    "OHT_JHU-nbxd",
+    "UGA_flucast-INFLAenza",
+    "UM-DeepOutbreak",
+    "UMass-ar6_pooled",
+    "UMass-gbqr",
+    "ZJU_LeiLab-MPUDE_ens"
+  ],
+  "missing_featured_peers": [],
+  "peer_models": [
+    "CADPH-CovidCAT_Ensemble",
+    "CEPH-Rtrend_covid",
+    "CFA-NowcastAutoGP",
+    "CFA-PyRenew_E",
+    "CFA-PyRenew_H",
+    "CFA-PyRenew_HE",
+    "CMU-TimeSeries",
+    "CMU-TimeSeries_Cal",
+    "CovidHub-baseline",
+    "DMAPRIME-HYB",
+    "DMAPRIME-QR",
+    "Emory-EpiRSI",
+    "NEU_ISI-AdaptiveEnsemble",
+    "OHT_JHU-nbxd",
+    "UGA_flucast-INFLAenza",
+    "UM-DeepOutbreak",
+    "UMass-ar6_pooled",
+    "UMass-gbqr",
+    "ZJU_LeiLab-MPUDE_ens"
+  ],
+  "warnings": [],
+  "sources": [
+    {
+      "path": "/Users/chadi/Research/Tapestry/production/submissions/2026-11-28/covid/2026-11-28-ACCIDDA-Chromantis.csv",
+      "sha256": "b0b6e47adbbfbb1bbbe76c57ce34427a63580a8bdf2cd62378e5438597a587a8",
+      "role": "local",
+      "model": "ACCIDDA-Chromantis",
+      "definition": {
+        "note": "Candidate for the first COVID Hub submission, 7 November 2026. Equal mixture of four recipes, each refit on all of 2022-23 through 2025-26 with finalized future admissions and ED labels, ten seeds (42-51) each: (1) width-192 sampled MLP with neighbouring-state exchange and artificial reporting errors on half of training episodes; (2) width-256 direct-quantile model with a GRU encoder, a US-only summary shared with states, and reporting errors on 25% of episodes; (3) width-256 direct-quantile MLP with finalized training histories, a US-only summary and multiscale signal features; (4) width-256 direct-quantile MLP with neighbouring-state exchange, errors on half of episodes and weight decay 1e-4. No covariates. Deployment uses corrected reported inputs. Not yet submitted. Correction strength 0.5: the saved trees' log-correction of the two newest reported weeks is multiplied by 0.5 at issuance (no retraining; release covid-gru-four-candidate-20261103)."
+      },
+      "operational_panel_sha256": "71ae17186fb43829cdd0de6c6193f9dec2a6080051f7255930ebe80406624b4d"
+    },
+    {
+      "path": "model-output/CADPH-CovidCAT_Ensemble/2026-11-28-CADPH-CovidCAT_Ensemble.csv",
+      "sha256": "ac753f04df63c56ee89c20c37fa282e0bae5361b093749e37ec2127f024a1175",
+      "role": "peer",
+      "model": "CADPH-CovidCAT_Ensemble"
+    },
+    {
+      "path": "model-output/CEPH-Rtrend_covid/2026-11-28-CEPH-Rtrend_covid.csv",
+      "sha256": "8ed4ed330d73882884d0cd2657751b2c3a84a899f9cacb74fe5aae38ed65d333",
+      "role": "peer",
+      "model": "CEPH-Rtrend_covid"
+    },
+    {
+      "path": "model-output/CFA-NowcastAutoGP/2026-11-28-CFA-NowcastAutoGP.csv",
+      "sha256": "f629dd65beaed2d762f9e84faa7b49b90dee186981f453f237079be673557398",
+      "role": "peer",
+      "model": "CFA-NowcastAutoGP"
+    },
+    {
+      "path": "model-output/CFA-PyRenew_E/2026-11-28-CFA-PyRenew_E.csv",
+      "sha256": "4cbcd5e52802ca0a06d165d0ab7f20dc3ee3354a2b8cf8d4f8e2b359d0cfc0ea",
+      "role": "peer",
+      "model": "CFA-PyRenew_E"
+    },
+    {
+      "path": "model-output/CFA-PyRenew_H/2026-11-28-CFA-PyRenew_H.csv",
+      "sha256": "a254b9c60760ee4c3ddc5e8fffb273788651d234ae79f1d7d8f6dca1dfb64b13",
+      "role": "peer",
+      "model": "CFA-PyRenew_H"
+    },
+    {
+      "path": "model-output/CFA-PyRenew_HE/2026-11-28-CFA-PyRenew_HE.csv",
+      "sha256": "e1459fddbae25e79e5cb577e74c318dea94f8ee74e13a1f56ff3aedfc73d8138",
+      "role": "peer",
+      "model": "CFA-PyRenew_HE"
+    },
+    {
+      "path": "model-output/CMU-TimeSeries/2026-11-28-CMU-TimeSeries.csv",
+      "sha256": "189a15aabeb6fbdf39345532ad25e2a10f8dc3910c3cc172da0f851366c34329",
+      "role": "peer",
+      "model": "CMU-TimeSeries"
+    },
+    {
+      "path": "model-output/CMU-TimeSeries_Cal/2026-11-28-CMU-TimeSeries_Cal.csv",
+      "sha256": "510fd8b006de4b68c833bf2e558d9005590cea68f349290b9053654f1cfc87e0",
+      "role": "peer",
+      "model": "CMU-TimeSeries_Cal"
+    },
+    {
+      "path": "model-output/CovidHub-baseline/2026-11-28-CovidHub-baseline.csv",
+      "sha256": "e8e81f516fca3c45c3e7c3403ba8b71e803320a92158340e371db3347cb7e16d",
+      "role": "peer",
+      "model": "CovidHub-baseline"
+    },
+    {
+      "path": "model-output/DMAPRIME-HYB/2026-11-28-DMAPRIME-HYB.csv",
+      "sha256": "c8b21b9275807e40097c838082ea1c0b184e279e4e75db9eb8995ed5f5da2845",
+      "role": "peer",
+      "model": "DMAPRIME-HYB"
+    },
+    {
+      "path": "model-output/DMAPRIME-QR/2026-11-28-DMAPRIME-QR.csv",
+      "sha256": "5d181de8444c6dcb18c7fab92d7c94dcd1a2497bd31b40a15dddcb4088a39a14",
+      "role": "peer",
+      "model": "DMAPRIME-QR"
+    },
+    {
+      "path": "model-output/Emory-EpiRSI/2026-11-28-Emory-EpiRSI.csv",
+      "sha256": "5cc58acda91f7424a394deb56863ce4aa48ac0da784f4fed66802c9813e31141",
+      "role": "peer",
+      "model": "Emory-EpiRSI"
+    },
+    {
+      "path": "model-output/NEU_ISI-AdaptiveEnsemble/2026-11-28-NEU_ISI-AdaptiveEnsemble.csv",
+      "sha256": "38ddc3982ad7ca22d97d591075aab85850eeef9fc6080b96fc863dfe909e7ec2",
+      "role": "peer",
+      "model": "NEU_ISI-AdaptiveEnsemble"
+    },
+    {
+      "path": "model-output/OHT_JHU-nbxd/2026-11-28-OHT_JHU-nbxd.csv",
+      "sha256": "d827fc432f59452a57ca2428861f2d18eb325a84911526c74e3362e73b2d1b20",
+      "role": "peer",
+      "model": "OHT_JHU-nbxd"
+    },
+    {
+      "path": "model-output/UGA_flucast-INFLAenza/2026-11-28-UGA_flucast-INFLAenza.csv",
+      "sha256": "d4263c82aa4d7cb0fb1c44ea49ea1920b6db8823496e032bee4adb423071adf4",
+      "role": "peer",
+      "model": "UGA_flucast-INFLAenza"
+    },
+    {
+      "path": "model-output/UM-DeepOutbreak/2026-11-28-UM-DeepOutbreak.csv",
+      "sha256": "79628255e07b2d4316650bc034cf895e7272a7af1de582e4180562af6ba0801c",
+      "role": "peer",
+      "model": "UM-DeepOutbreak"
+    },
+    {
+      "path": "model-output/UMass-ar6_pooled/2026-11-28-UMass-ar6_pooled.csv",
+      "sha256": "bd6d474f91f809a739337c1f35b1cd4ccaa92c1a9746886a8e15db2f832be1af",
+      "role": "peer",
+      "model": "UMass-ar6_pooled"
+    },
+    {
+      "path": "model-output/UMass-gbqr/2026-11-28-UMass-gbqr.csv",
+      "sha256": "1e993b0eff04c587f51230bc4a537c70161f9c0e03bce0c633c52cc4809913c7",
+      "role": "peer",
+      "model": "UMass-gbqr"
+    },
+    {
+      "path": "model-output/ZJU_LeiLab-MPUDE_ens/2026-11-28-ZJU_LeiLab-MPUDE_ens.csv",
+      "sha256": "bfbc4ea4d31bdcace146de38673fdff9620d32941a9b63b6e926e4ed6c1b6ce5",
+      "role": "peer",
+      "model": "ZJU_LeiLab-MPUDE_ens"
+    },
+    {
+      "path": "auxiliary-data/locations.csv",
+      "sha256": "96b14b7376cd5ba6a4dd44b0cae860fdb1a40ddec776328c1b3c39c8c14b0636",
+      "role": "locations",
+      "model": null
+    },
+    {
+      "path": "target-data/time-series.parquet",
+      "sha256": "b41843711558f52d096a6156832bacb6d4ef1f96aa81ce82bbbbf7767cf04974",
+      "role": "history",
+      "model": null
+    }
+  ],
+  "history_cutoff": "2026-11-21",
+  "zoom_weeks": 8,
+  "assumptions": [
+    "Descriptive forecast comparison, not accuracy scoring.",
+    "Latest target values at the pinned Hub commit, not reconstructed issuance-time truth.",
+    "No history dated after reference minus seven days is shown as current observations.",
+    "Prior season aligned by CDC week; unmatched week 53 omitted, no value rescaling.",
+    "Peer bands weight each available model median equally; local candidates are excluded.",
+    "Partial peer coverage is retained; no missing forecasts or history are imputed.",
+    "Training details are copied only from matching local export metadata; peer training is not inferred."
+  ]
+}
