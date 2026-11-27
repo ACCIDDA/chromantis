@@ -1,0 +1,59 @@
+iteration,target,location,pooled_share,models_pooled
+0,Flu ED visits pct,baltimore,0.5,11
+0,Flu ED visits pct,bangor,0.5,11
+0,Flu ED visits pct,beaumont,0.5,11
+0,Flu ED visits pct,brownsville,0.5,11
+0,Flu ED visits pct,bryan,0.5,11
+0,Flu ED visits pct,charleston,0.5,11
+0,Flu ED visits pct,cherokee,0.5,11
+0,Flu ED visits pct,colorado,0.5,11
+0,Flu ED visits pct,colorado-springs,0.5,11
+0,Flu ED visits pct,columbia,0.5,11
+0,Flu ED visits pct,dallas,0.5,11
+0,Flu ED visits pct,denton,0.5,11
+0,Flu ED visits pct,eugene,0.5,11
+0,Flu ED visits pct,floyd,0.5,11
+0,Flu ED visits pct,galveston,0.5,11
+0,Flu ED visits pct,georgia,0.5,11
+0,Flu ED visits pct,greenville,0.5,11
+0,Flu ED visits pct,hall,0.5,11
+0,Flu ED visits pct,harford,0.5,11
+0,Flu ED visits pct,henry,0.5,11
+0,Flu ED visits pct,houston,0.5,11
+0,Flu ED visits pct,indiana,0.5,11
+0,Flu ED visits pct,laredo,0.5,11
+0,Flu ED visits pct,larimer,0.5,11
+0,Flu ED visits pct,lubbock,0.5,11
+0,Flu ED visits pct,lynn,0.5,11
+0,Flu ED visits pct,marietta,0.5,11
+0,Flu ED visits pct,massachusetts,0.5,11
+0,Flu ED visits pct,mcallen,0.5,11
+0,Flu ED visits pct,montgomery,0.5,11
+0,Flu ED visits pct,new-york,0.5,11
+0,Flu ED visits pct,portland,0.5,11
+0,Flu ED visits pct,rtp-area,0.5,10
+0,Flu ED visits pct,south-carolina,0.5,11
+0,Flu ED visits pct,st-paul,0.5,11
+0,Flu ED visits pct,tyler,0.5,11
+0,Flu ED visits pct,utah-county,0.5,10
+0,Flu ED visits pct,virginia,0.5,11
+0,Flu ED visits pct,waco,0.5,11
+0,Flu hosp admits,bay-area,0.5,4
+0,Flu hosp admits,california,0.5,4
+0,Flu hosp admits,central-california,0.5,4
+0,Flu hosp admits,greater-sierra-sacramento,0.5,4
+0,Flu hosp admits,los-angeles,0.5,4
+0,Flu hosp admits,rural-north,0.5,4
+0,Flu hosp admits,southern-california,0.5,4
+1,Flu ED visits pct,baltimore,1.0,11
+1,Flu ED visits pct,bangor,1.0,11
+1,Flu ED visits pct,beaumont,1.0,11
+1,Flu ED visits pct,brownsville,1.0,11
+1,Flu ED visits pct,bryan,1.0,11
+1,Flu ED visits pct,galveston,1.0,11
+1,Flu ED visits pct,greenville,1.0,11
+1,Flu ED visits pct,houston,1.0,11
+1,Flu ED visits pct,indiana,1.0,11
+1,Flu ED visits pct,portland,1.0,11
+1,Flu ED visits pct,south-carolina,1.0,11
+1,Flu ED visits pct,waco,1.0,11

@@ -21,9 +21,11 @@ truth = pd.read_csv(f'{hub}/target-data/latest-data.csv').assign(date=lambda d: 
 meta = pd.read_csv(f'{hub}/auxiliary-data/locations.csv').drop_duplicates('location').set_index('location')
 ed_obs = truth[truth.target == 'Flu ED visits pct']
 ca_obs = truth[truth.target == 'Flu hosp admits']
-four = pd.read_parquet('spliced/2026-11-28-ACCIDDA-Chromantis.parquet').assign(date=lambda d: pd.to_datetime(d.target_end_date))
+import os
+FILE = os.environ.get('FILE')  # amended Hub file: ED and California rows both read from it
+four = (pd.read_parquet(FILE).query("target == 'Flu ED visits pct'") if FILE else pd.read_parquet('spliced/2026-11-28-ACCIDDA-Chromantis.parquet')).assign(date=lambda d: pd.to_datetime(d.target_end_date))
 full = four
-ca = pd.read_parquet('california-nhsn/2026-11-28-california.parquet').assign(date=lambda d: pd.to_datetime(d.target_end_date))
+ca = (pd.read_parquet(FILE).query("target == 'Flu hosp admits'") if FILE else pd.read_parquet('california-nhsn/2026-11-28-california.parquet')).assign(date=lambda d: pd.to_datetime(d.target_end_date))
 nhsn = pd.read_csv(nhsn, parse_dates=['date'])
 pair = pd.read_csv('perf-pairwise-Flu_ED_visits_pct.csv', index_col=0).rel_wis
 past = pd.read_csv('perf-scores.csv').query("target == 'Flu ED visits pct'")
@@ -58,6 +60,20 @@ def text_page(pdf, title, body):
 rng = np.random.default_rng(0)
 with PdfPages(out) as pdf:
     us = past[past.model == 'ACCIDDA-Chromantis']
+    if FILE: text_page(pdf, 'AMENDED file, 28 November 2026 (replaces PR 713 content)', (
+        'Changes from the submitted file, location by location (rules in amend_ed.py and amend_low.py):\n\n'
+        '1. ED, where the 4-week model fell by week 3 (45 locations): evidence = local ED growth last week and the\n'
+        '   state\'s NHSN admissions (x1.05 revision), wastewater, ILINet and lab positivity; rising = growth > 1.05.\n'
+        '   Share rising > 0.6: full-season model for all weeks (20 locations, mostly Georgia, Utah, Colorado).\n'
+        '   0.4-0.6: 50 trajectories from each model (25 locations, mostly Texas and Oregon).\n'
+        '2. California: NHSN growth factor G = 1.0 instead of 0.922 (0.922 came from a first report with 14% fewer\n'
+        '   hospitals reporting; first reports are later revised up about 5%).\n'
+        '3. No forecast in the bottom 10% of the other models (any week 0-3, -1..3 for California): 50, then 100,\n'
+        '   of the location\'s trajectories replaced by a pool of the other teams\' submitted trajectories (equal shares,\n'
+        '   not the baseline, each team\'s 2% extreme paths dropped); after 19 Dec they continue with our paths\n'
+        '   matched by rank. 46 location-targets changed: 34 at 50%, 12 at 100% (see low-amendments.csv).\n'
+        '   All 7 California locations are half pooled.\n\n'
+        'Pages below show the amended file. The first text page describes the submitted round.'))
     text_page(pdf, 'ACCIDDA-Chromantis, Flu MetroCast round of 28 November 2026 (due Wednesday 25 Nov)', (
         'DATA. Hub target data of 25 November 2026 (commit 9afe6b8; clone at 1abcd6a).\n'
         '  Flu ED visits pct: 102 of 103 locations observed through the week ending 21 Nov (NYC through 14 Nov).\n'

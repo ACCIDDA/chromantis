@@ -1,10 +1,10 @@
 """Merge the spliced ED file with one California version into the Hub file; check against the Hub's tasks.
 
-Usage: python merge.py CALIFORNIA_DIR OUT.parquet
+Usage: python merge.py CALIFORNIA_DIR OUT.parquet [ED_FILE, default spliced/2026-11-28-ACCIDDA-Chromantis.parquet]
 """
 import json, sys
 import pandas as pd, pyarrow.parquet as pq
-e = pd.read_parquet('spliced/2026-11-28-ACCIDDA-Chromantis.parquet'); c = pd.read_parquet(f'{sys.argv[1]}/2026-11-28-california.parquet')
+e = pd.read_parquet(sys.argv[3] if len(sys.argv) > 3 else 'spliced/2026-11-28-ACCIDDA-Chromantis.parquet'); c = pd.read_parquet(f'{sys.argv[1]}/2026-11-28-california.parquet')
 for d in (e, c):
     d['reference_date'] = pd.to_datetime(d.reference_date).dt.date; d['target_end_date'] = pd.to_datetime(d.target_end_date).dt.date
 out = pd.concat([e, c[e.columns]], ignore_index=True)
