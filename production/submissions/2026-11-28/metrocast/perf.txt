@@ -1,0 +1,111 @@
+
+===== Flu ED visits pct =====
+All files ['2026-10-24', '2026-10-31', '2026-11-07', '2026-11-14', '2026-11-21'] pairwise relative WIS (1 = baseline, lower is better):
+                          rel_wis  tasks
+DMAPRIME-ObsHYB             0.586   1354
+UMass-SAR                   0.601   1016
+NAU-INFLAenza               0.632    579
+MOBS-EpyStrain_Flu          0.642   1206
+ACCIDDA-Chromantis          0.650   1438
+epiENGAGE-ensemble_short    0.652   1438
+DMAPRIME-QR_E               0.655   1438
+VTSanghani-PRIME            0.669   1233
+UT-GBQR                     0.692   1354
+epiENGAGE-ensemble_long     0.700   1438
+UMass-axial_r2              0.701    307
+NAU-Copycat                 0.792    579
+epiforecasts-dyngam         0.804   1292
+epiENGAGE-renewal_rt        0.824   1438
+epiENGAGE-baseline          1.000   1354
+CU-NeuralWalkODE            1.028   1438
+
+Ours by file: {'2026-10-24': '0.602 (rank 5 of 13)', '2026-10-31': '0.550 (rank 4 of 13)', '2026-11-07': '0.657 (rank 8 of 15)', '2026-11-14': '0.831 (rank 5 of 15)', '2026-11-21': '0.755 (rank 7 of 16)'}
+Ours by horizon: {0: '0.789 (rank 11 of 16)', 1: '0.675 (rank 4 of 16)', 2: '0.588 (rank 5 of 15)', 3: '0.505 (rank 3 of 13)'}
+Ensemble_short by horizon: {0: '0.736 (rank 4 of 16)', 1: '0.683 (rank 6 of 16)', 2: '0.591 (rank 7 of 15)', 3: '0.564 (rank 7 of 13)'}
+
+Calibration by horizon (all files): share of observations below the median (0.5 ideal),
+inside the 50% and 90% intervals (0.5 / 0.9 ideal), median of forecast median / observed (1 ideal):
+-- ACCIDDA-Chromantis
+         below_median  in50  in90  median_over_obs      n
+horizon                                                  
+0                0.52  0.61  0.91             1.01  514.0
+1                0.30  0.56  0.89             0.82  411.0
+2                0.21  0.61  0.90             0.74  308.0
+3                0.22  0.73  0.95             0.78  205.0
+-- epiENGAGE-ensemble_short
+         below_median  in50  in90  median_over_obs      n
+horizon                                                  
+0                0.36  0.67  0.98             0.92  514.0
+1                0.32  0.60  0.98             0.82  411.0
+2                0.18  0.62  0.97             0.73  308.0
+3                0.11  0.63  1.00             0.66  205.0
+-- epiENGAGE-baseline
+         below_median  in50  in90  median_over_obs      n
+horizon                                                  
+0                0.12  0.09  0.90             0.75  490.0
+1                0.07  0.15  0.90             0.57  387.0
+2                0.02  0.14  0.87             0.42  284.0
+3                0.01  0.12  0.85             0.32  193.0
+-- DMAPRIME-ObsHYB
+         below_median  in50  in90  median_over_obs      n
+horizon                                                  
+0                0.37  0.45  0.82             0.92  490.0
+1                0.35  0.38  0.78             0.87  387.0
+2                0.30  0.39  0.82             0.86  284.0
+3                0.34  0.45  0.83             0.86  193.0
+-- UMass-SAR
+         below_median  in50  in90  median_over_obs      n
+horizon                                                  
+0                0.35  0.60  0.93             0.94  374.0
+1                0.36  0.57  0.92             0.90  292.0
+2                0.28  0.62  0.94             0.81  210.0
+3                0.26  0.61  0.96             0.76  140.0
+
+===== Flu hosp admits =====
+All files ['2026-11-14', '2026-11-21'] pairwise relative WIS (1 = baseline, lower is better):
+                          rel_wis  tasks
+UMass-axial_r2              0.249      7
+epiforecasts-dyngam         0.396     21
+epiENGAGE-ensemble_short    0.480     21
+epiENGAGE-renewal_rt        0.549     21
+epiENGAGE-ensemble_long     0.638     21
+ACCIDDA-Chromantis          0.651     21
+CU-NeuralWalkODE            0.735     21
+UT-GBQR                     0.841      7
+epiENGAGE-baseline          1.000     21
+
+Ours by file: {'2026-11-14': '0.984 (rank 6 of 7)', '2026-11-21': '0.397 (rank 3 of 9)'}
+Ours by horizon: {-1: '0.607 (rank 4 of 9)', 0: '0.832 (rank 6 of 7)'}
+Ensemble_short by horizon: {-1: '0.476 (rank 3 of 9)', 0: '0.509 (rank 2 of 7)'}
+
+Calibration by horizon (all files): share of observations below the median (0.5 ideal),
+inside the 50% and 90% intervals (0.5 / 0.9 ideal), median of forecast median / observed (1 ideal):
+-- ACCIDDA-Chromantis
+         below_median  in50  in90  median_over_obs     n
+horizon                                                 
+-1                0.0  0.64   1.0             0.72  14.0
+ 0                0.0  0.00   1.0             0.53   7.0
+-- epiENGAGE-ensemble_short
+         below_median  in50  in90  median_over_obs     n
+horizon                                                 
+-1               0.14  0.64  0.93             0.82  14.0
+ 0               0.00  0.71  1.00             0.78   7.0
+-- epiENGAGE-baseline
+         below_median  in50  in90  median_over_obs     n
+horizon                                                 
+-1                0.0   0.0  0.14             0.73  14.0
+ 0                0.0   0.0  0.00             0.65   7.0
+-- UMass-axial_r2
+         below_median  in50  in90  median_over_obs    n
+horizon                                                
+-1                0.0  0.86   1.0             0.95  7.0
+-- epiforecasts-dyngam
+         below_median  in50  in90  median_over_obs     n
+horizon                                                 
+-1               0.50  0.57   1.0             1.01  14.0
+ 0               0.71  0.57   1.0             1.23   7.0
+
+Revision of the first report of each week, 2026-27 (latest / first; >1 = revised up):
+Empty DataFrame
+Columns: [count, 10%, 50%, 90%]
+Index: []

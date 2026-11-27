@@ -1,0 +1,513 @@
+{
+  "reference_date": "2026-11-28",
+  "weeks": [
+    "2026-11-21",
+    "2026-11-28",
+    "2026-12-05",
+    "2026-12-12",
+    "2026-12-19",
+    "2026-12-26",
+    "2027-01-02",
+    "2027-01-09",
+    "2027-01-16",
+    "2027-01-23",
+    "2027-01-30",
+    "2027-02-06",
+    "2027-02-13",
+    "2027-02-20",
+    "2027-02-27",
+    "2027-03-06",
+    "2027-03-13",
+    "2027-03-20",
+    "2027-03-27",
+    "2027-04-03",
+    "2027-04-10",
+    "2027-04-17",
+    "2027-04-24",
+    "2027-05-01",
+    "2027-05-08",
+    "2027-05-15",
+    "2027-05-22",
+    "2027-05-29",
+    "2027-06-05",
+    "2027-06-12"
+  ],
+  "recipes": [
+    "wide_cov_tp_state_ed_raw",
+    "ref_wide",
+    "wide_path",
+    "ref_log1p",
+    "ref_path",
+    "ref_ili",
+    "log1p_cov_tp_state",
+    "cov_tp_growth_drop0.25",
+    "wide_log1p"
+  ],
+  "anchor": 1.0,
+  "growth": 0.922,
+  "fits": [
+    {
+      "recipe": "cov_tp_growth_drop0.25",
+      "seed": 42,
+      "scenario": "geography=0,decoder=residual2,noise=local,epochs=160,batch_size=2,members=16,covariate_encoder=growth,covariate_set=tp,covariate_dropout=0.25,forecast_view=raw",
+      "checkpoint": "data/experiments/metrocast-ca-prod/mlp-all-scheduled_final-04c79b2a42cc/s42/attempt-001"
+    },
+    {
+      "recipe": "cov_tp_growth_drop0.25",
+      "seed": 43,
+      "scenario": "geography=0,decoder=residual2,noise=local,epochs=160,batch_size=2,members=16,covariate_encoder=growth,covariate_set=tp,covariate_dropout=0.25,forecast_view=raw",
+      "checkpoint": "data/experiments/metrocast-ca-prod/mlp-all-scheduled_final-04c79b2a42cc/s43/attempt-001"
+    },
+    {
+      "recipe": "cov_tp_growth_drop0.25",
+      "seed": 44,
+      "scenario": "geography=0,decoder=residual2,noise=local,epochs=160,batch_size=2,members=16,covariate_encoder=growth,covariate_set=tp,covariate_dropout=0.25,forecast_view=raw",
+      "checkpoint": "data/experiments/metrocast-ca-prod/mlp-all-scheduled_final-04c79b2a42cc/s44/attempt-001"
+    },
+    {
+      "recipe": "cov_tp_growth_drop0.25",
+      "seed": 45,
+      "scenario": "geography=0,decoder=residual2,noise=local,epochs=160,batch_size=2,members=16,covariate_encoder=growth,covariate_set=tp,covariate_dropout=0.25,forecast_view=raw",
+      "checkpoint": "data/experiments/metrocast-ca-prod/mlp-all-scheduled_final-04c79b2a42cc/s45/attempt-001"
+    },
+    {
+      "recipe": "cov_tp_growth_drop0.25",
+      "seed": 46,
+      "scenario": "geography=0,decoder=residual2,noise=local,epochs=160,batch_size=2,members=16,covariate_encoder=growth,covariate_set=tp,covariate_dropout=0.25,forecast_view=raw",
+      "checkpoint": "data/experiments/metrocast-ca-prod/mlp-all-scheduled_final-04c79b2a42cc/s46/attempt-001"
+    },
+    {
+      "recipe": "log1p_cov_tp_state",
+      "seed": 42,
+      "scenario": "count_transform=log1p,geography=0,decoder=residual2,noise=local,epochs=160,batch_size=2,members=16,covariate_encoder=growth,covariate_set=tp+state,covariate_dropout=0.25,forecast_view=raw",
+      "checkpoint": "data/experiments/metrocast-ca-prod/mlp-all-scheduled_final-971663ee2169/s42/attempt-001"
+    },
+    {
+      "recipe": "log1p_cov_tp_state",
+      "seed": 43,
+      "scenario": "count_transform=log1p,geography=0,decoder=residual2,noise=local,epochs=160,batch_size=2,members=16,covariate_encoder=growth,covariate_set=tp+state,covariate_dropout=0.25,forecast_view=raw",
+      "checkpoint": "data/experiments/metrocast-ca-prod/mlp-all-scheduled_final-971663ee2169/s43/attempt-001"
+    },
+    {
+      "recipe": "log1p_cov_tp_state",
+      "seed": 44,
+      "scenario": "count_transform=log1p,geography=0,decoder=residual2,noise=local,epochs=160,batch_size=2,members=16,covariate_encoder=growth,covariate_set=tp+state,covariate_dropout=0.25,forecast_view=raw",
+      "checkpoint": "data/experiments/metrocast-ca-prod/mlp-all-scheduled_final-971663ee2169/s44/attempt-001"
+    },
+    {
+      "recipe": "log1p_cov_tp_state",
+      "seed": 45,
+      "scenario": "count_transform=log1p,geography=0,decoder=residual2,noise=local,epochs=160,batch_size=2,members=16,covariate_encoder=growth,covariate_set=tp+state,covariate_dropout=0.25,forecast_view=raw",
+      "checkpoint": "data/experiments/metrocast-ca-prod/mlp-all-scheduled_final-971663ee2169/s45/attempt-001"
+    },
+    {
+      "recipe": "log1p_cov_tp_state",
+      "seed": 46,
+      "scenario": "count_transform=log1p,geography=0,decoder=residual2,noise=local,epochs=160,batch_size=2,members=16,covariate_encoder=growth,covariate_set=tp+state,covariate_dropout=0.25,forecast_view=raw",
+      "checkpoint": "data/experiments/metrocast-ca-prod/mlp-all-scheduled_final-971663ee2169/s46/attempt-001"
+    },
+    {
+      "recipe": "ref_ili",
+      "seed": 42,
+      "scenario": "ili_units=flu_scaled,ili_steps=600,ili_training=pretrain,ili_path=data/metrocast-california/historical_ili.npz,geography=0,decoder=residual2,noise=local,epochs=160,batch_size=2,members=16,forecast_view=raw",
+      "checkpoint": "data/experiments/metrocast-ca-prod/mlp-all-scheduled_final-063e9a63dee9/s42/attempt-001"
+    },
+    {
+      "recipe": "ref_ili",
+      "seed": 43,
+      "scenario": "ili_units=flu_scaled,ili_steps=600,ili_training=pretrain,ili_path=data/metrocast-california/historical_ili.npz,geography=0,decoder=residual2,noise=local,epochs=160,batch_size=2,members=16,forecast_view=raw",
+      "checkpoint": "data/experiments/metrocast-ca-prod/mlp-all-scheduled_final-063e9a63dee9/s43/attempt-001"
+    },
+    {
+      "recipe": "ref_ili",
+      "seed": 44,
+      "scenario": "ili_units=flu_scaled,ili_steps=600,ili_training=pretrain,ili_path=data/metrocast-california/historical_ili.npz,geography=0,decoder=residual2,noise=local,epochs=160,batch_size=2,members=16,forecast_view=raw",
+      "checkpoint": "data/experiments/metrocast-ca-prod/mlp-all-scheduled_final-063e9a63dee9/s44/attempt-001"
+    },
+    {
+      "recipe": "ref_ili",
+      "seed": 45,
+      "scenario": "ili_units=flu_scaled,ili_steps=600,ili_training=pretrain,ili_path=data/metrocast-california/historical_ili.npz,geography=0,decoder=residual2,noise=local,epochs=160,batch_size=2,members=16,forecast_view=raw",
+      "checkpoint": "data/experiments/metrocast-ca-prod/mlp-all-scheduled_final-063e9a63dee9/s45/attempt-001"
+    },
+    {
+      "recipe": "ref_ili",
+      "seed": 46,
+      "scenario": "ili_units=flu_scaled,ili_steps=600,ili_training=pretrain,ili_path=data/metrocast-california/historical_ili.npz,geography=0,decoder=residual2,noise=local,epochs=160,batch_size=2,members=16,forecast_view=raw",
+      "checkpoint": "data/experiments/metrocast-ca-prod/mlp-all-scheduled_final-063e9a63dee9/s46/attempt-001"
+    },
+    {
+      "recipe": "ref_log1p",
+      "seed": 42,
+      "scenario": "count_transform=log1p,geography=0,decoder=residual2,noise=local,epochs=160,batch_size=2,members=16,forecast_view=raw",
+      "checkpoint": "data/experiments/metrocast-ca-prod/mlp-all-scheduled_final-d437e6f239d6/s42/attempt-001"
+    },
+    {
+      "recipe": "ref_log1p",
+      "seed": 43,
+      "scenario": "count_transform=log1p,geography=0,decoder=residual2,noise=local,epochs=160,batch_size=2,members=16,forecast_view=raw",
+      "checkpoint": "data/experiments/metrocast-ca-prod/mlp-all-scheduled_final-d437e6f239d6/s43/attempt-001"
+    },
+    {
+      "recipe": "ref_log1p",
+      "seed": 44,
+      "scenario": "count_transform=log1p,geography=0,decoder=residual2,noise=local,epochs=160,batch_size=2,members=16,forecast_view=raw",
+      "checkpoint": "data/experiments/metrocast-ca-prod/mlp-all-scheduled_final-d437e6f239d6/s44/attempt-001"
+    },
+    {
+      "recipe": "ref_log1p",
+      "seed": 45,
+      "scenario": "count_transform=log1p,geography=0,decoder=residual2,noise=local,epochs=160,batch_size=2,members=16,forecast_view=raw",
+      "checkpoint": "data/experiments/metrocast-ca-prod/mlp-all-scheduled_final-d437e6f239d6/s45/attempt-001"
+    },
+    {
+      "recipe": "ref_log1p",
+      "seed": 46,
+      "scenario": "count_transform=log1p,geography=0,decoder=residual2,noise=local,epochs=160,batch_size=2,members=16,forecast_view=raw",
+      "checkpoint": "data/experiments/metrocast-ca-prod/mlp-all-scheduled_final-d437e6f239d6/s46/attempt-001"
+    },
+    {
+      "recipe": "ref_path",
+      "seed": 42,
+      "scenario": "geography=0,decoder=residual2,noise=local,epochs=160,batch_size=2,members=16,path_loss_weight=0.25,forecast_view=raw",
+      "checkpoint": "data/experiments/metrocast-ca-prod/mlp-all-scheduled_final-a3842f889f61/s42/attempt-001"
+    },
+    {
+      "recipe": "ref_path",
+      "seed": 43,
+      "scenario": "geography=0,decoder=residual2,noise=local,epochs=160,batch_size=2,members=16,path_loss_weight=0.25,forecast_view=raw",
+      "checkpoint": "data/experiments/metrocast-ca-prod/mlp-all-scheduled_final-a3842f889f61/s43/attempt-001"
+    },
+    {
+      "recipe": "ref_path",
+      "seed": 44,
+      "scenario": "geography=0,decoder=residual2,noise=local,epochs=160,batch_size=2,members=16,path_loss_weight=0.25,forecast_view=raw",
+      "checkpoint": "data/experiments/metrocast-ca-prod/mlp-all-scheduled_final-a3842f889f61/s44/attempt-001"
+    },
+    {
+      "recipe": "ref_path",
+      "seed": 45,
+      "scenario": "geography=0,decoder=residual2,noise=local,epochs=160,batch_size=2,members=16,path_loss_weight=0.25,forecast_view=raw",
+      "checkpoint": "data/experiments/metrocast-ca-prod/mlp-all-scheduled_final-a3842f889f61/s45/attempt-001"
+    },
+    {
+      "recipe": "ref_path",
+      "seed": 46,
+      "scenario": "geography=0,decoder=residual2,noise=local,epochs=160,batch_size=2,members=16,path_loss_weight=0.25,forecast_view=raw",
+      "checkpoint": "data/experiments/metrocast-ca-prod/mlp-all-scheduled_final-a3842f889f61/s46/attempt-001"
+    },
+    {
+      "recipe": "ref_wide",
+      "seed": 42,
+      "scenario": "geography=0,decoder=residual2,decoder_blocks=2,noise=local,latent=32,width=128,epochs=160,batch_size=2,members=16,weight_decay=0.001,forecast_view=raw",
+      "checkpoint": "data/experiments/metrocast-ca-prod/mlp-all-scheduled_final-4545f171efaf/s42/attempt-001"
+    },
+    {
+      "recipe": "ref_wide",
+      "seed": 43,
+      "scenario": "geography=0,decoder=residual2,decoder_blocks=2,noise=local,latent=32,width=128,epochs=160,batch_size=2,members=16,weight_decay=0.001,forecast_view=raw",
+      "checkpoint": "data/experiments/metrocast-ca-prod/mlp-all-scheduled_final-4545f171efaf/s43/attempt-001"
+    },
+    {
+      "recipe": "ref_wide",
+      "seed": 44,
+      "scenario": "geography=0,decoder=residual2,decoder_blocks=2,noise=local,latent=32,width=128,epochs=160,batch_size=2,members=16,weight_decay=0.001,forecast_view=raw",
+      "checkpoint": "data/experiments/metrocast-ca-prod/mlp-all-scheduled_final-4545f171efaf/s44/attempt-001"
+    },
+    {
+      "recipe": "ref_wide",
+      "seed": 45,
+      "scenario": "geography=0,decoder=residual2,decoder_blocks=2,noise=local,latent=32,width=128,epochs=160,batch_size=2,members=16,weight_decay=0.001,forecast_view=raw",
+      "checkpoint": "data/experiments/metrocast-ca-prod/mlp-all-scheduled_final-4545f171efaf/s45/attempt-001"
+    },
+    {
+      "recipe": "ref_wide",
+      "seed": 46,
+      "scenario": "geography=0,decoder=residual2,decoder_blocks=2,noise=local,latent=32,width=128,epochs=160,batch_size=2,members=16,weight_decay=0.001,forecast_view=raw",
+      "checkpoint": "data/experiments/metrocast-ca-prod/mlp-all-scheduled_final-4545f171efaf/s46/attempt-001"
+    },
+    {
+      "recipe": "wide_cov_tp_state_ed_raw",
+      "seed": 42,
+      "scenario": "geography=0,decoder=residual2,decoder_blocks=2,noise=local,latent=32,width=128,epochs=160,batch_size=2,members=16,weight_decay=0.001,covariate_set=tp+state+ed,forecast_view=raw",
+      "checkpoint": "data/experiments/metrocast-ca-prod/mlp-all-scheduled_final-7eb117b8ce57/s42/attempt-001"
+    },
+    {
+      "recipe": "wide_cov_tp_state_ed_raw",
+      "seed": 43,
+      "scenario": "geography=0,decoder=residual2,decoder_blocks=2,noise=local,latent=32,width=128,epochs=160,batch_size=2,members=16,weight_decay=0.001,covariate_set=tp+state+ed,forecast_view=raw",
+      "checkpoint": "data/experiments/metrocast-ca-prod/mlp-all-scheduled_final-7eb117b8ce57/s43/attempt-001"
+    },
+    {
+      "recipe": "wide_cov_tp_state_ed_raw",
+      "seed": 44,
+      "scenario": "geography=0,decoder=residual2,decoder_blocks=2,noise=local,latent=32,width=128,epochs=160,batch_size=2,members=16,weight_decay=0.001,covariate_set=tp+state+ed,forecast_view=raw",
+      "checkpoint": "data/experiments/metrocast-ca-prod/mlp-all-scheduled_final-7eb117b8ce57/s44/attempt-001"
+    },
+    {
+      "recipe": "wide_cov_tp_state_ed_raw",
+      "seed": 45,
+      "scenario": "geography=0,decoder=residual2,decoder_blocks=2,noise=local,latent=32,width=128,epochs=160,batch_size=2,members=16,weight_decay=0.001,covariate_set=tp+state+ed,forecast_view=raw",
+      "checkpoint": "data/experiments/metrocast-ca-prod/mlp-all-scheduled_final-7eb117b8ce57/s45/attempt-001"
+    },
+    {
+      "recipe": "wide_cov_tp_state_ed_raw",
+      "seed": 46,
+      "scenario": "geography=0,decoder=residual2,decoder_blocks=2,noise=local,latent=32,width=128,epochs=160,batch_size=2,members=16,weight_decay=0.001,covariate_set=tp+state+ed,forecast_view=raw",
+      "checkpoint": "data/experiments/metrocast-ca-prod/mlp-all-scheduled_final-7eb117b8ce57/s46/attempt-001"
+    },
+    {
+      "recipe": "wide_log1p",
+      "seed": 42,
+      "scenario": "count_transform=log1p,geography=0,decoder=residual2,decoder_blocks=2,noise=local,latent=32,width=128,epochs=160,batch_size=2,members=16,weight_decay=0.001,forecast_view=raw",
+      "checkpoint": "data/experiments/metrocast-ca-prod/mlp-all-scheduled_final-25a96b8c7ae9/s42/attempt-001"
+    },
+    {
+      "recipe": "wide_log1p",
+      "seed": 43,
+      "scenario": "count_transform=log1p,geography=0,decoder=residual2,decoder_blocks=2,noise=local,latent=32,width=128,epochs=160,batch_size=2,members=16,weight_decay=0.001,forecast_view=raw",
+      "checkpoint": "data/experiments/metrocast-ca-prod/mlp-all-scheduled_final-25a96b8c7ae9/s43/attempt-001"
+    },
+    {
+      "recipe": "wide_log1p",
+      "seed": 44,
+      "scenario": "count_transform=log1p,geography=0,decoder=residual2,decoder_blocks=2,noise=local,latent=32,width=128,epochs=160,batch_size=2,members=16,weight_decay=0.001,forecast_view=raw",
+      "checkpoint": "data/experiments/metrocast-ca-prod/mlp-all-scheduled_final-25a96b8c7ae9/s44/attempt-001"
+    },
+    {
+      "recipe": "wide_log1p",
+      "seed": 45,
+      "scenario": "count_transform=log1p,geography=0,decoder=residual2,decoder_blocks=2,noise=local,latent=32,width=128,epochs=160,batch_size=2,members=16,weight_decay=0.001,forecast_view=raw",
+      "checkpoint": "data/experiments/metrocast-ca-prod/mlp-all-scheduled_final-25a96b8c7ae9/s45/attempt-001"
+    },
+    {
+      "recipe": "wide_log1p",
+      "seed": 46,
+      "scenario": "count_transform=log1p,geography=0,decoder=residual2,decoder_blocks=2,noise=local,latent=32,width=128,epochs=160,batch_size=2,members=16,weight_decay=0.001,forecast_view=raw",
+      "checkpoint": "data/experiments/metrocast-ca-prod/mlp-all-scheduled_final-25a96b8c7ae9/s46/attempt-001"
+    },
+    {
+      "recipe": "wide_path",
+      "seed": 42,
+      "scenario": "geography=0,decoder=residual2,decoder_blocks=2,noise=local,latent=32,width=128,epochs=160,batch_size=2,members=16,weight_decay=0.001,path_loss_weight=0.25,forecast_view=raw",
+      "checkpoint": "data/experiments/metrocast-ca-prod/mlp-all-scheduled_final-d67bbd49d1b9/s42/attempt-001"
+    },
+    {
+      "recipe": "wide_path",
+      "seed": 43,
+      "scenario": "geography=0,decoder=residual2,decoder_blocks=2,noise=local,latent=32,width=128,epochs=160,batch_size=2,members=16,weight_decay=0.001,path_loss_weight=0.25,forecast_view=raw",
+      "checkpoint": "data/experiments/metrocast-ca-prod/mlp-all-scheduled_final-d67bbd49d1b9/s43/attempt-001"
+    },
+    {
+      "recipe": "wide_path",
+      "seed": 44,
+      "scenario": "geography=0,decoder=residual2,decoder_blocks=2,noise=local,latent=32,width=128,epochs=160,batch_size=2,members=16,weight_decay=0.001,path_loss_weight=0.25,forecast_view=raw",
+      "checkpoint": "data/experiments/metrocast-ca-prod/mlp-all-scheduled_final-d67bbd49d1b9/s44/attempt-001"
+    },
+    {
+      "recipe": "wide_path",
+      "seed": 45,
+      "scenario": "geography=0,decoder=residual2,decoder_blocks=2,noise=local,latent=32,width=128,epochs=160,batch_size=2,members=16,weight_decay=0.001,path_loss_weight=0.25,forecast_view=raw",
+      "checkpoint": "data/experiments/metrocast-ca-prod/mlp-all-scheduled_final-d67bbd49d1b9/s45/attempt-001"
+    },
+    {
+      "recipe": "wide_path",
+      "seed": 46,
+      "scenario": "geography=0,decoder=residual2,decoder_blocks=2,noise=local,latent=32,width=128,epochs=160,batch_size=2,members=16,weight_decay=0.001,path_loss_weight=0.25,forecast_view=raw",
+      "checkpoint": "data/experiments/metrocast-ca-prod/mlp-all-scheduled_final-d67bbd49d1b9/s46/attempt-001"
+    }
+  ],
+  "draws_per_fit": 128,
+  "panel": "data/metrocast-california/panel.npz",
+  "quantiles_10_50_90_first_five_weeks": {
+    "bay-area": {
+      "2026-11-21": [
+        241.1,
+        414.9,
+        651.4
+      ],
+      "2026-11-28": [
+        214.7,
+        407.0,
+        648.3
+      ],
+      "2026-12-05": [
+        176.1,
+        393.0,
+        684.0
+      ],
+      "2026-12-12": [
+        135.9,
+        359.6,
+        740.8
+      ],
+      "2026-12-19": [
+        102.7,
+        312.5,
+        807.6
+      ]
+    },
+    "california": {
+      "2026-11-21": [
+        966.4,
+        1658.7,
+        2633.5
+      ],
+      "2026-11-28": [
+        879.6,
+        1656.6,
+        2638.7
+      ],
+      "2026-12-05": [
+        743.3,
+        1621.8,
+        2774.0
+      ],
+      "2026-12-12": [
+        594.5,
+        1519.3,
+        3060.1
+      ],
+      "2026-12-19": [
+        459.8,
+        1357.9,
+        3399.5
+      ]
+    },
+    "central-california": {
+      "2026-11-21": [
+        117.9,
+        195.5,
+        306.5
+      ],
+      "2026-11-28": [
+        112.3,
+        206.3,
+        321.5
+      ],
+      "2026-12-05": [
+        100.5,
+        213.8,
+        357.4
+      ],
+      "2026-12-12": [
+        82.1,
+        213.8,
+        420.3
+      ],
+      "2026-12-19": [
+        62.7,
+        201.8,
+        489.1
+      ]
+    },
+    "greater-sierra-sacramento": {
+      "2026-11-21": [
+        97.7,
+        166.0,
+        263.6
+      ],
+      "2026-11-28": [
+        91.5,
+        170.5,
+        269.7
+      ],
+      "2026-12-05": [
+        77.3,
+        170.8,
+        294.1
+      ],
+      "2026-12-12": [
+        59.7,
+        163.7,
+        335.0
+      ],
+      "2026-12-19": [
+        44.1,
+        148.2,
+        381.7
+      ]
+    },
+    "los-angeles": {
+      "2026-11-21": [
+        239.3,
+        403.8,
+        641.9
+      ],
+      "2026-11-28": [
+        223.3,
+        406.9,
+        652.4
+      ],
+      "2026-12-05": [
+        189.2,
+        402.7,
+        693.3
+      ],
+      "2026-12-12": [
+        154.2,
+        383.1,
+        756.0
+      ],
+      "2026-12-19": [
+        120.8,
+        344.3,
+        845.3
+      ]
+    },
+    "rural-north": {
+      "2026-11-21": [
+        15.3,
+        25.8,
+        40.8
+      ],
+      "2026-11-28": [
+        14.8,
+        27.2,
+        42.9
+      ],
+      "2026-12-05": [
+        13.2,
+        28.6,
+        46.9
+      ],
+      "2026-12-12": [
+        10.8,
+        29.2,
+        55.2
+      ],
+      "2026-12-19": [
+        8.2,
+        28.3,
+        65.8
+      ]
+    },
+    "southern-california": {
+      "2026-11-21": [
+        260.2,
+        452.7,
+        727.7
+      ],
+      "2026-11-28": [
+        237.9,
+        448.2,
+        725.5
+      ],
+      "2026-12-05": [
+        197.6,
+        436.1,
+        757.2
+      ],
+      "2026-12-12": [
+        157.6,
+        412.1,
+        813.8
+      ],
+      "2026-12-19": [
+        123.9,
+        367.6,
+        902.8
+      ]
+    }
+  }
+}
