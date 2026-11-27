@@ -102,7 +102,7 @@ def _aux(path, wanted):
     duplicates = aux[aux.duplicated(key, keep=False)].copy()
     if len(duplicates):
         signature = (duplicates['state_territory'].fillna('').astype(str) + '|' +
-                     duplicates['major_lab_method'].fillna('').astype(str))
+                     duplicates['major_lab_method'].astype('string').fillna(''))
         conflicts = duplicates.assign(_signature=signature).groupby(key, sort=False)['_signature'].nunique()
         bad = conflicts[conflicts > 1].index
         if len(bad):
@@ -124,7 +124,7 @@ def _at_release(d, aux, release):
                             on=JOIN, how='inner', validate='one_to_one')
     visible = visible[visible['state_territory'].notna()].copy()
     visible['state'] = visible['state_territory'].astype(str).str.upper()
-    visible['major_lab_method'] = visible['major_lab_method'].fillna('').astype(str)
+    visible['major_lab_method'] = visible['major_lab_method'].astype('string').fillna('')
     visible['reference_time'] = pd.to_datetime(visible['reference_time'])
     visible['week_end'] = visible['reference_time'] + pd.to_timedelta(
         (5 - visible['reference_time'].dt.weekday) % 7, unit='D')
