@@ -1,0 +1,714 @@
+{
+  "created_at": "2026-11-27T04:12:53.872652+00:00",
+  "reference_date": "2026-11-28",
+  "hub_commit": "e69d757977396603bdfb89f09b86c51d5ccd504f",
+  "hub": "/Users/chadi/Research/chromantis/production/hubs/FluSight-forecast-hub",
+  "local_labels": [
+    "Amended (state by state)",
+    "Not amended (masked A, in PR 4244)",
+    "Median of the 71 other models (FluSight-ensemble stand-in)"
+  ],
+  "locations": [
+    "US",
+    "01",
+    "02",
+    "04",
+    "05",
+    "06",
+    "08",
+    "09",
+    "10",
+    "11",
+    "12",
+    "13",
+    "15",
+    "16",
+    "17",
+    "18",
+    "19",
+    "20",
+    "21",
+    "22",
+    "23",
+    "24",
+    "25",
+    "26",
+    "27",
+    "28",
+    "29",
+    "30",
+    "31",
+    "32",
+    "33",
+    "34",
+    "35",
+    "36",
+    "37",
+    "38",
+    "39",
+    "40",
+    "41",
+    "42",
+    "44",
+    "45",
+    "46",
+    "47",
+    "48",
+    "49",
+    "50",
+    "51",
+    "53",
+    "54",
+    "55",
+    "56"
+  ],
+  "featured_peers": [
+    "ACCIDDA-insightcast",
+    "BFrimpong-baseline",
+    "BFrimpong-sirs",
+    "BFrimpong-sirs_hol",
+    "BFrimpong-trend",
+    "BYFlu-STMGGP",
+    "CADPH-FluCAT_Ensemble",
+    "CCC_and_Tom-ARX23",
+    "CEPH-Rtrend_dyn",
+    "CEPH-Rtrend_fluH",
+    "CFA-NowcastAutoGP",
+    "CFA-PyRenew_E",
+    "CFA-PyRenew_H",
+    "CFA-PyRenew_HE",
+    "CMU-TimeSeries",
+    "CMU-TimeSeries_Cal",
+    "CU-STS_Residual",
+    "CU-STS_base",
+    "CU-ensemble",
+    "Cornell_JHU-SCARCHhierarSIR",
+    "Cornell_JHU-hierarchSIR",
+    "CyberEpi-EAKF",
+    "DMAPRIME-HYB",
+    "Emory-EpiRSI",
+    "Epistorm-Ensemble_Flu",
+    "FluSight-baseline",
+    "GT_Influencers-ensemble",
+    "Gatech-ensemble_prob",
+    "Google_SAI-FluEns",
+    "HallAI-FluTrend",
+    "JPAT-FluGBM",
+    "LUcompUncertLab-puca",
+    "MIGHTE-Base",
+    "MIGHTE-Linear",
+    "MIGHTE-Nsemble",
+    "MOBS-EpyStrain_Flu",
+    "MOBS-GLEAM_NCB_FLUH",
+    "MOBS-GLEAM_PONG",
+    "MTsim-FluCast",
+    "NAU-ABERT",
+    "NAU-FourCAT",
+    "NAU-epymorph",
+    "NAU-vulPES",
+    "NAU_PyBNF-GroundHogCGR",
+    "NAU_PyBNF-OracleSIHRS",
+    "NEU_ISI-AdaptiveEnsemble",
+    "NEU_ISI-FluBcast",
+    "NU-EMBERS",
+    "NU-FLARE",
+    "NU_Baselines-logrw",
+    "NU_Baselines-naive",
+    "OHTJHU-BM",
+    "OHTJHU-FLUFFHEAD",
+    "OHT_JHU-nbxd",
+    "PSI-PROF",
+    "PSI-PROF_MOA",
+    "SahilLab-Trio",
+    "Sentinel-Ens",
+    "UGA_flucast-Copycat",
+    "UGA_flucast-INFLAenza",
+    "UGA_flucast-Scenariocast",
+    "UM-DeepOutbreak",
+    "UMass-AR2",
+    "UMass-axial_r2",
+    "UMass-flusion",
+    "UMass-trends_ensemble",
+    "UVAFluX-Ensemble",
+    "VTSanghani-PRIME",
+    "Xi_lab-Agents",
+    "Xi_lab-Agents_Adapt",
+    "Xi_lab-GLEAM_AI",
+    "Xi_lab-GLEAM_AI_hybrid",
+    "bayvaxbio-CountCast",
+    "reasonspire-lagQR"
+  ],
+  "missing_featured_peers": [],
+  "peer_models": [
+    "ACCIDDA-insightcast",
+    "BFrimpong-baseline",
+    "BFrimpong-sirs",
+    "BFrimpong-sirs_hol",
+    "BFrimpong-trend",
+    "BYFlu-STMGGP",
+    "CADPH-FluCAT_Ensemble",
+    "CCC_and_Tom-ARX23",
+    "CEPH-Rtrend_dyn",
+    "CEPH-Rtrend_fluH",
+    "CFA-NowcastAutoGP",
+    "CFA-PyRenew_E",
+    "CFA-PyRenew_H",
+    "CFA-PyRenew_HE",
+    "CMU-TimeSeries",
+    "CMU-TimeSeries_Cal",
+    "CU-STS_Residual",
+    "CU-STS_base",
+    "CU-ensemble",
+    "Cornell_JHU-SCARCHhierarSIR",
+    "Cornell_JHU-hierarchSIR",
+    "CyberEpi-EAKF",
+    "DMAPRIME-HYB",
+    "Emory-EpiRSI",
+    "Epistorm-Ensemble_Flu",
+    "FluSight-baseline",
+    "GT_Influencers-ensemble",
+    "Gatech-ensemble_prob",
+    "Google_SAI-FluEns",
+    "HallAI-FluTrend",
+    "JPAT-FluGBM",
+    "LUcompUncertLab-puca",
+    "MIGHTE-Base",
+    "MIGHTE-Linear",
+    "MIGHTE-Nsemble",
+    "MOBS-EpyStrain_Flu",
+    "MOBS-GLEAM_NCB_FLUH",
+    "MOBS-GLEAM_PONG",
+    "MTsim-FluCast",
+    "NAU-ABERT",
+    "NAU-FourCAT",
+    "NAU-epymorph",
+    "NAU-vulPES",
+    "NAU_PyBNF-GroundHogCGR",
+    "NAU_PyBNF-OracleSIHRS",
+    "NEU_ISI-AdaptiveEnsemble",
+    "NEU_ISI-FluBcast",
+    "NU-EMBERS",
+    "NU-FLARE",
+    "NU_Baselines-logrw",
+    "NU_Baselines-naive",
+    "OHTJHU-BM",
+    "OHTJHU-FLUFFHEAD",
+    "OHT_JHU-nbxd",
+    "PSI-PROF",
+    "PSI-PROF_MOA",
+    "SahilLab-Trio",
+    "Sentinel-Ens",
+    "UGA_flucast-Copycat",
+    "UGA_flucast-INFLAenza",
+    "UGA_flucast-Scenariocast",
+    "UM-DeepOutbreak",
+    "UMass-AR2",
+    "UMass-axial_r2",
+    "UMass-flusion",
+    "UMass-trends_ensemble",
+    "UVAFluX-Ensemble",
+    "VTSanghani-PRIME",
+    "Xi_lab-Agents",
+    "Xi_lab-Agents_Adapt",
+    "Xi_lab-GLEAM_AI",
+    "Xi_lab-GLEAM_AI_hybrid",
+    "bayvaxbio-CountCast",
+    "reasonspire-lagQR"
+  ],
+  "warnings": [
+    "Not amended (masked A, in PR 4244): companion JSON hash does not match; model description not reused."
+  ],
+  "sources": [
+    {
+      "path": "/Users/chadi/Research/chromantis/production/output/2026-11-25/amended/2026-11-28-ACCIDDA-Chromantis.csv",
+      "sha256": "a53c66239144a66ac9808425fdd9eeff027b9a17bb02c2b3e167534d4d91099b",
+      "role": "local",
+      "model": "Amended (state by state)"
+    },
+    {
+      "path": "/Users/chadi/Research/chromantis/production/output/2026-11-25/combined-masked-a-20261122/2026-11-28-ACCIDDA-Chromantis.csv",
+      "sha256": "702905d15df16777fae4cc486545009a6a18b9637d37ad5815b841a1f015e1cf",
+      "role": "local",
+      "model": "Not amended (masked A, in PR 4244)"
+    },
+    {
+      "path": "/Users/chadi/Research/chromantis/production/output/2026-11-25/hub-median/2026-11-28-HubMedian-standin.csv",
+      "sha256": "6f60b6df4323be631ac3d5878dcb9a43ed5a849a0e479d8572657bc2d8fe309c",
+      "role": "local",
+      "model": "Median of the 71 other models (FluSight-ensemble stand-in)"
+    },
+    {
+      "path": "model-output/ACCIDDA-insightcast/2026-11-28-ACCIDDA-insightcast.csv",
+      "sha256": "54c55a8683f2a5d9eb8814910ec86fe64ddc6dc3c7dc538cbea05d8f44dbfe56",
+      "role": "peer",
+      "model": "ACCIDDA-insightcast"
+    },
+    {
+      "path": "model-output/BFrimpong-baseline/2026-11-28-BFrimpong-baseline.csv",
+      "sha256": "b82dc67e121f0d72dd7c29e492f6c7f3e3eee5100e8868338710178937e0d290",
+      "role": "peer",
+      "model": "BFrimpong-baseline"
+    },
+    {
+      "path": "model-output/BFrimpong-sirs/2026-11-28-BFrimpong-sirs.csv",
+      "sha256": "af8e5873534f94a07c9c620908cae1be6af842aa5baadb715f1516f958800177",
+      "role": "peer",
+      "model": "BFrimpong-sirs"
+    },
+    {
+      "path": "model-output/BFrimpong-sirs_hol/2026-11-28-BFrimpong-sirs_hol.csv",
+      "sha256": "d308eb19d0c94fcc334596d773f88fb4da5385da58a622c2dccd5662ddfb785f",
+      "role": "peer",
+      "model": "BFrimpong-sirs_hol"
+    },
+    {
+      "path": "model-output/BFrimpong-trend/2026-11-28-BFrimpong-trend.csv",
+      "sha256": "b6d55bdfcae9f34dc6d7567798385c2ee897f8d14f690c3879611f7210e0c574",
+      "role": "peer",
+      "model": "BFrimpong-trend"
+    },
+    {
+      "path": "model-output/BYFlu-STMGGP/2026-11-28-BYFlu-STMGGP.csv",
+      "sha256": "85fac2494bd8c2a44cf2117c49b4d525c35fe163a45fc4e34be9791887f1dd79",
+      "role": "peer",
+      "model": "BYFlu-STMGGP"
+    },
+    {
+      "path": "model-output/CADPH-FluCAT_Ensemble/2026-11-28-CADPH-FluCAT_Ensemble.csv",
+      "sha256": "b187883a06f3dca3ce315e43eb478780cf28676fd168b3f5a70f32255e7a8db4",
+      "role": "peer",
+      "model": "CADPH-FluCAT_Ensemble"
+    },
+    {
+      "path": "model-output/CCC_and_Tom-ARX23/2026-11-28-CCC_and_Tom-ARX23.csv",
+      "sha256": "6796dbf250591ec3a63565c25c74923b6b97fa5de985445d46ce103fc561e35d",
+      "role": "peer",
+      "model": "CCC_and_Tom-ARX23"
+    },
+    {
+      "path": "model-output/CEPH-Rtrend_dyn/2026-11-28-CEPH-Rtrend_dyn.csv",
+      "sha256": "a9abe0b278a160ca93cee81727778a50930965139b9241386c8eb52e85bd7c07",
+      "role": "peer",
+      "model": "CEPH-Rtrend_dyn"
+    },
+    {
+      "path": "model-output/CEPH-Rtrend_fluH/2026-11-28-CEPH-Rtrend_fluH.csv",
+      "sha256": "7c14351691455ee9a9be33adc85ed55490845879033803064e4e2b46276c0230",
+      "role": "peer",
+      "model": "CEPH-Rtrend_fluH"
+    },
+    {
+      "path": "model-output/CFA-NowcastAutoGP/2026-11-28-CFA-NowcastAutoGP.csv",
+      "sha256": "4ba602b9b65706cc0364605d5ee4244f08a399697671045d2a63fa8412946081",
+      "role": "peer",
+      "model": "CFA-NowcastAutoGP"
+    },
+    {
+      "path": "model-output/CFA-PyRenew_E/2026-11-28-CFA-PyRenew_E.csv",
+      "sha256": "835ed635aa56dfa76e4c37d2173dc1460bbac90369600805681966e33e592516",
+      "role": "peer",
+      "model": "CFA-PyRenew_E"
+    },
+    {
+      "path": "model-output/CFA-PyRenew_H/2026-11-28-CFA-PyRenew_H.csv",
+      "sha256": "4af4ccc38229a60324dc3e5173fe1d7024be6cf374f887952d5fc90156344f7e",
+      "role": "peer",
+      "model": "CFA-PyRenew_H"
+    },
+    {
+      "path": "model-output/CFA-PyRenew_HE/2026-11-28-CFA-PyRenew_HE.csv",
+      "sha256": "7246da92da6982b5fc9d903a74618d186559c1ddb49c7668b87226d30e184371",
+      "role": "peer",
+      "model": "CFA-PyRenew_HE"
+    },
+    {
+      "path": "model-output/CMU-TimeSeries/2026-11-28-CMU-TimeSeries.csv",
+      "sha256": "661ea37c664fc3fd3f64b054cf826278c0925e0ba3ac2906d216249ea57b8fb6",
+      "role": "peer",
+      "model": "CMU-TimeSeries"
+    },
+    {
+      "path": "model-output/CMU-TimeSeries_Cal/2026-11-28-CMU-TimeSeries_Cal.csv",
+      "sha256": "4f9540c2c0471bd6e6b2150ebff3725ba1987dedaeb671dc858c9e3df3844682",
+      "role": "peer",
+      "model": "CMU-TimeSeries_Cal"
+    },
+    {
+      "path": "model-output/CU-STS_Residual/2026-11-28-CU-STS_Residual.csv",
+      "sha256": "fd937b610e7482e8e12757ee2d3f5a1e17b36163d4fcb7fc737a6020742dc23d",
+      "role": "peer",
+      "model": "CU-STS_Residual"
+    },
+    {
+      "path": "model-output/CU-STS_base/2026-11-28-CU-STS_base.csv",
+      "sha256": "3287d408ff30ddf1aef4c2e19a418cbbb59c052a4967700ae1c00336ff814220",
+      "role": "peer",
+      "model": "CU-STS_base"
+    },
+    {
+      "path": "model-output/CU-ensemble/2026-11-28-CU-ensemble.csv",
+      "sha256": "fccf1432c6cbd8d01fb3c4eef6eada098794e522b47754ace094299c55e91fbf",
+      "role": "peer",
+      "model": "CU-ensemble"
+    },
+    {
+      "path": "model-output/Cornell_JHU-SCARCHhierarSIR/2026-11-28-Cornell_JHU-SCARCHhierarSIR.csv",
+      "sha256": "7ecf9d5a74d5213d2be9408e798e038e6b24e9b9cb90bb2127335d8676c40fe6",
+      "role": "peer",
+      "model": "Cornell_JHU-SCARCHhierarSIR"
+    },
+    {
+      "path": "model-output/Cornell_JHU-hierarchSIR/2026-11-28-Cornell_JHU-hierarchSIR.csv",
+      "sha256": "11761e9f39f7558be916ccf8126b47b8dffdf5b3d12bf68e9da94df028bcaa06",
+      "role": "peer",
+      "model": "Cornell_JHU-hierarchSIR"
+    },
+    {
+      "path": "model-output/CyberEpi-EAKF/2026-11-28-CyberEpi-EAKF.csv",
+      "sha256": "7c5d66a97b2aa3566d7c074447f2c989953b27a8b8226eb2971f3d436f0fa8d9",
+      "role": "peer",
+      "model": "CyberEpi-EAKF"
+    },
+    {
+      "path": "model-output/DMAPRIME-HYB/2026-11-28-DMAPRIME-HYB.csv",
+      "sha256": "d1a1533a48c2aeb760f6d77281ec8d9d8caa6f9f6d6824fa19714058bb0872d3",
+      "role": "peer",
+      "model": "DMAPRIME-HYB"
+    },
+    {
+      "path": "model-output/Emory-EpiRSI/2026-11-28-Emory-EpiRSI.csv",
+      "sha256": "e0bcc492dee5a09564c039206a332e55fbb5db8c530a8390aa057b24630cd564",
+      "role": "peer",
+      "model": "Emory-EpiRSI"
+    },
+    {
+      "path": "model-output/Epistorm-Ensemble_Flu/2026-11-28-Epistorm-Ensemble_Flu.csv",
+      "sha256": "7c5e8b60beccd3751015d7297a693cb0d5ac21e795e31ac541359de71859a1cb",
+      "role": "peer",
+      "model": "Epistorm-Ensemble_Flu"
+    },
+    {
+      "path": "model-output/FluSight-baseline/2026-11-28-FluSight-baseline.csv",
+      "sha256": "9e5d43a92c67e79fc4728d034e252c0f7aaab0e33bf2a54637d237befa05b350",
+      "role": "peer",
+      "model": "FluSight-baseline"
+    },
+    {
+      "path": "model-output/GT_Influencers-ensemble/2026-11-28-GT_Influencers-ensemble.csv",
+      "sha256": "9425b11258364cb09205e08e12855d4ced068808195ebe665c87b9f357e317fc",
+      "role": "peer",
+      "model": "GT_Influencers-ensemble"
+    },
+    {
+      "path": "model-output/Gatech-ensemble_prob/2026-11-28-Gatech-ensemble_prob.csv",
+      "sha256": "e3516855ee3a866eae3b6f6b862eaa91b27385476a43d37eacd7024873266b6a",
+      "role": "peer",
+      "model": "Gatech-ensemble_prob"
+    },
+    {
+      "path": "model-output/Google_SAI-FluEns/2026-11-28-Google_SAI-FluEns.csv",
+      "sha256": "31a93637c690e17c7d26c8fd0833c162c10fb67ba8de0229713c24a049a915b6",
+      "role": "peer",
+      "model": "Google_SAI-FluEns"
+    },
+    {
+      "path": "model-output/HallAI-FluTrend/2026-11-28-HallAI-FluTrend.csv",
+      "sha256": "ff37bf54eb47e0fc16c88c2c22fc4134b7ae5d577f972b4219beb4b644d407c3",
+      "role": "peer",
+      "model": "HallAI-FluTrend"
+    },
+    {
+      "path": "model-output/JPAT-FluGBM/2026-11-28-JPAT-FluGBM.csv",
+      "sha256": "bac018fdc801507ccbb6835cb77e47d4dafe77d0d2b8d6e3e9ded961e7141471",
+      "role": "peer",
+      "model": "JPAT-FluGBM"
+    },
+    {
+      "path": "model-output/LUcompUncertLab-puca/2026-11-28-LUcompUncertLab-puca.csv",
+      "sha256": "731f77d8d1183de49423c9c22c4d1ccae3461cd151e690acc17a05b7cea8c412",
+      "role": "peer",
+      "model": "LUcompUncertLab-puca"
+    },
+    {
+      "path": "model-output/MIGHTE-Base/2026-11-28-MIGHTE-Base.csv",
+      "sha256": "9cee4361b5f0df55e40fbc99d0d1ef96048f96771e72be42a7a4ae36abf5c7b2",
+      "role": "peer",
+      "model": "MIGHTE-Base"
+    },
+    {
+      "path": "model-output/MIGHTE-Linear/2026-11-28-MIGHTE-Linear.csv",
+      "sha256": "5886cbd508ce3f89dbd9266c35a81c900f2c47ad5f672a25a78d567fb21bf521",
+      "role": "peer",
+      "model": "MIGHTE-Linear"
+    },
+    {
+      "path": "model-output/MIGHTE-Nsemble/2026-11-28-MIGHTE-Nsemble.csv",
+      "sha256": "5aa45c922ca76cb75dfd34ea379501b31e5fe16b5d043c471305537418b645ea",
+      "role": "peer",
+      "model": "MIGHTE-Nsemble"
+    },
+    {
+      "path": "model-output/MOBS-EpyStrain_Flu/2026-11-28-MOBS-EpyStrain_Flu.parquet",
+      "sha256": "aa4abe1af9589de663f7ed5051b2a902599081bf6710f5728a010d74b8bdb7da",
+      "role": "peer",
+      "model": "MOBS-EpyStrain_Flu"
+    },
+    {
+      "path": "model-output/MOBS-GLEAM_NCB_FLUH/2026-11-28-MOBS-GLEAM_NCB_FLUH.csv",
+      "sha256": "2af531440c166e44600659bf02d33efe0e413972ea82826c162fe6b6a196e1b6",
+      "role": "peer",
+      "model": "MOBS-GLEAM_NCB_FLUH"
+    },
+    {
+      "path": "model-output/MOBS-GLEAM_PONG/2026-11-28-MOBS-GLEAM_PONG.csv",
+      "sha256": "6fbc645ee2943609c99bbec367bd6015cfeab0b72c8efcdd48eac3bcd2e96160",
+      "role": "peer",
+      "model": "MOBS-GLEAM_PONG"
+    },
+    {
+      "path": "model-output/MTsim-FluCast/2026-11-28-MTsim-FluCast.csv",
+      "sha256": "a06e42f2c3b68aa65d7d270adf93ba351e4abf6cfb9b49d0e309deb9661deb1d",
+      "role": "peer",
+      "model": "MTsim-FluCast"
+    },
+    {
+      "path": "model-output/NAU-ABERT/2026-11-28-NAU-ABERT.csv",
+      "sha256": "a3119d4316c8b3eddd892b857888ab77fef9f18b2bb78f080d63f721a4a0f172",
+      "role": "peer",
+      "model": "NAU-ABERT"
+    },
+    {
+      "path": "model-output/NAU-FourCAT/2026-11-28-NAU-FourCAT.csv",
+      "sha256": "f390c98c2faadb8a042e8c6e2e7fd0cb30722b662ed707c21b4e4e74d925d863",
+      "role": "peer",
+      "model": "NAU-FourCAT"
+    },
+    {
+      "path": "model-output/NAU-epymorph/2026-11-28-NAU-epymorph.csv",
+      "sha256": "0c9876cc19c2a0a2ec98ab26a57cbfbd85baddd157e72b10994ac343a90ed8fa",
+      "role": "peer",
+      "model": "NAU-epymorph"
+    },
+    {
+      "path": "model-output/NAU-vulPES/2026-11-28-NAU-vulPES.csv",
+      "sha256": "dbe12372660d966568b4a2c4f8016e80c2c34c204c37b601b8f73a52a63197dc",
+      "role": "peer",
+      "model": "NAU-vulPES"
+    },
+    {
+      "path": "model-output/NAU_PyBNF-GroundHogCGR/2026-11-28-NAU_PyBNF-GroundHogCGR.csv",
+      "sha256": "9cc30edfc73ac787eef03956834717a46e8425060b2cb624dae887cff48af221",
+      "role": "peer",
+      "model": "NAU_PyBNF-GroundHogCGR"
+    },
+    {
+      "path": "model-output/NAU_PyBNF-OracleSIHRS/2026-11-28-NAU_PyBNF-OracleSIHRS.csv",
+      "sha256": "bc19fff23b73c96b81a4d03cc584586043f205112a14a6a0020bfd291670d15e",
+      "role": "peer",
+      "model": "NAU_PyBNF-OracleSIHRS"
+    },
+    {
+      "path": "model-output/NEU_ISI-AdaptiveEnsemble/2026-11-28-NEU_ISI-AdaptiveEnsemble.csv",
+      "sha256": "af21aaf03ed7269c3f21a9e7cdd9c548a68864a2ab133e612d49a4fc3078c4c3",
+      "role": "peer",
+      "model": "NEU_ISI-AdaptiveEnsemble"
+    },
+    {
+      "path": "model-output/NEU_ISI-FluBcast/2026-11-28-NEU_ISI-FluBcast.csv",
+      "sha256": "ce95f302300581c8cba4659d7d758e399f015e7d87a300bf2def27fe68ae2451",
+      "role": "peer",
+      "model": "NEU_ISI-FluBcast"
+    },
+    {
+      "path": "model-output/NU-EMBERS/2026-11-28-NU-EMBERS.csv",
+      "sha256": "db96c92e2b5286942bcf196c737932be037aa2e168ba2865b299449ec71b2a21",
+      "role": "peer",
+      "model": "NU-EMBERS"
+    },
+    {
+      "path": "model-output/NU-FLARE/2026-11-28-NU-FLARE.csv",
+      "sha256": "f147d658f3026a48bc0fc20196b2e44920e8c9c04722ac62679ee6e3eeb96b20",
+      "role": "peer",
+      "model": "NU-FLARE"
+    },
+    {
+      "path": "model-output/NU_Baselines-logrw/2026-11-28-NU_Baselines-logrw.parquet",
+      "sha256": "55e4d78d202a78bc9ec127c9228f92c30b04ed6052b36312effcd2752b8f34c3",
+      "role": "peer",
+      "model": "NU_Baselines-logrw"
+    },
+    {
+      "path": "model-output/NU_Baselines-naive/2026-11-28-NU_Baselines-naive.parquet",
+      "sha256": "bd1c925242db09787ef7ed22b517267e7536744eaf2cc2aa7f11c180bef5df8c",
+      "role": "peer",
+      "model": "NU_Baselines-naive"
+    },
+    {
+      "path": "model-output/OHTJHU-BM/2026-11-28-OHTJHU-BM.csv",
+      "sha256": "a9ec5b6db29027a45da922b3635a71c529999b8516b007c929172019b2c7cc22",
+      "role": "peer",
+      "model": "OHTJHU-BM"
+    },
+    {
+      "path": "model-output/OHTJHU-FLUFFHEAD/2026-11-28-OHTJHU-FLUFFHEAD.csv",
+      "sha256": "fc4e59dbb072c9a15d898a0c75dd90aa53813f6af7720bee2f295cc29294a77e",
+      "role": "peer",
+      "model": "OHTJHU-FLUFFHEAD"
+    },
+    {
+      "path": "model-output/OHT_JHU-nbxd/2026-11-28-OHT_JHU-nbxd.csv",
+      "sha256": "be24127506499f5b3b2411de297eaee6daf6af0c6499658457ca528d066ca237",
+      "role": "peer",
+      "model": "OHT_JHU-nbxd"
+    },
+    {
+      "path": "model-output/PSI-PROF/2026-11-28-PSI-PROF.parquet",
+      "sha256": "45d4aeae03860eccd35bc3992a7f1c9f2710189a190563ece245a1f8e9b6c584",
+      "role": "peer",
+      "model": "PSI-PROF"
+    },
+    {
+      "path": "model-output/PSI-PROF_MOA/2026-11-28-PSI-PROF_MOA.parquet",
+      "sha256": "1b631d3f987fb2bbc73965343b3a34f30671c8a0930ae23114877d4bf43ad33b",
+      "role": "peer",
+      "model": "PSI-PROF_MOA"
+    },
+    {
+      "path": "model-output/SahilLab-Trio/2026-11-28-SahilLab-Trio.csv",
+      "sha256": "ee666582c2950d6a18f13475711e9fed02925e16f926cc16a7f2ebde02b48d37",
+      "role": "peer",
+      "model": "SahilLab-Trio"
+    },
+    {
+      "path": "model-output/Sentinel-Ens/2026-11-28-Sentinel-Ens.csv",
+      "sha256": "a86b18866c8f2f66e419b0c218586b2e3111ecbfeb602ab10ceed09c1c57ca1b",
+      "role": "peer",
+      "model": "Sentinel-Ens"
+    },
+    {
+      "path": "model-output/UGA_flucast-Copycat/2026-11-28-UGA_flucast-Copycat.csv",
+      "sha256": "d02ea02371844ff3959e403d693924ddb953340d8472e2b19013befacbfaeefa",
+      "role": "peer",
+      "model": "UGA_flucast-Copycat"
+    },
+    {
+      "path": "model-output/UGA_flucast-INFLAenza/2026-11-28-UGA_flucast-INFLAenza.csv",
+      "sha256": "e38af50b8f5506733483e6bcf7e51132dd82a953947531a29f4c21f873a9bd41",
+      "role": "peer",
+      "model": "UGA_flucast-INFLAenza"
+    },
+    {
+      "path": "model-output/UGA_flucast-Scenariocast/2026-11-28-UGA_flucast-Scenariocast.csv",
+      "sha256": "c29659b616d2426a87aa64f69c5cd48b6b76c9c7b94935b51dc85e4c0e603555",
+      "role": "peer",
+      "model": "UGA_flucast-Scenariocast"
+    },
+    {
+      "path": "model-output/UM-DeepOutbreak/2026-11-28-UM-DeepOutbreak.csv",
+      "sha256": "4912020132c7a98b344ccee46951e6b73fdeaaaf3648494033a50474a816c4ee",
+      "role": "peer",
+      "model": "UM-DeepOutbreak"
+    },
+    {
+      "path": "model-output/UMass-AR2/2026-11-28-UMass-AR2.csv",
+      "sha256": "dc855a9dbf478f7a3c8630a5541943ef7c77160743acb111a4ab0bf13956a11c",
+      "role": "peer",
+      "model": "UMass-AR2"
+    },
+    {
+      "path": "model-output/UMass-axial_r2/2026-11-28-UMass-axial_r2.csv",
+      "sha256": "f6c4dcc62bf5e410290875d250d409fa45a58651e606f355a452e7c2cfa494a1",
+      "role": "peer",
+      "model": "UMass-axial_r2"
+    },
+    {
+      "path": "model-output/UMass-flusion/2026-11-28-UMass-flusion.csv",
+      "sha256": "b08d3cc54736e070b9d98debb2692ea26e79633ac08c7f06bf88980ee6d21ce1",
+      "role": "peer",
+      "model": "UMass-flusion"
+    },
+    {
+      "path": "model-output/UMass-trends_ensemble/2026-11-28-UMass-trends_ensemble.parquet",
+      "sha256": "3e3d4a0f5a17a0dea75065dd1545da9342a39cf187504275f0f60644dbe0f166",
+      "role": "peer",
+      "model": "UMass-trends_ensemble"
+    },
+    {
+      "path": "model-output/UVAFluX-Ensemble/2026-11-28-UVAFluX-Ensemble.csv",
+      "sha256": "777198c477519058896a28cb677f8dc18f702f5619bd801c3a886157a42427b7",
+      "role": "peer",
+      "model": "UVAFluX-Ensemble"
+    },
+    {
+      "path": "model-output/VTSanghani-PRIME/2026-11-28-VTSanghani-PRIME.csv",
+      "sha256": "79d5ed02259b1a3ec8082a43f2a08ae30e73f8212f8a55aa840f096e3f276dc9",
+      "role": "peer",
+      "model": "VTSanghani-PRIME"
+    },
+    {
+      "path": "model-output/Xi_lab-Agents/2026-11-28-Xi_lab-Agents.csv",
+      "sha256": "da5c219c91bf845ba0cdaf536e834cf76c7433f847e29a2a8036fe2fc589b697",
+      "role": "peer",
+      "model": "Xi_lab-Agents"
+    },
+    {
+      "path": "model-output/Xi_lab-Agents_Adapt/2026-11-28-Xi_lab-Agents_Adapt.csv",
+      "sha256": "69b563508b0b5ba1cc7ba55bb7f4309ae1eba085a1777c06dfee3fb08d74ef4b",
+      "role": "peer",
+      "model": "Xi_lab-Agents_Adapt"
+    },
+    {
+      "path": "model-output/Xi_lab-GLEAM_AI/2026-11-28-Xi_lab-GLEAM_AI.csv",
+      "sha256": "26ea2315c18b156bb3ec7f0ef1f760c9c6daa97f5b644a14131c1b7588d47398",
+      "role": "peer",
+      "model": "Xi_lab-GLEAM_AI"
+    },
+    {
+      "path": "model-output/Xi_lab-GLEAM_AI_hybrid/2026-11-28-Xi_lab-GLEAM_AI_hybrid.csv",
+      "sha256": "066d900a5f2f12c109233c74d00f424d3bb067501f08595bc2a0766bf0279333",
+      "role": "peer",
+      "model": "Xi_lab-GLEAM_AI_hybrid"
+    },
+    {
+      "path": "model-output/bayvaxbio-CountCast/2026-11-28-bayvaxbio-CountCast.csv",
+      "sha256": "fbb40c453183a7afb20b53de359a364c865f15db94074ee6c9e2d7dd5d98a232",
+      "role": "peer",
+      "model": "bayvaxbio-CountCast"
+    },
+    {
+      "path": "model-output/reasonspire-lagQR/2026-11-28-reasonspire-lagQR.csv",
+      "sha256": "66613ff6946b5a007cfb83fa7c6c1509b20ad12f57712d9567437f3f078fa319",
+      "role": "peer",
+      "model": "reasonspire-lagQR"
+    },
+    {
+      "path": "auxiliary-data/locations.csv",
+      "sha256": "80aaa24750044a837e063812a1d0a22339c8b3a92513f71a23dac613eaaa29e0",
+      "role": "locations",
+      "model": null
+    },
+    {
+      "path": "target-data/target-hospital-admissions.csv",
+      "sha256": "a0ff6a8d6dd7b8458bfb0bf65e54a26d801f144f2b51450bd5598d8e33db40cb",
+      "role": "history",
+      "model": null
+    },
+    {
+      "path": "target-data/target-ed-visits-prop.csv",
+      "sha256": "d67082f2453ab5e17b77ca04de57d853bd6bff55c221cbcecceab9f36bc1b1ec",
+      "role": "history",
+      "model": null
+    }
+  ],
+  "history_cutoff": "2026-11-21",
+  "zoom_weeks": 8,
+  "assumptions": [
+    "Descriptive forecast comparison, not accuracy scoring.",
+    "Latest target values at the pinned Hub commit, not reconstructed issuance-time truth.",
+    "No history dated after reference minus seven days is shown as current observations.",
+    "Prior season aligned by CDC week; unmatched week 53 omitted, no value rescaling.",
+    "Peer bands weight each available model median equally; local candidates are excluded.",
+    "Partial peer coverage is retained; no missing forecasts or history are imputed.",
+    "Training details are copied only from matching local export metadata; peer training is not inferred."
+  ]
+}

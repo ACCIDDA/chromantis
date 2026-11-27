@@ -1,0 +1,1249 @@
+model,target,location,horizon,median,peers,peer_median,percentile
+Amended (state by state),wk inc flu hosp,01,0,332.0,70,331.5,50.714285714285715
+Amended (state by state),wk inc flu hosp,01,1,374.0,70,372.75,50.714285714285715
+Amended (state by state),wk inc flu hosp,01,2,402.0,70,400.75,51.42857142857143
+Amended (state by state),wk inc flu hosp,01,3,420.0,70,419.0166566258293,50.0
+Amended (state by state),wk inc flu prop ed visits,01,0,0.044539124998267496,23,0.04382531716026059,52.17391304347826
+Amended (state by state),wk inc flu prop ed visits,01,1,0.0513285618513934,23,0.0509469587611868,52.17391304347826
+Amended (state by state),wk inc flu prop ed visits,01,2,0.054914880615630796,23,0.054764,52.17391304347826
+Amended (state by state),wk inc flu prop ed visits,01,3,0.05995736170108854,23,0.058889123714718446,52.17391304347826
+Amended (state by state),wk inc flu hosp,02,0,38.0,70,38.0,50.0
+Amended (state by state),wk inc flu hosp,02,1,42.0,70,42.0,48.57142857142857
+Amended (state by state),wk inc flu hosp,02,2,45.0,70,45.0,50.0
+Amended (state by state),wk inc flu hosp,02,3,47.0,70,47.0,50.0
+Amended (state by state),wk inc flu prop ed visits,02,0,0.04376677155297559,23,0.043559,52.17391304347826
+Amended (state by state),wk inc flu prop ed visits,02,1,0.04864841108006561,23,0.04855253717,52.17391304347826
+Amended (state by state),wk inc flu prop ed visits,02,2,0.05174307620464251,23,0.05145639447643976,52.17391304347826
+Amended (state by state),wk inc flu prop ed visits,02,3,0.055806286618643064,23,0.05514771112728613,52.17391304347826
+Amended (state by state),wk inc flu hosp,04,0,297.0,70,242.0,92.85714285714286
+Amended (state by state),wk inc flu hosp,04,1,346.0,70,285.5,85.71428571428571
+Amended (state by state),wk inc flu hosp,04,2,399.0,70,328.0,76.42857142857143
+Amended (state by state),wk inc flu hosp,04,3,423.0,70,385.0,62.857142857142854
+Amended (state by state),wk inc flu prop ed visits,04,0,0.023192923661190433,23,0.020518337322630194,78.26086956521739
+Amended (state by state),wk inc flu prop ed visits,04,1,0.02855410906886391,23,0.023138,73.91304347826087
+Amended (state by state),wk inc flu prop ed visits,04,2,0.03253974685139838,23,0.0281,60.869565217391305
+Amended (state by state),wk inc flu prop ed visits,04,3,0.03303267141018296,23,0.03251132207593482,52.17391304347826
+Amended (state by state),wk inc flu hosp,05,0,134.0,70,108.0,92.85714285714286
+Amended (state by state),wk inc flu hosp,05,1,152.0,70,133.5,84.28571428571429
+Amended (state by state),wk inc flu hosp,05,2,165.0,70,156.33062483121589,61.42857142857143
+Amended (state by state),wk inc flu hosp,05,3,159.0,70,177.4098376451459,33.57142857142857
+Amended (state by state),wk inc flu prop ed visits,05,0,0.03747749857939198,23,0.037728321411012365,47.82608695652174
+Amended (state by state),wk inc flu prop ed visits,05,1,0.04263027067281655,23,0.04501051159568991,34.78260869565217
+Amended (state by state),wk inc flu prop ed visits,05,2,0.043997440957173235,23,0.0513484568,21.73913043478261
+Amended (state by state),wk inc flu prop ed visits,05,3,0.041057619452476504,23,0.05686,13.043478260869565
+Amended (state by state),wk inc flu hosp,06,0,1911.0,71,1949.0,43.66197183098591
+Amended (state by state),wk inc flu hosp,06,1,1863.0,71,2075.0,29.577464788732396
+Amended (state by state),wk inc flu hosp,06,2,1739.0,71,2127.2804299572485,26.760563380281692
+Amended (state by state),wk inc flu hosp,06,3,1597.0,71,2135.0,21.12676056338028
+Amended (state by state),wk inc flu prop ed visits,06,0,0.031506374019909335,23,0.033841123034986216,34.78260869565217
+Amended (state by state),wk inc flu prop ed visits,06,1,0.03020253525190869,23,0.03540655,26.08695652173913
+Amended (state by state),wk inc flu prop ed visits,06,2,0.02786951523688408,23,0.0350842,21.73913043478261
+Amended (state by state),wk inc flu prop ed visits,06,3,0.026331282899151723,23,0.036467,26.08695652173913
+Amended (state by state),wk inc flu hosp,08,0,236.0,70,235.75,50.0
+Amended (state by state),wk inc flu hosp,08,1,284.0,70,283.2887617340268,51.42857142857143
+Amended (state by state),wk inc flu hosp,08,2,332.0,70,331.75,50.0
+Amended (state by state),wk inc flu hosp,08,3,376.0,70,375.25,50.714285714285715
+Amended (state by state),wk inc flu prop ed visits,08,0,0.029288232761932896,23,0.029203365523865793,52.17391304347826
+Amended (state by state),wk inc flu prop ed visits,08,1,0.0347732442573504,23,0.034467,52.17391304347826
+Amended (state by state),wk inc flu prop ed visits,08,2,0.03870447910900545,23,0.038608,52.17391304347826
+Amended (state by state),wk inc flu prop ed visits,08,3,0.042126,23,0.041934,52.17391304347826
+Amended (state by state),wk inc flu hosp,09,0,177.0,70,140.45292452214753,97.14285714285714
+Amended (state by state),wk inc flu hosp,09,1,205.0,70,168.0,87.14285714285714
+Amended (state by state),wk inc flu hosp,09,2,224.0,70,199.0,66.42857142857143
+Amended (state by state),wk inc flu hosp,09,3,216.0,70,226.217022112934,41.42857142857143
+Amended (state by state),wk inc flu prop ed visits,09,0,0.030926987921702676,23,0.028021482685183237,86.95652173913044
+Amended (state by state),wk inc flu prop ed visits,09,1,0.035026579775149,23,0.0351222,47.82608695652174
+Amended (state by state),wk inc flu prop ed visits,09,2,0.03591289276082535,23,0.0399545169948326,43.47826086956522
+Amended (state by state),wk inc flu prop ed visits,09,3,0.03326204953336855,23,0.04236982520774054,17.391304347826086
+Amended (state by state),wk inc flu hosp,10,0,82.0,70,77.25,72.14285714285714
+Amended (state by state),wk inc flu hosp,10,1,88.0,70,88.0,49.285714285714285
+Amended (state by state),wk inc flu hosp,10,2,90.0,70,95.75,40.0
+Amended (state by state),wk inc flu hosp,10,3,89.0,70,105.75,25.714285714285715
+Amended (state by state),wk inc flu prop ed visits,10,0,0.04948165599370824,23,0.0499206386299835,47.82608695652174
+Amended (state by state),wk inc flu prop ed visits,10,1,0.05339239878308487,23,0.0564905,34.78260869565217
+Amended (state by state),wk inc flu prop ed visits,10,2,0.05331135476646386,23,0.061499,26.08695652173913
+Amended (state by state),wk inc flu prop ed visits,10,3,0.05234925571512622,23,0.06623300373,21.73913043478261
+Amended (state by state),wk inc flu hosp,11,0,22.0,69,15.0,93.47826086956522
+Amended (state by state),wk inc flu hosp,11,1,25.0,69,19.0,84.78260869565217
+Amended (state by state),wk inc flu hosp,11,2,27.0,69,24.0,71.01449275362319
+Amended (state by state),wk inc flu hosp,11,3,27.0,69,28.0,47.10144927536232
+Amended (state by state),wk inc flu prop ed visits,11,0,0.023526265931650414,23,0.020422898752,95.65217391304348
+Amended (state by state),wk inc flu prop ed visits,11,1,0.02597996133590641,23,0.023176420824645067,69.56521739130434
+Amended (state by state),wk inc flu prop ed visits,11,2,0.026052391942357644,23,0.025241,52.17391304347826
+Amended (state by state),wk inc flu prop ed visits,11,3,0.023756501519528683,23,0.029005603567088,21.73913043478261
+Amended (state by state),wk inc flu hosp,12,0,1804.0,69,1802.7267603807,50.72463768115942
+Amended (state by state),wk inc flu hosp,12,1,1875.0,69,1865.8944091796875,50.72463768115942
+Amended (state by state),wk inc flu hosp,12,2,1894.0,69,1887.0,50.72463768115942
+Amended (state by state),wk inc flu hosp,12,3,1894.0,69,1873.0,50.72463768115942
+Amended (state by state),wk inc flu prop ed visits,12,0,0.03928312439607658,23,0.039083,52.17391304347826
+Amended (state by state),wk inc flu prop ed visits,12,1,0.0424955,23,0.04183,52.17391304347826
+Amended (state by state),wk inc flu prop ed visits,12,2,0.04407182317903745,23,0.043262,52.17391304347826
+Amended (state by state),wk inc flu prop ed visits,12,3,0.046014115732906674,23,0.044839,52.17391304347826
+Amended (state by state),wk inc flu hosp,13,0,516.0,70,516.0,50.0
+Amended (state by state),wk inc flu hosp,13,1,603.0,70,601.5,50.714285714285715
+Amended (state by state),wk inc flu hosp,13,2,673.0,70,672.0,50.714285714285715
+Amended (state by state),wk inc flu hosp,13,3,731.0,70,728.5,50.714285714285715
+Amended (state by state),wk inc flu prop ed visits,13,0,0.03756796720967123,23,0.03744334904934247,52.17391304347826
+Amended (state by state),wk inc flu prop ed visits,13,1,0.041584145247337376,23,0.04142244548797476,52.17391304347826
+Amended (state by state),wk inc flu prop ed visits,13,2,0.0471025,23,0.04623,52.17391304347826
+Amended (state by state),wk inc flu prop ed visits,13,3,0.049047637928319635,23,0.04896431613694177,52.17391304347826
+Amended (state by state),wk inc flu hosp,15,0,62.0,69,62.0,50.72463768115942
+Amended (state by state),wk inc flu hosp,15,1,62.0,69,62.0,50.0
+Amended (state by state),wk inc flu hosp,15,2,61.0,69,60.833333333333336,52.17391304347826
+Amended (state by state),wk inc flu hosp,15,3,62.0,69,61.0,52.17391304347826
+Amended (state by state),wk inc flu prop ed visits,15,0,0.04460754350148398,23,0.044623553848522964,47.82608695652174
+Amended (state by state),wk inc flu prop ed visits,15,1,0.04130394839751311,23,0.041682,47.82608695652174
+Amended (state by state),wk inc flu prop ed visits,15,2,0.040541891526763546,23,0.041393,47.82608695652174
+Amended (state by state),wk inc flu prop ed visits,15,3,0.039208597380023455,23,0.03928135833002155,47.82608695652174
+Amended (state by state),wk inc flu hosp,16,0,73.0,70,72.94574423136785,52.142857142857146
+Amended (state by state),wk inc flu hosp,16,1,90.0,70,90.0,52.142857142857146
+Amended (state by state),wk inc flu hosp,16,2,105.0,70,104.25,54.285714285714285
+Amended (state by state),wk inc flu hosp,16,3,120.0,70,118.95986650365037,50.714285714285715
+Amended (state by state),wk inc flu prop ed visits,16,0,0.02601560666781505,23,0.02599390849,52.17391304347826
+Amended (state by state),wk inc flu prop ed visits,16,1,0.03040662890311839,23,0.030127,52.17391304347826
+Amended (state by state),wk inc flu prop ed visits,16,2,0.036187,23,0.035853,52.17391304347826
+Amended (state by state),wk inc flu prop ed visits,16,3,0.03945325092043038,23,0.03871543106026077,52.17391304347826
+Amended (state by state),wk inc flu hosp,17,0,359.0,70,304.0,88.57142857142857
+Amended (state by state),wk inc flu hosp,17,1,443.0,70,356.5,85.71428571428571
+Amended (state by state),wk inc flu hosp,17,2,555.0,70,421.38236059004055,80.0
+Amended (state by state),wk inc flu hosp,17,3,655.0,70,503.0,75.71428571428571
+Amended (state by state),wk inc flu prop ed visits,17,0,0.015944173167736154,23,0.015017866478878825,60.869565217391305
+Amended (state by state),wk inc flu prop ed visits,17,1,0.020916410354402615,23,0.019854592574734806,56.52173913043478
+Amended (state by state),wk inc flu prop ed visits,17,2,0.0262139928760007,23,0.026251,47.82608695652174
+Amended (state by state),wk inc flu prop ed visits,17,3,0.029285092758073006,23,0.03305836543,39.130434782608695
+Amended (state by state),wk inc flu hosp,18,0,413.0,70,353.5,91.42857142857143
+Amended (state by state),wk inc flu hosp,18,1,471.0,70,425.0,75.71428571428571
+Amended (state by state),wk inc flu hosp,18,2,517.0,70,499.4569815150508,57.142857142857146
+Amended (state by state),wk inc flu hosp,18,3,515.0,70,565.1298773262865,35.714285714285715
+Amended (state by state),wk inc flu prop ed visits,18,0,0.02857689432130428,23,0.028378094936023314,52.17391304347826
+Amended (state by state),wk inc flu prop ed visits,18,1,0.033766524833481526,23,0.03615037619,26.08695652173913
+Amended (state by state),wk inc flu prop ed visits,18,2,0.03639352885147673,23,0.04502094729171305,17.391304347826086
+Amended (state by state),wk inc flu prop ed visits,18,3,0.03497990213872981,23,0.049896,13.043478260869565
+Amended (state by state),wk inc flu hosp,19,0,82.0,70,65.98687990084181,90.71428571428571
+Amended (state by state),wk inc flu hosp,19,1,105.0,70,82.5,85.71428571428571
+Amended (state by state),wk inc flu hosp,19,2,134.0,70,102.0,80.0
+Amended (state by state),wk inc flu hosp,19,3,157.0,70,131.311867350755,73.57142857142857
+Amended (state by state),wk inc flu prop ed visits,19,0,0.01809099176171003,23,0.015499999999999998,86.95652173913044
+Amended (state by state),wk inc flu prop ed visits,19,1,0.023872910423961002,23,0.020331,86.95652173913044
+Amended (state by state),wk inc flu prop ed visits,19,2,0.0296564242860768,23,0.027199999999999995,82.6086956521739
+Amended (state by state),wk inc flu prop ed visits,19,3,0.0322579139341542,23,0.0337362210811823,39.130434782608695
+Amended (state by state),wk inc flu hosp,20,0,61.0,70,51.0,84.28571428571429
+Amended (state by state),wk inc flu hosp,20,1,76.0,70,65.0,65.71428571428571
+Amended (state by state),wk inc flu hosp,20,2,97.0,70,84.5,67.85714285714286
+Amended (state by state),wk inc flu hosp,20,3,116.0,70,108.0,57.142857142857146
+Amended (state by state),wk inc flu prop ed visits,20,0,0.011812511498465027,23,0.011035817307692306,65.21739130434783
+Amended (state by state),wk inc flu prop ed visits,20,1,0.01586910556852672,23,0.015468506213410735,56.52173913043478
+Amended (state by state),wk inc flu prop ed visits,20,2,0.02039629124192288,23,0.021441816069882033,43.47826086956522
+Amended (state by state),wk inc flu prop ed visits,20,3,0.02313924803966074,23,0.028919533208638194,30.434782608695652
+Amended (state by state),wk inc flu hosp,21,0,278.0,70,278.174562332541,48.57142857142857
+Amended (state by state),wk inc flu hosp,21,1,325.0,70,324.5,50.714285714285715
+Amended (state by state),wk inc flu hosp,21,2,362.0,70,359.0,50.714285714285715
+Amended (state by state),wk inc flu hosp,21,3,393.0,70,389.7938077264635,51.42857142857143
+Amended (state by state),wk inc flu prop ed visits,21,0,0.041268070332203075,23,0.0412596,52.17391304347826
+Amended (state by state),wk inc flu prop ed visits,21,1,0.04701974607496892,23,0.046643,52.17391304347826
+Amended (state by state),wk inc flu prop ed visits,21,2,0.05068053649,23,0.05001,52.17391304347826
+Amended (state by state),wk inc flu prop ed visits,21,3,0.053658986851724884,23,0.05360601020764259,52.17391304347826
+Amended (state by state),wk inc flu hosp,22,0,444.0,70,443.027292348631,50.714285714285715
+Amended (state by state),wk inc flu hosp,22,1,464.0,70,463.3271425299405,50.714285714285715
+Amended (state by state),wk inc flu hosp,22,2,461.0,70,460.15999999999997,50.714285714285715
+Amended (state by state),wk inc flu hosp,22,3,472.0,70,469.5,50.714285714285715
+Amended (state by state),wk inc flu prop ed visits,22,0,0.0559075,23,0.05454,52.17391304347826
+Amended (state by state),wk inc flu prop ed visits,22,1,0.059869771804465774,23,0.05856,52.17391304347826
+Amended (state by state),wk inc flu prop ed visits,22,2,0.06198566144693742,23,0.061753242697,52.17391304347826
+Amended (state by state),wk inc flu prop ed visits,22,3,0.06409951,23,0.0639928,52.17391304347826
+Amended (state by state),wk inc flu hosp,23,0,46.0,70,44.0,60.0
+Amended (state by state),wk inc flu hosp,23,1,52.0,70,52.5,49.285714285714285
+Amended (state by state),wk inc flu hosp,23,2,58.0,70,61.5,44.285714285714285
+Amended (state by state),wk inc flu hosp,23,3,61.0,70,69.5,37.857142857142854
+Amended (state by state),wk inc flu prop ed visits,23,0,0.02221785823530236,23,0.0229369,43.47826086956522
+Amended (state by state),wk inc flu prop ed visits,23,1,0.02513497250917408,23,0.02752343927514379,43.47826086956522
+Amended (state by state),wk inc flu prop ed visits,23,2,0.026029107797026357,23,0.0295883928739415,21.73913043478261
+Amended (state by state),wk inc flu prop ed visits,23,3,0.026299984071696,23,0.03161341476235514,13.043478260869565
+Amended (state by state),wk inc flu hosp,24,0,186.0,70,148.0,92.85714285714286
+Amended (state by state),wk inc flu hosp,24,1,220.0,70,185.0,85.0
+Amended (state by state),wk inc flu hosp,24,2,251.0,70,227.431034506257,67.85714285714286
+Amended (state by state),wk inc flu hosp,24,3,254.0,70,270.5,40.0
+Amended (state by state),wk inc flu prop ed visits,24,0,0.028337308789195957,23,0.025931078848796717,86.95652173913044
+Amended (state by state),wk inc flu prop ed visits,24,1,0.03328092712763464,23,0.03287246387065996,60.869565217391305
+Amended (state by state),wk inc flu prop ed visits,24,2,0.03566440165741369,23,0.038888,39.130434782608695
+Amended (state by state),wk inc flu prop ed visits,24,3,0.03414725224720315,23,0.04151,17.391304347826086
+Amended (state by state),wk inc flu hosp,25,0,214.0,70,188.5,71.42857142857143
+Amended (state by state),wk inc flu hosp,25,1,260.0,70,234.5,64.28571428571429
+Amended (state by state),wk inc flu hosp,25,2,302.0,70,285.0,52.857142857142854
+Amended (state by state),wk inc flu hosp,25,3,314.0,70,330.5,40.0
+Amended (state by state),wk inc flu prop ed visits,25,0,0.03558846280631245,23,0.033609,78.26086956521739
+Amended (state by state),wk inc flu prop ed visits,25,1,0.04033312271297393,23,0.040091105980163654,52.17391304347826
+Amended (state by state),wk inc flu prop ed visits,25,2,0.042450687163403326,23,0.045749044289538035,43.47826086956522
+Amended (state by state),wk inc flu prop ed visits,25,3,0.04148666383071786,23,0.046378683351229084,26.08695652173913
+Amended (state by state),wk inc flu hosp,26,0,388.0,70,317.75,94.28571428571429
+Amended (state by state),wk inc flu hosp,26,1,483.0,70,405.0,88.57142857142857
+Amended (state by state),wk inc flu hosp,26,2,585.0,70,497.8422961782313,77.14285714285714
+Amended (state by state),wk inc flu hosp,26,3,637.0,70,586.5,58.57142857142857
+Amended (state by state),wk inc flu prop ed visits,26,0,0.023963092282792784,23,0.023848499891494408,60.869565217391305
+Amended (state by state),wk inc flu prop ed visits,26,1,0.030133901739100112,23,0.031018982809726755,39.130434782608695
+Amended (state by state),wk inc flu prop ed visits,26,2,0.034734024051431334,23,0.039045973504882044,30.434782608695652
+Amended (state by state),wk inc flu prop ed visits,26,3,0.03507018883756245,23,0.043875680598121476,13.043478260869565
+Amended (state by state),wk inc flu hosp,27,0,126.0,70,98.5,97.14285714285714
+Amended (state by state),wk inc flu hosp,27,1,166.0,70,128.9231680954391,94.28571428571429
+Amended (state by state),wk inc flu hosp,27,2,224.0,70,167.25,88.57142857142857
+Amended (state by state),wk inc flu hosp,27,3,280.0,70,212.0,78.57142857142857
+Amended (state by state),wk inc flu prop ed visits,27,0,0.017675794681053958,23,0.0156087949523393,82.6086956521739
+Amended (state by state),wk inc flu prop ed visits,27,1,0.023986214162869144,23,0.020454810666499595,82.6086956521739
+Amended (state by state),wk inc flu prop ed visits,27,2,0.031049582830746658,23,0.026971532748391574,69.56521739130434
+Amended (state by state),wk inc flu prop ed visits,27,3,0.03551609858914162,23,0.03453187571921748,56.52173913043478
+Amended (state by state),wk inc flu hosp,28,0,200.0,70,199.5,51.42857142857143
+Amended (state by state),wk inc flu hosp,28,1,219.0,70,218.5,50.714285714285715
+Amended (state by state),wk inc flu hosp,28,2,235.0,70,233.5,50.714285714285715
+Amended (state by state),wk inc flu hosp,28,3,248.0,70,247.88457871996775,50.714285714285715
+Amended (state by state),wk inc flu prop ed visits,28,0,0.06575595789995001,23,0.065598544,52.17391304347826
+Amended (state by state),wk inc flu prop ed visits,28,1,0.07065110519052825,23,0.0694232103810565,52.17391304347826
+Amended (state by state),wk inc flu prop ed visits,28,2,0.07142618340632635,23,0.0701585679775033,52.17391304347826
+Amended (state by state),wk inc flu prop ed visits,28,3,0.07248616704234898,23,0.07238464971289797,52.17391304347826
+Amended (state by state),wk inc flu hosp,29,0,174.0,70,146.28438112956428,85.71428571428571
+Amended (state by state),wk inc flu hosp,29,1,212.0,70,186.476317869711,67.14285714285714
+Amended (state by state),wk inc flu hosp,29,2,253.0,70,226.0,60.0
+Amended (state by state),wk inc flu hosp,29,3,275.0,70,292.5,40.0
+Amended (state by state),wk inc flu prop ed visits,29,0,0.015286422796998524,22,0.016021075461696455,36.36363636363637
+Amended (state by state),wk inc flu prop ed visits,29,1,0.01762961068925506,22,0.020603621355993872,22.727272727272727
+Amended (state by state),wk inc flu prop ed visits,29,2,0.018685071876461734,22,0.0259927902636402,13.636363636363637
+Amended (state by state),wk inc flu prop ed visits,29,3,0.01777804742996523,22,0.029679744053382313,13.636363636363637
+Amended (state by state),wk inc flu hosp,30,0,63.0,70,62.6336692266089,52.857142857142854
+Amended (state by state),wk inc flu hosp,30,1,72.0,70,72.13098006399676,47.142857142857146
+Amended (state by state),wk inc flu hosp,30,2,82.0,70,81.0,50.714285714285715
+Amended (state by state),wk inc flu hosp,30,3,93.0,70,91.745,50.714285714285715
+Amended (state by state),wk inc flu prop ed visits,30,0,0.026118037757498713,23,0.025890171408358798,52.17391304347826
+Amended (state by state),wk inc flu prop ed visits,30,1,0.03079179729877215,23,0.0306312541975443,52.17391304347826
+Amended (state by state),wk inc flu prop ed visits,30,2,0.03489877556985018,23,0.034641,52.17391304347826
+Amended (state by state),wk inc flu prop ed visits,30,3,0.039153499999999994,23,0.037235,52.17391304347826
+Amended (state by state),wk inc flu hosp,31,0,46.0,70,42.0,78.57142857142857
+Amended (state by state),wk inc flu hosp,31,1,57.0,70,53.20271059080298,63.57142857142857
+Amended (state by state),wk inc flu hosp,31,2,69.0,70,65.13028758982449,53.57142857142857
+Amended (state by state),wk inc flu hosp,31,3,81.0,70,80.89906027184475,50.0
+Amended (state by state),wk inc flu prop ed visits,31,0,0.016121419730802444,23,0.0157142857142857,65.21739130434783
+Amended (state by state),wk inc flu prop ed visits,31,1,0.01997641711781243,23,0.0200707248832008,39.130434782608695
+Amended (state by state),wk inc flu prop ed visits,31,2,0.023509657090719255,23,0.02474877986649825,39.130434782608695
+Amended (state by state),wk inc flu prop ed visits,31,3,0.025758693511265925,23,0.0297500006854534,26.08695652173913
+Amended (state by state),wk inc flu hosp,32,0,186.0,70,186.0,50.0
+Amended (state by state),wk inc flu hosp,32,1,207.0,70,207.15180893704024,49.285714285714285
+Amended (state by state),wk inc flu hosp,32,2,222.0,70,221.75,50.0
+Amended (state by state),wk inc flu hosp,32,3,238.0,70,236.25,52.857142857142854
+Amended (state by state),wk inc flu prop ed visits,32,0,0.035865663625,23,0.03582332725,52.17391304347826
+Amended (state by state),wk inc flu prop ed visits,32,1,0.04034103929465,23,0.039991,52.17391304347826
+Amended (state by state),wk inc flu prop ed visits,32,2,0.04347999146335,23,0.043073,52.17391304347826
+Amended (state by state),wk inc flu prop ed visits,32,3,0.045692250000000004,23,0.0454405,52.17391304347826
+Amended (state by state),wk inc flu hosp,33,0,66.0,70,58.0,83.57142857142857
+Amended (state by state),wk inc flu hosp,33,1,72.0,70,68.75,55.714285714285715
+Amended (state by state),wk inc flu hosp,33,2,76.0,70,78.75,45.714285714285715
+Amended (state by state),wk inc flu hosp,33,3,72.0,70,89.5,27.142857142857142
+Amended (state by state),wk inc flu prop ed visits,33,0,0.02447326403853367,23,0.02439265639,52.17391304347826
+Amended (state by state),wk inc flu prop ed visits,33,1,0.026704936390160583,23,0.0293041140683937,39.130434782608695
+Amended (state by state),wk inc flu prop ed visits,33,2,0.02694105578084418,23,0.0328891063863895,17.391304347826086
+Amended (state by state),wk inc flu prop ed visits,33,3,0.024882587827232783,23,0.036374,13.043478260869565
+Amended (state by state),wk inc flu hosp,34,0,653.0,70,526.5,92.85714285714286
+Amended (state by state),wk inc flu hosp,34,1,726.0,70,609.0,84.28571428571429
+Amended (state by state),wk inc flu hosp,34,2,763.0,70,679.5898803966088,71.42857142857143
+Amended (state by state),wk inc flu hosp,34,3,712.0,70,726.0,44.285714285714285
+Amended (state by state),wk inc flu prop ed visits,34,0,0.03781576436376781,23,0.03658377514,73.91304347826087
+Amended (state by state),wk inc flu prop ed visits,34,1,0.04144812479353277,23,0.042425,43.47826086956522
+Amended (state by state),wk inc flu prop ed visits,34,2,0.04101722150517162,23,0.04811644589726004,21.73913043478261
+Amended (state by state),wk inc flu prop ed visits,34,3,0.037010170803114306,23,0.05223748565016065,17.391304347826086
+Amended (state by state),wk inc flu hosp,35,0,115.0,70,90.0,95.71428571428571
+Amended (state by state),wk inc flu hosp,35,1,134.0,70,110.3489604417571,90.0
+Amended (state by state),wk inc flu hosp,35,2,149.0,70,129.0,74.28571428571429
+Amended (state by state),wk inc flu hosp,35,3,146.0,70,151.25,43.57142857142857
+Amended (state by state),wk inc flu prop ed visits,35,0,0.03932877544502844,23,0.0351354269481862,91.30434782608695
+Amended (state by state),wk inc flu prop ed visits,35,1,0.04652070553129306,23,0.042263,82.6086956521739
+Amended (state by state),wk inc flu prop ed visits,35,2,0.04959976895042928,23,0.047664,56.52173913043478
+Amended (state by state),wk inc flu prop ed visits,35,3,0.04716703751182649,23,0.054801,30.434782608695652
+Amended (state by state),wk inc flu hosp,36,0,1262.0,71,1066.0,91.54929577464789
+Amended (state by state),wk inc flu hosp,36,1,1403.0,71,1235.0,74.64788732394366
+Amended (state by state),wk inc flu hosp,36,2,1480.0,71,1382.0,60.563380281690144
+Amended (state by state),wk inc flu hosp,36,3,1387.0,70,1479.5,34.285714285714285
+Amended (state by state),wk inc flu prop ed visits,36,0,0.030398993890412385,23,0.0283946183454052,78.26086956521739
+Amended (state by state),wk inc flu prop ed visits,36,1,0.0331220426451182,23,0.034245,43.47826086956522
+Amended (state by state),wk inc flu prop ed visits,36,2,0.03251176271078293,23,0.0390724217948,17.391304347826086
+Amended (state by state),wk inc flu prop ed visits,36,3,0.029242929349493352,23,0.0427174177829,13.043478260869565
+Amended (state by state),wk inc flu hosp,37,0,611.0,70,532.25,91.42857142857143
+Amended (state by state),wk inc flu hosp,37,1,695.0,70,624.0,74.28571428571429
+Amended (state by state),wk inc flu hosp,37,2,770.0,70,712.0,62.857142857142854
+Amended (state by state),wk inc flu hosp,37,3,779.0,70,782.9166666666667,48.57142857142857
+Amended (state by state),wk inc flu prop ed visits,37,0,0.045131248862162465,23,0.044498,52.17391304347826
+Amended (state by state),wk inc flu prop ed visits,37,1,0.05307489446204272,23,0.0537399973032,47.82608695652174
+Amended (state by state),wk inc flu prop ed visits,37,2,0.057411358058016046,23,0.05785,47.82608695652174
+Amended (state by state),wk inc flu prop ed visits,37,3,0.05575220949976938,23,0.0641475669043157,21.73913043478261
+Amended (state by state),wk inc flu hosp,38,0,25.0,70,21.877116048593727,85.71428571428571
+Amended (state by state),wk inc flu hosp,38,1,29.0,70,26.942790985107422,61.42857142857143
+Amended (state by state),wk inc flu hosp,38,2,34.0,70,34.0,50.0
+Amended (state by state),wk inc flu hosp,38,3,37.0,70,41.75,34.285714285714285
+Amended (state by state),wk inc flu prop ed visits,38,0,0.014112997252959758,23,0.01332655,69.56521739130434
+Amended (state by state),wk inc flu prop ed visits,38,1,0.01755821811093483,23,0.017076682126338436,52.17391304347826
+Amended (state by state),wk inc flu prop ed visits,38,2,0.020732167685491732,23,0.022738730240508286,39.130434782608695
+Amended (state by state),wk inc flu prop ed visits,38,3,0.021990791556527257,23,0.026719,30.434782608695652
+Amended (state by state),wk inc flu hosp,39,0,562.0,70,456.0,91.42857142857143
+Amended (state by state),wk inc flu hosp,39,1,678.0,70,561.0,88.57142857142857
+Amended (state by state),wk inc flu hosp,39,2,795.0,70,666.0,77.14285714285714
+Amended (state by state),wk inc flu hosp,39,3,832.0,70,805.5,57.142857142857146
+Amended (state by state),wk inc flu prop ed visits,39,0,0.023850541496358346,23,0.022299999999999997,86.95652173913044
+Amended (state by state),wk inc flu prop ed visits,39,1,0.028890698034956586,23,0.02858313716708235,52.17391304347826
+Amended (state by state),wk inc flu prop ed visits,39,2,0.03206530810712138,23,0.03625219088756011,34.78260869565217
+Amended (state by state),wk inc flu prop ed visits,39,3,0.03149592703994131,23,0.04169812003,17.391304347826086
+Amended (state by state),wk inc flu hosp,40,0,195.0,70,159.75,85.0
+Amended (state by state),wk inc flu hosp,40,1,218.0,70,195.5,75.0
+Amended (state by state),wk inc flu hosp,40,2,230.0,70,227.97460221256063,52.857142857142854
+Amended (state by state),wk inc flu hosp,40,3,214.0,70,260.62654507159596,25.0
+Amended (state by state),wk inc flu prop ed visits,40,0,0.03285441936168354,23,0.03233248732021381,56.52173913043478
+Amended (state by state),wk inc flu prop ed visits,40,1,0.03441340623612632,23,0.0388568516297,26.08695652173913
+Amended (state by state),wk inc flu prop ed visits,40,2,0.03242353894529515,23,0.0424338816783,17.391304347826086
+Amended (state by state),wk inc flu prop ed visits,40,3,0.02820780644833576,23,0.045408,13.043478260869565
+Amended (state by state),wk inc flu hosp,41,0,132.0,70,127.0,61.42857142857143
+Amended (state by state),wk inc flu hosp,41,1,143.0,70,147.0,42.857142857142854
+Amended (state by state),wk inc flu hosp,41,2,148.0,70,161.0,39.285714285714285
+Amended (state by state),wk inc flu hosp,41,3,152.0,70,180.0,32.857142857142854
+Amended (state by state),wk inc flu prop ed visits,41,0,0.03146254513043567,23,0.03285494441,39.130434782608695
+Amended (state by state),wk inc flu prop ed visits,41,1,0.03189535495748387,23,0.034718,26.08695652173913
+Amended (state by state),wk inc flu prop ed visits,41,2,0.031545124811676095,23,0.036165,30.434782608695652
+Amended (state by state),wk inc flu prop ed visits,41,3,0.030687211598500776,23,0.039072,30.434782608695652
+Amended (state by state),wk inc flu hosp,42,0,1360.0,70,1140.7356741099757,92.85714285714286
+Amended (state by state),wk inc flu hosp,42,1,1495.0,70,1335.0,82.85714285714286
+Amended (state by state),wk inc flu hosp,42,2,1588.0,70,1488.25,60.0
+Amended (state by state),wk inc flu hosp,42,3,1531.0,70,1610.5,42.857142857142854
+Amended (state by state),wk inc flu prop ed visits,42,0,0.02870764860199415,23,0.02754573415787187,73.91304347826087
+Amended (state by state),wk inc flu prop ed visits,42,1,0.032094915252673675,23,0.03309278087643082,34.78260869565217
+Amended (state by state),wk inc flu prop ed visits,42,2,0.03258951835159678,23,0.03801728592934925,17.391304347826086
+Amended (state by state),wk inc flu prop ed visits,42,3,0.03007423241797369,23,0.04178823427202355,17.391304347826086
+Amended (state by state),wk inc flu hosp,44,0,60.0,70,59.5,52.142857142857146
+Amended (state by state),wk inc flu hosp,44,1,72.0,70,72.0,50.0
+Amended (state by state),wk inc flu hosp,44,2,79.0,70,79.0,49.285714285714285
+Amended (state by state),wk inc flu hosp,44,3,89.0,70,88.0,51.42857142857143
+Amended (state by state),wk inc flu prop ed visits,44,0,0.03592634494118562,23,0.035757412020996596,52.17391304347826
+Amended (state by state),wk inc flu prop ed visits,44,1,0.04253967071460277,23,0.0421685,52.17391304347826
+Amended (state by state),wk inc flu prop ed visits,44,2,0.04544690874159581,23,0.045374817483191617,52.17391304347826
+Amended (state by state),wk inc flu prop ed visits,44,3,0.04786614690481431,23,0.047768,52.17391304347826
+Amended (state by state),wk inc flu hosp,45,0,375.0,70,311.5,91.42857142857143
+Amended (state by state),wk inc flu hosp,45,1,408.0,70,348.5,80.0
+Amended (state by state),wk inc flu hosp,45,2,420.0,70,379.5,67.14285714285714
+Amended (state by state),wk inc flu hosp,45,3,386.0,70,400.0,42.857142857142854
+Amended (state by state),wk inc flu prop ed visits,45,0,0.03953547204291681,23,0.03819195358,65.21739130434783
+Amended (state by state),wk inc flu prop ed visits,45,1,0.04397910746047273,23,0.045178,43.47826086956522
+Amended (state by state),wk inc flu prop ed visits,45,2,0.0441622790931433,23,0.049003,39.130434782608695
+Amended (state by state),wk inc flu prop ed visits,45,3,0.04030093331966782,23,0.0510872204865438,26.08695652173913
+Amended (state by state),wk inc flu hosp,46,0,30.0,70,26.0,79.28571428571429
+Amended (state by state),wk inc flu hosp,46,1,35.0,70,32.999094848116215,68.57142857142857
+Amended (state by state),wk inc flu hosp,46,2,42.0,70,38.5,65.71428571428571
+Amended (state by state),wk inc flu hosp,46,3,48.0,70,46.0,57.142857142857146
+Amended (state by state),wk inc flu prop ed visits,46,0,0.013097585600553428,23,0.0114583,86.95652173913044
+Amended (state by state),wk inc flu prop ed visits,46,1,0.01625514810475579,23,0.0149999996647238,82.6086956521739
+Amended (state by state),wk inc flu prop ed visits,46,2,0.019291747968600247,23,0.019618690836030624,47.82608695652174
+Amended (state by state),wk inc flu prop ed visits,46,3,0.020802160506718792,23,0.023026475745147358,43.47826086956522
+Amended (state by state),wk inc flu hosp,47,0,505.0,70,504.8955719721081,50.714285714285715
+Amended (state by state),wk inc flu hosp,47,1,559.0,70,558.2469931277809,50.714285714285715
+Amended (state by state),wk inc flu hosp,47,2,609.0,70,608.25,50.714285714285715
+Amended (state by state),wk inc flu hosp,47,3,652.0,70,651.0,50.714285714285715
+Amended (state by state),wk inc flu prop ed visits,47,0,0.045876961521500004,23,0.045665223043,52.17391304347826
+Amended (state by state),wk inc flu prop ed visits,47,1,0.05146432763397958,23,0.051167655267959154,52.17391304347826
+Amended (state by state),wk inc flu prop ed visits,47,2,0.05672717864860513,23,0.056383,52.17391304347826
+Amended (state by state),wk inc flu prop ed visits,47,3,0.059692312200077965,23,0.059507,52.17391304347826
+Amended (state by state),wk inc flu hosp,48,0,1934.0,70,1860.0,67.14285714285714
+Amended (state by state),wk inc flu hosp,48,1,1979.0,70,2026.4831281444099,42.857142857142854
+Amended (state by state),wk inc flu hosp,48,2,1918.0,70,2113.0,35.714285714285715
+Amended (state by state),wk inc flu hosp,48,3,1833.0,70,2263.5,31.428571428571427
+Amended (state by state),wk inc flu prop ed visits,48,0,0.05310128298338479,23,0.054509,26.08695652173913
+Amended (state by state),wk inc flu prop ed visits,48,1,0.05412817083811442,23,0.0593232016219743,26.08695652173913
+Amended (state by state),wk inc flu prop ed visits,48,2,0.05277692972240531,23,0.06263740201,21.73913043478261
+Amended (state by state),wk inc flu prop ed visits,48,3,0.0508493385095577,23,0.0661809,21.73913043478261
+Amended (state by state),wk inc flu hosp,49,0,161.0,70,161.0,50.0
+Amended (state by state),wk inc flu hosp,49,1,181.0,70,180.5,50.714285714285715
+Amended (state by state),wk inc flu hosp,49,2,202.0,70,200.87940879251724,51.42857142857143
+Amended (state by state),wk inc flu hosp,49,3,214.0,70,213.58333333333331,50.0
+Amended (state by state),wk inc flu prop ed visits,49,0,0.036254889870440475,23,0.03600978027732275,52.17391304347826
+Amended (state by state),wk inc flu prop ed visits,49,1,0.041326313565,23,0.04129,52.17391304347826
+Amended (state by state),wk inc flu prop ed visits,49,2,0.04760648660962091,23,0.04625727376,52.17391304347826
+Amended (state by state),wk inc flu prop ed visits,49,3,0.05052379042783196,23,0.049978406345663924,52.17391304347826
+Amended (state by state),wk inc flu hosp,50,0,20.0,70,16.0,92.14285714285714
+Amended (state by state),wk inc flu hosp,50,1,22.0,70,19.09741020506504,76.42857142857143
+Amended (state by state),wk inc flu hosp,50,2,24.0,70,22.921342791734034,60.0
+Amended (state by state),wk inc flu hosp,50,3,24.0,70,26.0,42.857142857142854
+Amended (state by state),wk inc flu prop ed visits,50,0,0.017743013064318802,23,0.013627872990413134,95.65217391304348
+Amended (state by state),wk inc flu prop ed visits,50,1,0.02015248223870003,23,0.017626030023685745,82.6086956521739
+Amended (state by state),wk inc flu prop ed visits,50,2,0.021229568813578223,23,0.022519,43.47826086956522
+Amended (state by state),wk inc flu prop ed visits,50,3,0.020313874928251607,23,0.026632700295479695,39.130434782608695
+Amended (state by state),wk inc flu hosp,51,0,397.0,70,350.0,91.42857142857143
+Amended (state by state),wk inc flu hosp,51,1,444.0,70,424.5,60.0
+Amended (state by state),wk inc flu hosp,51,2,473.0,70,504.75,37.142857142857146
+Amended (state by state),wk inc flu hosp,51,3,451.0,70,565.75,22.857142857142858
+Amended (state by state),wk inc flu prop ed visits,51,0,0.038784311812196395,23,0.03704134927364937,78.26086956521739
+Amended (state by state),wk inc flu prop ed visits,51,1,0.04374788023851579,23,0.0450895504756974,43.47826086956522
+Amended (state by state),wk inc flu prop ed visits,51,2,0.04450163531000726,23,0.05143611415,13.043478260869565
+Amended (state by state),wk inc flu prop ed visits,51,3,0.04096151593548711,23,0.05638133469,13.043478260869565
+Amended (state by state),wk inc flu hosp,53,0,280.0,69,290.0,41.30434782608695
+Amended (state by state),wk inc flu hosp,53,1,273.0,69,313.3763122558594,25.36231884057971
+Amended (state by state),wk inc flu hosp,53,2,259.0,69,327.8333333333333,21.014492753623188
+Amended (state by state),wk inc flu hosp,53,3,243.0,69,333.7359597712415,20.28985507246377
+Amended (state by state),wk inc flu prop ed visits,53,0,0.03257080682062087,23,0.03574287851,21.73913043478261
+Amended (state by state),wk inc flu prop ed visits,53,1,0.031233243146990268,23,0.036162,13.043478260869565
+Amended (state by state),wk inc flu prop ed visits,53,2,0.030055328522132572,23,0.038611,17.391304347826086
+Amended (state by state),wk inc flu prop ed visits,53,3,0.028176079860730677,23,0.038777979550717906,17.391304347826086
+Amended (state by state),wk inc flu hosp,54,0,60.0,70,47.75,93.57142857142857
+Amended (state by state),wk inc flu hosp,54,1,73.0,70,58.61778809092246,80.0
+Amended (state by state),wk inc flu hosp,54,2,89.0,70,72.0,70.0
+Amended (state by state),wk inc flu hosp,54,3,101.0,70,92.5,57.142857142857146
+Amended (state by state),wk inc flu prop ed visits,54,0,0.013785320628085174,23,0.0119505766779184,82.6086956521739
+Amended (state by state),wk inc flu prop ed visits,54,1,0.017486205673048972,23,0.015671428571428572,69.56521739130434
+Amended (state by state),wk inc flu prop ed visits,54,2,0.020899947626821812,23,0.018762,60.869565217391305
+Amended (state by state),wk inc flu prop ed visits,54,3,0.02224898868735181,23,0.023375,43.47826086956522
+Amended (state by state),wk inc flu hosp,55,0,148.0,70,136.372642099504,82.85714285714286
+Amended (state by state),wk inc flu hosp,55,1,179.0,70,175.0,55.714285714285715
+Amended (state by state),wk inc flu hosp,55,2,221.0,70,220.0,52.857142857142854
+Amended (state by state),wk inc flu hosp,55,3,263.0,70,282.5,43.57142857142857
+Amended (state by state),wk inc flu prop ed visits,55,0,0.012540776869536785,23,0.011936471985760979,65.21739130434783
+Amended (state by state),wk inc flu prop ed visits,55,1,0.0160686183224243,23,0.015632316323198378,60.869565217391305
+Amended (state by state),wk inc flu prop ed visits,55,2,0.019863656155939678,23,0.02104243079584775,47.82608695652174
+Amended (state by state),wk inc flu prop ed visits,55,3,0.02229553278448293,23,0.0268688,39.130434782608695
+Amended (state by state),wk inc flu hosp,56,0,28.0,70,28.46038396611692,42.857142857142854
+Amended (state by state),wk inc flu hosp,56,1,35.0,70,34.436663853826595,54.285714285714285
+Amended (state by state),wk inc flu hosp,56,2,41.0,70,41.0,50.0
+Amended (state by state),wk inc flu hosp,56,3,48.0,70,48.0,50.714285714285715
+Amended (state by state),wk inc flu prop ed visits,56,0,0.031839719694708946,23,0.0317419370648368,52.17391304347826
+Amended (state by state),wk inc flu prop ed visits,56,1,0.03703809591215115,23,0.03692875553327279,52.17391304347826
+Amended (state by state),wk inc flu prop ed visits,56,2,0.04171320414611606,23,0.04120622639,52.17391304347826
+Amended (state by state),wk inc flu prop ed visits,56,3,0.044923415489597836,23,0.044718,52.17391304347826
+Amended (state by state),wk inc flu hosp,US,0,18841.0,69,16637.0,81.15942028985508
+Amended (state by state),wk inc flu hosp,US,1,20665.0,69,19182.0,68.1159420289855
+Amended (state by state),wk inc flu hosp,US,2,22079.0,69,21544.0,55.072463768115945
+Amended (state by state),wk inc flu hosp,US,3,21242.0,69,23684.0,31.884057971014492
+Amended (state by state),wk inc flu prop ed visits,US,0,0.034781452055176486,23,0.03463832312,52.17391304347826
+Amended (state by state),wk inc flu prop ed visits,US,1,0.03818684781435877,23,0.0402427112891562,30.434782608695652
+Amended (state by state),wk inc flu prop ed visits,US,2,0.03814851496645133,23,0.04598356387482494,21.73913043478261
+Amended (state by state),wk inc flu prop ed visits,US,3,0.03493802509183297,23,0.04971557117834089,13.043478260869565
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,02,0,35.0,70,38.0,24.285714285714285
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,01,0,354.0,70,331.5,75.71428571428571
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,05,0,134.0,70,108.0,92.85714285714286
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,04,0,297.0,70,242.0,92.85714285714286
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,06,0,1871.0,71,1949.0,36.61971830985915
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,08,0,251.0,70,235.75,71.42857142857143
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,09,0,177.0,70,140.45292452214753,97.14285714285714
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,11,0,22.0,69,15.0,93.47826086956522
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,10,0,86.0,70,77.25,82.85714285714286
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,12,0,1957.0,69,1802.7267603807,82.6086956521739
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,13,0,577.0,70,516.0,82.85714285714286
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,15,0,43.0,69,62.0,2.898550724637681
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,19,0,82.0,70,65.98687990084181,90.71428571428571
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,16,0,73.0,70,72.94574423136785,52.142857142857146
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,17,0,359.0,70,304.0,88.57142857142857
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,18,0,413.0,70,353.5,91.42857142857143
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,20,0,61.0,70,51.0,84.28571428571429
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,21,0,340.0,70,278.174562332541,90.0
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,22,0,452.0,70,443.027292348631,55.714285714285715
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,25,0,239.0,70,188.5,85.71428571428571
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,24,0,186.0,70,148.0,92.85714285714286
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,23,0,48.0,70,44.0,72.14285714285714
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,26,0,388.0,70,317.75,94.28571428571429
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,27,0,126.0,70,98.5,97.14285714285714
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,29,0,174.0,70,146.28438112956428,85.71428571428571
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,28,0,237.0,70,199.5,88.57142857142857
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,30,0,61.0,70,62.6336692266089,43.57142857142857
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,37,0,611.0,70,532.25,91.42857142857143
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,38,0,25.0,70,21.877116048593727,85.71428571428571
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,31,0,51.0,70,42.0,93.57142857142857
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,33,0,66.0,70,58.0,83.57142857142857
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,34,0,653.0,70,526.5,92.85714285714286
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,35,0,115.0,70,90.0,95.71428571428571
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,32,0,181.0,70,186.0,32.857142857142854
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,36,0,1262.0,71,1066.0,91.54929577464789
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,39,0,562.0,70,456.0,91.42857142857143
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,40,0,195.0,70,159.75,85.0
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,41,0,138.0,70,127.0,69.28571428571429
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,42,0,1360.0,70,1140.7356741099757,92.85714285714286
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,44,0,64.0,70,59.5,75.71428571428571
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,45,0,375.0,70,311.5,91.42857142857143
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,46,0,30.0,70,26.0,79.28571428571429
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,47,0,567.0,70,504.8955719721081,90.0
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,48,0,2002.0,70,1860.0,74.28571428571429
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,49,0,161.0,70,161.0,50.0
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,51,0,397.0,70,350.0,91.42857142857143
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,50,0,20.0,70,16.0,92.14285714285714
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,53,0,269.0,69,290.0,24.63768115942029
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,55,0,148.0,70,136.372642099504,82.85714285714286
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,54,0,60.0,70,47.75,93.57142857142857
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,56,0,27.0,70,28.46038396611692,35.714285714285715
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,US,0,18841.0,69,16637.0,81.15942028985508
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,02,1,33.0,70,42.0,13.571428571428571
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,01,1,346.0,70,372.75,31.428571428571427
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,05,1,152.0,70,133.5,84.28571428571429
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,04,1,346.0,70,285.5,85.71428571428571
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,06,1,1642.0,71,2075.0,12.67605633802817
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,08,1,265.0,70,283.2887617340268,30.714285714285715
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,09,1,205.0,70,168.0,87.14285714285714
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,11,1,25.0,69,19.0,84.78260869565217
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,10,1,88.0,70,88.0,49.285714285714285
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,12,1,1839.0,69,1865.8944091796875,44.927536231884055
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,13,1,590.0,70,601.5,44.285714285714285
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,15,1,31.0,69,62.0,2.898550724637681
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,19,1,105.0,70,82.5,85.71428571428571
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,16,1,74.0,70,90.0,22.857142857142858
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,17,1,443.0,70,356.5,85.71428571428571
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,18,1,471.0,70,425.0,75.71428571428571
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,20,1,76.0,70,65.0,65.71428571428571
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,21,1,365.0,70,324.5,73.57142857142857
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,22,1,406.0,70,463.3271425299405,21.428571428571427
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,25,1,286.0,70,234.5,77.14285714285714
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,24,1,220.0,70,185.0,85.0
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,23,1,52.0,70,52.5,49.285714285714285
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,26,1,483.0,70,405.0,88.57142857142857
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,27,1,166.0,70,128.9231680954391,94.28571428571429
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,29,1,212.0,70,186.476317869711,67.14285714285714
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,28,1,237.0,70,218.5,65.71428571428571
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,30,1,61.0,70,72.13098006399676,16.428571428571427
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,37,1,695.0,70,624.0,74.28571428571429
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,38,1,29.0,70,26.942790985107422,61.42857142857143
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,31,1,61.0,70,53.20271059080298,80.0
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,33,1,72.0,70,68.75,55.714285714285715
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,34,1,726.0,70,609.0,84.28571428571429
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,35,1,134.0,70,110.3489604417571,90.0
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,32,1,166.0,70,207.15180893704024,11.428571428571429
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,36,1,1403.0,71,1235.0,74.64788732394366
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,39,1,678.0,70,561.0,88.57142857142857
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,40,1,218.0,70,195.5,75.0
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,41,1,139.0,70,147.0,38.57142857142857
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,42,1,1495.0,70,1335.0,82.85714285714286
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,44,1,67.0,70,72.0,33.57142857142857
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,45,1,408.0,70,348.5,80.0
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,46,1,35.0,70,32.999094848116215,68.57142857142857
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,47,1,578.0,70,558.2469931277809,61.42857142857143
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,48,1,1927.0,70,2026.4831281444099,35.714285714285715
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,49,1,153.0,70,180.5,17.142857142857142
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,51,1,444.0,70,424.5,60.0
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,50,1,22.0,70,19.09741020506504,76.42857142857143
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,53,1,233.0,69,313.3763122558594,14.492753623188406
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,55,1,179.0,70,175.0,55.714285714285715
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,54,1,73.0,70,58.61778809092246,80.0
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,56,1,27.0,70,34.436663853826595,14.285714285714286
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,US,1,20665.0,69,19182.0,68.1159420289855
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,02,2,29.0,70,45.0,10.0
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,01,2,323.0,70,400.75,22.857142857142858
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,05,2,165.0,70,156.33062483121589,61.42857142857143
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,04,2,399.0,70,328.0,76.42857142857143
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,06,2,1347.0,71,2127.2804299572485,9.859154929577464
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,08,2,268.0,70,331.75,22.857142857142858
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,09,2,224.0,70,199.0,66.42857142857143
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,11,2,27.0,69,24.0,71.01449275362319
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,10,2,84.0,70,95.75,27.142857142857142
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,12,2,1612.0,69,1887.0,32.608695652173914
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,13,2,556.0,70,672.0,21.428571428571427
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,15,2,21.0,69,60.833333333333336,3.6231884057971016
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,19,2,134.0,70,102.0,80.0
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,16,2,72.0,70,104.25,18.571428571428573
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,17,2,555.0,70,421.38236059004055,80.0
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,18,2,517.0,70,499.4569815150508,57.142857142857146
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,20,2,97.0,70,84.5,67.85714285714286
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,21,2,369.0,70,359.0,51.42857142857143
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,22,2,338.0,70,460.15999999999997,12.857142857142858
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,25,2,315.0,70,285.0,61.42857142857143
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,24,2,251.0,70,227.431034506257,67.85714285714286
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,23,2,54.0,70,61.5,38.57142857142857
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,26,2,585.0,70,497.8422961782313,77.14285714285714
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,27,2,224.0,70,167.25,88.57142857142857
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,29,2,253.0,70,226.0,60.0
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,28,2,217.0,70,233.5,41.42857142857143
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,30,2,59.0,70,81.0,15.714285714285714
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,37,2,770.0,70,712.0,62.857142857142854
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,38,2,34.0,70,34.0,50.0
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,31,2,73.0,70,65.13028758982449,60.0
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,33,2,76.0,70,78.75,45.714285714285715
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,34,2,763.0,70,679.5898803966088,71.42857142857143
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,35,2,149.0,70,129.0,74.28571428571429
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,32,2,142.0,70,221.75,5.714285714285714
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,36,2,1480.0,71,1382.0,60.563380281690144
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,39,2,795.0,70,666.0,77.14285714285714
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,40,2,230.0,70,227.97460221256063,52.857142857142854
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,41,2,135.0,70,161.0,32.857142857142854
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,42,2,1588.0,70,1488.25,60.0
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,44,2,63.0,70,79.0,20.0
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,45,2,420.0,70,379.5,67.14285714285714
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,46,2,42.0,70,38.5,65.71428571428571
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,47,2,551.0,70,608.25,31.428571428571427
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,48,2,1722.0,70,2113.0,21.428571428571427
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,49,2,137.0,70,200.87940879251724,12.142857142857142
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,51,2,473.0,70,504.75,37.142857142857146
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,50,2,24.0,70,22.921342791734034,60.0
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,53,2,190.0,69,327.8333333333333,10.144927536231885
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,55,2,221.0,70,220.0,52.857142857142854
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,54,2,89.0,70,72.0,70.0
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,56,2,25.0,70,41.0,8.571428571428571
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,US,2,22079.0,69,21544.0,55.072463768115945
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,02,3,24.0,70,47.0,8.571428571428571
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,01,3,278.0,70,419.0166566258293,13.571428571428571
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,05,3,159.0,70,177.4098376451459,33.57142857142857
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,04,3,423.0,70,385.0,62.857142857142854
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,06,3,1035.0,71,2135.0,5.633802816901408
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,08,3,248.0,70,375.25,17.142857142857142
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,09,3,216.0,70,226.217022112934,41.42857142857143
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,11,3,27.0,69,28.0,47.10144927536232
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,10,3,72.0,70,105.75,15.714285714285714
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,12,3,1286.0,69,1873.0,18.840579710144926
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,13,3,467.0,70,728.5,12.857142857142858
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,15,3,14.0,69,61.0,2.898550724637681
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,19,3,157.0,70,131.311867350755,73.57142857142857
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,16,3,67.0,70,118.95986650365037,17.142857142857142
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,17,3,655.0,70,503.0,75.71428571428571
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,18,3,515.0,70,565.1298773262865,35.714285714285715
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,20,3,116.0,70,108.0,57.142857142857146
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,21,3,332.0,70,389.7938077264635,30.0
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,22,3,262.0,70,469.5,10.0
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,25,3,298.0,70,330.5,31.428571428571427
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,24,3,254.0,70,270.5,40.0
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,23,3,52.0,70,69.5,27.142857142857142
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,26,3,637.0,70,586.5,58.57142857142857
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,27,3,280.0,70,212.0,78.57142857142857
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,29,3,275.0,70,292.5,40.0
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,28,3,178.0,70,247.88457871996775,15.714285714285714
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,30,3,54.0,70,91.745,11.428571428571429
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,37,3,779.0,70,782.9166666666667,48.57142857142857
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,38,3,37.0,70,41.75,34.285714285714285
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,31,3,79.0,70,80.89906027184475,49.285714285714285
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,33,3,72.0,70,89.5,27.142857142857142
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,34,3,712.0,70,726.0,44.285714285714285
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,35,3,146.0,70,151.25,43.57142857142857
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,32,3,113.0,70,236.25,2.857142857142857
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,36,3,1387.0,70,1479.5,34.285714285714285
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,39,3,832.0,70,805.5,57.142857142857146
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,40,3,214.0,70,260.62654507159596,25.0
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,41,3,121.0,70,180.0,25.714285714285715
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,42,3,1531.0,70,1610.5,42.857142857142854
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,44,3,54.0,70,88.0,15.714285714285714
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,45,3,386.0,70,400.0,42.857142857142854
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,46,3,48.0,70,46.0,57.142857142857146
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,47,3,472.0,70,651.0,18.571428571428573
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,48,3,1391.0,70,2263.5,8.571428571428571
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,49,3,114.0,70,213.58333333333331,7.142857142857143
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,51,3,451.0,70,565.75,22.857142857142858
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,50,3,24.0,70,26.0,42.857142857142854
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,53,3,149.0,69,333.7359597712415,5.797101449275362
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,55,3,263.0,70,282.5,43.57142857142857
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,54,3,101.0,70,92.5,57.142857142857146
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,56,3,23.0,70,48.0,5.714285714285714
+"Not amended (masked A, in PR 4244)",wk inc flu hosp,US,3,21242.0,69,23684.0,31.884057971014492
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,02,0,0.03942043271672446,23,0.043559,26.08695652173913
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,01,0,0.04502706621133257,23,0.04382531716026059,52.17391304347826
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,05,0,0.03747749857939198,23,0.037728321411012365,47.82608695652174
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,04,0,0.023192923661190433,23,0.020518337322630194,78.26086956521739
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,06,0,0.029115162033122033,23,0.033841123034986216,17.391304347826086
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,08,0,0.028111070908562394,23,0.029203365523865793,26.08695652173913
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,09,0,0.030926987921702676,23,0.028021482685183237,86.95652173913044
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,11,0,0.023526265931650414,23,0.020422898752,95.65217391304348
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,10,0,0.04878830753732473,23,0.0499206386299835,43.47826086956522
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,12,0,0.04304892469372135,23,0.039083,86.95652173913044
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,13,0,0.0346282295700803,23,0.03744334904934247,17.391304347826086
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,15,0,0.02816312290269707,23,0.044623553848522964,0.0
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,19,0,0.01809099176171003,23,0.015499999999999998,86.95652173913044
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,16,0,0.025436824686039472,23,0.02599390849,47.82608695652174
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,17,0,0.015944173167736154,23,0.015017866478878825,60.869565217391305
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,18,0,0.02857689432130428,23,0.028378094936023314,52.17391304347826
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,20,0,0.011812511498465027,23,0.011035817307692306,65.21739130434783
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,21,0,0.04162444525281899,23,0.0412596,65.21739130434783
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,22,0,0.05119535788617213,23,0.05454,26.08695652173913
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,25,0,0.03746953430309077,23,0.033609,82.6086956521739
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,24,0,0.028337308789195957,23,0.025931078848796717,86.95652173913044
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,23,0,0.02138805298745865,23,0.0229369,34.78260869565217
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,26,0,0.023963092282792784,23,0.023848499891494408,60.869565217391305
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,27,0,0.017675794681053958,23,0.0156087949523393,82.6086956521739
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,29,0,0.015286422796998524,22,0.016021075461696455,36.36363636363637
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,28,0,0.061842551126756004,23,0.065598544,26.08695652173913
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,30,0,0.024833924808626763,23,0.025890171408358798,21.73913043478261
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,37,0,0.045131248862162465,23,0.044498,52.17391304347826
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,38,0,0.014112997252959758,23,0.01332655,69.56521739130434
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,31,0,0.01650303529931989,23,0.0157142857142857,65.21739130434783
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,33,0,0.02447326403853367,23,0.02439265639,52.17391304347826
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,34,0,0.03781576436376781,23,0.03658377514,73.91304347826087
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,35,0,0.03932877544502844,23,0.0351354269481862,91.30434782608695
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,32,0,0.03124759451020509,23,0.03582332725,13.043478260869565
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,36,0,0.030398993890412385,23,0.0283946183454052,78.26086956521739
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,39,0,0.023850541496358346,23,0.022299999999999997,86.95652173913044
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,40,0,0.03285441936168354,23,0.03233248732021381,56.52173913043478
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,41,0,0.02980683999048779,23,0.03285494441,30.434782608695652
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,42,0,0.02870764860199415,23,0.02754573415787187,73.91304347826087
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,44,0,0.03274348984268727,23,0.035757412020996596,17.391304347826086
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,45,0,0.03953547204291681,23,0.03819195358,65.21739130434783
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,46,0,0.013097585600553428,23,0.0114583,86.95652173913044
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,47,0,0.04269570824471884,23,0.045665223043,21.73913043478261
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,48,0,0.051367065966769584,23,0.054509,17.391304347826086
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,49,0,0.03104514981241664,23,0.03600978027732275,8.695652173913043
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,51,0,0.038784311812196395,23,0.03704134927364937,78.26086956521739
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,50,0,0.017743013064318802,23,0.013627872990413134,95.65217391304348
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,53,0,0.029280463944451184,23,0.03574287851,4.3478260869565215
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,55,0,0.012540776869536785,23,0.011936471985760979,65.21739130434783
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,54,0,0.013785320628085174,23,0.0119505766779184,82.6086956521739
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,56,0,0.030303386149898873,23,0.0317419370648368,26.08695652173913
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,US,0,0.034781452055176486,23,0.03463832312,52.17391304347826
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,02,1,0.03706676938236342,23,0.04855253717,4.3478260869565215
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,01,1,0.04503764944092836,23,0.0509469587611868,30.434782608695652
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,05,1,0.04263027067281655,23,0.04501051159568991,34.78260869565217
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,04,1,0.02855410906886391,23,0.023138,73.91304347826087
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,06,1,0.024961295503817385,23,0.03540655,13.043478260869565
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,08,1,0.030468654468495514,23,0.034467,13.043478260869565
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,09,1,0.035026579775149,23,0.0351222,47.82608695652174
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,11,1,0.02597996133590641,23,0.023176420824645067,69.56521739130434
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,10,1,0.048724103291169746,23,0.0564905,21.73913043478261
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,12,1,0.040881467051804066,23,0.04183,47.82608695652174
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,13,1,0.034961114360339704,23,0.04142244548797476,8.695652173913043
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,15,1,0.020961903806892224,23,0.041682,0.0
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,19,1,0.023872910423961002,23,0.020331,86.95652173913044
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,16,1,0.025952346481062705,23,0.030127,13.043478260869565
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,17,1,0.020916410354402615,23,0.019854592574734806,56.52173913043478
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,18,1,0.033766524833481526,23,0.03615037619,26.08695652173913
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,20,1,0.01586910556852672,23,0.015468506213410735,56.52173913043478
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,21,1,0.044014013302512464,23,0.046643,34.78260869565217
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,22,1,0.04658689702046104,23,0.05856,8.695652173913043
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,25,1,0.040450873666122794,23,0.040091105980163654,56.52173913043478
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,24,1,0.03328092712763464,23,0.03287246387065996,60.869565217391305
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,23,1,0.02264259534786106,23,0.02752343927514379,17.391304347826086
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,26,1,0.030133901739100112,23,0.031018982809726755,39.130434782608695
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,27,1,0.023986214162869144,23,0.020454810666499595,82.6086956521739
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,29,1,0.01762961068925506,22,0.020603621355993872,22.727272727272727
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,28,1,0.059918993569590386,23,0.0694232103810565,13.043478260869565
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,30,1,0.02580745386876515,23,0.0306312541975443,17.391304347826086
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,37,1,0.05307489446204272,23,0.0537399973032,47.82608695652174
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,38,1,0.01755821811093483,23,0.017076682126338436,52.17391304347826
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,31,1,0.01982997179402446,23,0.0200707248832008,39.130434782608695
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,33,1,0.026704936390160583,23,0.0293041140683937,39.130434782608695
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,34,1,0.04144812479353277,23,0.042425,43.47826086956522
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,35,1,0.04652070553129306,23,0.042263,82.6086956521739
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,32,1,0.0286632688883401,23,0.039991,4.3478260869565215
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,36,1,0.0331220426451182,23,0.034245,43.47826086956522
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,39,1,0.028890698034956586,23,0.02858313716708235,52.17391304347826
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,40,1,0.03441340623612632,23,0.0388568516297,26.08695652173913
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,41,1,0.028289625949037146,23,0.034718,21.73913043478261
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,42,1,0.032094915252673675,23,0.03309278087643082,34.78260869565217
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,44,1,0.033051373434136624,23,0.0421685,13.043478260869565
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,45,1,0.04397910746047273,23,0.045178,43.47826086956522
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,46,1,0.01625514810475579,23,0.0149999996647238,82.6086956521739
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,47,1,0.043915821945120115,23,0.051167655267959154,17.391304347826086
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,48,1,0.04886043184524169,23,0.0593232016219743,17.391304347826086
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,49,1,0.03086492385409656,23,0.04129,8.695652173913043
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,51,1,0.04374788023851579,23,0.0450895504756974,43.47826086956522
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,50,1,0.02015248223870003,23,0.017626030023685745,82.6086956521739
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,53,1,0.025283406736707547,23,0.036162,4.3478260869565215
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,55,1,0.0160686183224243,23,0.015632316323198378,60.869565217391305
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,54,1,0.017486205673048972,23,0.015671428571428572,69.56521739130434
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,56,1,0.03052850097992632,23,0.03692875553327279,13.043478260869565
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,US,1,0.03818684781435877,23,0.0402427112891562,30.434782608695652
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,02,2,0.033295154754159735,23,0.05145639447643976,0.0
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,01,2,0.04168291257010424,23,0.054764,21.73913043478261
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,05,2,0.043997440957173235,23,0.0513484568,21.73913043478261
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,04,2,0.03253974685139838,23,0.0281,60.869565217391305
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,06,2,0.020114430473768152,23,0.0350842,0.0
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,08,2,0.030211156480072533,23,0.038608,8.695652173913043
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,09,2,0.03591289276082535,23,0.0399545169948326,43.47826086956522
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,11,2,0.026052391942357644,23,0.025241,52.17391304347826
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,10,2,0.04461820953292772,23,0.061499,17.391304347826086
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,12,2,0.03516748528636526,23,0.043262,21.73913043478261
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,13,2,0.03165857618805603,23,0.04623,4.3478260869565215
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,15,2,0.01577505974637461,23,0.041393,0.0
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,19,2,0.0296564242860768,23,0.027199999999999995,82.6086956521739
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,16,2,0.024989257776906016,23,0.035853,8.695652173913043
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,17,2,0.0262139928760007,23,0.026251,47.82608695652174
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,18,2,0.03639352885147673,23,0.04502094729171305,17.391304347826086
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,20,2,0.02039629124192288,23,0.021441816069882033,43.47826086956522
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,21,2,0.04201161799937836,23,0.05001,26.08695652173913
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,22,2,0.0390523569076322,23,0.061753242697,4.3478260869565215
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,25,2,0.039119696417037636,23,0.045749044289538035,26.08695652173913
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,24,2,0.03566440165741369,23,0.038888,39.130434782608695
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,23,2,0.022466572538542097,23,0.0295883928739415,8.695652173913043
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,26,2,0.034734024051431334,23,0.039045973504882044,30.434782608695652
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,27,2,0.031049582830746658,23,0.026971532748391574,69.56521739130434
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,29,2,0.018685071876461734,22,0.0259927902636402,13.636363636363637
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,28,2,0.05272330204024911,23,0.0701585679775033,4.3478260869565215
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,30,2,0.02528330555724096,23,0.034641,8.695652173913043
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,37,2,0.057411358058016046,23,0.05785,47.82608695652174
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,38,2,0.020732167685491732,23,0.022738730240508286,39.130434782608695
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,31,2,0.02171159091485606,23,0.02474877986649825,26.08695652173913
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,33,2,0.02694105578084418,23,0.0328891063863895,17.391304347826086
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,34,2,0.04101722150517162,23,0.04811644589726004,21.73913043478261
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,35,2,0.04959976895042928,23,0.047664,56.52173913043478
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,32,2,0.02415009767319134,23,0.043073,0.0
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,36,2,0.03251176271078293,23,0.0390724217948,17.391304347826086
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,39,2,0.03206530810712138,23,0.03625219088756011,34.78260869565217
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,40,2,0.03242353894529515,23,0.0424338816783,17.391304347826086
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,41,2,0.025296249623352196,23,0.036165,4.3478260869565215
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,42,2,0.03258951835159678,23,0.03801728592934925,17.391304347826086
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,44,2,0.030165892425429774,23,0.045374817483191617,8.695652173913043
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,45,2,0.0441622790931433,23,0.049003,39.130434782608695
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,46,2,0.019291747968600247,23,0.019618690836030624,47.82608695652174
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,47,2,0.04085705910983961,23,0.056383,13.043478260869565
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,48,2,0.04229515843981062,23,0.06263740201,8.695652173913043
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,49,2,0.028161229740362614,23,0.04625727376,0.0
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,51,2,0.04450163531000726,23,0.05143611415,13.043478260869565
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,50,2,0.021229568813578223,23,0.022519,43.47826086956522
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,53,2,0.02087549536081497,23,0.038611,0.0
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,55,2,0.019863656155939678,23,0.02104243079584775,47.82608695652174
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,54,2,0.020899947626821812,23,0.018762,60.869565217391305
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,56,2,0.02874481660292076,23,0.04120622639,8.695652173913043
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,US,2,0.03814851496645133,23,0.04598356387482494,21.73913043478261
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,02,3,0.029463904074509627,23,0.05514771112728613,0.0
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,01,3,0.03639682251305203,23,0.058889123714718446,4.3478260869565215
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,05,3,0.041057619452476504,23,0.05686,13.043478260869565
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,04,3,0.03303267141018296,23,0.03251132207593482,52.17391304347826
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,06,3,0.016042702161939815,23,0.036467,0.0
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,08,3,0.0275369972729095,23,0.041934,4.3478260869565215
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,09,3,0.03326204953336855,23,0.04236982520774054,17.391304347826086
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,11,3,0.023756501519528683,23,0.029005603567088,21.73913043478261
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,10,3,0.03830378349812236,23,0.06623300373,4.3478260869565215
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,12,3,0.02887149432244769,23,0.044839,8.695652173913043
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,13,3,0.026874346258409787,23,0.04896431613694177,0.0
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,15,3,0.012443562862245017,23,0.03928135833002155,0.0
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,19,3,0.0322579139341542,23,0.0337362210811823,39.130434782608695
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,16,3,0.022853544753888858,23,0.03871543106026077,8.695652173913043
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,17,3,0.029285092758073006,23,0.03305836543,39.130434782608695
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,18,3,0.03497990213872981,23,0.049896,13.043478260869565
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,20,3,0.02313924803966074,23,0.028919533208638194,30.434782608695652
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,21,3,0.03685184000278241,23,0.05360601020764259,17.391304347826086
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,22,3,0.03175092384881281,23,0.0639928,4.3478260869565215
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,25,3,0.03477469692516024,23,0.046378683351229084,8.695652173913043
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,24,3,0.03414725224720315,23,0.04151,17.391304347826086
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,23,3,0.020727260762214428,23,0.03161341476235514,8.695652173913043
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,26,3,0.03507018883756245,23,0.043875680598121476,13.043478260869565
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,27,3,0.03551609858914162,23,0.03453187571921748,56.52173913043478
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,29,3,0.01777804742996523,22,0.029679744053382313,13.636363636363637
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,28,3,0.044642795089021095,23,0.07238464971289797,4.3478260869565215
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,30,3,0.023255367581441533,23,0.037235,8.695652173913043
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,37,3,0.05575220949976938,23,0.0641475669043157,21.73913043478261
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,38,3,0.021990791556527257,23,0.026719,30.434782608695652
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,31,3,0.021075668543926437,23,0.0297500006854534,8.695652173913043
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,33,3,0.024882587827232783,23,0.036374,13.043478260869565
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,34,3,0.037010170803114306,23,0.05223748565016065,17.391304347826086
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,35,3,0.04716703751182649,23,0.054801,30.434782608695652
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,32,3,0.019780453123530606,23,0.0454405,0.0
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,36,3,0.029242929349493352,23,0.0427174177829,13.043478260869565
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,39,3,0.03149592703994131,23,0.04169812003,17.391304347826086
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,40,3,0.02820780644833576,23,0.045408,13.043478260869565
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,41,3,0.021784912787552457,23,0.039072,4.3478260869565215
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,42,3,0.03007423241797369,23,0.04178823427202355,17.391304347826086
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,44,3,0.026036302635475295,23,0.047768,0.0
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,45,3,0.04030093331966782,23,0.0510872204865438,26.08695652173913
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,46,3,0.020802160506718792,23,0.023026475745147358,43.47826086956522
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,47,3,0.03563598535765777,23,0.059507,0.0
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,48,3,0.035072316985315405,23,0.0661809,0.0
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,49,3,0.024294486067446996,23,0.049978406345663924,0.0
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,51,3,0.04096151593548711,23,0.05638133469,13.043478260869565
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,50,3,0.020313874928251607,23,0.026632700295479695,39.130434782608695
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,53,3,0.017149924783734602,23,0.038777979550717906,0.0
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,55,3,0.02229553278448293,23,0.0268688,39.130434782608695
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,54,3,0.02224898868735181,23,0.023375,43.47826086956522
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,56,3,0.02540465534584655,23,0.044718,4.3478260869565215
+"Not amended (masked A, in PR 4244)",wk inc flu prop ed visits,US,3,0.03493802509183297,23,0.04971557117834089,13.043478260869565
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,01,0,332.0,70,331.5,50.714285714285715
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,01,1,374.0,70,372.75,50.714285714285715
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,01,2,402.0,70,400.75,51.42857142857143
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,01,3,420.0,70,419.0166566258293,50.0
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,01,0,0.044539124998267496,23,0.04382531716026059,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,01,1,0.0513285618513934,23,0.0509469587611868,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,01,2,0.054914880615630796,23,0.054764,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,01,3,0.05995736170108854,23,0.058889123714718446,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,02,0,38.0,70,38.0,50.0
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,02,1,42.0,70,42.0,48.57142857142857
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,02,2,45.0,70,45.0,50.0
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,02,3,47.0,70,47.0,50.0
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,02,0,0.04376677155297559,23,0.043559,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,02,1,0.04864841108006561,23,0.04855253717,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,02,2,0.05174307620464251,23,0.05145639447643976,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,02,3,0.055806286618643064,23,0.05514771112728613,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,04,0,243.0,70,242.0,51.42857142857143
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,04,1,286.0,70,285.5,50.714285714285715
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,04,2,328.0,70,328.0,50.0
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,04,3,387.0,70,385.0,50.714285714285715
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,04,0,0.020618311568278896,23,0.020518337322630194,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,04,1,0.023654666880011548,23,0.023138,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,04,2,0.028416515458310792,23,0.0281,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,04,3,0.03329954960684556,23,0.03251132207593482,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,05,0,108.0,70,108.0,50.0
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,05,1,134.0,70,133.5,50.714285714285715
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,05,2,157.0,70,156.33062483121589,50.714285714285715
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,05,3,178.0,70,177.4098376451459,50.714285714285715
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,05,0,0.03781710912522651,23,0.037728321411012365,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,05,1,0.04545262886284496,23,0.04501051159568991,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,05,2,0.05202644933639117,23,0.0513484568,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,05,3,0.0569342981182828,23,0.05686,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,06,0,1952.0,71,1949.0,50.70422535211268
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,06,1,2084.0,71,2075.0,50.70422535211268
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,06,2,2131.0,71,2127.2804299572485,50.70422535211268
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,06,3,2158.0,71,2135.0,50.70422535211268
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,06,0,0.03389758600669664,23,0.033841123034986216,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,06,1,0.035443775,23,0.03540655,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,06,2,0.035624600000000006,23,0.0350842,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,06,3,0.03661986363636363,23,0.036467,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,08,0,236.0,70,235.75,50.0
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,08,1,284.0,70,283.2887617340268,51.42857142857143
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,08,2,332.0,70,331.75,50.0
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,08,3,376.0,70,375.25,50.714285714285715
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,08,0,0.029288232761932896,23,0.029203365523865793,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,08,1,0.0347732442573504,23,0.034467,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,08,2,0.03870447910900545,23,0.038608,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,08,3,0.042126,23,0.041934,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,09,0,141.0,70,140.45292452214753,52.857142857142854
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,09,1,168.0,70,168.0,50.0
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,09,2,199.0,70,199.0,50.714285714285715
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,09,3,226.0,70,226.217022112934,49.285714285714285
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,09,0,0.028127788393968713,23,0.028021482685183237,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,09,1,0.03524872385763285,23,0.0351222,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,09,2,0.04011287566444835,23,0.0399545169948326,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,09,3,0.04271406438532027,23,0.04236982520774054,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,10,0,78.0,70,77.25,53.57142857142857
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,10,1,88.0,70,88.0,49.285714285714285
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,10,2,96.0,70,95.75,50.714285714285715
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,10,3,106.0,70,105.75,51.42857142857143
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,10,0,0.05017500445009175,23,0.0499206386299835,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,10,1,0.058060694275,23,0.0564905,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,10,2,0.062004500000000004,23,0.061499,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,10,3,0.06639472793213008,23,0.06623300373,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,11,0,15.0,69,15.0,44.927536231884055
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,11,1,20.0,69,19.0,54.34782608695652
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,11,2,24.0,69,24.0,52.89855072463768
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,11,3,28.0,69,28.0,50.72463768115942
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,11,0,0.020500105728657347,23,0.020422898752,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,11,1,0.02326738741022201,23,0.023176420824645067,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,11,2,0.025855106266128063,23,0.025241,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,11,3,0.029854301783544,23,0.029005603567088,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,12,0,1804.0,69,1802.7267603807,50.72463768115942
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,12,1,1875.0,69,1865.8944091796875,50.72463768115942
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,12,2,1894.0,69,1887.0,50.72463768115942
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,12,3,1894.0,69,1873.0,50.72463768115942
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,12,0,0.03928312439607658,23,0.039083,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,12,1,0.0424955,23,0.04183,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,12,2,0.04407182317903745,23,0.043262,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,12,3,0.046014115732906674,23,0.044839,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,13,0,516.0,70,516.0,50.0
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,13,1,603.0,70,601.5,50.714285714285715
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,13,2,673.0,70,672.0,50.714285714285715
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,13,3,731.0,70,728.5,50.714285714285715
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,13,0,0.03756796720967123,23,0.03744334904934247,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,13,1,0.041584145247337376,23,0.04142244548797476,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,13,2,0.0471025,23,0.04623,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,13,3,0.049047637928319635,23,0.04896431613694177,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,15,0,62.0,69,62.0,50.72463768115942
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,15,1,62.0,69,62.0,50.0
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,15,2,61.0,69,60.833333333333336,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,15,3,62.0,69,61.0,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,15,0,0.04460754350148398,23,0.044623553848522964,47.82608695652174
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,15,1,0.04130394839751311,23,0.041682,47.82608695652174
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,15,2,0.040541891526763546,23,0.041393,47.82608695652174
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,15,3,0.039208597380023455,23,0.03928135833002155,47.82608695652174
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,16,0,73.0,70,72.94574423136785,52.142857142857146
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,16,1,90.0,70,90.0,52.142857142857146
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,16,2,105.0,70,104.25,54.285714285714285
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,16,3,120.0,70,118.95986650365037,50.714285714285715
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,16,0,0.02601560666781505,23,0.02599390849,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,16,1,0.03040662890311839,23,0.030127,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,16,2,0.036187,23,0.035853,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,16,3,0.03945325092043038,23,0.03871543106026077,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,17,0,304.0,70,304.0,50.0
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,17,1,357.0,70,356.5,50.714285714285715
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,17,2,424.0,70,421.38236059004055,51.42857142857143
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,17,3,510.0,70,503.0,50.714285714285715
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,17,0,0.015111783239439413,23,0.015017866478878825,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,17,1,0.020357296078453102,23,0.019854592574734806,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,17,2,0.026687544054999998,23,0.026251,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,17,3,0.033193468429285715,23,0.03305836543,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,18,0,354.0,70,353.5,51.42857142857143
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,18,1,426.0,70,425.0,51.42857142857143
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,18,2,501.0,70,499.4569815150508,51.42857142857143
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,18,3,574.0,70,565.1298773262865,50.714285714285715
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,18,0,0.02860571413467832,23,0.028378094936023314,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,18,1,0.03627207425836777,23,0.03615037619,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,18,2,0.045223694386370916,23,0.04502094729171305,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,18,3,0.05003604146509846,23,0.049896,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,19,0,66.0,70,65.98687990084181,50.714285714285715
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,19,1,83.0,70,82.5,50.714285714285715
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,19,2,102.0,70,102.0,50.0
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,19,3,134.0,70,131.311867350755,52.142857142857146
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,19,0,0.0155,23,0.015499999999999998,54.34782608695652
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,19,1,0.02050096172694411,23,0.020331,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,19,2,0.027636687481132575,23,0.027199999999999995,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,19,3,0.03393549923059115,23,0.0337362210811823,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,20,0,51.0,70,51.0,47.857142857142854
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,20,1,65.0,70,65.0,50.0
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,20,2,85.0,70,84.5,50.714285714285715
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,20,3,109.0,70,108.0,51.42857142857143
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,20,0,0.01123433652994945,23,0.011035817307692306,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,20,1,0.015482345889597165,23,0.015468506213410735,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,20,2,0.022022062616191662,23,0.021441816069882033,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,20,3,0.028964666859319095,23,0.028919533208638194,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,21,0,278.0,70,278.174562332541,48.57142857142857
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,21,1,325.0,70,324.5,50.714285714285715
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,21,2,362.0,70,359.0,50.714285714285715
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,21,3,393.0,70,389.7938077264635,51.42857142857143
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,21,0,0.041268070332203075,23,0.0412596,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,21,1,0.04701974607496892,23,0.046643,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,21,2,0.05068053649,23,0.05001,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,21,3,0.053658986851724884,23,0.05360601020764259,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,22,0,444.0,70,443.027292348631,50.714285714285715
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,22,1,464.0,70,463.3271425299405,50.714285714285715
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,22,2,461.0,70,460.15999999999997,50.714285714285715
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,22,3,472.0,70,469.5,50.714285714285715
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,22,0,0.0559075,23,0.05454,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,22,1,0.059869771804465774,23,0.05856,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,22,2,0.06198566144693742,23,0.061753242697,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,22,3,0.06409951,23,0.0639928,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,23,0,44.0,70,44.0,50.0
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,23,1,53.0,70,52.5,51.42857142857143
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,23,2,62.0,70,61.5,51.42857142857143
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,23,3,70.0,70,69.5,50.714285714285715
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,23,0,0.023047663483146068,23,0.0229369,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,23,1,0.0276273496704871,23,0.02752343927514379,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,23,2,0.029591643055510618,23,0.0295883928739415,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,23,3,0.03187270738117757,23,0.03161341476235514,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,24,0,148.0,70,148.0,47.857142857142854
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,24,1,186.0,70,185.0,50.714285714285715
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,24,2,229.0,70,227.431034506257,51.42857142857143
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,24,3,271.0,70,270.5,50.714285714285715
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,24,0,0.026122503268825807,23,0.025931078848796717,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,24,1,0.032949895394773734,23,0.03287246387065996,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,24,2,0.03925670913570763,23,0.038888,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,24,3,0.04207236927024738,23,0.04151,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,25,0,189.0,70,188.5,50.714285714285715
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,25,1,235.0,70,234.5,50.714285714285715
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,25,2,290.0,70,285.0,50.714285714285715
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,25,3,331.0,70,330.5,50.714285714285715
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,25,0,0.03370739130953414,23,0.033609,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,25,1,0.040215371759825064,23,0.040091105980163654,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,25,2,0.04578167790976902,23,0.045749044289538035,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,25,3,0.04819863073627549,23,0.046378683351229084,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,26,0,318.0,70,317.75,50.714285714285715
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,26,1,406.0,70,405.0,50.714285714285715
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,26,2,498.0,70,497.8422961782313,50.714285714285715
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,26,3,588.0,70,586.5,50.714285714285715
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,26,0,0.02387770144923305,23,0.023848499891494408,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,26,1,0.031068538602727187,23,0.031018982809726755,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,26,2,0.03942055470993602,23,0.039045973504882044,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,26,3,0.04434465355619825,23,0.043875680598121476,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,27,0,99.0,70,98.5,51.42857142857143
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,27,1,131.0,70,128.9231680954391,52.142857142857146
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,27,2,168.0,70,167.25,51.42857142857143
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,27,3,213.0,70,212.0,50.714285714285715
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,27,0,0.01569739747616965,23,0.0156087949523393,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,27,1,0.020540257779088127,23,0.020454810666499595,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,27,2,0.02789440050220115,23,0.026971532748391574,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,27,3,0.03469006523960874,23,0.03453187571921748,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,28,0,200.0,70,199.5,51.42857142857143
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,28,1,219.0,70,218.5,50.714285714285715
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,28,2,235.0,70,233.5,50.714285714285715
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,28,3,248.0,70,247.88457871996775,50.714285714285715
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,28,0,0.06575595789995001,23,0.065598544,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,28,1,0.07065110519052825,23,0.0694232103810565,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,28,2,0.07142618340632635,23,0.0701585679775033,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,28,3,0.07248616704234898,23,0.07238464971289797,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,29,0,147.0,70,146.28438112956428,52.142857142857146
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,29,1,189.0,70,186.476317869711,52.142857142857146
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,29,2,226.0,70,226.0,50.0
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,29,3,293.0,70,292.5,50.714285714285715
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,29,0,0.01624096749160011,22,0.016021075461696455,52.27272727272727
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,29,1,0.020651237810026958,22,0.020603621355993872,52.27272727272727
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,29,2,0.026396962106227773,22,0.0259927902636402,52.27272727272727
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,29,3,0.029723852570407744,22,0.029679744053382313,52.27272727272727
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,30,0,63.0,70,62.6336692266089,52.857142857142854
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,30,1,72.0,70,72.13098006399676,47.142857142857146
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,30,2,82.0,70,81.0,50.714285714285715
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,30,3,93.0,70,91.745,50.714285714285715
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,30,0,0.026118037757498713,23,0.025890171408358798,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,30,1,0.03079179729877215,23,0.0306312541975443,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,30,2,0.03489877556985018,23,0.034641,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,30,3,0.039153499999999994,23,0.037235,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,31,0,42.0,70,42.0,52.857142857142854
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,31,1,53.0,70,53.20271059080298,49.285714285714285
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,31,2,65.0,70,65.13028758982449,48.57142857142857
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,31,3,83.0,70,80.89906027184475,52.142857142857146
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,31,0,0.015739804162284994,23,0.0157142857142857,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,31,1,0.0201228624416004,23,0.0200707248832008,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,31,2,0.025307723266582448,23,0.02474877986649825,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,31,3,0.03044171847860541,23,0.0297500006854534,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,32,0,186.0,70,186.0,50.0
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,32,1,207.0,70,207.15180893704024,49.285714285714285
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,32,2,222.0,70,221.75,50.0
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,32,3,238.0,70,236.25,52.857142857142854
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,32,0,0.035865663625,23,0.03582332725,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,32,1,0.04034103929465,23,0.039991,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,32,2,0.04347999146335,23,0.043073,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,32,3,0.045692250000000004,23,0.0454405,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,33,0,58.0,70,58.0,50.714285714285715
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,33,1,69.0,70,68.75,51.42857142857143
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,33,2,79.0,70,78.75,50.714285714285715
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,33,3,90.0,70,89.5,51.42857142857143
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,33,0,0.0245872271583771,23,0.02439265639,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,33,1,0.02945081934058428,23,0.0293041140683937,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,33,2,0.03357205319319475,23,0.0328891063863895,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,33,3,0.036981438835302666,23,0.036374,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,34,0,528.0,70,526.5,50.714285714285715
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,34,1,610.0,70,609.0,50.714285714285715
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,34,2,681.0,70,679.5898803966088,50.0
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,34,3,728.0,70,726.0,50.714285714285715
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,34,0,0.03661188757,23,0.03658377514,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,34,1,0.043000878830710625,23,0.042425,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,34,2,0.048365406533630015,23,0.04811644589726004,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,34,3,0.052388245765080325,23,0.05223748565016065,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,35,0,90.0,70,90.0,50.714285714285715
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,35,1,112.0,70,110.3489604417571,50.714285714285715
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,35,2,129.0,70,129.0,50.0
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,35,3,153.0,70,151.25,50.714285714285715
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,35,0,0.035323124585725944,23,0.0351354269481862,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,35,1,0.042426583464761775,23,0.042263,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,35,2,0.04792439477,23,0.047664,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,35,3,0.0550423098634577,23,0.054801,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,36,0,1067.0,71,1066.0,50.70422535211268
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,36,1,1244.0,71,1235.0,50.70422535211268
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,36,2,1387.0,71,1382.0,50.70422535211268
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,36,3,1481.0,70,1479.5,50.714285714285715
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,36,0,0.02840854938745168,23,0.0283946183454052,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,36,1,0.03430761708344306,23,0.034245,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,36,2,0.0394002108974,23,0.0390724217948,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,36,3,0.04341570889145,23,0.0427174177829,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,37,0,532.0,70,532.25,49.285714285714285
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,37,1,624.0,70,624.0,49.285714285714285
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,37,2,712.0,70,712.0,50.0
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,37,3,786.0,70,782.9166666666667,50.714285714285715
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,37,0,0.04550280817099567,23,0.044498,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,37,1,0.05380849365645883,23,0.0537399973032,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,37,2,0.05991358792643459,23,0.05785,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,37,3,0.06589457149479626,23,0.0641475669043157,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,38,0,22.0,70,21.877116048593727,60.0
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,38,1,27.0,70,26.942790985107422,52.142857142857146
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,38,2,34.0,70,34.0,50.0
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,38,3,42.0,70,41.75,50.714285714285715
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,38,0,0.013539941666666666,23,0.01332655,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,38,1,0.01759997711365824,23,0.017076682126338436,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,38,2,0.023081365120254143,23,0.022738730240508286,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,38,3,0.028119943720464002,23,0.026719,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,39,0,456.0,70,456.0,50.0
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,39,1,562.0,70,561.0,50.714285714285715
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,39,2,669.0,70,666.0,50.714285714285715
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,39,3,806.0,70,805.5,50.714285714285715
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,39,0,0.022416403200534597,23,0.022299999999999997,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,39,1,0.02889930939705089,23,0.02858313716708235,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,39,2,0.03633559544378005,23,0.03625219088756011,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,39,3,0.0418287798092399,23,0.04169812003,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,40,0,160.0,70,159.75,50.714285714285715
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,40,1,198.0,70,195.5,50.714285714285715
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,40,2,228.0,70,227.97460221256063,51.42857142857143
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,40,3,262.0,70,260.62654507159596,51.42857142857143
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,40,0,0.032544643660106905,23,0.03233248732021381,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,40,1,0.03912267740369338,23,0.0388568516297,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,40,2,0.043233564949513234,23,0.0424338816783,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,40,3,0.04754768222490344,23,0.045408,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,41,0,127.0,70,127.0,49.285714285714285
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,41,1,147.0,70,147.0,49.285714285714285
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,41,2,161.0,70,161.0,49.285714285714285
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,41,3,182.0,70,180.0,50.714285714285715
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,41,0,0.03311825027038355,23,0.03285494441,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,41,1,0.0355010839659306,23,0.034718,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,41,2,0.037794,23,0.036165,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,41,3,0.039589510409449094,23,0.039072,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,42,0,1144.0,70,1140.7356741099757,50.714285714285715
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,42,1,1336.0,70,1335.0,50.714285714285715
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,42,2,1493.0,70,1488.25,50.714285714285715
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,42,3,1616.0,70,1610.5,51.42857142857143
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,42,0,0.027560867078935937,23,0.02754573415787187,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,42,1,0.03346939043821541,23,0.03309278087643082,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,42,2,0.03819864296467462,23,0.03801728592934925,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,42,3,0.042064397053677614,23,0.04178823427202355,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,44,0,60.0,70,59.5,52.142857142857146
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,44,1,72.0,70,72.0,50.0
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,44,2,79.0,70,79.0,49.285714285714285
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,44,3,89.0,70,88.0,51.42857142857143
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,44,0,0.03592634494118562,23,0.035757412020996596,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,44,1,0.04253967071460277,23,0.0421685,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,44,2,0.04544690874159581,23,0.045374817483191617,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,44,3,0.04786614690481431,23,0.047768,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,45,0,312.0,70,311.5,50.714285714285715
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,45,1,350.0,70,348.5,50.714285714285715
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,45,2,384.0,70,379.5,50.714285714285715
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,45,3,400.0,70,400.0,50.0
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,45,0,0.0382956377658,23,0.03819195358,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,45,1,0.045198459395,23,0.045178,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,45,2,0.04930977651899683,23,0.049003,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,45,3,0.05152511864447914,23,0.0510872204865438,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,46,0,26.0,70,26.0,50.714285714285715
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,46,1,33.0,70,32.999094848116215,52.857142857142854
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,46,2,39.0,70,38.5,51.42857142857143
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,46,3,46.0,70,46.0,49.285714285714285
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,46,0,0.01150465,23,0.0114583,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,46,1,0.01505144060642935,23,0.0149999996647238,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,46,2,0.019646845418015313,23,0.019618690836030624,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,46,3,0.02420723787257368,23,0.023026475745147358,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,47,0,505.0,70,504.8955719721081,50.714285714285715
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,47,1,559.0,70,558.2469931277809,50.714285714285715
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,47,2,609.0,70,608.25,50.714285714285715
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,47,3,652.0,70,651.0,50.714285714285715
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,47,0,0.045876961521500004,23,0.045665223043,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,47,1,0.05146432763397958,23,0.051167655267959154,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,47,2,0.05672717864860513,23,0.056383,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,47,3,0.059692312200077965,23,0.059507,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,48,0,1865.0,70,1860.0,50.714285714285715
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,48,1,2031.0,70,2026.4831281444099,51.42857142857143
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,48,2,2113.0,70,2113.0,50.0
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,48,3,2275.0,70,2263.5,50.714285714285715
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,48,0,0.0548355,23,0.054509,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,48,1,0.05939590983098715,23,0.0593232016219743,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,48,2,0.063258701005,23,0.06263740201,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,48,3,0.0666263600338,23,0.0661809,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,49,0,161.0,70,161.0,50.0
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,49,1,181.0,70,180.5,50.714285714285715
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,49,2,202.0,70,200.87940879251724,51.42857142857143
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,49,3,214.0,70,213.58333333333331,50.0
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,49,0,0.036254889870440475,23,0.03600978027732275,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,49,1,0.041326313565,23,0.04129,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,49,2,0.04760648660962091,23,0.04625727376,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,49,3,0.05052379042783196,23,0.049978406345663924,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,50,0,16.0,70,16.0,52.142857142857146
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,50,1,19.0,70,19.09741020506504,46.42857142857143
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,50,2,23.0,70,22.921342791734034,53.57142857142857
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,50,3,26.0,70,26.0,52.142857142857146
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,50,0,0.013757579391563766,23,0.013627872990413134,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,50,1,0.01780782830358317,23,0.017626030023685745,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,50,2,0.02301461657976516,23,0.022519,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,50,3,0.02713435014773985,23,0.026632700295479695,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,51,0,350.0,70,350.0,49.285714285714285
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,51,1,426.0,70,424.5,50.714285714285715
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,51,2,505.0,70,504.75,50.714285714285715
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,51,3,570.0,70,565.75,51.42857142857143
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,51,0,0.03713173509226614,23,0.03704134927364937,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,51,1,0.0453554821066164,23,0.0450895504756974,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,51,2,0.051796557075,23,0.05143611415,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,51,3,0.05767514827862963,23,0.05638133469,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,53,0,291.0,69,290.0,50.72463768115942
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,53,1,314.0,69,313.3763122558594,50.72463768115942
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,53,2,329.0,69,327.8333333333333,50.72463768115942
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,53,3,337.0,69,333.7359597712415,50.72463768115942
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,53,0,0.03586114969679055,23,0.03574287851,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,53,1,0.037183079557272986,23,0.036162,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,53,2,0.039235161683450176,23,0.038611,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,53,3,0.03920223493772675,23,0.038777979550717906,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,54,0,48.0,70,47.75,53.57142857142857
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,54,1,59.0,70,58.61778809092246,52.142857142857146
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,54,2,72.0,70,72.0,50.0
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,54,3,93.0,70,92.5,50.714285714285715
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,54,0,0.012146388338959199,23,0.0119505766779184,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,54,1,0.015848032338065737,23,0.015671428571428572,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,54,2,0.019451000000000003,23,0.018762,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,54,3,0.0240454828068614,23,0.023375,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,55,0,137.0,70,136.372642099504,52.857142857142854
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,55,1,175.0,70,175.0,49.285714285714285
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,55,2,220.0,70,220.0,50.0
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,55,3,285.0,70,282.5,51.42857142857143
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,55,0,0.01206448599288049,23,0.011936471985760979,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,55,1,0.01566646392452969,23,0.015632316323198378,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,55,2,0.021363215397923872,23,0.02104243079584775,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,55,3,0.0270344,23,0.0268688,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,56,0,28.0,70,28.46038396611692,42.857142857142854
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,56,1,35.0,70,34.436663853826595,54.285714285714285
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,56,2,41.0,70,41.0,50.0
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,56,3,48.0,70,48.0,50.714285714285715
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,56,0,0.031839719694708946,23,0.0317419370648368,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,56,1,0.03703809591215115,23,0.03692875553327279,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,56,2,0.04171320414611606,23,0.04120622639,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,56,3,0.044923415489597836,23,0.044718,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,US,0,16642.0,69,16637.0,50.72463768115942
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,US,1,19230.0,69,19182.0,50.72463768115942
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,US,2,21584.0,69,21544.0,50.72463768115942
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu hosp,US,3,23694.0,69,23684.0,50.72463768115942
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,US,0,0.035056970454595396,23,0.03463832312,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,US,1,0.040461466374089844,23,0.0402427112891562,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,US,2,0.04634247302211322,23,0.04598356387482494,52.17391304347826
+Median of the 71 other models (FluSight-ensemble stand-in),wk inc flu prop ed visits,US,3,0.04995978558917044,23,0.04971557117834089,52.17391304347826
