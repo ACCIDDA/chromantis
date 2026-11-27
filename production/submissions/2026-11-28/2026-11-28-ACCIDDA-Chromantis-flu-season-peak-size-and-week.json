@@ -1,0 +1,10 @@
+{
+  "checkpoints": "/hickory/proj/jlessler/projects/tapestry-all/tapestry/data/production-fits/peak-production-20261014",
+  "models": 6,
+  "dataset": "/hickory/proj/jlessler/projects/tapestry-all/tapestry/data/operational-20261125/processed/panel.npz",
+  "issuance": "2026-11-25",
+  "reference_date": "2026-11-28",
+  "samples": 6000,
+  "last_reported_week": "2026-11-21",
+  "definition": "Operational season-peak forecasts for FluSight (`peak week inc flu hosp`, `peak inc flu hosp`), 2026-10-14."
+}
